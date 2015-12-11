@@ -17,7 +17,6 @@ public class ModelTextColumn extends PropertyColumn<Object, String> {
         super(e.getTitleModel(null), e.getColumnId(), e.getColumnId());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void populateItem(final Item<ICellPopulator<Object>> item, final String componentId,
             final IModel<Object> rowModel) {
@@ -25,7 +24,7 @@ public class ModelTextColumn extends PropertyColumn<Object, String> {
     }
 
     protected Label mewLabel(final String componentId, final IModel<Object> rowModel) {
-        return new Label(componentId, createLabelModel(rowModel));
+        return new Label(componentId, getDataModel(rowModel));
     }
 
 }

@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.component.chart.header;
 
+import java.util.List;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.markup.head.HeaderItem;
@@ -21,12 +23,9 @@ public final class HighstockJsReference extends WebjarsJavaScriptResourceReferen
     }
 
     @Override
-    public Iterable<? extends HeaderItem> getDependencies() {
-        return Dependencies.combine(
-                super.getDependencies(),
-                JavaScriptHeaderItem.forReference(AWebApplication.get()
-                        .getJavaScriptLibrarySettings()
-                        .getJQueryReference()));
+    public List<HeaderItem> getDependencies() {
+        return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
+                .forReference(AWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
     }
 
     @Override

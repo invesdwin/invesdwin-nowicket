@@ -53,7 +53,7 @@ public class DefaultSubmitButtonExceptionHandler implements ISubmitButtonExcepti
                 DefaultSubmitButtonExceptionHandler.class.getSimpleName() + ".access.denied.title", component);
         final String message = new StringResourceModel(
                 DefaultSubmitButtonExceptionHandler.class.getSimpleName() + ".access.denied.message", component,
-                element.getContext().getMarkupContainer().getDefaultModel(), null, elementTitle).getString();
+                element.getContext().getMarkupContainer().getDefaultModel()).setDefaultValue(elementTitle).getString();
         showExceptionMessage(element, component, t, title, message);
     }
 

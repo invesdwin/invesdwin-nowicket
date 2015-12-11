@@ -34,7 +34,8 @@ public class I18nDelegateModel extends AbstractReadOnlyModel<String> {
             }
             String localizedMessage;
             try {
-                localizedMessage = new StringResourceModel(message, component, HtmlContext.getModel(component), message).getObject();
+                localizedMessage = new StringResourceModel(message, component, HtmlContext.getModel(component))
+                        .setDefaultValue(message).getObject();
             } catch (final MissingResourceException e) {
                 localizedMessage = message;
             }

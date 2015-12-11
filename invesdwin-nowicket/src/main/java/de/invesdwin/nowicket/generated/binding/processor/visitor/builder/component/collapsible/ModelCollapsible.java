@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxChannel;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
@@ -165,15 +164,9 @@ public class ModelCollapsible extends Panel {
                 @Override
                 protected void onComponentTag(final ComponentTag tag) {
                     // only render handler if link is enabled
-                    if (isLinkEnabled()) {
+                    if (isEnabledInHierarchy()) {
                         super.onComponentTag(tag);
                     }
-                }
-
-                @SuppressWarnings("deprecation")
-                @Override
-                protected AjaxChannel getChannel() {
-                    return TabSubmitAjaxFallbackLink.this.getChannel();
                 }
 
                 @Override

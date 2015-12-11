@@ -22,7 +22,7 @@
 		<version.jquery>2.1.0-2</version.jquery>
 		<version.pnotify>2.0.1_inv</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
-		<version.bootstrap>3.3.4</version.bootstrap>
+		<version.bootstrap>3.3.6</version.bootstrap>
 		<version.ecs>1.4.2</version.ecs>
 		<version.wicked-charts>1.5.0</version.wicked-charts>
 		

@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.component.chart.header;
 
+import java.util.List;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.markup.head.HeaderItem;
@@ -12,8 +14,8 @@ import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceR
 import de.invesdwin.nowicket.application.auth.AWebApplication;
 
 @NotThreadSafe
-public final class HighstockExportingJsReference extends WebjarsJavaScriptResourceReference implements
-        IHeaderContributor {
+public final class HighstockExportingJsReference extends WebjarsJavaScriptResourceReference
+        implements IHeaderContributor {
 
     public static final HighstockExportingJsReference INSTANCE = new HighstockExportingJsReference();
 
@@ -22,12 +24,9 @@ public final class HighstockExportingJsReference extends WebjarsJavaScriptResour
     }
 
     @Override
-    public Iterable<? extends HeaderItem> getDependencies() {
-        return Dependencies.combine(
-                super.getDependencies(),
-                JavaScriptHeaderItem.forReference(AWebApplication.get()
-                        .getJavaScriptLibrarySettings()
-                        .getJQueryReference()));
+    public List<HeaderItem> getDependencies() {
+        return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
+                .forReference(AWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
     }
 
     @Override

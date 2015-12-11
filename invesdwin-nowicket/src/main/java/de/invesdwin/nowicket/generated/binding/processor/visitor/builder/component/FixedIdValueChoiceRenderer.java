@@ -36,4 +36,9 @@ public class FixedIdValueChoiceRenderer<T> implements IChoiceRenderer<T> {
             throw new IllegalArgumentException("No indexOf found for object [" + object + "] on index [" + index + "]");
         }
     }
+
+    @Override
+    public T getObject(final String id, final IModel<? extends List<? extends T>> choices) {
+        return choiceRenderer.getObject(id, choices);
+    }
 }

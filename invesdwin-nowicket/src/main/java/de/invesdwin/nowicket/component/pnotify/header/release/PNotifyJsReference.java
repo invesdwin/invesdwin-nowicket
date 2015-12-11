@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.component.pnotify.header.release;
 
+import java.util.List;
+
 import javax.annotation.concurrent.Immutable;
 
 import org.apache.wicket.markup.head.HeaderItem;
@@ -21,12 +23,9 @@ public final class PNotifyJsReference extends JavaScriptResourceReference implem
     }
 
     @Override
-    public Iterable<? extends HeaderItem> getDependencies() {
-        return Dependencies.combine(
-                super.getDependencies(),
-                JavaScriptHeaderItem.forReference(AWebApplication.get()
-                        .getJavaScriptLibrarySettings()
-                        .getJQueryReference()));
+    public List<HeaderItem> getDependencies() {
+        return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
+                .forReference(AWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
     }
 
     @Override

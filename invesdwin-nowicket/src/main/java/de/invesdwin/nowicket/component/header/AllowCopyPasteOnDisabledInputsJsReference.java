@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.component.header;
 
+import java.util.List;
+
 import javax.annotation.concurrent.Immutable;
 
 import org.apache.wicket.markup.head.HeaderItem;
@@ -13,8 +15,8 @@ import de.agilecoders.wicket.core.util.Dependencies;
 import de.invesdwin.nowicket.application.auth.AWebApplication;
 
 @Immutable
-public final class AllowCopyPasteOnDisabledInputsJsReference extends JavaScriptResourceReference implements
-IHeaderContributor {
+public final class AllowCopyPasteOnDisabledInputsJsReference extends JavaScriptResourceReference
+        implements IHeaderContributor {
 
     public static final AllowCopyPasteOnDisabledInputsJsReference INSTANCE = new AllowCopyPasteOnDisabledInputsJsReference();
     private static final String FUNCTION_NAME = "allowCopyPasteOnDisabledInputs";
@@ -24,12 +26,9 @@ IHeaderContributor {
     }
 
     @Override
-    public Iterable<? extends HeaderItem> getDependencies() {
-        return Dependencies.combine(
-                super.getDependencies(),
-                JavaScriptHeaderItem.forReference(AWebApplication.get()
-                        .getJavaScriptLibrarySettings()
-                        .getJQueryReference()));
+    public List<HeaderItem> getDependencies() {
+        return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
+                .forReference(AWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
     }
 
     @Override

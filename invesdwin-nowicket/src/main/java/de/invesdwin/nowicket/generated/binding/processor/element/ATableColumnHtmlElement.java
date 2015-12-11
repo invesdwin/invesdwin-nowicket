@@ -14,7 +14,8 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindin
 import de.invesdwin.nowicket.generated.markup.processor.element.ATableColumnModelElement;
 
 @NotThreadSafe
-public abstract class ATableColumnHtmlElement<E extends ATableColumnModelElement<?>, M> extends AModelHtmlElement<E, M> {
+public abstract class ATableColumnHtmlElement<E extends ATableColumnModelElement<?>, M>
+        extends AModelHtmlElement<E, M> {
 
     public ATableColumnHtmlElement(final HtmlContext context, final E modelElement) {
         super(context, modelElement.getWicketId());
@@ -49,8 +50,8 @@ public abstract class ATableColumnHtmlElement<E extends ATableColumnModelElement
                     target = targetObjectModel.getObject();
                 }
                 return new StringResourceModel(getWicketId(), getContext().getMarkupContainer(),
-                        getContext().getMarkupContainer().getDefaultModel(), getModelElement().getBeanPathElement()
-                                .getTitle(target)).getObject();
+                        getContext().getMarkupContainer().getDefaultModel())
+                                .setDefaultValue(getModelElement().getBeanPathElement().getTitle(target)).getObject();
             }
         };
     }

@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class FileUploadModel implements IModel<List<FileUpload>> {
                 try {
                     FileUtils.forceMkdir(file.getParentFile());
                     upload.writeTo(file);
-                } catch (final IOException e) {
+                } catch (final Exception e) {
                     throw new RuntimeException(e);
                 }
                 files.add(file);
@@ -57,8 +56,8 @@ public class FileUploadModel implements IModel<List<FileUpload>> {
     }
 
     public static File newFile(final FileUpload upload) {
-        return new File(GuiService.get().getSessionFolder(), FileUploadModel.class.getSimpleName() + "/"
-                + upload.getClientFileName());
+        return new File(GuiService.get().getSessionFolder(),
+                FileUploadModel.class.getSimpleName() + "/" + upload.getClientFileName());
     }
 
     protected void showSuccessMessage(final List<FileUpload> object, final List<File> files) {
@@ -75,8 +74,7 @@ public class FileUploadModel implements IModel<List<FileUpload>> {
                 statusMessage.append("<li>&hellip;</li>");
             }
             statusMessage.append("</ul>");
-            GuiService.get().showStatusMessage(
-                    new StatusMessageConfig().withTitle(element.getTitleModel().getObject())
+            GuiService.get().showStatusMessage(new StatusMessageConfig().withTitle(element.getTitleModel().getObject())
                     .withMessage(statusMessage.toString())
                     .withType(StatusMessageType.success));
             element.getModelElement().getBeanPathElement().setUploadedFiles(files);

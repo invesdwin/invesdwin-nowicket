@@ -13,6 +13,7 @@ import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.jsoup.nodes.Element;
 
+import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
@@ -22,7 +23,6 @@ import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.TitleModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.IModelElement;
-import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
@@ -96,9 +96,8 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
 
     @Override
     public IModel<String> getTitleModel(final IModel<Object> targetObjectModel) {
-        return new TitleModel(getWicketId(), this, targetObjectModel, getModelElement().getBeanPathElement()
-                .getAccessor()
-                .getBeanPathFragment());
+        return new TitleModel(getWicketId(), this, targetObjectModel,
+                getModelElement().getBeanPathElement().getAccessor().getBeanPathFragment());
     }
 
     @Override
@@ -161,7 +160,8 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
                 } else {
                     try {
                         return new StringResourceModel(tooltip, getContext().getMarkupContainer(),
-                                getContext().getMarkupContainer().getDefaultModel(), tooltip).getObject();
+                                getContext().getMarkupContainer().getDefaultModel()).setDefaultValue(tooltip)
+                                        .getObject();
                     } catch (final MissingResourceException e) {
                         return tooltip;
                     }
@@ -185,14 +185,14 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
         }
         final Boolean showingChildModalContainerFound = markupContainer.visitChildren(ModalContainer.class,
                 new IVisitor<ModalContainer, Boolean>() {
-            @Override
-            public void component(final ModalContainer object, final IVisit<Boolean> visit) {
-                if (object.isShowing()) {
-                    //a child modal container is blocking this component currently
-                    visit.stop(true);
-                }
-            }
-        });
+                    @Override
+                    public void component(final ModalContainer object, final IVisit<Boolean> visit) {
+                        if (object.isShowing()) {
+                            //a child modal container is blocking this component currently
+                            visit.stop(true);
+                        }
+                    }
+                });
         return showingChildModalContainerFound != null && showingChildModalContainerFound;
     }
 

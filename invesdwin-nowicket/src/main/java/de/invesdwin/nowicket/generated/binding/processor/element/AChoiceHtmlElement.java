@@ -114,7 +114,8 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                         }
                         try {
                             return new StringResourceModel(objectString, getContext().getMarkupContainer(),
-                                    getContext().getMarkupContainer().getDefaultModel(), objectString).getObject();
+                                    getContext().getMarkupContainer().getDefaultModel()).setDefaultValue(objectString)
+                                            .getObject();
                         } catch (final MissingResourceException e) {
                             return objectString;
                         }
@@ -139,8 +140,8 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                         try {
                             //lookup string value in resources, thus objects toString() might define some other property
                             return new StringResourceModel(displayValueString, getContext().getMarkupContainer(),
-                                    getContext().getMarkupContainer().getDefaultModel(), displayValueString)
-                                            .getObject();
+                                    getContext().getMarkupContainer().getDefaultModel())
+                                            .setDefaultValue(displayValueString).getObject();
                         } catch (final MissingResourceException e) {
                             return displayValueString;
                         }

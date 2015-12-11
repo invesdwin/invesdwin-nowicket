@@ -185,8 +185,8 @@ public class PNotifyBehavior extends Behavior {
             return null;
         }
         try {
-            localizedMessage = new StringResourceModel(message, component, HtmlContext.getModel(component), message)
-                    .getObject();
+            localizedMessage = new StringResourceModel(message, component, HtmlContext.getModel(component))
+                    .setDefaultValue(message).getObject();
         } catch (final MissingResourceException e) {
             localizedMessage = message;
         }

@@ -17,13 +17,13 @@ import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.ValidationError;
 
+import de.invesdwin.norva.beanpath.spi.element.IValidatableBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.UploadButtonBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.FileUploadModel;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.Components;
-import de.invesdwin.norva.beanpath.spi.element.IValidatableBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.UploadButtonBeanPathElement;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.time.fdate.FDate;
 
@@ -128,7 +128,8 @@ public final class ModelUtilityValidator implements INullAcceptingValidator<Obje
             return null;
         } else {
             try {
-                return new StringResourceModel(t, component, HtmlContext.getModel(component), t).getObject();
+                return new StringResourceModel(t, component, HtmlContext.getModel(component)).setDefaultValue(t)
+                        .getObject();
             } catch (final MissingResourceException e) {
                 return t;
             }

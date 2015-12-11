@@ -132,7 +132,7 @@ public class WebApplicationInitializer {
         Bootstrap.install(webApplication, bootstrapSettings);
         final BootstrapExtensionsHeaderContributor headerContributor = newBootstrapExtensionsHeaderContributor(
                 bootstrapSettings);
-        webApplication.getHeaderContributorListenerCollection().add(headerContributor);
+        webApplication.getHeaderContributorListeners().add(headerContributor);
     }
 
     protected void customizeBootstrapSettings(final BootstrapSettings bootstrapSettings) {}
@@ -192,7 +192,7 @@ public class WebApplicationInitializer {
          */
         final String faviconUrl = "/favicon-" + new FDate().millisValue() + ".ico";
         webApplication.mountResource(faviconUrl, favicon);
-        webApplication.getHeaderContributorListenerCollection().add(new FaviconHeaderContributor(faviconUrl));
+        webApplication.getHeaderContributorListeners().add(new FaviconHeaderContributor(faviconUrl));
     }
 
 }

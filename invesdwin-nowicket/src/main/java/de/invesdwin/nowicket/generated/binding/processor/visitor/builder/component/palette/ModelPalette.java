@@ -9,7 +9,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
-import org.apache.wicket.extensions.markup.html.form.palette.Palette;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.ILabelProvider;
@@ -18,6 +17,7 @@ import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.validation.IValidatable;
 
+import de.invesdwin.nowicket.component.palette.Palette;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.IFormComponentAware;
 import de.invesdwin.util.assertions.Assertions;

@@ -46,13 +46,13 @@ public class TitleModel extends AbstractReadOnlyModel<String> {
                     || element.getModelElement().getBeanPathElement().getContainerTitleElement() != null) {
                 //title() or getXYZTitle() method has priority
                 String str = new StringResourceModel(title, element.getContext().getMarkupContainer(),
-                        element.getContext().getMarkupContainer().getDefaultModel(), title).getObject();
+                        element.getContext().getMarkupContainer().getDefaultModel()).setDefaultValue(title).getObject();
                 str = postProcessTitle(str);
                 return str;
             } else {
                 //properties have priority over static title or title annotation
                 String str = new StringResourceModel(wicketId, element.getContext().getMarkupContainer(),
-                        element.getContext().getMarkupContainer().getDefaultModel(), title).getObject();
+                        element.getContext().getMarkupContainer().getDefaultModel()).setDefaultValue(title).getObject();
                 str = postProcessTitle(str);
                 return str;
             }

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxChannel;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
@@ -131,15 +130,9 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
                 @Override
                 protected void onComponentTag(final ComponentTag tag) {
                     // only render handler if link is enabled
-                    if (isLinkEnabled()) {
+                    if (isEnabledInHierarchy()) {
                         super.onComponentTag(tag);
                     }
-                }
-
-                @SuppressWarnings("deprecation")
-                @Override
-                protected AjaxChannel getChannel() {
-                    return SubmitAjaxFallbackLink.this.getChannel();
                 }
 
                 @Override

@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.resource.IResource;
@@ -15,9 +14,8 @@ import de.invesdwin.util.lang.Strings;
 @NotThreadSafe
 public class ModelResourceLink extends ResourceLink<Object> {
 
-    private boolean disableDefaultDisabledStyle;
-
-    public ModelResourceLink(final String id, final ResourceReference resourceReference, final IModel<String> titleModel) {
+    public ModelResourceLink(final String id, final ResourceReference resourceReference,
+            final IModel<String> titleModel) {
         super(id, resourceReference);
         setBody(titleModel);
     }
@@ -41,37 +39,8 @@ public class ModelResourceLink extends ResourceLink<Object> {
         super.onComponentTag(tag);
     }
 
-    @Override
-    public void onComponentTagBody(final MarkupStream markupStream, final ComponentTag openTag) {
-        if (isBootstrapButtonStyle(openTag)) {
-            disableDefaultDisabledStyle = true;
-        }
-        super.onComponentTagBody(markupStream, openTag);
-        if (isBootstrapButtonStyle(openTag)) {
-            disableDefaultDisabledStyle = false;
-        }
-    }
-
-    @Override
-    public String getBeforeDisabledLink() {
-        if (disableDefaultDisabledStyle) {
-            return null;
-        } else {
-            return super.getBeforeDisabledLink();
-        }
-    }
-
     protected boolean isBootstrapButtonStyle(final ComponentTag tag) {
         return Strings.contains(tag.getAttribute("class"), "btn");
-    }
-
-    @Override
-    public String getAfterDisabledLink() {
-        if (disableDefaultDisabledStyle) {
-            return null;
-        } else {
-            return super.getAfterDisabledLink();
-        }
     }
 
     @Override

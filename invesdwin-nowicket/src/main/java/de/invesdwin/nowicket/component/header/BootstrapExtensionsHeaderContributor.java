@@ -78,7 +78,8 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return disableComponentsOnAjaxCall;
     }
 
-    public BootstrapExtensionsHeaderContributor withUpdateFooterMarginOnResize(final boolean updateFooterMarginOnResize) {
+    public BootstrapExtensionsHeaderContributor withUpdateFooterMarginOnResize(
+            final boolean updateFooterMarginOnResize) {
         this.updateFooterMarginOnResize = updateFooterMarginOnResize;
         return this;
     }
