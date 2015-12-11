@@ -1,0 +1,58 @@
+table.palette {
+	border: 0;
+}
+
+table.palette td.pane {
+	width: 50%;
+	text-align: center;
+}
+
+table.palette td.pane select {
+	width: 100%;
+}
+
+table.palette td.buttons { 
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+table.palette td.buttons button {
+	border: none;
+}
+
+button.button.add div:after {
+	/* fa-angle-right */
+	font-family: "FontAwesome";
+	content: "\f105";
+}
+
+button.button.remove div:after {
+	/* fa-angle-left */
+	font-family: "FontAwesome";
+	content: "\f104";
+}
+
+button.button.up div:after {
+	/* fa-angle-up */
+	font-family: "FontAwesome";
+	content: "\f106";
+}
+
+button.button.down div:after {
+	/* fa-angle-down */
+	font-family: "FontAwesome";
+	content: "\f107";
+}
+
+button.button.addAll div:after {
+	/* fa-angle-double-right */
+	font-family: "FontAwesome";
+	content: "\f101";
+}
+
+button.button.removeAll div:after {
+	/* fa-angle-double-left */
+	font-family: "FontAwesome";
+	content: "\f100";
+}

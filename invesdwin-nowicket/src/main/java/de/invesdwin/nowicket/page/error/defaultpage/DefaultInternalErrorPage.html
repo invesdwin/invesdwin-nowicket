@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+</head>
+<body>
+	<wicket:extend>
+		<div class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<wicket:message key="internal.error.title" />
+							</h4>
+						</div>
+						<div class="panel-body">
+							<br />
+							<div class="col-sm-1"></div>
+							<div class="col-sm-10"
+								style="text-align: center; font-weight: bold; font-size: large;">
+								<span wicket:id="panel" />
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<p wicket:id="developmentWarning">
+			<b>Development Warning:</b> This page is for testing and example
+			purposes only. Please implement your own InternalErrorPage similar to
+			this one that extends your own custom base page and provide it in
+			IWebApplication.getInternalErrorPage(). This ensures best
+			integration with the rest of your application. You could add custom
+			functionality here like a contact url or an automatic error mail
+			being sent. Or just change the design of this page. If you decide to
+			keep this page as it is, this warning won't be shown in wicket
+			deployment configuration.
+		</p>
+	</wicket:extend>
+</body>
+</html>

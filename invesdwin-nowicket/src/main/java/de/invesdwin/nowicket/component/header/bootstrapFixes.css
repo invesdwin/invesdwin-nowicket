@@ -1,0 +1,25 @@
+/* fix table-responsive in firefox https://github.com/twbs/bootstrap/issues/12359 http://getbootstrap.com/css/#tables-responsive */
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+/* fix image alignment in wicket debugbar when bootstrap css is loaded */
+.wicketDebugBar img {
+    vertical-align: inherit;
+}
+/* put debug bar on top of menu and everything else */
+.wicketDebugBar {
+	z-index: 999999;
+}
+
+/* make 32px brand logo vertically center aligned to 24px brand name */
+.navbar-brand img {
+	margin-top:-4px;
+	margin-right: 10px;
+	float: left;
+}
+
+/* add some space between tab header and tab panel */
+.tab-content {
+	margin-top: 20px;
+}

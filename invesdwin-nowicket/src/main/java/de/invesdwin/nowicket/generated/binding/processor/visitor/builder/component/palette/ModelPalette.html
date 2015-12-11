@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns:wicket="http://wicket.apache.org">
+<!-- overriding the palette html to make it more extensible and better looking -->
+<body>
+<wicket:panel>
+
+<input type="hidden" wicket:id="recorder"/>
+<table cellspacing="0" cellpadding="2" class="palette">
+<tr>
+	<td class="header headerAvailable"><span wicket:id="availableHeader">[available header]</span></td>
+	<td></td>
+	<td class="header headerSelected"><span wicket:id="selectedHeader">[selected header]</span></td>
+</tr>
+<tr>
+	<td class="pane choices">
+		<select wicket:id="choices" class="choicesSelect form-control">[choices]</select>	
+	</td>
+	<td class="buttons">
+		<wicket:enclosure>
+			<button type="button" wicket:id="moveUpButton" class="button up"><div></div></button><br/>
+		</wicket:enclosure>
+		<wicket:enclosure>
+			<button type="button" wicket:id="addAllButton" class="button addAll"><div></div></button><br/>
+		</wicket:enclosure>
+		<wicket:enclosure>
+			<button type="button" wicket:id="addButton" class="button add"><div></div></button><br/>
+		</wicket:enclosure>
+		<wicket:enclosure>
+			<button type="button" wicket:id="removeButton" class="button remove"><div></div></button><br/>
+		</wicket:enclosure>
+		<wicket:enclosure>
+			<button type="button" wicket:id="removeAllButton" class="button removeAll"><div></div></button><br/>
+		</wicket:enclosure>
+		<wicket:enclosure>
+			<button type="button" wicket:id="moveDownButton" class="button down"><div></div></button><br/>
+		</wicket:enclosure>
+	</td>
+	<td class="pane selection">
+		<select class="selectionSelect form-control" wicket:id="selection">[selection]</select>	
+	</td>
+</tr>
+</table>
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* never wrap table cells by adding this class, though br tags still work for manual wraps */
+.table-nowrap td, .table-nowrap th {
+	white-space: nowrap
+}
+
+/* Sticky footer styles: http://getbootstrap.com/examples/sticky-footer/
+-------------------------------------------------- */
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height; update this via javascript dynamically; see updateFooterMarginOnResize.js */
+	margin-bottom: 60px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+/* https://github.com/twbs/bootstrap/issues/3596 */
+.btn-group-nowrap, .btn-group-nowrap .btn {
+	white-space: nowrap !important;
+	float: none;
+}
+
+.btn-group-nowrap .btn {
+	margin-left: -4px !important;
+}

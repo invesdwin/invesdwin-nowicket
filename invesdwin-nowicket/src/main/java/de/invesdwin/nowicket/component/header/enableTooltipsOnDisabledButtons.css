@@ -1,0 +1,4 @@
+/* http://stackoverflow.com/questions/13311574/how-to-enable-bootstrap-tooltip-on-disabled-button */
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+	pointer-events: auto
+}
