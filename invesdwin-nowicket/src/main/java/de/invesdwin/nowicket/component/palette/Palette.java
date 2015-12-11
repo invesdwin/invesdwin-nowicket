@@ -1,15 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE
- * file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file
- * to You under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
- * License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
- */
 package de.invesdwin.nowicket.component.palette;
 
 import java.util.Collection;
@@ -35,39 +23,15 @@ import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.resource.JQueryPluginResourceReference;
 
 import de.invesdwin.nowicket.component.palette.component.Choices;
+import de.invesdwin.nowicket.component.palette.component.PaletteFixedIdValueChoiceRenderer;
 import de.invesdwin.nowicket.component.palette.component.Recorder;
 import de.invesdwin.nowicket.component.palette.component.Selection;
 
 /**
- * Palette is a component that allows the user to easily select and order multiple items by moving them from one select
- * box into another.
- * <p>
- * When creating a Palette object make sure your IChoiceRenderer returns a specific ID, not the index.
- * <p>
- * <strong>Ajaxifying the palette</strong>: The palette itself cannot be ajaxified because it is a panel and therefore
- * does not receive any javascript events. Instead ajax behaviors can be attached to the recorder component which
- * supports the javascript <code>change</code> event. The behavior should be attached by overriding
- * {@link #newRecorderComponent()}
+ * Extracted from Wicket 6.20.0, since in 7.0 the palette component was rewritten and ModelPalette does not work so
+ * easily with the new version. Using the old version is a simpler fix...
  * 
- * Example:
- * 
- * <pre>
- *  Form form=new Form(...);
- *  Palette palette=new Palette(...) {
- *    protected Recorder newRecorderComponent()
- *    {
- *      Recorder recorder=super.newRecorderComponent();
- *      recorder.add(new AjaxFormComponentUpdatingBehavior(&quot;change&quot;) {...});
- *      return recorder;
- *    }
- *  }
- * 
- * </pre>
- * 
- * @author Igor Vaynberg ( ivaynberg )
- * @param <T>
- *            Type of model object
- * 
+ * @author subes
  */
 @NotThreadSafe
 public class Palette<T> extends GenericPanel<Collection<? extends T>> {
@@ -169,13 +133,14 @@ public class Palette<T> extends GenericPanel<Collection<? extends T>> {
      * @param allowMoveAll
      *            Allow user to add or remove all items at once
      */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public Palette(final String id, final IModel<? extends List<? extends T>> model,
             final IModel<? extends Collection<? extends T>> choicesModel, final IChoiceRenderer<T> choiceRenderer,
             final int rows, final boolean allowOrder, final boolean allowMoveAll) {
         super(id, (IModel<Collection<? extends T>>) (IModel<?>) model);
 
         this.choicesModel = choicesModel;
-        this.choiceRenderer = choiceRenderer;
+        this.choiceRenderer = new PaletteFixedIdValueChoiceRenderer(choicesModel, choiceRenderer);
         this.rows = rows;
         this.allowOrder = allowOrder;
         this.allowMoveAll = allowMoveAll;

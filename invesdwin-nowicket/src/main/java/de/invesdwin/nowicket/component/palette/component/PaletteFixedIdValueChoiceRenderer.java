@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component;
+package de.invesdwin.nowicket.component.palette.component;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import org.apache.wicket.model.IModel;
  * Fixes a bug with wicket Palette identifying the id values wrong by relying on the choice model here.
  */
 @NotThreadSafe
-public class FixedIdValueChoiceRenderer<T> implements IChoiceRenderer<T> {
+public class PaletteFixedIdValueChoiceRenderer<T> implements IChoiceRenderer<T> {
     private final IModel<List<T>> choiceModel;
     private final IChoiceRenderer<T> choiceRenderer;
 
-    public FixedIdValueChoiceRenderer(final IModel<List<T>> choiceModel, final IChoiceRenderer<T> choiceRenderer) {
+    public PaletteFixedIdValueChoiceRenderer(final IModel<List<T>> choiceModel, final IChoiceRenderer<T> choiceRenderer) {
         this.choiceModel = choiceModel;
         this.choiceRenderer = choiceRenderer;
     }

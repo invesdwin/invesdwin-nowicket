@@ -17,7 +17,6 @@ import org.jsoup.nodes.Element;
 
 import de.invesdwin.nowicket.application.auth.AWebApplication;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.FixedIdValueChoiceRenderer;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
@@ -85,7 +84,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
     }
 
     public IChoiceRenderer<Object> getChoiceRenderer() {
-        return new FixedIdValueChoiceRenderer<Object>(getChoiceModel(), newChoiceRenderer());
+        return newChoiceRenderer();
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
