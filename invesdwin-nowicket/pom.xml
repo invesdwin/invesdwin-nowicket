@@ -18,21 +18,14 @@
 		<version.maven-processor-plugin>2.2.4</version.maven-processor-plugin>
 		<version.invesdwin-maven-plugin>1.0.0-SNAPSHOT</version.invesdwin-maven-plugin>
 
-		<version.javax.servlet>3.0.0.v201112011016</version.javax.servlet>
-		<version.wicket>6.19.0</version.wicket>
-		<version.wicket-bootstrap>0.9.8</version.wicket-bootstrap>
 		<version.yuicompressor>2.4.7</version.yuicompressor>
 		<version.jquery>2.1.0-2</version.jquery>
 		<version.pnotify>2.0.1_inv</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.4</version.bootstrap>
-		<version.jsoup>1.7.3</version.jsoup>
 		<version.ecs>1.4.2</version.ecs>
-		<version.highstock>2.0.4</version.highstock>
 		<version.wicked-charts>1.5.0</version.wicked-charts>
-		<version.jackson>2.5.3</version.jackson>
-		<version.spring-security>4.0.1.RELEASE</version.spring-security>
-
+		
 		<version.invesdwin-bom>1.0.0-SNAPSHOT</version.invesdwin-bom>
 	</properties>
 
@@ -63,90 +56,50 @@
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-extensions</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-auth-roles</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-datetime</artifactId>
-			<version>${version.wicket}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>joda-time</artifactId>
-					<groupId>joda-time</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>de.agilecoders.wicket</groupId>
 			<artifactId>wicket-bootstrap-core</artifactId>
-			<version>${version.wicket-bootstrap}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>reflections</artifactId>
-					<groupId>org.reflections</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>de.agilecoders.wicket</groupId>
 			<artifactId>wicket-bootstrap-extensions</artifactId>
-			<version>${version.wicket-bootstrap}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>protobuf-java</artifactId>
-					<groupId>com.google.protobuf</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-devutils</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-util</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-request</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-bean-validation</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
 			<artifactId>wicketstuff-htmlcompressor</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
 			<artifactId>wicketstuff-annotation</artifactId>
-			<version>${version.wicket}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>slf4j-log4j12</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>log4j</artifactId>
-					<groupId>log4j</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
 			<artifactId>wicketstuff-html5</artifactId>
-			<version>${version.wicket}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -156,7 +109,6 @@
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>${version.jsoup}</version>
 		</dependency>
 		<dependency>
 			<groupId>ecs</groupId>
@@ -176,7 +128,6 @@
 		<dependency>
 			<groupId>org.eclipse.jetty.orbit</groupId>
 			<artifactId>javax.servlet</artifactId>
-			<version>${version.javax.servlet}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.yahoo.platform.yui</groupId>
@@ -187,7 +138,6 @@
 			<!-- should not redistribute due to license, thus optional -->
 			<groupId>org.webjars</groupId>
 			<artifactId>highstock</artifactId>
-			<version>${version.highstock}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -199,14 +149,11 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>${version.spring-security}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${version.spring-security}</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
