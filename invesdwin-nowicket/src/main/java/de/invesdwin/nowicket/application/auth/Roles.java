@@ -23,7 +23,7 @@ import de.invesdwin.nowicket.util.SpringSecuritySessionAttributes;
 @NotThreadSafe
 public class Roles extends org.apache.wicket.authroles.authorization.strategies.role.Roles {
 
-    public static final String DISABLED_ROLE_PREFIX = "";
+    private static final String DISABLED_ROLE_PREFIX = "";
 
     private static final org.springframework.expression.ParserContext PARSER_CONTEXT = new org.springframework.expression.ParserContext() {
 
