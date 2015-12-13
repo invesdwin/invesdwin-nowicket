@@ -144,6 +144,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
                 @Override
                 protected void updateAjaxAttributes(final AjaxRequestAttributes attributes) {
                     super.updateAjaxAttributes(attributes);
+                    attributes.setPreventDefault(true);
                     SubmitAjaxFallbackLink.this.updateAjaxAttributes(attributes);
                 }
             };

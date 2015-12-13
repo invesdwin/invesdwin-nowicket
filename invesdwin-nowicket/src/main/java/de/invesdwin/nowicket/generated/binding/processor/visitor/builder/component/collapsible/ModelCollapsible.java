@@ -172,6 +172,7 @@ public class ModelCollapsible extends Panel {
                 @Override
                 protected void updateAjaxAttributes(final AjaxRequestAttributes attributes) {
                     super.updateAjaxAttributes(attributes);
+                    attributes.setPreventDefault(true);
                     TabSubmitAjaxFallbackLink.this.updateAjaxAttributes(attributes);
                 }
             };
