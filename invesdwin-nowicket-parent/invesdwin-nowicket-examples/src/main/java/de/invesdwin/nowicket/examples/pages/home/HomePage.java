@@ -3,25 +3,18 @@ package de.invesdwin.nowicket.examples.pages.home;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
-import de.invesdwin.nowicket.application.AWebPage;
+import de.invesdwin.nowicket.examples.pages.AExampleWebPage;
+import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 
-public class HomePage extends AWebPage {
+public class HomePage extends AExampleWebPage {
 
 	public HomePage() {
-		super(null);
+		this(Model.of(new Home()));
 	}
 
-	public HomePage(IModel<?> model) {
+	public HomePage(IModel<Home> model) {
 		super(model);
-	}
-
-	@Override
-	protected Navbar newNavbar(String id) {
-
-		Navbar newNavbar = super.newNavbar(id);
-		newNavbar.setBrandName(Model.of("NoWicket Examples"));
-		return newNavbar;
+		new GeneratedBinding(this).bind();
 	}
 
 }
