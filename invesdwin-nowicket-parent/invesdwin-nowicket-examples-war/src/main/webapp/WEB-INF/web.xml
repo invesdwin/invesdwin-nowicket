@@ -18,6 +18,11 @@
 			<param-name>filterMappingUrlPattern</param-name>
 			<param-value>/*</param-value>
 		</init-param>
+		<init-param>
+			<!-- enable production error-pages -->
+			<param-name>configuration</param-name>
+			<param-value>deployment</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>wicket</filter-name>
@@ -50,6 +55,5 @@
 		<!-- Uncaught exception -->
 		<location>/internalerror</location>
 	</error-page>
-
 
 </web-app>

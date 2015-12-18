@@ -1,11 +1,9 @@
-package de.invesdwin.nowicket.examples.internal;
+package de.invesdwin.nowicket.examples.war;
 
 import org.apache.wicket.markup.html.WebPage;
-import org.springframework.security.authentication.AuthenticationManager;
 
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
-import de.invesdwin.nowicket.examples.pages.AExampleWebPage;
-import de.invesdwin.nowicket.examples.pages.home.HomePage;
+import de.invesdwin.nowicket.examples.war.page.HomePage;
 
 public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
 	@Override
