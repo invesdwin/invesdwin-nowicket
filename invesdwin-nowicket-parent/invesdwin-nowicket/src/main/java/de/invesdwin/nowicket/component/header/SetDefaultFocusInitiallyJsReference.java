@@ -12,7 +12,7 @@ import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
 import de.agilecoders.wicket.core.util.Dependencies;
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 @Immutable
 public final class SetDefaultFocusInitiallyJsReference extends JavaScriptResourceReference
@@ -28,7 +28,7 @@ public final class SetDefaultFocusInitiallyJsReference extends JavaScriptResourc
     @Override
     public List<HeaderItem> getDependencies() {
         return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
-                .forReference(AWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
+                .forReference(ABaseWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
     }
 
     @Override

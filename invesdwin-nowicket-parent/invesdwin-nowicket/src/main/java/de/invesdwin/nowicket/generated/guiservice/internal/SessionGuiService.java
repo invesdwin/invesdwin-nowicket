@@ -21,7 +21,7 @@ import org.apache.wicket.session.ISessionStore.UnboundListener;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
@@ -158,12 +158,12 @@ public class SessionGuiService implements IGuiService, Serializable {
     @Override
     public File getSessionFolder() {
         if (sessionFolder == null) {
-            sessionFolder = new File(AWebApplication.get().getSessionsDirectory(),
+            sessionFolder = new File(ABaseWebApplication.get().getSessionsDirectory(),
                     getClass().getSimpleName() + "/" + AWebSession.get().getId());
             //clean up folder initially to prevent session clash with stale data
             FileUtils.deleteQuietly(sessionFolder);
             //add listener to clean up the session directory on session unbind aswell
-            final AWebApplication application = AWebApplication.get();
+            final ABaseWebApplication application = ABaseWebApplication.get();
             application.getSessionStore().registerUnboundListener(new UnboundListener() {
                 @Override
                 public void sessionUnbound(final String sessionId) {

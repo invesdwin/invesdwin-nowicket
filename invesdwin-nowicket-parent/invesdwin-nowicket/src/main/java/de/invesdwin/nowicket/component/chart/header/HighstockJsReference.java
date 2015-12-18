@@ -11,7 +11,7 @@ import org.apache.wicket.markup.html.IHeaderContributor;
 
 import de.agilecoders.wicket.core.util.Dependencies;
 import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceReference;
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 @NotThreadSafe
 public final class HighstockJsReference extends WebjarsJavaScriptResourceReference implements IHeaderContributor {
@@ -25,7 +25,7 @@ public final class HighstockJsReference extends WebjarsJavaScriptResourceReferen
     @Override
     public List<HeaderItem> getDependencies() {
         return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
-                .forReference(AWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
+                .forReference(ABaseWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
     }
 
     @Override

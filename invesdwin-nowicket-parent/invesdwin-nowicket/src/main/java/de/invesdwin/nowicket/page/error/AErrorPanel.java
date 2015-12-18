@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.util.SpringSecuritySessionAttributes;
 
 @NotThreadSafe
@@ -37,7 +37,7 @@ public abstract class AErrorPanel extends Panel {
         maybeAppend("Message", message, sb);
         if (exception != null || sb.length() > 0) {
             final RuntimeException loggedExc = new RuntimeException(new ServletException(sb.toString(), exception));
-            if (AWebApplication.get().usesDevelopmentConfig()) {
+            if (ABaseWebApplication.get().usesDevelopmentConfig()) {
                 //show development mode internal error page in wicket
                 throw loggedExc;
             } else {

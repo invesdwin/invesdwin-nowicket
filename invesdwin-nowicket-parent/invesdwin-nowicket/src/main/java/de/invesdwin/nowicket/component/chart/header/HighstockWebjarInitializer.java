@@ -4,7 +4,7 @@ import javax.annotation.concurrent.Immutable;
 
 import com.googlecode.wickedcharts.wicket6.JavaScriptResourceRegistry;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.util.assertions.Assertions;
 
 @Immutable
@@ -22,7 +22,7 @@ public final class HighstockWebjarInitializer {
                     HighstockExportingJsReference.INSTANCE);
             JavaScriptResourceRegistry.getInstance().setHighchartsMoreReference(HighstockMoreJsReference.INSTANCE);
             JavaScriptResourceRegistry.getInstance().setJQueryReference(
-                    AWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference());
+                    ABaseWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference());
             initialized = true;
         }
     }

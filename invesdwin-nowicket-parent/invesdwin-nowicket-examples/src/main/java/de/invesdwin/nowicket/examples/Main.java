@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 
-import de.invesdwin.nowicket.examples.internal.NoWicketExamplesWicketApplication;
+import de.invesdwin.nowicket.examples.internal.NoWicketExamplesWebApplication;
 import de.invesdwin.nowicket.examples.internal.NoWicketExamplesWicketFilter;
 
 @SpringBootApplication
@@ -26,7 +26,7 @@ public class Main {
 			public void onStartup(ServletContext servletContext) throws ServletException {
 				FilterRegistration filter = servletContext.addFilter("wicket-filter",
 						NoWicketExamplesWicketFilter.class);
-				filter.setInitParameter("applicationClassName", NoWicketExamplesWicketApplication.class.getName());
+				filter.setInitParameter("applicationClassName", NoWicketExamplesWebApplication.class.getName());
 				filter.setInitParameter("filterMappingUrlPattern", "/*");
 				filter.addMappingForUrlPatterns(null, false, "/*");
 			}

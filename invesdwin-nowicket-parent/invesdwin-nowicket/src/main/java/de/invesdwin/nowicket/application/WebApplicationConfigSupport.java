@@ -12,7 +12,7 @@ import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 
 @NotThreadSafe
-public class WebApplicationSupport implements IWebApplication {
+public class WebApplicationConfigSupport implements IWebApplicationConfig {
 
     @Override
     public Class<? extends WebPage> getHomePage() {

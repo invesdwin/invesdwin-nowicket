@@ -1,13 +1,23 @@
 package de.invesdwin.nowicket.examples.internal;
 
-import org.apache.wicket.markup.html.WebPage;
+import java.io.File;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-import de.invesdwin.nowicket.application.WebApplicationSupport;
-import de.invesdwin.nowicket.examples.pages.home.HomePage;
+import de.invesdwin.nowicket.application.IWebApplicationConfig;
+import de.invesdwin.nowicket.application.filter.AWebApplication;
+import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
 
-public class NoWicketExamplesWebApplication extends WebApplicationSupport {
+public class NoWicketExamplesWebApplication extends AWebApplication {
+
 	@Override
-	public Class<? extends WebPage> getHomePage() {
-		return HomePage.class;
+	protected IWebApplicationConfig newConfig() {
+		return new NoWicketExamplesWebApplicationConfig();
+	}
+
+	@Override
+	public Set<String> getClasspathBasePackages() {
+		return new HashSet<String>(Arrays.asList("de.invesdwin.nowicket.examples"));
 	}
 }

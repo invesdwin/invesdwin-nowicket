@@ -9,20 +9,20 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
-import de.invesdwin.nowicket.application.IWebApplication;
+import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
 
 @NotThreadSafe
-public abstract class AWebApplication extends org.apache.wicket.authroles.authentication.AuthenticatedWebApplication {
+public abstract class ABaseWebApplication extends org.apache.wicket.authroles.authentication.AuthenticatedWebApplication {
 
-    public static AWebApplication get() {
-        return (AWebApplication) org.apache.wicket.authroles.authentication.AuthenticatedWebApplication.get();
+    public static ABaseWebApplication get() {
+        return (ABaseWebApplication) org.apache.wicket.authroles.authentication.AuthenticatedWebApplication.get();
     }
 
     @Override
     protected abstract Class<? extends AWebSession> getWebSessionClass();
 
-    public abstract IWebApplication getDelegate();
+    public abstract IWebApplicationConfig getDelegate();
 
     public abstract Iterable<IWebApplicationInitializerHook> getWebApplicationInitializerHooks();
 

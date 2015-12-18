@@ -12,7 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.util.SpringSecuritySessionAttributes;
@@ -29,7 +29,7 @@ public class DelegateWebSession extends AWebSession {
 
     @Override
     public boolean authenticate(final String username, final String password) {
-        final AuthenticationManager authenticationManager = AWebApplication.get()
+        final AuthenticationManager authenticationManager = ABaseWebApplication.get()
                 .getDelegate()
                 .getAuthenticationManager();
         if (authenticationManager == null) {
@@ -54,7 +54,7 @@ public class DelegateWebSession extends AWebSession {
     @Override
     public Roles getRoles() {
         final Roles roles = new Roles();
-        final AuthenticationManager authenticationManager = AWebApplication.get()
+        final AuthenticationManager authenticationManager = ABaseWebApplication.get()
                 .getDelegate()
                 .getAuthenticationManager();
         if (authenticationManager != null && isSignedIn()) {

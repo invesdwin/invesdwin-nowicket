@@ -25,7 +25,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.page.auth.SignIn;
@@ -46,7 +46,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage imp
     public AWebPage(final IModel<?> model) {
         super(model);
 
-        if (AWebApplication.get().getDelegate().getAuthenticationManager() != null) {
+        if (ABaseWebApplication.get().getDelegate().getAuthenticationManager() != null) {
             //check remember me before anything else
             final SignIn signIn = new SignIn();
             signIn.setComponent(this);
@@ -139,7 +139,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage imp
     }
 
     protected void addSignInOrSignOutPageToNavbar(final Navbar navbar) {
-        final AWebApplication webApplication = AWebApplication.get();
+        final ABaseWebApplication webApplication = ABaseWebApplication.get();
         if (webApplication.getDelegate().getAuthenticationManager() != null) {
             if (AWebSession.get().isSignedIn()) {
                 addSignOutNavbarComponent(navbar, webApplication.getSignOutPage());
@@ -160,7 +160,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage imp
     }
 
     protected Class<? extends Page> getNavbarHomePage() {
-        return AWebApplication.get().getHomePage();
+        return ABaseWebApplication.get().getHomePage();
     }
 
     protected DebugBar newDebugBar(final String id) {

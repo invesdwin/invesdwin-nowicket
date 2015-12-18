@@ -7,15 +7,15 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.protocol.http.WicketFilter;
 
-import de.invesdwin.nowicket.application.IWebApplication;
+import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
-public abstract class ADelegateWicketFilter extends WicketFilter {
+public abstract class AWicketFilter extends WicketFilter {
 
     {
         final Set<String> ignorePaths = Reflections.field("ignorePaths").ofType(Set.class).in(this).get();
-        final List<String> filter = resolveDelegate().getWicketFilterIgnorePaths();
+        final List<String> filter = newConfig().getWicketFilterIgnorePaths();
         if (filter != null) {
             for (String path : filter) {
                 //remove / from path like wicketFilter does
@@ -28,6 +28,6 @@ public abstract class ADelegateWicketFilter extends WicketFilter {
         }
     }
 
-    protected abstract IWebApplication resolveDelegate();
+    protected abstract IWebApplicationConfig newConfig();
 
 }

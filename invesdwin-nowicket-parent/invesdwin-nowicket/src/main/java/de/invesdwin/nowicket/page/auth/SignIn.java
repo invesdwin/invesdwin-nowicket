@@ -9,7 +9,7 @@ import org.apache.wicket.authentication.IAuthenticationStrategy;
 import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.nowicket.util.SpringSecuritySessionAttributes;
@@ -58,7 +58,7 @@ public class SignIn extends AValueObject {
     }
 
     public void signIn() {
-        final IAuthenticationStrategy strategy = AWebApplication.get()
+        final IAuthenticationStrategy strategy = ABaseWebApplication.get()
                 .getSecuritySettings()
                 .getAuthenticationStrategy();
 
@@ -95,14 +95,14 @@ public class SignIn extends AValueObject {
             throw new RedirectToUrlException(savedRequest.getRedirectUrl());
         }
         component.continueToOriginalDestination();
-        throw new RestartResponseException(AWebApplication.get().getHomePage());
+        throw new RestartResponseException(ABaseWebApplication.get().getHomePage());
     }
 
     @Hidden
     public void checkRememberMe() {
         final AWebSession session = AWebSession.get();
         if (!session.isSignedIn()) {
-            final IAuthenticationStrategy authenticationStrategy = AWebApplication.get()
+            final IAuthenticationStrategy authenticationStrategy = ABaseWebApplication.get()
                     .getSecuritySettings()
                     .getAuthenticationStrategy();
             // get username and password from persistence store

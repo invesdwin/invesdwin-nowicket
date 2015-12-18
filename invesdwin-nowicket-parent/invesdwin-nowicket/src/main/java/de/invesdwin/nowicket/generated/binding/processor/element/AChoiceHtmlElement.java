@@ -15,7 +15,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
@@ -56,7 +56,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
      * Check only in dev mode for performance reasons.
      */
     private void maybeCheckDuplicateRenderedStringsInDevMode(final List<Object> choiceModel) {
-        if (AWebApplication.get().usesDevelopmentConfig()) {
+        if (ABaseWebApplication.get().usesDevelopmentConfig()) {
             final IChoiceRenderer<Object> renderer = getChoiceRenderer();
             final Set<String> duplicateFilter = new HashSet<String>();
             for (final Object o : choiceModel) {

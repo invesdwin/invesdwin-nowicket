@@ -12,7 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 
@@ -22,7 +22,7 @@ public class GuiServiceTester implements IGuiService {
     private final Stack<GuiServiceMethodCall> methodCalls = new Stack<GuiServiceMethodCall>();
     private final AtomicInteger modalPanelsShowing = new AtomicInteger();
 
-    private final File sessionFolder = new File(AWebApplication.get().getSessionsDirectory(), getClass().getSimpleName());
+    private final File sessionFolder = new File(ABaseWebApplication.get().getSessionsDirectory(), getClass().getSimpleName());
 
     public Stack<GuiServiceMethodCall> getMethodCalls() {
         return methodCalls;

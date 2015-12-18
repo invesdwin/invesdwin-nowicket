@@ -7,7 +7,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.application.AWebPage;
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 @NotThreadSafe
 public class HomeRedirectPage extends AWebPage {
@@ -18,7 +18,7 @@ public class HomeRedirectPage extends AWebPage {
 
     public HomeRedirectPage(final IModel<HomeRedirect> model) {
         super(model);
-        throw new RestartResponseException(AWebApplication.get().getHomePage());
+        throw new RestartResponseException(ABaseWebApplication.get().getHomePage());
     }
 
 }

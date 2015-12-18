@@ -10,7 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 
-public interface IWebApplication {
+public interface IWebApplicationConfig {
 
     ResourceReference DEFAULT_FAVICON = new PackageResourceReference("/favicon.ico");
 

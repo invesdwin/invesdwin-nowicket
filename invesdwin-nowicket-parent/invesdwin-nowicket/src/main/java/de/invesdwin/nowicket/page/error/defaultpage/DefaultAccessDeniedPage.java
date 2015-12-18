@@ -8,7 +8,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.http.WebResponse;
 
 import de.invesdwin.nowicket.application.AWebPage;
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nDelegateModel;
 import de.invesdwin.nowicket.page.error.AccessDeniedPanel;
 
@@ -20,7 +20,7 @@ public class DefaultAccessDeniedPage extends AWebPage {
     public DefaultAccessDeniedPage() {
         super(null);
         add(new AccessDeniedPanel("panel"));
-        add(new WebMarkupContainer("developmentWarning").setVisible(AWebApplication.get().usesDevelopmentConfig()));
+        add(new WebMarkupContainer("developmentWarning").setVisible(ABaseWebApplication.get().usesDevelopmentConfig()));
         setTitleModel(new I18nDelegateModel(this, Model.of("access.denied.title")));
     }
 

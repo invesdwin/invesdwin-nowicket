@@ -19,9 +19,9 @@ import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.javascript.YuiCssCompressor;
-import de.invesdwin.nowicket.application.IWebApplication;
+import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.PageFactory;
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
 import de.invesdwin.nowicket.component.chart.header.HighstockWebjarInitializer;
 import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContributor;
@@ -44,10 +44,10 @@ import de.invesdwin.util.time.fdate.FDate;
 @NotThreadSafe
 public class WebApplicationInitializer {
 
-    protected final AWebApplication webApplication;
+    protected final ABaseWebApplication webApplication;
 
     public WebApplicationInitializer() {
-        this.webApplication = AWebApplication.get();
+        this.webApplication = ABaseWebApplication.get();
     }
 
     public void init() {
@@ -186,7 +186,7 @@ public class WebApplicationInitializer {
     protected void registerFavicon() {
         ResourceReference favicon = webApplication.getDelegate().getFavicon();
         if (favicon == null) {
-            favicon = IWebApplication.DEFAULT_FAVICON;
+            favicon = IWebApplicationConfig.DEFAULT_FAVICON;
         }
         /*
          * force clients to update favicon by including timestamp in url (on application restart the icon might have

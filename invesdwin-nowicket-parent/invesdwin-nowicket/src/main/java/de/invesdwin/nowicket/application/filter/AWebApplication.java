@@ -11,8 +11,8 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
-import de.invesdwin.nowicket.application.IWebApplication;
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.IWebApplicationConfig;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
@@ -26,9 +26,9 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 
 @ThreadSafe
-public abstract class ADelegateWebApplication extends AWebApplication {
+public abstract class AWebApplication extends ABaseWebApplication {
 
-    private IWebApplication delegate;
+    private IWebApplicationConfig delegate;
 
     @Override
     protected void init() {
@@ -41,14 +41,14 @@ public abstract class ADelegateWebApplication extends AWebApplication {
     }
 
     @Override
-    public final IWebApplication getDelegate() {
+    public final IWebApplicationConfig getDelegate() {
         if (delegate == null) {
-            delegate = resolveDelegate();
+            delegate = newConfig();
         }
         return delegate;
     }
 
-    protected abstract IWebApplication resolveDelegate();
+    protected abstract IWebApplicationConfig newConfig();
 
     @Override
     protected Class<? extends AWebSession> getWebSessionClass() {

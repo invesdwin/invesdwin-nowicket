@@ -6,7 +6,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.model.IModel;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.component.DelegateModel;
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
 
@@ -30,7 +30,7 @@ public class FileAnchorModel extends DelegateModel<File> {
             return file;
         } else {
             //make path absolute
-            final String basePath = AWebApplication.get().getServletContext().getRealPath(".");
+            final String basePath = ABaseWebApplication.get().getServletContext().getRealPath(".");
             return new File(basePath, file.getPath());
         }
     }

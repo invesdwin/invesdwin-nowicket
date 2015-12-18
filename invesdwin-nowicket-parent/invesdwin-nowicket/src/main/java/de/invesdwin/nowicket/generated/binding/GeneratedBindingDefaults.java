@@ -4,7 +4,7 @@ import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.MetaDataKey;
 
-import de.invesdwin.nowicket.application.auth.AWebApplication;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.DefaultSubmitButtonCallbackFactory;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.ISubmitButtonCallbackFactory;
@@ -27,7 +27,7 @@ public final class GeneratedBindingDefaults {
 
     public static synchronized GeneratedBindingDefaults get() {
         try {
-            final AWebApplication application = AWebApplication.get();
+            final ABaseWebApplication application = ABaseWebApplication.get();
             GeneratedBindingDefaults instance = application.getMetaData(META_DATA_KEY);
             if (instance == null) {
                 if (staticInstance != null) {
