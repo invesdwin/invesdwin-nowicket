@@ -30,22 +30,27 @@ public class Main {
 	}
 
 	@Bean
-	public FilterRegistrationBean noWicketInitializer() {
+	public FilterRegistrationBean noWicketFilterInitializer() {
 		FilterRegistrationBean noWicketFilter = new FilterRegistrationBean();
 		noWicketFilter.setFilter(new NoWicketExamplesWicketFilter());
 		noWicketFilter.addInitParameter("applicationClassName", NoWicketExamplesWebApplication.class.getName());
 		noWicketFilter.addInitParameter("filterMappingUrlPattern", "/*");
+		
+		// Deployment configuration enables custom error pages.
+		// noWicketFilter.addInitParameter("configuration", "deployment");
+		
 		noWicketFilter.addUrlPatterns("/*");
 		noWicketFilter.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
 		return noWicketFilter;
 	}
 
 	@Bean
-	public EmbeddedServletContainerCustomizer noWicketCustomizer() {
+	public EmbeddedServletContainerCustomizer noWicketFilterCustomizer() {
 		return new EmbeddedServletContainerCustomizer() {
 
 			@Override
 			public void customize(ConfigurableEmbeddedServletContainer container) {
+				// Definition of custom error pages.
 				container.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, DefaultAccessDeniedPage.MOUNT_PATH));
 				container.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, DefaultAccessDeniedPage.MOUNT_PATH));
 				container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, DefaultPageNotFoundPage.MOUNT_PATH));

@@ -10,4 +10,5 @@ public class NoWicketExamplesWebApplicationConfig extends WebApplicationConfigSu
 	public Class<? extends WebPage> getHomePage() {
 		return HomePage.class;
 	}
+	
 }
