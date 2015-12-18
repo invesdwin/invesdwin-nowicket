@@ -15,8 +15,8 @@ import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
-import de.invesdwin.nowicket.examples.internal.NoWicketExamplesWebApplication;
-import de.invesdwin.nowicket.examples.internal.NoWicketExamplesWicketFilter;
+import de.invesdwin.nowicket.examples.internal.ExampleWebApplication;
+import de.invesdwin.nowicket.examples.internal.ExampleWicketFilter;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
@@ -30,10 +30,10 @@ public class Main {
 	}
 
 	@Bean
-	public FilterRegistrationBean noWicketFilterInitializer() {
+	public FilterRegistrationBean filterInitializer() {
 		FilterRegistrationBean noWicketFilter = new FilterRegistrationBean();
-		noWicketFilter.setFilter(new NoWicketExamplesWicketFilter());
-		noWicketFilter.addInitParameter("applicationClassName", NoWicketExamplesWebApplication.class.getName());
+		noWicketFilter.setFilter(new ExampleWicketFilter());
+		noWicketFilter.addInitParameter("applicationClassName", ExampleWebApplication.class.getName());
 		noWicketFilter.addInitParameter("filterMappingUrlPattern", "/*");
 		
 		// Deployment configuration enables custom error pages.
@@ -45,7 +45,7 @@ public class Main {
 	}
 
 	@Bean
-	public EmbeddedServletContainerCustomizer noWicketFilterCustomizer() {
+	public EmbeddedServletContainerCustomizer filterCustomizer() {
 		return new EmbeddedServletContainerCustomizer() {
 
 			@Override
