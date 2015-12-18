@@ -22,7 +22,7 @@ public class GuiServiceTester implements IGuiService {
     private final Stack<GuiServiceMethodCall> methodCalls = new Stack<GuiServiceMethodCall>();
     private final AtomicInteger modalPanelsShowing = new AtomicInteger();
 
-    private final File sessionFolder = new File(AWebApplication.get().getCacheDirectory(), getClass().getSimpleName());
+    private final File sessionFolder = new File(AWebApplication.get().getSessionsDirectory(), getClass().getSimpleName());
 
     public Stack<GuiServiceMethodCall> getMethodCalls() {
         return methodCalls;

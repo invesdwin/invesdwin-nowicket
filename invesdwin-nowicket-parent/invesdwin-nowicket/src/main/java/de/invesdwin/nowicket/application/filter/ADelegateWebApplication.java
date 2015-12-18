@@ -1,5 +1,8 @@
 package de.invesdwin.nowicket.application.filter;
 
+import java.io.File;
+import java.util.Collections;
+
 import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.concurrent.ThreadSafe;
 
@@ -12,6 +15,7 @@ import de.invesdwin.nowicket.application.IWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
+import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
 import de.invesdwin.nowicket.application.filter.internal.DelegateWebSession;
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.page.auth.defaultpage.DefaultSignInPage;
@@ -144,4 +148,18 @@ public abstract class ADelegateWebApplication extends AWebApplication {
         return new ModelCacheUsingPageFactory(delegate);
     }
 
+    @Override
+    public Iterable<IWebApplicationInitializerHook> getWebApplicationInitializerHooks() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getSessionEncryptionKey() {
+        return null;
+    }
+
+    @Override
+    public File getSessionsDirectory() {
+        return new File(".sessions");
+    }
 }

@@ -158,7 +158,7 @@ public class SessionGuiService implements IGuiService, Serializable {
     @Override
     public File getSessionFolder() {
         if (sessionFolder == null) {
-            sessionFolder = new File(AWebApplication.get().getTempDirectory(),
+            sessionFolder = new File(AWebApplication.get().getSessionsDirectory(),
                     getClass().getSimpleName() + "/" + AWebSession.get().getId());
             //clean up folder initially to prevent session clash with stale data
             FileUtils.deleteQuietly(sessionFolder);

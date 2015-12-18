@@ -72,8 +72,10 @@ public class WebApplicationInitializer {
 
     protected void registerCryptFactory() {
         //use static key to enable remember-me feature between server restarts
-        webApplication.getSecuritySettings()
-                .setCryptFactory(new CachingSunJceCryptFactory(webApplication.getSessionEncryptionKey()));
+        if (webApplication.getSessionEncryptionKey() != null) {
+            webApplication.getSecuritySettings()
+                    .setCryptFactory(new CachingSunJceCryptFactory(webApplication.getSessionEncryptionKey()));
+        }
     }
 
     protected void registerStoreSettings() {

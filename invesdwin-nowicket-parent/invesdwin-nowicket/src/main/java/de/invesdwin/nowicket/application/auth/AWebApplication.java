@@ -52,8 +52,6 @@ public abstract class AWebApplication extends org.apache.wicket.authroles.authen
 
     public abstract Set<String> getClasspathBasePackages();
 
-    public abstract File getTempDirectory();
-
-    public abstract File getCacheDirectory();
+    public abstract File getSessionsDirectory();
 
 }
