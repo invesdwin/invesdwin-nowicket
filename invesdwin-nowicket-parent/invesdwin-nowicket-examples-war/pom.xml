@@ -9,9 +9,12 @@
 	<packaging>war</packaging>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.7</java.version>
+
 		<version.invesdwin-bom>1.0.0-SNAPSHOT</version.invesdwin-bom>
 	</properties>
-	
+
 	<!-- run this sample with "mvn tomcat7:run" and access the website at http://localhost:8080 -->
 
 	<dependencyManagement>
