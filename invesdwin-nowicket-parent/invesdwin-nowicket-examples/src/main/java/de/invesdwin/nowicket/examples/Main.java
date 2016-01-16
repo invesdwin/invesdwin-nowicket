@@ -28,6 +28,7 @@ public class Main {
 
     public static void main(final String[] args) {
         DynamicInstrumentationLoader.waitForInitialized();
+        DynamicInstrumentationLoader.initLoadTimeWeavingContext();
         SpringApplication.run(Main.class, args);
     }
 
