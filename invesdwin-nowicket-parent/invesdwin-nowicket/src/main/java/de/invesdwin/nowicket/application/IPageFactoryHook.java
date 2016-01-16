@@ -12,6 +12,6 @@ public interface IPageFactoryHook {
      * of keeping the current model as it is or replace it entirely with the new one. The default behaviour though is to
      * keep the old model as it is.
      */
-    void onPageRefresh(Object newModelObject);
+    void onPageModelRefresh(Object newModelObject);
 
 }

@@ -27,7 +27,7 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
             final Page cUsedPage = (Page) usedPage;
             if (cUsedPage.getDefaultModelObject() != null && usedPage instanceof IPageFactoryHook) {
                 final IPageFactoryHook hook = (IPageFactoryHook) usedPage;
-                hook.onPageRefresh(newModelObject);
+                hook.onPageModelRefresh(newModelObject);
             }
         }
         return usedPage;

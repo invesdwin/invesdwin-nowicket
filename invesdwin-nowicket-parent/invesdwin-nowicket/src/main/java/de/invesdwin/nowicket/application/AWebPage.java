@@ -204,5 +204,5 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage imp
     }
 
     @Override
-    public void onPageRefresh(final Object newModelObject) {}
+    public void onPageModelRefresh(final Object newModelObject) {}
 }
