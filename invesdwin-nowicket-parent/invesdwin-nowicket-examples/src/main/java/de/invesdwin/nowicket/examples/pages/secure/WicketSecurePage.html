@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+    <head></head>
+    <body>
+        <wicket:extend>
+            <form class="form-horizontal" wicket:id="form">
+                <!-- <div wicket:id='feedback'></div>  -->
+                <div wicket:id="modal"></div>
+                <div class="form-group">
+                    <div wicket:id="admin_gridColumn" class="col-sm-offset-2 col-sm-4">
+                        <div class="checkbox">
+                            <label wicket:for="admin"><input type="checkbox" wicket:id="admin"></input>
+                                <wicket:label>
+                                    Admin
+                                </wicket:label></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-default" wicket:id="home">Home</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

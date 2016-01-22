@@ -9,11 +9,13 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.HttpStatus;
 
 import de.invesdwin.instrument.DynamicInstrumentationLoader;
+import de.invesdwin.nowicket.examples.internal.ExampleSpringApplicationRunListener;
 import de.invesdwin.nowicket.examples.internal.ExampleWebApplication;
 import de.invesdwin.nowicket.examples.internal.ExampleWicketFilter;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
@@ -22,7 +24,8 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 
 @SpringBootApplication
-@ImportResource(locations = "classpath:/META-INF/ctx.spring.weaving.xml")
+@ImportResource(locations = { "classpath:/META-INF/ctx.spring.weaving.xml",
+        "classpath:/META-INF/ctx.example.security.xml" })
 @Immutable
 public class Main {
 
@@ -30,6 +33,10 @@ public class Main {
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
         SpringApplication.run(Main.class, args);
+    }
+
+    public static ConfigurableApplicationContext getApplicationContext() {
+        return ExampleSpringApplicationRunListener.getApplicationContext();
     }
 
     @Bean
