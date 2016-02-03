@@ -40,7 +40,11 @@ public class Main {
         GeneratedBindingDefaults.get().setDefaultBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createForm(final FormHtmlElement e) {
-                //CsrfTokenForm somehow does not work properly here, so diable it...
+                /*
+                 * CsrfTokenForm somehow does not work properly here, so disable it... must be also some problem
+                 * introduced by spring-boot dependencies? works fine in different platform, so don't care to fix in
+                 * this example right now
+                 */
                 final Form<Object> form = new Form<Object>(e.getWicketId());
                 return form;
             }
@@ -60,7 +64,7 @@ public class Main {
         noWicketFilter.addInitParameter("filterMappingUrlPattern", "/*");
 
         // Deployment configuration enables custom error pages.
-        // noWicketFilter.addInitParameter("configuration", "deployment");
+        noWicketFilter.addInitParameter("configuration", "deployment");
 
         noWicketFilter.addUrlPatterns("/*");
         noWicketFilter.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);

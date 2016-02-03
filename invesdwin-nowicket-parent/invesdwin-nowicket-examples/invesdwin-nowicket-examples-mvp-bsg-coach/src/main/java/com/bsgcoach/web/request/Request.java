@@ -19,6 +19,7 @@ import com.bsgcoach.util.MailSender;
 import com.bsgcoach.web.feedback.Feedback;
 import com.bsgcoach.web.feedback.sample.SampleFeedback;
 
+import de.invesdwin.norva.beanpath.annotation.Disabled;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
@@ -35,9 +36,16 @@ public class Request extends AValueObject {
     private static final int FIRST_REPORT_YEAR = 10;
     private static final int MIN_GAME_ENDS_IN_YEAR = FIRST_REPORT_YEAR + 1;
 
+    /*
+     * some bug with spring-boot dependencies maybe... does not happen with other projects or when running this code in
+     * different platform, so don't care enough to fix it right now... just disabling the inputs for now to show the
+     * dialog properly
+     */
+    private static final String DISABLED_VALIDATION = "Feature currently disabled";
+
     private CompanyLetter companyLetter = CompanyLetter.A;
     private Integer gameEndsInYear = MAX_GAME_ENDS_IN_YEAR;
-    private CreditRating creditRating;
+    private CreditRating creditRating = CreditRating.APlus;
     private File firReportCsv;
     private File cirReportCsv;
     private File corReportCsv;
@@ -47,6 +55,7 @@ public class Request extends AValueObject {
         return companyLetter;
     }
 
+    @Disabled(DISABLED_VALIDATION)
     public void setCompanyLetter(final CompanyLetter companyLetter) {
         this.companyLetter = companyLetter;
     }
@@ -64,6 +73,7 @@ public class Request extends AValueObject {
         return gameEndsInYear;
     }
 
+    @Disabled(DISABLED_VALIDATION)
     public void setGameEndsInYear(final Integer gameEndsInYear) {
         this.gameEndsInYear = gameEndsInYear;
     }
@@ -73,6 +83,7 @@ public class Request extends AValueObject {
         return creditRating;
     }
 
+    @Disabled(DISABLED_VALIDATION)
     public void setCreditRating(final CreditRating creditRating) {
         this.creditRating = creditRating;
     }
