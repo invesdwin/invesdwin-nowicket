@@ -44,6 +44,8 @@ public class Main {
                  * CsrfTokenForm somehow does not work properly here, so disable it... must be also some problem
                  * introduced by spring-boot dependencies? works fine in different platform, so don't care to fix in
                  * this example right now
+                 * 
+                 * anyway a good occasion to showcase the default binding interceptor feature ;)
                  */
                 final Form<Object> form = new Form<Object>(e.getWicketId());
                 return form;

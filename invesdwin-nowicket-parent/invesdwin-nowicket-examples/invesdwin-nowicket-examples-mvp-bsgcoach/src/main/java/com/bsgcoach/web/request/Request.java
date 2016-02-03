@@ -40,6 +40,8 @@ public class Request extends AValueObject {
      * some bug with spring-boot dependencies maybe... does not happen with other projects or when running this code in
      * different platform, so don't care enough to fix it right now... just disabling the inputs for now to show the
      * dialog properly
+     * 
+     * anyway a good occasion to showcase the @Disabled feature with automatic tooltips ;)
      */
     private static final String DISABLED_VALIDATION = "Feature currently disabled";
 

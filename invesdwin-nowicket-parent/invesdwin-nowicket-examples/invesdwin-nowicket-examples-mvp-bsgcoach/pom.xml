@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.invesdwin</groupId>
-	<artifactId>invesdwin-nowicket-examples-mvp-bsg-coach</artifactId>
+	<artifactId>invesdwin-nowicket-examples-mvp-bsgcoach</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
