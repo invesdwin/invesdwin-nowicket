@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="form-group">
+				<div class="col-sm-3">
+					<h1 style="font-weight: bold; text-align: center">Rank</h1>
+				</div>
+				<div class="col-sm-6">
+					<h1 style="font-weight: bold">Management Problem</h1>
+				</div>
+				<div class="col-sm-3">
+					<h1 style="font-weight: bold; text-align: center">Importance</h1>
+				</div>
+			</div>
+			<hr
+				style="height: 1px; border: none; color: #333; background-color: #333" />
+			<ul wicket:id="ruleMatches"></ul>
+		</form>
+	</wicket:extend>
+</body>
+</html>

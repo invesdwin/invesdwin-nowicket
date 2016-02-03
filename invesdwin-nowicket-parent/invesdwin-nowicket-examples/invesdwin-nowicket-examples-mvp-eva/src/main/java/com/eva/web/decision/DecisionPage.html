@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<h1>StartUp Simulator</h1>
+			<h3>Stage 3: Choose your legal form</h3>
+			<br />
+			<p>Which company type would you choose for a commerce company?</p>
+			<div class="form-group">
+				<div wicket:id="companyType_gridColumn"
+					class="col-sm-offset-1 col-sm-5">
+					<input class="form-control" wicket:id="companyType" type="radio"></input>
+				</div>
+			</div>
+			<br/>
+			<div class="form-group">
+				<div class="col-sm-3">
+					<button type="submit" class="btn btn-default btn-block"
+						wicket:id="ok">Ok</button>
+				</div>
+			</div>
+			<div
+				style="position: fixed; width: 100%; text-align: center; left: 0; bottom: 75px">
+				<a href="/pleasewait"><img wicket:id="evaImg" /></a>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

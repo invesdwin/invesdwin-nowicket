@@ -1,0 +1,10 @@
+<!DOCTYPE aspectj PUBLIC    
+  "-//AspectJ//DTD//EN"    "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+
+<aspectj>
+	<weaver options="-showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler -warn:none -Xlint:ignore">
+	</weaver>
+	<aspects>
+		<aspect name="org.springframework.cache.aspectj.JCacheCacheAspect" />
+	</aspects>
+</aspectj>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+    <head></head> 
+    <body> 
+        <wicket:panel> 
+            <form class="form-horizontal" wicket:id="form"> 
+                <!-- <div wicket:id='feedback'></div>  --> 
+                <div wicket:id="modal"></div> 
+                <div class="form-group"> 
+                    <div class="col-sm-3"> 
+                        <img style="margin-left: auto; margin-right: auto; display: block" wicket:id="rank" /> 
+                    </div> 
+                    <div class="col-sm-6"> 
+                        <h3> <label wicket:id="ruleName"></label> </h3> 
+                    </div> 
+                    <div class="col-sm-3"> 
+                        <img style="margin-left: auto; margin-right: auto; display: block" wicket:id="significance" /> 
+                        <div style="text-align:center"><h5><label wicket:id="significancePercent"></label></h5></div>
+                    </div> 
+                </div> 
+                <div class="form-group"> 
+                    <div class="col-sm-3"></div> 
+                    <div class="col-sm-6"> 
+                        <label style="font-weight: normal" wicket:id="feedbackText"></label> 
+                        <b><a wicket:id="readMore" target="_blank">Read more ...</a></b>
+				</div> 
+                    <div class="col-sm-3"></div> 
+                </div> 
+                <hr /> 
+            </form> 
+        </wicket:panel>  
+    </body>
+</html>

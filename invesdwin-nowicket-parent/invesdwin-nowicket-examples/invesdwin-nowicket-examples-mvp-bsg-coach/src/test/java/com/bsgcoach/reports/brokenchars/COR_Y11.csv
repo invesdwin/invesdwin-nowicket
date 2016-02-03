@@ -1,0 +1,4203 @@
+
+
+
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,11,
+
+Plant,,,,,,
+
+Operations,Plant Capacity-------------,,Beginning of Yr,,2000,
+
+,,,Const (from last yr),,0,
+
+,,,Purchased (this yr),,0,
+
+,,,Sold (this yr),,0,
+
+,,,Available This Yr,,2000,
+
+,,,  % of Total Capacity,,0.333,
+
+,,,Const (for next yr),,0,
+
+,,,  Cost ($000s),,0,
+
+,,,,,0,
+
+,Upgrade Options--------,,Online--------,Opt Letter,0,
+
+,,,,Opt Letter,0,
+
+,,,Ordered-------,Opt Letter,4,
+
+,,,,Cost,7000,
+
+,,,,,,
+
+,Investment-----------------,,Gross at Beg of Yr,,75000,
+
+,,,  + Upgrade (last yr),,0,
+
+,,,  + Const (last yr),,0,
+
+,,,  + Purch (this yr),,0,
+
+,,,  %u2013 Sold (this yr),,0,
+
+,,,Gross Invest This Yr,,75000,
+
+,,,Accum Dep (begin),,27500,
+
+,,,Depreciation this Yr,,3750,
+
+,,,Net Invest (this yr),,43750,
+
+,,,  EE Initiatives,,0,
+
+,,,Work in Progress,,7000,
+
+,,,,,,
+
+,Compenastion--------------,,Base Wages,,15150,
+
+,($ per worker),,Incentive Pay,,4764,
+
+,,,  Total Comp,,19914,
+
+,,,Last Year--,Wages,15000,
+
+,,,,Incentive,5108,
+
+,,,,Total,20108,
+
+,,,,,,
+
+,,,Incentive Pay Per Pair,,1.25,
+
+,,,,Last Year,1.25,
+
+,,,,,1,
+
+,,,Ind Avg Base Wage,,15150,
+
+,,,Ind Avg Total Comp,,20108,
+
+,,,% Chng from Last Yr,,0.0084,
+
+,,,,,,
+
+,Productivity---------------,,Wage Change (%),,0.01,
+
+,  Factors,,Expected Incent Pay,,4775,
+
+,,,Incentive Pay (%),,0.24,
+
+,,,Total Comp (% of avg),,0.99,
+
+,,,Best Pract (per wkr),,1000,
+
+,,,,,0,
+
+,Productivity Calc---------,,Ind Avg Base Prod,,3945,
+
+,,,Beginning Base,,3925,
+
+,,,  % Chng--,Wage,0,
+
+,,,,BestP,0.005,
+
+,,,,Opt D,0,
+
+,,,New Base (this yr),,3945,
+
+,,,  % Chng--,Incentive,0.0192,
+
+,,,,Tot Comp,0,
+
+,,,Productivity (this yr),,4021,
+
+,,,,Last Year,4000,
+
+,,,,,,
+
+,Workers Employed-------,,Branded Production,,440,
+
+,,,P-Label Production,,0,
+
+,,,  Total Workers Emp,,440,
+
+,,,,Last Year,501,
+
+,,,,,,
+
+,Cumulatives-----------------,,TQM----------,$000s,2000,
+
+,,,,Capacity,4000,
+
+,,,,$/pair Cap,0.5,
+
+,,,BestP---------,$000s,882,
+
+,,,,Pairs,3532,
+
+,,,,$/pair Prod,0.25,
+
+,,,,Employees,882,
+
+,Materials Costs----------,,BestP Effect %,,0,
+
+,,,Per Pair------,Normal,5.96,
+
+,,,,Long,12.34,
+
+,,,Savings Per Pair,,0,
+
+,,,,,,
+
+,Branded,Number of Models,,Current,200,
+
+,Production,,,Last Year,200,
+
+,,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.06,
+
+,,Calcs,Adders------,Models,0,
+
+,,,,Avg TQM,0,
+
+,,,,Incentive,-0.01,
+
+,,,,Avg BP,0,
+
+,,,Initial Reject Rate,,0.05,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0.05,
+
+,,,,Last Year,0.05,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,22,
+
+,,Calcs,,Styling,12,
+
+,,,,Cur TQM,3,
+
+,,,,Avg TQM,4.5,
+
+,,,,BestP,8,
+
+,,,,Opt C,0,
+
+,,,,  Total,49.5,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,4,
+
+,,,,Last Year,5,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,1766,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,1766,
+
+,,,Pairs Rejected,,89,
+
+,,,Net Production,,1677,
+
+,,  Last-Year------------------,,Produced,1766,
+
+,,,,Rejected,89,
+
+,,,,Net,1677,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,1,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Standard,4842,
+
+,,,,Superior,11768,
+
+,,,Labor----------,Wage,6666,
+
+,,,,Incentive,2096,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,440,
+
+,,,Plant Supervision,,2640,
+
+,,,Styling/Features,,2000,
+
+,,,TQM 6 Sigma,,1000,
+
+,,,Prod Run Set-up,,6000,
+
+,,,Maintenance,,4875,
+
+,,,Depreciation,,3750,
+
+,,,  Total,,46077,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,26.09,
+
+,,Prod,After Rejects,,27.48,
+
+,,,Cost of Rejects,,1.39,
+
+,,,,,,
+
+,P-Label,Number of Models,,,100,
+
+,Production,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.06,
+
+,,Calcs,Adders------,Models,-0.01,
+
+,,,,Avg TQM,0,
+
+,,,,Incentive,-0.01,
+
+,,,,Avg BP,0,
+
+,,,Initial Reject Rate,,0.04,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0.04,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,11.9,
+
+,,Calcs,,Styling,10,
+
+,,,,Cur TQM,3,
+
+,,,,Avg TQM,4.5,
+
+,,,,BestP,8,
+
+,,,,Opt C,0,
+
+,,,,  Total,37.4,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,0,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,0,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,0,
+
+,,,Pairs Rejected,,0,
+
+,,,Net Production,,0,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,0,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Normal,0,
+
+,,,,Long,0,
+
+,,,Labor----------,Wage,0,
+
+,,,,Incentive,0,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,0,
+
+,,,Plant Supervision,,0,
+
+,,,Styling/Features,,0,
+
+,,,TQM 6 Sigma,,0,
+
+,,,Prod Run Set-up,,0,
+
+,,,Maintenance,,0,
+
+,,,Depreciation,,0,
+
+,,,  Total,,0,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,0,
+
+,,Prod,After Rejects,,0,
+
+,,,Cost of Rejects,,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+E-A,Age of the Plant (in years),,,,0,
+
+Plant,,,,,,
+
+Operations,Plant Capacity-------------,,Beginning of Yr,,0,
+
+,,,Const (from last yr),,0,
+
+,,,Purchased (this yr),,0,
+
+,,,Sold (this yr),,0,
+
+,,,Available This Yr,,0,
+
+,,,  % of Total Capacity,,0,
+
+,,,Const (for next yr),,0,
+
+,,,  Cost ($000s),,0,
+
+,,,,,0,
+
+,Upgrade Options--------,,Online--------,Opt Letter,0,
+
+,,,,Opt Letter,0,
+
+,,,Ordered-------,Opt Letter,0,
+
+,,,,Cost,0,
+
+,,,,,,
+
+,Investment-----------------,,Gross at Beg of Yr,,0,
+
+,,,  + Upgrade (last yr),,0,
+
+,,,  + Const (last yr),,0,
+
+,,,  + Purch (this yr),,0,
+
+,,,  %u2013 Sold (this yr),,0,
+
+,,,Gross Invest This Yr,,0,
+
+,,,Accum Dep (begin),,0,
+
+,,,Depreciation this Yr,,0,
+
+,,,Net Invest (this yr),,0,
+
+,,,  EE Initiatives,,0,
+
+,,,Work in Progress,,0,
+
+,,,,,,
+
+,Compenastion--------------,,Base Wages,,0,
+
+,(000s per worker),,Incentive Pay,,0,
+
+,,,  Total Comp,,0,
+
+,,,Last Year--,Wages,0,
+
+,,,,Incentive,0,
+
+,,,,Total,0,
+
+,,,,,,
+
+,,,Incentive Pay Per Pair,,0,
+
+,,,,Last Year,0,
+
+,,,,,0,
+
+,,,Ind Avg Base Wage,,15000,
+
+,,,Ind Avg Total Comp,,15000,
+
+,,,% Chng from Last Yr,,0,
+
+,,,,,,
+
+,Productivity---------------,,Wage Change (%),,0,
+
+,  Factors,,Expected Incent Pay,,0,
+
+,,,Incentive Pay (%),,0,
+
+,,,Total Comp (% of avg),,0,
+
+,,,Best Pract (per wkr),,0,
+
+,,,,,0,
+
+,Productivity Calc---------,,Ind Avg Base Prod,,4000,
+
+,,,Beginning Base,,0,
+
+,,,  % Chng--,Wage,-0.005,
+
+,,,,BestP,-0.02,
+
+,,,,Opt D,0,
+
+,,,New Base (this yr),,0,
+
+,,,  % Chng--,Incentive,-0.021,
+
+,,,,Tot Comp,0,
+
+,,,Productivity (this yr),,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,Workers Employed-------,,Branded Production,,0,
+
+,,,P-Label Production,,0,
+
+,,,  Total Workers Emp,,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,Cumulatives-----------------,,TQM----------,$000s,0,
+
+,,,,Capacity,0,
+
+,,,,$/pair Cap,0,
+
+,,,BestP---------,$000s,0,
+
+,,,,Pairs,0,
+
+,,,,$/pair Prod,0,
+
+,,,,Employees,0,
+
+,Materials Costs----------,,BestP Effect %,,0,
+
+,,,Per Pair------,Normal,5.96,
+
+,,,,Long,12.34,
+
+,,,Savings Per Pair,,0,
+
+,,,,,,
+
+,Branded,Number of Models,,Curretn,0,
+
+,Production,,,Last Year,0,
+
+,,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.06,
+
+,,Calcs,Adders------,Models,0,
+
+,,,,Avg TQM,0.02,
+
+,,,,Incentive,0.02,
+
+,,,,Avg BP,0.00675,
+
+,,,Initial Reject Rate,,0.10675,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,0,
+
+,,Calcs,,Styling,0,
+
+,,,,Cur TQM,0,
+
+,,,,Avg TQM,0,
+
+,,,,BestP,0,
+
+,,,,Opt C,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,0,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,0,
+
+,,,Pairs Rejected,,0,
+
+,,,Net Production,,0,
+
+,,  Last-Year------------------,,Produced,0,
+
+,,,,Rejected,0,
+
+,,,,Net,0,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,0,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Normal,0,
+
+,,,,Long,0,
+
+,,,Labor----------,Wage,0,
+
+,,,,Incentive,0,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,0,
+
+,,,Plant Supervision,,0,
+
+,,,Styling/Features,,0,
+
+,,,TQM 6 Sigma,,0,
+
+,,,Prod Run Set-up,,0,
+
+,,,Maintenance,,0,
+
+,,,Depreciation,,0,
+
+,,,  Total,,0,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,0,
+
+,,Prod,After Rejects,,0,
+
+,,,Cost of Rejects,,0,
+
+,,,,,,
+
+,P-Label,Number of Models,,,100,
+
+,Production,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.06,
+
+,,Calcs,Adders------,Models,-0.01,
+
+,,,,Avg TQM,0.02,
+
+,,,,Incentive,0.02,
+
+,,,,Avg BP,0.00675,
+
+,,,Initial Reject Rate,,0.09675,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0.097,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,0,
+
+,,Calcs,,Styling,0,
+
+,,,,Cur TQM,0,
+
+,,,,Avg TQM,0,
+
+,,,,BestP,0,
+
+,,,,Opt C,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,0,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,0,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,0,
+
+,,,Pairs Rejected,,0,
+
+,,,Net Production,,0,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,0,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Normal,0,
+
+,,,,Long,0,
+
+,,,Labor----------,Wage,0,
+
+,,,,Incentive,0,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,0,
+
+,,,Plant Supervision,,0,
+
+,,,Styling/Features,,0,
+
+,,,TQM 6 Sigma,,0,
+
+,,,Prod Run Set-up,,0,
+
+,,,Maintenance,,0,
+
+,,,Depreciation,,0,
+
+,,,  Total,,0,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,0,
+
+,,Prod,After Rejects,,0,
+
+,,,Cost of Rejects,,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+A-P,Age of the Plant (in years),,,,4,
+
+Plant,,,,,,
+
+Operations,Plant Capacity-------------,,Beginning of Yr,,4000,
+
+,,,Const (from last yr),,0,
+
+,,,Purchased (this yr),,0,
+
+,,,Sold (this yr),,0,
+
+,,,Available This Yr,,4000,
+
+,,,  % of Total Capacity,,0.667,
+
+,,,Const (for next yr),,0,
+
+,,,  Cost ($000s),,0,
+
+,,,,,0,
+
+,Upgrade Options--------,,Online--------,Opt Letter,0,
+
+,,,,Opt Letter,0,
+
+,,,Ordered-------,Opt Letter,0,
+
+,,,,Cost,0,
+
+,,,,,,
+
+,Investment-----------------,,Gross at Beg of Yr,,180000,
+
+,,,  + Upgrade (last yr),,0,
+
+,,,  + Const (last yr),,0,
+
+,,,  + Purch (this yr),,0,
+
+,,,  %u2013 Sold (this yr),,0,
+
+,,,Gross Invest This Yr,,180000,
+
+,,,Accum Dep (begin),,31500,
+
+,,,Depreciation this Yr,,9000,
+
+,,,Net Invest (this yr),,139500,
+
+,,,  EE Initiatives,,0,
+
+,,,Work in Progress,,0,
+
+,,,,,,
+
+,Compenastion--------------,,Base Wages,,2822,
+
+,(000s per worker),,Incentive Pay,,928,
+
+,,,  Total Comp,,3750,
+
+,,,Last Year--,Wages,2794,
+
+,,,,Incentive,930,
+
+,,,,Total,3724,
+
+,,,,,,
+
+,,,Incentive Pay Per Pair,,0.4,
+
+,,,,Last Year,0.4,
+
+,,,,,1,
+
+,,,Ind Avg Base Wage,,2822,
+
+,,,Ind Avg Total Comp,,3724,
+
+,,,% Chng from Last Yr,,-0.0035,
+
+,,,,,,
+
+,Productivity---------------,,Wage Change (%),,0.01,
+
+,  Factors,,Expected Incent Pay,,930,
+
+,,,Incentive Pay (%),,0.25,
+
+,,,Total Comp (% of avg),,1.01,
+
+,,,Best Pract (per wkr),,500,
+
+,,,,,0,
+
+,Productivity Calc---------,,Ind Avg Base Prod,,2454,
+
+,,,Beginning Base,,2453,
+
+,,,  % Chng--,Wage,0,
+
+,,,,BestP,0,
+
+,,,,Opt D,0,
+
+,,,New Base (this yr),,2453,
+
+,,,  % Chng--,Incentive,0.0192,
+
+,,,,Tot Comp,0,
+
+,,,Productivity (this yr),,2500,
+
+,,,,Last Year,2500,
+
+,,,,,,
+
+,Workers Employed-------,,Branded Production,,1254,
+
+,,,P-Label Production,,0,
+
+,,,  Total Workers Emp,,1254,
+
+,,,,Last Year,1412,
+
+,,,,,,
+
+,Cumulatives-----------------,,TQM----------,$000s,4000,
+
+,,,,Capacity,8000,
+
+,,,,$/pair Cap,0.5,
+
+,,,BestP---------,$000s,1254,
+
+,,,,Pairs,6266,
+
+,,,,$/pair Prod,0.2,
+
+,,,,Employees,2508,
+
+,Materials Costs----------,,BestP Effect %,,0,
+
+,,,Per Pair------,Normal,5.96,
+
+,,,,Long,12.34,
+
+,,,Savings Per Pair,,0,
+
+,,,,,,
+
+,Branded,Number of Models,,Current,200,
+
+,Production,,,Last Year,200,
+
+,,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.068,
+
+,,Calcs,Adders------,Models,0,
+
+,,,,Avg TQM,0,
+
+,,,,Incentive,0.002,
+
+,,,,Avg BP,0.0005,
+
+,,,Initial Reject Rate,,0.0705,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0.071,
+
+,,,,Last Year,0.07,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,22,
+
+,,Calcs,,Styling,12,
+
+,,,,Cur TQM,3,
+
+,,,,Avg TQM,4.5,
+
+,,,,BestP,4,
+
+,,,,Opt C,0,
+
+,,,,  Total,45.5,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,4,
+
+,,,,Last Year,5,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,3133,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,3133,
+
+,,,Pairs Rejected,,223,
+
+,,,Net Production,,2910,
+
+,,  Last-Year------------------,,Produced,3133,
+
+,,,,Rejected,220,
+
+,,,,Net,2913,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,1,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Normal,8589,
+
+,,,,Long,20877,
+
+,,,Labor----------,Wage,3539,
+
+,,,,Incentive,1164,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,627,
+
+,,,Plant Supervision,,2508,
+
+,,,Styling/Features,,2000,
+
+,,,TQM 6 Sigma,,2000,
+
+,,,Prod Run Set-up,,6000,
+
+,,,Maintenance,,8550,
+
+,,,Depreciation,,9000,
+
+,,,  Total,,64854,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,20.7,
+
+,,Prod,After Rejects,,22.29,
+
+,,,Cost of Rejects,,1.59,
+
+,,,,,,
+
+,P-Label,Number of Models,,,100,
+
+,Production,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.068,
+
+,,Calcs,Adders------,Models,-0.01,
+
+,,,,Avg TQM,0,
+
+,,,,Incentive,0.002,
+
+,,,,Avg BP,0.0005,
+
+,,,Initial Reject Rate,,0.0605,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0.061,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,11.9,
+
+,,Calcs,,Styling,10,
+
+,,,,Cur TQM,3,
+
+,,,,Avg TQM,4.5,
+
+,,,,BestP,4,
+
+,,,,Opt C,0,
+
+,,,,  Total,33.4,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,0,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,0,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,0,
+
+,,,Pairs Rejected,,0,
+
+,,,Net Production,,0,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,0,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Normal,0,
+
+,,,,Long,0,
+
+,,,Labor----------,Wage,0,
+
+,,,,Incentive,0,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,0,
+
+,,,Plant Supervision,,0,
+
+,,,Styling/Features,,0,
+
+,,,TQM 6 Sigma,,0,
+
+,,,Prod Run Set-up,,0,
+
+,,,Maintenance,,0,
+
+,,,Depreciation,,0,
+
+,,,  Total,,0,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,0,
+
+,,Prod,After Rejects,,0,
+
+,,,Cost of Rejects,,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+L.A.,Age of the Plant (in years),,,,0,
+
+Plant,,,,,,
+
+Operations,Plant Capacity-------------,,Beginning of Yr,,0,
+
+,,,Const (from last yr),,0,
+
+,,,Purchased (this yr),,0,
+
+,,,Sold (this yr),,0,
+
+,,,Available This Yr,,0,
+
+,,,  % of Total Capacity,,0,
+
+,,,Const (for next yr),,0,
+
+,,,  Cost ($000s),,0,
+
+,,,,,0,
+
+,Upgrade Options--------,,Online--------,Opt Letter,0,
+
+,,,,Opt Letter,0,
+
+,,,Ordered-------,Opt Letter,0,
+
+,,,,Cost,0,
+
+,,,,,,
+
+,Investment-----------------,,Gross at Beg of Yr,,0,
+
+,,,  + Upgrade (last yr),,0,
+
+,,,  + Const (last yr),,0,
+
+,,,  + Purch (this yr),,0,
+
+,,,  %u2013 Sold (this yr),,0,
+
+,,,Gross Invest This Yr,,0,
+
+,,,Accum Dep (begin),,0,
+
+,,,Depreciation this Yr,,0,
+
+,,,Net Invest (this yr),,0,
+
+,,,  EE Initiatives,,0,
+
+,,,Work in Progress,,0,
+
+,,,,,,
+
+,Compenastion--------------,,Base Wages,,0,
+
+,(000s per worker),,Incentive Pay,,0,
+
+,,,  Total Comp,,0,
+
+,,,Last Year--,Wages,0,
+
+,,,,Incentive,0,
+
+,,,,Total,0,
+
+,,,,,,
+
+,,,Incentive Pay Per Pair,,0,
+
+,,,,Last Year,0,
+
+,,,,,0,
+
+,,,Ind Avg Base Wage,,2800,
+
+,,,Ind Avg Total Comp,,2800,
+
+,,,% Chng from Last Yr,,0,
+
+,,,,,,
+
+,Productivity---------------,,Wage Change (%),,0,
+
+,  Factors,,Expected Incent Pay,,0,
+
+,,,Incentive Pay (%),,0,
+
+,,,Total Comp (% of avg),,0,
+
+,,,Best Pract (per wkr),,0,
+
+,,,,,0,
+
+,Productivity Calc---------,,Ind Avg Base Prod,,2500,
+
+,,,Beginning Base,,0,
+
+,,,  % Chng--,Wage,-0.005,
+
+,,,,BestP,-0.02,
+
+,,,,Opt D,0,
+
+,,,New Base (this yr),,0,
+
+,,,  % Chng--,Incentive,-0.021,
+
+,,,,Tot Comp,0,
+
+,,,Productivity (this yr),,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,Workers Employed-------,,Branded Production,,0,
+
+,,,P-Label Production,,0,
+
+,,,  Total Workers Emp,,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,Cumulatives-----------------,,TQM----------,$000s,0,
+
+,,,,Capacity,0,
+
+,,,,$/pair Cap,0,
+
+,,,BestP---------,$000s,0,
+
+,,,,Pairs,0,
+
+,,,,$/pair Prod,0,
+
+,,,,Employees,0,
+
+,Materials Costs----------,,BestP Effect %,,0,
+
+,,,Per Pair------,Normal,5.96,
+
+,,,,Long,12.34,
+
+,,,Savings Per Pair,,0,
+
+,,,,,,
+
+,Branded,Number of Models,,Current,0,
+
+,Production,,,Last Year,0,
+
+,,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.068,
+
+,,Calcs,Adders------,Models,0,
+
+,,,,Avg TQM,0.02,
+
+,,,,Incentive,0.02,
+
+,,,,Avg BP,0.00675,
+
+,,,Initial Reject Rate,,0.11475,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,0,
+
+,,Calcs,,Styling,0,
+
+,,,,Cur TQM,0,
+
+,,,,Avg TQM,0,
+
+,,,,BestP,0,
+
+,,,,Opt C,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,0,
+
+,,,,Last Year,0,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,0,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,0,
+
+,,,Pairs Rejected,,0,
+
+,,,Net Production,,0,
+
+,,  Last-Year------------------,,Produced,0,
+
+,,,,Rejected,0,
+
+,,,,Net,0,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,0,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Normal,0,
+
+,,,,Long,0,
+
+,,,Labor----------,Wage,0,
+
+,,,,Incentive,0,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,0,
+
+,,,Plant Supervision,,0,
+
+,,,Styling/Features,,0,
+
+,,,TQM 6 Sigma,,0,
+
+,,,Prod Run Set-up,,0,
+
+,,,Maintenance,,0,
+
+,,,Depreciation,,0,
+
+,,,  Total,,0,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,0,
+
+,,Prod,After Rejects,,0,
+
+,,,Cost of Rejects,,0,
+
+,,,,,,
+
+,P-Label,Number of Models,,,100,
+
+,Production,,,,,
+
+,,Reject--------,Base Reject Rate %,,0.068,
+
+,,Calcs,Adders------,Models,-0.01,
+
+,,,,Avg TQM,0.02,
+
+,,,,Incentive,0.02,
+
+,,,,Avg BP,0.00675,
+
+,,,Initial Reject Rate,,0.10475,
+
+,,,Upgrade Opt A Mult,,1,
+
+,,,Reject Rate (this yr),,0.105,
+
+,,,,,,
+
+,,S/Q------------,Points---------,L-W %,0,
+
+,,Calcs,,Styling,0,
+
+,,,,Cur TQM,0,
+
+,,,,Avg TQM,0,
+
+,,,,BestP,0,
+
+,,,,Opt C,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,S/Q Rating (number of stars),,,0,
+
+,,,,,,
+
+,,Pairs Produced-----------,,Regular,0,
+
+,, (000s),,Overtime,0,
+
+,,,,  Total,0,
+
+,,,Pairs Rejected,,0,
+
+,,,Net Production,,0,
+
+,,,,,,
+
+,,Branded Cost Allocation %,,,0,
+
+,,,,,,
+
+,,Costs----------,Materials-----,Normal,0,
+
+,,,,Long,0,
+
+,,,Labor----------,Wage,0,
+
+,,,,Incentive,0,
+
+,,,,Overtime,0,
+
+,,,Best Practices ,,0,
+
+,,,Plant Supervision,,0,
+
+,,,Styling/Features,,0,
+
+,,,TQM 6 Sigma,,0,
+
+,,,Prod Run Set-up,,0,
+
+,,,Maintenance,,0,
+
+,,,Depreciation,,0,
+
+,,,  Total,,0,
+
+,,,,,,
+
+,,Cost/Pr------,Before Rejects,,0,
+
+,,Prod,After Rejects,,0,
+
+,,,Cost of Rejects,,0,
+
+,,,,,,
+
+,,,,,6,
+
+,,,,,12,
+
+,,,,,,
+
+Planned,,N.A. Plant to-------------,,N.A.,0.8211,
+
+Shipping,,,,E-A,0,
+
+Percentages,,,,A-P,0,
+
+,,,,L.A.,0.1789,
+
+,,,,,,
+
+,,E-A Plant to-------------,,N.A.,0.25,
+
+,,,,E-A,0.25,
+
+,,,,A-P,0.25,
+
+,,,,L.A.,0.25,
+
+,,,,,,
+
+,,A-P Plant to-------------,,N.A.,0,
+
+,,,,E-A,0.4722,
+
+,,,,A-P,0.3155,
+
+,,,,L.A.,0.2124,
+
+,,,,,,
+
+,,L.A. Plant-----------------,,N.A.,0.25,
+
+,,,,E-A,0.25,
+
+,,,,A-P,0.25,
+
+,,,,L.A.,0.25,
+
+,,,,,,
+
+,,,,,5.96,
+
+,,,,,12.34,
+
+,,,,,,
+
+,,,,,,
+
+Branded,N.A.-----------,Inventory-------------------,,Pairs,39,
+
+Warehouse,, (from lst yr),,Cost,1055,
+
+Operations,,,,Models,200,
+
+,,,,S/Q,5,
+
+,,Invemtory Cleared--------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,Beginning Inventory-----,,Pairs,39,
+
+,,,,Cost,1055,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,1377,
+
+,,  N.A. Plant,,Prod Cost,37834,
+
+,,,,Exchange,0,
+
+,,,,Freight,1377,
+
+,,,,Tariffs,0,
+
+,,,,  Tot Cost,39211,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  A-P Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,1416,
+
+,,,,Cost,40266,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Pairs Demanded----------,,Internet,74,
+
+,,,,Wholesale,1301,
+
+,,,,  Total,1375,
+
+,,Pairs Sold--------------------,,Internet,74,
+
+,,,,Wholesale,1301,
+
+,,,,  Total,1375,
+
+,,Inventory Requirement,,,41,
+
+,,Inventory Surplus (shortage),,,0,
+
+,,Ending Inventory--------,,Pairs,41,
+
+,,,,Cost,1166,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,,,,,
+
+,,,Wholesale Price,,48,
+
+,,,Industry Total Inv,,311,
+
+,,,,,,
+
+,,Market-----------,Demand----,Internet,0.1227,
+
+,,,,Wholesale,0.1343,
+
+,,,Sold-----------,Internet,0.1229,
+
+,,,,Wholesale,0.1396,
+
+,,,,,,
+
+,,Whse ------------,Inventory Storage,,20,
+
+,,  Oper,Pack/Ship---,Internet,740,
+
+,,  Exp,,Wholesale,2452,
+
+,,,Lease and Maint.,,1000,
+
+,,,  Total Whse Expene,,4212,
+
+,,,,,,
+
+,,Total Exchange Rate Adjustment,,,0,
+
+,,Total Freight and Tariffs,,,1377,
+
+,,,,,,
+
+,,Inventory--------,Ind Inv / Ind Demand,,0,
+
+,,Clearance,Co Cleared / Ind Inv,,0,
+
+,,,Co Cleared / Sales,,0,
+
+,,,Price %uFFFD S/Q Rating,,9.6,
+
+,,,Clearance Points,,362,
+
+,,,Margin Reduction %,,0.8,
+
+,,,Intended Price,,48,
+
+,,,Indended Margin $,,48,
+
+,,,Per Pair-------,Price,0,
+
+,,,Cleared,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,Total $--------,Revenue,0,
+
+,,,,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,,,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,E-A------------,Inventory-------------------,,Pairs,39,
+
+,, (from lst yr),,Cost,1060,
+
+,,,,Models,200,
+
+,,,,S/Q,5,
+
+,,Invemtory Cleared--------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,Beginning Inventory-----,,Pairs,39,
+
+,,,,Cost,1060,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  N.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,1374,
+
+,,  A-P Plant,,Prod Cost,30622,
+
+,,,,Exchange,0,
+
+,,,,Freight,2748,
+
+,,,,Tarrifs,5496,
+
+,,,,  Tot Cost,38866,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,1413,
+
+,,,,Cost,39926,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Pairs Demanded----------,,Internet,77,
+
+,,,,Wholesale,1338,
+
+,,,,  Total,1415,
+
+,,Pairs Sold--------------------,,Internet,77,
+
+,,,,Wholesale,1293,
+
+,,,,  Total,1370,
+
+,,Inventory Requirement,,,43,
+
+,,Inventory Surplus (shortage),,,-45,
+
+,,Ending Inventory--------,,Pairs,43,
+
+,,,,Cost,1215,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,,,,,
+
+,,,Wholesale Price,,48,
+
+,,,Industry Total Inv,,295,
+
+,,,,,,
+
+,,Market-----------,Demand----,Internet,0.1287,
+
+,,,,Wholesale,0.142,
+
+,,,Sold-----------,Internet,0.1283,
+
+,,,,Wholesale,0.1403,
+
+,,,,,,
+
+,,Whse ------------,Inventory Storage,,20,
+
+,,  Oper,Pack/Ship---,Internet,770,
+
+,,  Exp,,Wholesale,2440,
+
+,,,Lease and Maint.,,1000,
+
+,,,  Total Whse Expene,,4230,
+
+,,,,,,
+
+,,Total Exchange Rate Adjustment,,,0,
+
+,,Total Freight and Tariffs,,,8244,
+
+,,,,,,
+
+,,Inventory--------,Ind Inv / Ind Demand,,0,
+
+,,Clearance,Co Cleared / Ind Inv,,0,
+
+,,,Co Cleared / Sales,,0,
+
+,,,Price %uFFFD S/Q Rating,,9.6,
+
+,,,Clearance Points,,362,
+
+,,,Margin Reduction %,,0.8,
+
+,,,Intended Price,,48,
+
+,,,Indended Margin $,,48,
+
+,,,Per Pair-------,Price,0,
+
+,,,Cleared,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,Total $--------,Revenue,0,
+
+,,,,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,,,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,A-P-------------,Inventory-------------------,,Pairs,26,
+
+,, (from lst yr),,Cost,578,
+
+,,,,Models,200,
+
+,,,,S/Q,5,
+
+,,Invemtory Cleared--------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,Beginning Inventory-----,,Pairs,26,
+
+,,,,Cost,578,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  N.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,918,
+
+,,  A-P Plant,,Prod Cost,20459,
+
+,,,,Exchange,0,
+
+,,,,Freight,918,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,21377,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,944,
+
+,,,,Cost,21955,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Pairs Demanded----------,,Internet,48,
+
+,,,,Wholesale,871,
+
+,,,,  Total,919,
+
+,,Pairs Sold--------------------,,Internet,48,
+
+,,,,Wholesale,868,
+
+,,,,  Total,916,
+
+,,Inventory Requirement,,,28,
+
+,,Inventory Surplus (shortage),,,-3,
+
+,,Ending Inventory--------,,Pairs,28,
+
+,,,,Cost,651,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,,,,,
+
+,,,Wholesale Price,,41,
+
+,,,Industry Total Inv,,220,
+
+,,,,,,
+
+,,Market-----------,Demand----,Internet,0.1145,
+
+,,,,Wholesale,0.1338,
+
+,,,Sold-----------,Internet,0.1146,
+
+,,,,Wholesale,0.1345,
+
+,,,,,,
+
+,,Whse ------------,Inventory Storage,,13,
+
+,,  Oper,Pack/Ship---,Internet,480,
+
+,,  Exp,,Wholesale,1736,
+
+,,,Lease and Maint.,,1000,
+
+,,,  Total Whse Expene,,3229,
+
+,,,,,,
+
+,,Total Exchange Rate Adjustment,,,0,
+
+,,Total Freight and Tariffs,,,918,
+
+,,,,,,
+
+,,Inventory--------,Ind Inv / Ind Demand,,0,
+
+,,Clearance,Co Cleared / Ind Inv,,0,
+
+,,,Co Cleared / Sales,,0,
+
+,,,Price %uFFFD S/Q Rating,,8.2,
+
+,,,Clearance Points,,392,
+
+,,,Margin Reduction %,,0.65,
+
+,,,Intended Price,,41,
+
+,,,Indended Margin $,,41,
+
+,,,Per Pair-------,Price,0,
+
+,,,Cleared,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,Total $--------,Revenue,0,
+
+,,,,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,,,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,L.A.-----------,Inventory-------------------,,Pairs,26,
+
+,, (from lst yr),,Cost,749,
+
+,,,,Models,200,
+
+,,,,S/Q,5,
+
+,,Invemtory Cleared--------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,Beginning Inventory-----,,Pairs,26,
+
+,,,,Cost,749,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,300,
+
+,,  N.A. Plant,,Prod Cost,8243,
+
+,,,,Exchange,0,
+
+,,,,Freight,600,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,8843,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,618,
+
+,,  A-P Plant,,Prod Cost,13773,
+
+,,,,Exchange,0,
+
+,,,,Freight,1236,
+
+,,,,Tarrifs,3708,
+
+,,,,  Tot Cost,18717,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,944,
+
+,,,,Cost,28309,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,Pairs Demanded----------,,Internet,48,
+
+,,,,Wholesale,877,
+
+,,,,  Total,925,
+
+,,Pairs Sold--------------------,,Internet,48,
+
+,,,,Wholesale,868,
+
+,,,,  Total,916,
+
+,,Inventory Requirement,,,28,
+
+,,Inventory Surplus (shortage),,,-9,
+
+,,Ending Inventory--------,,Pairs,28,
+
+,,,,Cost,840,
+
+,,,,Models,200,
+
+,,,,S/Q,4,
+
+,,,,,,
+
+,,,Wholesale Price,,42,
+
+,,,Industry Total Inv,,222,
+
+,,,,,,
+
+,,Market-----------,Demand----,Internet,0.1145,
+
+,,,,Wholesale,0.1347,
+
+,,,Sold-----------,Internet,0.1146,
+
+,,,,Wholesale,0.1344,
+
+,,,,,,
+
+,,Whse ------------,Inventory Storage,,13,
+
+,,  Oper,Pack/Ship---,Internet,480,
+
+,,  Exp,,Wholesale,1736,
+
+,,,Lease and Maint.,,1000,
+
+,,,  Total Whse Expene,,3229,
+
+,,,,,,
+
+,,Total Exchange Rate Adjustment,,,0,
+
+,,Total Freight and Tariffs,,,5544,
+
+,,,,,,
+
+,,Inventory--------,Ind Inv / Ind Demand,,0,
+
+,,Clearance,Co Cleared / Ind Inv,,0,
+
+,,,Co Cleared / Sales,,0,
+
+,,,Price %uFFFD S/Q Rating,,8.4,
+
+,,,Clearance Points,,392,
+
+,,,Margin Reduction %,,0.65,
+
+,,,Intended Price,,42,
+
+,,,Indended Margin $,,42,
+
+,,,Per Pair-------,Price,0,
+
+,,,Cleared,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,Total $--------,Revenue,0,
+
+,,,,Cost,0,
+
+,,,,Storage,0,
+
+,,,,Packing,0,
+
+,,,,  Margin,0,
+
+,,,,,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+Celebrity,,Current Contract-----------,,Celeb 1,0,
+
+Endorsements,,  ($000s),,Celeb 2,0,
+
+,,,,Celeb 3,0,
+
+,,,,Celeb 4,0,
+
+,,,,Celeb 5,0,
+
+,,,,Celeb 6,0,
+
+,,,,Celeb 7,0,
+
+,,,,Celeb 8,0,
+
+,,,,Celeb 9,0,
+
+,,,,Celeb 10,0,
+
+,,,,Celeb 11,0,
+
+,,,,Celeb 12,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,N.A. Appeal----------------,,Celeb 1,0,
+
+,,,,Celeb 2,0,
+
+,,,,Celeb 3,0,
+
+,,,,Celeb 4,0,
+
+,,,,Celeb 5,0,
+
+,,,,Celeb 6,0,
+
+,,,,Celeb 7,0,
+
+,,,,Celeb 8,0,
+
+,,,,Celeb 9,0,
+
+,,,,Celeb 10,0,
+
+,,,,Celeb 11,0,
+
+,,,,Celeb 12,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,E-A Appeal----------------,,Celeb 1,0,
+
+,,,,Celeb 2,0,
+
+,,,,Celeb 3,0,
+
+,,,,Celeb 4,0,
+
+,,,,Celeb 5,0,
+
+,,,,Celeb 6,0,
+
+,,,,Celeb 7,0,
+
+,,,,Celeb 8,0,
+
+,,,,Celeb 9,0,
+
+,,,,Celeb 10,0,
+
+,,,,Celeb 11,0,
+
+,,,,Celeb 12,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,A-P Appeal----------------,,Celeb 1,0,
+
+,,,,Celeb 2,0,
+
+,,,,Celeb 3,0,
+
+,,,,Celeb 4,0,
+
+,,,,Celeb 5,0,
+
+,,,,Celeb 6,0,
+
+,,,,Celeb 7,0,
+
+,,,,Celeb 8,0,
+
+,,,,Celeb 9,0,
+
+,,,,Celeb 10,0,
+
+,,,,Celeb 11,0,
+
+,,,,Celeb 12,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,L.A. Appeal----------------,,Celeb 1,0,
+
+,,,,Celeb 2,0,
+
+,,,,Celeb 3,0,
+
+,,,,Celeb 4,0,
+
+,,,,Celeb 5,0,
+
+,,,,Celeb 6,0,
+
+,,,,Celeb 7,0,
+
+,,,,Celeb 8,0,
+
+,,,,Celeb 9,0,
+
+,,,,Celeb 10,0,
+
+,,,,Celeb 11,0,
+
+,,,,Celeb 12,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+Internet,Web Site Maintenance and Support,,,,3960,
+
+Marketing,,,,,,
+
+Expenses,Allocation Percentages-----------------,,,N.A.,0.0538,
+
+,  (within region),,,E-A,0.0562,
+
+,,,,A-P,0.0524,
+
+,,,,L.A.,0.0524,
+
+,,,,Global,0.054,
+
+,Allocation Percentages-----------------,,,N.A.,0.2996,
+
+,  (internet only),,,E-A,0.3117,
+
+,,,,A-P,0.1943,
+
+,,,,L.A.,0.1943,
+
+,,,,,,
+
+,N.A.-----------,Advertising Expense Allocation,,,377,
+
+,,Web Site Maintenance and Sup,,,1186,
+
+,,Order Processing and Delivery,,,,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,1563,
+
+,,,,,,
+
+,E-A-----------,Advertising Expense Allocation,,,393,
+
+,,Web Site Maintenance and Sup,,,1234,
+
+,,Order Processing and Delivery,,,,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,1627,
+
+,,,,,,
+
+,A-P-----------,Advertising Expense Allocation,,,183,
+
+,,Web Site Maintenance and Sup,,,769,
+
+,,Order Processing and Delivery,,,,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,952,
+
+,,,,,,
+
+,L.A.-----------,Advertising Expense Allocation,,,183,
+
+,,Web Site Maintenance and Sup,,,769,
+
+,,Order Processing and Delivery,,,,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,952,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+Wholesale,Allocation Percentages-----------------,,,N.A.,0.3005,
+
+Marketing,  (wholesale only),,,E-A,0.2986,
+
+Expenses,,,,A-P,0.2005,
+
+,,,,L.A.,0.2005,
+
+,,,,,,
+
+,N.A.-----------,Advertising Expense Allocation,,,6623,
+
+,,Rebate Redemption Expenses,,,976,
+
+,,Retailers Availabel-------,,Current,3000,
+
+,,,,Next Year,2397,
+
+,,Number of Retialers Utilized,,,3000,
+
+,,Retailer Support Expenses,,,1200,
+
+,,On-Time Delivery Expenses,,,976,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,9775,
+
+,,,,,,
+
+,E-A-----------,Advertising Expense Allocation,,,6607,
+
+,,Rebate Redemption Expenses,,,970,
+
+,,Retailers Availabel-------,,Current,3000,
+
+,,,,Next Year,2397,
+
+,,Number of Retialers Utilized,,,3000,
+
+,,Retailer Support Expenses,,,1200,
+
+,,On-Time Delivery Expenses,,,970,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,9747,
+
+,,,,,,
+
+,A-P-----------,Advertising Expense Allocation,,,3317,
+
+,,Rebate Redemption Expenses,,,347,
+
+,,Retailers Availabel-------,,Current,1500,
+
+,,,,Next Year,1207,
+
+,,Number of Retialers Utilized,,,1500,
+
+,,Retailer Support Expenses,,,600,
+
+,,On-Time Delivery Expenses,,,651,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,4915,
+
+,,,,,,
+
+,L.A.-----------,Advertising Expense Allocation,,,3317,
+
+,,Rebate Redemption Expenses,,,347,
+
+,,Retailers Availabel-------,,Current,1500,
+
+,,,,Next Year,1210,
+
+,,Number of Retialers Utilized,,,1500,
+
+,,Retailer Support Expenses,,,600,
+
+,,On-Time Delivery Expenses,,,651,
+
+,,Celebrity Endorsements,,,0,
+
+,,,Total,,4915,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,1.214,
+
+,,,,,,
+
+,,,,,,
+
+Admin,Fixed Cost of Unused Plant-----------,,,N.A.,0,
+
+Expenses,,,,E-A,0,
+
+,,,,A-P,0,
+
+,,,,L.A.,0,
+
+,,,,,,
+
+,General Administrative Expenses,,,,1854,
+
+,Other Corporate Overhead,,,,6000,
+
+,,Total,,,7854,
+
+,Includes Ethics and/or Workforce Spending,,,,0,
+
+,Allocation Percentages-----------------,,,N.A.,0.3004,
+
+,  (overall),,,E-A,0.2993,
+
+,,,,A-P,0.2001,
+
+,,,,L.A.,0.2001,
+
+,,,,,,
+
+,G and A Allocation--------------------,,,N.A.,557,
+
+,,,,E-A,555,
+
+,,,,A-P,371,
+
+,,,,L.A.,371,
+
+,Other Overhead Allocation--------------------,,,N.A.,1802,
+
+,,,,E-A,1796,
+
+,,,,A-P,1201,
+
+,,,,L.A.,1201,
+
+,,,,,,
+
+Private-Label Pairs Offered ----------------------------,,,,N.A.,185,
+
+,,,,E-A,184,
+
+,,,,A-P,185,
+
+,,,,L.A.,185,
+
+Private-,N.A.--------------,Bid Won (0/1),,,0,
+
+Label,,Production from-----------,,N.A.,0,
+
+Bids,,  (pairs),,E-A,0,
+
+,,,,A-P,0,
+
+,,,,L.A.,0,
+
+,,,,,,
+
+,E-A--------------,Bid Won (0/1),,,0,
+
+,,Production from-----------,,N.A.,0,
+
+,,  (pairs),,E-A,0,
+
+,,,,A-P,0,
+
+,,,,L.A.,0,
+
+,,,,,,
+
+,A-P--------------,Bid Won (0/1),,,0,
+
+,,Production from-----------,,N.A.,0,
+
+,,  (pairs),,E-A,0,
+
+,,,,A-P,0,
+
+,,,,L.A.,0,
+
+,,,,,,
+
+,L.A.--------------,Bid Won (0/1),,,0,
+
+,,Production from-----------,,N.A.,0,
+
+,,  (pairs),,E-A,0,
+
+,,,,A-P,0,
+
+,,,,L.A.,0,
+
+Private-Label Bid Prices ----------------------------,,,,N.A.,35,
+
+,,,,E-A,35,
+
+,,,,A-P,35,
+
+,,,,L.A.,35,
+
+,,,,,,
+
+Private-,N.A.------------,Shipped in from------------,,Pairs,0,
+
+Label,Market,  N.A. Plant,,Prod Cost,0,
+
+Operations,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  A-P Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,,,,,
+
+,,Gross Revenues,,,0,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,0,
+
+,,Direct---------,Production Costs,,0,
+
+,,  Costs,Exchange Rate Adj,,0,
+
+,,,Freight,,0,
+
+,,,Tariffs,,0,
+
+,,,Packing/Shipping,,0,
+
+,,Margin Over Direct Costs,,,0,
+
+,,,,,,
+
+,E-A------------,Shipped in from------------,,Pairs,0,
+
+,Market,  N.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  A-P Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,,,,,
+
+,,Gross Revenues,,,0,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,0,
+
+,,Direct---------,Production Costs,,0,
+
+,,  Costs,Exchange Rate Adj,,0,
+
+,,,Freight,,0,
+
+,,,Tariffs,,0,
+
+,,,Packing/Shipping,,0,
+
+,,Margin Over Direct Costs,,,0,
+
+,,,,,,
+
+,A-P------------,Shipped in from------------,,Pairs,0,
+
+,Market,  N.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  A-P Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,,,,,
+
+,,Gross Revenues,,,0,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,0,
+
+,,Direct---------,Production Costs,,0,
+
+,,  Costs,Exchange Rate Adj,,0,
+
+,,,Freight,,0,
+
+,,,Tariffs,,0,
+
+,,,Packing/Shipping,,0,
+
+,,Margin Over Direct Costs,,,0,
+
+,,,,,,
+
+,L.A.------------,Shipped in from------------,,Pairs,0,
+
+,Market,  N.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  E-A Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  A-P Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Shipped in from------------,,Pairs,0,
+
+,,  L.A. Plant,,Prod Cost,0,
+
+,,,,Exchange,0,
+
+,,,,Freight,0,
+
+,,,,Tarrifs,0,
+
+,,,,  Tot Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,Available for Sale---------,,Pairs,0,
+
+,,,,Cost,0,
+
+,,,,Models,0,
+
+,,,,S/Q,0,
+
+,,,,,,
+
+,,Gross Revenues,,,0,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,0,
+
+,,Direct---------,Production Costs,,0,
+
+,,  Costs,Exchange Rate Adj,,0,
+
+,,,Freight,,0,
+
+,,,Tariffs,,0,
+
+,,,Packing/Shipping,,0,
+
+,,Margin Over Direct Costs,,,0,
+
+Private-Label S/Q Rating of Pairs Offered ----------------------------,,,,N.A.,3,
+
+,,,,E-A,3,
+
+,,,,A-P,3,
+
+,,,,L.A.,3,
+
+,,,,,,
+
+Internet-----,N.A. Market----------------,,Revenues from Sales,,5550,
+
+Market,,,Customer-Paid Fees,,740,
+
+Performance,,,Gross Revenues,,6290,
+
+,,,  Exchange Rate Adj,,0,
+
+,,,Net Revenues,,6290,
+
+,,,Costs--------,COBPS,2104,
+
+,,,,Whse,795,
+
+,,,,Mktng,1563,
+
+,,,,Admin,127,
+
+,,,Operating Profit,,1701,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.0538,
+
+,,,This Yr-------,Pairs Sold,74,
+
+,,,,Mkt Share,0.1229,
+
+,,,,OpMargin,0.27,
+
+,,,Last Yr-------,Pairs Sold,68,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.268,
+
+,,,,,,
+
+,E-A Market----------------,,Revenues from Sales,,5775,
+
+,,,Customer-Paid Fees,,770,
+
+,,,Gross Revenues,,6545,
+
+,,,  Exchange Rate Adj,,0,
+
+,,,Net Revenues,,6545,
+
+,,,Costs--------,COBPS,2176,
+
+,,,,Whse,827,
+
+,,,,Mktng,1627,
+
+,,,,Admin,132,
+
+,,,Operating Profit,,1783,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.0562,
+
+,,,This Yr-------,Pairs Sold,77,
+
+,,,,Mkt Share,0.1283,
+
+,,,,OpMargin,0.272,
+
+,,,Last Yr-------,Pairs Sold,68,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.266,
+
+,,,,,,
+
+,A-P Market----------------,,Revenues from Sales,,3600,
+
+,,,Customer-Paid Fees,,480,
+
+,,,Gross Revenues,,4080,
+
+,,,  Exchange Rate Adj,,0,
+
+,,,Net Revenues,,4080,
+
+,,,Costs--------,COBPS,1116,
+
+,,,,Whse,533,
+
+,,,,Mktng,952,
+
+,,,,Admin,82,
+
+,,,Operating Profit,,1397,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.0524,
+
+,,,This Yr-------,Pairs Sold,48,
+
+,,,,Mkt Share,0.1146,
+
+,,,,OpMargin,0.342,
+
+,,,Last Yr-------,Pairs Sold,45,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.336,
+
+,,,,,,
+
+,L.A. Market----------------,,Revenues from Sales,,3600,
+
+,,,Customer-Paid Fees,,480,
+
+,,,Gross Revenues,,4080,
+
+,,,  Exchange Rate Adj,,0,
+
+,,,Net Revenues,,4080,
+
+,,,Costs--------,COBPS,1439,
+
+,,,,Whse,533,
+
+,,,,Mktng,952,
+
+,,,,Admin,82,
+
+,,,Operating Profit,,1074,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.0524,
+
+,,,This Yr-------,Pairs Sold,48,
+
+,,,,Mkt Share,0.1146,
+
+,,,,OpMargin,0.263,
+
+,,,Last Yr-------,Pairs Sold,45,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.258,
+
+,,,,,,
+
+,,,,,185,
+
+,,,,,3,
+
+,,,,,35,
+
+,,,,,,
+
+Whsle,N.A. Market----------------,,Revenues from Sales,,62448,
+
+Market,,,  Exchange Rate Adj,,0,
+
+Performance,,,Net Revenues,,62448,
+
+,,,Costs--------,COBPS,36996,
+
+,,,,Whse,3417,
+
+,,,,Mktng,9775,
+
+,,,,Admin,2232,
+
+,,,Operating Profit,,10028,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.9462,
+
+,,,This Yr-------,Pairs Sold,1301,
+
+,,,,Mkt Share,0.1396,
+
+,,,,OpMargin,0.161,
+
+,,,Last Yr-------,Pairs Sold,1282,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.187,
+
+,,,,,,
+
+,E-A Market----------------,,Revenues from Sales,,62064,
+
+,,,  Exchange Rate Adj,,0,
+
+,,,Net Revenues,,62064,
+
+,,,Costs--------,COBPS,36535,
+
+,,,,Whse,3403,
+
+,,,,Mktng,9747,
+
+,,,,Admin,2219,
+
+,,,Operating Profit,,10160,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.9438,
+
+,,,This Yr-------,Pairs Sold,1293,
+
+,,,,Mkt Share,0.1403,
+
+,,,,OpMargin,0.164,
+
+,,,Last Yr-------,Pairs Sold,1282,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.184,
+
+,,,,,,
+
+,A-P Market----------------,,Revenues from Sales,,35588,
+
+,,,  Exchange Rate Adj,,0,
+
+,,,Net Revenues,,35588,
+
+,,,Costs--------,COBPS,20187,
+
+,,,,Whse,2696,
+
+,,,,Mktng,4915,
+
+,,,,Admin,1490,
+
+,,,Operating Profit,,6300,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.9476,
+
+,,,This Yr-------,Pairs Sold,868,
+
+,,,,Mkt Share,0.1345,
+
+,,,,OpMargin,0.177,
+
+,,,Last Yr-------,Pairs Sold,855,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.2,
+
+,,,,,,
+
+,L.A. Market----------------,,Revenues from Sales,,36456,
+
+,,,  Exchange Rate Adj,,0,
+
+,,,Net Revenues,,36456,
+
+,,,Costs--------,COBPS,26030,
+
+,,,,Whse,2696,
+
+,,,,Mktng,4915,
+
+,,,,Admin,1490,
+
+,,,Operating Profit,,1325,
+
+,,,,,,
+
+,,,% of Pairs Sold,,0.9476,
+
+,,,This Yr-------,Pairs Sold,868,
+
+,,,,Mkt Share,0.1344,
+
+,,,,OpMargin,0.036,
+
+,,,Last Yr-------,Pairs Sold,855,
+
+,,,,Mkt Share,0.1429,
+
+,,,,OpMargin,0.062,
+
+,,,,,,
+
+,,,,,184,
+
+,,,,,3,
+
+,,,,,35,
+
+,,,,,,
+
+Income,N.A.------------,Gross Revenues----------,,Internet,6290,
+
+Statement,,,,Wholesale,62448,
+
+,,,,P-Label,0,
+
+,,,,  Total,68738,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,68738,
+
+,,Operating Costs----------,,COPS,39100,
+
+,,,,Whse,4212,
+
+,,,,Mktng,11338,
+
+,,,,Admin,2359,
+
+,,Operating Profit,,,11729,
+
+,,,,,,
+
+,E-A------------,Gross Revenues----------,,Internet,6545,
+
+,,,,Wholesale,62064,
+
+,,,,P-Label,0,
+
+,,,,  Total,68609,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,68609,
+
+,,Operating Costs----------,,COPS,38711,
+
+,,,,Whse,4230,
+
+,,,,Mktng,11374,
+
+,,,,Admin,2351,
+
+,,Operating Profit,,,11943,
+
+,,,,,,
+
+,A-P------------,Gross Revenues----------,,Internet,4080,
+
+,,,,Wholesale,35588,
+
+,,,,P-Label,0,
+
+,,,,  Total,39668,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,39668,
+
+,,Operating Costs----------,,COPS,21303,
+
+,,,,Whse,3229,
+
+,,,,Mktng,5867,
+
+,,,,Admin,1572,
+
+,,Operating Profit,,,7697,
+
+,,,,,,
+
+,L.A.------------,Gross Revenues----------,,Internet,4080,
+
+,,,,Wholesale,36456,
+
+,,,,P-Label,0,
+
+,,,,  Total,40536,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,40536,
+
+,,Operating Costs----------,,COPS,27469,
+
+,,,,Whse,3229,
+
+,,,,Mktng,5867,
+
+,,,,Admin,1572,
+
+,,Operating Profit,,,2399,
+
+,,,,,,
+
+,Overall--------,Gross Revenues----------,,Internet,20995,
+
+,,,,Wholesale,196556,
+
+,,,,P-Label,0,
+
+,,,,  Total,217551,
+
+,,Exchange Rate Adjustment,,,0,
+
+,,Net Revenues,,,217551,
+
+,,Operating Costs----------,,COPS,126583,
+
+,,,,Whse,14900,
+
+,,,,Mktng,34446,
+
+,,,,Admin,7854,
+
+,,Operating Profit,,,33768,
+
+,,,,,,
+
+,,Interest Income (Expenses),,,-8198,
+
+,,Refunds (Fines),,,0,
+
+,,Pre-Tax Profit (Loss),,,25570,
+
+,,,Taxable Income,,25570,
+
+,,Income Taxes,,,7671,
+
+,,Net Profit (Loss),,,17899,
+
+,,,,,,
+
+,,,This Yr-------,EPS,1.79,
+
+,,,,DPS,0,
+
+,,,Last Yr-------,EPS,2.5,
+
+,,,,DPS,1,
+
+,,,,,,
+
+,Losses Not Yet Recovered------------,,,Current Yr,0,
+
+,,,,Year -1,0,
+
+,,,,Year -2,0,
+
+,,,,,,
+
+,,,,,185,
+
+,,,,,3,
+
+,,,,,35,
+
+,,,,,,
+
+Cash,Beginning Cash Balance,,,,5000,
+
+Flow,,,,,,
+
+,Cash Inflows----------------,,Receipts from Sales,,222950,
+
+,,,Bank----------,1-Year,0,
+
+,,,  Loans,5-Year,0,
+
+,,,,10-Year,0,
+
+,,,Stock Issue,,0,
+
+,,,Sale of Existing Plant,,0,
+
+,,,Overdraft Loan,,0,
+
+,,,Interest on Cash Bal,,85,
+
+,,,Refund,,0,
+
+,,,,,,
+
+,Total Cash Available from All Sources,,,,228035,
+
+,,,,,,
+
+,Cash----------,Payments to Materials Suppliers,,,47336,
+
+,  Outlays,Production Expenses,,,52105,
+
+,,Distribution and Warehouse,,,30983,
+
+,,Marketing and Administrative,,,42300,
+
+,,Capital-------,Capacity Purchase,,0,
+
+,,,Plant Upgrades,,7000,
+
+,,,Capacity Construct,,0,
+
+,,Principal-----------,Overdraft Loan,,0,
+
+,,  Repay,1-Year Loan,,0,
+
+,,,5-Year Loans,,4800,
+
+,,,10-Year Loans,,11500,
+
+,,Interest--------,Overdraft Loan,,0,
+
+,,  Pmts,Bank Loans,,8283,
+
+,,Stock Repurchase,,,0,
+
+,,Income Tax Payments,,,7671,
+
+,,Dividend Payments,,,0,
+
+,,Fine,,,0,
+
+,,Charitable Contributions,,,0,
+
+,Total Cash Outlays,,,,211978,
+
+,,,,,,
+
+,Net Cash Balance,,,,16057,
+
+,,,,,,
+
+,,,,,185,
+
+,,,,,3,
+
+,,,,,35,
+
+,,,,,,
+
+Balance,Assets--------,Cash On Hand,,,16057,
+
+,,  Interest Rate,,,0.017,
+
+Sheet,,Accounts Receivable,,,54388,
+
+,,Footwear Inventories,,,3872,
+
+,,  Total Curetn Assets,,,74317,
+
+,,Fixed----------,Net Plant Investment,,183250,
+
+,,  Assets,Work in Progress,,7000,
+
+,,,  Total Fixed Assets,,190250,
+
+,,,,,,
+
+,Total Assets,,,,264567,
+
+,,,,,,
+
+,Liabilities------,Accounts Payable,,,11519,
+
+,,Overdraft Loan Payable,,,0,
+
+,,  Interest Rate,,,0.082,
+
+,,1-Year Loan Payable,,,0,
+
+,,  Interest Rate,,,0.07,
+
+,,Current Portion of Long-Term,,,16300,
+
+,,  Total Current Liabilities,,,27819,
+
+,,Long-Term bank Loans,,,67100,
+
+,,  Total Liabilities,,,94919,
+
+,,,,,,
+
+,Equity----------,Common Stock-----------,,This Year,10000,
+
+,,,,Last Year,10000,
+
+,,Additional Capital,,This Year,100000,
+
+,,,,Last Year,100000,
+
+,,Retained Earnings,,This Year,59648,
+
+,,,,Last Year,41750,
+
+,,  Total Equity,,,169648,
+
+,,,,,,
+
+,Total Liabilities and Equity,,,,264567,
+
+,,,,,,
+
+Return on Average Equity------------------------------,,,,This Year,0.111,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+Stock,,Current Stock Price,,,16.43,
+
+Price,,Beginning Shares Outstanding,,,10000,
+
+,,Shares Issued,,,0,
+
+,,Shares Retired,,,0,
+
+,,Ending Shares Outstanding,,,10000,
+
+,,Stock Issue/Retire Price,,,30,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+,,,,,,
+
+Bank,New Bank Loans This Year-----------,,,5-Year,0,
+
+Loans,,,,10-Year,0,
+
+,,,,  Total,0,
+
+,,,,,,
+
+,,,Place-holder,,1,
+
+,Year Initiated-------------------------------,,,1,7,
+
+,,,,2,9,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Original Principal-------------------------------,,,1,115000,
+
+,,,,2,24000,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Interest Rate-------------------------------,,,1,0.085,
+
+,,,,2,0.075,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Term-----------------------------------------,,,1,10,
+
+,,,,2,5,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Outstanding Principal-------------------------------,,,1,69000,
+
+,,,,2,14400,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Principal Payment Nxt Yr-------------------------------,,,1,11500,
+
+,,,,2,4800,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Interest Payment Next Year-------------------------------,,,1,5865,
+
+,,,,2,1080,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Nxt Yr Principal Repayment-------------------,,,1,0,
+
+,  on 5-Year Loans,,,2,4800,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Early Repayment of---------------------,,,1,0,
+
+,  5-Year Loans,,,2,0,
+
+,,,,3,0,
+
+,,,,4,0,
+
+,,,,5,0,
+
+,,,,6,0,
+
+,,,,7,0,
+
+,,,,8,0,
+
+,,,,9,0,
+
+,,,,10,0,
+
+,,,,11,0,
+
+,,,,12,0,
+
+,,,,13,0,
+
+,,,,14,0,
+
+,,,,15,0,
+
+,,,,16,0,
+
+,,,,17,0,
+
+,,,,18,0,
+
+,,,,19,0,
+
+,,,,20,0,
+
+,,,,21,0,
+
+,,,,22,0,
+
+,,,,,,
+
+,Early Repayment of---------------------,,,1,0,
+
+,  10-Year Loans,,,2,0,
+
+,,,,3,0,

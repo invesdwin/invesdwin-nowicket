@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<!-- disable autofocus -->
+		<input type="hidden" autofocus="autofocus" />
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>-->
+			<div wicket:id="modal"></div>
+			<h2>Step 1: Please upload your BSG-Online CSV reports:</h2>
+			<hr />
+			<div class="form-group">
+			<div class="col-sm-1"></div>
+				<div class="col-sm-4">
+					<img wicket:id="exportHowtoImg" width="350px" height="auto"
+						style="border: 1px solid black; margin-left: auto; margin-right: auto; display: block">
+				</div>
+				<div class="col-sm-4">
+					<b>How to export the CSV reports from BSG-Online:</b> <br />
+					<br />
+					<ol>
+						<li>Login to your <b>Decisions/Reports</b> screen.
+						</li>
+						<li>Click on <b>Export Options &amp; Data Reset</b> at the
+							bottom of the menu.
+						</li>
+						<li>Export the three reports (<b>FIR, CIR, COR</b>) for the
+							given <b>Year</b> you want feedback for.
+						</li>
+						<li>Finally, <b>Upload</b> the files here to get your feedback!</li>
+					</ol>
+				</div>
+			</div>
+			<hr />
+			<div class="form-group">
+				<label class="control-label col-sm-2"
+					wicket:for="uploadFirReportCsv"> <wicket:label>
+                             FIR Report Csv 
+                        </wicket:label></label>
+				<div wicket:id="uploadedFirReportCsv_gridColumn" class="col-sm-4">
+					<textarea class="form-control" wicket:id="uploadedFirReportCsv"
+						rows="1" style="resize: none"></textarea>
+				</div>
+				<div class="col-sm-3">
+					<input type="file" class="btn btn-default"
+						wicket:id="uploadFirReportCsv"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2"
+					wicket:for="uploadCirReportCsv"> <wicket:label>
+                             CIR Report Csv 
+                        </wicket:label></label>
+				<div wicket:id="uploadedCirReportCsv_gridColumn" class="col-sm-4">
+					<textarea class="form-control" wicket:id="uploadedCirReportCsv"
+						rows="1" style="resize: none"></textarea>
+				</div>
+				<div class="col-sm-3">
+					<input type="file" class="btn btn-default"
+						wicket:id="uploadCirReportCsv"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2"
+					wicket:for="uploadCorReportCsv"> <wicket:label>
+                             COR Report Csv 
+                        </wicket:label></label>
+				<div wicket:id="uploadedCorReportCsv_gridColumn" class="col-sm-4">
+					<textarea class="form-control" wicket:id="uploadedCorReportCsv"
+						rows="1" style="resize: none"></textarea>
+				</div>
+				<div class="col-sm-3">
+					<input type="file" class="btn btn-default"
+						wicket:id="uploadCorReportCsv"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					<button type="submit" class="btn btn-default btn-lg btn-block"
+						wicket:id="upload">Upload</button>
+				</div>
+			</div>
+			<hr />
+			<h2>Step 2: Please provide us with the following information:</h2>
+			<hr />
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="companyLetter">
+					<wicket:label>
+                             Company Letter 
+                        </wicket:label>
+				</label>
+				<div wicket:id="companyLetter_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="companyLetter"></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="gameEndsInYear">
+					<wicket:label>
+                             Game Ends In Year 
+                        </wicket:label>
+				</label>
+				<div wicket:id="gameEndsInYear_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="gameEndsInYear"></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="creditRating">
+					<wicket:label>
+                             Credit Rating 
+                        </wicket:label>
+				</label>
+				<div wicket:id="creditRating_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="creditRating"></select>
+				</div>
+			</div>
+			<hr />
+			<div class="form-group">
+				<div class="col-sm-10">
+					<button type="submit"
+						class="btn btn-default btn-primary btn-lg btn-block"
+						wicket:id="generateFeedback">Generate Feedback</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info"
+								wicket:id="generateSampleFeedback">Generate Sample
+								Feedback</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
