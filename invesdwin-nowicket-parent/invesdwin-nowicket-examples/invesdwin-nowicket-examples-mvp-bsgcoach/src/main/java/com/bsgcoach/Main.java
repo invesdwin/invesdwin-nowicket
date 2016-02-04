@@ -41,11 +41,15 @@ public class Main {
             @Override
             public Component createForm(final FormHtmlElement e) {
                 /*
-                 * CsrfTokenForm somehow does not work properly here, so disable it... must be also some problem
-                 * introduced by spring-boot dependencies? works fine in different platform, so don't care to fix in
-                 * this example right now
+                 * CsrfTokenForm does not work properly here.
+                 * 
+                 * This is caused by spring-security X-Frame config which interferes with multipart file upload forms,
+                 * dunno how to change these settings in spring-boot, worx fine in different platform:
+                 * http://rpuchkovskiy.blogspot.de/2014/10/spring-security-32-defaults-break.html
                  * 
                  * anyway a good occasion to showcase the default binding interceptor feature ;)
+                 * 
+                 * Also see ExampleWebSecurityConfiguration class.
                  */
                 final Form<Object> form = new Form<Object>(e.getWicketId());
                 return form;

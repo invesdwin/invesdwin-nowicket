@@ -37,13 +37,17 @@ public class Request extends AValueObject {
     private static final int MIN_GAME_ENDS_IN_YEAR = FIRST_REPORT_YEAR + 1;
 
     /*
-     * some bug with spring-boot dependencies maybe... does not happen with other projects or when running this code in
-     * different platform, so don't care enough to fix it right now... just disabling the inputs for now to show the
-     * dialog properly
+     * Multipart file upload forms do not behave properly with default config of spring-boot-security
+     * 
+     * This is caused by spring-security X-Frame config which interferes with multipart file upload forms, dunno how to
+     * change these settings in spring-boot, worx fine in different platform:
+     * http://rpuchkovskiy.blogspot.de/2014/10/spring-security-32-defaults-break.html
      * 
      * anyway a good occasion to showcase the @Disabled feature with automatic tooltips ;)
+     * 
+     * Also see ExampleWebSecurityConfiguration class.
      */
-    private static final String DISABLED_VALIDATION = "Feature currently disabled";
+    private static final String DISABLED_VALIDATION = "Feature disabled (since spring-boot-security does not want to accept different X-Frame-Options...)";
 
     private CompanyLetter companyLetter = CompanyLetter.A;
     private Integer gameEndsInYear = MAX_GAME_ENDS_IN_YEAR;
