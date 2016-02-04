@@ -94,7 +94,7 @@
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>${version.javassist}</version>
+			<version>${version.javassist}</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 	</dependencies>
 

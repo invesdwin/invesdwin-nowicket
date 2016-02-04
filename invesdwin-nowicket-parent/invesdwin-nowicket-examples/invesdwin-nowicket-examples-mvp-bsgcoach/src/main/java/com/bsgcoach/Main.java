@@ -3,8 +3,6 @@ package com.bsgcoach;
 import javax.annotation.concurrent.Immutable;
 import javax.servlet.DispatcherType;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.form.Form;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -21,9 +19,6 @@ import com.bsgcoach.internal.ExampleWebApplication;
 import com.bsgcoach.internal.ExampleWicketFilter;
 
 import de.invesdwin.instrument.DynamicInstrumentationLoader;
-import de.invesdwin.nowicket.generated.binding.GeneratedBindingDefaults;
-import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
@@ -37,24 +32,6 @@ public class Main {
     public static void main(final String[] args) {
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
-        GeneratedBindingDefaults.get().setDefaultBindingInterceptor(new BindingInterceptor() {
-            @Override
-            public Component createForm(final FormHtmlElement e) {
-                /*
-                 * CsrfTokenForm does not work properly here.
-                 * 
-                 * This is caused by spring-security X-Frame config which interferes with multipart file upload forms,
-                 * dunno how to change these settings in spring-boot, worx fine in different platform:
-                 * http://rpuchkovskiy.blogspot.de/2014/10/spring-security-32-defaults-break.html
-                 * 
-                 * anyway a good occasion to showcase the default binding interceptor feature ;)
-                 * 
-                 * Also see ExampleWebSecurityConfiguration class.
-                 */
-                final Form<Object> form = new Form<Object>(e.getWicketId());
-                return form;
-            }
-        });
         SpringApplication.run(Main.class, args);
     }
 
@@ -70,7 +47,7 @@ public class Main {
         noWicketFilter.addInitParameter("filterMappingUrlPattern", "/*");
 
         // Deployment configuration enables custom error pages.
-        noWicketFilter.addInitParameter("configuration", "deployment");
+        //        noWicketFilter.addInitParameter("configuration", "deployment");
 
         noWicketFilter.addUrlPatterns("/*");
         noWicketFilter.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);

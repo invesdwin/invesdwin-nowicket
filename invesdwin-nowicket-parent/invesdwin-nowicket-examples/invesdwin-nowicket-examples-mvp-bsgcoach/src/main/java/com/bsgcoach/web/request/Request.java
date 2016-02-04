@@ -19,7 +19,6 @@ import com.bsgcoach.util.MailSender;
 import com.bsgcoach.web.feedback.Feedback;
 import com.bsgcoach.web.feedback.sample.SampleFeedback;
 
-import de.invesdwin.norva.beanpath.annotation.Disabled;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
@@ -36,22 +35,9 @@ public class Request extends AValueObject {
     private static final int FIRST_REPORT_YEAR = 10;
     private static final int MIN_GAME_ENDS_IN_YEAR = FIRST_REPORT_YEAR + 1;
 
-    /*
-     * Multipart file upload forms do not behave properly with default config of spring-boot-security
-     * 
-     * This is caused by spring-security X-Frame config which interferes with multipart file upload forms, dunno how to
-     * change these settings in spring-boot, worx fine in different platform:
-     * http://rpuchkovskiy.blogspot.de/2014/10/spring-security-32-defaults-break.html
-     * 
-     * anyway a good occasion to showcase the @Disabled feature with automatic tooltips ;)
-     * 
-     * Also see ExampleWebSecurityConfiguration class.
-     */
-    private static final String DISABLED_VALIDATION = "Feature disabled (since spring-boot-security does not want to accept different X-Frame-Options...)";
-
     private CompanyLetter companyLetter = CompanyLetter.A;
     private Integer gameEndsInYear = MAX_GAME_ENDS_IN_YEAR;
-    private CreditRating creditRating = CreditRating.APlus;
+    private CreditRating creditRating;
     private File firReportCsv;
     private File cirReportCsv;
     private File corReportCsv;
@@ -61,7 +47,6 @@ public class Request extends AValueObject {
         return companyLetter;
     }
 
-    @Disabled(DISABLED_VALIDATION)
     public void setCompanyLetter(final CompanyLetter companyLetter) {
         this.companyLetter = companyLetter;
     }
@@ -79,7 +64,6 @@ public class Request extends AValueObject {
         return gameEndsInYear;
     }
 
-    @Disabled(DISABLED_VALIDATION)
     public void setGameEndsInYear(final Integer gameEndsInYear) {
         this.gameEndsInYear = gameEndsInYear;
     }
@@ -89,7 +73,6 @@ public class Request extends AValueObject {
         return creditRating;
     }
 
-    @Disabled(DISABLED_VALIDATION)
     public void setCreditRating(final CreditRating creditRating) {
         this.creditRating = creditRating;
     }
