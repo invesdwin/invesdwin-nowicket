@@ -11,5 +11,6 @@ public enum GuiServiceMethod {
     hideModalPanel,
     processRequestFinally,
     processInitializationFinished,
-    getSessionFolder;
+    getSessionFolder,
+    offerDownload;
 }

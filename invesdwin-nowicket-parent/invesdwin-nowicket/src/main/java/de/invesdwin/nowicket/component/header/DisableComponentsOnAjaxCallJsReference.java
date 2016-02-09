@@ -18,6 +18,8 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 public final class DisableComponentsOnAjaxCallJsReference extends JavaScriptResourceReference
         implements IHeaderContributor {
 
+    public static final String UNDISABLE_FUNCTION_CALL_SNIPPET = "if(typeof undisableComponentsAfterAjaxCall == 'function'){undisableComponentsAfterAjaxCall();}";
+
     public static final DisableComponentsOnAjaxCallJsReference INSTANCE = new DisableComponentsOnAjaxCallJsReference();
     private static final String FUNCTION_NAME = "disableComponentsOnAjaxCall";
 

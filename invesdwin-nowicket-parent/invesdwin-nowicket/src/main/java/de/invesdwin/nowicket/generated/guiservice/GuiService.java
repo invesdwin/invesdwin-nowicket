@@ -107,4 +107,9 @@ public class GuiService implements FactoryBean<GuiService>, IGuiService {
         getGuiServiceImpl().showStatusMessage(title, message);
     }
 
+    @Override
+    public void offerDownload(final OfferDownloadConfig config) {
+        getGuiServiceImpl().offerDownload(config);
+    }
+
 }

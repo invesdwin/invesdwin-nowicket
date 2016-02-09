@@ -25,6 +25,7 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
+import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.internal.tasks.GuiTasks;
 import de.invesdwin.nowicket.util.Components;
@@ -195,5 +196,10 @@ public class SessionGuiService implements IGuiService, Serializable {
     @Override
     public void showStatusMessage(final String title, final String message) {
         showStatusMessage(new StatusMessageConfig().withTitle(title).withMessage(message));
+    }
+
+    @Override
+    public void offerDownload(final OfferDownloadConfig config) {
+        guiTasks.offerDownload(config);
     }
 }

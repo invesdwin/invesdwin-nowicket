@@ -14,6 +14,7 @@ import org.apache.wicket.MarkupContainer;
 
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
+import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 
 @NotThreadSafe
@@ -22,7 +23,8 @@ public class GuiServiceTester implements IGuiService {
     private final Stack<GuiServiceMethodCall> methodCalls = new Stack<GuiServiceMethodCall>();
     private final AtomicInteger modalPanelsShowing = new AtomicInteger();
 
-    private final File sessionFolder = new File(ABaseWebApplication.get().getSessionsDirectory(), getClass().getSimpleName());
+    private final File sessionFolder = new File(ABaseWebApplication.get().getSessionsDirectory(),
+            getClass().getSimpleName());
 
     public Stack<GuiServiceMethodCall> getMethodCalls() {
         return methodCalls;
@@ -102,6 +104,11 @@ public class GuiServiceTester implements IGuiService {
     @Override
     public void showStatusMessage(final String title, final String message) {
         methodCalls.add(new GuiServiceMethodCall(GuiServiceMethod.showStatusMessage, title, message));
+    }
+
+    @Override
+    public void offerDownload(final OfferDownloadConfig config) {
+        methodCalls.add(new GuiServiceMethodCall(GuiServiceMethod.offerDownload, config));
     }
 
 }

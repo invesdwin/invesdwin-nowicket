@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
 import java.awt.Dimension;
 
+import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 
 public interface IGuiTasksService {
@@ -24,5 +25,7 @@ public interface IGuiTasksService {
      * This hides the top most showing modal panel.
      */
     void hideModalPanel();
+
+    void offerDownload(final OfferDownloadConfig config);
 
 }

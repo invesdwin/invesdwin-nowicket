@@ -8,12 +8,14 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 
+import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 
 @NotThreadSafe
 public class GuiTasks implements IGuiTasksService, IGuiTask {
 
     private ShowPageGuiTask showPageGuiTask;
+    private OfferDownloadGuiTask offerDownloadGuiTask;
     private final Deque<ShowModalPanelGuiTask> showModalPanelGuiTasks = new ArrayDeque<ShowModalPanelGuiTask>();
     private final Deque<ShowStatusMessageGuiTask> showStatusMessageGuiTasks = new ArrayDeque<ShowStatusMessageGuiTask>();
 
@@ -84,5 +86,14 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
             final ShowStatusMessageGuiTask last = showStatusMessageGuiTasks.removeLast();
             last.process(component);
         }
+        if (offerDownloadGuiTask != null) {
+            offerDownloadGuiTask.process(component);
+            offerDownloadGuiTask = null;
+            return;
+        }
+    }
+
+    public void offerDownload(final OfferDownloadConfig config) {
+        this.offerDownloadGuiTask = new OfferDownloadGuiTask(config);
     }
 }

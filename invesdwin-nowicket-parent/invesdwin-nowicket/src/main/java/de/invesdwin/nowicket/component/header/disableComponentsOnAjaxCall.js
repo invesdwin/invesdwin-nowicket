@@ -1,12 +1,12 @@
+function undisableComponentsAfterAjaxCall(){
+	$(':input:disabled[data-disableComponentsOnAjaxCall=true]').each(function(){
+		var tag = $(this);
+		tag.prop('disabled', false);
+		tag.removeAttr('data-disableComponentsOnAjaxCall');
+	});
+	window.ajaxCallRunning = false;
+}
 function disableComponentsOnAjaxCall() {
-	function undisableComponentsAfterAjaxCall(){
-		$(':input:disabled[data-disableComponentsOnAjaxCall=true]').each(function(){
-			var tag = $(this);
-			tag.prop('disabled', false);
-			tag.removeAttr('data-disableComponentsOnAjaxCall');
-		});
-		window.ajaxCallRunning = false;
-	}
 	
 	if (typeof disableComponentsOnAjaxCallRegistered === 'undefined') {
 		window.disableComponentsOnAjaxCallRegistered = true;
