@@ -1,8 +1,10 @@
-package de.invesdwin.nowicket.examples.guide.internal;
+package de.invesdwin.nowicket.examples.guide.pages;
 
 import javax.annotation.concurrent.Immutable;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
@@ -55,6 +57,11 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
     @Override
     public Class<? extends WebPage> getPageNotFoundPage() {
         return PageNotFoundPage.class;
+    }
+
+    @Override
+    public ResourceReference getFavicon() {
+        return new PackageResourceReference(getClass(), "favicon.ico");
     }
 
 }
