@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This is a litle more elaborate version of the <a
+				href="http://examples7x.wicket.apache.org/guestbook/">guestbook
+				example from wicket</a>. We added a bit of validation and demonstrate
+			dependency injection in page models in order to access a real
+			database using spring-data-jpa.
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<fieldset>
+				<legend>
+					<label wicket:id="header"></label>
+				</legend>
+				<div class="form-group">
+					<label class="control-label col-sm-2" wicket:for="email"> <wicket:label>
+                            Email
+                        </wicket:label></label>
+					<div wicket:id="email_gridColumn" class="col-sm-4">
+						<input type="text" class="form-control" wicket:id="email"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" wicket:for="message">
+						<wicket:label>
+                                 Message 
+                            </wicket:label>
+					</label>
+					<div wicket:id="message_gridColumn" class="col-sm-4">
+						<textarea class="form-control" wicket:id="message"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-6">
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<button type="submit" class="btn btn-default btn-primary"
+									wicket:id="submit">Submit</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset wicket:id="entriesList">
+				<legend wicket:id="entries_legend">Entries</legend>
+				<ul wicket:id="entries"></ul>
+			</fieldset>
+		</form>
+	</wicket:extend>
+</body>
+</html>

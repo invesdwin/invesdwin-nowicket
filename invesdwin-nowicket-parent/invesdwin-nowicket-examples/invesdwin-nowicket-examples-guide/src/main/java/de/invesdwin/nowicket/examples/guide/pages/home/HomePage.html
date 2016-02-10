@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-    <head></head>
-    <body>
-        <wicket:extend>
-            <form class="form-horizontal" wicket:id="form">
-                <!-- <div wicket:id='feedback'></div>  -->
-                <div wicket:id="modal"></div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" wicket:for="hello">
-                        <wicket:label>
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This page demonstrates the famous hello world example for <a
+				href="https://github.com/subes/invesdwin-nowicket">invesdwin-nowicket</a>.
+			<i>It is a naked objects framework for wicket that enables
+				developers to write less boilerplate wicket code during
+				implementation of complex websites. Improving productivity by a
+				measurable factor and making wicket more fun. </i>Use the menu to look
+			at other examples or have a look at the <a
+				href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide">sourcecode
+				on github</a>.
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="hello"> <wicket:label>
                             Hello
                         </wicket:label></label>
-                    <div wicket:id="hello_gridColumn" class="col-sm-4">
-                        <input type="text" class="form-control" wicket:id="hello"></input>
-                    </div>
-                </div>
-            </form>
-        </wicket:extend>
-    </body>
+				<div wicket:id="hello_gridColumn" class="col-sm-4">
+					<input type="text" class="form-control" wicket:id="hello"></input>
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
 </html>

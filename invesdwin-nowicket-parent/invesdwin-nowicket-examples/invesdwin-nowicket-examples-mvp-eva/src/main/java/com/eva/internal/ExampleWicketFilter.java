@@ -2,7 +2,7 @@ package com.eva.internal;
 
 import javax.annotation.concurrent.ThreadSafe;
 
-import com.eva.web.ExampleWebApplicationConfig;
+import com.eva.web.EvaWebApplicationConfig;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWicketFilter;
@@ -12,7 +12,7 @@ public class ExampleWicketFilter extends AWicketFilter {
 
     @Override
     protected IWebApplicationConfig newConfig() {
-        return new ExampleWebApplicationConfig();
+        return new EvaWebApplicationConfig();
     }
 
 }

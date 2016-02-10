@@ -20,9 +20,9 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownBut
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
-import de.invesdwin.nowicket.examples.guide.pages.guestbook.GuestbookExamplePage;
-import de.invesdwin.nowicket.examples.guide.pages.secure.SpringSecurePage;
-import de.invesdwin.nowicket.examples.guide.pages.secure.WicketSecurePage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.SpringSecurePage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.WicketSecurePage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.guestbook.GuestbookExamplePage;
 
 @NotThreadSafe
 public abstract class AExampleWebPage extends AWebPage {
@@ -35,13 +35,13 @@ public abstract class AExampleWebPage extends AWebPage {
     protected Navbar newNavbar(final String id) {
 
         final Navbar navbar = super.newNavbar(id);
-        navbar.setBrandName(Model.of("NoWicket Examples"));
+        navbar.setBrandName(Model.of("NoWicket Examples Guide"));
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(GuestbookExamplePage.class, new ResourceModel("menu.guestbook"))
                         .setIconType(GlyphIconType.book)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
-                new NavbarDropDownButton(new ResourceModel("menu.secure")) {
+                new NavbarDropDownButton(new ResourceModel("menu.authentication")) {
 
                     @Override
                     public boolean isActive(final Component item) {

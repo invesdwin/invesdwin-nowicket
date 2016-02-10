@@ -47,7 +47,7 @@ public class Main {
         noWicketFilter.addInitParameter("filterMappingUrlPattern", "/*");
 
         // Deployment configuration enables custom error pages.
-        //        noWicketFilter.addInitParameter("configuration", "deployment");
+        noWicketFilter.addInitParameter("configuration", "deployment");
 
         noWicketFilter.addUrlPatterns("/*");
         noWicketFilter.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);

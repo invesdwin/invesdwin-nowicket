@@ -7,7 +7,7 @@ import java.util.Set;
 
 import javax.annotation.concurrent.ThreadSafe;
 
-import com.eva.web.ExampleWebApplicationConfig;
+import com.eva.web.EvaWebApplicationConfig;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
@@ -20,7 +20,7 @@ public class ExampleWebApplication extends AWebApplication {
 
     @Override
     protected IWebApplicationConfig newConfig() {
-        return new ExampleWebApplicationConfig();
+        return new EvaWebApplicationConfig();
     }
 
     @Override

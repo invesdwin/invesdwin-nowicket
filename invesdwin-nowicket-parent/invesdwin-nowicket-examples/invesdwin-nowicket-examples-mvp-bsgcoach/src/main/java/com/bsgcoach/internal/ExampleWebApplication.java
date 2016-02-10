@@ -7,7 +7,7 @@ import java.util.Set;
 
 import javax.annotation.concurrent.ThreadSafe;
 
-import com.bsgcoach.web.ExampleWebApplicationConfig;
+import com.bsgcoach.web.BsgCoachWebApplicationConfig;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
@@ -20,7 +20,7 @@ public class ExampleWebApplication extends AWebApplication {
 
     @Override
     protected IWebApplicationConfig newConfig() {
-        return new ExampleWebApplicationConfig();
+        return new BsgCoachWebApplicationConfig();
     }
 
     @Override

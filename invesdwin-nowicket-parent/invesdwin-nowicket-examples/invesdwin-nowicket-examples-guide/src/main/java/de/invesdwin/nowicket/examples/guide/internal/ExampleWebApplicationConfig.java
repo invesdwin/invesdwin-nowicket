@@ -7,9 +7,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
 import de.invesdwin.nowicket.examples.guide.Main;
-import de.invesdwin.nowicket.examples.guide.pages.auth.ExampleSignInPage;
-import de.invesdwin.nowicket.examples.guide.pages.auth.ExampleSignOutPage;
+import de.invesdwin.nowicket.examples.guide.pages.error.AccessDeniedPage;
+import de.invesdwin.nowicket.examples.guide.pages.error.InternalErrorPage;
+import de.invesdwin.nowicket.examples.guide.pages.error.PageExpiredPage;
+import de.invesdwin.nowicket.examples.guide.pages.error.PageNotFoundPage;
 import de.invesdwin.nowicket.examples.guide.pages.home.HomePage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.ExampleSignInPage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.ExampleSignOutPage;
 
 @Immutable
 public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
@@ -31,6 +35,26 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
     @Override
     public Class<? extends WebPage> getSignOutPage() {
         return ExampleSignOutPage.class;
+    }
+
+    @Override
+    public Class<? extends WebPage> getAccessDeniedPage() {
+        return AccessDeniedPage.class;
+    }
+
+    @Override
+    public Class<? extends WebPage> getInternalErrorPage() {
+        return InternalErrorPage.class;
+    }
+
+    @Override
+    public Class<? extends WebPage> getPageExpiredPage() {
+        return PageExpiredPage.class;
+    }
+
+    @Override
+    public Class<? extends WebPage> getPageNotFoundPage() {
+        return PageNotFoundPage.class;
     }
 
 }

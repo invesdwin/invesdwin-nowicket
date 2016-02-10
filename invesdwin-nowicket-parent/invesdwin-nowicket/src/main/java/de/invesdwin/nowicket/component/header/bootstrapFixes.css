@@ -14,7 +14,7 @@
 
 /* make 32px brand logo vertically center aligned to 24px brand name */
 .navbar-brand img {
-	margin-top:-4px;
+	margin-top:-6px;
 	margin-right: 10px;
 	float: left;
 }
