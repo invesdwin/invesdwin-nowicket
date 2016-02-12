@@ -1,13 +1,13 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.util.Date;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.model.IModel;
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
@@ -42,13 +42,13 @@ public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElemen
     }
 
     @Override
-    public java.text.SimpleDateFormat getFormat() {
+    public java.text.SimpleDateFormat getFormat(final Locale locale) {
         if (propertyFormat == null) {
             String format = getFormatString();
             if (format == null) {
                 format = DEFAULT_DATE_FORMAT;
             }
-            propertyFormat = new java.text.SimpleDateFormat(format, AWebSession.get().getLocale());
+            propertyFormat = new java.text.SimpleDateFormat(format, locale);
         }
         return propertyFormat;
     }

@@ -26,7 +26,7 @@ public class ModelDateTextField extends DateTextField {
     }
 
     public static DateTextFieldConfig newDateTextFieldConfig(final DateInputHtmlElement element) {
-        return new DateTextFieldConfig().withFormat(element.getFormat().toPattern())
+        return new DateTextFieldConfig().withFormat(element.getFormat(AWebSession.get().getLocale()).toPattern())
                 .highlightToday(true)
                 .autoClose(false)
                 .allowKeyboardNavigation(false)

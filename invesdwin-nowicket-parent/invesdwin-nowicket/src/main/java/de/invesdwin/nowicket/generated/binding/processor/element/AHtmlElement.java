@@ -44,8 +44,8 @@ public abstract class AHtmlElement<E extends IModelElement<?>, M> implements IHt
     @Override
     public Element getElement() {
         Assertions.assertThat(element)
-        .as("%s is only available until serialization occurs!", Element.class)
-        .isNotNull();
+                .as("%s is only available until serialization occurs!", Element.class)
+                .isNotNull();
         return element;
     }
 

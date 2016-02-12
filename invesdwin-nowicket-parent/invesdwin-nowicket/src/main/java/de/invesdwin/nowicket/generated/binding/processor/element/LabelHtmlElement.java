@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -24,7 +25,7 @@ public class LabelHtmlElement extends AModelHtmlElement<TextInputModelElement, O
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 

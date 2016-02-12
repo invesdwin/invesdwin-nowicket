@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.io.Serializable;
 import java.text.Format;
+import java.util.Locale;
 
 import org.apache.wicket.model.IModel;
 import org.jsoup.nodes.Element;
@@ -35,7 +36,7 @@ public interface IHtmlElement<E extends IModelElement<?>, M> extends Serializabl
 
     boolean isEager();
 
-    Format getFormat();
+    Format getFormat(Locale locale);
 
     boolean isForced();
 

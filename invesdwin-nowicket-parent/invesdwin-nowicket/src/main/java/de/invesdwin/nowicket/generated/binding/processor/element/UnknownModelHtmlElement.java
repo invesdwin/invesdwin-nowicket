@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -16,8 +17,8 @@ import de.invesdwin.nowicket.generated.markup.processor.element.IModelElement;
  * E.g. a span that should be bound to a property in the model.
  */
 @NotThreadSafe
-public class UnknownModelHtmlElement extends AModelHtmlElement<IModelElement<?>, Object> implements
-        IUnknownHtmlElement<Object> {
+public class UnknownModelHtmlElement extends AModelHtmlElement<IModelElement<?>, Object>
+        implements IUnknownHtmlElement<Object> {
 
     public UnknownModelHtmlElement(final HtmlContext context, final Element element) {
         super(context, element);
@@ -30,7 +31,7 @@ public class UnknownModelHtmlElement extends AModelHtmlElement<IModelElement<?>,
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 

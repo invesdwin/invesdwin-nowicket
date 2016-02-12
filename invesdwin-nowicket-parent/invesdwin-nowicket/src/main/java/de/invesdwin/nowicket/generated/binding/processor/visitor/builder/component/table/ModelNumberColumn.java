@@ -6,6 +6,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColu
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
+import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 
@@ -33,7 +34,7 @@ public class ModelNumberColumn extends PropertyColumn<Number, String> {
             public Object getObject() {
                 final Number number = propertyModel.getObject();
                 if (number != null) {
-                    return element.getFormat().format(number);
+                    return element.getFormat(AWebSession.get().getLocale()).format(number);
                 } else {
                     return null;
                 }

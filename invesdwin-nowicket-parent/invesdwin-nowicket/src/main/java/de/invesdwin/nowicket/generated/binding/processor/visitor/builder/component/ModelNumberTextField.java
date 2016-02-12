@@ -35,7 +35,7 @@ public class ModelNumberTextField extends NumberTextField {
                     .in(adc)
                     .get();
             for (final Locale l : Locale.getAvailableLocales()) {
-                final DecimalFormat format = element.getFormat();
+                final DecimalFormat format = element.getFormat(l);
                 format.setParseBigDecimal(true);
                 numberFormats.put(l, format);
             }

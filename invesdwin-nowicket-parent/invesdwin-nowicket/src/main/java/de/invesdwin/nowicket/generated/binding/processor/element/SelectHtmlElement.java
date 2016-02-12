@@ -1,18 +1,19 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.jsoup.nodes.Element;
 
+import de.invesdwin.norva.beanpath.spi.element.AChoiceBeanPathElement;
 import de.invesdwin.nowicket.NoWicketProperties;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NoChoiceModelElement;
-import de.invesdwin.norva.beanpath.spi.element.AChoiceBeanPathElement;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -36,7 +37,7 @@ public class SelectHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<? 
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 

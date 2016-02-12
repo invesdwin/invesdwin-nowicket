@@ -4,6 +4,7 @@ import java.text.Format;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -32,7 +33,7 @@ public class TabbedHtmlElement extends AModelHtmlElement<TabbedModelElement, Obj
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 
@@ -44,8 +45,8 @@ public class TabbedHtmlElement extends AModelHtmlElement<TabbedModelElement, Obj
         if (columns == null) {
             columns = new ArrayList<TabbedColumnHtmlElement>();
             for (final TabbedColumnModelElement column : getModelElement().getColumns()) {
-                final TabbedColumnHtmlElement columnElement = (TabbedColumnHtmlElement) getContext().getElementRegistry()
-                        .getElement(column.getWicketId());
+                final TabbedColumnHtmlElement columnElement = (TabbedColumnHtmlElement) getContext()
+                        .getElementRegistry().getElement(column.getWicketId());
                 columns.add(columnElement);
             }
         }

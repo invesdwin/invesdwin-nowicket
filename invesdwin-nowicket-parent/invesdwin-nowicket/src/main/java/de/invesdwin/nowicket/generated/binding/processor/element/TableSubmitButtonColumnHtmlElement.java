@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -14,8 +15,8 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.markup.processor.element.TableSubmitButtonColumnModelElement;
 
 @NotThreadSafe
-public class TableSubmitButtonColumnHtmlElement extends
-        ATableColumnHtmlElement<TableSubmitButtonColumnModelElement, Object> {
+public class TableSubmitButtonColumnHtmlElement
+        extends ATableColumnHtmlElement<TableSubmitButtonColumnModelElement, Object> {
 
     public TableSubmitButtonColumnHtmlElement(final HtmlContext context,
             final TableSubmitButtonColumnModelElement modelElement) {
@@ -34,12 +35,13 @@ public class TableSubmitButtonColumnHtmlElement extends
     }
 
     public IModel<String> getIconCssClassModel() {
-        return new ResourceModel(getModelElement().getIconCssClassPropertyName(), "").wrapOnAssignment(getContext().getMarkupContainer());
+        return new ResourceModel(getModelElement().getIconCssClassPropertyName(), "")
+                .wrapOnAssignment(getContext().getMarkupContainer());
     }
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 

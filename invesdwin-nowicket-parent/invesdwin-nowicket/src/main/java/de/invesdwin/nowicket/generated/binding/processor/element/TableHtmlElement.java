@@ -4,6 +4,7 @@ import java.text.Format;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -92,8 +93,8 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
         if (columns == null) {
             columns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
             for (final ATableColumnModelElement<?> column : getModelElement().getColumns()) {
-                final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry().getElement(
-                        column.getWicketId());
+                final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
+                        .getElement(column.getWicketId());
                 columns.add(columnElement);
             }
         }
@@ -104,8 +105,8 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
         if (rawColumns == null) {
             rawColumns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
             for (final ATableColumnModelElement<?> column : getModelElement().getRawColumns()) {
-                final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry().getElement(
-                        column.getWicketId());
+                final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
+                        .getElement(column.getWicketId());
                 rawColumns.add(columnElement);
             }
         }
@@ -142,7 +143,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 
@@ -150,7 +151,8 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
     public List<? extends IColumn<Object, String>> createWicketColumns(final IBindingBuilder bindingBuilder) {
         final List<IColumn<Object, String>> wicketColumns = new ArrayList<IColumn<Object, String>>();
         for (final ATableColumnHtmlElement<?, ?> column : getColumns()) {
-            final IColumn<Object, String> wicketColumn = (IColumn<Object, String>) column.createWicketColumn(bindingBuilder);
+            final IColumn<Object, String> wicketColumn = (IColumn<Object, String>) column
+                    .createWicketColumn(bindingBuilder);
             wicketColumns.add(wicketColumn);
         }
         return wicketColumns;

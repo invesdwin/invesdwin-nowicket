@@ -2,12 +2,12 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
@@ -35,13 +35,13 @@ public class NumberInputHtmlElement extends AModelHtmlElement<NumberInputModelEl
     }
 
     @Override
-    public DecimalFormat getFormat() {
+    public DecimalFormat getFormat(final Locale locale) {
         if (propertyFormat == null) {
             String format = super.getFormatString();
             if (format == null) {
                 format = DEFAULT_DECIMAL_FORMAT;
             }
-            propertyFormat = new DecimalFormat(format, DecimalFormatSymbols.getInstance(AWebSession.get().getLocale()));
+            propertyFormat = new DecimalFormat(format, DecimalFormatSymbols.getInstance(locale));
         }
         return propertyFormat;
     }

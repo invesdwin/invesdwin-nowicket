@@ -14,7 +14,8 @@ function allowCopyPasteOnDisabledInputs() {
 			// replace tag with readonly input and make tag invisible
 			tag.attr("style", "display:none");
 			var input = $("<input>");
-			input.attr("type", "text");
+			
+			input.attr("type", tag.attr("type"));
 			input.attr("data-allowCopyPasteOnDisabledInputs", tag.attr("id"));
 			input.attr("readonly", "readonly");
 

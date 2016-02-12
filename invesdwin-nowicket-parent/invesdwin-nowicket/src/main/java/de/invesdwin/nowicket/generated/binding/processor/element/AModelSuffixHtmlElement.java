@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -51,7 +52,7 @@ public abstract class AModelSuffixHtmlElement extends AModelHtmlElement<IModelEl
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 

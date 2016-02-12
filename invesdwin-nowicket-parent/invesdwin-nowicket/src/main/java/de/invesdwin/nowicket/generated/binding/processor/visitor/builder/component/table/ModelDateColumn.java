@@ -8,6 +8,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColu
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
+import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
@@ -24,8 +25,8 @@ public class ModelDateColumn extends PropertyColumn<Date, String> {
 
     @Override
     public IModel<Object> getDataModel(final IModel<Date> rowModel) {
-        final DatePropertyModel propertyModel = new DatePropertyModel(new BeanPathModel<Object>(rowModel,
-                getPropertyExpression()));
+        final DatePropertyModel propertyModel = new DatePropertyModel(
+                new BeanPathModel<Object>(rowModel, getPropertyExpression()));
         return new AbstractReadOnlyModel<Object>() {
 
             @Override
@@ -37,7 +38,7 @@ public class ModelDateColumn extends PropertyColumn<Date, String> {
             public Object getObject() {
                 final Date date = propertyModel.getObject();
                 if (date != null) {
-                    return element.getFormat().format(date);
+                    return element.getFormat(AWebSession.get().getLocale()).format(date);
                 } else {
                     return null;
                 }

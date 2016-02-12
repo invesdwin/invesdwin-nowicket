@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -35,7 +36,8 @@ public class SubmitButtonHtmlElement extends AModelHtmlElement<SubmitButtonModel
     }
 
     public IModel<String> getIconCssClassModel() {
-        return new ResourceModel(getModelElement().getIconCssClassPropertyName(), "").wrapOnAssignment(getContext().getMarkupContainer());
+        return new ResourceModel(getModelElement().getIconCssClassPropertyName(), "")
+                .wrapOnAssignment(getContext().getMarkupContainer());
     }
 
     @Override
@@ -45,7 +47,7 @@ public class SubmitButtonHtmlElement extends AModelHtmlElement<SubmitButtonModel
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 

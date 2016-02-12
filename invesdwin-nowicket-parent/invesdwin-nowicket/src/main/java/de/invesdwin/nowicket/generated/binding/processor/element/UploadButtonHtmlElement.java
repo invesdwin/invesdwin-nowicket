@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -36,7 +37,7 @@ public class UploadButtonHtmlElement extends AModelHtmlElement<UploadButtonModel
 
     @Deprecated
     @Override
-    public Format getFormat() {
+    public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 
