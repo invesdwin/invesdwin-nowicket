@@ -71,7 +71,7 @@ public abstract class AEvaWebPage extends AWebPage {
 
     @Override
     public IModel<String> getTitleModel() {
-        return Model.of("EVA - " + super.getTitleModel().getObject());
+        return Model.of(super.getTitleModel().getObject() + " - EVA");
     }
 
     @Override

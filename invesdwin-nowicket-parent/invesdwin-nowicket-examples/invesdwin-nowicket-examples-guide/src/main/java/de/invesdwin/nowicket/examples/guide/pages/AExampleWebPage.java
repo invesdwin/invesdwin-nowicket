@@ -20,12 +20,16 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownBut
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
+import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.examples.guide.pages.footer.FooterPanel;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.SpringSecurePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.WicketSecurePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.guestbook.GuestbookExamplePage;
 
 @NotThreadSafe
 public abstract class AExampleWebPage extends AWebPage {
+
+    private static final String TITLE = "NoWicket Examples Guide";
 
     public AExampleWebPage(final IModel<?> model) {
         super(model);
@@ -35,7 +39,7 @@ public abstract class AExampleWebPage extends AWebPage {
     protected Navbar newNavbar(final String id) {
 
         final Navbar navbar = super.newNavbar(id);
-        navbar.setBrandName(Model.of("NoWicket Examples Guide"));
+        navbar.setBrandName(Model.of(TITLE));
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(GuestbookExamplePage.class, new ResourceModel("menu.guestbook"))
@@ -71,6 +75,16 @@ public abstract class AExampleWebPage extends AWebPage {
                 }));
 
         return navbar;
+    }
+
+    @Override
+    protected AFooter newFooter(final String id) {
+        return new FooterPanel(id);
+    }
+
+    @Override
+    public IModel<String> getTitleModel() {
+        return Model.of(super.getTitleModel().getObject() + " - " + TITLE);
     }
 
 }
