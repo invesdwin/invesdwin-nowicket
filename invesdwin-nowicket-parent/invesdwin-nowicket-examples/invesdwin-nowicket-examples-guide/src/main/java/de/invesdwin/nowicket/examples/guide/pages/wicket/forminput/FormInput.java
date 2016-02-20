@@ -11,9 +11,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
-import de.invesdwin.norva.beanpath.impl.object.BeanObjectContext;
-import de.invesdwin.norva.beanpath.impl.object.BeanObjectProcessor;
-import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
@@ -194,12 +191,9 @@ public class FormInput extends AValueObject {
         if (dirtyTracker().isDirty()) {
             final StringBuilder message = new StringBuilder(
                     "Your inputs will be lost for the following fields:<br><ul>");
-            final BeanObjectContext context = new BeanObjectContext(this);
-            new BeanObjectProcessor(context).process();
             for (final String beanPath : dirtyTracker().getChangedBeanPaths()) {
-                final IBeanPathElement element = context.getElementRegistry().getElement(beanPath);
                 message.append("<li>");
-                message.append(element.getBeanPath());
+                message.append(beanPath);
                 message.append("</li>");
             }
             message.append("</ul>");
