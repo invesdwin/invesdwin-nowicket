@@ -23,7 +23,8 @@
 		<version.invesdwin-maven-plugin>1.0.0-SNAPSHOT</version.invesdwin-maven-plugin>
 		<version.javax.inject>1</version.javax.inject>
 		<version.maven-enforcer-plugin>1.3.1</version.maven-enforcer-plugin>
-		
+		<version.maven-processor-plugin>2.2.4</version.maven-processor-plugin>
+
 		<!-- conflict between spring boot parent pom and invesdwin-bom import -->
 		<version.javassist>3.19.0-GA</version.javassist>
 	</properties>
@@ -90,11 +91,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>${version.javassist}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${version.javassist}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 	</dependencies>
 
@@ -118,6 +119,24 @@
 						<configuration>
 							<useInvesdwinEclipseSettings>true</useInvesdwinEclipseSettings>
 							<codeComplianceLevel>${version.compiler}</codeComplianceLevel>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>${version.maven-processor-plugin}</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/generated-sources/apt</outputDirectory>
+							<failOnError>false</failOnError>
 						</configuration>
 					</execution>
 				</executions>

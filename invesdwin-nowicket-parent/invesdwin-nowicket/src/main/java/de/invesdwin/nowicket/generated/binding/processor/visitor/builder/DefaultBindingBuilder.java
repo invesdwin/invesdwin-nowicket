@@ -108,7 +108,8 @@ public class DefaultBindingBuilder implements IBindingBuilder {
     }
 
     @Override
-    public IColumn<? extends Object, String> createRemoveFromButtonColumn(final TableRemoveFromButtonColumnHtmlElement e) {
+    public IColumn<? extends Object, String> createRemoveFromButtonColumn(
+            final TableRemoveFromButtonColumnHtmlElement e) {
         return createSubmitButtonColumn(e);
     }
 

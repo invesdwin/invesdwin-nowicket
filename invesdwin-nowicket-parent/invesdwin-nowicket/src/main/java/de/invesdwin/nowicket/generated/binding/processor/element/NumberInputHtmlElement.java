@@ -8,13 +8,15 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.jsoup.nodes.Element;
 
+import de.invesdwin.norva.beanpath.spi.element.APropertyBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
-import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.AModelElement;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @NotThreadSafe
-public class NumberInputHtmlElement extends AModelHtmlElement<NumberInputModelElement, Number> {
+public class NumberInputHtmlElement extends AModelHtmlElement<AModelElement<? extends APropertyBeanPathElement>, Number>
+        implements ITextInputHtmlElement<Number> {
 
     public static final String INPUT_TYPE_NUMBER = "number";
 

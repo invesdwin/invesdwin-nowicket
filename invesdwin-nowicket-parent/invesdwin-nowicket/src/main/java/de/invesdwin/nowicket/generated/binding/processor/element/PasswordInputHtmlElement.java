@@ -13,6 +13,10 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.element.TextInputModelElement;
 import de.invesdwin.util.assertions.Assertions;
 
+/**
+ * Not inheriting ITextInputHtmlElement by purpose to not make it accidentally bind to a ModelTextField.
+ *
+ */
 @NotThreadSafe
 public class PasswordInputHtmlElement extends AModelHtmlElement<TextInputModelElement, String> {
 

@@ -52,19 +52,28 @@ public class GridColumnBorder extends Border {
         final FormComponent<?> formComponent = Components.asFormComponent(component);
         if (formComponent != null) {
             final StringBuilder sb = new StringBuilder();
-            if (!formComponent.isValid()) {
-                boolean firstMessage = true;
-                for (final FeedbackMessage message : formComponent.getFeedbackMessages()) {
-                    if (!firstMessage) {
-                        sb.append("<br>");
+            if (showHelpText()) {
+                if (!formComponent.isValid()) {
+                    boolean firstMessage = true;
+                    for (final FeedbackMessage message : formComponent.getFeedbackMessages()) {
+                        if (!firstMessage) {
+                            sb.append("<br>");
+                        }
+                        firstMessage = false;
+                        sb.append(message.getMessage());
                     }
-                    firstMessage = false;
-                    sb.append(message.getMessage());
                 }
+                help.setDefaultModelObject(sb);
             }
-            help.setDefaultModelObject(sb);
             help.setVisible(sb.length() > 0);
         }
+    }
+
+    /**
+     * return false here to disable the help text and instead only color the border
+     */
+    protected boolean showHelpText() {
+        return true;
     }
 
     @Override

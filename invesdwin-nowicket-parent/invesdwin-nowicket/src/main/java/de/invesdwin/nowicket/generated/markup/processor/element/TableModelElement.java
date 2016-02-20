@@ -6,12 +6,12 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
-import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.norva.beanpath.spi.element.ITableColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableButtonColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableTextColumnBeanPathElement;
+import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
+import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
@@ -85,8 +85,8 @@ public class TableModelElement extends AChoiceModelElement<TableBeanPathElement>
         if (columns == null) {
             columns = new ArrayList<ATableColumnModelElement<?>>();
             for (final ITableColumnBeanPathElement column : getBeanPathElement().getColumns()) {
-                final ATableColumnModelElement<?> columnElement = (ATableColumnModelElement<?>) getContext().getElementRegistry()
-                        .getElement(column.getBeanPath());
+                final ATableColumnModelElement<?> columnElement = (ATableColumnModelElement<?>) getContext()
+                        .getElementRegistry().getElement(column.getBeanPath());
                 columns.add(columnElement);
             }
         }
@@ -97,8 +97,8 @@ public class TableModelElement extends AChoiceModelElement<TableBeanPathElement>
         if (rawColumns == null) {
             rawColumns = new ArrayList<ATableColumnModelElement<?>>();
             for (final ITableColumnBeanPathElement column : getBeanPathElement().getRawColumns()) {
-                final ATableColumnModelElement<?> columnElement = (ATableColumnModelElement<?>) getContext().getElementRegistry()
-                        .getElement(column.getBeanPath());
+                final ATableColumnModelElement<?> columnElement = (ATableColumnModelElement<?>) getContext()
+                        .getElementRegistry().getElement(column.getBeanPath());
                 rawColumns.add(columnElement);
             }
         }

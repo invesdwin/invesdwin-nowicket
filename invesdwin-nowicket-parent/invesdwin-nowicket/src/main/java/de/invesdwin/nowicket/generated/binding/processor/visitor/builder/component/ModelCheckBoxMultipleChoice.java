@@ -3,15 +3,16 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.html.form.RadioChoice;
+import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.AChoiceHtmlElement;
 
 @NotThreadSafe
-public class ModelRadioChoice extends RadioChoice<Object> {
+public class ModelCheckBoxMultipleChoice extends CheckBoxMultipleChoice<Object> {
 
-    public ModelRadioChoice(final AChoiceHtmlElement<?> element) {
-        super(element.getWicketId(), element.getModel(), element.getChoiceModel(), element.getChoiceRenderer());
+    public ModelCheckBoxMultipleChoice(final AChoiceHtmlElement<?> element) {
+        super(element.getWicketId(), element.getSelectionModel(), element.getChoiceModel(),
+                element.getChoiceRenderer());
         //fix layout for bootstrap
         setPrefix("<label class=\"" + getCheckboxClass() + "\">");
         setSuffix("</label>");

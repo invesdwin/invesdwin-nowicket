@@ -8,12 +8,14 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.ecs.html.Input;
 import org.jsoup.nodes.Element;
 
+import de.invesdwin.norva.beanpath.spi.element.APropertyBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
-import de.invesdwin.nowicket.generated.markup.processor.element.TextInputModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.AModelElement;
 
 @NotThreadSafe
-public class TextInputHtmlElement extends AModelHtmlElement<TextInputModelElement, Object> {
+public class TextInputHtmlElement extends AModelHtmlElement<AModelElement<? extends APropertyBeanPathElement>, Object>
+        implements ITextInputHtmlElement<Object> {
 
     public static final String INPUT_TYPE_TEXT = Input.text;
 
@@ -26,6 +28,7 @@ public class TextInputHtmlElement extends AModelHtmlElement<TextInputModelElemen
         visitor.visitTextInput(this);
     }
 
+    @Override
     public Class<?> getType() {
         return getModelElement().getBeanPathElement().getModifier().getAccessor().getRawType().getType();
     }
