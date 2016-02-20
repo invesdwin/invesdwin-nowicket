@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
+import de.invesdwin.norva.beanpath.annotation.BeanPathEndPoint;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
@@ -177,6 +178,7 @@ public class FormInput extends AValueObject {
         return listView;
     }
 
+    @BeanPathEndPoint
     public Multiply getMultiply() {
         return multiply;
     }
