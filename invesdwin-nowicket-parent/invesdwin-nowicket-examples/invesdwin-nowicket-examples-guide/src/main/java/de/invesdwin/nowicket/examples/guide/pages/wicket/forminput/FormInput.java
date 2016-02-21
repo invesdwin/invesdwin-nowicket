@@ -183,7 +183,9 @@ public class FormInput extends AValueObject {
         return multiply;
     }
 
-    public void save() {}
+    public void save() {
+        GuiService.get().showStatusMessage("Saved", toStringMultiline());
+    }
 
     /**
      * Forced makes the button work even if validation errors are on the page

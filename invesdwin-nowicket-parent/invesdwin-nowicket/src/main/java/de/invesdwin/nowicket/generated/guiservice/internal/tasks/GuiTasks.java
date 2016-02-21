@@ -81,12 +81,15 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
         }
         ShowModalPanelGuiTask firstNotShowing = getFirstNotShowingModelPanel();
         if (waitForHideModalPanelGuiTask != null) {
-            if (firstNotShowing != null) {
-                //skip if this workaround is not needed
-                waitForHideModalPanelGuiTask.process(component);
+            try {
+                if (firstNotShowing != null) {
+                    //skip if this workaround is not needed
+                    waitForHideModalPanelGuiTask.process(component);
+                    return;
+                }
+            } finally {
+                waitForHideModalPanelGuiTask = null;
             }
-            waitForHideModalPanelGuiTask = null;
-            return;
         }
         while (firstNotShowing != null) {
             firstNotShowing.process(component);

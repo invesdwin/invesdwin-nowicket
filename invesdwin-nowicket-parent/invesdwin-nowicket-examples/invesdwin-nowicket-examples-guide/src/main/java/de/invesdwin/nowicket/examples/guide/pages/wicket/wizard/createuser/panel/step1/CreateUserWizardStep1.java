@@ -80,6 +80,9 @@ public class CreateUserWizardStep1 extends AValueObject implements ICreateUserWi
         user.setEmailAddress(emailAddress);
     }
 
+    /**
+     * Utility method for title for the modal, also works for page titles
+     */
     public String title() {
         return getHeader();
     }
@@ -88,6 +91,9 @@ public class CreateUserWizardStep1 extends AValueObject implements ICreateUserWi
         return control.isModal();
     }
 
+    /**
+     * Header for the page, hidden when in modal
+     */
     public String getHeader() {
         return "User Name";
     }

@@ -62,8 +62,12 @@ public class CreateUserWizardStepControl extends AValueObject {
     }
 
     @Forced
-    public WizardStart cancel() {
-        return new WizardStart();
+    public void cancel() {
+        if (isModal) {
+            GuiService.get().hideModalPanel();
+        } else {
+            GuiService.get().showPage(new WizardStart());
+        }
     }
 
     public void finish() {

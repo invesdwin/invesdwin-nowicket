@@ -3,6 +3,11 @@
 <head></head>
 <body>
 	<wicket:panel>
+		<p style="border: 2px dotted #fc0; width: 100%; padding: 5px;">
+			The intresting part here is the usage of the @Eager annotation on the
+			assign roles property. This allows us to dynamically change the next
+			step for the control buttons without having to implement the logic in
+			the button itself, thus allowing it to stay stupid.</p>
 		<form class="form-horizontal" wicket:id="form">
 			<!-- <div wicket:id='feedback'></div>  -->
 			<div wicket:id="modal"></div>
