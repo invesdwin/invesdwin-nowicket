@@ -17,19 +17,23 @@ public class ModelAjaxFormSubmitBehavior extends AjaxFormSubmitBehavior {
 
     @Override
     protected final void onSubmit(final AjaxRequestTarget target) {
-        try {
-            innerOnSubmit(target);
-        } finally {
-            GuiService.get().processRequestFinally(getComponent());
-        }
+        handleEvent(target);
     }
 
     protected void innerOnSubmit(final AjaxRequestTarget target) {}
 
     @Override
     protected void onError(final AjaxRequestTarget target) {
+        handleEvent(target);
+    }
+
+    private void handleEvent(final AjaxRequestTarget target) {
         try {
-            Components.updateValidModelsOnError(target.getPage());
+            //maybe a complex validator needed all inputs before it showed valid, thus revalidate now
+            final boolean invalidFound = Components.updateValidModelsOnValidationError(target.getPage());
+            if (!invalidFound) {
+                innerOnSubmit(target);
+            }
         } finally {
             GuiService.get().processRequestFinally(getComponent());
         }

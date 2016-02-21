@@ -9,12 +9,14 @@ import org.apache.commons.io.IOUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import de.invesdwin.norva.beanpath.impl.object.IRootObjectReference;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.ISubmitButtonCallbackFactory;
@@ -22,7 +24,6 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.markup.processor.ModelObjectProcessor;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelObjectContext;
-import de.invesdwin.norva.beanpath.impl.object.IRootObjectReference;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.lang.Strings;
 
@@ -46,9 +47,27 @@ public class HtmlContext implements Serializable {
         this.parent = parent;
         this.elementRegistry = new HtmlElementRegistry();
         this.componentRegistry = new ComponentRegistry();
-        this.modelNameSuffix = ModelClassContext.extractModelNameSuffix(markupContainer.getDefaultModelObject()
-                .getClass());
+        this.modelNameSuffix = ModelClassContext
+                .extractModelNameSuffix(markupContainer.getDefaultModelObject().getClass());
+        if (markupContainer.getMetaData(META_DATA_KEY) != null) {
+            throw newHtmlContextAlreadyPresentException(markupContainer);
+        }
         markupContainer.setMetaData(META_DATA_KEY, this);
+    }
+
+    private IllegalStateException newHtmlContextAlreadyPresentException(final MarkupContainer markupContainer) {
+        return new IllegalStateException(HtmlContext.class.getSimpleName() + " is already present on "
+                + MarkupContainer.class.getSimpleName() + " [" + markupContainer.getClass().getSimpleName()
+                + "]. Did you call " + GeneratedBinding.class.getSimpleName() + " twice? " //
+                + "\nIf it was called by a base class, please consider that this framework can only generate the binding once per "
+                + MarkupContainer.class.getSimpleName() + ". "
+                + "\nPlease favor composition over inheritance to achieve your desired code reuse scenario using wicket "
+                + Panel.class.getSimpleName() + "s. " //
+                + "\nJust ensure that in an inheritance hierarchy, the " + GeneratedBinding.class.getSimpleName()
+                + " is executed only once. " //
+                + "\nWorst case, just bind a generated " + Panel.class.getSimpleName()
+                + " manually in your base class, so you can run the " + GeneratedBinding.class.getSimpleName()
+                + " in the outer most class without conflicts.");
     }
 
     public MarkupContainer getMarkupContainer() {

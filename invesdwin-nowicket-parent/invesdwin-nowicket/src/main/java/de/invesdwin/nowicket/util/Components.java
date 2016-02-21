@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -14,6 +15,7 @@ import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.util.visit.IVisit;
@@ -109,20 +111,26 @@ public final class Components {
      * Synchronize valid model values so that validator utilities have something to work with. This is useful in onError
      * calls in submit behaviors
      */
-    public static void updateValidModelsOnError(final Component component) {
+    public static boolean updateValidModelsOnValidationError(final Component component) {
         final Component root = Components.findRoot(component);
         final Form<?> form = Components.findForm(root);
+        final AtomicBoolean invalidFound = new AtomicBoolean(false);
         FormComponent.visitFormComponentsPostOrder(form, new IVisitor<FormComponent<?>, Void>() {
             @Override
             public void component(final FormComponent<?> object, final IVisit<Void> visit) {
-                if (object.isEnabledInHierarchy() && object.isVisibleInHierarchy()) {
+                if (object.isEnabledInHierarchy() && object.isVisibleInHierarchy()
+                //fileUploadField chokes on FileNotFound if synchronized twice in a call!
+                        && !(object instanceof FileUploadField)) {
                     object.validate();
                     if (object.isValid()) {
                         object.updateModel();
+                    } else {
+                        invalidFound.set(true);
                     }
                 }
             }
         });
+        return invalidFound.get();
     }
 
     /**
@@ -205,8 +213,8 @@ public final class Components {
     }
 
     public static void rollbackAllFeedbackMessages(final Component component) {
-        final Map<String, List<FeedbackMessage>> markupId_previousMessages = RequestCycle.get().getMetaData(
-                KEY_PREVIOUS_MESSAGES);
+        final Map<String, List<FeedbackMessage>> markupId_previousMessages = RequestCycle.get()
+                .getMetaData(KEY_PREVIOUS_MESSAGES);
         Assertions.assertThat(markupId_previousMessages).isNotNull();
         component.getPage().visitChildren(new IVisitor<Component, Void>() {
             @Override
@@ -224,4 +232,5 @@ public final class Components {
         });
         RequestCycle.get().setMetaData(KEY_PREVIOUS_MESSAGES, null);
     }
+
 }

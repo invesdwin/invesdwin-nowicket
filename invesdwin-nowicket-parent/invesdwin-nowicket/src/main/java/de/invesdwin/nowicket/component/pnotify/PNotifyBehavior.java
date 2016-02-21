@@ -190,7 +190,7 @@ public class PNotifyBehavior extends Behavior {
         } catch (final MissingResourceException e) {
             localizedMessage = message;
         }
-        return localizedMessage.replace("'", "\\'").replace("\"", "&quot;");
+        return localizedMessage.replace("'", "\\'").replace("\"", "&quot;").replace("\n", "<br>");
     }
 
     @Override

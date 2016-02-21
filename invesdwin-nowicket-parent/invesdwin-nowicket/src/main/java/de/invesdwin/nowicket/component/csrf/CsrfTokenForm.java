@@ -42,11 +42,11 @@ public class CsrfTokenForm<T> extends Form<T> {
         if (isRootForm()) {
             final AppendingStringBuffer buffer = new AppendingStringBuffer("<input type=\"hidden\" name=\"");
             buffer.append(TOKEN_NAME)
-            .append("\" id=\"")
-            .append(TOKEN_NAME)
-            .append("\" value=\"")
-            .append(token)
-            .append("\" />");
+                    .append("\" id=\"")
+                    .append(TOKEN_NAME)
+                    .append("\" value=\"")
+                    .append(token)
+                    .append("\" />");
             getResponse().write(buffer);
         }
 
@@ -65,6 +65,18 @@ public class CsrfTokenForm<T> extends Form<T> {
         }
 
         super.onValidate();
+    }
+
+    @Override
+    protected boolean wantSubmitOnNestedFormSubmit() {
+        //we always want everything to be submitted
+        return true;
+    }
+
+    @Override
+    protected boolean wantSubmitOnParentFormSubmit() {
+        //we always want everything to be submitted
+        return true;
     }
 
 }

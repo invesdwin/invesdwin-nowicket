@@ -73,6 +73,10 @@ public class ModalContainer extends Panel {
         return showing;
     }
 
+    public boolean isRenderedShowing() {
+        return renderedShowing;
+    }
+
     @Override
     public boolean isVisible() {
         //component always visible, so render is called for root in order to handle children properly

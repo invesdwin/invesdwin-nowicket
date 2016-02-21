@@ -6,6 +6,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -40,6 +41,7 @@ public class GuestbookExample extends AValueObject {
 
     @NotBlank
     @NotNull
+    @Email
     public String getEmail() {
         return email;
     }
@@ -62,16 +64,6 @@ public class GuestbookExample extends AValueObject {
 
     public List<GuestbookEntryEntity> getEntries() {
         return dao.findAllOrderedByDate();
-    }
-
-    public String validateEmail(final String newValue) {
-        if (newValue != null) {
-            return newValue.matches(
-                    "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
-                            ? null : "is not valid";
-        }
-
-        return null;
     }
 
 }

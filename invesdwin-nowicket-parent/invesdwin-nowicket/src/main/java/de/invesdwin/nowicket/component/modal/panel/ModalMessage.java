@@ -15,7 +15,7 @@ public class ModalMessage extends AValueObject {
     private final String message;
 
     public ModalMessage(final String message) {
-        this("message", message);
+        this(null, message);
     }
 
     public ModalMessage(final String title, final String message) {

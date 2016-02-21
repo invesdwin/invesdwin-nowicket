@@ -11,13 +11,13 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 
+import de.invesdwin.norva.beanpath.spi.element.simple.invoker.IBeanPathActionInvoker;
 import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
 import de.invesdwin.nowicket.component.pnotify.PNotifyPosition;
 import de.invesdwin.nowicket.component.pnotify.PNotifyType;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.Components;
-import de.invesdwin.norva.beanpath.spi.element.simple.invoker.IBeanPathActionInvoker;
 import de.invesdwin.util.time.duration.Duration;
 import de.invesdwin.util.time.fdate.FTimeUnit;
 
@@ -44,11 +44,7 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
 
     @Override
     public void onSubmit(final Component component) {
-        try {
-            invokeButtonMethod(component);
-        } finally {
-            processRequestFinally(component);
-        }
+        handleEvent(component);
     }
 
     protected void invokeButtonMethod(final Component component) {
@@ -81,12 +77,21 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
 
     @Override
     public void onError(final Component component) {
+        handleEvent(component);
+    }
+
+    private void handleEvent(final Component component) {
         try {
-            Components.updateValidModelsOnError(component);
-            if (element.isForced()) {
-                invokeForcedButtonOnValidationError(component);
+            //maybe a complex validator needed all inputs before it showed valid, thus revalidate now
+            final boolean invalidFound = Components.updateValidModelsOnValidationError(component);
+            if (invalidFound) {
+                if (element.isForced()) {
+                    invokeForcedButtonOnValidationError(component);
+                } else {
+                    showButtonNotExecutedBecauseOfValidationErrorWarning(component);
+                }
             } else {
-                showButtonNotExecutedBecauseOfValidationErrorWarning(component);
+                invokeButtonMethod(component);
             }
         } finally {
             processRequestFinally(component);

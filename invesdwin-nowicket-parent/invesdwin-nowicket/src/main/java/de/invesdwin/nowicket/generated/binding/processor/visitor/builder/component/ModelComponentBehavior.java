@@ -12,13 +12,13 @@ import org.apache.wicket.markup.html.form.AbstractSingleSelectChoice;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 
+import de.invesdwin.norva.beanpath.spi.element.APropertyBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.CheckBoxInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.RadioInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.ModelUtilityValidator;
 import de.invesdwin.nowicket.util.Components;
-import de.invesdwin.norva.beanpath.spi.element.APropertyBeanPathElement;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -101,8 +101,8 @@ public class ModelComponentBehavior extends Behavior {
                      * actions and because and each field that depends on other fields is supposed to be an eager field
                      * anyway.
                      */
-                    final APropertyBeanPathElement propertyElement = (APropertyBeanPathElement) element.getModelElement()
-                            .getBeanPathElement();
+                    final APropertyBeanPathElement propertyElement = (APropertyBeanPathElement) element
+                            .getModelElement().getBeanPathElement();
                     propertyElement.getModifier().setValue(propertyElement.getModifier().getValue());
 
                     //after that validate again to maybe have more errors being detected
@@ -134,4 +134,17 @@ public class ModelComponentBehavior extends Behavior {
             }
         });
     }
+
+    public static ModelComponentBehavior get(final Component component) {
+        final List<ModelComponentBehavior> behaviors = component.getBehaviors(ModelComponentBehavior.class);
+        if (behaviors.size() > 1) {
+            throw new IllegalStateException("More than one " + ModelComponentBehavior.class.getSimpleName()
+                    + " found on component: " + component);
+        } else if (behaviors.isEmpty()) {
+            return null;
+        } else {
+            return behaviors.get(0);
+        }
+    }
+
 }

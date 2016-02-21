@@ -32,7 +32,7 @@ public class OfferDownloadGuiTask implements IGuiTask {
 
     @Override
     public void process(final Component component) {
-        final Component root = Components.findRoot(component);
+        final Component root = Components.findForm(component).getRootForm();
         final Boolean behaviorAdded = root.getMetaData(KEY_OFFER_DOWNLOAD_BEHAVIOR_ADDED);
         if (behaviorAdded == null || !behaviorAdded) {
             root.setMetaData(KEY_OFFER_DOWNLOAD_BEHAVIOR_ADDED, true);
@@ -90,7 +90,7 @@ public class OfferDownloadGuiTask implements IGuiTask {
                     //second safety net is required since the hierarchy might not have been put together properly when the initializationFinished calls were made
                     if (!eventFired) {
                         //run as a separate request after rendering
-                        final Component root = Components.findRoot(target.getPage());
+                        final Component root = Components.findForm(target.getPage()).getRootForm();
                         ajaxDownload.initiate(target);
                         root.setMetaData(KEY_OFFER_DOWNLOAD_BEHAVIOR_ADDED, false);
                         eventFired = true;

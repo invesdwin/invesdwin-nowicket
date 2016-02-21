@@ -17,6 +17,7 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
     private ShowPageGuiTask showPageGuiTask;
     private OfferDownloadGuiTask offerDownloadGuiTask;
     private final Deque<ShowModalPanelGuiTask> showModalPanelGuiTasks = new ArrayDeque<ShowModalPanelGuiTask>();
+    private WaitForNextAjaxCallGuiTask waitForHideModalPanelGuiTask;
     private final Deque<ShowStatusMessageGuiTask> showStatusMessageGuiTasks = new ArrayDeque<ShowStatusMessageGuiTask>();
 
     @Override
@@ -46,6 +47,7 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
         if (lastShowing != null) {
             lastShowing.hide();
             showModalPanelGuiTasks.remove(lastShowing);
+            waitForHideModalPanelGuiTask = new WaitForNextAjaxCallGuiTask();
         } else {
             throw new IllegalStateException("No modal panel to hide!");
         }
@@ -78,6 +80,14 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
             return;
         }
         ShowModalPanelGuiTask firstNotShowing = getFirstNotShowingModelPanel();
+        if (waitForHideModalPanelGuiTask != null) {
+            if (firstNotShowing != null) {
+                //skip if this workaround is not needed
+                waitForHideModalPanelGuiTask.process(component);
+            }
+            waitForHideModalPanelGuiTask = null;
+            return;
+        }
         while (firstNotShowing != null) {
             firstNotShowing.process(component);
             firstNotShowing = getFirstNotShowingModelPanel();
@@ -93,6 +103,7 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
         }
     }
 
+    @Override
     public void offerDownload(final OfferDownloadConfig config) {
         this.offerDownloadGuiTask = new OfferDownloadGuiTask(config);
     }

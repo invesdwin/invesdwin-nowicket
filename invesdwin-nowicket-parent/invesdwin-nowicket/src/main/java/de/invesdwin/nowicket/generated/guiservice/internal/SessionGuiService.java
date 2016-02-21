@@ -98,7 +98,7 @@ public class SessionGuiService implements IGuiService, Serializable {
         }
     }
 
-    public void resetGuiTasks(final Throwable t) {
+    private void resetGuiTasks(final Throwable t) {
         LOG.catching(new RuntimeException(
                 GuiTasks.class.getSimpleName()
                         + ".process() threw an exception, resetting everything to keep the overall website working for the next request...",

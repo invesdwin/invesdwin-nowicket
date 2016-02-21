@@ -34,9 +34,11 @@ public class ShowModalPanelGuiTask implements IGuiTask {
     public void process(final Component component) {
         Assertions.assertThat(isShowing()).isFalse();
         final Panel modalPanel = PanelFactory.get().getPanel(ModalContainer.PANEL_MARKUP_ID, modelObject);
-        final HtmlContext parentContext = HtmlContext.get(component);
-        if (parentContext != null) {
-            modal = parentContext.getComponentRegistry().getComponent(ModalHtmlElement.WICKET_ID);
+        if (modal == null) {
+            final HtmlContext parentContext = HtmlContext.get(component);
+            if (parentContext != null) {
+                modal = parentContext.getComponentRegistry().getComponent(ModalHtmlElement.WICKET_ID);
+            }
         }
         if (modal == null) {
             modal = Components.findComponent(ModalContainer.class, component);
@@ -53,8 +55,8 @@ public class ShowModalPanelGuiTask implements IGuiTask {
     private IModel<String> getTitle(final Panel modalPanel) {
         final HtmlContext modalContext = HtmlContext.get(modalPanel);
         if (modalContext != null) {
-            final RootHtmlElement modalRootElement = modalContext.getElementRegistry().getElement(
-                    RootHtmlElement.WICKET_ID);
+            final RootHtmlElement modalRootElement = modalContext.getElementRegistry()
+                    .getElement(RootHtmlElement.WICKET_ID);
             return modalRootElement.getTitleModel();
         } else if (modalPanel.getDefaultModelObject() != null) {
             return Model.of(Objects.toVisibleName(modalPanel.getDefaultModelObject().getClass().getName()));
