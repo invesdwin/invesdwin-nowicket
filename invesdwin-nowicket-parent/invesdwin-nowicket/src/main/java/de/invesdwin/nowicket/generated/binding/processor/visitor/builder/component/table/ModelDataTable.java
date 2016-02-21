@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackHeadersToolbar;
+import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxNavigationToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortStateLocator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
@@ -27,7 +28,8 @@ public class ModelDataTable extends DataTable<Object, String> {
     private final TableHtmlElement element;
 
     public ModelDataTable(final TableHtmlElement element, final long rowsPerPage) {
-        super(element.getWicketId(), element.createWicketColumns(), new ModelSortableDataProvider(element), rowsPerPage);
+        super(element.getWicketId(), element.createWicketColumns(), new ModelSortableDataProvider(element),
+                rowsPerPage);
         this.element = element;
         setOutputMarkupId(true);
         final AbstractToolbar headersToolbar = newHeadersToolbar();
@@ -77,7 +79,7 @@ public class ModelDataTable extends DataTable<Object, String> {
     }
 
     protected NavigationToolbar newNavigationToolbar() {
-        return new NavigationToolbar(this) {
+        return new AjaxNavigationToolbar(this) {
             @Override
             protected PagingNavigator newPagingNavigator(final String navigatorId, final DataTable<?, ?> table) {
                 return new BootstrapAjaxPagingNavigator(navigatorId, table) {
