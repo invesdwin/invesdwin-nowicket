@@ -10,6 +10,7 @@ import org.apache.wicket.model.StringResourceModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.AModelHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
+import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -42,8 +43,9 @@ public class TitleModel extends AbstractReadOnlyModel<String> {
             return null;
         }
         try {
-            if (element.getModelElement().getBeanPathElement().getTitleElement() != null
-                    || element.getModelElement().getBeanPathElement().getContainerTitleElement() != null) {
+            if ((element.getModelElement().getBeanPathElement().getTitleElement() != null
+                    || element.getModelElement().getBeanPathElement().getContainerTitleElement() != null)
+                    && !isVisibleName(title)) {
                 //title() or getXYZTitle() method has priority
                 String str = new StringResourceModel(title, element.getContext().getMarkupContainer(),
                         element.getContext().getMarkupContainer().getDefaultModel()).setDefaultValue(title).getObject();
@@ -59,6 +61,10 @@ public class TitleModel extends AbstractReadOnlyModel<String> {
         } catch (final MissingResourceException e) {
             return postProcessTitle(title);
         }
+    }
+
+    private boolean isVisibleName(final String title) {
+        return Objects.equals(element.getModelElement().getBeanPathElement().getVisibleName(), title);
     }
 
     private Object getTitleTarget() {

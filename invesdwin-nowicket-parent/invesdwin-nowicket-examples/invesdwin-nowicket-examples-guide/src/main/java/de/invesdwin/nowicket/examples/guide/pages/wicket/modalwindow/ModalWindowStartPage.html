@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This is a rewrite of the <a
+				href="http://examples7x.wicket.apache.org/ajax/modal-window">"show
+				modal dialog with a page" example from wicket</a>. Though we do not use
+			pages (which come with some limitations) but instead use panels
+			(without the limitation of not supporting nested panels). The twist
+			here is that we use the <a
+				href="http://memegenerator.net/instance/62001819">same modal
+				panel not only for the modal</a>, but also the page and <a
+				href="http://memegenerator.net/instance/44945569">more nested
+				modals</a>, to allow you to test out the maximum of possible modals your
+			browser can handle (<a
+				href="http://memegenerator.net/instance/62196858">as long as you
+				can handle all the clicking</a>). Also note how you can easily pass
+			state from a nested modal to its parent by making each aware of the
+			other (this is a lot easier in the models and allows more freedom
+			than wickets solution, since the modal does not actually have to know
+			its parent (page) and can thus more easily be reused, though nothing
+			prevents you from doing tight coupling).
+		</p>
+		<div class="panel panel-default">
+			<div class="panel-body col-sm-8">
+				<div wicket:id="panel"></div>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

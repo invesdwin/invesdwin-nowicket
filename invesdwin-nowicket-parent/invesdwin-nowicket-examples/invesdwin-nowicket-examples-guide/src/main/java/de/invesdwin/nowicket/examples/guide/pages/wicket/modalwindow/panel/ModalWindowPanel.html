@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<p>
+				<label style="font-weight: normal" wicket:id="modalWindowContent"></label>
+			</p>
+			<p style="font-weight: bold">
+				<!-- note that we can change <button> tags into <a> to make them look like links -->
+				<a wicket:id="closeThisModalWithResultCancel">Close This Modal
+					With Result Cancel</a>
+			</p>
+			<p style="font-weight: bold">
+				<a wicket:id="closeThisModalWithResultOk">Close This Modal With
+					Result Ok</a>
+			</p>
+			<br>
+			<p>
+				Last Modal Window Result: <label wicket:id="lastModalWindowResult"></label>
+			</p>
+			<p>
+				<a wicket:id="openAnotherModalDialog">Open Another Modal Dialog</a>
+			</p>
+			<!-- wicket:enclosure to the rescue for hiding the label aswell dynamically -->
+			<wicket:enclosure
+				child="anExampleOfAComponentThatUsesHeaderContributors_gridColumn">
+				<br>
+				<label class="control-label"
+					wicket:for="anExampleOfAComponentThatUsesHeaderContributors">
+					<wicket:label>
+                             An Example Of AComponent That Uses Header Contributors 
+                        </wicket:label>
+				</label>
+				<div
+					wicket:id="anExampleOfAComponentThatUsesHeaderContributors_gridColumn">
+					<input type="date"
+						wicket:id="anExampleOfAComponentThatUsesHeaderContributors"></input>
+				</div>
+			</wicket:enclosure>
+		</form>
+	</wicket:panel>
+</body>
+</html>

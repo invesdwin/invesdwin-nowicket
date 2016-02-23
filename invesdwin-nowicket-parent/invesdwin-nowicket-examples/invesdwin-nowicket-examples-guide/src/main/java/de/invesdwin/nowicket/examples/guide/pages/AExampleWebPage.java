@@ -25,6 +25,7 @@ import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.S
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.WicketSecurePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.forminput.FormInputPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.guestbook.GuestbookExamplePage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.modalwindow.ModalWindowStartPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.wizard.WizardStartPage;
 
 @NotThreadSafe
@@ -59,6 +60,8 @@ public abstract class AExampleWebPage extends AWebPage {
                                         .setIconType(GlyphIconType.book));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(FormInputPage.class,
                                 new ResourceModel("menu.forminput").wrapOnAssignment(navbar)));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(ModalWindowStartPage.class,
+                                new ResourceModel("menu.modal").wrapOnAssignment(navbar)));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WizardStartPage.class,
                                 new ResourceModel("menu.wizard").wrapOnAssignment(navbar)));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WicketSecurePage.class,
