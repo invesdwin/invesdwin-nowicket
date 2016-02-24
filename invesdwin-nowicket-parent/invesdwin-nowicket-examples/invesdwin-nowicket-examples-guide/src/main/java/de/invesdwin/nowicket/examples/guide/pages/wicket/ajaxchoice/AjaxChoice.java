@@ -44,7 +44,7 @@ public class AjaxChoice extends AValueObject {
     }
 
     /**
-     * Explicit choices in select box
+     * Explicit choices in select box, note that you can return any type of iterable or even arrays
      */
     public List<String> getModelChoice() {
         if (manufacturer == null) {
