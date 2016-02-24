@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This is a rewrite of the <a
+				href="http://examples7x.wicket.apache.org/ajax/choice">ajax
+				choice example from wicket</a>. This example demonstrates the @Eager
+			annotation. Whenever the Manufacturer select box value is changed, it
+			will submit the new value to server via ajax and update the choices
+			in the Model select box. Note that you can also put the @Eager
+			annotation on the getter or setter, or even make a whole model @Eager
+			by annotating a type. Also note the conventient handling of enums in
+			the model, which do not need choice utility methods as long as you
+			don't want to modify the available literals. Also we demonstrate
+			status messages of different types and how exceptions can be thrown
+			in buttons that get displayed as message boxes.
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<br>
+			<div wicket:id="manufacturer_gridColumn" class="col-sm-2">
+				<select class="form-control" wicket:id="manufacturer"></select>
+			</div>
+			<div wicket:id="model_gridColumn" class="col-sm-2">
+				<select class="form-control" wicket:id="model"></select>
+			</div>
+			<!-- btn-primary class automatically gets "enter" keyboard binding -->
+			<button type="submit" class="btn btn-default btn-primary"
+				wicket:id="submit">Submit</button>
+		</form>
+	</wicket:extend>
+</body>
+</html>

@@ -21,6 +21,7 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.pages.footer.FooterPanel;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxchoice.AjaxChoicePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.SpringSecurePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.WicketSecurePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.forminput.FormInputPage;
@@ -60,6 +61,8 @@ public abstract class AExampleWebPage extends AWebPage {
                                         .setIconType(GlyphIconType.book));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(FormInputPage.class,
                                 new ResourceModel("menu.forminput").wrapOnAssignment(navbar)));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxChoicePage.class,
+                                new ResourceModel("menu.ajaxchoice").wrapOnAssignment(navbar)));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(ModalWindowStartPage.class,
                                 new ResourceModel("menu.modal").wrapOnAssignment(navbar)));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WizardStartPage.class,
