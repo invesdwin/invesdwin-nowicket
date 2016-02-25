@@ -96,10 +96,18 @@ public class ModelDataTable extends DataTable<Object, String> {
             protected WebComponent newNavigatorLabel(final String navigatorId, final DataTable<?, ?> table) {
                 //hide label
                 final WebComponent component = super.newNavigatorLabel(navigatorId, table);
-                component.setVisible(false);
+                component.setVisible(showNavigatorLabel());
                 return component;
             }
+
         };
+    }
+
+    /**
+     * Override to enable navigator label. Disabled per default to keep the table less cluttered
+     */
+    protected boolean showNavigatorLabel() {
+        return false;
     }
 
     @Override

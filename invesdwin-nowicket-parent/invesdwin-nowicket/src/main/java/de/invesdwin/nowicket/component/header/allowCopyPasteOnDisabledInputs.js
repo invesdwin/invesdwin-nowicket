@@ -1,6 +1,6 @@
 function allowCopyPasteOnDisabledInputs() {
 
-	function replaceWithReadonlyInput(tag, value) {
+	function replaceWithReadonlyInput(tag, replaceWithTag, value) {
 		var fixedTag = getAlreadyFixedTagFor(tag);
 		if (fixedTag.length) {
 			// update existing fix
@@ -8,6 +8,7 @@ function allowCopyPasteOnDisabledInputs() {
 			fixedTag.attr("class", tag.attr("class"));
 			fixedTag.attr("value", value);
 			fixedTag.attr("title", tag.attr("title"));
+			fixedTag.attr("rows", tag.attr("rows"));
 			fixedTag.attr("id", tag.attr("id")
 					+ "_allowCopyPasteOnDisabledInputs");
 
@@ -15,7 +16,7 @@ function allowCopyPasteOnDisabledInputs() {
 		} else {
 			// replace tag with readonly input and make tag invisible
 			tag.attr("style", "display:none");
-			var input = $("<input>");
+			var input = $(replaceWithTag);
 
 			input.attr("data-allowCopyPasteOnDisabledInputs", tag.attr("id"));
 			input.attr("readonly", "readonly");
@@ -25,6 +26,7 @@ function allowCopyPasteOnDisabledInputs() {
 			input.attr("class", tag.attr("class"));
 			input.attr("value", value);
 			input.attr("title", tag.attr("title"));
+			input.attr("rows", tag.attr("rows"));
 			input
 					.attr("id", tag.attr("id")
 							+ "_allowCopyPasteOnDisabledInputs");
@@ -37,13 +39,19 @@ function allowCopyPasteOnDisabledInputs() {
 		return $('[data-allowCopyPasteOnDisabledInputs=' + tag.attr("id") + ']')
 	}
 
+	$('textarea:disabled:visible').after(function(e) {
+		var tag = $(this);
+		var value = tag.val();
+		var input = replaceWithReadonlyInput(tag, "<textarea>", value);
+		return input;
+	});
 	$('select:disabled:visible').filter(function() {
 		var size = $(this).attr("size");
 		return !(size > 1);
 	}).after(function(e) {
 		var tag = $(this);
 		var value = tag.find("option:selected").text();
-		var input = replaceWithReadonlyInput(tag, value);
+		var input = replaceWithReadonlyInput(tag, "<input>", value);
 		return input;
 	});
 	$(
@@ -51,7 +59,7 @@ function allowCopyPasteOnDisabledInputs() {
 			.after(function(e) {
 				var tag = $(this);
 				var value = tag.val();
-				var input = replaceWithReadonlyInput(tag, value);
+				var input = replaceWithReadonlyInput(tag, "<input>", value);
 				return input;
 			});
 

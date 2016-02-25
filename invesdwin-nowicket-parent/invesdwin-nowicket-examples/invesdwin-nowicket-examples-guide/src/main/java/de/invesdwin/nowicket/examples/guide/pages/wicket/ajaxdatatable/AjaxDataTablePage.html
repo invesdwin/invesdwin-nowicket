@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This is a rewrite of the <a
+				href="http://examples7x.wicket.apache.org/repeater/wicket/bookmarkable/org.apache.wicket.examples.repeater.AjaxDataTablePage">ajax
+				data table example from wicket</a>. We demonstrate here how we can
+			deviate from the default settings by using a BindingInterceptor in
+			the page. Also we show how the order of the generated table columns
+			and visibility of columns can be manipulated by the @ColumnOrder
+			annotation. The removeFrom utility element is also demonstrated for
+			how to remove elements in the parent model via adding a button to the
+			table. The BindingInterceptor is also used to make the select column
+			show dynamic icons to allow multiselect in the table.
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="control-label col-sm-2" wicket:for="selected">
+							<wicket:label>
+                            Selected
+                        </wicket:label>
+						</label>
+						<div wicket:id="selected_gridColumn" class="col-sm-4">
+							<textarea type="text" class="form-control" wicket:id="selected" rows="3"></textarea>
+						</div>
+					</div>
+					<p>This is a demo of the DataTable (DataView wrapper). Provided
+						features:</p>
+					<ul>
+						<li>Easy ordering and selection of columns from code (see BindingInterceptor in page which makes it dynamic)</li>
+						<li>Takes care of sorting headers automatically</li>
+						<li>Takes care of page navigator automatically</li>
+						<li>Takes care of adding class=&quot;odd&quot; and
+							class=&quot;even&quot; to table rows</li>
+						<li>Adds a navigator message (see BindingInterceptor in page
+							which enables it)</li>
+					</ul>
+					<fieldset>
+						<legend wicket:id="rows_legend">Rows</legend>
+						<div class="form-group">
+							<div class="col-sm-6">
+								<div class="btn-toolbar">
+									<div class="btn-group">
+										<button type="submit" class="btn btn-default"
+											wicket:id="selectAll">Select All</button>
+									</div>
+									<div class="btn-group">
+										<button type="submit" class="btn btn-default"
+											wicket:id="unselectAll">Unselect All</button>
+									</div>
+									<div class="btn-group">
+										<button type="submit" class="btn btn-default"
+											wicket:id="removeSelected">Remove Selected</button>
+									</div>
+									<div class="btn-group">
+										<button type="submit" class="btn btn-default"
+											wicket:id="regenerateRows">Regenerate Rows</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover table-striped"
+								wicket:id="rows"></table>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
