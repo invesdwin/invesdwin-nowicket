@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<h4>This is tab-panel 1</h4>
+			<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+				This tab demonstrates that you cannot leave a tab when validation
+				errors are on it, preventing the model state from getting
+				inconsistent in complex navigation scenarios. Consider every tab
+				having a save button, the user typing something invalid into tab 1,
+				then going to tab 2 and hitting save. Now the database might perform
+				an insert while missing a field, thus throwing a constraint
+				violation exception. To prevent this, validation is done between tab
+				switches. The stock TabbedPanel from wicket does not do this, which
+				is sad.</p>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="requiredInput">
+					<wicket:label>
+                             Required Input 
+                        </wicket:label>
+				</label>
+				<div wicket:id="requiredInput_gridColumn" class="col-sm-4">
+					<input type="text" class="form-control" wicket:id="requiredInput"></input>
+				</div>
+				<button type="submit" class="btn btn-default btn-primary"
+					wicket:id="save">Save</button>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>

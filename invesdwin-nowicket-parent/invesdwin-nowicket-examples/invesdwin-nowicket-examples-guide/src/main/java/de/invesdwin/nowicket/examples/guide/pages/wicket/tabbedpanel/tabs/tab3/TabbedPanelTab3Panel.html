@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<h4>This is tab-panel 3</h4>
+			<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+				This tab gets disabled randomly, demonstrating that utility elements
+				also work for tabs. You could also dynamically hide a tab with this
+				functionality (which is demonstrated in the code aswell for tab4).
+				If you see the input below disabled, then you navigated to this page
+				via a deep link, since the tab link itself is disabled in this case
+				aswell.</p>
+			<div class="form-group">
+				<label class="control-label col-sm-2"
+					wicket:for="maybeFromOutsideDisabledInput"> <wicket:label>
+                             Maybe From Outside Disabled Input 
+                        </wicket:label></label>
+				<div wicket:id="maybeFromOutsideDisabledInput_gridColumn"
+					class="col-sm-4">
+					<input type="text" class="form-control"
+						wicket:id="maybeFromOutsideDisabledInput"></input>
+				</div>
+				<button type="submit" class="btn btn-default btn-primary" wicket:id="save">Save</button>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>

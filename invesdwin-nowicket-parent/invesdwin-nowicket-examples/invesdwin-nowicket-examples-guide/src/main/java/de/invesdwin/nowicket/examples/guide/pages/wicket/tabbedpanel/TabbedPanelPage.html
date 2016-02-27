@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This is a rewrite of the <a
+				href="http://examples7x.wicket.apache.org/ajax/tabbed-panel">tabbed
+				panel example from wicket</a>. We added examples of validation inside of
+			tabs, navigation via deep links to tabs and disabling/hiding a tab via utility
+			elements. Refresh the page a few times to get tab 3 enabled and/or tab 4 visible.
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<fieldset>
+				<legend wicket:id="tabs_legend">Tabs</legend>
+				<iframe wicket:id="tabs"></iframe>
+			</fieldset>
+		</form>
+	</wicket:extend>
+</body>
+</html>

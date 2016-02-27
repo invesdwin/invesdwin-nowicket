@@ -28,6 +28,7 @@ import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.W
 import de.invesdwin.nowicket.examples.guide.pages.wicket.forminput.FormInputPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.guestbook.GuestbookExamplePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.modalwindow.ModalWindowStartPage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.tabbedpanel.TabbedPanelPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.wizard.WizardStartPage;
 
 @NotThreadSafe
@@ -57,30 +58,42 @@ public abstract class AExampleWebPage extends AWebPage {
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
                         final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
 
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(FormInputPage.class,
+                                new ResourceModel("menu.forminput").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.listalt));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxChoicePage.class,
+                                new ResourceModel("menu.ajaxchoice").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.alignjustify));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxDataTablePage.class,
+                                new ResourceModel("menu.ajaxdatatable").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.th));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(ModalWindowStartPage.class,
+                                new ResourceModel("menu.modal").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.newwindow));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(WizardStartPage.class,
+                                new ResourceModel("menu.wizard").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.tasks));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(TabbedPanelPage.class,
+                                new ResourceModel("menu.tabbedpanel").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.creditcard));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(GuestbookExamplePage.class,
                                 new ResourceModel("menu.guestbook").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.book));
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(FormInputPage.class,
-                                new ResourceModel("menu.forminput").wrapOnAssignment(navbar)));
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxChoicePage.class,
-                                new ResourceModel("menu.ajaxchoice").wrapOnAssignment(navbar)));
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxDataTablePage.class,
-                                new ResourceModel("menu.ajaxdatatable").wrapOnAssignment(navbar)));
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(ModalWindowStartPage.class,
-                                new ResourceModel("menu.modal").wrapOnAssignment(navbar)));
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(WizardStartPage.class,
-                                new ResourceModel("menu.wizard").wrapOnAssignment(navbar)));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WicketSecurePage.class,
-                                new ResourceModel("menu.wicketsecure").wrapOnAssignment(navbar)));
+                                new ResourceModel("menu.wicketsecure").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.lock));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(SpringSecurePage.class,
-                                new ResourceModel("menu.springsecure").wrapOnAssignment(navbar)));
+                                new ResourceModel("menu.springsecure").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.lock));
 
                         if (Roles.isAuthenticated()) {
                             subMenu.add(new MenuBookmarkablePageLink<Void>(ABaseWebApplication.get().getSignOutPage(),
-                                    new ResourceModel("menu.sign.out").wrapOnAssignment(navbar)));
+                                    new ResourceModel("menu.sign.out").wrapOnAssignment(navbar))
+                                            .setIconType(GlyphIconType.logout));
                         } else {
                             subMenu.add(new MenuBookmarkablePageLink<Void>(ABaseWebApplication.get().getSignInPage(),
-                                    new ResourceModel("menu.sign.in").wrapOnAssignment(navbar)));
+                                    new ResourceModel("menu.sign.in").wrapOnAssignment(navbar))
+                                            .setIconType(GlyphIconType.login));
                         }
 
                         return subMenu;

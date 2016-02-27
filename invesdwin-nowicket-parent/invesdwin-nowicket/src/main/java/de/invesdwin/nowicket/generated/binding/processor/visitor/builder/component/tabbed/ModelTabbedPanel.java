@@ -11,6 +11,7 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
+import org.apache.wicket.extensions.markup.html.tabs.TabbedPanel;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.LoopItem;
@@ -49,8 +50,18 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
 
     @Override
     public boolean isEnabled() {
-        //always true to keep modals from being disabled by hierarhcy
+        //always true to prevent modals from being disabled by hierarchy
         return true;
+    }
+
+    @Override
+    public TabbedPanel<ITab> setSelectedTab(final int index) {
+        if (isTabVisible(index)) {
+            //only switch if visible, this prevents an empty tab to be seen
+            return super.setSelectedTab(index);
+        } else {
+            return super.setSelectedTab(getSelectedTab());
+        }
     }
 
     /**
@@ -75,7 +86,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
             @Override
             public void onComponentTag(final Component component, final ComponentTag tag) {
                 super.onComponentTag(component, tag);
-                if (!isSuperEnabled()) {
+                if (!isSuperEnabled() || !isTabEnabled(tabIndex)) {
                     tag.put("class", tag.getAttribute("class") + " disabled");
                 }
             }
@@ -83,9 +94,31 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         return item;
     }
 
+    private boolean isTabEnabled(final int index) {
+        final ITab tab = getTabs().get(index);
+        if (tab instanceof ModelTab) {
+            final ModelTab modelTab = (ModelTab) tab;
+            if (!modelTab.isEnabled()) {
+                return false;
+            }
+        }
+        //fallback to something
+        return tab.isVisible();
+    }
+
+    private boolean isTabVisible(final int index) {
+        final ITab tab = getTabs().get(index);
+        return tab.isVisible();
+    }
+
     private class SubmitAjaxFallbackLink extends AModelAjaxFallbackLink {
 
         private final int index;
+        /**
+         * If we are too dynamic with this, we might get permission denied response sometimes, thus only update in
+         * onConfigure() once
+         */
+        private boolean isTabEnabledFromOnConfigure;
 
         SubmitAjaxFallbackLink(final String id, final int index) {
             super(id);
@@ -93,8 +126,14 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         }
 
         @Override
+        protected void onConfigure() {
+            super.onConfigure();
+            this.isTabEnabledFromOnConfigure = ModelTabbedPanel.this.isTabEnabled(index);
+        }
+
+        @Override
         public boolean isEnabled() {
-            return ModelTabbedPanel.this.isSuperEnabled();
+            return ModelTabbedPanel.this.isSuperEnabled() && isTabEnabledFromOnConfigure;
         }
 
         @Override
@@ -138,7 +177,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
                 @Override
                 public boolean isEnabled(final Component component) {
                     //active tab should not be clickable
-                    return super.isEnabled(component) && !isSelectedTab();
+                    return super.isEnabled(component) && !isSelectedTab() && isTabEnabledFromOnConfigure;
                 }
 
                 @Override
@@ -157,7 +196,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         @Override
         protected void onComponentTag(final ComponentTag tag) {
             super.onComponentTag(tag);
-            if (isSelectedTab()) {
+            if (isSelectedTab() || !isEnabled()) {
                 //active tab should not be clickable
                 tag.remove("href");
             }

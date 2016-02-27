@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<h4>This is tab-panel 2</h4>
+
+			<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+				Here we show how you can create deep links into other tabs and
+				handle those as page parameters in the page. The onConfigure in the
+				page gets the ModelTabbedPanel component from the component registry
+				of NoWickets HtmlContext for the page and sets the selectedIndex
+				there appropriate to the page parameter. Then it makes sure to
+				remove the page parameter (via redirect) so page refreshes do not
+				switch back to the old page index. The NoWicket page cache makes
+				sure that the inputs do not get lost on redirects like these. For
+				this, the page model (TabbedPanel java class) overrides the hashCode
+				and equals methods to tell when the cache should be used or not (in
+				this case always by checking only for the model class).</p>
+
+			Deep links to other tabs:
+			<div class="form-group">
+				<label style="font-weight: normal" wicket:id="tabLinks"></label>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>
