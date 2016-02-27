@@ -77,7 +77,7 @@ public abstract class AExampleWebPage extends AWebPage {
                                         .setIconType(GlyphIconType.newwindow));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WizardStartPage.class,
                                 new ResourceModel("menu.wizard").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.tasks));
+                                        .setIconType(FontAwesomeIconType.magic));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(TabbedPanelPage.class,
                                 new ResourceModel("menu.tabbedpanel").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.creditcard));
