@@ -1,35 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-<head></head>
+<head>
+<meta charset="utf-8" />
+<title>HomePage</title>
+</head>
 <body>
 	<wicket:extend>
-		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
-			This page demonstrates the famous hello world example for <a
-				target="_blank" href="https://github.com/subes/invesdwin-nowicket">invesdwin-nowicket</a>.
-			<i>It is a naked objects framework for wicket that enables
-				developers to write less boilerplate wicket code during
-				implementation of complex websites. Improving productivity by a
-				measurable factor and making wicket more fun. <br> <br>
-			</i><b>Use the menu at the top</b> to look at other examples or have a
-			look at the <a target="_blank"
-				href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide">sourcecode
-				on github</a>. Something interesting there could be how the
-			AExampleWebPage is used to build the menu and make it visible in all
-			pages (by making all pages extend it).
-		</p>
-		<form class="form-horizontal" wicket:id="form">
-			<!-- <div wicket:id='feedback'></div>  -->
-			<div wicket:id="modal"></div>
-			<div class="form-group">
-				<legend>Hello World</legend>
-				<label class="control-label col-sm-2" wicket:for="hello"> <wicket:label>
-                            Hello
-                        </wicket:label></label>
-				<div wicket:id="hello_gridColumn" class="col-sm-4">
-					<input type="text" class="form-control" wicket:id="hello"></input>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>invesdwin-NoWicket</h1>
+
+				<p>
+					A <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Naked_objects">naked
+						objects</a> framework for wicket that enables developers to write less
+					boilerplate wicket code during implementation of complex websites.
+					Without sacrificing the flexibility and control you are used from
+					wicket. Improving productivity by a measurable factor and making
+					wicket more fun.
+				</p>
+				<p style="font-size: medium">This project is built on top of
+					other amazing open source frameworks:
+				<ul>
+					<li><a target="_blank" href="http://wicket.apache.org/">wicket</a>
+						for its ability to reuse components while maintaining flexbility
+						and control</li>
+					<li><a target="_blank" href="http://getbootstrap.com/">twitter-bootstrap</a>
+						for its superb layouting capabilities and responsive grid layout</li>
+					<li><a target="_blank" href="http://wb.agilecoders.de/">wicket-bootstrap</a>
+						for its amazing twitter-bootstrap integration for components and
+						other goodies</li>
+					<li><a target="_blank"
+						href="http://projects.spring.io/spring-security/">spring-security</a>
+						for its allmighty security capabilities and easy configurability
+						(not relying on a spring-context)</li>
+					<li>Optional: <a target="_blank"
+						href="https://github.com/thombergs/wicked-charts">wicked-charts</a>
+						for its easy to use <a target="_blank"
+						href="http://www.highcharts.com/">highcharts</a> integration,
+						including extensions for <a target="_blank"
+						href="http://www.highcharts.com/products/highstock">highstock</a></li>
+				</ul>
+				</p>
+				<br>
+				<p>
+					<a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/"
+						class="btn btn-primary btn-lg">View project on GitHub</a>
+				</p>
+
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-8"></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<br> <br>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<iframe
+							src="http://ghbtns.com/github-btn.html?user=subes&repo=invesdwin-nowicket&type=watch&count=true&size=large"
+							allowtransparency="true" frameborder="0" scrolling="0"
+							width="170" height="30"></iframe>
+						<iframe
+							src="http://ghbtns.com/github-btn.html?user=subes&repo=invesdwin-nowicket&type=fork&count=true&size=large"
+							allowtransparency="true" frameborder="0" scrolling="0"
+							width="160" height="30"></iframe>
+						<iframe
+							src="http://ghbtns.com/github-btn.html?user=subes&type=follow&count=true&size=large"
+							allowtransparency="true" frameborder="0" scrolling="0"
+							width="230" height="30"></iframe>
+					</div>
 				</div>
 			</div>
-		</form>
+		</div>
+
+
 	</wicket:extend>
 </body>
 </html>

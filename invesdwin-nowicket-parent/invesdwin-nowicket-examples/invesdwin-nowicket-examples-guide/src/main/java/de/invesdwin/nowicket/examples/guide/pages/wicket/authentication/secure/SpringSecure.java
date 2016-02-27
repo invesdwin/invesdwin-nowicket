@@ -4,8 +4,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import de.invesdwin.nowicket.examples.guide.pages.home.Home;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.ExampleRoles;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.helloworld.HelloWorld;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 
@@ -17,8 +17,8 @@ public class SpringSecure extends AValueObject {
         return ExampleRoles.isAdmin();
     }
 
-    public Home home() throws Exception {
-        return new Home();
+    public HelloWorld home() throws Exception {
+        return new HelloWorld();
     }
 
     /**

@@ -16,6 +16,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
@@ -27,6 +28,7 @@ import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.S
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.WicketSecurePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.forminput.FormInputPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.guestbook.GuestbookExamplePage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.helloworld.HelloWorldPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.modalwindow.ModalWindowStartPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.tabbedpanel.TabbedPanelPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.wizard.WizardStartPage;
@@ -34,7 +36,7 @@ import de.invesdwin.nowicket.examples.guide.pages.wicket.wizard.WizardStartPage;
 @NotThreadSafe
 public abstract class AExampleWebPage extends AWebPage {
 
-    private static final String TITLE = "NoWicket Examples Guide";
+    private static final String TITLE = "invesdwin-NoWicket";
 
     public AExampleWebPage(final IModel<?> model) {
         super(model);
@@ -58,6 +60,9 @@ public abstract class AExampleWebPage extends AWebPage {
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
                         final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
 
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(HelloWorldPage.class,
+                                new ResourceModel("menu.helloworld").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.comment));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(FormInputPage.class,
                                 new ResourceModel("menu.forminput").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.listalt));
@@ -99,7 +104,7 @@ public abstract class AExampleWebPage extends AWebPage {
                         return subMenu;
                     }
 
-                }));
+                }.setIconType(FontAwesomeIconType.won)));
 
         return navbar;
     }

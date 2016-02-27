@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This page is a rebuilt of the <a target="_blank"
+				href="http://examples7x.wicket.apache.org/helloworld/">hello
+				world example from wicket</a>. It demonstrates what the html generator
+			outputs for a string property and how the generated binding performs
+			its magic to display the model value on the page.
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="form-group">
+				<legend>Hello World</legend>
+				<label class="control-label col-sm-2" wicket:for="hello"> <wicket:label>
+                            Hello
+                        </wicket:label></label>
+				<div wicket:id="hello_gridColumn" class="col-sm-4">
+					<input type="text" class="form-control" wicket:id="hello"></input>
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
