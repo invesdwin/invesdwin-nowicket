@@ -7,8 +7,10 @@
 <body>
 	<wicket:extend>
 		<div class="jumbotron">
-			<div class="container">
-				<h1>invesdwin-NoWicket</h1>
+			<div style="text-align: center">
+				<legend>
+					<h1>invesdwin-NoWicket</h1>
+				</legend>
 
 				<p>
 					A <a target="_blank"
@@ -49,101 +51,102 @@
 							width="230" height="30"></iframe>
 					</div>
 				</div>
-				<br> <br>
-				<legend>Futher Information:</legend>
-				<p style="font-size: medium">This project is built on top of
-					other amazing open source frameworks:
-				<ul>
-					<li><a target="_blank" href="http://wicket.apache.org/">wicket</a>
-						for its ability to reuse components while maintaining flexbility
-						and control</li>
-					<li><a target="_blank" href="http://getbootstrap.com/">twitter-bootstrap</a>
-						for its superb layouting capabilities and responsive grid layout</li>
-					<li><a target="_blank" href="http://wb.agilecoders.de/">wicket-bootstrap</a>
-						for its amazing twitter-bootstrap integration for components and
-						other goodies</li>
-					<li><a target="_blank"
-						href="http://projects.spring.io/spring-security/">spring-security</a>
-						for its allmighty security capabilities and easy configurability
-						(not relying on a spring-context)</li>
-					<li>Optional: <a target="_blank"
-						href="https://github.com/thombergs/wicked-charts">wicked-charts</a>
-						for its easy to use <a target="_blank"
-						href="http://www.highcharts.com/">highcharts</a> integration,
-						including extensions for <a target="_blank"
-						href="http://www.highcharts.com/products/highstock">highstock</a></li>
-				</ul>
-				</p>
-				<p style="font-size: medium">
-					In comparison to other naked objects frameworks like <a
-						target="_blank" href="https://isis.apache.org/">Apache Isis</a>,
-					this is not a full blown <a target="_blank"
-						href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a>
-					framework:
-				<ul>
-					<li>It aims at being a lightweight web framework instead of
-						being a development platform. You still use your tools of choice
-						for dependency injection, container management, application
-						integration, persistence management, et al.</li>
-					<li>It does not abstract away wicket or the html used with it,
-						but instead embraces it by doing the routine work for you,
-						allowing you to fully customize it to your layout and design
-						requirements. Directly in the html instead of forcing you to use
-						css for everything or some sort of domain specific language or
-						abstract API.</li>
-					<li>Same goes for the binding, instead of doing all the work
-						behind layers of walls, you can tap into any part of the binding
-						and provide your own components particularly where needed, as
-						needed.</li>
-					<li>It always allows you to do anything you are able to do
-						with wicket. This enables you to take control over those 20%
-						complex requirements while not having to waste time implementing
-						the standard 80% of requirements.</li>
-					<li>It is also suitable for rapid prototyping of web
-						applications while not requiring you to throw away the prototype,
-						but instead just continuing work on it to make it a full
-						application.</li>
-				</ul>
-				</p>
-
-
-				<p style="font-size: medium">This framework also improves wicket
-					development in a few other spots:
-				<ul>
-					<li>By enforcing a clean use of the <a target="_blank"
-						href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>
-						pattern in your code (wicket still allows you to store state in
-						page classes or spread it over lots of micro models), you can
-						easily write automated unit tests for the logic of your models.
-						They control most of the functionality of your pages, can run
-						headless and can be tested easily with this framework. Only write
-						those brittle <a target="_blank" href="http://www.seleniumhq.org/">selenium</a>
-						or <a target="_blank"
-						href="https://ci.apache.org/projects/wicket/guide/7.x/guide/testing.html">wicket-tester</a>
-						tests where actually needed, but not to validate your business
-						logic of the presentation layer. Instead do it typesafe and much
-						more robust on the models themselves.
-					</li>
-					<li>The browser back button support of wicket is nice, but it
-						does not easily remember page state when reentering a page from a
-						bookmarkable link or other means of redirects in your application,
-						also you can get lost in old page states easily when navigating in
-						the browser. This framework eases this by using a lightweight
-						session based page cache that lets it feel more like a <a
-						target="_blank"
-						href="https://en.wikipedia.org/wiki/Single-page_application">single
-							page application</a> when you want it to. Just override the hashCode
-						and equals methods in your models appropriate to your needs and
-						NoWicket will reuse pages and models where the same logical model
-						state is used (still allowing you to keep full control by deciding
-						otherwise in the onPageModelRefresh hook of your page).
-					</li>
-				</ul>
-				</p>
-				<p style="font-size: medium">If this got you interested, feel
-					free to look at all the examples of this guide available via the
-					<b>top menu bar</b>.</p>
 			</div>
+			<br> <br>
+			<legend>Futher Information:</legend>
+			<p style="font-size: medium">This project is built on top of
+				other amazing open source frameworks:
+			<ul>
+				<li><a target="_blank" href="http://wicket.apache.org/">wicket</a>
+					for its ability to reuse components while maintaining flexbility
+					and control</li>
+				<li><a target="_blank" href="http://getbootstrap.com/">twitter-bootstrap</a>
+					for its superb layouting capabilities and responsive grid layout</li>
+				<li><a target="_blank" href="http://wb.agilecoders.de/">wicket-bootstrap</a>
+					for its amazing twitter-bootstrap integration for components and
+					other goodies</li>
+				<li><a target="_blank"
+					href="http://projects.spring.io/spring-security/">spring-security</a>
+					for its allmighty security capabilities and easy configurability
+					(not relying on a spring-context)</li>
+				<li>Optional: <a target="_blank"
+					href="https://github.com/thombergs/wicked-charts">wicked-charts</a>
+					for its easy to use <a target="_blank"
+					href="http://www.highcharts.com/">highcharts</a> integration,
+					including extensions for <a target="_blank"
+					href="http://www.highcharts.com/products/highstock">highstock</a></li>
+			</ul>
+			</p>
+			<p style="font-size: medium">
+				In comparison to other naked objects frameworks like <a
+					target="_blank" href="https://isis.apache.org/">Apache Isis</a>,
+				this is not a full blown <a target="_blank"
+					href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a>
+				framework:
+			<ul>
+				<li>It aims at being a lightweight web framework instead of
+					being a development platform. You still use your tools of choice
+					for dependency injection, container management, application
+					integration, persistence management, et al.</li>
+				<li>It does not abstract away wicket or the html used with it,
+					but instead embraces it by doing the routine work for you, allowing
+					you to fully customize it to your layout and design requirements.
+					Directly in the html instead of forcing you to use css for
+					everything or some sort of domain specific language or abstract
+					API.</li>
+				<li>Same goes for the binding, instead of doing all the work
+					behind layers of walls, you can tap into any part of the binding
+					and provide your own components particularly where needed, as
+					needed.</li>
+				<li>It always allows you to do anything you are able to do with
+					wicket. This enables you to take control over those 20% complex
+					requirements while not having to waste time implementing the
+					standard 80% of requirements.</li>
+				<li>It is also suitable for rapid prototyping of web
+					applications while not requiring you to throw away the prototype,
+					but instead just continuing work on it to make it a full
+					application.</li>
+			</ul>
+			</p>
+
+
+			<p style="font-size: medium">This framework also improves wicket
+				development in a few other spots:
+			<ul>
+				<li>By enforcing a clean use of the <a target="_blank"
+					href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>
+					pattern in your code (wicket still allows you to store state in
+					page classes or spread it over lots of micro models), you can
+					easily write automated unit tests for the logic of your models.
+					They control most of the functionality of your pages, can run
+					headless and can be tested easily with this framework. Only write
+					those brittle <a target="_blank" href="http://www.seleniumhq.org/">selenium</a>
+					or <a target="_blank"
+					href="https://ci.apache.org/projects/wicket/guide/7.x/guide/testing.html">wicket-tester</a>
+					tests where actually needed, but not to validate your business
+					logic of the presentation layer. Instead do it typesafe and much
+					more robust on the models themselves.
+				</li>
+				<li>The browser back button support of wicket is nice, but it
+					does not easily remember page state when reentering a page from a
+					bookmarkable link or other means of redirects in your application,
+					also you can get lost in old page states easily when navigating in
+					the browser. This framework eases this by using a lightweight
+					session based page cache that lets it feel more like a <a
+					target="_blank"
+					href="https://en.wikipedia.org/wiki/Single-page_application">single
+						page application</a> when you want it to. Just override the hashCode
+					and equals methods in your models appropriate to your needs and
+					NoWicket will reuse pages and models where the same logical model
+					state is used (still allowing you to keep full control by deciding
+					otherwise in the onPageModelRefresh hook of your page).
+				</li>
+			</ul>
+			</p>
+			<p style="font-size: medium">
+				If this got you interested, feel free to look at all the examples of
+				this guide available via the <b>top menu bar</b>.
+			</p>
 		</div>
 
 
