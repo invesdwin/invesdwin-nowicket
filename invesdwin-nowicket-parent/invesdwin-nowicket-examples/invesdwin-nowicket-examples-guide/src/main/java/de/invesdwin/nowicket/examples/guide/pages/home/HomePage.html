@@ -69,6 +69,9 @@
 					href="http://projects.spring.io/spring-security/">spring-security</a>
 					for its allmighty security capabilities and easy configurability
 					(not relying on a spring-context)</li>
+				<li><a target="_blank"
+					href="https://github.com/subes/invesdwin-norva">invesdwin-norva</a>
+					for a unified and naked objects aware reflection and visitor API</li>
 				<li>Optional: <a target="_blank"
 					href="https://github.com/thombergs/wicked-charts">wicked-charts</a>
 					for its easy to use <a target="_blank"
@@ -123,9 +126,9 @@
 					those brittle <a target="_blank" href="http://www.seleniumhq.org/">selenium</a>
 					or <a target="_blank"
 					href="https://ci.apache.org/projects/wicket/guide/7.x/guide/testing.html">wicket-tester</a>
-					tests where actually needed, but not to validate your business
-					logic of the presentation layer. Instead do it typesafe and much
-					more robust on the models themselves.
+					tests where actually needed, but not to validate your logic of the
+					presentation layer. Instead do it typesafe and much more robust on
+					the models themselves.
 				</li>
 				<li>The browser back button support of wicket is nice, but it
 					does not easily remember page state when reentering a page from a
@@ -143,9 +146,98 @@
 				</li>
 			</ul>
 			</p>
+
+			<p style="font-size: medium">Your typical development process
+				with this framework would be (as an elaborate example):
+			<ol>
+				<li>Divide your desired page into a set of classes using the
+					naked objects pattern in your mind or design it using a class
+					diagram. You can even reuse existing transfer or persistence
+					classes without modifying them where appropriate (being able to
+					extend them from the outside using @BeanPathRedirect).<br> <b>=>
+						Your benefit: Your models reflect directly your UI both in naming
+						and in structure.</b>
+				</li>
+				<li>Write your models appropriately and choose the model
+					elements depending on the information that is to be visualized.
+					Also decide for each class if it should be a page or a panel (or
+					even both) by creating appropriate classes for those. Add complex
+					validation, tooltips, hiding, disabling, redirects, modals and
+					other presentation logic to your models.<br> <b>=> Your
+						benefit: Only one place that contains the important state
+						information.</b>
+				</li>
+				<li>Run the NoWicket html generator for your models to get
+					bootstrappified markup which normally takes a long time to write
+					down and do right for some components. <br> <b>=> Your
+						benefit: Write less html code yourself.</b>
+				</li>
+				<li>Refine the generated html manually by moving things where
+					you want them and visualize regularly in the browser to make
+					adjustments. You could also use a <a target="_blank"
+					href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> editor
+					here. You can make full use of the bootstrap grid layout or remove
+					all of the tags and write your own classic table layout. <br>
+					<b>=> Your benefit: No need to worry about wickets binding
+						hierarchy since the generated binding handles that automatically
+						for you. Thus a lot less refactorings in wicket code.</b>
+				</li>
+				<li>Modify the generated properties files to name the
+					components as you want them, add some button icons or
+					internationalization to your pages. Note that all strings returned
+					from the model are internationalizable since you can also just
+					return keys for the properties files as desired. <br> <b>=>
+						Your benefit: The naming from your models is used to generate the
+						properties, not needing to lookup wicket ids and only changing
+						texts where needed.</b>
+				</li>
+				<li>If you are missing some components, just add them to the
+					model and run the html generator again. It will merge the new
+					markup snippets into your existing html files without destroying
+					your manual changes in them. After they are in there, just move
+					them aswell to where you want them. If you want to undo some of
+					your changes, just the delete the desired tags to let them get
+					generated again. The generator always checks for the wicket ids
+					before generating anything. <br> <b>=> Your benefit: No
+						need to redo everything.</b>
+				</li>
+				<li>If you are unhappy with some components, just change the
+					tags to transform them. For example:
+					<ul>
+						<li>convert a text input into a password input or a text area</li>
+						<li>convert a select box into a radio input or set a size to
+							make it into a list</li>
+						<li>change a button into a link</li>
+						<li>convert a table into a ul for a ListView of panels</li>
+						<li>make a file upload input handle multiple files</li>
+					</ul> The framework aims to be flexible and intuitive with this. If the
+					automated binding does not support your desired changes, just
+					enhance the binding manually by adding a BindingInterceptor for
+					your special cases. Do the same for any components that are not
+					represented in your models and are thus unknown to the generated
+					binding. <br> <b>=> Your benefit: Only write binding code
+						for the components you have to.</b>
+				</li>
+				<li>Add complex features into your page or panels, utilizing
+					the element and component registry in the NoWicket HtmlContext.
+					This gives you access to the wicket components and <a
+					target="_blank" href="https://github.com/subes/invesdwin-norva">invesdwin-norva</a>
+					reflection elements that got generated. Or access the page model
+					directly to do some extended manual binding. For example handling
+					page parameters or the page lifecycle.<br> <b>=> Your
+						benefit: Full access to everything.</b>
+				</li>
+				<li>Last but not least, write some headless unit tests on your
+					models logic as desired.<br> <b>=> Your benefit: Stay
+						maintainable for future refactorings and have something to alert
+						on regressions.</b>
+				</li>
+			</ol>
+			</p>
 			<p style="font-size: medium">
-				If this got you interested, feel free to look at all the examples of
-				this guide available via the <b>top menu bar</b>.
+				If this got you interested, feel free to look at all the detailed
+				explanations and examples of this guide available via the <b>top
+					menu bar</b>.
 			</p>
 		</div>
 
