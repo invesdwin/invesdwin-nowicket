@@ -90,21 +90,24 @@
 				<li>It aims at being a lightweight web framework instead of
 					being a development platform. You still use your tools of choice
 					for dependency injection, container management, application
-					integration, persistence management, et al.</li>
+					integration, persistence management, etc.</li>
 				<li>It does not abstract away wicket or the html used with it,
 					but instead embraces it by doing the routine work for you, allowing
 					you to fully customize it to your layout and design requirements.
-					Directly in the html instead of forcing you to use css for
-					everything or some sort of domain specific language or abstract
-					API.</li>
+					It allows you to do this directly in the html instead of forcing
+					you to use css for everything or some sort of domain specific
+					language or abstract API.</li>
 				<li>Same goes for the binding, instead of doing all the work
 					behind layers of walls, you can tap into any part of the binding
 					and provide your own components particularly where needed, as
 					needed.</li>
 				<li>It always allows you to do anything you are able to do with
-					wicket. This enables you to take control over those 20% complex
+					wicket. Following the <a target="_blank"
+					href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto
+						principle</a>, this enables you to take control over those 20% complex
 					requirements while not having to waste time implementing the
-					standard 80% of requirements.</li>
+					standard 80% of requirements.
+				</li>
 				<li>It is also suitable for rapid prototyping of web
 					applications while not requiring you to throw away the prototype,
 					but instead just continuing work on it to make it a full
@@ -132,8 +135,8 @@
 				</li>
 				<li>The browser back button support of wicket is nice, but it
 					does not easily remember page state when reentering a page from a
-					bookmarkable link or other means of redirects in your application,
-					also you can get lost in old page states easily when navigating in
+					bookmarkable link or other means of redirects in your application.
+					Also you can get lost in old page states easily when navigating in
 					the browser. This framework eases this by using a lightweight
 					session based page cache that lets it feel more like a <a
 					target="_blank"
@@ -178,28 +181,28 @@
 					href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> editor
 					here. You can make full use of the bootstrap grid layout or remove
 					all of the tags and write your own classic table layout. <br>
-					<b>=> Your benefit: No need to worry about wickets binding
-						hierarchy since the generated binding handles that automatically
-						for you. Thus a lot less refactorings in wicket code.</b>
+					<b>=> Your benefit: A lot less refactorings in wicket code,
+						since the generated binding handles wickets binding hierarchy
+						automatically.</b>
 				</li>
 				<li>Modify the generated properties files to name the
 					components as you want them, add some button icons or
 					internationalization to your pages. Note that all strings returned
 					from the model are internationalizable since you can also just
 					return keys for the properties files as desired. <br> <b>=>
-						Your benefit: The naming from your models is used to generate the
-						properties, not needing to lookup wicket ids and only changing
-						texts where needed.</b>
+						Your benefit: No need to lookup wicket ids since they get
+						generated with texts from your models. Only change texts as
+						needed.</b>
 				</li>
 				<li>If you are missing some components, just add them to the
 					model and run the html generator again. It will merge the new
 					markup snippets into your existing html files without destroying
 					your manual changes in them. After they are in there, just move
 					them aswell to where you want them. If you want to undo some of
-					your changes, just the delete the desired tags to let them get
+					your changes, just delete the desired tags to let them get
 					generated again. The generator always checks for the wicket ids
 					before generating anything. <br> <b>=> Your benefit: No
-						need to redo everything.</b>
+						need to redo everything, instead merge changes.</b>
 				</li>
 				<li>If you are unhappy with some components, just change the
 					tags to transform them. For example:
