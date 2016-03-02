@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.generated.guiservice;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
 
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.UniqueNameGenerator;
 
 @NotThreadSafe
 public class OfferDownloadConfig implements Serializable {
@@ -39,22 +41,8 @@ public class OfferDownloadConfig implements Serializable {
      */
     public OfferDownloadConfig(final List<File> files, final String packagedFileName) throws IOException {
         if (files.size() > 1) {
-            String modifiedFileName = packagedFileName;
-            if (!Strings.endsWithIgnoreCase(modifiedFileName, ".zip")) {
-                modifiedFileName += ".zip";
-            }
-            this.fileName = modifiedFileName;
-            final File tempFile = new File(GuiService.get().getSessionFolder(),
-                    getClass().getSimpleName() + "/" + modifiedFileName);
-            FileUtils.forceMkdir(tempFile.getParentFile());
-            final ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(tempFile));
-            for (final File file : files) {
-                final ZipEntry entry = new ZipEntry(file.getName());
-                zip.putNextEntry(entry);
-                IOUtils.copy(new FileInputStream(file), zip);
-                zip.closeEntry();
-            }
-            zip.close();
+            final File tempFile = zipFiles(files, packagedFileName);
+            this.fileName = tempFile.getName();
             this.resourceStream = new FileResourceStream(tempFile);
         } else if (files.size() == 1) {
             final File file = files.get(0);
@@ -63,6 +51,27 @@ public class OfferDownloadConfig implements Serializable {
         } else {
             throw new IllegalArgumentException("Please provide something to download");
         }
+    }
+
+    public static File zipFiles(final List<File> files, final String packagedFileName)
+            throws IOException, FileNotFoundException {
+        String modifiedFileName = packagedFileName;
+        if (!Strings.endsWithIgnoreCase(modifiedFileName, ".zip")) {
+            modifiedFileName += ".zip";
+        }
+        final File tempFile = new File(GuiService.get().getSessionFolder(),
+                OfferDownloadConfig.class.getSimpleName() + "/" + modifiedFileName);
+        FileUtils.forceMkdir(tempFile.getParentFile());
+        final ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(tempFile));
+        final UniqueNameGenerator uniqueNames = new UniqueNameGenerator();
+        for (final File file : files) {
+            final ZipEntry entry = new ZipEntry(uniqueNames.get(file.getName()));
+            zip.putNextEntry(entry);
+            IOUtils.copy(new FileInputStream(file), zip);
+            zip.closeEntry();
+        }
+        zip.close();
+        return tempFile;
     }
 
     public IResourceStream getResourceStream() {

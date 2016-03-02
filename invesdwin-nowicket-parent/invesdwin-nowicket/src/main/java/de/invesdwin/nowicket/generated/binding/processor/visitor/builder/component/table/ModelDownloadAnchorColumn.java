@@ -12,7 +12,7 @@ import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelDownloadLink;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.FileAnchorModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 
 @NotThreadSafe
 public class ModelDownloadAnchorColumn extends PropertyColumn<File, String> {
@@ -27,7 +27,7 @@ public class ModelDownloadAnchorColumn extends PropertyColumn<File, String> {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public IModel<Object> getDataModel(final IModel<File> rowModel) {
-        return (IModel) new FileAnchorModel(rowModel, getPropertyExpression());
+        return (IModel) new BeanPathModel(rowModel, getPropertyExpression());
     }
 
     @Override

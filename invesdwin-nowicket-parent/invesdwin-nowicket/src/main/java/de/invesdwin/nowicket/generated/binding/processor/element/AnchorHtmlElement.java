@@ -14,7 +14,6 @@ import org.jsoup.nodes.Element;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.FileAnchorModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UrlAnchorModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AnchorModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.AnchorType;
@@ -75,9 +74,10 @@ public class AnchorHtmlElement extends AModelHtmlElement<AnchorModelElement, Obj
         }
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public IModel<File> getFileModel() {
         if (getType() == AnchorType.FILE) {
-            return new FileAnchorModel(this);
+            return (IModel) super.getModel();
         } else {
             return null;
         }

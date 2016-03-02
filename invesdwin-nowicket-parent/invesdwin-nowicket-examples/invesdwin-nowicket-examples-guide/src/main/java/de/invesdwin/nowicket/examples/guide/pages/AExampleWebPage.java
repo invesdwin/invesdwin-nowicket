@@ -26,6 +26,7 @@ import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxchoice.AjaxChoicePa
 import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxdatatable.AjaxDataTablePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.SpringSecurePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.WicketSecurePage;
+import de.invesdwin.nowicket.examples.guide.pages.wicket.fileupload.FileUploadPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.forminput.FormInputPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.guestbook.GuestbookExamplePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.helloworld.HelloWorldPage;
@@ -81,6 +82,9 @@ public abstract class AExampleWebPage extends AWebPage {
                         subMenu.add(new MenuBookmarkablePageLink<Void>(TabbedPanelPage.class,
                                 new ResourceModel("menu.tabbedpanel").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.creditcard));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(FileUploadPage.class,
+                                new ResourceModel("menu.fileupload").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.upload));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(GuestbookExamplePage.class,
                                 new ResourceModel("menu.guestbook").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.book));

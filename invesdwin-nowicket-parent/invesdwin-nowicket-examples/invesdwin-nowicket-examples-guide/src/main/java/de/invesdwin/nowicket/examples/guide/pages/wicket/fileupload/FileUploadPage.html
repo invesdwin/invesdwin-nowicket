@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This is a rewrite of the <a target="_blank"
+				href="http://examples7x.wicket.apache.org/upload/single">file
+				upload example from wicket</a>. Here we demonstrate how to do single and
+			multi file upload. Also how to download files using links and
+			downloading files from submit buttons with
+			GuiService.get().offerDownload().
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<div wicket:id='feedback'></div>
+			<div wicket:id="modal"></div>
+			<fieldset>
+				<legend>File Upload</legend>
+				<p>The maximum file size of a single upload is: 90k!</p>
+				<div class="form-group">
+					<label class="control-label col-sm-2" wicket:for="fileUpload">
+						<wicket:label>
+                                 File Upload 
+                            </wicket:label>
+					</label>
+					<div wicket:id="fileUpload_gridColumn" class="col-sm-4">
+						<input type="file" class="btn btn-default" wicket:id="fileUpload"></input>
+					</div>
+					<div wicket:id="uploadedFileName_gridColumn" class="col-sm-4">
+						<input type="text" class="form-control"
+							wicket:id="uploadedFileName"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-6">
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<a class="btn btn-default" wicket:id="uploadedFileDownload">Uploaded
+									File Download</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Multi File Upload</legend>
+				<p>The maximum size of uploading several files is: 100k!</p>
+				<div class="form-group">
+					<label class="control-label col-sm-2" wicket:for="multiFileUpload">
+						<wicket:label>
+                                 Multi File Upload 
+                            </wicket:label>
+					</label>
+					<div wicket:id="multiFileUpload_gridColumn" class="col-sm-4">
+						<input multiple="multiple" class="btn btn-default"
+							wicket:id="multiFileUpload" type="file"></input>
+					</div>
+					<div wicket:id="multiUploadedFileNames_gridColumn" class="col-sm-4">
+						<textarea class="form-control" wicket:id="multiUploadedFileNames"
+							rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-6">
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<a class="btn btn-default" wicket:id="multiUploadedFileDownload">Multi
+									Uploaded File Download</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<hr />
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary"
+								wicket:id="upload">Upload</button>
+						</div>
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default"
+								wicket:id="uploadAndDownload">Upload And Download</button>
+						</div>
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default" wicket:id="reset">Reset</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
