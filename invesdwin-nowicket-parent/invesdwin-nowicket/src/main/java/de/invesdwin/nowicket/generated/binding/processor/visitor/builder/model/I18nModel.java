@@ -15,29 +15,46 @@ import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.cycle.RequestCycle;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
+import de.invesdwin.nowicket.util.Components;
 
 @NotThreadSafe
 public class I18nModel extends AbstractReadOnlyModel<String> {
 
+    private static final ThreadLocal<Boolean> NESTED_PAGE_RETRIEVAL = new ThreadLocal<Boolean>() {
+        @Override
+        protected Boolean initialValue() {
+            return false;
+        }
+    };
+
     private final Component component;
     private final IModel<?> delegate;
+    private final Class<? extends Component> componentClass;
 
     public I18nModel(final Component component, final IModel<?> delegate) {
+        this.componentClass = null;
         this.component = component;
         this.delegate = delegate;
     }
 
     public I18nModel(final Component component, final String property) {
-        this.component = component;
-        this.delegate = Model.of(property);
+        this(component, Model.of(property));
     }
 
     /**
-     * Uses the page from the RequestCycle as component, thus cannot retrieve properties from nested components.
+     * Uses the page from the RequestCycle to lookup the component.
      */
-    public I18nModel(final String property) {
+    public I18nModel(final Class<? extends Component> componentClass, final String property) {
+        this(componentClass, Model.of(property));
+    }
+
+    /**
+     * Uses the page from the RequestCycle to lookup the component.
+     */
+    public I18nModel(final Class<? extends Component> componentClass, final Model<?> delegate) {
+        this.componentClass = componentClass;
         this.component = null;
-        this.delegate = Model.of(property);
+        this.delegate = delegate;
     }
 
     @Override
@@ -63,10 +80,22 @@ public class I18nModel extends AbstractReadOnlyModel<String> {
     }
 
     private Component getComponent() {
-        if (component == null) {
-            final IPageRequestHandler handler = PageRequestHandlerTracker.getLastHandler(RequestCycle.get());
-            if (handler != null) {
-                return (Page) handler.getPage();
+        if (component == null && !NESTED_PAGE_RETRIEVAL.get()) {
+            NESTED_PAGE_RETRIEVAL.set(true);
+            try {
+                final IPageRequestHandler handler = PageRequestHandlerTracker.getLastHandler(RequestCycle.get());
+                if (handler != null) {
+                    if (componentClass != null) {
+                        final Component foundComponent = Components.findComponent(componentClass,
+                                (Page) handler.getPage());
+                        if (foundComponent != null) {
+                            return foundComponent;
+                        }
+                    }
+                    return (Page) handler.getPage();
+                }
+            } finally {
+                NESTED_PAGE_RETRIEVAL.set(false);
             }
         }
         return component;

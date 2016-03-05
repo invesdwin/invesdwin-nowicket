@@ -47,10 +47,9 @@ public class FormInput extends AValueObject {
     private List<Integer> selectOneOrMoreNumbersCheckGroup;
     private List<String> yourFavoriteSites;
     /*
-     * values that can be edited should not be internationalized
+     * values that can be edited should not be internationalized, but we still show here how to i18n nested panel models
      */
-    private final List<Line> listView = Arrays.asList(new Line("line one"), new Line("line two"),
-            new Line("line three"));
+    private final List<Line> listView = Arrays.asList(new Line("line.1"), new Line("line.2"), new Line("line.3"));
     private final Multiply multiply = new Multiply();
 
     public FormInput() {
@@ -191,7 +190,11 @@ public class FormInput extends AValueObject {
     }
 
     public void save() {
-        GuiService.get().showStatusMessage(GuiService.i18n("saved"), toStringMultiline());
+        GuiService.get().showStatusMessage(i18n("saved"), toStringMultiline());
+    }
+
+    private String i18n(final String property) {
+        return GuiService.i18n(FormInputPage.class, property);
     }
 
     /**
@@ -201,16 +204,16 @@ public class FormInput extends AValueObject {
     public void reset() {
         if (dirtyTracker().isDirty()) {
             final StringBuilder message = new StringBuilder();
-            message.append(GuiService.i18n("your.inputs.will.be.lost"));
+            message.append(i18n("your.inputs.will.be.lost"));
             message.append(":<br><ul>");
             for (final String beanPath : dirtyTracker().getChangedBeanPaths()) {
                 message.append("<li>");
-                message.append(GuiService.i18n(beanPath));
+                message.append(i18n(beanPath));
                 message.append("</li>");
             }
             message.append("</ul>");
             message.append("<br>");
-            message.append(GuiService.i18n("press.cancel.to.keep.your.inputs"));
+            message.append(i18n("press.cancel.to.keep.your.inputs"));
             message.append(".");
             GuiService.get().showModalPanel(new ModalMessage("warning", message.toString()) {
 
@@ -220,8 +223,8 @@ public class FormInput extends AValueObject {
                     //reset by redirecting to a clean page
                     GuiService.get().showPage(new FormInput());
                     GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.success)
-                            .withTitle(GuiService.i18n("reset"))
-                            .withMessage(GuiService.i18n("reset.success")));
+                            .withTitle(i18n("reset"))
+                            .withMessage(i18n("reset.success")));
                 }
 
                 public String okTitle() {
@@ -240,8 +243,8 @@ public class FormInput extends AValueObject {
             });
         } else {
             GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.error)
-                    .withTitle(GuiService.i18n("reset"))
-                    .withMessage(GuiService.i18n("reset.error")));
+                    .withTitle(i18n("reset"))
+                    .withMessage(i18n("reset.error")));
         }
     }
 

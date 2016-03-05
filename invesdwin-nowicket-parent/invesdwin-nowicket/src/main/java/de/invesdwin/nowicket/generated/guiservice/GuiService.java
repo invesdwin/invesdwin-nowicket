@@ -113,8 +113,14 @@ public class GuiService implements FactoryBean<GuiService>, IGuiService {
         getGuiServiceImpl().offerDownload(config);
     }
 
-    public static String i18n(final String property) {
-        return new I18nModel(property).getObject();
+    /**
+     * The internationalization here resolves the properties from the page, thus nested components do not work here.
+     * 
+     * This does not work well in constructors, instead please only use this in property getters and dynamic methods.
+     * This is because the page cannot be retrieved during construction to do the internationalization.
+     */
+    public static String i18n(final Class<? extends Component> componentClass, final String property) {
+        return new I18nModel(componentClass, property).getObject();
     }
 
 }

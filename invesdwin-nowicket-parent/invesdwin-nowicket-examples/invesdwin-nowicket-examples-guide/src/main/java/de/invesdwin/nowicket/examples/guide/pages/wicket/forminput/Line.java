@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.examples.guide.pages.wicket.forminput;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 
@@ -16,7 +17,7 @@ public class Line extends AValueObject {
     }
 
     public String getValue() {
-        return value;
+        return GuiService.i18n(LinePanel.class, value);
     }
 
     public void setValue(final String value) {
