@@ -2,10 +2,8 @@ package de.invesdwin.nowicket.examples.guide.pages.wicket.authentication;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.model.Model;
-
 import de.invesdwin.nowicket.examples.guide.pages.AExampleWebPage;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nDelegateModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.page.auth.SignInPanel;
 
 @NotThreadSafe
@@ -16,7 +14,7 @@ public class ExampleSignInPage extends AExampleWebPage {
     public ExampleSignInPage() {
         super(null);
         add(new SignInPanel("panel"));
-        setTitleModel(new I18nDelegateModel(this, Model.of("sign.in.title")));
+        setTitleModel(new I18nModel(this, "sign.in.title"));
     }
 
 }

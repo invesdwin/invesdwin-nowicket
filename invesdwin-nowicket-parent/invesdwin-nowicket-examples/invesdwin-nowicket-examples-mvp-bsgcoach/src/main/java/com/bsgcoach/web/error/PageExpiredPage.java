@@ -3,12 +3,11 @@ package com.bsgcoach.web.error;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.http.WebResponse;
 
 import com.bsgcoach.web.ABsgCoachWebPage;
 
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nDelegateModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.page.error.PageExpiredPanel;
 
 @NotThreadSafe
@@ -19,7 +18,7 @@ public class PageExpiredPage extends ABsgCoachWebPage {
     public PageExpiredPage() {
         super(null);
         add(new PageExpiredPanel("panel"));
-        setTitleModel(new I18nDelegateModel(this, Model.of("page.expired.title")));
+        setTitleModel(new I18nModel(this, "page.expired.title"));
     }
 
     @Override

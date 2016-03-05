@@ -12,10 +12,14 @@ import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
 import de.invesdwin.norva.beanpath.annotation.BeanPathEndPoint;
+import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
+import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
+import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
+import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 
@@ -42,6 +46,9 @@ public class FormInput extends AValueObject {
     private Integer selectANumberRadioGroup;
     private List<Integer> selectOneOrMoreNumbersCheckGroup;
     private List<String> yourFavoriteSites;
+    /*
+     * values that can be edited should not be internationalized
+     */
     private final List<Line> listView = Arrays.asList(new Line("line one"), new Line("line two"),
             new Line("line three"));
     private final Multiply multiply = new Multiply();
@@ -184,7 +191,7 @@ public class FormInput extends AValueObject {
     }
 
     public void save() {
-        GuiService.get().showStatusMessage("Saved", toStringMultiline());
+        GuiService.get().showStatusMessage(GuiService.i18n("saved"), toStringMultiline());
     }
 
     /**
@@ -193,33 +200,61 @@ public class FormInput extends AValueObject {
     @Forced
     public void reset() {
         if (dirtyTracker().isDirty()) {
-            final StringBuilder message = new StringBuilder(
-                    "Your inputs will be lost for the following fields:<br><ul>");
+            final StringBuilder message = new StringBuilder();
+            message.append(GuiService.i18n("your.inputs.will.be.lost"));
+            message.append(":<br><ul>");
             for (final String beanPath : dirtyTracker().getChangedBeanPaths()) {
                 message.append("<li>");
-                message.append(beanPath);
+                message.append(GuiService.i18n(beanPath));
                 message.append("</li>");
             }
             message.append("</ul>");
-            message.append("<br>Press cancel to keep your inputs.");
-            GuiService.get().showModalPanel(new ModalMessage("Warning", message.toString()) {
+            message.append("<br>");
+            message.append(GuiService.i18n("press.cancel.to.keep.your.inputs"));
+            message.append(".");
+            GuiService.get().showModalPanel(new ModalMessage("warning", message.toString()) {
 
                 @ModalCloser
                 @Override
                 public void ok() {
+                    //reset by redirecting to a clean page
                     GuiService.get().showPage(new FormInput());
+                    GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.success)
+                            .withTitle(GuiService.i18n("reset"))
+                            .withMessage(GuiService.i18n("reset.success")));
                 }
 
                 public String okTitle() {
-                    return "Reset";
+                    //also internationalizing property here
+                    return "reset";
                 }
 
                 @Override
                 public boolean hideCancel() {
                     return false;
                 }
+
+                public String cancelTitle() {
+                    return "cancel";
+                }
             });
+        } else {
+            GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.error)
+                    .withTitle(GuiService.i18n("reset"))
+                    .withMessage(GuiService.i18n("reset.error")));
         }
+    }
+
+    @NotNull
+    public UseLocale getUseLocale() {
+        return UseLocale.valueOf(AWebSession.get().getLocale());
+    }
+
+    @Eager
+    public void setUseLocale(final UseLocale useLocale) {
+        AWebSession.get().setLocale(useLocale.getLocale());
+        //disable dirty tracking for this property
+        dirtyTracker().markClean(FormInputConstants.useLocale);
     }
 
 }

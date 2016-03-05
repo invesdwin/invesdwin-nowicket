@@ -17,18 +17,34 @@
 			for which the html was mostly generated and we just had to move
 			things around and modify it a little bit. We also added functionality
 			to check for dirty on the reset button and show a warning dialog that
-			needs to be confirmed.
+			needs to be confirmed. Regarding internationalization, we go a bit
+			further than the wicket example by showing you how to use
+			GuiService.i18n() in models and wicket:message in the html despite
+			the usual label properties demonstrated there.
 		</p>
 		<form class="form-horizontal" wicket:id="form">
 			<div wicket:id="modal"></div>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<legend>Input</legend>
+					<div class="form-group">
+						<label class="control-label col-sm-2" wicket:for="useLocale">
+							<wicket:label>
+                            Use Locale
+                        </wicket:label>
+						</label>
+						<div wicket:id="useLocale_gridColumn" class="col-sm-4">
+							<select class="form-control" wicket:id="useLocale"></select>
+						</div>
+					</div>
+					<legend>
+						<!-- this is how we internationalize constant strings the html -->
+						<wicket:message key="input">Input</wicket:message>
+					</legend>
 					<div class="col-sm-5">
 						<div class="form-group">
 							<label class="control-label" wicket:for="string"> <wicket:label>
-                                     String 
-                                </wicket:label>
+                                         String 
+                                    </wicket:label>
 							</label>
 							<div wicket:id="string_gridColumn">
 								<input type="text" class="form-control" wicket:id="string"></input>
@@ -36,8 +52,8 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label" wicket:for="integer"> <wicket:label>
-                                     Integer 
-                                </wicket:label>
+                                         Integer 
+                                    </wicket:label>
 							</label>
 							<div wicket:id="integer_gridColumn">
 								<input type="number" class="form-control" wicket:id="integer"></input>
@@ -45,8 +61,8 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label" wicket:for="doublee"> <wicket:label>
-                                     Doublee 
-                                </wicket:label>
+                                         Doublee 
+                                    </wicket:label>
 							</label>
 							<div wicket:id="doublee_gridColumn">
 								<input type="number" class="form-control" wicket:id="doublee"></input>
@@ -60,8 +76,8 @@
 						</fieldset>
 						<div class="form-group">
 							<label class="control-label" wicket:for="booleann"> <wicket:label>
-                                     Booleann 
-                                </wicket:label></label>
+                                         Booleann 
+                                    </wicket:label></label>
 							<div wicket:id="booleann_gridColumn">
 								<input type="checkbox" wicket:id="booleann"></input>
 							</div>
@@ -73,8 +89,8 @@
 						<div class="form-group">
 							<label class="control-label" wicket:for="valueBetween0and100">
 								<wicket:label>
-                                     Value Between0and100 
-                                </wicket:label>
+                                         Value Between0and100 
+                                    </wicket:label>
 							</label>
 							<div wicket:id="valueBetween0and100_gridColumn">
 								<input type="number" class="form-control"
@@ -83,8 +99,8 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label" wicket:for="url"> <wicket:label>
-                                     Url 
-                                </wicket:label></label>
+                                         Url 
+                                    </wicket:label></label>
 							<div wicket:id="url_gridColumn">
 								<input type="text" class="form-control" wicket:id="url"></input>
 							</div>
@@ -92,8 +108,8 @@
 						<div class="form-group">
 							<label class="control-label" wicket:for="usPhoneNumber">
 								<wicket:label>
-                                     Us Phone Number 
-                                </wicket:label>
+                                         Us Phone Number 
+                                    </wicket:label>
 							</label>
 							<div wicket:id="usPhoneNumber_gridColumn">
 								<input type="text" class="form-control"
@@ -103,8 +119,8 @@
 						<div class="form-group">
 							<label class="control-label"
 								wicket:for="selectANumberRadioChoicee"> <wicket:label>
-                                     Select ANumber Radio Choicee 
-                                </wicket:label></label>
+                                         Select ANumber Radio Choicee 
+                                    </wicket:label></label>
 							<div wicket:id="selectANumberRadioChoicee_gridColumn">
 								<input type="radio" wicket:id="selectANumberRadioChoicee"></input>
 							</div>
@@ -112,8 +128,8 @@
 						<div class="form-group">
 							<label class="control-label" wicket:for="selectANumberRadioGroup">
 								<wicket:label>
-                                     Select ANumber Radio Group 
-                                </wicket:label>
+                                         Select ANumber Radio Group 
+                                    </wicket:label>
 							</label>
 							<div wicket:id="selectANumberRadioGroup_gridColumn">
 								<input type="radio" wicket:id="selectANumberRadioGroup"></input>
@@ -122,8 +138,8 @@
 						<div class="form-group">
 							<label class="control-label"
 								wicket:for="selectOneOrMoreNumbersCheckGroup"> <wicket:label>
-                                     Select One Or More Numbers Check Group 
-                                </wicket:label></label>
+                                         Select One Or More Numbers Check Group 
+                                    </wicket:label></label>
 							<div wicket:id="selectOneOrMoreNumbersCheckGroup_gridColumn">
 								<select class="form-control"
 									wicket:id="selectOneOrMoreNumbersCheckGroup"></select>
@@ -132,8 +148,8 @@
 						<div class="form-group">
 							<label class="control-label" wicket:for="yourFavoriteSites">
 								<wicket:label>
-                                     Your Favorite Sites 
-                                </wicket:label>
+                                         Your Favorite Sites 
+                                    </wicket:label>
 							</label>
 							<div wicket:id="yourFavoriteSites_gridColumn">
 								<select class="form-control" wicket:id="yourFavoriteSites"

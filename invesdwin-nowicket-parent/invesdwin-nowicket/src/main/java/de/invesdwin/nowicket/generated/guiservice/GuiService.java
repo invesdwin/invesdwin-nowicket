@@ -9,6 +9,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.springframework.beans.factory.FactoryBean;
 
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.generated.guiservice.internal.SessionGuiService;
 
 // @Named
@@ -110,6 +111,10 @@ public class GuiService implements FactoryBean<GuiService>, IGuiService {
     @Override
     public void offerDownload(final OfferDownloadConfig config) {
         getGuiServiceImpl().offerDownload(config);
+    }
+
+    public static String i18n(final String property) {
+        return new I18nModel(property).getObject();
     }
 
 }

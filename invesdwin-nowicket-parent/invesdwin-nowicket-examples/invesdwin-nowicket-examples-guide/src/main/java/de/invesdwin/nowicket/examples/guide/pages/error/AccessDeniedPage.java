@@ -3,11 +3,10 @@ package de.invesdwin.nowicket.examples.guide.pages.error;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.http.WebResponse;
 
 import de.invesdwin.nowicket.examples.guide.pages.AExampleWebPage;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nDelegateModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.page.error.AccessDeniedPanel;
 
 @NotThreadSafe
@@ -18,7 +17,7 @@ public class AccessDeniedPage extends AExampleWebPage {
     public AccessDeniedPage() {
         super(null);
         add(new AccessDeniedPanel("panel"));
-        setTitleModel(new I18nDelegateModel(this, Model.of("access.denied.title")));
+        setTitleModel(new I18nModel(this, "access.denied.title"));
     }
 
     @Override

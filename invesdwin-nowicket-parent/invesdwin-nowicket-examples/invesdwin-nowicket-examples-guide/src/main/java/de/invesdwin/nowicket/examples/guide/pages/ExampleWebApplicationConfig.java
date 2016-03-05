@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.examples.guide.pages;
 
+import java.util.Locale;
+
 import javax.annotation.concurrent.Immutable;
 
 import org.apache.wicket.markup.html.WebPage;
@@ -8,6 +10,7 @@ import org.apache.wicket.request.resource.ResourceReference;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
+import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.examples.guide.Main;
 import de.invesdwin.nowicket.examples.guide.pages.error.AccessDeniedPage;
 import de.invesdwin.nowicket.examples.guide.pages.error.InternalErrorPage;
@@ -62,6 +65,11 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
     @Override
     public ResourceReference getFavicon() {
         return new PackageResourceReference(getClass(), "favicon.ico");
+    }
+
+    @Override
+    public void postProcessNewSession(final AWebSession session) {
+        session.setLocale(Locale.ENGLISH);
     }
 
 }
