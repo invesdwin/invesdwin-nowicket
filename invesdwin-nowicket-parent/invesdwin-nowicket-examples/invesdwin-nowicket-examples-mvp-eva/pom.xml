@@ -191,9 +191,7 @@
 						<configuration>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<shadedClassifierName>standalone</shadedClassifierName>
-							<transformers>
-								<!-- order of transformers is important, since resource definitions 
-									are mixed with parent poms, thus the first few transformers have to be identical... -->
+							<transformers combine.self="override">
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.handlers</resource>
