@@ -2,7 +2,7 @@
 
 This is the code for our documentation website, which is available here: **http://invesdwin.de/nowicket/**
 
-Also here you find the code to a few MVP (Minium Viable Product) websites that were created with this framework. They are also linked to in our documentation website from the top menu bar.
+Also here you find the code to a few MVP (Minimum Viable Product) websites that were created with this framework. They are also linked to in our documentation website from the top menu bar.
 
 ## Launching
 
