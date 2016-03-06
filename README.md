@@ -18,4 +18,4 @@ Dependency declaration:
 ```
 ## Documentation
 
-#### There is a nice guide available [here](http://invesdwin.de/nowicket/).
+#### See our documentation and examples website [here](http://invesdwin.de/nowicket/).
