@@ -125,10 +125,13 @@ public abstract class AExampleWebPage extends AWebPage {
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
                         final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
 
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(RedirectToMvpBsgcoachPage.class,
-                                new ResourceModel("menu.bsgcoach").wrapOnAssignment(navbar)));
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(RedirectToMvpEvaPage.class,
-                                new ResourceModel("menu.eva").wrapOnAssignment(navbar)));
+                        subMenu.add(new IconMenuBookmarkablePageLink<Void>(RedirectToMvpBsgcoachPage.class,
+                                new ResourceModel("menu.bsgcoach").wrapOnAssignment(navbar),
+                                RedirectToMvpBsgcoachPage.ICON));
+
+                        subMenu.add(new IconMenuBookmarkablePageLink<Void>(RedirectToMvpBsgcoachPage.class,
+                                new ResourceModel("menu.eva").wrapOnAssignment(navbar), RedirectToMvpEvaPage.ICON));
+
                         return subMenu;
                     }
 
