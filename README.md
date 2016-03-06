@@ -16,3 +16,9 @@ Dependency declaration:
 	<version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
+## Documentation
+
+We created an elaborate website for this purpose. There you will find a detailed guide that explains how the framework works and lots of examples with the commented code available [here on github](https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples). 
+
+See our documentation website here: **http://invesdwin.de/nowicket/**
+
