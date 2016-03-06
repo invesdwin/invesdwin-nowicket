@@ -22,6 +22,8 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.pages.footer.FooterPanel;
+import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpBsgcoachPage;
+import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpEvaPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxchoice.AjaxChoicePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxdatatable.AjaxDataTablePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.secure.SpringSecurePage;
@@ -109,6 +111,29 @@ public abstract class AExampleWebPage extends AWebPage {
                     }
 
                 }.setIconType(FontAwesomeIconType.won)));
+
+        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
+                new NavbarDropDownButton(new ResourceModel("menu.mvp.examples")) {
+
+                    @Override
+                    public boolean isActive(final Component item) {
+                        return false;
+                    }
+
+                    @Override
+                    protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
+                        final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(RedirectToMvpBsgcoachPage.class,
+                                new ResourceModel("menu.bsgcoach").wrapOnAssignment(navbar))
+                                        .setIconType(FontAwesomeIconType.link));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(RedirectToMvpEvaPage.class,
+                                new ResourceModel("menu.eva").wrapOnAssignment(navbar))
+                                        .setIconType(FontAwesomeIconType.link));
+                        return subMenu;
+                    }
+
+                }.setIconType(FontAwesomeIconType.star)));
 
         return navbar;
     }

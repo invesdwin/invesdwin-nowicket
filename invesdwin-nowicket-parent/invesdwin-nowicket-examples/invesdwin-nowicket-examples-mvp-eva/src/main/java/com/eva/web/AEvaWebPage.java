@@ -2,6 +2,7 @@ package com.eva.web;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.Page;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -41,6 +42,8 @@ public abstract class AEvaWebPage extends AWebPage {
         navbar.setBrandImage(LOGO, Model.of("EVA"));
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
+                new NavbarButton<Void>(RedirectToGuidePage.class, Model.of("Home")).setIconType(GlyphIconType.home)));
+        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(ABaseWebApplication.get().getHomePage(), Model.of("Decision"))
                         .setIconType(GlyphIconType.home)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
@@ -62,6 +65,11 @@ public abstract class AEvaWebPage extends AWebPage {
         navbar.setInverted(INVERTED_HEADER_AND_FOOTER);
 
         return navbar;
+    }
+
+    @Override
+    protected Class<? extends Page> getNavbarHomePage() {
+        return RedirectToGuidePage.class;
     }
 
     @Override

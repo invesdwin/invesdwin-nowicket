@@ -41,7 +41,7 @@ public abstract class ABsgCoachWebPage extends AWebPage {
         navbar.setBrandImage(LOGO, Model.of("bsg-coach"));
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
-                new NavbarButton<Void>(RedirectToBsgCoachPage.class, Model.of("Home"))
+                new NavbarButton<Void>(RedirectToGuidePage.class, Model.of("Home"))
                         .setIconType(GlyphIconType.home)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(ABaseWebApplication.get().getHomePage(), Model.of("Get Feedback"))
@@ -57,7 +57,7 @@ public abstract class ABsgCoachWebPage extends AWebPage {
 
     @Override
     protected Class<? extends Page> getNavbarHomePage() {
-        return RedirectToBsgCoachPage.class;
+        return RedirectToGuidePage.class;
     }
 
     @Override
