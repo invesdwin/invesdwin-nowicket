@@ -18,5 +18,7 @@ Dependency declaration:
 ```
 ## Documentation
 
-We created an elaborate website for this purpose. There you will find a detailed guide that explains how the framework works and lots of examples with commented code available here on github. See our documentation website here: http://invesdwin.de/nowicket/
+We created an elaborate website for this purpose. There you will find a detailed guide that explains how the framework works and lots of examples with commented code available here on github. 
+
+See our documentation website here: http://invesdwin.de/nowicket/
 
