@@ -16,3 +16,6 @@ Dependency declaration:
 	<version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
+## Documentation
+
+[We prepared a nice guide for you here.](http://invesdwin.de/nowicket/)
