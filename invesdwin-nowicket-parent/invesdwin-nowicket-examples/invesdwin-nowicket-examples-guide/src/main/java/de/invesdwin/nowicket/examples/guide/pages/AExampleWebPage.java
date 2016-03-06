@@ -129,7 +129,7 @@ public abstract class AExampleWebPage extends AWebPage {
                                 new ResourceModel("menu.bsgcoach").wrapOnAssignment(navbar),
                                 RedirectToMvpBsgcoachPage.ICON));
 
-                        subMenu.add(new IconMenuBookmarkablePageLink<Void>(RedirectToMvpBsgcoachPage.class,
+                        subMenu.add(new IconMenuBookmarkablePageLink<Void>(RedirectToMvpEvaPage.class,
                                 new ResourceModel("menu.eva").wrapOnAssignment(navbar), RedirectToMvpEvaPage.ICON));
 
                         return subMenu;
