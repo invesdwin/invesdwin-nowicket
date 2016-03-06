@@ -17,13 +17,13 @@
 			for which the html was mostly generated and we just had to move
 			things around and modify it a little bit. We also added functionality
 			to check for dirty on the reset button and show a warning dialog that
-			needs to be confirmed. Regarding internationalization, we go a bit
-			further than the wicket example by showing you how to use
-			GuiService.i18n() in models and wicket:message in the html despite
-			the usual label properties demonstrated there. There is also a junit
-			test for the reset button in the code, see <a target="_blank"
-				href="https://github.com/subes/invesdwin-nowicket/blob/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/test/java/de/invesdwin/nowicket/examples/guide/pages/wicket/forminput/FormInputTest.java">FormInputTest</a>
-			class.
+			needs to be confirmed (there is also a junit test for this, see <a
+				target="_blank"
+				href="https://github.com/subes/invesdwin-nowicket/blob/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/test/java/de/invesdwin/nowicket/examples/guide/pages/wicket/forminput/FormInputTest.java">FormInputTest.java</a>).
+			Regarding internationalization, we go a bit further than the wicket
+			example by showing you how to use GuiService.i18n() in models and
+			wicket:message in the html despite the usual label properties
+			demonstrated by wicket.
 		</p>
 		<form class="form-horizontal" wicket:id="form">
 			<div wicket:id="modal"></div>
