@@ -1,4 +1,4 @@
-# invesdwin-nowicket
+# invesdwin-NoWicket
 A [naked objects](https://en.wikipedia.org/wiki/Naked_objects) framework for wicket that enables developers to write less boilerplate wicket code during implementation of complex websites. Without sacrificing the flexibility and control you are used from wicket. Improving productivity by a measurable factor and making wicket more fun.
 
 ## Maven
