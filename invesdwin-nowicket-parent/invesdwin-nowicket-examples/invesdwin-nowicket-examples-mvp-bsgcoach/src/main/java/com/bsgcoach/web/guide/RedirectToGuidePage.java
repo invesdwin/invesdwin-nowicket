@@ -1,15 +1,14 @@
-package com.bsgcoach.web;
+package com.bsgcoach.web.guide;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.request.flow.RedirectToUrlException;
+import com.bsgcoach.web.ABsgCoachWebPage;
 
 @NotThreadSafe
 public class RedirectToGuidePage extends ABsgCoachWebPage {
 
     public RedirectToGuidePage() {
         super(null);
-        throw new RedirectToUrlException("http://invesdwin.de/nowicket/");
     }
 
 }

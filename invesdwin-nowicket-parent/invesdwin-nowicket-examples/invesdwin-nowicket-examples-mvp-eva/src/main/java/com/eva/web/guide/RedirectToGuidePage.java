@@ -1,15 +1,14 @@
-package com.eva.web;
+package com.eva.web.guide;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.request.flow.RedirectToUrlException;
+import com.eva.web.AEvaWebPage;
 
 @NotThreadSafe
 public class RedirectToGuidePage extends AEvaWebPage {
 
     public RedirectToGuidePage() {
         super(null);
-        throw new RedirectToUrlException("http://invesdwin.de/nowicket/");
     }
 
 }

@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.examples.guide.pages.mvp;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.apache.wicket.request.resource.PackageResourceReference;
 
 import de.invesdwin.nowicket.examples.guide.pages.AExampleWebPage;
@@ -15,7 +14,6 @@ public class RedirectToMvpEvaPage extends AExampleWebPage {
 
     public RedirectToMvpEvaPage() {
         super(null);
-        throw new RedirectToUrlException("http://invesdwin.de/nowicket-examples-mvp-eva/");
     }
 
 }

@@ -13,6 +13,7 @@ import com.eva.web.dashboard.DashboardPage;
 import com.eva.web.details.DetailsPage;
 import com.eva.web.feedback.FeedbackPage;
 import com.eva.web.footer.FooterPanel;
+import com.eva.web.guide.RedirectToGuidePage;
 import com.eva.web.pleasewait.PleaseWaitPage;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;

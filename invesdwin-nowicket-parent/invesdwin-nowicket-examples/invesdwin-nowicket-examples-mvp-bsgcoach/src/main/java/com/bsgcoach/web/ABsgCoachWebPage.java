@@ -12,6 +12,7 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
 import com.bsgcoach.web.footer.FooterPanel;
+import com.bsgcoach.web.guide.RedirectToGuidePage;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
@@ -41,8 +42,7 @@ public abstract class ABsgCoachWebPage extends AWebPage {
         navbar.setBrandImage(LOGO, Model.of("bsg-coach"));
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
-                new NavbarButton<Void>(RedirectToGuidePage.class, Model.of("Home"))
-                        .setIconType(GlyphIconType.home)));
+                new NavbarButton<Void>(RedirectToGuidePage.class, Model.of("Home")).setIconType(GlyphIconType.home)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(ABaseWebApplication.get().getHomePage(), Model.of("Get Feedback"))
                         .setIconType(GlyphIconType.upload)));
