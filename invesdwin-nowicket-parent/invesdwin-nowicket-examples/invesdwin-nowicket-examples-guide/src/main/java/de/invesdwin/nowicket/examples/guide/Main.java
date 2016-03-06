@@ -29,9 +29,12 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 @Immutable
 public class Main {
 
-    public static void main(final String[] args) {
+    static {
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
+    }
+
+    public static void main(final String[] args) {
         SpringApplication.run(Main.class, args);
     }
 

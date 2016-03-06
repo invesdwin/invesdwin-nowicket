@@ -198,7 +198,8 @@ public class FormInput extends AValueObject {
     }
 
     /**
-     * Forced makes the button work even if validation errors are on the page
+     * Forced makes the button work even if validation errors are on the page; See FormInputTest for a model test case
+     * on this.
      */
     @Forced
     public void reset() {
