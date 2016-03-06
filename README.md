@@ -18,4 +18,4 @@ Dependency declaration:
 ```
 ## Documentation
 
-[We prepared a nice guide for you here.](http://invesdwin.de/nowicket/)
+# There is a nice guide alailable [here](http://invesdwin.de/nowicket/).
