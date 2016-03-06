@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -125,15 +126,20 @@ public abstract class AExampleWebPage extends AWebPage {
                         final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(RedirectToMvpBsgcoachPage.class,
-                                new ResourceModel("menu.bsgcoach").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.link));
+                                new ResourceModel("menu.bsgcoach").wrapOnAssignment(navbar)));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(RedirectToMvpEvaPage.class,
-                                new ResourceModel("menu.eva").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.link));
+                                new ResourceModel("menu.eva").wrapOnAssignment(navbar)));
                         return subMenu;
                     }
 
-                }.setIconType(FontAwesomeIconType.star)));
+                    @Override
+                    protected Component newButtonLabel(final String markupId, final IModel<?> labelModel) {
+                        final Label label = (Label) super.newButtonLabel(markupId, labelModel);
+                        label.setEscapeModelStrings(false);
+                        return label;
+                    }
+
+                }));
 
         return navbar;
     }
