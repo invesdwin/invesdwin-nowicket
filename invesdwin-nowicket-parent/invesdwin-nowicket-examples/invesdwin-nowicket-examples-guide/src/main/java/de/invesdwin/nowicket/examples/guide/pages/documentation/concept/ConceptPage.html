@@ -6,72 +6,69 @@
 		<form class="form-horizontal" wicket:id="form">
 			<!-- <div wicket:id='feedback'></div>  -->
 			<div wicket:id="modal"></div>
-
-			<legend>
-				<h1>1) Concept</h1>
-			</legend>
-			<p>The following text can be seen as a concept documentation. It
-				explains foundational decisions, as well as design and architecture
-				patterns used by the framework. It helps in understanding the ideas
-				behind the framework and how it is supposed to work.</p>
-
-			<h2>Domain Driven Design</h2>
-			<p>
-				One of the largest problems in software projects is not technology,
-				but language and semantics. One might think it is easy to build
-				great products with great tools, but this will ultimately fail when
-				requirements are misunderstood or the code is unmaintainable over
-				the long term. Just because it does not reflect the problem domain
-				well enough for which it is purposed. <a target="_blank"
-					href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain
-					Driven Design (DDD)</a> tackles this problem by providing best
-				practices for understanding the domain and utilizing that knowledge
-				throughout the whole development process. It gives guidelines about
-				how to make communication easier by defining an <a target="_blank"
-					href="http://martinfowler.com/bliki/UbiquitousLanguage.html">ubiquitious
-					language</a>. This ubiquitous language is used by all team members,
-				including domain experts and engineers, to prevent miscommunication
-				that originates from different vocabulary being used. Engineers
-				represent the domain knowledge in a <a target="_blank"
-					href="http://martinfowler.com/eaaCatalog/domainModel.html">domain
-					model</a>. This can be done by creating documentation with the <a
-					target="_blank"
-					href="https://en.wikipedia.org/wiki/Unified_Modeling_Language">Unified
-					Modeling Language (UML)</a> using class diagrams, activity diagrams and
-				such, then translating it to code following the DDD principles
-				either manually or using <a target="_blank"
-					href="https://en.wikipedia.org/wiki/Model-driven_architecture">Model
-					Driven Architecture (MDA)</a> and <a target="_blank"
-					href="https://en.wikipedia.org/wiki/Model-driven_software_development">Model
-					Driven Software Development (MDSD)</a>. Alternatively you can simply do
-				this in your mind without any modeling or code generation tools,
-				skipping the intermediate step and translating the model directly
-				into code. In any case the idea here is to use the ubiquitous
-				language and domain model consistently for communication,
-				documentation and code.
-			</p>
-
-			<p>
-				One of the problems of the <a target="_blank"
-					href="http://www.infoq.com/minibooks/domain-driven-design-quickly">DDD
-					introductory literature</a> is that it focuses a lot on the <a
-					target="_blank"
-					href="https://en.wikipedia.org/wiki/Multilayered_architecture">business
-					layer (which they call domain layer)</a> and thus more on the <a
-					target="_blank"
-					href="http://9gag.com/gag/anBWx6o/front-end-vs-back-end">backend
-					side of application development</a>. No criticism here, since their
-				patterns there are great and the idea of using a distinction between
-				value objects, entities, repositories and services (among a few
-				more) helps structuring that side of applications a lot. But DDD can
-				be applied to the presentation layer as well with great benefits.
-				When researching in that direction, one easily stumbles upon the
-				next pattern this framework is based on, the ...
-			</p>
-
-			<h2>Naked Objects Pattern</h2>
-
-			<!-- 
+			<div class="jumbotron">
+				<legend>
+					<h2>1) Concept</h2>
+				</legend>
+				<p style="font-size: medium">The following text can be seen as a
+					concept documentation. It explains foundational decisions, as well
+					as design and architecture patterns used by the framework. It helps
+					in understanding the ideas behind the framework and how it is
+					supposed to work.</p>
+				<h3>1.1) Domain Driven Design</h3>
+				<p style="font-size: medium">
+					One of the largest problems in software projects is not technology,
+					but language and semantics. One might think it is easy to build
+					great products with great tools, but this will ultimately fail when
+					requirements are misunderstood or the code is unmaintainable over
+					the long term. Just because it does not reflect the problem domain
+					well enough for which it is purposed. <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain
+						Driven Design (DDD)</a> tackles this problem by providing best
+					practices for understanding the domain and utilizing that knowledge
+					throughout the whole development process. It gives guidelines about
+					how to make communication easier by defining an <a target="_blank"
+						href="http://martinfowler.com/bliki/UbiquitousLanguage.html">ubiquitious
+						language</a>. This ubiquitous language is used by all team members,
+					including domain experts and engineers, to prevent miscommunication
+					that originates from different vocabulary being used. Engineers
+					represent the domain knowledge in a <a target="_blank"
+						href="http://martinfowler.com/eaaCatalog/domainModel.html">domain
+						model</a>. This can be done by creating documentation with the <a
+						target="_blank"
+						href="https://en.wikipedia.org/wiki/Unified_Modeling_Language">Unified
+						Modeling Language (UML)</a> using class diagrams, activity diagrams
+					and such, then translating it to code following the DDD principles
+					either manually or using <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Model-driven_architecture">Model
+						Driven Architecture (MDA)</a> and <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Model-driven_software_development">Model
+						Driven Software Development (MDSD)</a>. Alternatively you can simply
+					do this in your mind without any modeling or code generation tools,
+					skipping the intermediate step and translating the model directly
+					into code. In any case the idea here is to use the ubiquitous
+					language and domain model consistently for communication,
+					documentation and code.
+				</p>
+				<p style="font-size: medium">
+					One of the problems of the <a target="_blank"
+						href="http://www.infoq.com/minibooks/domain-driven-design-quickly">DDD
+						introductory literature</a> is that it focuses a lot on the <a
+						target="_blank"
+						href="https://en.wikipedia.org/wiki/Multilayered_architecture">business
+						layer (which they call domain layer)</a> and thus more on the <a
+						target="_blank"
+						href="http://9gag.com/gag/anBWx6o/front-end-vs-back-end">backend
+						side of application development</a>. No criticism here, since their
+					patterns there are great and the idea of using a distinction
+					between value objects, entities, repositories and services (among a
+					few more) helps structuring that side of applications a lot. But
+					DDD can be applied to the presentation layer as well with great
+					benefits. When researching in that direction, one easily stumbles
+					upon the next pattern this framework is based on, the ...
+				</p>
+				<h3>1.2) Naked Objects Pattern</h3>
+				<!-- 
 - Naked Objects Pattern
   -- 2 graphics for comparison
   -- example class diagram
@@ -87,7 +84,24 @@
     -- binding generator (wicket) -> html processor (jsoup)
     -- registries
                  -->
-
+				<br>
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToIntroduction">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br>
+			</div>
 		</form>
 	</wicket:extend>
 </body>
