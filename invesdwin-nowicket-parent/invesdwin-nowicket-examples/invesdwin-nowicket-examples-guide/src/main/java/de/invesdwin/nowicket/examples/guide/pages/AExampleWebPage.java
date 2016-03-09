@@ -22,7 +22,9 @@ import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.examples.guide.pages.documentation.concept.ConceptPage;
 import de.invesdwin.nowicket.examples.guide.pages.footer.FooterPanel;
+import de.invesdwin.nowicket.examples.guide.pages.home.HomePage;
 import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpBsgcoachPage;
 import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpEvaPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxchoice.AjaxChoicePage;
@@ -51,6 +53,37 @@ public abstract class AExampleWebPage extends AWebPage {
 
         final Navbar navbar = super.newNavbar(id);
         navbar.setBrandName(Model.of(TITLE));
+
+        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
+                new NavbarDropDownButton(new ResourceModel("menu.documentation")) {
+
+                    @Override
+                    public boolean isActive(final Component item) {
+                        return false;
+                    }
+
+                    @Override
+                    protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
+                        final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(HomePage.class,
+                                new ResourceModel("menu.introduction").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.home));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(ConceptPage.class,
+                                new ResourceModel("menu.concept").wrapOnAssignment(navbar)));
+
+                        return subMenu;
+                    }
+
+                    @Override
+                    protected Component newButtonLabel(final String markupId, final IModel<?> labelModel) {
+                        final Label label = (Label) super.newButtonLabel(markupId, labelModel);
+                        label.setEscapeModelStrings(false);
+                        return label;
+                    }
+
+                }));
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarDropDownButton(new ResourceModel("menu.wicket.examples")) {
