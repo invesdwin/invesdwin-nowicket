@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.examples.guide.pages.documentation.concept;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.examples.guide.pages.documentation.wicketintegration.WicketIntegration;
 import de.invesdwin.nowicket.examples.guide.pages.home.Home;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -14,8 +15,8 @@ public class Concept extends AValueObject {
         return new Home();
     }
 
-    public Object readNextChapter() {
-        return null;
+    public WicketIntegration readNextChapter() {
+        return new WicketIntegration();
     }
 
     public String getContractModel2UIImg() {

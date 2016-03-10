@@ -23,6 +23,7 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.concept.ConceptPage;
+import de.invesdwin.nowicket.examples.guide.pages.documentation.wicketintegration.WicketIntegrationPage;
 import de.invesdwin.nowicket.examples.guide.pages.footer.FooterPanel;
 import de.invesdwin.nowicket.examples.guide.pages.home.HomePage;
 import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpBsgcoachPage;
@@ -67,6 +68,9 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(ConceptPage.class,
                                 new ResourceModel("menu.concept").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(WicketIntegrationPage.class,
+                                new ResourceModel("menu.wicketintegration").wrapOnAssignment(navbar)));
 
                         return subMenu;
                     }
