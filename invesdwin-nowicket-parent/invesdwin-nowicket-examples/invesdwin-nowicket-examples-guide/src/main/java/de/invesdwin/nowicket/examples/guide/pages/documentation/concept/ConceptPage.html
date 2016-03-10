@@ -159,19 +159,19 @@
 					them with UI specific annotations and methods for e.g.:
 				<ul>
 					<li>ordering of fields</li>
+					<li>internationalizing strings</li>
 					<li>providing choices for comboboxes</li>
 					<li>retrieving data from tables or saving data to tables</li>
-					<li>internationalizing strings</li>
 					<li>converting the data into a different form to be displayed</li>
 					<li>opening modal dialogs or displaying status messages</li>
 				</ul>
 				This for example has the following drawbacks: <br> <br>
 				<ul>
-					<li>you cannot reuse your existing entities for new view,
-						since they might not match in structure</li>
-					<li>you want to need repositories or services from your entity
-						while your architecture suggests keeping them stupid for data
-						holding purposes only</li>
+					<li>you cannot reuse your existing (maybe legacy) entities for
+						new views, since they might not match in structure</li>
+					<li>you might need to call repositories or services from your
+						entity while your architecture suggests keeping them stupid, for
+						data holding purposes only</li>
 					<li>you might accidentially mix the DDD concepts of service,
 						repository and entity and put everything in your entities</li>
 					<li>you cannot reuse the entities easily in other modules
@@ -182,8 +182,10 @@
 						components when they are bound to a specific persistence layer
 						framework</li>
 					<li>some entity hierarchies might be so complex that they have
-						to be split among multiple views/tabs/wizards or you want
-						different perspectives on the same data</li>
+						to be split among multiple views/tabs/wizards, each having
+						different requirements on the model and needs to hide things</li>
+					<li>you may want different perspectives on the same data but
+						the entity class does not match all perspectives properly</li>
 				</ul>
 				Here the <a target="_blank"
 					href="http://www.cs.sjsu.edu/faculty/pearce/mfc/chp3/chapter3.htm">Document
