@@ -14,4 +14,8 @@ public class Home extends AValueObject {
         return new Concept();
     }
 
+    public String title() {
+        return "Introduction";
+    }
+
 }

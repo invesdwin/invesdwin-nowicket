@@ -18,4 +18,12 @@ public class Concept extends AValueObject {
         return null;
     }
 
+    public String getContractModel2UIImg() {
+        return "ContractModel2UI.png";
+    }
+
+    public String getNakedObjectsVsMvcImg() {
+        return "NakedObjectsVsMVC.png";
+    }
+
 }

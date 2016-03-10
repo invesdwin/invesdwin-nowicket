@@ -68,8 +68,142 @@
 					upon the next pattern this framework is based on, the ...
 				</p>
 				<h3>1.2) Naked Objects Pattern</h3>
+				<p style="font-size: medium">
+					The <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Naked_objects">Naked
+						Objects Pattern</a> is building on the premise, that a good domain
+					model is suitable to be externalized as a user unterface. And vice
+					versa that the requirement of externalizing it, results in a better
+					domain model. How this externalization of a domain model looks like
+					in practice is demonstrated by the following example:
+				</p>
+				<hr>
+				<h4 style="text-align: center">Domain Model Gets Converted to
+					User Interface</h4>
+				<img style="border: solid 1px; background: white"
+					alt="Domain Model Gets Converted to
+					User Interface"
+					wicket:id="contractModel2UIImg" width="100%" />
+				<hr>
+				<p style="font-size: medium">Here you see that:
+				<ul>
+					<li>each class is represented individually as an area in the
+						UI</li>
+					<li>getters and setters result in input fields</li>
+					<li>a list of contracts associated with the customer results
+						in a table being displayed</li>
+					<li>action methods result in buttons.</li>
+				</ul>
+				For this to work, you will notice that the domain model not only
+				contains the state (properties), but also the logic about how to
+				manipulate it (actions). The model thus becomes intelligent and the
+				Naked Objects Pattern uses that intelligence to make it available as
+				an user interface (UI). To understand this better, please see the
+				next graphic for a comparison of applications based on the <a
+					target="_blank"
+					href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model
+					View Controller (MVC) Pattern</a> and applications based on the Naked
+				Objects Pattern:
+				</p>
+				<hr>
+				<h4 style="text-align: center">MVC vs Naked Objects in a
+					Layered Architecture</h4>
+				<img style="border: solid 1px"
+					alt="MVC vs Naked Objects in a Layered Architecture"
+					wicket:id="nakedObjectsVsMvcImg" width="100%" />
+				<hr>
+				<p style="font-size: medium">With this it becomes apparent what
+					the Naked Objects Pattern is aiming for. By being able to match the
+					views to the models, you can completely remove the controller layer
+					and automate it using binding conventions to the intelligent
+					models. The application thus becomes simpler to understand and
+					easier to maintain, since you are forced not to allow the clutter
+					between the view and model to appear in the first place. In MVC,
+					the controller layer is normally implemented to handle differences
+					in the layers, but the Naked Objects Pattern makes this obsolete.</p>
+				<h3>1.3) RAD & CRUD vs Naked Objects</h3>
+				<p style="font-size: medium">
+					The Naked Objects Pattern goes even further conceptually and says
+					it can completely generate the view for you based on those binding
+					conventions. In practice this idea is often manifested in <a
+						target="_blank"
+						href="https://en.wikipedia.org/wiki/Rapid_application_development">Rapid
+						Application Deveopment (RAD)</a> and <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">Create
+						Read Update Delete (CRUD)</a> frameworks. When they also promise to
+					provide data driven user interfaces, you will mostly see fancy
+					looking web pages with lots of tables that display database
+					entities with common data manipulation facilities you are used from
+					CRUD. Those frameworks sure are nice for CRUD applications, but
+					fail miserably for more complex and customized user interfaces. As
+					soon as you try to deviate from their chosen conventions and try to
+					extend their views or even modify them, these frameworks will in
+					the worst case make it so hard for you, that you are forced to
+					writing your view from scratch in those special cases. RAD and
+					rapid prototyping is nice and this framework is also useable in
+					this direction, but a good framework should give you the freedom to
+					extend and modify the generated views as easily as possible. The
+					idea to provide this freedom in this framework is by embracing
+					wicket instead of hiding its existence, thus still making easily
+					accessible everything you can do with wicket. Since wicket is a MVC
+					framework, applying the Naked Objects Pattern on it is easy and has
+					to just focus on automating parts of the Controller and View for
+					you while still allowing you to use your own code as a replacement
+					for the defaults where needed.
+				</p>
+				<h3>1.4) Document View Architecture</h3>
+				<p style="font-size: medium">One more problem with many CRUD
+					frameworks is that they usually bind to entities from the
+					persistence layer and are thus interwoven with the data management.
+					When you want to use entities for the UI you might have to extend
+					them with UI specific annotations and methods for e.g.:
+				<ul>
+					<li>ordering of fields</li>
+					<li>providing choices for comboboxes</li>
+					<li>retrieving data from tables or saving data to tables</li>
+					<li>internationalizing strings</li>
+					<li>converting the data into a different form to be displayed</li>
+					<li>opening modal dialogs or displaying status messages</li>
+				</ul>
+				This for example has the following drawbacks: <br> <br>
+				<ul>
+					<li>you cannot reuse your existing entities for new view,
+						since they might not match in structure</li>
+					<li>you want to need repositories or services from your entity
+						while your architecture suggests keeping them stupid for data
+						holding purposes only</li>
+					<li>you might accidentially mix the DDD concepts of service,
+						repository and entity and put everything in your entities</li>
+					<li>you cannot reuse the entities easily in other modules
+						since they are bound to your UI framework</li>
+					<li>refactorings in your UI might lead to refactorings in your
+						database and vice versa</li>
+					<li>it is not easy to write reuseable wicket pages, panels and
+						components when they are bound to a specific persistence layer
+						framework</li>
+					<li>some entity hierarchies might be so complex that they have
+						to be split among multiple views/tabs/wizards or you want
+						different perspectives on the same data</li>
+				</ul>
+				Here the <a target="_blank"
+					href="http://www.cs.sjsu.edu/faculty/pearce/mfc/chp3/chapter3.htm">Document
+					View Architecture</a> comes in handy. Instead of putting everything
+				into your entities and using them as your models for the UI, you
+				implement documents that match directly to the desired views you
+				want. The documents handle data retrieval and manipulation using
+				services and repositories and provide adjusted data from the
+				entities where needed or just delegate to those directly where
+				appropriate. The documents can even reuse entity classes completely
+				where possible and extend them from the outside by providing
+				additions and overrides for the nested properties and actions.
+				Applying the Document View Architecture enables this framework to
+				give you the freedom of choosing your own frameworks for the
+				business and persistence layer. This makes it a lightweight web
+				framework instead of a complete development platform.
+				</p>
 				<!-- 
-- Naked Objects Pattern
+
+				- Naked Objects Pattern
   -- 2 graphics for comparison
   -- example class diagram
   -- with example ui corresponding to it
@@ -84,7 +218,7 @@
     -- binding generator (wicket) -> html processor (jsoup)
     -- registries
                  -->
-				<br>
+				<br />
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">
@@ -100,7 +234,7 @@
 						</div>
 					</div>
 				</fieldset>
-				<br>
+				<br />
 			</div>
 		</form>
 	</wicket:extend>

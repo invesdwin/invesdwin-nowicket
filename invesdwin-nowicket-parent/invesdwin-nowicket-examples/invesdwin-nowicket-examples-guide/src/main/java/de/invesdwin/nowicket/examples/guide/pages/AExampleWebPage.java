@@ -58,11 +58,6 @@ public abstract class AExampleWebPage extends AWebPage {
                 new NavbarDropDownButton(new ResourceModel("menu.documentation")) {
 
                     @Override
-                    public boolean isActive(final Component item) {
-                        return false;
-                    }
-
-                    @Override
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
                         final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
 
@@ -87,11 +82,6 @@ public abstract class AExampleWebPage extends AWebPage {
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarDropDownButton(new ResourceModel("menu.wicket.examples")) {
-
-                    @Override
-                    public boolean isActive(final Component item) {
-                        return false;
-                    }
 
                     @Override
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
@@ -148,11 +138,6 @@ public abstract class AExampleWebPage extends AWebPage {
 
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarDropDownButton(new ResourceModel("menu.mvp.examples")) {
-
-                    @Override
-                    public boolean isActive(final Component item) {
-                        return false;
-                    }
 
                     @Override
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
