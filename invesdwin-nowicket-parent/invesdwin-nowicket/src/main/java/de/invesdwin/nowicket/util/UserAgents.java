@@ -19,7 +19,8 @@ public final class UserAgents {
     }
 
     public static boolean isBot(final String userAgent) {
-        return Strings.containsAnyIgnoreCase(userAgent, "bot", "crawl", "slurp", "spider");
+        return Strings.containsAnyIgnoreCase(Strings.stripNonAlphanumeric(userAgent), "bot", "crawl", "slurp", "spider",
+                "google", "yahoo", "bing");
     }
 
 }
