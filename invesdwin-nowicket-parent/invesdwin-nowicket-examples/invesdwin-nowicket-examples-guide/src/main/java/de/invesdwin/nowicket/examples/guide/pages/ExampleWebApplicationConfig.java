@@ -12,11 +12,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.examples.guide.Main;
+import de.invesdwin.nowicket.examples.guide.pages.documentation.introduction.IntroductionPage;
 import de.invesdwin.nowicket.examples.guide.pages.error.AccessDeniedPage;
 import de.invesdwin.nowicket.examples.guide.pages.error.InternalErrorPage;
 import de.invesdwin.nowicket.examples.guide.pages.error.PageExpiredPage;
 import de.invesdwin.nowicket.examples.guide.pages.error.PageNotFoundPage;
-import de.invesdwin.nowicket.examples.guide.pages.home.HomePage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.ExampleSignInPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.ExampleSignOutPage;
 
@@ -24,7 +24,7 @@ import de.invesdwin.nowicket.examples.guide.pages.wicket.authentication.ExampleS
 public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
     @Override
     public Class<? extends WebPage> getHomePage() {
-        return HomePage.class;
+        return IntroductionPage.class;
     }
 
     @Override

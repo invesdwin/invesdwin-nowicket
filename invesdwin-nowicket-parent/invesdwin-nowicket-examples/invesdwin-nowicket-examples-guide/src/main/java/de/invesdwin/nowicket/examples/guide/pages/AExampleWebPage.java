@@ -23,9 +23,9 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.concept.ConceptPage;
+import de.invesdwin.nowicket.examples.guide.pages.documentation.introduction.IntroductionPage;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.wicketintegration.WicketIntegrationPage;
 import de.invesdwin.nowicket.examples.guide.pages.footer.FooterPanel;
-import de.invesdwin.nowicket.examples.guide.pages.home.HomePage;
 import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpBsgcoachPage;
 import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpEvaPage;
 import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxchoice.AjaxChoicePage;
@@ -62,7 +62,7 @@ public abstract class AExampleWebPage extends AWebPage {
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
                         final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
 
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(HomePage.class,
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(IntroductionPage.class,
                                 new ResourceModel("menu.introduction").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.home));
 

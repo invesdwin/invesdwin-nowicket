@@ -12,9 +12,9 @@
 				</legend>
 				<p style="font-size: medium">
 					This chapter explains how the previously explained concept is
-					applied to wicket. It expects the reader to be familiar with <a
+					applied to Wicket. It expects the reader to be familiar with <a
 						target="_blank"
-						href="https://ci.apache.org/projects/wicket/guide/8.x/guide/single.html">wicket
+						href="https://ci.apache.org/projects/wicket/guide/8.x/guide/single.html">Wicket
 						core concepts</a> and shows how they are extended and improved by this
 					framework.
 				</p>
@@ -54,7 +54,7 @@
 								<li>The <b>GuiService</b> class allows you to display
 									messages, show modals, do extended internationalization and do
 									page redirects from anywhere without making your model code
-									aware of any wicket specific details.
+									aware of any Wicket specific details.
 								</li>
 								<li>Add <a target="_blank"
 									href="http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/"><b>BeanValidation</b>
@@ -65,10 +65,10 @@
 									existing values from your model.
 								</li>
 								<li>Add <b>utility elements</b> for dynamic hide, disable,
-									tooltip, title utility elements to enhance your view logic. You
-									can also access the wicket RequestCycle, WebApplication and
-									WebSession from anywhere. The <b>Roles</b> class allows you to
-									check user permissions from anywhere.
+									tooltip and titles to enhance your view logic. You can also
+									access the Wicket RequestCycle, WebApplication and WebSession
+									from anywhere. The <b>Roles</b> class allows you to check user
+									permissions from anywhere.
 								</li>
 								<li>Throw <b>checked exceptions</b> with messages from your
 									action elements to show the user default error dialogs. You can
@@ -98,7 +98,7 @@
 								</li>
 								<li>You can also write <b>headless unit tests</b> on those
 									models using a mocked GuiService and the WicketTester (only for
-									providing the wicket context, not for actual rendering) to
+									providing the Wicket context, not for actual rendering) to
 									validate your model behavior.
 								</li>
 							</ul>
@@ -109,21 +109,36 @@
 								Call</b>
 						</h5>
 						<div style="font-weight: normal">
-							For each of your model classes, create a corresponding wicket
+							For each of your model classes, create a corresponding Wicket
 							page or panel class that calls the <b>GeneratedBinding</b> inside
-							its constructor. Despite this, you normally don't have to much
-							more on the wicket side of things. But if you need to afterall,
-							you can extend this by the following means:
+							its constructor. This will process the HTML file using the <a
+								target="_blank"
+								href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor
+								Pattern</a>, find all Wicket IDs, match them against the model
+							elements and instantiate components for them while creating a
+							dynamic component tree according to the markup hierarchy. Despite
+							this automated binding, you normally don't have to much more on
+							the Wicket side of things. But if you need to afterall, you can
+							extend this by the following means:
 							<ul>
 								<li>Register a <b>BindingInterceptor</b> with which you can
-									substitute default components by specific wicket ids. When you
-									have added more wicket ids to the html than represented in the
+									substitute default components by specific Wicket IDs. When you
+									have added more Wicket IDs to the HTML than represented in the
 									model class, you can bind them using this mechamism too.
-									Otherwise wicket would complain about missing components at
-									runtime. You can even register default BindingInterceptors for
-									your whole web application.
+									Otherwise Wicket would complain about missing components at
+									runtime. All component classes follow the convention used by
+									Wicket to be <a target="_blank"
+									href="https://programmingideaswithjake.wordpress.com/2014/12/06/designing-classes-for-extension/"><b>designed
+											for extension</b></a> and thus allow you to change everything about
+									them.
 								</li>
-								<li>Make use of the various <b>registries</b> for html
+								<li>You can even register default BindingInterceptors for
+									your whole web application in the <b>GeneratedBindingDefaults</b>
+									class. There you can also change the error handling for action
+									elements which normally shows a message box on checked
+									exceptions.
+								</li>
+								<li>Make use of the various <b>registries</b> for HTML
 									components, model elements and so on to get your metadata and
 									generic binding for the model, or just use the model object
 									directly and hard code the binding. You can access the dynamic
@@ -131,15 +146,45 @@
 									elements those registries contain and call getters/setter in a
 									nullsafe fashion.
 								</li>
-								<li>Do anything you are used to from <b>wicket</b>, like
+								<li>Do anything you are used to from <b>Wicket</b>, like
 									inheriting from a base page, handling page parameters, doing
 									crazy component hierarchy manipulation, adding behaviors,
-									dynamically modify html tags or css classes.
+									dynamically modify HTML tags or CSS classes.
+								</li>
+								<li>Use <b>I18nModel</b> to reference internationalization
+									properties dynamically, or do the normal Wicket
+									internationalization things.
 								</li>
 								<li>Use the <a target="_blank"
 									href="https://github.com/wicketstuff/core/wiki/Annotation"><b>@MountPath</b></a>
 									annotation to beautify the bookmarked URL or use <b>@AuthorizeInstantiation</b>
 									to secure the page for specific user roles.
+								</li>
+								<li>Register new pages in your website navigation menu
+									inside the base page your created, which should extend <b>AWebPage</b>.
+									You can also change the page format from container to <b>container-fluid</b>
+									there, add tracking code to your pages, provide a locale
+									switcher, modify the themes or change the ajax busy indicator (<b>AjaxIndicatorAppender</b>)
+									instance used.
+								</li>
+								<li>Change page processing settings in the web application
+									using a <b>WebApplicationInitializer</b> override in your
+									IWebApplicationConfig. You can also customize the session, the
+									favicon, home page, authentication manager, error pages and
+									sign in/sign out pages in the config class. Override the <b>BootstrapExtensionsHeaderContributor</b>
+									to remove features like autofocus, enter keyboard binding,
+									allowing copy/paste on disabled inputs, disabling components
+									during ajax calls and retrying ajax calls on connection loss
+									with <a target="_blank"
+									href="http://github.hubspot.com/offline/docs/welcome/"><b>Offline.js</b></a>
+									(useful for mobile connections).
+								</li>
+								<li>We separated the <b>IWebApplicationConfig</b> from the
+									WebApplication itself to allow reuse of web.xml configurations,
+									which need to have a fixed path to your WebApplication class.
+									This eases configuration in a multi module project structure
+									and allows you to replace the config class dynamically using a
+									dependency injection context if desired.
 								</li>
 							</ul>
 						</div></li>
@@ -151,12 +196,12 @@
 							Run the main or test class you have setup for the generator. It
 							processes your model classes using the <a
 								href="https://en.wikipedia.org/wiki/Visitor_pattern"><b>Visitor
-									Pattern</b></a> and generate the html and properties files for them. If
-							those files already exist, the generator will merge new things
+									Pattern</b></a> and generates the HTML and properties files for them.
+							If those files already exist, the generator will merge new things
 							into those files at the end without touching the things you
 							edited. The generator will never remove things from the output
 							files, if you refactor your model, you might have to refactor
-							your html wicket ids as well or remove old things to regenerate
+							your HTML Wicket IDs as well or remove old things to regenerate
 							them. You can use the following variations of the generator:
 							<ul>
 								<li><b>SpecifiedGeneratedMarkup:</b> Use this class to
@@ -178,17 +223,213 @@
 					<li><h5>
 							<b>Modify HTML and Properties</b>
 						</h5>
-						<div style="font-weight: normal">bla bla</div></li>
+						<div style="font-weight: normal">
+							Edit the generated files:
+							<ul>
+								<li>Adjust the order of components and put everything where
+									it belongs in the <b>bootstrap grid layout</b>. You can also
+									use WYSIWYG tools, just add a reference to the bootstrap CSS in
+									the file header if desired. Or remove all bootstrap tags and go
+									back to the table layout if desired.
+								</li>
+								<li><b>Modify tags</b> to change the components that should
+									appear in the website. The GeneratedBinding will adjust itself
+									automatically as needed and as logically possible.</li>
+								<li>Add the <b>btn-primary</b> CSS class to the button you
+									want to get a keyboard binding on the enter button.
+								</li>
+								<li>Put the <b>autofocus</b> attribute to an input to
+									change the default autofocus behavior. Add it to a hidden input
+									to disable autofocus.
+								</li>
+								<li>Remove unneeded tags or add your own <b>Wicket IDs</b>
+									that you want to bind manually using a BindingInterceptor.
+								</li>
+								<li>Internationalize the markup by adding <a
+									target="_blank"
+									href="https://cwiki.apache.org/confluence/display/WICKET/Everything+about+Wicket+internationalization"><b>wicket:message</b></a>
+									tags and enhance the properties file as you need. Duplicate the
+									properties file for other locales. You could also add more
+									property elements to your model class for internationalization
+									purposes.
+								</li>
+								<li>Uncomment the <b>feedback</b> tag to get one place for
+									validation messages. Remove the gridcolumn tags around your
+									inputs to prevent validation messages from appearing inline.
+								</li>
+							</ul>
+						</div></li>
 					<br>
 					<li><h5>
 							<b>Start Web Server and View Page</b>
 						</h5>
-						<div style="font-weight: normal">bla bla</div></li>
+						<div style="font-weight: normal">
+							To verify that your page renders properly and that it behaves as
+							expected, there is no way around manually checking it in the
+							browser. Start an <a target="_blank"
+								href="http://www.hascode.com/2013/07/embedding-jetty-or-tomcat-in-your-java-application/">embedded
+								web server</a> with Jetty or Tomcat, integrate them via their <a
+								href="http://geowarin.github.io/basic-configuration-for-jetty-and-tomcat-maven-plugins.html">maven
+								plugins</a> or deploy your application to a test server.
+							<ul>
+								<li>You could also use <a target="_blank"
+									href="https://zeroturnaround.com/software/jrebel/"><b>JRebel</b></a>
+									or at least use the <a target="_blank"
+									href="https://wiki.eclipse.org/FAQ_What_is_hot_code_replace%3F"><b>hot
+											code replacement</b></a> in the debug mode of your IDE to reduce the
+									amount of restarts you need while working on the web
+									application. Also use the <b>development config</b> of Wicket
+									to reduce the amount of caching done. If the page cache hinders
+									you, reset your session cookie to get a new session without
+									restarting the application. This can be done either by deleting
+									cookies in your browser, or by signing out and signing in again
+									in the application.
+								</li>
+								<li>With a Wicket <b>deployment config</b> the website will
+									automatically minify the HTML, CSS and JavaScript resources and
+									do lots of other performance optimizations.
+								</li>
+								<li>The application also handles web crawlers <a
+									target="_blank"
+									href="https://en.wikipedia.org/wiki/Search_engine_optimization"><b>Search
+											Engine Optimization (SEO)</b></a> friendly by reverting to <a
+									target="_blank"
+									href="http://stackoverflow.com/questions/14585858/is-renderstrategy-one-pass-render-a-reasonable-way-to-get-rid-of-page-version-pa">one
+										pass rendering</a> for agents that are identified as bots to
+									prevent redirect confusion in them.
+								</li>
+							</ul>
+						</div></li>
 					<br>
 					<li><h5>
 							<b>Page Looks and Works as Desired?</b>
 						</h5>
-						<div style="font-weight: normal">bla bla</div></li>
+						<div style="font-weight: normal">
+							Now it is time to try out the website and get a feel for it.
+							<ul>
+								<li>Do your <b>usability checks</b>. Verify that buttons,
+									modals, validations, behaviors, AJAX and status messages work
+									as expected. Check if you are missing some of the requirements
+									or did not implement them correctly.
+								</li>
+								<li>Test different browsers to see that bootstrap and <a
+									target="_blank" href="https://modernizr.com/"><b>modernizr</b></a>
+									do a good job at abstracting away inconsistencies. Verify that
+									the layout is responsive on smaller screens.
+								</li>
+								<li>Try to <b>disable JavaScript</b> in your browser to see
+									if the common Wicket ajax fallback functionality works. Where
+									possible, the framework automatically binds AJAX components
+									that have fallbacks, though not everything works this way.
+									Things that won't work are CSS based icons, dropdown buttons
+									and modals since they are dependant on JavaScript. But things
+									like button clicks and basic navigation will still work, which
+									should be enough for most bots to index your website properly.
+								</li>
+								<li>If you find something odd, just go back a few steps to
+									<b>modify/extend/refine</b> the appropriate files, rerun the
+									generator if needed and check again. Sometimes this is just a
+									matter of <a target="_blank"
+									href="http://memesvault.com/wp-content/uploads/I-Have-No-Idea-What-Im-Doing-Dog-01.jpg">trial
+										and error</a> in a <a target="_blank"
+									href="http://memegenerator.net/instance/58113873">feedback
+										loop</a>. As soon as you are satisfied, <a target="_blank"
+									href="http://img.memecdn.com/Ill-Get-That-Bro-Some-Beers_o_101677.jpg">go
+										grab a beer with some friends</a> and <a target="_blank"
+									href="http://memegenerator.net/instance/61707924">tell them
+										how satisfying</a> working with <a target="_blank"
+									href="http://www.smpsarizona.org/wp-content/uploads/2015/03/A-Bunch-of-Memes.png">Wicket
+										can be</a>.
+								</li>
+							</ul>
+						</div></li>
+				</ol>
+				</p>
+				<h3>2.2) Does it change Wickets internal processing?</h3>
+				<p style="font-size: medium">Not at all! Wicket still behaves as
+					usual and all artifacts you are used to are still present in your
+					project. Wickets internal processing is demonstrated by the
+					following graphic:</p>
+				<hr>
+				<h4 style="text-align: center">Wickets Internal Processing</h4>
+				<img
+					style="border: solid 1px; background: white; text-align: center; margin-left: 17.5%"
+					alt="Wickets Internal Processing"
+					wicket:id="wicketsInternalProcessingImg" width="65%" />
+				<hr>
+				<p style="font-size: medium">We will explain next at which steps
+					the NoWicket framework is active during Wickets internal
+					processing:
+				<ol style="font-weight: bold">
+					<li>Request:
+						<div style="font-weight: normal">As usual the web browser
+							asks the Wicket application to retrieve a page. The Wicket
+							application was setup using the NoWicket AWebApplication base
+							class and is thus configured according to your
+							IWebApplicationConfig. If no session is present yet, it creates a
+							new one for the client.</div>
+					</li>
+					<li>Lookup:
+						<div style="font-weight: normal">Then Wicket checks its page
+							store, if it finds a page, it returns it directly. The addition
+							here is that AWebApplication adds its own model aware session
+							page cache on top of the page store. So if a bookmarkable URL was
+							requested for which a new model was created, but that created
+							model matches in equality to a model from a previous page in the
+							page store, then that previous page instance is served instead of
+							returning a new page. The user will still see his UI state as it
+							previously was. So for example sorting information in a data
+							table will be the same as previously, data paging will still be
+							on the old page and validation messages will still be there. This
+							transforms dump links (ones without the ?{ID} parameter) into
+							page store aware links.</div>
+					</li>
+					<li>Locate:
+						<div style="font-weight: normal">If the page store was
+							empty, Wicket locates the appropriate page class to be served.</div>
+					</li>
+					<li>Parse:
+						<div style="font-weight: normal">Then it parses the
+							requested HTML template and sees what Wicket IDs need to be
+							provided as components by the page class.</div>
+					</li>
+					<li>Instantiate:
+						<div style="font-weight: normal">And instantiates the page
+							class to combine both. If the page was requested from a
+							bookmarkable link, then the page constructor without a model
+							argument will be used, where you will be responsible to create a
+							new moedl instance. Otherwise if this was an internal redirect
+							based on a model, then the page will be instantiated with a model
+							constructor where you will be responsible to use use it since it
+							might be specially configured from the redirecting code. Remember
+							from above that action elements in models and code using the
+							GuiService can do model based redirects.</div>
+					</li>
+					<li>Bind:
+						<div style="font-weight: normal">The page instance will then
+							build its component hierarchy corresponding to the HTML template
+							and bind values from the model into the HTML placeholders. Here
+							the GeneratedBinding takes place if you put it into the
+							constructor (otherwise you do it the classic Wicket way). The
+							binding might add other panels into the hierarchy which also have
+							their corresponding markup and initializations with a separate
+							GeneratedBinding taking place. In each case separate
+							BindingInterceptors and component modifications might be used.</div>
+					</li>
+					<li>Store:
+						<div style="font-weight: normal">When everything between the
+							HTML and the model is wired up, Wicket will put the new page
+							instance into the page store for future lookups.</div>
+					</li>
+					<li>Render:
+						<div style="font-weight: normal">Then it will render the
+							HTML document and put in the values from the model that were
+							wired.</div>
+					</li>
+					<li>Respond:
+						<div style="font-weight: normal">And finally it answers the
+							browser with the content requested.</div>
+					</li>
 				</ol>
 				</p>
 				<br />

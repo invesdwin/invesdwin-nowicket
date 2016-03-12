@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.examples.guide.pages.home;
+package de.invesdwin.nowicket.examples.guide.pages.documentation.introduction;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -8,7 +8,7 @@ import de.invesdwin.util.bean.AValueObject;
 
 @NotThreadSafe
 @GeneratedMarkup
-public class Home extends AValueObject {
+public class Introduction extends AValueObject {
 
     public Concept readFirstChapter() {
         return new Concept();

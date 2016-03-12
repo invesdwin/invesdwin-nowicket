@@ -17,11 +17,11 @@
 					<p>
 						A <a target="_blank"
 							href="https://en.wikipedia.org/wiki/Naked_objects">naked
-							objects</a> framework for wicket that enables developers to write
-						less boilerplate wicket code during implementation of complex
+							objects</a> framework for Wicket that enables developers to write
+						less boilerplate Wicket code during implementation of complex
 						websites. Without sacrificing the flexibility and control you are
-						used from wicket. Improving productivity by a measurable factor
-						and making wicket more fun.
+						used from Wicket. Improving productivity by a measurable factor
+						and making Wicket more fun.
 					</p>
 					<br />
 					<p>
@@ -77,9 +77,9 @@
 						href="https://github.com/subes/invesdwin-norva">invesdwin-norva</a>
 						for a unified and naked objects aware reflection and visitor API</li>
 					<li><a target="_blank"
-						href="http://attic.apache.org/projects/jakarta-ecs.html">ECS</a>
-						and <a target="_blank" href="http://jsoup.org/">jsoup</a> for their
-						easy HTML generation, parsing and formatting APIs</li>
+						href="http://attic.apache.org/projects/jakarta-ecs.html">ecs</a>
+						and <a target="_blank" href="http://jsoup.org/">jsoup</a> for
+						their easy HTML generation, parsing and formatting APIs</li>
 					<li>Optional: <a target="_blank"
 						href="https://github.com/thombergs/wicked-charts">wicked-charts</a>
 						for its easy to use <a target="_blank"
@@ -100,18 +100,18 @@
 						being a development platform. You still use your tools of choice
 						for dependency injection, container management, application
 						integration, persistence management, etc.</li>
-					<li>It does not abstract away wicket or the html used with it,
+					<li>It does not abstract away Wicket or the HTML used with it,
 						but instead embraces it by doing the routine work for you,
 						allowing you to fully customize it to your layout and design
-						requirements. It allows you to do this directly in the html
-						instead of forcing you to use css for everything or some sort of
+						requirements. It allows you to do this directly in the HTML
+						instead of forcing you to use CSS for everything or some sort of
 						domain specific language or abstract API.</li>
 					<li>Same goes for the binding, instead of doing all the work
 						behind layers of walls, you can tap into any part of the binding
 						and provide your own components particularly where needed, as
 						needed.</li>
 					<li>It always allows you to do anything you are able to do
-						with wicket. Following the <a target="_blank"
+						with Wicket. Following the <a target="_blank"
 						href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto
 							principle</a>, this enables you to take control over those 20%
 						complex requirements while not having to waste time implementing
@@ -123,24 +123,24 @@
 						application.</li>
 				</ul>
 				<p></p>
-				<p style="font-size: medium">This framework also improves wicket
+				<p style="font-size: medium">This framework also improves Wicket
 					development in a few other spots:</p>
 				<ul>
 					<li>By enforcing a clean use of the <a target="_blank"
 						href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>
-						pattern in your code (wicket still allows you to store state in
+						pattern in your code (Wicket still allows you to store state in
 						page classes or spread it over lots of micro models), you can
 						easily write automated unit tests for the logic of your models.
 						They control most of the functionality of your pages, can run
 						headless and can be tested easily with this framework. Only write
-						those brittle <a target="_blank" href="http://www.seleniumhq.org/">selenium</a>
+						those brittle <a target="_blank" href="http://www.seleniumhq.org/">Selenium</a>
 						or <a target="_blank"
-						href="https://ci.apache.org/projects/wicket/guide/7.x/guide/testing.html">wicket-tester</a>
+						href="https://ci.apache.org/projects/wicket/guide/7.x/guide/testing.html">WicketTester</a>
 						tests where actually needed, but not to validate your logic of the
 						presentation layer. Instead do it typesafe and much more robust on
 						the models themselves.
 					</li>
-					<li>The browser back button support of wicket is nice, but it
+					<li>The browser back button support of Wicket is nice, but it
 						does not easily remember page state when reentering a page from a
 						bookmarkable link or other means of redirects in your application.
 						Also you can get lost in old page states easily when navigating in
@@ -176,19 +176,19 @@
 							benefit: Only one place that contains the important state
 							information.</b>
 					</li>
-					<li>Run the NoWicket html generator for your models to get
+					<li>Run the NoWicket HTML generator for your models to get
 						bootstrappified markup which normally takes a long time to write
 						down and do right for some components. <br /> <b>=&gt; Your
-							benefit: Write less html code yourself.</b>
+							benefit: Write less HTML code yourself.</b>
 					</li>
-					<li>Refine the generated html manually by moving things where
+					<li>Refine the generated HTML manually by moving things where
 						you want them and visualize regularly in the browser to make
 						adjustments. You could also use a <a target="_blank"
 						href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> editor
 						here. You can make full use of the bootstrap grid layout or remove
 						all of the tags and write your own classic table layout. <br /> <b>=&gt;
-							Your benefit: A lot less refactorings in wicket code, since the
-							generated binding handles wickets binding hierarchy
+							Your benefit: A lot less refactorings in Wicket code, since the
+							generated binding handles Wickets binding hierarchy
 							automatically.</b>
 					</li>
 					<li>Modify the generated properties files to name the
@@ -196,17 +196,17 @@
 						internationalization to your pages. Note that all strings returned
 						from the model are internationalizable since you can also just
 						return keys for the properties files as desired. <br /> <b>=&gt;
-							Your benefit: No need to lookup wicket ids since they get
+							Your benefit: No need to lookup Wicket IDs since they get
 							generated with texts from your models. Only change texts as
 							needed.</b>
 					</li>
 					<li>If you are missing some components, just add them to the
-						model and run the html generator again. It will merge the new
-						markup snippets into your existing html files without destroying
+						model and run the HTML generator again. It will merge the new
+						markup snippets into your existing HTML files without destroying
 						your manual changes in them. After they are in there, just move
 						them as well to where you want them. If you want to undo some of
 						your changes, just delete the desired tags to let them get
-						generated again. The generator always checks for the wicket ids
+						generated again. The generator always checks for the Wicket IDs
 						before generating anything. <br /> <b>=&gt; Your benefit: No
 							need to redo everything, instead merge changes.</b>
 					</li>
@@ -230,7 +230,7 @@
 					</li>
 					<li>Add complex features into your page or panels, utilizing
 						the element and component registry in the NoWicket HtmlContext.
-						This gives you access to the wicket components and <a
+						This gives you access to the Wicket components and <a
 						target="_blank" href="https://github.com/subes/invesdwin-norva">invesdwin-norva</a>
 						reflection elements that got generated. Or access the page model
 						directly to do some extended manual binding. For example handling

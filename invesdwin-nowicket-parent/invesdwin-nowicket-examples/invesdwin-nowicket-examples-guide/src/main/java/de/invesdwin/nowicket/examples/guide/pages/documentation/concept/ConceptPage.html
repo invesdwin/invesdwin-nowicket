@@ -145,7 +145,7 @@
 					extend and modify the generated views as easily as possible. The
 					idea to provide this freedom in this framework is by embracing
 					wicket instead of hiding its existence, thus still making easily
-					accessible everything you can do with wicket. Since wicket is a MVC
+					accessible everything you can do with Wicket. Since Wicket is a MVC
 					framework, applying the Naked Objects Pattern on it is easy and has
 					to just focus on automating parts of the Controller and View for
 					you while still allowing you to use your own code as a replacement
@@ -172,13 +172,13 @@
 					<li>you might need to call repositories or services from your
 						entity while your architecture suggests keeping them stupid, for
 						data holding purposes only</li>
-					<li>you might accidentially mix the DDD concepts of service,
+					<li>you might accidentally mix the DDD concepts of service,
 						repository and entity and put everything in your entities</li>
 					<li>you cannot reuse the entities easily in other modules
 						since they are bound to your UI framework</li>
 					<li>refactorings in your UI might lead to refactorings in your
 						database and vice versa</li>
-					<li>it is not easy to write reuseable wicket pages, panels and
+					<li>it is not easy to write reuseable Wicket pages, panels and
 						components when they are bound to a specific persistence layer
 						framework</li>
 					<li>some entity hierarchies might be so complex that they have
@@ -203,23 +203,7 @@
 				business and persistence layer. This makes it a lightweight web
 				framework instead of a complete development platform.
 				</p>
-				<!-- 
 
-				- Naked Objects Pattern
-  -- 2 graphics for comparison
-  -- example class diagram
-  -- with example ui corresponding to it
-- Document View Pattern
-  -- comparison to mvc, where Controller is nowicket mostly
-  -- problem with using the same model classes for UI and domain layer
-- wicket lifecycle
-  -- graphic with circles around where nowicket is active and how
-- activity diagram for development process until 
-  -- 2 processors with visitor pattern
-    -- html generator (ecs) -> model processor (norva)
-    -- binding generator (wicket) -> html processor (jsoup)
-    -- registries
-                 -->
 				<br />
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">

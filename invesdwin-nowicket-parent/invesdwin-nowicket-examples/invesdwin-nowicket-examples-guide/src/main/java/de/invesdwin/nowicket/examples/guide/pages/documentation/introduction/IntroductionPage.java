@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.examples.guide.pages.home;
+package de.invesdwin.nowicket.examples.guide.pages.documentation.introduction;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -11,13 +11,13 @@ import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 
 @NotThreadSafe
 @MountPath("introduction")
-public class HomePage extends AExampleWebPage {
+public class IntroductionPage extends AExampleWebPage {
 
-    public HomePage() {
-        this(Model.of(new Home()));
+    public IntroductionPage() {
+        this(Model.of(new Introduction()));
     }
 
-    public HomePage(final IModel<Home> model) {
+    public IntroductionPage(final IModel<Introduction> model) {
         super(model);
         new GeneratedBinding(this).bind();
     }

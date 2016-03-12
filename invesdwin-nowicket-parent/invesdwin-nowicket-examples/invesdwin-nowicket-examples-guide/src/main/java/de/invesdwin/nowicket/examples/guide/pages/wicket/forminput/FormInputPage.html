@@ -6,24 +6,24 @@
 		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
 			This is a rewrite of the <a target="_blank"
 				href="http://examples7x.wicket.apache.org/forminput/">forminput
-				example from wicket</a>. It should demonstrate that you need a lot less
-			wicket code to achieve the same results in invesdwin-nowicket. To be
-			specific, the wicket example has 584 lines of java code, while this
-			example has only 314 lines of java code, not counting the html files
+				example from Wicket</a>. It should demonstrate that you need a lot less
+			Wicket code to achieve the same results in invesdwin-NoWicket. To be
+			specific, the Wicket example has 584 lines of java code, while this
+			example has only 314 lines of java code, not counting the HTML files
 			which are mostly generated here (measured with <a target="_blank"
 				href="https://sourceforge.net/projects/sloccount/">sloccount</a> at
 			the time of writing this example). Also instead of using a
 			table-layout, we transformed it into a nicer bootstrap-grid-layout
-			for which the html was mostly generated and we just had to move
+			for which the HTML was mostly generated and we just had to move
 			things around and modify it a little bit. We also added functionality
 			to check for dirty on the reset button and show a warning dialog that
 			needs to be confirmed (there is also a junit test for this, see <a
 				target="_blank"
 				href="https://github.com/subes/invesdwin-nowicket/blob/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/test/java/de/invesdwin/nowicket/examples/guide/pages/wicket/forminput/FormInputTest.java">FormInputTest.java</a>).
-			Regarding internationalization, we go a bit further than the wicket
+			Regarding internationalization, we go a bit further than the Wicket
 			example by showing you how to use GuiService.i18n() in models and
-			wicket:message in the html despite the usual label properties
-			demonstrated by wicket.
+			wicket:message in the HTML despite the usual label properties
+			demonstrated by Wicket.
 		</p>
 		<form class="form-horizontal" wicket:id="form">
 			<div wicket:id="modal"></div>

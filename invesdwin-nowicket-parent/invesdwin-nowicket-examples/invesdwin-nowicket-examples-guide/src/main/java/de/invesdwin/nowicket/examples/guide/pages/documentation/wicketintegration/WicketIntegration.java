@@ -22,4 +22,8 @@ public class WicketIntegration extends AValueObject {
         return "DevelopmentWorkflow.png";
     }
 
+    public String getWicketsInternalProcessingImg() {
+        return "WicketsInternalProcessing.png";
+    }
+
 }
