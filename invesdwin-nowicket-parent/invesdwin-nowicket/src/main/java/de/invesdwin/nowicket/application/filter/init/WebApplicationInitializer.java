@@ -2,14 +2,17 @@ package de.invesdwin.nowicket.application.filter.init;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.IPageRendererProvider;
 import org.apache.wicket.Page;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.core.request.handler.IPageRequestHandler;
+import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.request.cycle.AbstractRequestCycleListener;
 import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.handler.render.PageRenderer;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.crypt.CachingSunJceCryptFactory;
 import org.apache.wicket.util.lang.Bytes;
@@ -61,6 +64,7 @@ public class WebApplicationInitializer {
         registerHighstockWebjar();
         registerStoreSettings();
         registerCryptFactory();
+        registerOnePassRenderForBots();
         runHooks();
     }
 
@@ -197,4 +201,12 @@ public class WebApplicationInitializer {
         webApplication.getHeaderContributorListeners().add(new FaviconHeaderContributor(faviconUrl));
     }
 
+    protected void registerOnePassRenderForBots() {
+        webApplication.setPageRendererProvider(new IPageRendererProvider() {
+            @Override
+            public PageRenderer get(final RenderPageRequestHandler handler) {
+                return new BotAwareWebPageRenderer(handler);
+            }
+        });
+    }
 }
