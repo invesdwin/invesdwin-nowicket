@@ -67,10 +67,14 @@
 								<li>Add <b>utility elements</b> for dynamic hide, disable,
 									tooltip, title utility elements to enhance your view logic. You
 									can also access the wicket RequestCycle, WebApplication and
-									WebSession from anywhere.
+									WebSession from anywhere. The <b>Roles</b> class allows you to
+									check user permissions from anywhere.
 								</li>
 								<li>Throw <b>checked exceptions</b> with messages from your
-									action elements to show the user default error dialogs.
+									action elements to show the user default error dialogs. You can
+									also secure actions via the <b>@PreAuthorize</b> annotation to
+									allow them only for specific user roles and show also an error
+									dialog on violation.
 								</li>
 								<li>Return other models from your action elements to cause
 									a redirect there, or return null to prevent that.</li>
@@ -131,6 +135,11 @@
 									inheriting from a base page, handling page parameters, doing
 									crazy component hierarchy manipulation, adding behaviors,
 									dynamically modify html tags or css classes.
+								</li>
+								<li>Use the <a target="_blank"
+									href="https://github.com/wicketstuff/core/wiki/Annotation"><b>@MountPath</b></a>
+									to beautify the bookmarked URL or use <b>@AuthorizeInstantiation</b>
+									to secure the page for specific user roles.
 								</li>
 							</ul>
 						</div></li>
