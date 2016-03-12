@@ -18,4 +18,8 @@ public class WicketIntegration extends AValueObject {
         return null;
     }
 
+    public String getDevelopmentWorkflowImg() {
+        return "DevelopmentWorkflow.png";
+    }
+
 }

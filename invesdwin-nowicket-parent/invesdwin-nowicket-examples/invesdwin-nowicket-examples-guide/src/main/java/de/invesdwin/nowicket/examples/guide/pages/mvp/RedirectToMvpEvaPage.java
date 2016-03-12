@@ -3,9 +3,11 @@ package de.invesdwin.nowicket.examples.guide.pages.mvp;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.request.resource.PackageResourceReference;
+import org.wicketstuff.annotation.mount.MountPath;
 
 import de.invesdwin.nowicket.examples.guide.pages.AExampleWebPage;
 
+@MountPath("eva")
 @NotThreadSafe
 public class RedirectToMvpEvaPage extends AExampleWebPage {
 

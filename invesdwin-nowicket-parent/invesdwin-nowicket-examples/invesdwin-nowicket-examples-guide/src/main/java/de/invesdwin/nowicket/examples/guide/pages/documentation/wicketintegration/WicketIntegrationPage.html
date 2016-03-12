@@ -18,8 +18,170 @@
 						core concepts</a> and shows how they are extended and improved by this
 					framework.
 				</p>
-				<h3>2.1) bla bla</h3>
-				<p style="font-size: medium"></p>
+				<h3>2.1) How does it influence the daily routine?</h3>
+				<p style="font-size: medium">For starters, let us answer this
+					important question. The following activity diagram shows how you go
+					around to get your work done:</p>
+
+				<hr>
+				<h4 style="text-align: center">NoWicket Development Workflow</h4>
+				<img style="border: solid 1px; background: white"
+					alt="NoWicket Development Workflow"
+					wicket:id="developmentWorkflowImg" width="100%" />
+				<hr>
+				<p style="font-size: medium">You might remember reading
+					something similar to this in the introduction page, where we
+					highlighted the benefits of the framework in your daily live. So
+					instead of repeating ourselves, we will just extend that
+					information and show how you go about it from a practical
+					perspective.
+				<ol style="font-weight: bold">
+					<li><h5>
+							<b>Implement Intelligent Model</b>
+						</h5>
+						<div style="font-weight: normal">
+							After you have defined what your view should look like and what
+							behavior it is supposed to have, translate that concept into one
+							or more <b>model classes</b> that represent your ideas. The
+							following tools are available here:
+							<ul>
+								<li>Use property and action methods to define your user
+									interactions. Everything public will be picked up by the
+									generator, though you can use the <b>@Hidden</b> annotation to
+									hide even public things. Missing setters for properties or null
+									values will automatically result in disabled view components.
+								</li>
+								<li>The <b>GuiService</b> class allows you to display
+									messages, show modals, do extended internationalization and do
+									page redirects from anywhere without making your model code
+									aware of any wicket specific details.
+								</li>
+								<li>Add <a target="_blank"
+									href="http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/"><b>BeanValidation</b>
+										(JSR-303 and JSR-349)</a> annotations to your property elements to
+									keep your models clean from invalid user inputs. For more
+									complex scenarios, write custom validators that intercept new
+									values coming in from the UI and validate against other
+									existing values from your model.
+								</li>
+								<li>Add <b>utility elements</b> for dynamic hide, disable,
+									tooltip, title utility elements to enhance your view logic. You
+									can also access the wicket RequestCycle, WebApplication and
+									WebSession from anywhere.
+								</li>
+								<li>Throw <b>checked exceptions</b> with messages from your
+									action elements to show the user default error dialogs.
+								</li>
+								<li>Return other models from your action elements to cause
+									a redirect there, or return null to prevent that.</li>
+								<li>The default interaction scenario on the web is lazy
+									form submission in order to save bandwidth and server load. To
+									change this and make better use of <a target="_blank"
+									href="https://en.wikipedia.org/wiki/Ajax_%28programming%29"><b>AJAX</b></a>,
+									you can add the <b>@Eager</b> annotation where desired to give
+									the user immediate feedback after he changes properties. The
+									framework will automatically register onchange listeners for
+									you and handle the page submit.
+								</li>
+								<li>It is useful to extend <b>AValueObject</b> in your
+									models, since it offers a <b>DirtyTracker</b> with which it is
+									easy to check for model changes and warn the user about data
+									loss when redirecting without saving.
+								</li>
+								<li>Implement <b>hashCode</b> and <b>equals</b> methods for
+									your model to control when the framework should reuse page
+									instances after redirects or direct browser access.
+								</li>
+								<li>You can also write <b>headless unit tests</b> on those
+									models using a mocked GuiService and the WicketTester (only for
+									providing the wicket context, not for actual rendering) to
+									validate your model behavior.
+								</li>
+							</ul>
+						</div></li>
+					<br>
+					<li><h5>
+							<b>Implement Wicket Page/Panel Class with GeneratedBinding
+								Call</b>
+						</h5>
+						<div style="font-weight: normal">
+							For each of your model classes, create a corresponding wicket
+							page or panel class that calls the <b>GeneratedBinding</b> inside
+							its constructor. Despite this, you normally don't have to much
+							more on the wicket side of things. But if you need to afterall,
+							you can extend this by the following means:
+							<ul>
+								<li>Register a <b>BindingInterceptor</b> with which you can
+									substitute default components by specific wicket ids. When you
+									have added more wicket ids to the html than represented in the
+									model class, you can bind them using this mechamism too.
+									Otherwise wicket would complain about missing components at
+									runtime. You can even register default BindingInterceptors for
+									your whole web application.
+								</li>
+								<li>Make use of the various <b>registries</b> for html
+									components, model elements and so on to get your metadata and
+									generic binding for the model, or just use the model object
+									directly and hard code the binding. You can access the dynamic
+									model state (enabled, hidden, tooltips, titles) from the
+									elements those registries contain and call getters/setter in a
+									nullsafe fashion.
+								</li>
+								<li>Do anything you are used to from <b>wicket</b>, like
+									inheriting from a base page, handling page parameters, doing
+									crazy component hierarchy manipulation, adding behaviors,
+									dynamically modify html tags or css classes.
+								</li>
+							</ul>
+						</div></li>
+					<br>
+					<li><h5>
+							<b>Run NoWicket Generator</b>
+						</h5>
+						<div style="font-weight: normal">
+							Run the main or test class you have setup for the generator. It
+							processes your model classes using the <a
+								href="https://en.wikipedia.org/wiki/Visitor_pattern"><b>Visitor
+									Pattern</b></a> and generate the html and properties files for them. If
+							those files already exist, the generator will merge new things
+							into those files at the end without touching the things you
+							edited. The generator will never remove things from the output
+							files, if you refactor your model, you might have to refactor
+							your html wicket ids as well or remove old things to regenerate
+							them. You can use the following variations of the generator:
+							<ul>
+								<li><b>SpecifiedGeneratedMarkup:</b> Use this class to
+									define manually what model classes to process from where and
+									provide the destination folder for the generated files.</li>
+								<li><b>SpecifiedGeneratedMarkupMain:</b> A command line
+									wrapper around the SpecifiedGeneratedMarkup so you can
+									integrate it with your build tools.</li>
+								<li><b>AAnnotatedGeneratedMarkup:</b> Extend this one for
+									the most convenient way to generate markup. The generator will
+									scan your given base packages and process all model classes
+									annotated with <b>@GeneratedMarkup</b>. This generator will
+									delegate the work to SpecifiedGeneratedMarkup after collecting
+									all information.</li>
+
+							</ul>
+						</div></li>
+					<br>
+					<li><h5>
+							<b>Modify HTML and Properties</b>
+						</h5>
+						<div style="font-weight: normal">bla bla</div></li>
+					<br>
+					<li><h5>
+							<b>Start Web Server and View Page</b>
+						</h5>
+						<div style="font-weight: normal">bla bla</div></li>
+					<br>
+					<li><h5>
+							<b>Page Looks and Works as Desired?</b>
+						</h5>
+						<div style="font-weight: normal">bla bla</div></li>
+				</ol>
+				</p>
 				<br />
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
