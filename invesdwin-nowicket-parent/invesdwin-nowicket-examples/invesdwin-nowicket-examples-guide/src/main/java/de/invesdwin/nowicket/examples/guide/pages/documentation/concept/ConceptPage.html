@@ -94,16 +94,17 @@
 						in a table being displayed</li>
 					<li>action methods result in buttons.</li>
 				</ul>
-				For this to work, you will notice that the domain model not only
-				contains the state (properties), but also the logic about how to
-				manipulate it (actions). The model thus becomes intelligent and the
-				Naked Objects Pattern uses that intelligence to make it available as
-				an user interface (UI). To understand this better, please see the
-				next graphic for a comparison of applications based on the <a
-					target="_blank"
-					href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model
-					View Controller (MVC) Pattern</a> and applications based on the Naked
-				Objects Pattern:
+				<p style="font-size: medium">
+					For this to work, you will notice that the domain model not only
+					contains the state (properties), but also the logic about how to
+					manipulate it (actions). The model thus becomes intelligent and the
+					Naked Objects Pattern uses that intelligence to make it available
+					as an user interface (UI). To understand this better, please see
+					the next graphic for a comparison of applications based on the <a
+						target="_blank"
+						href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model
+						View Controller (MVC) Pattern</a> and applications based on the Naked
+					Objects Pattern:
 				</p>
 				<hr>
 				<h4 style="text-align: center">MVC vs Naked Objects in a
@@ -156,7 +157,7 @@
 					frameworks is that they usually bind to entities from the
 					persistence layer and are thus interwoven with the data management.
 					When you want to use entities for the UI you might have to extend
-					them with UI specific annotations and methods for e.g.:
+					them with UI specific annotations and methods for e.g.:</p>
 				<ul>
 					<li>ordering of fields</li>
 					<li>internationalizing strings</li>
@@ -165,7 +166,8 @@
 					<li>converting the data into a different form to be displayed</li>
 					<li>opening modal dialogs or displaying status messages</li>
 				</ul>
-				This for example has the following drawbacks: <br> <br>
+				<p style="font-size: medium">This for example has the following
+					drawbacks:</p>
 				<ul>
 					<li>you cannot reuse your existing (maybe legacy) entities for
 						new views, since they might not match in structure</li>
@@ -187,21 +189,22 @@
 					<li>you may want different perspectives on the same data but
 						the entity class does not match all perspectives properly</li>
 				</ul>
-				Here the <a target="_blank"
-					href="http://www.cs.sjsu.edu/faculty/pearce/mfc/chp3/chapter3.htm">Document
-					View Architecture</a> comes in handy. Instead of putting everything
-				into your entities and using them as your models for the UI, you
-				implement documents that match directly to the desired views you
-				want. The documents handle data retrieval and manipulation using
-				services and repositories and provide adjusted data from the
-				entities where needed or just delegate to those directly where
-				appropriate. The documents can even reuse entity classes completely
-				where possible and extend them from the outside by providing
-				additions and overrides for the nested properties and actions.
-				Applying the Document View Architecture enables this framework to
-				give you the freedom of choosing your own frameworks for the
-				business and persistence layer. This makes it a lightweight web
-				framework instead of a complete development platform.
+				<p style="font-size: medium">
+					Here the <a target="_blank"
+						href="http://www.cs.sjsu.edu/faculty/pearce/mfc/chp3/chapter3.htm">Document
+						View Architecture</a> comes in handy. Instead of putting everything
+					into your entities and using them as your models for the UI, you
+					implement documents that match directly to the desired views you
+					want. The documents handle data retrieval and manipulation using
+					services and repositories and provide adjusted data from the
+					entities where needed or just delegate to those directly where
+					appropriate. The documents can even reuse entity classes completely
+					where possible and extend them from the outside by providing
+					additions and overrides for the nested properties and actions.
+					Applying the Document View Architecture enables this framework to
+					give you the freedom of choosing your own frameworks for the
+					business and persistence layer. This makes it a lightweight web
+					framework instead of a complete development platform.
 				</p>
 
 				<br />
@@ -209,7 +212,7 @@
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">
 							<button type="submit" class="btn btn-default btn-info btn-lg"
-								wicket:id="goBackToIntroduction">Go Back To
+								wicket:id="goBackToPreviousChapter">Go Back To
 								Introduction</button>
 						</div>
 					</div>
