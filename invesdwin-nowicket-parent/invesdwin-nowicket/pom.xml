@@ -280,11 +280,11 @@
 						<!-- apache license -->
 						<param>ecs:ecs.*</param>
 						<!-- LGPL license -->
-						<param>org.webjars:pnotify.*</param>
+						<param>org\.webjars:pnotify.*</param>
 						<!-- bsd license -->
-						<param>com.yahoo.platform.yui:yuicompressor.*</param>
+						<param>com\.yahoo\.platform\.yui:yuicompressor.*</param>
 						<!-- WARNING: optional, you need to buy a license to use this dependency -->
-						<param>org.webjars:highstock.*</param>
+						<param>org\.webjars:highstock.*</param>
 					</excludesRegex>
 				</configuration>
 			</plugin>
