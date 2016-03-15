@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.examples.guide.pages.documentation.wicketintegrati
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.invesdwin.nowicket.examples.guide.pages.documentation.concept.Concept;
+import de.invesdwin.nowicket.examples.guide.pages.documentation.frameworkhistory.FrameworkHistory;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 
@@ -10,12 +11,12 @@ import de.invesdwin.util.bean.AValueObject;
 @GeneratedMarkup
 public class WicketIntegration extends AValueObject {
 
-    public Concept goBackToConcept() {
+    public Concept goBackToPreviousChapter() {
         return new Concept();
     }
 
-    public Object readNextChapter() {
-        return null;
+    public FrameworkHistory readNextChapter() {
+        return new FrameworkHistory();
     }
 
     public String getDevelopmentWorkflowImg() {

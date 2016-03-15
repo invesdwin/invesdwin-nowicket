@@ -11,7 +11,7 @@ import de.invesdwin.util.bean.AValueObject;
 @GeneratedMarkup
 public class Concept extends AValueObject {
 
-    public Introduction goBackToIntroduction() {
+    public Introduction goBackToPreviousChapter() {
         return new Introduction();
     }
 

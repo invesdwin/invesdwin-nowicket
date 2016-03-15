@@ -14,8 +14,8 @@ public class Introduction extends AValueObject {
         return new Concept();
     }
 
-    public String title() {
-        return "Introduction";
+    public String getFrameworkSloganImg() {
+        return "FrameworkSlogan.png";
     }
 
 }

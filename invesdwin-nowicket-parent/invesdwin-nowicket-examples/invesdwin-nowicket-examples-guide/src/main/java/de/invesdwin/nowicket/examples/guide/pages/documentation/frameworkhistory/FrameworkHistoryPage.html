@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<legend>
+					<h2>3) Framework History</h2>
+				</legend>
+				<p style="font-size: medium">There exist two independent
+					predecessors of this framework that were used as inspiration:</p>
+				<ul>
+					<li><a target="_blank"
+						href="https://sourceforge.net/projects/gengui/">gengui</a>: This
+						was the first implementation that was done with <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Swing_%28Java%29">Swing</a>
+						for the desktop and <a target="_blank"
+						href="http://www.creamtec.com/products/ajaxswing/">AjaxSwing</a>
+						as an addon for web transformation of the Swing code. It was the
+						first one to define the idea of a naked objects framework like
+						this. The core concepts about how the framework should behave and
+						how the intelligent models should be coded originates from there.</li>
+					<li><a target="_blank" href="https://github.com/Nocket/nocket">nocket</a>
+						(previously codenamed DMDWebGen): This implementation was based on
+						Wicket and was using <a target="_blank"
+						href="http://getbootstrap.com/2.3.2/">twitter-bootstrap 2.x.x</a>
+						and custom developed components. It was reusing the concepts of
+						gengui, as well as code of its reflection API and applied it to a
+						more web like development paradigm.</li>
+				</ul>
+
+				<hr>
+				<h4 style="text-align: center">Something Resembling History</h4>
+				<img
+					style="border: solid 1px; background: white; text-align: center; margin-left: 17.5%"
+					alt="Something Resembling History" wicket:id="historyImg"
+					width="65%" />
+				<hr>
+
+				<p style="font-size: medium">The following differences exist
+					between this framework and the other two:</p>
+				<ul>
+					<li>This framework shares no code with those and is a <b>complete
+							rewrite</b>. It shares only the core ideas and diverges in
+						implementation details.
+					</li>
+					<li>The parts where <b>intelligent models</b> (domain objects
+						called there) diverge most are in the use of different annotations
+						and the handling of tabbed panels. Also the @BeanPathRedirect used
+						here can rewrite complete bean paths instead of just being able to
+						intercept bean path end points as the gengui @Intercept annotation
+						does. The solution here is thus more versatile.
+					</li>
+					<li>Complex <b>custom validators</b> that validate against
+						other model fields have become more intelligent and do not require
+						a @Eager workaround for the order of synchronization. Instead the
+						validators get called once more after valid properties have been
+						synchronized from the browser to the model to allow complex
+						validators to produce a correct result the second time.
+					</li>
+					<li>The new implementation tries to fix a few bad <b>design
+							decisions</b> and code smells of the previous implementation.
+						Especially inside the GuiService by dividing the concerns of
+						GuiTasks instead of implementing everything in one complicated
+						class that is hard to debug. Also the reflection API was tried to
+						be improved by introducing invesdwin-norva as an independent
+						framework.
+					</li>
+					<li>The <b>reflection</b> part is based on invesdwin-norva
+						which allows the bean path constants class generator to work as an
+						annotation processor. This fixes a nasty productivity problem with
+						refactorings of models: Previously the compiler and generator
+						would lock out the developer when the <b>constants generator</b>
+						failed, because the model cannot be compiled, because a bean path
+						constant from the constants class is referenced for which the
+						model element was renamed. It was quite tricky previously to work
+						around cases like these during refactorings. With the new solution
+						of switching to java source based processing using <b>javax.lang.model</b>
+						instead of java reflection on bytecode, the generator still runs
+						on model classes that do not compile completely, so the constants
+						are already there when the model needs to be actually compiled or
+						manually fixed.
+					</li>
+					<li>Instead of building most <b>components</b> from scratch,
+						this framework reuses open source solutions like wicket-bootstrap.
+						This results higher quality and extensible components, better
+						bootstrap integration and better maintainability. Also the
+						paradigm how tables are bound is different here. Instead of using
+						table templates in the html, a more generic table tag is used with
+						the possibility to customize the table using a BindingInterceptor.
+						This removes refactoring intensive code from the html file and
+						reduces the overall code required to implement the table
+						component. Filtering and ordering table columns is still possible
+						using @Hide or the hideXyz utility method and via @ColumnOrder or the
+						columnOrder utility method.
+					</li>
+					<li><b>Modal dialogs</b> have been simplified by reusing the <a
+						target="_blank" href="http://jschr.github.io/bootstrap-modal/">bootstrap-modal</a>
+						library and building on intelligent model based dialogs. The
+						decision was made to stay away from a callbacks based alternative
+						since it resulted in a switch of paradigm that is unnecessary.</li>
+					<li>Instead of implementing a custom <b>security</b> layer,
+						spring-security was integrated as a more versatile provider in
+						this regard.
+					</li>
+					<li>Paradigms that originated from desktop development were
+						ignored to favor ones that feel more aligned with wicket and <b>web
+							development</b>.
+					</li>
+					<li>This implementation aims to be <b>developer friendly</b>
+						by providing helpful error messages and warnings about common
+						development problems where possible. Also this project aims to be
+						easily accessible by providing a comprehensive documentation.
+					</li>
+				</ul>
+				<p style="font-size: medium">This framework would not exist
+					without the work on the other ones and the people behind them. The
+					other frameworks still have valid use cases today and a plethora of
+					applications built with them. The reference on them here is made to
+					praise them and to highlight the differences between these
+					frameworks. This framework owes them a lot and is thankful that
+					they got open sourced as well.</p>
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
