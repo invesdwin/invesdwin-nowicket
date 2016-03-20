@@ -118,13 +118,13 @@
 							elements and instantiate components for them while creating a
 							dynamic component tree according to the markup hierarchy. Despite
 							this automated binding, you normally don't have to much more on
-							the Wicket side of things. But if you need to afterall, you can
+							the Wicket side of things. But if you need to after all, you can
 							extend this by the following means:
 							<ul>
 								<li>Register a <b>BindingInterceptor</b> with which you can
 									substitute default components by specific Wicket IDs. When you
 									have added more Wicket IDs to the HTML than represented in the
-									model class, you can bind them using this mechamism too.
+									model class, you can bind them using this mechanism too.
 									Otherwise Wicket would complain about missing components at
 									runtime. All component classes follow the convention used by
 									Wicket to be <a target="_blank"
@@ -164,7 +164,7 @@
 									inside the base page your created, which should extend <b>AWebPage</b>.
 									You can also change the page format from container to <b>container-fluid</b>
 									there, add tracking code to your pages, provide a locale
-									switcher, modify the themes or change the ajax busy indicator (<b>AjaxIndicatorAppender</b>)
+									switcher, modify the themes or change the AJAX busy indicator (<b>AjaxIndicatorAppender</b>)
 									instance used.
 								</li>
 								<li>Change page processing settings in the web application
@@ -174,7 +174,7 @@
 									sign in/sign out pages in the config class. Override the <b>BootstrapExtensionsHeaderContributor</b>
 									to remove features like autofocus, enter keyboard binding,
 									allowing copy/paste on disabled inputs, disabling components
-									during ajax calls and retrying ajax calls on connection loss
+									during AJAX calls and retrying AJAX calls on connection loss
 									with <a target="_blank"
 									href="http://github.hubspot.com/offline/docs/welcome/"><b>Offline.js</b></a>
 									(useful for mobile connections).
@@ -318,7 +318,7 @@
 									the layout is responsive on smaller screens.
 								</li>
 								<li>Try to <b>disable JavaScript</b> in your browser to see
-									if the common Wicket ajax fallback functionality works. Where
+									if the common Wicket AJAX fallback functionality works. Where
 									possible, the framework automatically binds AJAX components
 									that have fallbacks, though not everything works this way.
 									Things that won't work are CSS based icons, dropdown buttons
