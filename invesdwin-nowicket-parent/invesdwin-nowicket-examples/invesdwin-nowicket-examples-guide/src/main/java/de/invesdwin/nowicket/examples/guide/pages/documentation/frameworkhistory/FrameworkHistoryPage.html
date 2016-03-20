@@ -50,9 +50,10 @@
 					<li>The parts where <b>intelligent models</b> (domain objects
 						called there) diverge most are in the use of different annotations
 						and the handling of tabbed panels. Also the @BeanPathRedirect used
-						here can rewrite complete bean paths instead of just being able to
-						decorate bean path end points as the gengui @Decorate annotation
-						does. The solution here is thus more versatile.
+						here can rewrite complete bean paths (by changing the type)
+						instead of just being able to decorate bean path end points (which
+						you can still do to add utility methods) as the gengui @Decorate
+						annotation does. The solution here is thus more versatile.
 					</li>
 					<li>Complex <b>custom validators</b> that validate against
 						other model fields have become more intelligent and do not require
@@ -94,8 +95,8 @@
 						This removes refactoring intensive code from the HTML file and
 						reduces the overall code required to implement the table
 						component. Filtering and ordering table columns is still possible
-						using @Hide or the hideXyz utility method and via @ColumnOrder or the
-						columnOrder utility method.
+						using @Hide or the hideXyz utility method and via @ColumnOrder or
+						the columnOrder utility method.
 					</li>
 					<li><b>Modal dialogs</b> have been simplified by reusing the <a
 						target="_blank" href="http://jschr.github.io/bootstrap-modal/">bootstrap-modal</a>
