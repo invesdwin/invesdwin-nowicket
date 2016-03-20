@@ -49,7 +49,7 @@ public class ModelComponentBehavior extends Behavior {
                 public void onConfigure(final Component component) {
                     boolean nullValidChoice = false;
                     //use modifier instead of model, since model removes null so that isNullValid properly handles null selection
-                    final List<Object> choices = selectElement.getModelElement()
+                    final List<?> choices = selectElement.getModelElement()
                             .getBeanPathElement()
                             .getChoiceModifier()
                             .getValue();

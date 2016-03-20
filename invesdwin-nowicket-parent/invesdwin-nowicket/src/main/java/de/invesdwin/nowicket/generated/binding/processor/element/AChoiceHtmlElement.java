@@ -41,7 +41,9 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
 
             @Override
             public List<Object> getObject() {
-                final List<Object> list = getModelElement().getBeanPathElement().getChoiceModifier().getValue();
+                final List<Object> list = (List<Object>) getModelElement().getBeanPathElement()
+                        .getChoiceModifier()
+                        .getValue();
                 //check before removing null
                 maybeCheckDuplicateRenderedStringsInDevMode(list);
                 //setNullValid Behavior in ModelComponentBehavior already handles null properly

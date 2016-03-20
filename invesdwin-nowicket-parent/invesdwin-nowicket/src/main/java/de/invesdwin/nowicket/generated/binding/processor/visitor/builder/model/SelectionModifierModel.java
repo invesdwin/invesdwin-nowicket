@@ -11,22 +11,22 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.IObjectClassAwareModel;
 import org.apache.wicket.model.IPropertyReflectionAwareModel;
 
-import de.invesdwin.nowicket.generated.binding.processor.element.AChoiceHtmlElement;
 import de.invesdwin.norva.beanpath.impl.clazz.IBeanClassAccessor;
 import de.invesdwin.norva.beanpath.spi.element.simple.modifier.IBeanPathPropertyModifier;
+import de.invesdwin.nowicket.generated.binding.processor.element.AChoiceHtmlElement;
 
 @NotThreadSafe
-public class SelectionModifierModel implements IPropertyReflectionAwareModel<List<Object>>,
-IObjectClassAwareModel<List<Object>> {
+public class SelectionModifierModel
+        implements IPropertyReflectionAwareModel<List<Object>>, IObjectClassAwareModel<List<Object>> {
 
     private final IModel<?> rootObjectModel;
-    private final IModel<IBeanPathPropertyModifier<List<Object>>> selectionModifierModel;
+    private final IModel<IBeanPathPropertyModifier<List<?>>> selectionModifierModel;
 
     public SelectionModifierModel(final AChoiceHtmlElement<?> element) {
         this.rootObjectModel = element.getRootObjectModel();
-        this.selectionModifierModel = new AbstractReadOnlyModel<IBeanPathPropertyModifier<List<Object>>>() {
+        this.selectionModifierModel = new AbstractReadOnlyModel<IBeanPathPropertyModifier<List<?>>>() {
             @Override
-            public IBeanPathPropertyModifier<List<Object>> getObject() {
+            public IBeanPathPropertyModifier<List<?>> getObject() {
                 return element.getModelElement().getBeanPathElement().getSelectionModifier();
             }
         };
@@ -38,9 +38,10 @@ IObjectClassAwareModel<List<Object>> {
         rootObjectModel.detach();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Object> getObject() {
-        return selectionModifierModel.getObject().getValueFromRoot(rootObjectModel.getObject());
+        return (List<Object>) selectionModifierModel.getObject().getValueFromRoot(rootObjectModel.getObject());
     }
 
     @Override
