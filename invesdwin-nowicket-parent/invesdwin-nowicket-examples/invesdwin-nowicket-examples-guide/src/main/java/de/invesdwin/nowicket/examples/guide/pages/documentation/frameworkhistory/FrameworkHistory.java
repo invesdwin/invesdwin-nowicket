@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.examples.guide.pages.documentation.frameworkhistor
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.examples.guide.pages.documentation.installation.Installation;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.wicketintegration.WicketIntegration;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -14,8 +15,8 @@ public class FrameworkHistory extends AValueObject {
         return new WicketIntegration();
     }
 
-    public Object readNextChapter() {
-        return null;
+    public Installation readNextChapter() {
+        return new Installation();
     }
 
     public String getHistoryImg() {

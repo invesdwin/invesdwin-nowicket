@@ -27,6 +27,7 @@
 
 		<!-- conflict between spring boot parent pom and invesdwin-bom import -->
 		<version.javassist>3.19.0-GA</version.javassist>
+		<version.prettify>4-Mar-2013</version.prettify>
 
 		<start-class>de.invesdwin.nowicket.examples.guide.Main</start-class>
 	</properties>
@@ -68,6 +69,13 @@
 			<artifactId>javax.inject</artifactId>
 			<version>${version.javax.inject}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>prettify</artifactId>
+			<version>${version.prettify}</version>
+		</dependency>
+
 
 		<!-- contains @Configurable aspect -->
 		<dependency>

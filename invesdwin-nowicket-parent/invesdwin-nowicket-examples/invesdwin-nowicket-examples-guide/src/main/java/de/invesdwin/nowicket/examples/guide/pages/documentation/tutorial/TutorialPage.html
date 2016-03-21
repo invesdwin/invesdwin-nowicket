@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<legend>
+					<h2>5) Tutorial</h2>
+				</legend>
+				<p style="font-size: medium">Now after all the theoretical stuff
+					and preparations from the previous chapters we are ready to finally
+					dig into some code and explain how these things are controlled
+					exactly.</p>
+
+				<h3>5.1) JavaBeans</h3>
+				<p style="font-size: medium">
+					When working with this framework, it is important to follow the <a
+						target="_blank" href="https://en.wikipedia.org/wiki/JavaBeans">JavaBean</a>
+					conventions for accessing attributes. An “attribute” is a data
+					member of a Java class which – according to the JavaBean convention
+					- is accessed by appropriate getter and setter methods. It is best
+					practice that the identifier following the “get”- and “set”-prefix
+					corresponds to the name of the attribute, whereby the first letter
+					is capitalized.
+				</p>
+				<p style="font-size: medium">An attribute</p>
+				<pre class="prettyprint lang-java linenums">
+private String name;</pre>
+				<p style="font-size: medium">is accessed from outside the class
+					by the member functions</p>
+				<pre class="prettyprint lang-java linenums">
+public String getName();
+public void setName(String name);</pre>
+				<p style="font-size: medium">The notation with the leading
+					capital letter is often referred to as a property of the class. A
+					class may very well contain virtual properties, i.e. properties
+					that do not refer to an attribute of the corresponding name but
+					e.g. to an assembly or type conversion of other attributes. The
+					actual names of attributes are therefore a secondary aspect. Many
+					frameworks that are based on Java reflection, work with the
+					JavaBean convention and assume its correct usage by the developers.
+					This is also true for invesdwin-NoWicket. So if this documentation
+					uses the term “property”, it refers to the convention above. The
+					term “component” refers to components on the screen, i.e. a text
+					field, a check box, a combo box etc.</p>
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

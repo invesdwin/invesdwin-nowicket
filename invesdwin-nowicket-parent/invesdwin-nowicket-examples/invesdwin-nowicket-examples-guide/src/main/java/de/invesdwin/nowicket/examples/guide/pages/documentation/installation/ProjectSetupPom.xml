@@ -14,30 +14,18 @@
 		<version.compiler>1.7</version.compiler>
 
 		<version.maven-compiler-plugin>3.1</version.maven-compiler-plugin>
-		<version.maven-source-plugin>2.2.1</version.maven-source-plugin>
 		<version.maven-processor-plugin>2.2.4</version.maven-processor-plugin>
 
-		<version.invesdwin-bom>1.0.0-SNAPSHOT</version.invesdwin-bom>
-		<version.invesdwin-maven-plugin>1.0.0-SNAPSHOT</version.invesdwin-maven-plugin>
+		<version.invesdwin-nowicket>1.0.0-SNAPSHOT</version.invesdwin-nowicket>
+		<version.javax.servlet>3.0.0.v201112011016</version.javax.servlet>
 	</properties>
 
-	<!-- run this sample with "mvn tomcat7:run" and access the website at http://localhost:8080 -->
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>de.invesdwin</groupId>
-				<artifactId>invesdwin-bom</artifactId>
-				<version>${version.invesdwin-bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
 			<plugins>
+				<!-- run this sample with "mvn tomcat7:run" and access the website at 
+					http://localhost:8080 -->
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
@@ -50,6 +38,7 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<!-- our typical compiler configuration -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -64,37 +53,9 @@
 					<verbose>false</verbose>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>${version.maven-source-plugin}</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>de.invesdwin</groupId>
-				<artifactId>invesdwin-maven-plugin</artifactId>
-				<version>${version.invesdwin-maven-plugin}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>initialize</goal>
-							<goal>generate-sources</goal>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<useInvesdwinEclipseSettings>true</useInvesdwinEclipseSettings>
-							<codeComplianceLevel>${version.compiler}</codeComplianceLevel>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- enable annotation processing and thus allow the invesdwin-norva constants 
+				generator to create classes for our models (either annotate model with @BeanPathRoot 
+				or extend AValueObject -->
 			<plugin>
 				<groupId>org.bsc.maven</groupId>
 				<artifactId>maven-processor-plugin</artifactId>
@@ -114,6 +75,10 @@
 				</executions>
 			</plugin>
 		</plugins>
+
+		<!-- make development a bit easier by allowing html files and other web 
+			resources to reside next to our class files so we do not have to maintain 
+			two identical package trees -->
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -150,35 +115,29 @@
 	</build>
 
 	<dependencies>
+		<!-- add a dependency to invesdwin-NoWicket -->
 		<dependency>
 			<groupId>de.invesdwin</groupId>
 			<artifactId>invesdwin-nowicket</artifactId>
+			<version>${version.invesdwin-nowicket}</version>
 			<exclusions>
 				<exclusion>
+					<!-- exclude servlet API to add special handling below -->
 					<artifactId>javax.servlet</artifactId>
 					<groupId>org.eclipse.jetty.orbit</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 
+		<!-- for compilation we need the servlet API, but not for deployment since 
+			tomcat has its own; also make sure to only have one of these jars in your 
+			classpath -->
 		<dependency>
 			<groupId>org.eclipse.jetty.orbit</groupId>
 			<artifactId>javax.servlet</artifactId>
+			<version>${version.javax.servlet}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
-	<distributionManagement>
-		<repository>
-			<id>central</id>
-			<name>invesdwin.de-releases</name>
-			<url>http://invesdwin.de/artifactory/invesdwin-oss</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>invesdwin.de-snapshots</name>
-			<url>http://invesdwin.de/artifactory/invesdwin-oss</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 </project>

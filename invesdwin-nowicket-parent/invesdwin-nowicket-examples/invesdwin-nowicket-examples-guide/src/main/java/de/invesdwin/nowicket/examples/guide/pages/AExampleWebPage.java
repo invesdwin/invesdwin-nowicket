@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
@@ -22,9 +23,12 @@ import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.concept.ConceptPage;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.frameworkhistory.FrameworkHistoryPage;
+import de.invesdwin.nowicket.examples.guide.pages.documentation.installation.InstallationPage;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.introduction.IntroductionPage;
+import de.invesdwin.nowicket.examples.guide.pages.documentation.tutorial.TutorialPage;
 import de.invesdwin.nowicket.examples.guide.pages.documentation.wicketintegration.WicketIntegrationPage;
 import de.invesdwin.nowicket.examples.guide.pages.footer.FooterPanel;
 import de.invesdwin.nowicket.examples.guide.pages.mvp.RedirectToMvpBsgcoachPage;
@@ -75,6 +79,12 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(FrameworkHistoryPage.class,
                                 new ResourceModel("menu.frameworkhistory").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(InstallationPage.class,
+                                new ResourceModel("menu.installation").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(TutorialPage.class,
+                                new ResourceModel("menu.tutorial").wrapOnAssignment(navbar)));
 
                         return subMenu;
                     }
@@ -181,6 +191,12 @@ public abstract class AExampleWebPage extends AWebPage {
     @Override
     public IModel<String> getTitleModel() {
         return Model.of(super.getTitleModel().getObject() + " - " + TITLE);
+    }
+
+    @Override
+    public void renderHead(final IHeaderResponse response) {
+        super.renderHead(response);
+        PrettifyHeaderContributor.INSTANCE.renderHead(response);
     }
 
 }

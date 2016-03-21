@@ -9,6 +9,7 @@ import de.invesdwin.nowicket.examples.war.page.HomePage;
 
 @Immutable
 public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
+
     @Override
     public Class<? extends WebPage> getHomePage() {
         return HomePage.class;

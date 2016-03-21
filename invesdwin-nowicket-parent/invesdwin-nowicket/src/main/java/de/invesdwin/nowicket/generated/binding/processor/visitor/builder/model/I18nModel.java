@@ -1,7 +1,5 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model;
 
-import java.util.MissingResourceException;
-
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
@@ -72,7 +70,7 @@ public class I18nModel extends AbstractReadOnlyModel<String> {
                 final Component usedComponent = getComponent();
                 localizedMessage = new StringResourceModel(message, usedComponent, HtmlContext.getModel(usedComponent))
                         .setDefaultValue(message).getObject();
-            } catch (final MissingResourceException e) {
+            } catch (final Throwable e) {
                 localizedMessage = message;
             }
             return localizedMessage;

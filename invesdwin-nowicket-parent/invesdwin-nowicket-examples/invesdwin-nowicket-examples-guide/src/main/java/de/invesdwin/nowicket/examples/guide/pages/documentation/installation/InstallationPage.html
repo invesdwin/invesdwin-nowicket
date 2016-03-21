@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<legend>
+					<h2>4) Installation</h2>
+				</legend>
+				<p style="font-size: medium">
+					The following steps need to be performed to get yourself a project
+					ready to play around with. We will go here with the classic
+					approach of creating a war packaged maven project that is
+					configured via a web.xml and gets tested via the <a
+						href="http://tomcat.apache.org/maven-plugin-2.2/">tomcat7-maven-plugin</a>.
+					Even though we explain this here step by step, if you want to just
+					get something to start with, just copy and modify the <a
+						target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples">invesdwin-nowicket-examples-war</a>
+					project. As an alternative <a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples">invesdwin-nowicket-examples-guide</a>
+					is also worth a look since it contains the code for this
+					documentation website and is using spring-boot. Next we are going
+					through how <a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples">invesdwin-nowicket-examples-war</a>
+					was created. All in all you will notice that this is not much
+					different from setting up a pure Wicket project.
+				</p>
+				<p style="font-size: medium">The image below shows what the
+					final directory layout looks like so you can compare while setting
+					everything up.</p>
+
+				<hr>
+				<h4 style="text-align: center">Final Directory Layout</h4>
+				<img
+					style="border: solid 1px; background: white; text-align: center; margin-left: 30%"
+					alt="Final Directory Layout" wicket:id="directoryLayoutImg"
+					width="40%" />
+				<hr>
+
+
+				<h3>4.1) Maven Setup</h3>
+
+				<p style="font-size: medium">
+					First install a current version of <a target="_blank"
+						href="https://maven.apache.org/">Maven</a> and create a <b>pom.xml</b>
+					to get the required dependencies and to be able to package and run
+					the war project. Read the comments that are included for
+					explanations.
+				</p>
+				<pre class="prettyprint lang-xml linenums" wicket:id="pomXmlContent"></pre>
+
+
+				<h3>4.2) Servlet Setup</h3>
+
+				<p style="font-size: medium">
+					Next create a <b>web.xml</b> in
+					<code>src/main/webapp/WEB-INF/</code>
+					to register your implementation of the NoWicket servlet filter and
+					map the error pages to nice looking ones provided by the framework
+					(which you can customize or replace later).
+				</p>
+				<pre class="prettyprint lang-xml linenums" wicket:id="webXmlContent"></pre>
+
+				<p style="font-size: medium">
+					The NoWicket <b>servlet filter implementation</b> is very simple.
+					It just needs a reference to your NoWicket application config for
+					providing the ignorePaths feature that is needed when integrating
+					tools like <a target="_blank" href="http://guac-dev.org/">Guacamole</a>
+					which do not play well behind a Wicket filter.
+				</p>
+				<pre class="prettyprint lang-java linenums">
+package de.invesdwin.nowicket.examples.war;
+
+import de.invesdwin.nowicket.application.IWebApplicationConfig;
+import de.invesdwin.nowicket.application.filter.AWicketFilter;
+
+public class ExampleWicketFilter extends AWicketFilter {
+
+    @Override
+    protected IWebApplicationConfig newConfig() {
+        return new ExampleWebApplicationConfig();
+    }
+
+}</pre>
+
+				<p style="font-size: medium">
+					The NoWicket <b>web application implementation</b> similarly
+					simple. It also only needs a reference to the NoWicket application
+					config and a set of base packages for which the <a target="_blank"
+						href="https://github.com/wicketstuff/core/wiki/Annotation">@MountPath</a>
+					annotation should be scanned for.
+				</p>
+				<pre class="prettyprint lang-java linenums">
+package de.invesdwin.nowicket.examples.war;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import de.invesdwin.nowicket.application.IWebApplicationConfig;
+import de.invesdwin.nowicket.application.filter.AWebApplication;
+				
+public class ExampleWebApplication extends AWebApplication {
+
+    //also referenced in ExampleMarkupGenerator
+    public static final Set&lt;String&gt; BASE_PACKAGE = Collections
+            .unmodifiableSet(new HashSet&lt;String&gt;(Arrays.asList("de.invesdwin.nowicket.examples.war")));
+
+    @Override
+    protected IWebApplicationConfig newConfig() {
+        return new ExampleWebApplicationConfig();
+    }
+
+    @Override
+    public Set&lt;String&gt; getClasspathBasePackages() {
+        return BASE_PACKAGE;
+    }
+
+}</pre>
+
+				<p style="font-size: medium">
+					The NoWicket <b>application config implementation</b> only has to
+					specify the home page. You can optionally override more methods to
+					do all the customizations discussed in the previous chapters.
+				</p>
+				<pre class="prettyprint lang-java linenums">
+package de.invesdwin.nowicket.examples.war;
+
+import org.apache.wicket.markup.html.WebPage;
+
+import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
+import de.invesdwin.nowicket.examples.war.page.HomePage;
+
+public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
+
+    @Override
+    public Class&lt;? extends WebPage&gt; getHomePage() {
+        return HomePage.class;
+    }
+
+}</pre>
+
+				<h3>4.3) Markup Generator Setup</h3>
+				<p style="font-size: medium">
+					The NoWicket <b>markup generator implementation</b> just needs a
+					reference to the base packages to know where to scan for the
+					@GeneratedMarkup annotation.
+				</p>
+				<pre class="prettyprint lang-java linenums">
+package de.invesdwin.nowicket.examples.war;
+
+import java.util.Set;
+
+import de.invesdwin.nowicket.generated.markup.AAnnotatedGeneratedMarkup;
+
+public class ExampleMarkupGenerator extends AAnnotatedGeneratedMarkup {
+
+    public static void main(final String[] args) {
+        new ExampleMarkupGenerator().generate();
+    }
+
+    @Override
+    protected Set&lt;String&gt; getClasspathBasePackages() {
+        return ExampleWebApplication.BASE_PACKAGE;
+    }
+    
+}</pre>
+
+				<h3>4.3) Home Page Setup</h3>
+				<p style="font-size: medium">
+					The home page will be demonstrated as a hello world example. For
+					this you will need a <b>model implementation</b> for which the
+					markup should be generated.
+				</p>
+
+				<pre class="prettyprint lang-java linenums">
+package de.invesdwin.nowicket.examples.war.page;
+
+import java.io.Serializable;
+
+import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
+
+@GeneratedMarkup
+public class Home implements Serializable {
+
+    public String getHello() {
+        return "NoWicket!";
+    }
+
+}</pre>
+
+				<p style="font-size: medium">
+					Next we tell the markup generator to generate markup for a <b>page</b>
+					by implementing a class for it. Here we provide our standard two
+					constructors. We could also customize the navbar and other things
+					that were discussed in the previous chapters, but this should
+					better be done in an application specific base page that extends
+					AWebPage. To keep this example as minimal as possible, we omit that
+					here.
+				</p>
+				<pre class="prettyprint lang-java linenums">
+package de.invesdwin.nowicket.examples.war.page;
+
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.wicketstuff.annotation.mount.MountPath;
+
+import de.invesdwin.nowicket.application.AWebPage;
+import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
+
+@MountPath("home")
+public class HomePage extends AWebPage {
+
+    //constructor for bookmarkable link
+    public HomePage() {
+        this(Model.of(new Home()));
+    }
+
+    //constructor for model redirects
+    public HomePage(final IModel&lt;Home&gt; model) {
+        super(model);
+        new GeneratedBinding(this).bind();
+    }
+
+}</pre>
+
+				<h3>4.4) Running It</h3>
+				<p style="font-size: medium">
+					Now you can run your ExampleMarkupGenerator. It will produce a <b>HomePage.html</b>
+					file like this:
+				</p>
+				<pre class="prettyprint lang-html linenums"
+					wicket:id="pageHtmlContent"></pre>
+
+				<p style="font-size: medium">
+					And also generate a <b>HomePage.properties</b> file like this:
+				</p>
+				<pre class="prettyprint linenums">hello=Hello</pre>
+				<p style="font-size: medium">
+					With everything in place now, you could run your project via Maven
+					with
+					<code>mvn tomcat7:run</code>
+					and access the website at <a target="_blank"
+						href="http://localhost:8080">http://localhost:8080</a>.
+				</p>
+
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
