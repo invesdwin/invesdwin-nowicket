@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.examples.guide.pages.documentation.introduction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -31,6 +32,7 @@ public class Introduction extends AValueObject {
             final Url url = RequestCycle.get().mapUrlFor(resource, null);
             imgs.add(new CarouselImage(url.toString()));
         }
+        Collections.shuffle(imgs); //randomize order
         return imgs;
     }
 
