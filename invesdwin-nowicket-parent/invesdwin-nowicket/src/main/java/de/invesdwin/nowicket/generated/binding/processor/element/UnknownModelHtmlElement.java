@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.model.IModel;
 import org.jsoup.nodes.Element;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
@@ -27,6 +28,11 @@ public class UnknownModelHtmlElement extends AModelHtmlElement<IModelElement<?>,
     @Override
     protected void innerAccept(final IHtmlVisitor visitor) {
         visitor.visitUnknown(this);
+    }
+
+    @Override
+    public IModel<Object> getModel() {
+        return super.getModel();
     }
 
     @Deprecated
