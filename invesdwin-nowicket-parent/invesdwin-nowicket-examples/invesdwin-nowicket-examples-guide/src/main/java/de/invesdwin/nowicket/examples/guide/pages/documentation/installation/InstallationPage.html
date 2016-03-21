@@ -171,7 +171,7 @@ public class ExampleMarkupGenerator extends AAnnotatedGeneratedMarkup {
     
 }</pre>
 
-				<h3>4.3) Home Page Setup</h3>
+				<h3>4.4) Home Page Setup</h3>
 				<p style="font-size: medium">
 					The home page will be demonstrated as a hello world example. For
 					this you will need a <b>model implementation</b> for which the
@@ -195,13 +195,13 @@ public class Home implements Serializable {
 }</pre>
 
 				<p style="font-size: medium">
-					Next we tell the markup generator to generate markup for a <b>page</b>
-					by implementing a class for it. Here we provide our standard two
-					constructors. We could also customize the navbar and other things
-					that were discussed in the previous chapters, but this should
-					better be done in an application specific base page that extends
-					AWebPage. To keep this example as minimal as possible, we omit that
-					here.
+					Next we tell the markup generator to generate markup for a <b>page
+						implementation</b> by writing a class for it. Here we provide our
+					standard two constructors. We could also customize the navbar and
+					other things that were discussed in the previous chapters, but this
+					should better be done in an application specific base page that
+					extends AWebPage. To keep this example as minimal as possible, we
+					omit that here.
 				</p>
 				<pre class="prettyprint lang-java linenums">
 package de.invesdwin.nowicket.examples.war.page;
@@ -229,7 +229,7 @@ public class HomePage extends AWebPage {
 
 }</pre>
 
-				<h3>4.4) Running It</h3>
+				<h3>4.5) Running It</h3>
 				<p style="font-size: medium">
 					Now you can run your ExampleMarkupGenerator. It will produce a <b>HomePage.html</b>
 					file like this:
@@ -238,7 +238,8 @@ public class HomePage extends AWebPage {
 					wicket:id="pageHtmlContent"></pre>
 
 				<p style="font-size: medium">
-					And also generate a <b>HomePage.properties</b> file like this:
+					And it will also generate a <b>HomePage.properties</b> file like
+					this:
 				</p>
 				<pre class="prettyprint linenums">hello=Hello</pre>
 				<p style="font-size: medium">
