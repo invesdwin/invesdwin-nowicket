@@ -149,7 +149,8 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
 				<p style="font-size: medium">
 					The NoWicket <b>markup generator implementation</b> just needs a
 					reference to the base packages to know where to scan for the
-					@GeneratedMarkup annotation.
+					@GeneratedMarkup annotation. You could also override more methods
+					to change the input/output folders.
 				</p>
 				<pre class="prettyprint lang-java linenums">
 package de.invesdwin.nowicket.examples.war;
@@ -175,7 +176,9 @@ public class ExampleMarkupGenerator extends AAnnotatedGeneratedMarkup {
 				<p style="font-size: medium">
 					The home page will be demonstrated as a hello world example. For
 					this you will need a <b>model implementation</b> for which the
-					markup should be generated.
+					markup should be generated. Here we implement Serializable since it
+					is the minimum required for Wicket, otherwise it is recommended to
+					extend AValueObject.
 				</p>
 
 				<pre class="prettyprint lang-java linenums">
