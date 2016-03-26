@@ -9,7 +9,7 @@ import javax.annotation.concurrent.ThreadSafe;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
-import de.invesdwin.nowicket.examples.guide.pages.ExampleWebApplicationConfig;
+import de.invesdwin.nowicket.examples.guide.page.ExampleWebApplicationConfig;
 
 @ThreadSafe
 public class ExampleWebApplication extends AWebApplication {

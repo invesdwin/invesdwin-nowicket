@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This is a rewrite of the <a target="_blank"
+				href="http://examples7x.wicket.apache.org/forminput/">forminput
+				example from Wicket</a>. It should demonstrate that you need a lot less
+			Wicket code to achieve the same results in invesdwin-NoWicket. To be
+			specific, the Wicket example has 584 lines of java code, while this
+			example has only 314 lines of java code, not counting the HTML files
+			which are mostly generated here (measured with <a target="_blank"
+				href="https://sourceforge.net/projects/sloccount/">sloccount</a> at
+			the time of writing this example). Also instead of using a
+			table-layout, we transformed it into a nicer bootstrap-grid-layout
+			for which the HTML was mostly generated and we just had to move
+			things around and modify it a little bit. We also added functionality
+			to check for dirty on the reset button and show a warning dialog that
+			needs to be confirmed (there is also a junit test for this, see <a
+				target="_blank"
+				href="https://github.com/subes/invesdwin-nowicket/blob/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/test/java/de/invesdwin/nowicket/examples/guide/page/wicket/forminput/FormInputTest.java">FormInputTest.java</a>).
+			Regarding internationalization, we go a bit further than the Wicket
+			example by showing you how to use GuiService.i18n() in models and
+			wicket:message in the HTML despite the usual label properties
+			demonstrated by Wicket.
+		</p>
+		<form class="form-horizontal" wicket:id="form">
+			<div wicket:id="modal"></div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="control-label col-sm-2" wicket:for="useLocale">
+							<wicket:label>
+                            Use Locale
+                        </wicket:label>
+						</label>
+						<div wicket:id="useLocale_gridColumn" class="col-sm-4">
+							<select class="form-control" wicket:id="useLocale"></select>
+						</div>
+					</div>
+					<legend>
+						<!-- this is how we internationalize constant strings the html -->
+						<wicket:message key="input">Input</wicket:message>
+					</legend>
+					<div class="col-sm-5">
+						<div class="form-group">
+							<label class="control-label" wicket:for="string"> <wicket:label>
+                                         String 
+                                    </wicket:label>
+							</label>
+							<div wicket:id="string_gridColumn">
+								<input type="text" class="form-control" wicket:id="string"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label" wicket:for="integer"> <wicket:label>
+                                         Integer 
+                                    </wicket:label>
+							</label>
+							<div wicket:id="integer_gridColumn">
+								<input type="number" class="form-control" wicket:id="integer"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label" wicket:for="doublee"> <wicket:label>
+                                         Doublee 
+                                    </wicket:label>
+							</label>
+							<div wicket:id="doublee_gridColumn">
+								<input type="number" class="form-control" wicket:id="doublee"></input>
+							</div>
+						</div>
+						<fieldset>
+							<legend wicket:id="listView_legend">List View</legend>
+							<ul>
+								<ul wicket:id="listView"></ul>
+							</ul>
+						</fieldset>
+						<div class="form-group">
+							<label class="control-label" wicket:for="booleann"> <wicket:label>
+                                         Booleann 
+                                    </wicket:label></label>
+							<div wicket:id="booleann_gridColumn">
+								<input type="checkbox" wicket:id="booleann"></input>
+							</div>
+						</div>
+						<div wicket:id="multiply"></div>
+					</div>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-5">
+						<div class="form-group">
+							<label class="control-label" wicket:for="valueBetween0and100">
+								<wicket:label>
+                                         Value Between0and100 
+                                    </wicket:label>
+							</label>
+							<div wicket:id="valueBetween0and100_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="valueBetween0and100"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label" wicket:for="url"> <wicket:label>
+                                         Url 
+                                    </wicket:label></label>
+							<div wicket:id="url_gridColumn">
+								<input type="text" class="form-control" wicket:id="url"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label" wicket:for="usPhoneNumber">
+								<wicket:label>
+                                         Us Phone Number 
+                                    </wicket:label>
+							</label>
+							<div wicket:id="usPhoneNumber_gridColumn">
+								<input type="text" class="form-control"
+									wicket:id="usPhoneNumber"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								wicket:for="selectANumberRadioChoicee"> <wicket:label>
+                                         Select ANumber Radio Choicee 
+                                    </wicket:label></label>
+							<div wicket:id="selectANumberRadioChoicee_gridColumn">
+								<input type="radio" wicket:id="selectANumberRadioChoicee"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label" wicket:for="selectANumberRadioGroup">
+								<wicket:label>
+                                         Select ANumber Radio Group 
+                                    </wicket:label>
+							</label>
+							<div wicket:id="selectANumberRadioGroup_gridColumn">
+								<input type="radio" wicket:id="selectANumberRadioGroup"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								wicket:for="selectOneOrMoreNumbersCheckGroup"> <wicket:label>
+                                         Select One Or More Numbers Check Group 
+                                    </wicket:label></label>
+							<div wicket:id="selectOneOrMoreNumbersCheckGroup_gridColumn">
+								<select class="form-control"
+									wicket:id="selectOneOrMoreNumbersCheckGroup"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label" wicket:for="yourFavoriteSites">
+								<wicket:label>
+                                         Your Favorite Sites 
+                                    </wicket:label>
+							</label>
+							<div wicket:id="yourFavoriteSites_gridColumn">
+								<select class="form-control" wicket:id="yourFavoriteSites"
+									size="3"></select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<!-- btn-primary also has a key binding for "enter" button -->
+									<button type="submit" class="btn btn-default btn-primary"
+										wicket:id="save">Save</button>
+								</div>
+								<div class="btn-group">
+									<button type="submit" class="btn btn-default" wicket:id="reset">Reset</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<fieldset>
+				<div wicket:id="feedback"></div>
+			</fieldset>
+		</form>
+	</wicket:extend>
+</body>
+</html>
