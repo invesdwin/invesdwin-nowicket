@@ -29,7 +29,6 @@ import de.invesdwin.nowicket.component.footer.AFooter;
 @NotThreadSafe
 public abstract class AEvaWebPage extends AWebPage {
 
-    private static final boolean INVERTED_HEADER_AND_FOOTER = false;
     private static final ResourceReference LOGO = new PackageResourceReference(AEvaWebPage.class, "logo.png");
 
     public AEvaWebPage(final IModel<?> model) {
@@ -63,8 +62,6 @@ public abstract class AEvaWebPage extends AWebPage {
                 new NavbarExternalLink(Model.of("mailto:gsubes@gmail.com")).setLabel(Model.of(""))
                         .setIconType(GlyphIconType.envelope)));
 
-        navbar.setInverted(INVERTED_HEADER_AND_FOOTER);
-
         return navbar;
     }
 
@@ -75,7 +72,7 @@ public abstract class AEvaWebPage extends AWebPage {
 
     @Override
     protected AFooter newFooter(final String id) {
-        return new FooterPanel(id).setInverted(INVERTED_HEADER_AND_FOOTER);
+        return new FooterPanel(id);
     }
 
     @Override

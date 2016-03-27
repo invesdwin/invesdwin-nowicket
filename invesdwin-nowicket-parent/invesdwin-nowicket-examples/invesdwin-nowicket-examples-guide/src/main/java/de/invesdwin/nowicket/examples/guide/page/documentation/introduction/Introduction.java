@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.examples.guide.page.documentation.introduction;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,10 +15,11 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.carousel.ICarouselImage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.concept.Concept;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.bean.AValueObject;
 
 @NotThreadSafe
 @GeneratedMarkup
-public class Introduction implements Serializable {
+public class Introduction extends AValueObject {
 
     private transient RequestCycle lastRandomizedRequestCycle;
     private List<ICarouselImage> frameworkSloganImgs;

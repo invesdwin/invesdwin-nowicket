@@ -62,7 +62,7 @@ public abstract class ABsgCoachWebPage extends AWebPage {
 
     @Override
     protected AFooter newFooter(final String id) {
-        return new FooterPanel(id).setInverted(true);
+        return new FooterPanel(id);
     }
 
     @Override
@@ -72,10 +72,15 @@ public abstract class ABsgCoachWebPage extends AWebPage {
         bgCss.append("body {\n");
         bgCss.append("    background: url(");
         bgCss.append(RequestCycle.get().urlFor(BACKGROUND, null));
-        bgCss.append(") no-repeat center center fixed\n");
+        bgCss.append(") no-repeat center center fixed;\n");
         bgCss.append("}\n");
         bgCss.append("nav {\n");
-        bgCss.append("    opacity: 0.75\n");
+        bgCss.append("    opacity: 0.75;\n");
+        bgCss.append("}\n");
+        bgCss.append(".footer .panel-footer {\n");
+        bgCss.append("    background-color: #222;\n");
+        bgCss.append("    border-color: #080808;\n");
+        bgCss.append("    opacity: 0.75;\n");
         bgCss.append("}\n");
         response.render(CssHeaderItem.forCSS(bgCss, "bsgBgCss"));
     }

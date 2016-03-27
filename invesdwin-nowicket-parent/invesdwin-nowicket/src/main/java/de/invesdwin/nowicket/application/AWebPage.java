@@ -33,8 +33,8 @@ import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
-public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage implements IAjaxIndicatorAware,
-        IPageFactoryHook {
+public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
+        implements IAjaxIndicatorAware, IPageFactoryHook {
 
     public static final String DEFAULT_CONTAINER_CLASS = "container";
 
@@ -56,8 +56,8 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage imp
         final HtmlTag htmlTag = new HtmlTag("html", getLocale(), true);
         add(htmlTag);
         //default title is the classname, though this can be changed by calling the setter afterwards
-        titleModel = Model.of(Objects.toVisibleName(Strings.removeTrailing(getClass().getSimpleName(),
-                Page.class.getSimpleName())));
+        titleModel = Model.of(
+                Objects.toVisibleName(Strings.removeTrailing(getClass().getSimpleName(), Page.class.getSimpleName())));
         final Label title = new Label("title", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
@@ -117,6 +117,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage imp
 
     protected Navbar newNavbar(final String id) {
         final Navbar navbar = new Navbar(id) {
+
             @Override
             protected TransparentWebMarkupContainer newContainer(final String componentId) {
                 final TransparentWebMarkupContainer container = super.newCollapseContainer(componentId);
@@ -150,13 +151,15 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage imp
     }
 
     protected void addSignInNavbarComponent(final Navbar navbar, final Class<? extends WebPage> signInPage) {
-        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT, new NavbarButton<Void>(
-                signInPage, new ResourceModel("menu.sign.in")).setIconType(FontAwesomeIconType.sign_in)));
+        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
+                new NavbarButton<Void>(signInPage, new ResourceModel("menu.sign.in"))
+                        .setIconType(FontAwesomeIconType.sign_in)));
     }
 
     protected void addSignOutNavbarComponent(final Navbar navbar, final Class<? extends WebPage> signOutPage) {
-        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT, new NavbarButton<Void>(
-                signOutPage, new ResourceModel("menu.sign.out")).setIconType(FontAwesomeIconType.sign_out)));
+        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
+                new NavbarButton<Void>(signOutPage, new ResourceModel("menu.sign.out"))
+                        .setIconType(FontAwesomeIconType.sign_out)));
     }
 
     protected Class<? extends Page> getNavbarHomePage() {

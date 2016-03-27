@@ -9,9 +9,12 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.springframework.security.authentication.AuthenticationManager;
 
+import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 import de.invesdwin.nowicket.examples.guide.Main;
+import de.invesdwin.nowicket.examples.guide.component.ExampleThemeProvider;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
 import de.invesdwin.nowicket.examples.guide.page.error.AccessDeniedPage;
 import de.invesdwin.nowicket.examples.guide.page.error.InternalErrorPage;
@@ -70,6 +73,17 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
     @Override
     public void postProcessNewSession(final AWebSession session) {
         session.setLocale(Locale.ENGLISH);
+    }
+
+    @Override
+    public WebApplicationInitializer getInitializerOverride() {
+        return new WebApplicationInitializer() {
+            @Override
+            protected void customizeBootstrapSettings(final BootstrapSettings bootstrapSettings) {
+                super.customizeBootstrapSettings(bootstrapSettings);
+                bootstrapSettings.setThemeProvider(new ExampleThemeProvider());
+            }
+        };
     }
 
 }
