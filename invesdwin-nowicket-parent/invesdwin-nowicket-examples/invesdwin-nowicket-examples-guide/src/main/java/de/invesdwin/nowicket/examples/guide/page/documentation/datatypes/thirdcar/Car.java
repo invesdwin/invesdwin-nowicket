@@ -5,10 +5,12 @@ import java.util.Date;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.time.fdate.FDateBuilder;
 
+@Eager
 @NotThreadSafe
 @GeneratedMarkup
 public class Car extends AValueObject {

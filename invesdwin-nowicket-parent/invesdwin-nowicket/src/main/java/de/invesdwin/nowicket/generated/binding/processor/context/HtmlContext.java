@@ -158,4 +158,8 @@ public class HtmlContext implements Serializable {
         return parent.getBindingBuilder();
     }
 
+    public boolean isUseSqlInjectionValidation() {
+        return parent.isUseSqlInjectionValidation();
+    }
+
 }

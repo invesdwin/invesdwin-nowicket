@@ -81,6 +81,7 @@ import de.invesdwin.nowicket.util.Components;
 // CHECKSTYLE:OFF fan out
 @NotThreadSafe
 public class DefaultBindingBuilder implements IBindingBuilder {
+
     //CHECKSTYLE:ON
 
     @Override
@@ -329,7 +330,9 @@ public class DefaultBindingBuilder implements IBindingBuilder {
             if (e.isModelElement()) {
                 formComponent.setLabel(e.getTitleModel());
             }
-            formComponent.add(new SQLInjectionValidator(c));
+            if (e.getContext().isUseSqlInjectionValidation()) {
+                formComponent.add(new SQLInjectionValidator(c));
+            }
             if (e.getModelElement().getBeanPathElement().isProperty()) {
                 FormComponentAwarePropertyResolver.maybeRegisterElement(e, c, formComponent);
                 formComponent.add(new ModelPropertyValidator(c));

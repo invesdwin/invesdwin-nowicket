@@ -29,6 +29,7 @@ public class GeneratedBinding implements Serializable {
     private final List<BindingInterceptor> bindingInterceptors = new ArrayList<BindingInterceptor>();
     private ISubmitButtonExceptionHandler submitButtonExceptionHandler;
     private ISubmitButtonCallbackFactory submitButtonCallbackFactory;
+    private boolean useSqlInjectionValidation;
     private transient InterceptingBindingBuilder bindingBuilder;
 
     public GeneratedBinding(final Page page) {
@@ -42,6 +43,7 @@ public class GeneratedBinding implements Serializable {
     private GeneratedBinding(final MarkupContainer markupContainer) {
         this.submitButtonExceptionHandler = GeneratedBindingDefaults.get().getDefaultSubmitButtonExceptionHandler();
         this.submitButtonCallbackFactory = GeneratedBindingDefaults.get().getDefaultSubmitButtonCallbackFactory();
+        this.useSqlInjectionValidation = GeneratedBindingDefaults.get().isUseSqlInjectionValidation();
         this.context = new HtmlContext(markupContainer, this);
     }
 
@@ -76,9 +78,18 @@ public class GeneratedBinding implements Serializable {
     public GeneratedBinding withBindingInterceptor(final BindingInterceptor bindingInterceptor) {
         Assertions.assertThat(bindingInterceptor).isNotNull();
         Assertions.assertThat(bindingBuilder)
-        .as("%s can only be added before bind() call", BindingInterceptor.class.getSimpleName())
-        .isNull();
+                .as("%s can only be added before bind() call", BindingInterceptor.class.getSimpleName())
+                .isNull();
         bindingInterceptors.add(bindingInterceptor);
+        return this;
+    }
+
+    public boolean isUseSqlInjectionValidation() {
+        return useSqlInjectionValidation;
+    }
+
+    public GeneratedBinding withUseSqlInjectionValidation(final boolean useSqlInjectionValidation) {
+        this.useSqlInjectionValidation = useSqlInjectionValidation;
         return this;
     }
 
@@ -92,8 +103,8 @@ public class GeneratedBinding implements Serializable {
 
     public IBindingBuilder getBindingBuilder() {
         Assertions.assertThat(bindingBuilder)
-        .as("%s is only available during and after bind() call", IBindingBuilder.class.getSimpleName())
-        .isNotNull();
+                .as("%s is only available during and after bind() call", IBindingBuilder.class.getSimpleName())
+                .isNotNull();
         return bindingBuilder;
     }
 
