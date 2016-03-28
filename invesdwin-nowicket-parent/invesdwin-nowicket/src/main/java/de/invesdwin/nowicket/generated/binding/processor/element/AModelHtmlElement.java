@@ -14,6 +14,7 @@ import org.apache.wicket.util.visit.IVisitor;
 import org.jsoup.nodes.Element;
 
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
+import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
@@ -60,14 +61,18 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
 
     @Override
     public boolean isEager() {
-        if (!getModelElement().getBeanPathElement().isProperty()) {
-            return false;
-        }
-        if (getModelElement().getBeanPathElement().getAccessor().getAnnotation(Eager.class) != null) {
-            return true;
-        }
-        if (getModelElement().getBeanPathElement().getContainer().getType().getAnnotation(Eager.class) != null) {
-            return true;
+        IBeanPathElement parent = getModelElement().getBeanPathElement();
+        while (parent != null) {
+            if (!parent.isProperty()) {
+                return false;
+            }
+            if (parent.getAccessor().getAnnotation(Eager.class) != null) {
+                return true;
+            }
+            if (parent.getContainer().getType().getAnnotation(Eager.class) != null) {
+                return true;
+            }
+            parent = parent.getParentElement();
         }
         return false;
     }

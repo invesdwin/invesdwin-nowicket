@@ -75,6 +75,10 @@ public class ModelComponentBehavior extends Behavior {
             }
             //support IFormComponentAware properly here
             final FormComponent<?> formComponent = Components.asFormComponent(component);
+            if (formComponent == null) {
+                //e.g. table
+                return;
+            }
             formComponent.add(new ModelAjaxFormSubmitBehavior(eagerEvent) {
 
                 @Override
