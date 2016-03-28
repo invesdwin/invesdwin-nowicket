@@ -13,8 +13,6 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapAjaxFall
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons.Type;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxdatatable.AjaxDataTableConstants;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxdatatable.AjaxDataTableRowConstants;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableSubmitButtonColumnHtmlElement;

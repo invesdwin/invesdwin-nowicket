@@ -11,7 +11,6 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.tabs.tab1.Ta
 import de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.tabs.tab2.TabbedPanelTab2;
 import de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.tabs.tab3.TabbedPanelTab3;
 import de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.tabs.tab4.TabbedPanelTab4;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.tabbedpanel.tabs.TabbedPanelTabsConstants;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.bean.AValueObject;
 

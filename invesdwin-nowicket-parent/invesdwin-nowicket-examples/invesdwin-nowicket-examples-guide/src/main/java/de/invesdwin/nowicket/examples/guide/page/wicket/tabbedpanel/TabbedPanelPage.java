@@ -11,7 +11,6 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.tabbedpanel.TabbedPanelConstants;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;

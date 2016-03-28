@@ -14,7 +14,6 @@ import org.hibernate.validator.constraints.URL;
 import de.invesdwin.norva.beanpath.annotation.BeanPathEndPoint;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.forminput.FormInputConstants;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;

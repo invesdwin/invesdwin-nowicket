@@ -6,7 +6,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
-import de.invesdwin.nowicket.examples.guide.pages.wicket.wizard.createuser.panel.step1.CreateUserWizardStep1Constants;
+import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step1.CreateUserWizardStep1Constants;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 

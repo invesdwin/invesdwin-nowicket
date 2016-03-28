@@ -7,7 +7,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import de.invesdwin.norva.beanpath.annotation.ColumnOrder;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.spi.element.utility.RemoveFromBeanPathElement;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.ajaxdatatable.AjaxDataTableRowConstants;
 import de.invesdwin.util.bean.AValueObject;
 
 /**

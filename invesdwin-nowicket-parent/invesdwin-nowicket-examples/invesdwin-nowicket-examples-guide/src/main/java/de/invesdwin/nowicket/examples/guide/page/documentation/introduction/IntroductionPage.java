@@ -9,7 +9,6 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 import de.invesdwin.nowicket.examples.guide.component.carousel.Carousel;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
-import de.invesdwin.nowicket.examples.guide.pages.documentation.introduction.IntroductionConstants;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;

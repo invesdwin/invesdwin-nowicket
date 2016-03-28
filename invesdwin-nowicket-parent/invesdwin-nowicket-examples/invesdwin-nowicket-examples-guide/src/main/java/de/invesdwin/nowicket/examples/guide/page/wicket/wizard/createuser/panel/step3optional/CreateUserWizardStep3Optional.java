@@ -14,7 +14,6 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.ICreateUserWizardStep;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step2.CreateUserWizardStep2;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step4.CreateUserWizardStep4;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.wizard.createuser.panel.step3optional.CreateUserWizardStep3OptionalConstants;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.Strings;

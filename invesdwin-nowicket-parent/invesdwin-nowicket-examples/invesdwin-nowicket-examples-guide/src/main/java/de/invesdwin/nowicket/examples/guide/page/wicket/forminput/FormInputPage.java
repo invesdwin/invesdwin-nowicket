@@ -9,7 +9,6 @@ import org.apache.wicket.model.Model;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
-import de.invesdwin.nowicket.examples.guide.pages.wicket.forminput.FormInputConstants;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.element.AChoiceHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
