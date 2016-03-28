@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+
+			<div class="jumbotron">
+				<input type="hidden" autofocus="autofocus"></input>
+				<legend>
+					<h2>6) Data Types</h2>
+				</legend>
+				<p style="font-size: medium">This chapter describes the default
+					visualizations for domain objects.</p>
+
+				<h3>6.1) Simple Data Types</h3>
+				<p style="font-size: medium">The following basic data types are
+					supported by this framework and are visualized as follows:</p>
+
+				<div style="border: solid 1px; background: white; font-size: medium"
+					wicket:id="simpleDataTypesPanel"></div>
+				<br>
+
+				<p style="font-size: medium">Click the date sample to show the
+					date picker. Try changing some values to see the default
+					validations in action (leave focus to apply change):</p>
+
+				<ul>
+					<li>primitive types are not null validated</li>
+					<li>numbers and chars are validated by range limits</li>
+					<li>fractional digits are only allowed on appropriate number
+						types</li>
+					<li>dates have to be in correct format</li>
+					<li>enum literals are validated against value manipulation
+						(e.g. with <a target="_blank" href="http://getfirebug.com/">Firebug</a>)
+					</li>
+					<li><a target="_blank"
+						href="http://www.mvvm.ro/2011/03/sanitize-strings-against-sql-injection.html">rudimentary
+							sql injection validation</a> is performed on string values (try
+						";drop table users")<br>(though don't mistake it for real
+						security, it only works against <a target="_blank"
+						href="https://www.noisebridge.net/images/9/96/ScriptKITTY.jpg">script
+							kitties</a>)</li>
+				</ul>
+
+				<p style="font-size: medium">
+					Currently there is no out of the box support for <a target="_blank"
+						href="https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html">java.time</a>,
+					<a href="http://www.joda.org/joda-time/">joda-time</a> or any other
+					custom type library for dates or numbers. This is due to keeping
+					dependencies minimal on the framework. Also there is a simple
+					workaround, just convert between the types in your getters/setters
+					if you want a field of an unsupported type. You can still
+					externalize the original type via @Hidden methods for your internal
+					coding needs. Just make sure to convert to a supported type for the
+					framework or handle the binding yourself with a BindingInterceptor
+					and custom components.
+				</p>
+
+				<p style="font-size: medium">If there is a limited value set
+					specified for a property of these data types (see following
+					sections about choice methods), it is always mapped to a combo box
+					independently of the actual data type.</p>
+
+				<p style="font-size: medium">By default the framework displays
+					all properties of a class which have a public getter method
+					defined. If there is also a public setter method defined, the
+					displayed field is editable, otherwise it is read-only. You could
+					also provide public fields (which is the same as a getter and a
+					setter combined), even though this is rather unusual when following
+					the JavaBeans pattern.</p>
+
+				<p style="font-size: medium">
+					Every field is preceded by a label with a text that is derived from
+					the property name. <a target="_blank"
+						href="https://en.wikipedia.org/wiki/CamelCase">CamelCase</a>
+					syntax causes a whitespace splitting (e.g. getNumberOfChildren() is
+					displayed as "Number Of Children"). These labels were explicitly
+					removed from the above samples.
+				</p>
+
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

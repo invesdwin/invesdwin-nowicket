@@ -40,7 +40,12 @@ public class DatePropertyModel implements IPropertyReflectionAwareModel<Date> {
 
     @Override
     public void setObject(final Date object) {
-        final Class<?> type = delegate.getPropertyGetter().getReturnType();
+        final Class<?> type;
+        if (delegate.getPropertyGetter() != null) {
+            type = delegate.getPropertyGetter().getReturnType();
+        } else {
+            type = delegate.getPropertyField().getType();
+        }
         if (object == null) {
             delegate.setObject(null);
         } else if (Date.class.isAssignableFrom(type)) {

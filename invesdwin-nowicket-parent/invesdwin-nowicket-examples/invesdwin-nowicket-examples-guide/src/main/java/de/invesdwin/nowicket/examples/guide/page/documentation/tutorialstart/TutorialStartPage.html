@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<input type="hidden" autofocus="autofocus"></input>
+				<legend>
+					<h2>5) Tutorial Start</h2>
+				</legend>
+				<p style="font-size: medium">Now after all the theoretical stuff
+					and preparations from the previous chapters we are ready to finally
+					dig into some code and explain how these things are controlled
+					exactly.</p>
+
+				<h3>5.1) JavaBeans</h3>
+				<p style="font-size: medium">
+					When working with this framework, it is important to follow the <a
+						target="_blank" href="https://en.wikipedia.org/wiki/JavaBeans">JavaBean</a>
+					conventions for accessing attributes. An "attribute" is a data
+					member of a Java class which - according to the JavaBean convention
+					- is accessed by appropriate getter and setter methods. It is best
+					practice that the identifier following the "get"- and "set"-prefix
+					corresponds to the name of the attribute, whereby the first letter
+					is capitalized.
+				</p>
+				<p style="font-size: medium">An attribute:</p>
+				<pre class="prettyprint lang-java linenums">
+private String name;</pre>
+				<p style="font-size: medium">is accessed from outside the class:
+					by the member functions</p>
+				<pre class="prettyprint lang-java linenums">
+public String getName();
+public void setName(String name);</pre>
+				<p style="font-size: medium">The notation with the leading
+					capital letter is often referred to as a property of the class. A
+					class may very well contain virtual properties, i.e. properties
+					that do not refer to an attribute of the corresponding name but
+					e.g. to an assembly or type conversion of other attributes. The
+					actual names of attributes are therefore a secondary aspect. Many
+					frameworks that are based on Java reflection, work with the
+					JavaBean convention and assume its correct usage by the developers.
+					This is also true for invesdwin-NoWicket. So if this documentation
+					uses the term "property", it refers to the convention above. The
+					term "component" refers to components on the screen, i.e. a text
+					field, a check box, a combo box etc.</p>
+
+				<h3>5.2) The First Generated UI</h3>
+				<p style="font-size: medium">To display a first generic user
+					interface, we simply need a pure Java bean (a "POJO" if you like
+					that term).</p>
+
+				<pre class="prettyprint lang-java linenums">public class Car implements Serializable {
+	
+	private String state;
+	private String licenseNumber;
+	private String brand;
+
+	public Car() {
+		this.state = "off";
+	}
+
+	public String getLicenseNumber() { return licenseNumber; }
+	public String getBrand() { return brand; }
+	public String getState() { return state; }
+
+	public void setLicenseNumber(String licenseNumber) { this.licenseNumber = licenseNumber; }
+	public void setBrand(String brand) { this.brand = brand; }
+	public void setState(String state) { this.state = state; }
+	
+}</pre>
+
+				<p style="font-size: medium">This is what it looks like when it
+					is used as a panel:</p>
+
+				<div style="border: solid 1px; background: white; padding-top: 15px"
+					wicket:id="firstCarPanel"></div>
+				<br>
+
+				<p style="font-size: medium">So the Java class was visualized in
+					a straight-forward way. The HTML generator sorts the components per
+					default in alphabetical order, but you . The only GUI code required
+					was the panel declaration (which could also have been a page as in
+					the previous chapter):</p>
+
+				<pre class="prettyprint lang-java linenums">public class CarPanel extends Panel {
+
+    public CarPanel(final String id, final IModel&lt;Car&gt; model) {
+        super(id, model);
+        new GeneratedBinding(this).bind();
+    }
+
+}</pre>
+
+				<h3>5.3) Adding Actions</h3>
+				<p style="font-size: medium">The state of the car was
+					arbitrarily changeable in the last example. Now the car should
+					better provide methods for reasonable state changes. The methods
+					should only allow to turn the car off and on.</p>
+
+				<pre class="prettyprint lang-java linenums">public class Car implements Serializable {
+
+	// Attribute definitions, constructor, getters/setters omitted here
+	
+	public void turnOn() {
+		this.state = "on";
+	}
+	
+	public void turnOff() {
+		this.state = "off";
+	}
+	
+}</pre>
+
+				<p style="font-size: medium">To ensure that the state is not
+					modified interactively without activating the methods, we remove
+					the setter method for the attribute. This results in the following
+					panel:</p>
+
+				<div style="border: solid 1px; background: white; padding-top: 15px"
+					wicket:id="secondCarPanel"></div>
+				<br>
+
+				<p style="font-size: medium">The buttons were aligned manually
+					after the HTML file was generated. The framework adds buttons only
+					for methods without parameters. If a method throws a checked
+					exception, the exception text is displayed in an error message box.
+					The exception text automatically walks through localization, so you
+					may as well just provide a localization key that refers to a
+					translation in a Wicket property file. Throwing an exception
+					without a message will silently be swallowed, assuming that the
+					originating problem has already been handled in the code and does
+					not need to be reported graphically. Runtime exceptions will be
+					handled via the default Wicket exception handling, thus an internal
+					error page will be displayed. You can change this behavior by
+					setting a custom ISubmitButtonExceptionHandler in the
+					GeneratedBindingDefaults class.</p>
+
+
+				<h3>5.4) Next Steps</h3>
+				<p style="font-size: medium">The two sections above demonstrate
+					that is is fairly simple to display a domain object. Nevertheless
+					there arise various questions from the examples:</p>
+				<ul>
+					<li>How can I avoid the activation of turnOn for an already
+						running car?</li>
+					<li>Is there a different way to disable fields rather than by
+						removing or renaming the setter?</li>
+					<li>How can I limit the brand to a particular set of
+						reasonable values?</li>
+					<li>Which other data types can be displayed by the framework?</li>
+					<li>How can I ensure that the license number follows a
+						particular format?</li>
+					<li>May domain objects be nested?</li>
+				</ul>
+				<p style="font-size: medium">The following chapters give answers
+					to these and many other questions.</p>
+
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

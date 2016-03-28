@@ -34,10 +34,9 @@ public final class PrettifyJsReference extends WebjarsJavaScriptResourceReferenc
     public void renderHead(final IHeaderResponse response) {
         response.render(JavaScriptHeaderItem.forReference(this));
         response.render(OnDomReadyHeaderItem.forScript(FUNCTION_NAME + "();"));
-        //dirty workaround for redirects, otherwise prettify sometimes does not highlight properly...
-        response.render(OnDomReadyHeaderItem.forScript("setTimeout(function(){" + FUNCTION_NAME + "(); }, 100);"));
-        response.render(OnDomReadyHeaderItem.forScript("setTimeout(function(){" + FUNCTION_NAME + "(); }, 300);"));
-        response.render(OnDomReadyHeaderItem.forScript("setTimeout(function(){" + FUNCTION_NAME + "(); }, 1000);"));
+        response.render(OnDomReadyHeaderItem
+                .forScript("Wicket.Event.subscribe('/ajax/call/done', function(attributes, jqXHR, settings) { "
+                        + FUNCTION_NAME + "(); });"));
     }
 
 }

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<table
+				class="table table-condensed table-hover table-striped table-bordered"
+				style="margin-bottom: 0px">
+				<thead>
+					<tr>
+						<th>Java Type</th>
+						<th>HTML Tag</th>
+						<th>Wicket Component</th>
+						<th>Sample (default validation applies)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- public final byte primitiveByte = 1; -->
+					<tr>
+						<td><code>byte</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="primitiveByte_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="primitiveByte"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Byte objectByte = 2; -->
+					<tr>
+						<td><code>Byte</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="objectByte_gridColumn">
+								<input type="number" class="form-control" wicket:id="objectByte"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final short primitiveShort = 3; -->
+					<tr>
+						<td><code>short</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="primitiveShort_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="primitiveShort"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Short objectShort = 4; -->
+					<tr>
+						<td><code>Short</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="objectShort_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="objectShort"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final int primitiveInt = 5; -->
+					<tr>
+						<td><code>int</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="primitiveInt_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="primitiveInt"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Integer objectInteger = 6; -->
+					<tr>
+						<td><code>Integer</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="objectInteger_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="objectInteger"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final long primitiveLong = 7; -->
+					<tr>
+						<td><code>long</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="primitiveLong_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="primitiveLong"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Long objectLong = 8L; -->
+					<tr>
+						<td><code>Long</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="objectLong_gridColumn">
+								<input type="number" class="form-control" wicket:id="objectLong"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final float primitiveFloat = 9.9F; -->
+					<tr>
+						<td><code>float</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="primitiveFloat_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="primitiveFloat"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Float objectFloat = 10.10F; -->
+					<tr>
+						<td><code>Float</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="objectFloat_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="objectFloat"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final double primitiveDouble = 11.11D; -->
+					<tr>
+						<td><code>double</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="primitiveDouble_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="primitiveDouble"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Double objectDouble = 12.12D; -->
+					<tr>
+						<td><code>Double</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="objectDouble_gridColumn">
+								<input type="number" class="form-control"
+									wicket:id="objectDouble"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final BigInteger bigInteger = new BigInteger("13"); -->
+					<tr>
+						<td><code>BigInteger</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="bigInteger_gridColumn">
+								<input type="number" class="form-control" wicket:id="bigInteger"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final BigDecimal bigDecimal = new BigDecimal("14.14"); -->
+					<tr>
+						<td><code>BigDecimal</code></td>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td><code>NumberTextField</code></td>
+						<td>
+							<div wicket:id="bigDecimal_gridColumn">
+								<input type="number" class="form-control" wicket:id="bigDecimal"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public boolean primitiveBoolean; -->
+					<tr>
+						<td><code>boolean</code></td>
+						<td><code>&lt;input type="checkbox"&gt;</code></td>
+						<td><code>CheckBox</code></td>
+						<td>
+							<div wicket:id="primitiveBoolean_gridColumn">
+								<div class="checkbox">
+									<label wicket:for="primitiveBoolean"><input
+										type="checkbox" wicket:id="primitiveBoolean"></input></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<!-- public Boolean objectBoolean; -->
+					<tr>
+						<td><code>Boolean</code></td>
+						<td><code>&lt;input type="checkbox"&gt;</code></td>
+						<td><code>CheckBox</code></td>
+						<td>
+							<div wicket:id="objectBoolean_gridColumn">
+								<div class="checkbox">
+									<label wicket:for="objectBoolean"><input
+										type="checkbox" wicket:id="objectBoolean"></input></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<!-- public final char primitiveChar = 'c'; -->
+					<tr>
+						<td><code>char</code></td>
+						<td><code>&lt;input type="text"&gt;</code></td>
+						<td><code>TextField</code></td>
+						<td>
+							<div wicket:id="primitiveChar_gridColumn">
+								<input type="text" class="form-control"
+									wicket:id="primitiveChar"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Character objectCharacter = 'c'; -->
+					<tr>
+						<td><code>Character</code></td>
+						<td><code>&lt;input type="text"&gt;</code></td>
+						<td><code>TextField</code></td>
+						<td>
+							<div wicket:id="objectCharacter_gridColumn">
+								<input type="text" class="form-control"
+									wicket:id="objectCharacter"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final String string = "text"; -->
+					<tr>
+						<td><code>String</code></td>
+						<td><code>&lt;input type="text"&gt;</code></td>
+						<td><code>TextField</code></td>
+						<td>
+							<div wicket:id="string_gridColumn">
+								<input type="text" class="form-control" wicket:id="string"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Date date = new Date(); -->
+					<tr>
+						<td><code>Date</code></td>
+						<td><code>&lt;input type="date"&gt;</code></td>
+						<td><code>DateTextField</code> (with DatePicker)</td>
+						<td>
+							<div wicket:id="date_gridColumn">
+								<input type="date" class="form-control" wicket:id="date"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final Calendar calendar = Calendar.getInstance(); -->
+					<tr>
+						<td><code>Calendar</code></td>
+						<td><code>&lt;input type="date"&gt;</code></td>
+						<td><code>DateTextField</code> (with DatePicker)</td>
+						<td>
+							<div wicket:id="calendar_gridColumn">
+								<input type="date" class="form-control" wicket:id="calendar"></input>
+							</div>
+						</td>
+					</tr>
+					<!-- public final TimeUnit enumType = TimeUnit.DAYS; -->
+					<tr>
+						<td><code>Enum</code> (e.g. <code>TimeUnit</code>)</td>
+						<td><code>&lt;select&gt;</code></td>
+						<td><code>DropDownChoice</code></td>
+						<td>
+							<div wicket:id="enumType_gridColumn">
+								<select class="form-control" wicket:id="enumType"></select>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</wicket:panel>
+</body>
+</html>

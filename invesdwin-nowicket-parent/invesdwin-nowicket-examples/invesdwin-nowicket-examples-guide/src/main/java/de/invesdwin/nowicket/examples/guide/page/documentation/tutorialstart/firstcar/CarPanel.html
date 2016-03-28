@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+    <head></head>
+    <body>
+        <wicket:panel>
+            <form class="form-horizontal" wicket:id="form">
+                <!-- <div wicket:id='feedback'></div>  -->
+                <div wicket:id="modal"></div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" wicket:for="brand">
+                        <wicket:label>
+                            Brand
+                        </wicket:label></label>
+                    <div wicket:id="brand_gridColumn" class="col-sm-4">
+                        <input type="text" class="form-control" wicket:id="brand"></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" wicket:for="licenseNumber">
+                        <wicket:label>
+                            License Number
+                        </wicket:label></label>
+                    <div wicket:id="licenseNumber_gridColumn" class="col-sm-4">
+                        <input type="text" class="form-control" wicket:id="licenseNumber"></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" wicket:for="state">
+                        <wicket:label>
+                            State
+                        </wicket:label></label>
+                    <div wicket:id="state_gridColumn" class="col-sm-4">
+                        <input type="text" class="form-control" wicket:id="state"></input>
+                    </div>
+                </div>
+            </form>
+        </wicket:panel>
+    </body>
+</html>

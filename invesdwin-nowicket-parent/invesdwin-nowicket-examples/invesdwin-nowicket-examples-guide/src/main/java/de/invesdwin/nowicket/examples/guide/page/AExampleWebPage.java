@@ -36,10 +36,11 @@ import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.page.documentation.concept.ConceptPage;
+import de.invesdwin.nowicket.examples.guide.page.documentation.datatypes.DataTypesPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.frameworkhistory.FrameworkHistoryPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.installation.InstallationPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tutorial.TutorialPage;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tutorialstart.TutorialStartPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.wicketintegration.WicketIntegrationPage;
 import de.invesdwin.nowicket.examples.guide.page.footer.FooterPanel;
 import de.invesdwin.nowicket.examples.guide.page.mvp.RedirectToMvpBsgcoachPage;
@@ -267,8 +268,11 @@ public abstract class AExampleWebPage extends AWebPage {
                         subMenu.add(new MenuBookmarkablePageLink<Void>(InstallationPage.class,
                                 new ResourceModel("menu.installation").wrapOnAssignment(navbar)));
 
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(TutorialPage.class,
-                                new ResourceModel("menu.tutorial").wrapOnAssignment(navbar)));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(TutorialStartPage.class,
+                                new ResourceModel("menu.tutorialstart").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(DataTypesPage.class,
+                                new ResourceModel("menu.datatypes").wrapOnAssignment(navbar)));
 
                         return subMenu;
                     }

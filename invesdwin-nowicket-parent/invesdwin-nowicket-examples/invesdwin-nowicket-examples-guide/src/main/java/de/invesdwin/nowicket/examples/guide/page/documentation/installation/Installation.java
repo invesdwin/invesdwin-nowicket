@@ -9,7 +9,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.wicket.util.string.Strings;
 
 import de.invesdwin.nowicket.examples.guide.page.documentation.frameworkhistory.FrameworkHistory;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tutorial.Tutorial;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tutorialstart.TutorialStart;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 
@@ -21,8 +21,8 @@ public class Installation extends AValueObject {
         return new FrameworkHistory();
     }
 
-    public Tutorial readNextChapter() {
-        return new Tutorial();
+    public TutorialStart readNextChapter() {
+        return new TutorialStart();
     }
 
     public String getDirectoryLayoutImg() {
