@@ -69,9 +69,9 @@ public class ModelComponentBehavior extends Behavior {
         if (element.isEager()) {
             final String eagerEvent;
             if (element instanceof CheckBoxInputHtmlElement || element instanceof RadioInputHtmlElement) {
-                eagerEvent = "onclick";
+                eagerEvent = "click";
             } else {
-                eagerEvent = "onchange";
+                eagerEvent = "change";
             }
             //support IFormComponentAware properly here
             final FormComponent<?> formComponent = Components.asFormComponent(component);
