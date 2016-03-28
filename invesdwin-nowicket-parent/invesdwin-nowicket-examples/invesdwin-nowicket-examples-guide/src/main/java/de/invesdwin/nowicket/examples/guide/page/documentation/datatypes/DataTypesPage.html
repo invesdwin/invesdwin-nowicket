@@ -49,14 +49,13 @@
 					Currently there is no out of the box support for <a target="_blank"
 						href="https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html">java.time</a>,
 					<a href="http://www.joda.org/joda-time/">joda-time</a> or any other
-					custom type library for dates or numbers. This is due to keeping
-					dependencies minimal on the framework. Also there is a simple
-					workaround, just convert between the types in your getters/setters
-					if you want a field of an unsupported type. You can still
-					externalize the original type via @Hidden methods for your internal
-					coding needs. Just make sure to convert to a supported type for the
-					framework or handle the binding yourself with a BindingInterceptor
-					and custom components.
+					custom type library for dates or numbers. This is because there is
+					a simple workaround, just convert between the types in your
+					getters/setters if you want a field of an unsupported type. You can
+					still externalize the original type via @Hidden methods for your
+					internal coding needs. Just make sure to convert to a supported
+					type for the framework or completely handle the binding yourself
+					with a BindingInterceptor and custom components.
 				</p>
 
 				<p style="font-size: medium">If there is a limited value set
