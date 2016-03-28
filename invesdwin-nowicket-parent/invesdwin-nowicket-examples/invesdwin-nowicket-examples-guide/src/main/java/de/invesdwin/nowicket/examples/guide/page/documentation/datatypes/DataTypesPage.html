@@ -19,7 +19,7 @@
 				<p style="font-size: medium">The following basic data types are
 					supported by this framework and are visualized as follows:</p>
 
-				<div style="border: solid 1px; background: white; font-size: medium"
+				<div style="border: solid 1px; background: white"
 					wicket:id="simpleDataTypesPanel"></div>
 				<br>
 
@@ -58,11 +58,6 @@
 					with a BindingInterceptor and custom components.
 				</p>
 
-				<p style="font-size: medium">If there is a limited value set
-					specified for a property of these data types (see following
-					sections about choice methods), it is always mapped to a combo box
-					independently of the actual data type.</p>
-
 				<p style="font-size: medium">By default the framework displays
 					all properties of a class which have a public getter method
 					defined. If there is also a public setter method defined, the
@@ -75,12 +70,126 @@
 					Every field is preceded by a label with a text that is derived from
 					the property name. <a target="_blank"
 						href="https://en.wikipedia.org/wiki/CamelCase">CamelCase</a>
-					syntax causes a whitespace splitting (e.g. getNumberOfChildren() is
-					displayed as "Number Of Children"). These labels were explicitly
+					syntax causes a whitespace splitting (e.g.
+					<code>getNumberOfChildren()</code>
+					is displayed as "Number Of Children"). These labels were explicitly
 					removed from the above samples.
 				</p>
 
-				<br />
+				<h3>6.2) Collections & Arrays</h3>
+				<p style="font-size: medium">
+					If the property is a collection/array of a simple data type or
+					there is a limited value set specified for it (see following
+					chapters about choice methods), it is always mapped to a
+					<code>select</code>
+					tag. This will show it as a combo box. You can set a
+					<code>size</code>
+					attribute to convert it to a list as done below (the lists are
+					disabled because the properties do not have a setter). But what we
+					are going for here are tables, not lists or combo boxes.
+				</p>
+
+				<p style="font-size: medium">
+					So to do it correct, you have to use the proper types. Arrays and
+					collections for complex data types are by default mapped to tables.
+					The table contains one row for each element of the
+					collection/array. To achieve a detailed visualization of domain
+					objects from a collection, the collection should be typed using
+					Java generics. Otherwise the framework can only display "the least
+					common denominator" which is toString() for all contained objects.
+					The table displays only the data of the contained type. As a
+					consequence, if the collection also contains objects of derived
+					types, the additional properties of these types are not displayed.
+					(e.g. a collection of vehicles contains cars and bikes with
+					additional properties, but the generic type is of car. Thus the
+					table displays only the properties of the vehicle base class). Also
+					note that tables only allow shallow columns to be displayed,
+					everything else is displayed as toString(). You see this below in
+					the
+					<code>nested</code>
+					column that contains
+					<code>column3</code>
+					in a structured type.
+				</p>
+
+				<div
+					style="border: solid 1px; background: white; padding-left: 15px; padding-right: 15px"
+					wicket:id="tablesPanel"></div>
+				<br>
+
+
+				<p style="font-size: medium">
+					If you want to see a more realistic table example, please open the
+					<a target="_blank" href="ajaxdatatable">Ajax Data Table</a> example
+					from the Wicket Examples Rebuilt item in the top menu.
+				</p>
+
+				<h3>6.3) Structured Data Types</h3>
+				<p style="font-size: medium">Domain objects may be structured by
+					one class referencing another class. The related objects are in
+					this case displayed within the UI of the referencing object. To
+					separate the fields from each other, the fields for referenced
+					objects are displayed under a separation line with the name of the
+					reference as a caption.</p>
+
+				<p style="font-size: medium">The following example shows a more
+					comprehensive model for a car. The motor with its methods for
+					turning it off and on are implemented in a separate class. There is
+					a number of additional attributes with different data types now.
+					All trips which have been made with that car are associated by an
+					array.</p>
+
+				<pre class="prettyprint lang-java linenums">public class Car implements Serializable {
+				
+	private String licenseNumber;
+	private CarBrand brand;
+	private long kmMileage;
+	private BigDecimal purchasePrice;
+	private boolean technicalControl;
+	private Date registrationDate;
+	private Trip[] tripBook;
+	private Motor motor;
+
+	// constructor, getters/setters omitted here
+	
+}
+
+public class Motor implements Serializable {
+
+	private int powerInHP;
+	private MotorState state;
+	
+	// constructor, getters/setters omitted here
+
+	public void turnOn() { this.state = MotorState.on; }
+	public void turnOff() { this.state = MotorState.off; }
+	
+}
+
+public class Trip implements Serializable {
+
+	private String from;
+	private String to;
+	private int distanceInKM;
+	
+	// constructor, getters/setters omitted here
+	
+}</pre>
+
+				<p style="font-size: medium">This results in the following
+					panel:</p>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="thirdCarPanel"></div>
+				<br>
+
+				<p style="font-size: medium">This looks better than the previous
+					examples, but it allows logically incorrect input values. To fix
+					this, the next chapter explains how to add validations.</p>
+
+				<br>
+
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">

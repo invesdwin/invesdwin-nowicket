@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<h3 style="text-align: center" class="bg-danger">Wrong</h3>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="objectsIterable">
+					<wicket:label>
+                            Objects Iterable
+                        </wicket:label>
+				</label>
+				<div wicket:id="objectsIterable_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="objectsIterable" size="3"></select>
+				</div>
+				<div class="col-sm-6">
+					<code>public Iterable getObjectsIterable() { ... }</code>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="objectsArray">
+					<wicket:label>
+                            Objects Array
+                        </wicket:label>
+				</label>
+				<div wicket:id="objectsArray_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="objectsArray" size="3"></select>
+				</div>
+				<div class="col-sm-6">
+					<code>public Object[] getObjectsArray() { ... }</code>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="bytesIterable">
+					<wicket:label>
+                            Bytes Iterable
+                        </wicket:label>
+				</label>
+				<div wicket:id="bytesIterable_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="bytesIterable" size="3"></select>
+				</div>
+				<div class="col-sm-6">
+					<code> public Iterable&lt;Byte&gt; getBytesIterable() { ...
+						}</code>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="bytesArray">
+					<wicket:label>
+                            Bytes Array
+                        </wicket:label>
+				</label>
+				<div wicket:id="bytesArray_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="bytesArray" size="3"></select>
+				</div>
+				<div class="col-sm-6">
+					<code>public Byte[] getBytesArray() { ... }</code>
+				</div>
+			</div>
+			<h3 style="text-align: center" class="bg-success">Correct</h3>
+			<fieldset>
+				<legend wicket:id="tableRowsIterable_legend">Table Rows
+					Iterable</legend>
+				<div class="table-responsive">
+					<table class="table table-condensed table-hover table-striped"
+						wicket:id="tableRowsIterable"></table>
+				</div>
+				<div class="col-sm-6"></div>
+				<div class="col-sm-6">
+					<code>public Iterable&lt;TableRow&gt; getTableRowsIterable()
+						{ ... }</code>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend wicket:id="tableRowsArray_legend">Table Rows Array</legend>
+				<div class="table-responsive">
+					<table class="table table-condensed table-hover table-striped"
+						wicket:id="tableRowsArray"></table>
+				</div>
+				<div class="col-sm-6"></div>
+				<div class="col-sm-6">
+					<code>public TableRow[] getTableRowsArray() { ... }</code>
+				</div>
+			</fieldset>
+			<br> <br>
+		</form>
+	</wicket:panel>
+</body>
+</html>
