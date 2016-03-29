@@ -46,7 +46,9 @@
 					synchronization is used).
 				</p>
 
-				<h4>Mandatory Data</h4>
+				<h4>
+					<u>Mandatory Data</u>
+				</h4>
 				<p style="font-size: medium">
 					<b>Realization:</b> A property can be tagged as a mandatory using
 					the
@@ -63,7 +65,9 @@
 					<code>@Column(nullable=false)</code>
 					the same.
 				</p>
-				<h4>Limited Range of Numbers</h4>
+				<h4>
+					<u>Numbers With Limited Range</u>
+				</h4>
 				<p style="font-size: medium">
 					<b>Realization:</b> The range of values for a numeric property can
 					be limited by the
@@ -79,7 +83,9 @@
 					violation, the component is tagged to have invalid input. Method
 					buttons are disabled until the input is corrected.
 				</p>
-				<h4>Defined Format & Allowed Characters</h4>
+				<h4>
+					<u>Defined Format & Allowed Characters</u>
+				</h4>
 				<p style="font-size: medium">
 					<b>Realization:</b>The input format for a property can be specified
 					in a detailed way using the
@@ -91,7 +97,9 @@
 					component is tagged to have invalid input. Method buttons are
 					disabled until the input is corrected.
 				</p>
-				<h4>Length Limitation</h4>
+				<h4>
+					<u>Length Limitation</u>
+				</h4>
 				<p style="font-size: medium">
 					<b>Realization:</b> The length of a property can be limited using
 					the
@@ -104,7 +112,9 @@
 					invalid input. Method buttons are disabled until the input is
 					corrected.
 				</p>
-				<h4>Decimal Places</h4>
+				<h4>
+					<u>Decimal Places</u>
+				</h4>
 				<p style="font-size: medium">
 					<b>Realization:</b> The number of decimal places can be specified
 					using the
@@ -116,7 +126,7 @@
 					decimal point <br> <b>Effect:</b> The framework checks whether
 					the input has a valid number of digits. <br>Not enough decimal
 					places: The component is filled with missing 0 characters, if this
-					doesn’t exceed the maximum length, otherwise the component is
+					does not exceed the maximum length, otherwise the component is
 					tagged to have invalid input. Method buttons are disabled until the
 					input is corrected. <br>Too many decimal places: The component
 					is tagged to have invalid input. Method buttons are disabled until
@@ -124,6 +134,62 @@
 				</p>
 
 				<h3>7.2) Dynamic Validation</h3>
+
+				<p style="font-size: medium">It may happen that the validation
+					rules for an object depend on its state. For these cases, the
+					framework provides a dynamic validation feature based on naming
+					conventions for utility methods.</p>
+
+				<h4>
+					<u>Validate Utility Methods</u>
+				</h4>
+				<p style="font-size: medium">These methods are called by the
+					framework before updating the appropriate domain object property.
+					Validate methods must have the following signature:</p>
+				<pre class="prettyprint lang-java linenums">public String validate&lt;NameOfProperty&gt;(&lt;TypOfProperty&gt; newValue)</pre>
+				<p style="font-size: medium">The return value of this method is
+					an error text which is displayed in a feedback box or around the
+					component in case of a validation error. A return value of null
+					expresses a successful validation causing the interactive input to
+					be transferred to the domain object afterwards. For example the
+					input for a property "price" may be dynamically validated by a
+					method called "validatePrice". You do not have to worry about XOR
+					relationships between properties in validators, since the two step
+					validation that is done by the framework ensures that all
+					validations produce the correct result, independent of the
+					synchronization order.</p>
+				<h4>
+					<u>Choice Utility Methods</u>
+				</h4>
+				<p style="font-size: medium">These methods allow a dynamic
+					limitation of the value set for a property. Choice methods must
+					have the following signature:</p>
+				<pre class="prettyprint lang-java linenums">public &lt;TypeOfProperty&gt;[] get&lt;NameOfProperty&gt;Choice()</pre>
+				<p style="font-size: medium">The return value is the list of
+					supported values for the current situation, respectively the
+					current object state. If a choice method exists, the property is
+					displayed by a combo box. This is also true for properties
+					returning structured data types (you can convert them to table tags
+					in the html file if desired). In this case the combo box displays
+					the result of the toString() method of these objects. Choice
+					methods for structured types cause a different kind of data
+					manipulation. With a choice function, the user manipulates the
+					reference while the content of the referenced object remains
+					unchanged. To change both content and reference, the same attribute
+					must be made available through two properties with only one of
+					these properties having a choice method. If a property may be null,
+					the corresponding choice method must contain a null value as a
+					valid selection. Otherwise the framework assumes that null is not
+					allowed in the current situation even though the data type may
+					generally support null values. It is important to know that the
+					framework compares the current property value with the values from
+					the corresponding choice method to check its validity. Structured
+					data types therefore must define a valid equals method or the
+					choice method must return the identical value set with each call,
+					not only an equal one. The comparison takes place whenever the user
+					interface and the domain objects in the background are
+					synchronized, which is usually quite often, for example when a
+					component is submitted or a button is pressed.</p>
 
 				<br />
 				<fieldset class="col-sm-12">
