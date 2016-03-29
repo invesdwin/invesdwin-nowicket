@@ -53,15 +53,15 @@
 					<code>@NotNull</code>
 					annotation. All data types which can be null are supported.
 					Primitive data types already have a built in validation for this
-					(as seen in the previous chapter). The framework treats the JPA
-					annotation
+					(as seen in the previous chapter). <br> <b>Effect:</b>The
+					framework checks if the component contains any input. An empty
+					component is tagged to have invalid input. Method buttons are
+					disabled until the input is corrected. When this annotation is used
+					on an enum type that is displayed as a combo box, then the "empty"
+					value is omitted in the allowed options to be selected. The
+					framework treats the JPA annotation
 					<code>@Column(nullable=false)</code>
-					the same. <br> <b>Effect:</b>The framework checks if the
-					component contains any input. An empty component is tagged to have
-					invalid input. Method buttons are disabled until the input is
-					corrected. When this annotation is used on an enum type that is
-					displayed as a combo box, then the "empty" value is omitted in the
-					allowed options to be selected.
+					the same.
 				</p>
 				<h4>Limited Range of Numbers</h4>
 				<p style="font-size: medium">
