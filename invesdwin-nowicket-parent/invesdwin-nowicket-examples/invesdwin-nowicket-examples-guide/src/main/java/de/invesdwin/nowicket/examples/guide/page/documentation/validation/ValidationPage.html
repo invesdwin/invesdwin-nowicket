@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<input type="hidden" autofocus="autofocus"></input>
+				<legend>
+					<h2>7) Validation</h2>
+				</legend>
+				<p style="font-size: medium">
+					In many cases it is required to limit the users data entry or to
+					validate the input. For these cases, the framework provides some
+					features which are introduced in this chapter. Validation can
+					generally be classified in static and dynamic validation. Static
+					constraints can be expressed by annotations in the domain class. If
+					the validation depends on particular situations, respective the
+					domain object state, the dynamic approach provides more flexibility
+					via custom validation methods. All validation annotations must be
+					added to the getter methods of the properties or the fields
+					themselves. Generally the framework performs static validations
+					through the standardized <a target="_blank"
+						href="http://hibernate.org/validator/">Java Bean Validation</a>
+					(JSR 303 and JSR 349). The bean validation annotations are also
+					recognized by <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Java_Persistence_API">JPA</a>
+					implementations among others. Using the standard thus allows
+					performing validations on different layers, both automatically and
+					programmatically.
+				</p>
+
+				<h3>7.1) Static Validation</h3>
+
+				<p style="font-size: medium">
+					We will now go through the most interesting validation annotations.
+					For more info and a guide on how to create your own validation
+					annotations, see the <a target="_blank"
+						href="http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/">Hibernate
+						Validator</a> documentation, as that is the implementation used for
+					this functionality. Validations generally occur when the form is
+					submitted (or when leaving the component when
+					<code>@Eager</code>
+					synchronization is used).
+				</p>
+
+				<h4>Mandatory Data</h4>
+				<p style="font-size: medium">
+					<b>Realization:</b> A property can be tagged as a mandatory using
+					the
+					<code>@NotNull</code>
+					annotation. All data types which can be null are supported.
+					Primitive data types already have a built in validation for this
+					(as seen in the previous chapter). The framework treats the JPA
+					annotation
+					<code>@Column(nullable=false)</code>
+					the same. <br> <b>Effect:</b>The framework checks if the
+					component contains any input. An empty component is tagged to have
+					invalid input. Method buttons are disabled until the input is
+					corrected. When this annotation is used on an enum type that is
+					displayed as a combo box, then the "empty" value is omitted in the
+					allowed options to be selected.
+				</p>
+				<h4>Limited Range of Numbers</h4>
+				<p style="font-size: medium">
+					<b>Realization:</b> The range of values for a numeric property can
+					be limited by the
+					<code>@Min</code>
+					and
+					<code>@Max</code>
+					annotations. <br>Supported data types: all numeric types (use
+					<code>@DecimalMin</code>
+					and
+					<code>@DecimalMax</code>
+					for floating point numbers) <br> <b>Effect:</b> The range of
+					values is checked against the given value. In case of a range
+					violation, the component is tagged to have invalid input. Method
+					buttons are disabled until the input is corrected.
+				</p>
+				<h4>Defined Format & Allowed Characters</h4>
+				<p style="font-size: medium">
+					<b>Realization:</b>The input format for a property can be specified
+					in a detailed way using the
+					<code>@Pattern</code>
+					annotation. The annotation expects a string with a regular
+					expression which the property value must match. Supported data
+					types: String <br> <b>Effect:</b> The input is matched against
+					the regular expression. In case of an expression violation, the
+					component is tagged to have invalid input. Method buttons are
+					disabled until the input is corrected.
+				</p>
+				<h4>Length Limitation</h4>
+				<p style="font-size: medium">
+					<b>Realization:</b> The length of a property can be limited using
+					the
+					<code>@Size</code>
+					annotation. It allows specifying both a minimum and a maximum
+					length. <br>Supported data types: String, Collection, Map,
+					Array <br> <b>Effect:</b> Maximum length: the appropriate
+					components accept only the specified number of characters <br>Minimum
+					length: If the input is too short, the component is tagged to have
+					invalid input. Method buttons are disabled until the input is
+					corrected.
+				</p>
+				<h4>Decimal Places</h4>
+				<p style="font-size: medium">
+					<b>Realization:</b> The number of decimal places can be specified
+					using the
+					<code>@Digits</code>
+					annotation. <br>Supported data types: BigDecimal, BigInteger,
+					String, byte, short, int, long<br> Example:
+					<code>@Digits(integer=5, fraction=2)</code>
+					means: 5 digits before the decimal point, 2 digits after the
+					decimal point <br> <b>Effect:</b> The framework checks whether
+					the input has a valid number of digits. <br>Not enough decimal
+					places: The component is filled with missing 0 characters, if this
+					doesn’t exceed the maximum length, otherwise the component is
+					tagged to have invalid input. Method buttons are disabled until the
+					input is corrected. <br>Too many decimal places: The component
+					is tagged to have invalid input. Method buttons are disabled until
+					the input is corrected.
+				</p>
+
+				<h3>7.2) Dynamic Validation</h3>
+
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
