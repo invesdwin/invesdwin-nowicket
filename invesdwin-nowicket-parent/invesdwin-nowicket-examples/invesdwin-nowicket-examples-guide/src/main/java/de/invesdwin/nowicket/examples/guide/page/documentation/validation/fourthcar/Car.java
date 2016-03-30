@@ -129,7 +129,7 @@ public class Car extends AValueObject {
     }
 
     public CarBrand[] getBrandChoice() {
-        //filter PlutoNebula because someone says Pluto is not a planet anymore...
+        //filter PlutoNebula because someone said: "Pluto is not a planet!"
         return new CarBrand[] { CarBrand.LunarIndustries, CarBrand.MarsRoveries };
     }
 
