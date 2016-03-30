@@ -7,6 +7,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
+import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -15,6 +16,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapExternalLink.Target;
@@ -64,6 +67,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
     private static final String PAGE_PARAM_THEME = "theme";
     private static final String TITLE = "invesdwin-NoWicket";
+    private static final ResourceReference LOGO = new PackageResourceReference(AExampleWebPage.class, "logo.png");
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(AExampleWebPage.class);
 
@@ -76,6 +80,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
         final Navbar navbar = super.newNavbar(id);
         navbar.setBrandName(Model.of(TITLE));
+        navbar.setBrandImage(LOGO, Model.of("logo"));
 
         addDocumentationNav(navbar, ComponentPosition.LEFT);
         addWicketExamplesNav(navbar, ComponentPosition.LEFT);
@@ -331,6 +336,8 @@ public abstract class AExampleWebPage extends AWebPage {
     public void renderHead(final IHeaderResponse response) {
         super.renderHead(response);
         PrettifyHeaderContributor.INSTANCE.renderHead(response);
+        response.render(
+                CssHeaderItem.forCSS(".jumbotron .has-error .help-block { font-size: 14px }", "fixJumbotronHasError"));
     }
 
 }

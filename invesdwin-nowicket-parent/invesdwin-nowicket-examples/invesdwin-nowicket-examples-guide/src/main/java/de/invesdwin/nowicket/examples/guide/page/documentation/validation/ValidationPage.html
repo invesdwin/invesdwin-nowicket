@@ -191,7 +191,68 @@
 					synchronized, which is usually quite often, for example when a
 					component is submitted or a button is pressed.</p>
 
-				<br />
+				<h3>7.3) Try It</h3>
+
+				<p style="font-size: medium">Now let us apply this new knowledge
+					on our previous car example:</p>
+
+				<pre class="prettyprint lang-java linenums">public class Car implements Serializable {
+
+    // Constructor, attributes and uninteresting getter and setter methods omitted here
+
+    @Pattern(regexp = "[A-Z]{1,3}-[A-Z]{1,2} [1-9][0-9]{0,3}")
+    public String getLicenseNumber() { return licenseNumber; }
+
+    @NotNull
+    public CarBrand getBrand() { return brand; }
+
+    @Digits(fraction = 2, integer = 19)
+    public BigDecimal getPurchasePrice() { return purchasePrice; }
+
+    @Min(0)
+    @Max(1000000)
+    public long getKmMileage() { return kmMileage; }
+
+    @Pattern(regexp = "[45]")
+    @Size(max = 1)
+    public String getNumberOfGears() { return numberOfGears; }
+
+    public CarBrand[] getBrandChoice() {
+        //filter PlutoNebula because someone says Pluto is not a planet anymore...
+        return new CarBrand[] { CarBrand.LunarIndustries, CarBrand.MarsRoveries };
+    }
+
+    private boolean isPurchasePriceGreaterThan(final BigDecimal purchasePrice, final long price) {
+        return purchasePrice != null && purchasePrice.compareTo(new BigDecimal("" + price)) >= 1;
+    }
+
+    public String validatePurchasePrice(final BigDecimal value) {
+        if (brand != null && brand == CarBrand.MarsRoveries && isPurchasePriceGreaterThan(value, 20000)) {
+            return "is too expensive";
+        } else {
+            return null;
+        }
+    }
+}
+    
+public class Motor implements Serializable {
+
+    // Constructor, uninteresting attributes, getter and setter methods omitted here
+	
+    @Min(0)
+    private int powerInHP;
+	
+}</pre>
+
+				<p style="font-size: medium">
+					To see some validation messages, try to <b>Turn On</b> the car
+					below:
+				</p>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="fourthCarPanel"></div>
+				<br> <br />
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">

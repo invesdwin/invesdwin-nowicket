@@ -28,6 +28,10 @@ public class Introduction extends AValueObject {
         return new Concept();
     }
 
+    public String getLogoLargeImg() {
+        return "logo_large.png";
+    }
+
     public List<ICarouselImage> getFrameworkSloganImgs() {
         randomizeOncePerRequestCycle();
         return frameworkSloganImgs;

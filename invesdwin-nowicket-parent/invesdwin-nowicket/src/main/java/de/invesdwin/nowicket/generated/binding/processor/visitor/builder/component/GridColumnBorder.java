@@ -41,6 +41,7 @@ public class GridColumnBorder extends Border {
         });
         add(hasError);
         this.help = new Label("help", Model.of()); //needs to escape markup or modals do not close
+        help.setEscapeModelStrings(false);
         addToBorder(help);
     }
 

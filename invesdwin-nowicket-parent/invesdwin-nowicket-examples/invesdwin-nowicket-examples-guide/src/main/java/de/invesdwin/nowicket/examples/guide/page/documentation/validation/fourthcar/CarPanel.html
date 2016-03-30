@@ -3,7 +3,7 @@
 <head></head>
 <body>
 	<wicket:panel>
-		<form class="form-horizontal" wicket:id="form" style="font-size: 14px">
+		<form class="form-horizontal" wicket:id="form">
 			<!-- <div wicket:id='feedback'></div>  -->
 			<div wicket:id="modal"></div>
 			<div class="form-group">
@@ -32,6 +32,16 @@
 				</label>
 				<div wicket:id="licenseNumber_gridColumn" class="col-sm-4">
 					<input type="text" class="form-control" wicket:id="licenseNumber"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="numberOfGears">
+					<wicket:label>
+                            Number Of Gears
+                        </wicket:label>
+				</label>
+				<div wicket:id="numberOfGears_gridColumn" class="col-sm-4">
+					<input type="text" class="form-control" wicket:id="numberOfGears"></input>
 				</div>
 			</div>
 			<div class="form-group">
@@ -101,6 +111,11 @@
 									wicket:id="motor.turnOn">Turn On</button>
 							</div>
 						</div>
+					</div>
+					<div class="col-sm-6">
+						<h5>
+							<code>&lt;-- CLICK HERE!</code>
+						</h5>
 					</div>
 				</div>
 			</fieldset>
