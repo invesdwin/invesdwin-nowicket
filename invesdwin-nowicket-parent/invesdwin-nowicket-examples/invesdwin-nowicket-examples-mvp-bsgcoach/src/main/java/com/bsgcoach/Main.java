@@ -1,5 +1,7 @@
 package com.bsgcoach;
 
+import java.io.File;
+
 import javax.annotation.concurrent.Immutable;
 import javax.servlet.DispatcherType;
 
@@ -46,12 +48,22 @@ public class Main {
         noWicketFilter.addInitParameter("applicationClassName", ExampleWebApplication.class.getName());
         noWicketFilter.addInitParameter("filterMappingUrlPattern", "/*");
 
-        // Deployment configuration enables custom error pages.
-        noWicketFilter.addInitParameter("configuration", "deployment");
+        if (!isTestEnvironment()) {
+            // Deployment configuration enables custom error pages.
+            noWicketFilter.addInitParameter("configuration", "deployment");
+        }
 
         noWicketFilter.addUrlPatterns("/*");
         noWicketFilter.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
         return noWicketFilter;
+    }
+
+    private static boolean isTestEnvironment() {
+        //since java classes are packaged in src/main/java, we check if the test directory exists and if it actually contains any tests
+        final File srcTestJavaDir = new File("src/test/java");
+        final boolean testClassesExist = srcTestJavaDir.exists() && srcTestJavaDir.isDirectory()
+                && srcTestJavaDir.list().length > 0;
+        return testClassesExist;
     }
 
     @Bean
