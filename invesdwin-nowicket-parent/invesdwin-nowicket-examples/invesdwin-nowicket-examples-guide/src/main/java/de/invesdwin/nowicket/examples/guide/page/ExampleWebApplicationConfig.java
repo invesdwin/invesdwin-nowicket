@@ -13,6 +13,7 @@ import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
+import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.Main;
 import de.invesdwin.nowicket.examples.guide.component.ExampleThemeProvider;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
@@ -82,6 +83,14 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
             protected void customizeBootstrapSettings(final BootstrapSettings bootstrapSettings) {
                 super.customizeBootstrapSettings(bootstrapSettings);
                 bootstrapSettings.setThemeProvider(new ExampleThemeProvider());
+            }
+
+            @Override
+            protected BootstrapExtensionsHeaderContributor newBootstrapExtensionsHeaderContributor(
+                    final BootstrapSettings bootstrapSettings) {
+                return super.newBootstrapExtensionsHeaderContributor(bootstrapSettings)
+                        //prevent "Read Next Chapter" button from intercepting the sample form submit
+                        .withBtnPrimaryEnterBinding(false);
             }
         };
     }
