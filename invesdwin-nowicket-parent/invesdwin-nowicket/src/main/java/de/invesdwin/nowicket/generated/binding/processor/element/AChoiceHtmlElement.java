@@ -46,7 +46,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                         .getValue();
                 //check before removing null
                 maybeCheckDuplicateRenderedStringsInDevMode(list);
-                //setNullValid Behavior in ModelComponentBehavior already handles null properly
+                //setNullValid Behavior in ModelComponentBehavior already handles null properly; ListMultipleChoice does not support null selection
                 list.remove(null);
                 return list;
             }
@@ -91,7 +91,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private IChoiceRenderer<Object> newChoiceRenderer() {
-        if (getModelElement().getBeanPathElement().getAccessor().getRawType().isEnum()) {
+        if (getModelElement().getBeanPathElement().getAccessor().getType().isEnum()) {
             return new EnumChoiceRenderer(getContext().getMarkupContainer()) {
                 @Override
                 public Object getDisplayValue(final Enum object) {

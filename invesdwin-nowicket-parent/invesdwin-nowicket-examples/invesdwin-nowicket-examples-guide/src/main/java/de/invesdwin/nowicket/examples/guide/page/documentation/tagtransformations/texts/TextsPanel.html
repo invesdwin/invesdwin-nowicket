@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+
+			<code>public String get&lt;PropertyName&gt;() { ... }</code>
+
+			<br> <br>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="defaultTextInput">
+					<wicket:label>
+                            Default Text Input
+                        </wicket:label>
+				</label>
+				<div wicket:id="defaultTextInput_gridColumn" class="col-sm-4">
+					<input type="text" class="form-control"
+						wicket:id="defaultTextInput"></input>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;input type="text"&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="asTextArea">
+					<wicket:label>
+                            As Text Area
+                        </wicket:label>
+				</label>
+				<div wicket:id="asTextArea_gridColumn" class="col-sm-4">
+					<textarea class="form-control" wicket:id="asTextArea" rows="3"></textarea>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;textarea&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">As Label</label>
+				<div wicket:id="asLabel_gridColumn" class="col-sm-4">
+					<label class="control-label" wicket:id="asLabel"></label>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;label&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">As Paragraph</label>
+				<div wicket:id="asParagraph_gridColumn" class="col-sm-4">
+					<p wicket:id="asParagraph"></p>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;p&gt;</pre>
+				</div>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>

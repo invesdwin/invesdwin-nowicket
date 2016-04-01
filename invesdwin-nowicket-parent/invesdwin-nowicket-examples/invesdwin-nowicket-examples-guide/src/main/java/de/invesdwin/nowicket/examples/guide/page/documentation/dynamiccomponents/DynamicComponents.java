@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.dynamiccomponent
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.TagTransformations;
 import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.UserInterfaceFlow;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -14,8 +15,8 @@ public class DynamicComponents extends AValueObject {
         return new UserInterfaceFlow();
     }
 
-    public Object readNextChapter() {
-        return null;
+    public TagTransformations readNextChapter() {
+        return new TagTransformations();
     }
 
 }

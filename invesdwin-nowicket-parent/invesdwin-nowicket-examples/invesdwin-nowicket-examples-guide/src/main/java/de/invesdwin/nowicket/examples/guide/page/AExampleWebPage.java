@@ -46,6 +46,7 @@ import de.invesdwin.nowicket.examples.guide.page.documentation.dynamiccomponents
 import de.invesdwin.nowicket.examples.guide.page.documentation.frameworkhistory.FrameworkHistoryPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.installation.InstallationPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.TagTransformationsPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tutorialstart.TutorialStartPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.UserInterfaceFlowPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.validation.ValidationPage;
@@ -292,6 +293,9 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicComponentsPage.class,
                                 new ResourceModel("menu.dynamiccomponents").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(TagTransformationsPage.class,
+                                new ResourceModel("menu.tagtransformations").wrapOnAssignment(navbar)));
 
                         return subMenu;
                     }

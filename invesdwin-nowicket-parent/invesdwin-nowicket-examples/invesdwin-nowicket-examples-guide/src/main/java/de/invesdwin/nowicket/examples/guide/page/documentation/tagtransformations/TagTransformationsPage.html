@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<input type="hidden" autofocus="autofocus"></input>
+				<legend>
+					<h2>10) Tag Transformations</h2>
+				</legend>
+				<p style="font-size: medium">Previously it was highlighted that
+					the framework supports changes of tags in the HTML file to change
+					the binding. This chapter demonstrates some of these tag
+					transformations. Also we show a few examples of how the
+					BindingInterceptor can be used to apply some special components.</p>
+
+
+				<h2>10.1) Texts</h2>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="textsPanel"></div>
+				<br>
+
+				<h2>10.2) Lists</h2>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="listsPanel"></div>
+				<br>
+
+				<h2>10.3) Choices</h2>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="choicesPanel"></div>
+				<br>
+
+				<h2>10.4) Tables</h2>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="tablesPanel"></div>
+				<br>
+
+				<h2>10.5) Collapsibles</h2>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="collapsiblesPanel"></div>
+				<br>
+
+				<h2>10.6) Links</h2>
+
+				<div
+					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
+					wicket:id="linksPanel"></div>
+				<br> <br>
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+
+				<br />
+
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
