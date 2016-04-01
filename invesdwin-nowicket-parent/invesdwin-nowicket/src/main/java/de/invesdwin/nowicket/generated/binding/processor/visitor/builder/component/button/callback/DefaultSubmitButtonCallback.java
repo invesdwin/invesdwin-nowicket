@@ -63,7 +63,11 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
             GuiService.get().hideModalPanel();
         }
         if (result != null) {
-            GuiService.get().showPage(result);
+            if (element.isModalOpener()) {
+                GuiService.get().showModalPanel(result);
+            } else {
+                GuiService.get().showPage(result);
+            }
         }
     }
 

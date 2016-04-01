@@ -6,11 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This can be used to make button methods close a modal dialog (if they are part of the modal).
+ * This can be used to make button methods open a modal instead of causing a redirect.
  * 
  */
 @Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ModalCloser {
+public @interface ModalOpener {
 
 }

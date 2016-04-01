@@ -20,6 +20,7 @@ import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.Format;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
+import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.TitleModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
@@ -94,6 +95,17 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
             return false;
         }
         if (getModelElement().getBeanPathElement().getAccessor().getAnnotation(ModalCloser.class) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isModalOpener() {
+        if (!getModelElement().getBeanPathElement().isAction()) {
+            return false;
+        }
+        if (getModelElement().getBeanPathElement().getAccessor().getAnnotation(ModalOpener.class) != null) {
             return true;
         }
         return false;

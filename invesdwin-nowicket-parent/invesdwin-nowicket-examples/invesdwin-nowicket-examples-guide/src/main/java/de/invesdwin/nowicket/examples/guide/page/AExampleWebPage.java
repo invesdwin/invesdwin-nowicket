@@ -46,6 +46,7 @@ import de.invesdwin.nowicket.examples.guide.page.documentation.frameworkhistory.
 import de.invesdwin.nowicket.examples.guide.page.documentation.installation.InstallationPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tutorialstart.TutorialStartPage;
+import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.UserInterfaceFlowPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.validation.ValidationPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.wicketintegration.WicketIntegrationPage;
 import de.invesdwin.nowicket.examples.guide.page.footer.FooterPanel;
@@ -284,6 +285,9 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(ValidationPage.class,
                                 new ResourceModel("menu.validation").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(UserInterfaceFlowPage.class,
+                                new ResourceModel("menu.userinterfaceflow").wrapOnAssignment(navbar)));
 
                         return subMenu;
                     }

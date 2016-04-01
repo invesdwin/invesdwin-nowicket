@@ -42,6 +42,8 @@ public interface IHtmlElement<E extends IModelElement<?>, M> extends Serializabl
 
     boolean isModalCloser();
 
+    boolean isModalOpener();
+
     IModel<String> getTitleModel(IModel<Object> targetObjectModel);
 
     IModel<String> getTitleModel();

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<input type="hidden" autofocus="autofocus"></input>
+				<legend>
+					<h2>8) User Interface Flow</h2>
+				</legend>
+				<p style="font-size: medium">Implementing User Interface Flow
+					(UI Flow) and dialog navigation is very simple: every result from a
+					method call is displayed as a new page. The browser will be
+					automatically redirected to the appropriate page for the model that
+					was returned:</p>
+
+				<pre class="prettyprint lang-java linenums">public &lt;ModelOfPage&gt; someAction() { return new &lt;ModelOfPage&gt;(); }</pre>
+
+				<p style="font-size: medium">As an alternative, there is an API
+					function available for that:</p>
+				<pre class="prettyprint lang-java linenums">GuiService.get().showPage(new &lt;ModelOfPage&gt;());</pre>
+				<p style="font-size: medium">The GuiService can be called from
+					anywhere you want. It stores the actions you put into it and
+					performs them after your method returned, before the response is
+					rendered.</p>
+
+				<h3>8.1) Modal Dialogs</h3>
+				<p style="font-size: medium">
+					Modal dialogs can be displayed in two different ways. The API-free
+					and therefore more test-friendly and portable way is to annotate a
+					method with
+					<code>@ModalOpener</code>
+					which causes the methods return value not to be displayed as a new
+					page (as above) but as a modal dialog inside the initiating page:
+				</p>
+
+				<pre class="prettyprint lang-java linenums">@ModalOpener public &lt;ModelOfPanel&gt; someAction() { return new &lt;ModelOfPanel&gt;(); }</pre>
+
+				<p style="font-size: medium">Same as above, you also have the
+					alternative of an API function available for that:</p>
+
+				<pre class="prettyprint lang-java linenums">GuiService.get().showModalPanel(new &lt;ModelOfPanel&gt;());</pre>
+
+				<p style="font-size: medium">There is also another function
+					available that lets you specify a size for the modal dialog. Due to
+					the asynchronous nature of web applications, this method does not
+					block during display of the modal dialog (as you might be used to
+					from desktop UI frameworks). So we cannot return any feedback
+					result from the modal with this API call. Though there is an
+					elegant solution to this.</p>
+
+				<h4>
+					<u>Getting Feedback From Modals</u>
+				</h4>
+				<p style="font-size: medium">
+					As usual, every action method of the modal model class becomes a
+					button in the dialog. By default, clicking one of the buttons
+					behaves as normal (which might redirect to another page or open
+					another modal if annotated as a modal opener). If you want the
+					modal to be closed upon a button press, you have to annotate it
+					with
+					<code>@ModalCloser</code>
+					. If the initiating domain object is supposed to be manipulated by
+					the modal operation, there are two options:
+				</p>
+				<ol>
+					<li>The modal object must become aware of the initiator,
+						usually by simply passing the initiator in the modally displayed
+						objects constructor.</li>
+					<li>Override some methods and hook into the modal models
+						action methods to manipulate the outer model from inside an
+						anonymous class that extends the modal class.</li>
+				</ol>
+				<p style="font-size: medium">The second approach provides a way
+					to create modal classes that can be reused anywhere, since they
+					themselves are not aware of their caller. Only the caller makes
+					them aware in their extension inside himself.</p>
+
+				<h4>
+					<u>Message & Confirm Boxes</u>
+				</h4>
+				<p style="font-size: medium">
+					Message boxes and confirm boxes require no special functionality in
+					the framework. You just implement them as a generated panel model
+					and do anything you want as you are used to. Though for convenience
+					there is a
+					<code>ModalMessage</code>
+					class that can be reused for the most common dialog needs. Just
+					create an anonymous class as an extension for it and customize it
+					as you want in the override. The framework even allows you to
+					rename the buttons (via title utility methods), hiding them (via
+					hide utility methods) or prevent them from closing the modal
+					despite the original class having them annotated as a modal closer
+					(by removing the annotation from the overridden method). The only
+					limitation is that you cannot add components, since they will not
+					be picked up by the HTML generator when defined inside anonymous
+					inner classes. In this case you should rather implement a new modal
+					class that fits your needs. See the <a target="_blank"
+						href="forminput">Form Input</a> page from the Wicket Examples
+					Rebuilt item in the top menu. There you can see an example of a
+					modified
+					<code>ModalMessage</code>
+					class that is displayed when the reset button detects model changes
+					that might get lost (via dirty check). <a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/blob/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page/wicket/forminput/FormInput.java">Click
+						here</a> to have a look at the source code of this example, look out
+					for the reset method implementation.
+				</p>
+
+
+				<h3>8.2) Tabbed Panes</h3>
+				<p style="font-size: medium">A tabbed pane consists of the
+					following elements:</p>
+				<ol>
+					<li>Inside the model that should contain a tabbed pane, you
+						have to define a property that is annotated with <code>@Tabbed</code>
+						(either the getter, the field or the type of the field should be
+						annotated).
+					</li>
+					<li>The tabbed pane type should consist of properties for each
+						panel that should be tabbed.</li>
+					<li>For each of those panel properties, you implement a model
+						for a generated panel as you are used to.</li>
+				</ol>
+				<p style="font-size: medium">
+					For an example of this, have a look at the <a target="_blank"
+						href="tabbedpanel">Tabbed Panel</a> page from the Wicket Examples
+					Rebuilt item in the top menu. It also demonstrates how utility
+					elements can be used to hide/disable tabs and how the order of the
+					tabs can be specified with the @ColumnOrder annotation (which also
+					works for setting the order of table columns). <a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page/wicket/tabbedpanel">Click
+						here</a> for the source code of this example.
+				</p>
+
+				<h3>8.3) Wizards</h3>
+				<p style="font-size: medium">
+					Wizards in this frameworks sense are nothing special, since they
+					just define action methods for next and previous steps. You can
+					implement them both as pages and as modals. You make each steps
+					model aware of its previous one and next one and provide thus a UI
+					flow that results in a wizard. To see an example of this, have a
+					look at the <a target="_blank" href="wizard">Wizard</a> page from
+					the Wicket Examples Rebuilt item in the top menu. <a
+						target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page/wicket/wizard">Click
+						here</a> for the source code of this example. You can also go a step
+					further than the example and reuse the navigation buttons of your
+					step panels by putting them in a separate generated panel that you
+					use via composition in your step pages/panels (adding them via a
+					BindingInterceptor after manually adding them to the HTML files as
+					a Wicket tag).
+				</p>
+
+				<h3>8.4) Try It</h3>
+				<p style="font-size: medium">The following class shows a query
+					page which provides a set of car rows. To show the details of a car
+					row, each car row object must provide an appropriate method which
+					simply returns the car page model itself. This will already cause a
+					UI flow. The trips are entered inside of a modal panel. This time
+					we embedded the sample as an iframe instead of as a panel like the
+					previous ones. So the navigation is triggering actual page
+					redirects without having to leave this chapter. It also shows how
+					you can implement pages without having a navigation bar.</p>
+
+
+				<p>......... TODO code .........</p>
+
+				<p>......... TODO iframe .......</p>
+
+
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

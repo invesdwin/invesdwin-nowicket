@@ -48,6 +48,12 @@ public abstract class ANoModelHtmlElement extends AHtmlElement<IModelElement<?>,
 
     @Deprecated
     @Override
+    public boolean isModalOpener() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Deprecated
+    @Override
     public Format getFormat(final Locale locale) {
         throw new UnsupportedOperationException();
     }
