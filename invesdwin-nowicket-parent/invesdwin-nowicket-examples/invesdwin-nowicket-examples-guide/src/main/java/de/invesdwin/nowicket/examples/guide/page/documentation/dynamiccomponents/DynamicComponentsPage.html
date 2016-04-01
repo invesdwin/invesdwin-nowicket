@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="jumbotron">
+				<input type="hidden" autofocus="autofocus"></input>
+				<legend>
+					<h2>9) Dynamic Components</h2>
+				</legend>
+				<p style="font-size: medium">This chapter focuses on the utility
+					methods that were referenced in the previous chapters. Also we show
+					a few more ways about how you can manipulate the UI components from
+					within your model classes.</p>
+
+				<h3>9.1) Disabling Components</h3>
+				<p style="font-size: medium">There are a few ways to disable
+					components:</p>
+				<ul>
+					<li>Remove the setter method from the model or make it <code>@Hidden</code>
+						or non public.
+					</li>
+					<li>Leave the value of a nested model <code>null</code>, this
+						will keep the nested controls disabled, because they cannot be
+						accessed anyway.
+					</li>
+					<li>Add the disabled attribute in the HTML file to the
+						appropriate tag.</li>
+					<li>Add a <code>@Disabled</code> annotaton to the field,
+						getter/setter or action method.
+					</li>
+				</ul>
+				<p style="font-size: medium">These approaches always keep a
+					component more or less statically disabled. To make this a dynamic
+					decision from within the model, you can make use of a disabler
+					utility method:</p>
+				<pre class="prettyprint lang-java linenums">public String disable&lt;NameOfProperty/NameOfAction&gt;() { ... }</pre>
+				<p style="font-size: medium">
+					The returned string will be displayed as a tooltip on the disabled
+					component and should state the reason why this is the case.
+					Returning
+					<code>null</code>
+					keeps the component enabled. Here you can also change the return
+					type into a boolean, to make it a binary decision without giving a
+					reason:
+				</p>
+				<pre class="prettyprint lang-java linenums">public boolean disable&lt;NameOfProperty/NameOfAction&gt;() { ... }</pre>
+
+				<h3>9.2) Hiding Components</h3>
+				<p style="font-size: medium">Analogous to disabling components,
+					there are a few ways to hide a component:</p>
+				<ul>
+					<li>Remove the getter and setter method from the model or make
+						it non public.</li>
+					<li>Add the css style <code>display:hidden</code> to the
+						component in the HTML or comment out the tag (so that the Wicket
+						ID is still present to let the HTML generator skip generating it
+						again).
+					</li>
+					<li>Add a <code>@Hidden</code> annotaton to the field,
+						getter/setter or action method.
+					</li>
+				</ul>
+				<p style="font-size: medium">Again you might have the
+					requirement to dynamically hide a component, for this there is also
+					a hider utility method you can implement:</p>
+				<pre class="prettyprint lang-java linenums">public String hide&lt;NameOfProperty/NameOfAction&gt;() { ... }</pre>
+				<p style="font-size: medium">This time the returned string is
+					not used anywhere and can only give a hint during code debugging.
+					It is more common to use the boolean alternative:</p>
+				<pre class="prettyprint lang-java linenums">public boolean hide&lt;NameOfProperty/NameOfAction&gt;() { ... }</pre>
+				<p style="font-size: medium">
+					Remember that you can make more markup follow a visibility state of
+					a Wicket component by adding the <a
+						href="https://cwiki.apache.org/confluence/display/WICKET/Wicket's+XHTML+tags#Wicket%27sXHTMLtags-Elementwicket:enclosure">wicket:enclosure</a>
+					tag in your HTML file. So that the label also disappears
+					dynamically when you hide your input.
+				</p>
+
+				<h3>9.3) Adding Tooltips</h3>
+				<p style="font-size: medium">
+					Despite adding
+					<code>title</code>
+					attributes to your HTML tags, you can also add the
+					<code>@Tooltip</code>
+					to your getters/setters or action methods. Again if you need a more
+					dynamic way to do this, there is an utility method available for
+					this:
+				</p>
+				<pre class="prettyprint lang-java linenums">public String get&lt;NameOfProperty&gt;Tooltip() { ... }</pre>
+				<p style="font-size: medium">For an action method, you have to
+					omit the getter prefix:</p>
+				<pre class="prettyprint lang-java linenums">public String &lt;NameOfAction&gt;Tooltip() { ... }</pre>
+
+				<h3>9.4) Changing Titles</h3>
+				<p style="font-size: medium">Every model class, property and
+					action element has a default title representation of the name being
+					printed in a readable manner. To provide your own titles, you have
+					a few options.</p>
+				<ul>
+					<li>Add the <code>@Title</code> annotation to replace the
+						automatically generated string representation. Though this will
+						will mostly only change the property value in the Wicket
+						internationalization properties file. But it is useful when
+						generated UI models from a UML diagram.
+					</li>
+					<li>Change the Wicket components to use different label models
+						by defining a custom binding via a BindingInterceptor in your
+						pages.</li>
+					<li>Change the internationalization property file value for
+						the corresponding Wicket ID like you are used to from Wicket. The
+						properties file has a higher priority than the title annotation.</li>
+				</ul>
+				<p style="font-size: medium">Though to have this more dynamic
+					and to maybe even reuse model state inside of titles, you can again
+					implement some utility methods:</p>
+				<pre class="prettyprint lang-java linenums">public String title() { ... } // for dynamic model class titles and page titles</pre>
+
+				<pre class="prettyprint lang-java linenums">public String get&lt;NameOfProperty&gt;Title() { ... } // for property titles visible in labels</pre>
+
+				<pre class="prettyprint lang-java linenums">public String &lt;NameOfAction&gt;Title() { ... } // for action titles visible as button texts </pre>
+
+				<h3>9.5) Column & Element Order</h3>
+				<p style="font-size: medium">
+					Normally everything is generated in alphabetical order. The element
+					order can be manually specified using the
+					<code>@ColumnOrder</code>
+					annotation on your classes. Alternatively you can implement a
+					dynamic utility element for this:
+				</p>
+				<pre class="prettyprint lang-java linenums">public String[] columnOrder() { ... } // can also return Iterable, Collection, etc</pre>
+				<p style="font-size: medium">This is normally used to define the
+					column order of table models, but you can also use it to define the
+					order of tabbed panes and the order in which the HTML generator
+					generates the tags. In tables and tabbed panes, any element that is
+					missing from the order will automatically be hidden (as an
+					alternative to the other hiding approaches).</p>
+
+				<h3>9.6) Removing Rows From Tables</h3>
+				<p style="font-size: medium">Removing a row from a table is
+					possible via action columns. Though the problem is, a row needs to
+					know the list where it is contained for it to be able to remove
+					itself. This binds the row class to the model class where it is
+					displayed as a table, which is sometimes unhandy. To give the
+					outside model complete control over removing rows, there is a
+					utility method you can add next to the table property:</p>
+				<pre class="prettyprint lang-java linenums">public void removeFrom&lt;NameOfProperty&gt;(&lt;TypeOfProperty&gt; row) { ... }</pre>
+				<p style="font-size: medium">
+					This makes a special column appear for this action inside the
+					table. You can reference this action column from within a
+					<code>@ColumnOrder</code>
+					via the method prefix
+					<code>"removeFrom"</code>
+					or the constant
+					<code>RemoveFromBeanPathElement.REMOVE_FROM_PREFIX</code>
+					. Again the <a target="_blank" href="ajaxdatatable">Ajax Data
+						Table</a> page provides an example for this. <a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page/wicket/ajaxdatatable">Click
+						here</a> for the source code.
+				</p>
+
+				<h3>9.7) Date & Number Formatting</h3>
+				<p style="font-size: medium">
+					You can use the
+					<code>@Format</code>
+					annotation on your property fields and getters/setters to change
+					the presentation of your dates and numbers in the components. The
+					format string follows the standard Java <a target="_blank"
+						href="https://docs.oracle.com/javase/7/docs/api/java/text/DecimalFormat.html">DecimalFormat</a>
+					and <a target="_blank"
+						href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat</a>
+					conventions.
+				</p>
+
+				<h3>9.8) Internationalization</h3>
+				<p style="font-size: medium">
+					Internationalization is mostly what you are <a target="_blank"
+						href="https://ci.apache.org/projects/wicket/guide/6.x/guide/i18n.html">used
+						to from Wicket</a>. The addition to consider when working with model
+					classes is that every string returned from a title, tooltip,
+					disabled reason and others can be a property that you want to
+					reference from the Wicket internationalization properties file. See
+					the <a target="_blank" href="forminput">Form Input</a> page again
+					for an example of this. <a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket/blob/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page/wicket/forminput">Click
+						here</a> for the source code.
+				</p>
+
+
+				<br>
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To
+								Introduction</button>
+						</div>
+					</div>
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-primary btn-lg"
+								wicket:id="readNextChapter">Read Next Chapter</button>
+						</div>
+					</div>
+				</fieldset>
+
+				<br />
+
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

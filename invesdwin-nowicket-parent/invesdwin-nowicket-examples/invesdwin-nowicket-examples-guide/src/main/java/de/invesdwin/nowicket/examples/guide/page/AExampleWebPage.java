@@ -42,6 +42,7 @@ import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.page.documentation.concept.ConceptPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.datatypes.DataTypesPage;
+import de.invesdwin.nowicket.examples.guide.page.documentation.dynamiccomponents.DynamicComponentsPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.frameworkhistory.FrameworkHistoryPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.installation.InstallationPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
@@ -288,6 +289,9 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(UserInterfaceFlowPage.class,
                                 new ResourceModel("menu.userinterfaceflow").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicComponentsPage.class,
+                                new ResourceModel("menu.dynamiccomponents").wrapOnAssignment(navbar)));
 
                         return subMenu;
                     }

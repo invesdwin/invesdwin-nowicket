@@ -146,7 +146,7 @@
 				<p style="font-size: medium">These methods are called by the
 					framework before updating the appropriate domain object property.
 					Validate methods must have the following signature:</p>
-				<pre class="prettyprint lang-java linenums">public String validate&lt;NameOfProperty&gt;(&lt;TypOfProperty&gt; newValue)</pre>
+				<pre class="prettyprint lang-java linenums">public String validate&lt;NameOfProperty&gt;(&lt;TypOfProperty&gt; newValue) { ... }</pre>
 				<p style="font-size: medium">The return value of this method is
 					an error text which is displayed in a feedback box or around the
 					component in case of a validation error. A return value of null
@@ -164,7 +164,7 @@
 				<p style="font-size: medium">These methods allow a dynamic
 					limitation of the value set for a property. Choice methods must
 					have the following signature:</p>
-				<pre class="prettyprint lang-java linenums">public &lt;TypeOfProperty&gt;[] get&lt;NameOfProperty&gt;Choice()</pre>
+				<pre class="prettyprint lang-java linenums">public &lt;TypeOfProperty&gt;[] get&lt;NameOfProperty&gt;Choice() { ... }</pre>
 				<p style="font-size: medium">The return value is the list of
 					supported values for the current situation, respectively the
 					current object state. If a choice method exists, the property is

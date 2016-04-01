@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflo
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.examples.guide.page.documentation.dynamiccomponents.DynamicComponents;
 import de.invesdwin.nowicket.examples.guide.page.documentation.validation.Validation;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -14,8 +15,8 @@ public class UserInterfaceFlow extends AValueObject {
         return new Validation();
     }
 
-    public Object readNextChapter() {
-        return null;
+    public DynamicComponents readNextChapter() {
+        return new DynamicComponents();
     }
 
 }
