@@ -184,9 +184,7 @@ public class CarSearchRow implements Serializable {
         this.details = details;
     }
 
-    public CarDetails details() {
-        return details;
-    }
+    public CarDetails details() { return details; }
 
     // uninteresting getters omitted
 
@@ -213,13 +211,9 @@ public class CarSearchRow implements Serializable {
     }
 
     @Tabbed
-    public CarTabs getTabs() {
-        return tabs;
-    }
+    public CarTabs getTabs() { return tabs; }
 
-    public CarSearch back() {
-        return parent;
-    }
+    public CarSearch back() { return parent; }
     
 }
 
@@ -233,13 +227,9 @@ public class CarTabs implements Serializable {
         this.tripInfo = new TripInfo();
     }
 
-    public CarInfo getCarInfo() {
-        return carInfo;
-    }
+    public CarInfo getCarInfo() { return carInfo; }
 
-    public TripInfo getTripInfo() {
-        return tripInfo;
-    }
+    public TripInfo getTripInfo() { return tripInfo; }
 
 }</pre>
 
@@ -295,6 +285,20 @@ public class TripInfo implements Serializable {
         return sum;
     }
 
+}
+
+public class TripRow implements Serializable {
+
+    private final NewTrip details;
+
+    public TripRow(final NewTrip details) {
+        this.details = details;
+    }
+    
+    public Integer getDistanceInKM() { return details.getDistanceInKM(); }
+    
+    // uninteresting getters and setters omitted
+       
 }</pre>
 
 				<p style="font-size: medium">While the new trip modal class just
