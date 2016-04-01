@@ -107,7 +107,7 @@ import de.invesdwin.nowicket.application.filter.AWebApplication;
 				
 public class ExampleWebApplication extends AWebApplication {
 
-    //also referenced in ExampleMarkupGenerator
+    // also referenced in ExampleMarkupGenerator
     public static final Set&lt;String&gt; BASE_PACKAGE = Collections
             .unmodifiableSet(new HashSet&lt;String&gt;(Arrays.asList("de.invesdwin.nowicket.examples.war")));
 
@@ -219,12 +219,12 @@ import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 @MountPath("home")
 public class HomePage extends AWebPage {
 
-    //constructor for bookmarkable link
+    // constructor for bookmarkable link
     public HomePage() {
         this(Model.of(new Home()));
     }
 
-    //constructor for model redirects
+    // constructor for model redirects
     public HomePage(final IModel&lt;Home&gt; model) {
         super(model);
         new GeneratedBinding(this).bind();

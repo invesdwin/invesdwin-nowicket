@@ -168,8 +168,8 @@
 
 	public CarSearch() {
 	    cars = new ArrayList&lt;CarSearchRow&gt;();
-        cars.add(new CarSearchRow(new CarDetails(this, "LunarIndustries", "XY-ZA 123")));
-		// keep filling up the list of cars
+	    cars.add(new CarSearchRow(new CarDetails(this, "LunarIndustries", "XY-ZA 123")));
+	    // keep filling up the list of cars
 	}
 	
 	public ArrayList&lt;CarSearchRow&gt; getCars() { return cars; }
@@ -260,7 +260,7 @@ public class CarTabs implements Serializable {
         this.licenseNumber = licenseNumber;
     }
     
-    //uninteresting getters and setters omitted
+    // uninteresting getters and setters omitted
     
 }
 
@@ -272,7 +272,7 @@ public class TripInfo implements Serializable {
         this.tripBook = new ArrayList&lt;TripRow&gt;();
     }
 
-    //uninteresting getters and setters omitted
+    // uninteresting getters and setters omitted
 
     @ModalOpener
     public NewTrip newTrip() {
@@ -311,7 +311,7 @@ public class TripInfo implements Serializable {
     @Min(1)
     private Integer distanceInKM;
 
-    //uninteresting getters and setters omitted
+    // uninteresting getters and setters omitted
 
     @ModalCloser
     public void ok() {}
@@ -319,6 +319,7 @@ public class TripInfo implements Serializable {
     @Forced
     @ModalCloser
     public void cancel() {}
+    
 }
 </pre>
 
@@ -330,15 +331,14 @@ public class TripInfo implements Serializable {
 					navigation remembers previous page state (like the previously
 					selected tab for a car details page) and synchronizes new
 					information back to the car search page (like a new trip or changed
-					car info). This works without any persistence layer due to the
-					magic of the NoWicket page model session cache. You can try it
-					below.</p>
+					car info). This works in this example without any persistence layer
+					due to the magic of the NoWicket page model session cache. You can
+					try it below.</p>
 
 				<iframe src="fifthcarsearch"
 					style="border: solid 1px; width: 100%; height: 500px"></iframe>
 
-				<br> <br />
-				<br>
+				<br> <br /> <br>
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">
