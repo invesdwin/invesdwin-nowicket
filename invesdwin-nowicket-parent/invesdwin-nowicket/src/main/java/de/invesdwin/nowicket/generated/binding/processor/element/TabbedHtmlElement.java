@@ -73,4 +73,11 @@ public class TabbedHtmlElement extends AModelHtmlElement<TabbedModelElement, Obj
         }
         return tabs;
     }
+
+    @Override
+    protected boolean isHiddenByModalContainer() {
+        //never hidden, or else modals will be disabled all the time
+        return false;
+    }
+
 }

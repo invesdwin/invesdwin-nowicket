@@ -160,19 +160,185 @@
 					page which provides a set of car rows. To show the details of a car
 					row, each car row object must provide an appropriate method which
 					simply returns the car page model itself. This will already cause a
-					UI flow. The trips are entered inside of a modal panel. This time
-					we embedded the sample as an iframe instead of as a panel like the
-					previous ones. So the navigation is triggering actual page
-					redirects without having to leave this chapter. It also shows how
-					you can implement pages without having a navigation bar.</p>
+					UI flow.</p>
 
+				<pre class="prettyprint lang-java linenums">public class CarSearch implements Serializable {
+				
+	private ArrayList&lt;CarSearchRow&gt; cars;
 
-				<p>......... TODO code .........</p>
+	public CarSearch() {
+	    cars = new ArrayList&lt;CarSearchRow&gt;();
+        cars.add(new CarSearchRow(new CarDetails(this, "LunarIndustries", "XY-ZA 123")));
+		// keep filling up the list of cars
+	}
+	
+	public ArrayList&lt;CarSearchRow&gt; getCars() { return cars; }
+	
+}
 
-				<p>......... TODO iframe .......</p>
+public class CarSearchRow implements Serializable {
 
+    private final CarDetails details;
 
-				<br />
+    public CarSearchRow(final CarDetails details) {
+        this.details = details;
+    }
+
+    public CarDetails details() {
+        return details;
+    }
+
+    // uninteresting getters omitted
+
+    public String getTrips() {
+        return details.getTabs().getTripInfo().getTripBook().size() + " ("
+                + details.getTabs().getTripInfo().getDistanceInKMSum() + " KM)";
+    }
+
+}</pre>
+				<p style="font-size: medium">The above is generated as a page
+					for an overview of all cars. It displays them in a table and
+					provides a page redirect in the "details" action column. The car
+					details page model is defined as a tabbed pane and provides a
+					button to navigate back.</p>
+
+				<pre class="prettyprint lang-java linenums">public class CarDetails implements Serializable {
+
+    private final CarSearch parent;
+    private final CarTabs tabs;
+
+    public CarDetails(final CarSearch parent, final String brand, final String licenseNumber) {
+        this.parent = parent;
+        this.tabs = new CarTabs(brand, licenseNumber);
+    }
+
+    @Tabbed
+    public CarTabs getTabs() {
+        return tabs;
+    }
+
+    public CarSearch back() {
+        return parent;
+    }
+    
+}
+
+public class CarTabs implements Serializable {
+
+    private final CarInfo carInfo;
+    private final TripInfo tripInfo;
+
+    public CarTabs(final String brand, final String licenseNumber) {
+        this.carInfo = new CarInfo(brand, licenseNumber);
+        this.tripInfo = new TripInfo();
+    }
+
+    public CarInfo getCarInfo() {
+        return carInfo;
+    }
+
+    public TripInfo getTripInfo() {
+        return tripInfo;
+    }
+
+}</pre>
+
+				<p style="font-size: medium">The tab panel models themselves
+					just display the parts of the information they are supposed to. The
+					trip info tab also has a button to show a modal dialog to add a new
+					trip to the list by hooking into the ok action method.</p>
+
+				<pre class="prettyprint lang-java linenums">public class CarInfo implements Serializable {
+
+    private String state;
+    private String licenseNumber;
+    private String brand;
+
+    public CarInfo(final String brand, final String licenseNumber) {
+        this.state = "off";
+        this.brand = brand;
+        this.licenseNumber = licenseNumber;
+    }
+    
+    //uninteresting getters and setters omitted
+    
+}
+
+public class TripInfo implements Serializable {
+
+    private Collection&lt;TripRow&gt; tripBook;
+
+    public TripInfo() {
+        this.tripBook = new ArrayList&lt;TripRow&gt;();
+    }
+
+    //uninteresting getters and setters omitted
+
+    @ModalOpener
+    public NewTrip newTrip() {
+        return new NewTrip() {
+            @Override
+            @ModalCloser
+            public void ok() {
+                super.ok();
+                tripBook.add(new TripRow(this));
+            }
+        };
+    }
+
+    @Hidden
+    public Integer getDistanceInKMSum() {
+        int sum = 0;
+        for (final TripRow trip : tripBook) {
+            sum += trip.getDistanceInKM();
+        }
+        return sum;
+    }
+
+}</pre>
+
+				<p style="font-size: medium">While the new trip modal class just
+					defines its modal closer action methods and adds some validation
+					for the inputs.</p>
+
+				<pre class="prettyprint lang-java linenums">public class NewTrip implements Serializable {
+
+    @NotNull
+    private String from;
+    @NotNull
+    private String to;
+    @NotNull
+    @Min(1)
+    private Integer distanceInKM;
+
+    //uninteresting getters and setters omitted
+
+    @ModalCloser
+    public void ok() {}
+
+    @Forced
+    @ModalCloser
+    public void cancel() {}
+}
+</pre>
+
+				<p style="font-size: medium">This time we embedded the sample as
+					an iframe instead of as a panel like the previous ones. So the
+					navigation is triggering actual page redirects without having to
+					leave this chapter. It also shows how you can implement pages
+					without having a navigation bar. Also it is to be noted that the
+					navigation remembers previous page state (like the previously
+					selected tab for a car details page) and synchronizes new
+					information back to the car search page (like a new trip or changed
+					car info). This works without any persistence layer due to the
+					magic of the NoWicket page model session cache. You can try it
+					below.</p>
+
+				<iframe src="fifthcarsearch"
+					style="border: solid 1px; width: 100%; height: 500px"></iframe>
+
+				<br> <br />
+				<br>
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">
@@ -188,6 +354,7 @@
 						</div>
 					</div>
 				</fieldset>
+
 				<br />
 			</div>
 		</form>

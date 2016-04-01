@@ -81,8 +81,12 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
             add(new EmptyPanel("navbar").setVisible(false));
         }
 
+        DebugBar debugBar = null;
         if (getApplication().getDebugSettings().isDevelopmentUtilitiesEnabled()) {
-            add(newDebugBar("debugBar"));
+            debugBar = newDebugBar("debugBar");
+        }
+        if (debugBar != null) {
+            add(debugBar);
         } else {
             add(new EmptyPanel("debugBar").setVisible(false));
         }

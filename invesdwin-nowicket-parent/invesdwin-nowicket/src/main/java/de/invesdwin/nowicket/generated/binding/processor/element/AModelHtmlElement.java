@@ -189,11 +189,12 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
 
     @Override
     public boolean isEnabled(final IModel<Object> targetObjectModel) {
-        return getModelElement().getBeanPathElement().isEnabled(targetObjectModel.getObject())
+        final boolean enabled = getModelElement().getBeanPathElement().isEnabled(targetObjectModel.getObject())
                 && !isHiddenByModalContainer();
+        return enabled;
     }
 
-    private boolean isHiddenByModalContainer() {
+    protected boolean isHiddenByModalContainer() {
         final MarkupContainer markupContainer = getContext().getMarkupContainer();
         final ModalContainer parentModalContainer = markupContainer.findParent(ModalContainer.class);
         if (parentModalContainer != null && !parentModalContainer.isShowing()) {
@@ -217,4 +218,5 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     public boolean isVisible(final IModel<Object> targetObjectModel) {
         return getModelElement().getBeanPathElement().isVisible(targetObjectModel.getObject());
     }
+
 }

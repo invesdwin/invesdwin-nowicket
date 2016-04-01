@@ -33,4 +33,10 @@ public class TabbedColumnHtmlElement extends AModelHtmlElement<TabbedColumnModel
         return getContext().getBindingBuilder().createTabbedColumn(this);
     }
 
+    @Override
+    protected boolean isHiddenByModalContainer() {
+        //never hidden, or else modals will be disabled all the time
+        return false;
+    }
+
 }
