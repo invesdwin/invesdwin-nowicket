@@ -19,6 +19,7 @@ import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.Format;
+import de.invesdwin.nowicket.generated.binding.annotation.Lazy;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
@@ -67,8 +68,14 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
             if (!parent.isProperty()) {
                 return false;
             }
+            if (parent.getAccessor().getAnnotation(Lazy.class) != null) {
+                return false;
+            }
             if (parent.getAccessor().getAnnotation(Eager.class) != null) {
                 return true;
+            }
+            if (parent.getContainer().getType().getAnnotation(Lazy.class) != null) {
+                return false;
             }
             if (parent.getContainer().getType().getAnnotation(Eager.class) != null) {
                 return true;
