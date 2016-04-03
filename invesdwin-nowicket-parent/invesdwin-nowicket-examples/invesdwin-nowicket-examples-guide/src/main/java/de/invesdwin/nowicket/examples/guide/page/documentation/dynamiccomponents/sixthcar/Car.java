@@ -54,7 +54,7 @@ public class Car extends AValueObject {
         this.brand = brand;
     }
 
-    @Format("'Y'yyyy-'M'-MM-'D'-dd")
+    @Format("yyyy -_- MM /_/ dd")
     public Date getRegistrationDate() {
         return registrationDate;
     }
