@@ -45,7 +45,7 @@ public class FormInputPage extends AExampleWebPage {
                     //no need to differentiate between radioGroup and radioChoice in this sample...
                     return new ModelRadioChoice((AChoiceHtmlElement<?>) e) {
                         @Override
-                        protected String getCheckboxClass() {
+                        protected String getRadioClass() {
                             return "radio-inline";
                         }
                     };

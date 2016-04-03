@@ -13,22 +13,22 @@ public class ModelRadioChoice extends RadioChoice<Object> {
     public ModelRadioChoice(final AChoiceHtmlElement<?> element) {
         super(element.getWicketId(), element.getModel(), element.getChoiceModel(), element.getChoiceRenderer());
         //fix layout for bootstrap
-        setPrefix("<label class=\"" + getCheckboxClass() + "\">");
+        setPrefix("<label class=\"" + getRadioClass() + "\">");
         setSuffix("</label>");
     }
 
     /**
      * Override this to change to checkbox-inline if needed
      */
-    protected String getCheckboxClass() {
-        return "checkbox";
+    protected String getRadioClass() {
+        return "radio";
     }
 
     @Override
     protected void onComponentTag(final ComponentTag tag) {
         tag.setName("div");
         tag.getAttributes().clear();
-        tag.getAttributes().put("class", getCheckboxClass());
+        tag.getAttributes().put("class", getRadioClass());
         super.onComponentTag(tag);
     }
 
