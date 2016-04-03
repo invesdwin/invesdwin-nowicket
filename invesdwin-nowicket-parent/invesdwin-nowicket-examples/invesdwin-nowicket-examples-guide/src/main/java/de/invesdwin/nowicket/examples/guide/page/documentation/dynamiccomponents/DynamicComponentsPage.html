@@ -189,7 +189,66 @@
 						here</a> for the source code.
 				</p>
 
-				TODO: sample for disable and tooltip on car <br>
+				<h3>9.9) Try It</h3>
+				<p style="font-size: medium">The car below shows examples of a
+					dynamic disable utility method to prevent duplicate actions on the
+					motor state. Also there have been added a few tooltips and a
+					special date format.</p>
+
+				<pre class="prettyprint lang-java linenums">public class Car implements Serializable {
+
+    // uninteresting fields, getters and setters omitted
+
+    @Pattern(regexp = "[A-Z]{1,3}-[A-Z]{1,2} [1-9][0-9]{0,3}")
+    @Tooltip("Pattern Example: MO-ON 1234")
+    public String getLicenseNumber() { return licenseNumber; }
+
+    public String getBrand() { return brand; }
+
+    public String getBrandTooltip() {
+        String message = "Popular Brands: ";
+        for (final CarBrand brand : CarBrand.values()) {
+            message += brand + ", ";
+        }
+        message = Strings.removeEnd(message, ", ");
+        return message;
+    }
+
+    @Format("'Y'yyyy-'M'-MM-'D'-dd")
+    public Date getRegistrationDate() { return registrationDate; }
+
+    public void turnOn() {
+        this.state = MotorState.on;
+    }
+
+    public String disableTurnOn() {
+        if (state == MotorState.on) {
+            return "Car is already running";
+        } else {
+            return null;
+        }
+    }
+
+    public void turnOff() {
+        this.state = MotorState.off;
+    }
+
+    public String disableTurnOff() {
+        if (state == MotorState.off) {
+            return "Car is already stopped";
+        } else {
+            return null;
+        }
+    }
+
+}</pre>
+
+				<p style="font-size: medium">Hover over the components in the
+					panel below to see the tooltips.</p>
+
+				<div style="border: solid 1px; background: white; padding-top: 15px"
+					wicket:id="sixthCarPanel"></div>
+				<br> <br>
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">
