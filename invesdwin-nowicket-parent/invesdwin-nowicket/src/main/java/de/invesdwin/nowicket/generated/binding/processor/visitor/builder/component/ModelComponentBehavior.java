@@ -8,14 +8,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.AbstractSingleSelectChoice;
-import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 
-import de.invesdwin.nowicket.component.palette.Palette;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.ModelUtilityValidator;
-import de.invesdwin.nowicket.util.Components;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -63,13 +60,7 @@ public class ModelComponentBehavior extends Behavior {
     }
 
     private void addEagerBehavior() {
-        if (element.isEager() && !(component instanceof Palette)) {
-            //support IFormComponentAware properly here
-            final FormComponent<?> formComponent = Components.asFormComponent(component);
-            if (formComponent == null) {
-                //e.g. table
-                return;
-            }
+        if (EagerBehavior.isAllowed(element, component)) {
             component.add(new EagerBehavior(element, component));
         }
     }

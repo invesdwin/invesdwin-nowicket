@@ -1,9 +1,13 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.extensions.markup.html.form.palette.Palette;
 import org.apache.wicket.markup.html.form.FormComponent;
 
 import de.invesdwin.norva.beanpath.spi.element.APropertyBeanPathElement;
@@ -15,6 +19,20 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
 
     public static final String DEFAULT_EAGER_EVENT = "change";
 
+    private static final Set<IEagerFilter> EAGER_FILTERS = new HashSet<IEagerFilter>();
+
+    static {
+        EAGER_FILTERS.add(new IEagerFilter() {
+            @Override
+            public boolean isEagerAllowed(final IHtmlElement<?, ?> element, final Component component) {
+                if (component instanceof Palette) {
+                    return false;
+                }
+                return true;
+            }
+        });
+    }
+
     private final IHtmlElement<?, ?> element;
     private final Component component;
 
@@ -22,10 +40,8 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
         super(eagerEvent);
         this.element = element;
         this.component = component;
-        final FormComponent<?> formComponent = Components.asFormComponent(component);
-        if (formComponent == null) {
-            throw new IllegalArgumentException("Only " + FormComponent.class.getSimpleName() + "s are supported: "
-                    + element.getWicketId() + ": " + component);
+        if (!isAllowed(element, component)) {
+            throw new IllegalArgumentException("Eager not supported: " + element.getWicketId() + ": " + component);
         }
     }
 
@@ -63,4 +79,31 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
         //after that validate again to maybe have more errors being detected
         Components.validateModelUtilityValidators(target.getPage());
     }
+
+    public static boolean isAllowed(final IHtmlElement<?, ?> element, final Component component) {
+        if (!element.isEager()) {
+            return false;
+        }
+        final FormComponent<?> formComponent = Components.asFormComponent(component);
+        if (formComponent == null) {
+            return false;
+        }
+        if (component instanceof IEagerFilter) {
+            final IEagerFilter filter = (IEagerFilter) component;
+            if (!filter.isEagerAllowed(element, component)) {
+                return false;
+            }
+        }
+        for (final IEagerFilter filter : getEagerFilters()) {
+            if (!filter.isEagerAllowed(element, formComponent)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static Set<IEagerFilter> getEagerFilters() {
+        return EAGER_FILTERS;
+    }
+
 }

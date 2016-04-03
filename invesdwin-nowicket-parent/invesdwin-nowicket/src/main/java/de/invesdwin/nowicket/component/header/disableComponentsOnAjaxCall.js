@@ -5,6 +5,10 @@ function undisableComponentsAfterAjaxCall(){
 		tag.removeAttr('data-disableComponentsOnAjaxCall');
 	});
 	window.ajaxCallRunning = false;
+	if (!(typeof disableComponentsOnAjaxCall_activeElement === 'undefined')) {
+		$(window.disableComponentsOnAjaxCall_activeElement).focus();
+		window.disableComponentsOnAjaxCall_activeElement = null;
+	}
 }
 function disableComponentsOnAjaxCall() {
 	
@@ -16,6 +20,7 @@ function disableComponentsOnAjaxCall() {
 		Wicket.Event.subscribe('/ajax/call/after', function(attributes,
 				jqXHR, settings) {
 			window.ajaxCallRunning = true;
+			window.disableComponentsOnAjaxCall_activeElement = OptimalSelect.select(document.activeElement);
 			// do not disable file inputs, or their upload will fail!
 			$(':input:not(:disabled)').each(function(){
 				var tag = $(this);

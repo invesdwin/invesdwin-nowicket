@@ -13,6 +13,7 @@ import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
 import de.agilecoders.wicket.core.util.Dependencies;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
+import de.invesdwin.nowicket.component.header.optimalselect.OptimalSelectReference;
 
 @Immutable
 public final class DisableComponentsOnAjaxCallJsReference extends JavaScriptResourceReference
@@ -29,8 +30,10 @@ public final class DisableComponentsOnAjaxCallJsReference extends JavaScriptReso
 
     @Override
     public List<HeaderItem> getDependencies() {
-        return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
-                .forReference(ABaseWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
+        return Dependencies.combine(super.getDependencies(),
+                JavaScriptHeaderItem
+                        .forReference(ABaseWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()),
+                JavaScriptHeaderItem.forReference(OptimalSelectReference.INSTANCE));
     }
 
     @Override

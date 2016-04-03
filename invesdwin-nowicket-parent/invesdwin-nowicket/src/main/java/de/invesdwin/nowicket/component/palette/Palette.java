@@ -26,6 +26,8 @@ import de.invesdwin.nowicket.component.palette.component.Choices;
 import de.invesdwin.nowicket.component.palette.component.PaletteFixedIdValueChoiceRenderer;
 import de.invesdwin.nowicket.component.palette.component.Recorder;
 import de.invesdwin.nowicket.component.palette.component.Selection;
+import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.IEagerFilter;
 
 /**
  * Extracted from Wicket 6.20.0, since in 7.0 the palette component was rewritten and ModelPalette does not work so
@@ -34,7 +36,7 @@ import de.invesdwin.nowicket.component.palette.component.Selection;
  * @author subes
  */
 @NotThreadSafe
-public class Palette<T> extends GenericPanel<Collection<? extends T>> {
+public class Palette<T> extends GenericPanel<Collection<? extends T>> implements IEagerFilter {
     private static final String SELECTED_HEADER_ID = "selectedHeader";
 
     private static final String AVAILABLE_HEADER_ID = "availableHeader";
@@ -617,6 +619,14 @@ public class Palette<T> extends GenericPanel<Collection<? extends T>> {
             response.render(CssHeaderItem.forReference(css));
         }
         response.render(JavaScriptHeaderItem.forReference(JAVASCRIPT));
+    }
+
+    @Override
+    public boolean isEagerAllowed(final IHtmlElement<?, ?> element, final Component component) {
+        if (component instanceof Palette) {
+            return false;
+        }
+        return true;
     }
 
 }
