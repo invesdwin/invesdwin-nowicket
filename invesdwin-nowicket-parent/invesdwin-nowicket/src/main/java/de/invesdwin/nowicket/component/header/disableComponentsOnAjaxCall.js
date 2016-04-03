@@ -6,7 +6,10 @@ function undisableComponentsAfterAjaxCall(){
 	});
 	window.ajaxCallRunning = false;
 	if (!(typeof disableComponentsOnAjaxCall_activeElement === 'undefined')) {
-		$(window.disableComponentsOnAjaxCall_activeElement).focus();
+		var comp = $(window.disableComponentsOnAjaxCall_activeElement);
+		if(comp.is(':visible')){
+			comp.focus();
+		}
 		window.disableComponentsOnAjaxCall_activeElement = null;
 	}
 }
