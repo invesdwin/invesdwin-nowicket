@@ -20,13 +20,15 @@ function disableComponentsOnAjaxCall() {
 		Wicket.Event.subscribe('/ajax/call/after', function(attributes,
 				jqXHR, settings) {
 			window.ajaxCallRunning = true;
-			window.disableComponentsOnAjaxCall_activeElement = OptimalSelect.select(document.activeElement);
-			// do not disable file inputs, or their upload will fail!
-			$(':input:not(:disabled)').each(function(){
-				var tag = $(this);
-				tag.attr('data-disableComponentsOnAjaxCall', 'true')
-				tag.prop('disabled', true);
-			});
+			setTimeout(function(){ 
+				window.disableComponentsOnAjaxCall_activeElement = OptimalSelect.select(document.activeElement); 
+				// do not disable file inputs, or their upload will fail!
+				$(':input:not(:disabled)').each(function(){
+					var tag = $(this);
+					tag.attr('data-disableComponentsOnAjaxCall', 'true')
+					tag.prop('disabled', true);
+				});
+			}, 1); //process after the focus might have traversed
 		});
 		//see https://github.com/hubspot/offline
 		Offline.on("up", function(e) {
