@@ -26,6 +26,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtm
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
@@ -64,6 +65,8 @@ public interface IBindingBuilder {
     IColumn<? extends Object, String> createResourceAnchorColumn(TableAnchorColumnHtmlElement e);
 
     IColumn<? extends Object, String> createResourceReferenceAnchorColumn(TableAnchorColumnHtmlElement e);
+
+    IColumn<? extends Object, String> createContainerColumn(TableContainerColumnHtmlElement e);
 
     Component createUnorderedList(UnorderedListHtmlElement e);
 

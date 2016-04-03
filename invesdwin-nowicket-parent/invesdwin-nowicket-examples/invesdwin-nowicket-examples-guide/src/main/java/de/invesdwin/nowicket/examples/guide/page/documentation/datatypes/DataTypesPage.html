@@ -81,9 +81,8 @@
 
 				<h3>6.2) Collections & Arrays</h3>
 				<p style="font-size: medium">
-					If the property is a collection/array of a simple data type or
-					there is a limited value set specified for it (see following
-					chapters about choice methods), it is always mapped to a
+					If the property is a collection/array of a simple data type, it is
+					always mapped to a
 					<code>select</code>
 					tag. This will show it as a combo box. You can set a
 					<code>size</code>
@@ -99,7 +98,7 @@
 					collection/array. To achieve a detailed visualization of domain
 					objects from a collection, the collection should be typed using
 					Java generics. Otherwise the framework can only display "the least
-					common denominator" which is toString() for all contained objects.
+					common denominator" which is <code>toString()</code> for all contained objects.
 					The table displays only the data of the contained type. As a
 					consequence, if the collection also contains objects of derived
 					types, the additional properties of these types are not displayed.
@@ -107,7 +106,7 @@
 					additional properties, but the generic type is of car. Thus the
 					table displays only the properties of the vehicle base class). Also
 					note that tables only allow shallow columns to be displayed,
-					everything else is displayed as toString(). You see this below in
+					everything else is displayed as <code>toString()</code>. You see this below in
 					the
 					<code>nested</code>
 					column that contains

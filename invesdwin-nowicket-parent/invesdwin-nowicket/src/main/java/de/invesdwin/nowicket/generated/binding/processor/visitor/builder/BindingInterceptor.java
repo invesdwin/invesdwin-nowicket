@@ -31,6 +31,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtm
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
@@ -107,6 +108,11 @@ public class BindingInterceptor implements IBindingBuilder, Serializable {
 
     @Override
     public IColumn<? extends Object, String> createUrlAnchorColumn(final TableAnchorColumnHtmlElement e) {
+        return createTableColumn(e);
+    }
+
+    @Override
+    public IColumn<? extends Object, String> createContainerColumn(final TableContainerColumnHtmlElement e) {
         return createTableColumn(e);
     }
 

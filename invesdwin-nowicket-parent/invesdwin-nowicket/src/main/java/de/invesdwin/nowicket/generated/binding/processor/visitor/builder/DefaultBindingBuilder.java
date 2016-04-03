@@ -35,6 +35,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtm
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
@@ -67,6 +68,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelResourceLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelContainerColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelDataTable;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelDateColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelDownloadAnchorColumn;
@@ -140,26 +142,32 @@ public class DefaultBindingBuilder implements IBindingBuilder {
 
     @Override
     public IColumn<? extends Object, String> createFileAnchorColumn(final TableAnchorColumnHtmlElement e) {
-        final ModelDownloadAnchorColumn downloadLink = new ModelDownloadAnchorColumn(e);
-        return downloadLink;
+        final ModelDownloadAnchorColumn downloadLinkColumn = new ModelDownloadAnchorColumn(e);
+        return downloadLinkColumn;
     }
 
     @Override
     public IColumn<? extends Object, String> createResourceAnchorColumn(final TableAnchorColumnHtmlElement e) {
-        final ModelResourceAnchorColumn resourceLink = new ModelResourceAnchorColumn(e);
-        return resourceLink;
+        final ModelResourceAnchorColumn resourceLinkColumn = new ModelResourceAnchorColumn(e);
+        return resourceLinkColumn;
     }
 
     @Override
     public IColumn<? extends Object, String> createResourceReferenceAnchorColumn(final TableAnchorColumnHtmlElement e) {
-        final ModelResourceReferenceAnchorColumn resourceLink = new ModelResourceReferenceAnchorColumn(e);
-        return resourceLink;
+        final ModelResourceReferenceAnchorColumn resourceLinkColumn = new ModelResourceReferenceAnchorColumn(e);
+        return resourceLinkColumn;
     }
 
     @Override
     public IColumn<? extends Object, String> createUrlAnchorColumn(final TableAnchorColumnHtmlElement e) {
-        final ModelUrlAnchorColumn externalLink = new ModelUrlAnchorColumn(e);
-        return externalLink;
+        final ModelUrlAnchorColumn externalLinkColumn = new ModelUrlAnchorColumn(e);
+        return externalLinkColumn;
+    }
+
+    @Override
+    public IColumn<? extends Object, String> createContainerColumn(final TableContainerColumnHtmlElement e) {
+        final ModelContainerColumn containerColumn = new ModelContainerColumn(e);
+        return containerColumn;
     }
 
     @Override

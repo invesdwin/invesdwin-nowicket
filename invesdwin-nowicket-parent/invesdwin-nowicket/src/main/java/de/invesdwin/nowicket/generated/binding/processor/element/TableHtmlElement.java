@@ -14,23 +14,27 @@ import org.jsoup.nodes.Element;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
+import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.ATableColumnModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.ATableModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.ChoiceAsTableModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableAnchorColumnModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.TableContainerColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableDateColumnModelElement;
-import de.invesdwin.nowicket.generated.markup.processor.element.TableModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableNumberColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableSubmitButtonColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableTextColumnModelElement;
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
-public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
+public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>> {
 
     private final List<TableTextColumnHtmlElement> textColumns;
     private final List<TableDateColumnHtmlElement> dateColumns;
     private final List<TableNumberColumnHtmlElement> numberColumns;
     private final List<TableSubmitButtonColumnHtmlElement> buttonColumns;
     private final List<TableAnchorColumnHtmlElement> anchorColumns;
+    private final TableContainerColumnHtmlElement containerColumn;
     private final TableRemoveFromButtonColumnHtmlElement removeFromButtonColumn;
     private List<ATableColumnHtmlElement<?, ?>> columns;
     private List<ATableColumnHtmlElement<?, ?>> rawColumns;
@@ -57,12 +61,22 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
         for (final TableAnchorColumnModelElement anchorColumn : getModelElement().getAnchorColumns()) {
             anchorColumns.add(new TableAnchorColumnHtmlElement(context, anchorColumn));
         }
+        if (getModelElement().getContainerColumn() != null) {
+            this.containerColumn = new TableContainerColumnHtmlElement(context, getModelElement().getContainerColumn());
+        } else {
+            this.containerColumn = null;
+        }
         if (getModelElement().getRemoveFromButtonColumn() != null) {
             this.removeFromButtonColumn = new TableRemoveFromButtonColumnHtmlElement(context,
                     getModelElement().getRemoveFromButtonColumn());
         } else {
             this.removeFromButtonColumn = null;
         }
+    }
+
+    @Override
+    public ATableModelElement getModelElement() {
+        return ChoiceAsTableModelElement.maybeWrap(super.getModelElement());
     }
 
     public List<TableTextColumnHtmlElement> getTextColumns() {
@@ -85,6 +99,10 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
         return anchorColumns;
     }
 
+    public TableContainerColumnHtmlElement getContainerColumn() {
+        return containerColumn;
+    }
+
     public TableRemoveFromButtonColumnHtmlElement getRemoveFromButtonColumn() {
         return removeFromButtonColumn;
     }
@@ -93,9 +111,14 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
         if (columns == null) {
             columns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
             for (final ATableColumnModelElement<?> column : getModelElement().getColumns()) {
-                final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
-                        .getElement(column.getWicketId());
-                columns.add(columnElement);
+                if (column instanceof TableContainerColumnModelElement) {
+                    Assertions.checkNotNull(containerColumn);
+                    columns.add(containerColumn);
+                } else {
+                    final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
+                            .getElement(column.getWicketId());
+                    columns.add(columnElement);
+                }
             }
         }
         return Collections.unmodifiableList(columns);
@@ -105,9 +128,14 @@ public class TableHtmlElement extends AChoiceHtmlElement<TableModelElement> {
         if (rawColumns == null) {
             rawColumns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
             for (final ATableColumnModelElement<?> column : getModelElement().getRawColumns()) {
-                final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
-                        .getElement(column.getWicketId());
-                rawColumns.add(columnElement);
+                if (column instanceof TableContainerColumnModelElement) {
+                    Assertions.checkNotNull(containerColumn);
+                    columns.add(containerColumn);
+                } else {
+                    final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
+                            .getElement(column.getWicketId());
+                    rawColumns.add(columnElement);
+                }
             }
         }
         return Collections.unmodifiableList(rawColumns);

@@ -165,31 +165,35 @@
 					limitation of the value set for a property. Choice methods must
 					have the following signature:</p>
 				<pre class="prettyprint lang-java linenums">public &lt;TypeOfProperty&gt;[] get&lt;NameOfProperty&gt;Choice() { ... }</pre>
-				<p style="font-size: medium">The return value is the list of
-					supported values for the current situation, respectively the
-					current object state. If a choice method exists, the property is
-					displayed by a combo box. This is also true for properties
-					returning structured data types (you can convert them to table tags
-					in the html file if desired). In this case the combo box displays
-					the result of the toString() method of these objects. Choice
-					methods for structured types cause a different kind of data
-					manipulation. With a choice function, the user manipulates the
-					reference while the content of the referenced object remains
-					unchanged. To change both content and reference, the same attribute
-					must be made available through two properties with only one of
-					these properties having a choice method. If a property may be null,
-					the corresponding choice method must contain a null value as a
-					valid selection. Otherwise the framework assumes that null is not
-					allowed in the current situation even though the data type may
-					generally support null values. It is important to know that the
-					framework compares the current property value with the values from
-					the corresponding choice method to check its validity. Structured
-					data types therefore must define a valid equals method or the
-					choice method must return the identical value set with each call,
-					not only an equal one. The comparison takes place whenever the user
+				<p style="font-size: medium">
+					The return value is the list of supported values for the current
+					situation, respectively the current object state. If a choice
+					method exists, the property is displayed as a combo box (if it is a
+					simple type) or a table (if it is a structured type). Though you
+					can for example convert a
+					<code>table</code>
+					tag to a
+					<code>select</code>
+					tag. In this case the combo box displays the result of the
+					<code>toString()</code>
+					method of these objects. You can also do it the other way around.
+					Choice methods allow a new kind of data manipulation. With a choice
+					function, the user manipulates the selection (via property
+					getter/setter) while the allowed choices remain the same (via
+					choice utility method). If a property may be null, the
+					corresponding choice method must contain a null value as a valid
+					selection. Otherwise the framework assumes that null is not allowed
+					in the current situation even though the data type may generally
+					support null values. It is important to know that the framework
+					compares the current property value with the values from the
+					corresponding choice method to check its validity. Structured data
+					types therefore must define a valid equals method or the choice
+					method must return the identical value set with each call, not only
+					an equal one. The comparison takes place whenever the user
 					interface and the domain objects in the background are
 					synchronized, which is usually quite often, for example when a
-					component is submitted or a button is pressed.</p>
+					component is submitted or a button is pressed.
+				</p>
 
 				<h3>7.3) Try It</h3>
 

@@ -76,12 +76,12 @@ public class HtmlProcessor {
                 }
                 if (element.children().size() > 0) {
                     Assertions.assertThat(new ContainerOpenHtmlElement(getContext(), element).accept(visitors))
-                    .isTrue();
+                            .isTrue();
                     visitContainerClose = true;
                 }
                 Assertions.assertThat(htmlElement.accept(visitors))
-                .as("Maybe you have duplicate wicket ids [%s] in your html file [%s]?",
-                        htmlElement.getWicketId(), context.getHtmlFile().getFilename())
+                        .as("Maybe you have duplicate wicket ids [%s] in your html file [%s]?",
+                                htmlElement.getWicketId(), context.getHtmlFile().getFilename())
                         .isTrue();
             }
         } catch (final Throwable t) {
@@ -98,8 +98,9 @@ public class HtmlProcessor {
     }
 
     private boolean isUnknownElement(final IHtmlElement<?, ?> htmlElement) {
-        return htmlElement.isModelElement()
-                && getContext().getModelObjectContext().getElementRegistry().getElement(htmlElement.getWicketId()) == null;
+        return htmlElement.isModelElement() && getContext().getModelObjectContext()
+                .getElementRegistry()
+                .getElement(htmlElement.getWicketId()) == null;
     }
 
     private IHtmlElement<?, ?> detectHtmlElement(final Element element) {

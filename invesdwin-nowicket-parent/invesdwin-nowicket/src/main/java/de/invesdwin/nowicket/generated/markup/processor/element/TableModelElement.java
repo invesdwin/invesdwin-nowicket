@@ -15,14 +15,13 @@ import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
-public class TableModelElement extends AChoiceModelElement<TableBeanPathElement> {
+public class TableModelElement extends ATableModelElement {
 
     private final List<TableTextColumnModelElement> textColumns;
     private final List<TableDateColumnModelElement> dateColumns;
     private final List<TableNumberColumnModelElement> numberColumns;
     private final List<TableSubmitButtonColumnModelElement> buttonColumns;
     private final List<TableAnchorColumnModelElement> anchorColumns;
-    private final TableRemoveFromButtonColumnModelElement removeFromButtonColumn;
     private List<ATableColumnModelElement<?>> columns;
     private List<ATableColumnModelElement<?>> rawColumns;
 
@@ -49,38 +48,40 @@ public class TableModelElement extends AChoiceModelElement<TableBeanPathElement>
                 buttonColumns.add(new TableSubmitButtonColumnModelElement(context, buttonColumn));
             }
         }
-        if (beanPathElement.getRemoveFromButtonColumn() != null) {
-            removeFromButtonColumn = new TableRemoveFromButtonColumnModelElement(context,
-                    beanPathElement.getRemoveFromButtonColumn());
-        } else {
-            removeFromButtonColumn = null;
-        }
     }
 
+    @Override
     public List<TableTextColumnModelElement> getTextColumns() {
         return Collections.unmodifiableList(textColumns);
     }
 
+    @Override
     public List<TableDateColumnModelElement> getDateColumns() {
         return Collections.unmodifiableList(dateColumns);
     }
 
+    @Override
     public List<TableNumberColumnModelElement> getNumberColumns() {
         return Collections.unmodifiableList(numberColumns);
     }
 
+    @Override
     public List<TableSubmitButtonColumnModelElement> getButtonColumns() {
         return Collections.unmodifiableList(buttonColumns);
     }
 
+    @Override
     public List<TableAnchorColumnModelElement> getAnchorColumns() {
         return Collections.unmodifiableList(anchorColumns);
     }
 
-    public TableRemoveFromButtonColumnModelElement getRemoveFromButtonColumn() {
-        return removeFromButtonColumn;
+    @Override
+    public TableContainerColumnModelElement getContainerColumn() {
+        //not used in real tables
+        return null;
     }
 
+    @Override
     public List<ATableColumnModelElement<?>> getColumns() {
         if (columns == null) {
             columns = new ArrayList<ATableColumnModelElement<?>>();
@@ -93,6 +94,7 @@ public class TableModelElement extends AChoiceModelElement<TableBeanPathElement>
         return Collections.unmodifiableList(columns);
     }
 
+    @Override
     public List<ATableColumnModelElement<?>> getRawColumns() {
         if (rawColumns == null) {
             rawColumns = new ArrayList<ATableColumnModelElement<?>>();
@@ -123,8 +125,8 @@ public class TableModelElement extends AChoiceModelElement<TableBeanPathElement>
         for (final TableAnchorColumnModelElement anchorColumn : anchorColumns) {
             Assertions.assertThat(anchorColumn.accept()).isTrue();
         }
-        if (removeFromButtonColumn != null) {
-            Assertions.assertThat(removeFromButtonColumn.accept()).isTrue();
+        if (getRemoveFromButtonColumn() != null) {
+            Assertions.assertThat(getRemoveFromButtonColumn().accept()).isTrue();
         }
     }
 

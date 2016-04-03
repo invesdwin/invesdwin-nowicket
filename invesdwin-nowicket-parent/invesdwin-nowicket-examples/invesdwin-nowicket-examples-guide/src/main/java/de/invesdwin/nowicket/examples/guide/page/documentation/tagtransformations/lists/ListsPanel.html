@@ -6,18 +6,15 @@
 		<form class="form-horizontal" wicket:id="form">
 			<!-- <div wicket:id='feedback'></div>  -->
 			<div wicket:id="modal"></div>
-
 			<code>
-				// either use an enum type or add a choice utility element<br>
+				// either use an enum type or add a choice utility element<br />
 				public &lt;TypeOfProperty&gt; get&lt;PropertyName&gt;() { ... }
 			</code>
-
-			<br> <br>
-
+			<br /> <br />
 			<div class="form-group">
 				<label class="control-label col-sm-2" wicket:for="defaultSelect">
 					<wicket:label>
-                            Default Select
+                             Default Select 
                         </wicket:label>
 				</label>
 				<div wicket:id="defaultSelect_gridColumn" class="col-sm-4">
@@ -29,31 +26,26 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" wicket:for="asList"> <wicket:label>
-                            As List
+                             As List 
                         </wicket:label></label>
 				<div wicket:id="asList_gridColumn" class="col-sm-4">
 					<select class="form-control" wicket:id="asList" size="8"></select>
 				</div>
 				<div class="col-sm-6">
-					<pre class="prettyprint lang-html">&lt;select size="8"&gt;</pre>
+					<pre class="prettyprint lang-html">&lt;select size=&quot;8&quot;&gt;</pre>
 				</div>
 			</div>
-
-			<br>
-
+			<br />
 			<code>
 				// see above regarding enums, can also be an Iterable, Collection,
-				etc<br> public &lt;TypeOfProperty&gt;[]
-				get&lt;PropertyName&gt;() { ... }
-
+				etc<br /> public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;()
+				{ ... }
 			</code>
-
-			<br> <br>
-
+			<br /> <br />
 			<div class="form-group">
 				<label class="control-label col-sm-2" wicket:for="asMultiselectList">
 					<wicket:label>
-                            As Multiselect List
+                             As Multiselect List 
                         </wicket:label>
 				</label>
 				<div wicket:id="asMultiselectList_gridColumn" class="col-sm-4">
@@ -63,13 +55,13 @@
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-html">&lt;!-- ListMultipleChoice does not support empty
      selection once a selection was made --&gt;
-&lt;select size="8" multiple="multiple"&gt;</pre>
+&lt;select size=&quot;8&quot; multiple=&quot;multiple&quot;&gt;</pre>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2"
 					wicket:for="asMultiselectPalette"> <wicket:label>
-                            As Multiselect Palette
+                             As Multiselect Palette 
                         </wicket:label>
 				</label>
 				<div wicket:id="asMultiselectPalette_gridColumn" class="col-sm-4">
@@ -86,7 +78,17 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
         return super.createSelect(e);
     }
 }).bind();</pre>
-					//TODO as single column Table
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="table-responsive">
+						<table class="table table-condensed table-hover table-striped"
+							wicket:id="asTable"></table>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
 				</div>
 			</div>
 		</form>

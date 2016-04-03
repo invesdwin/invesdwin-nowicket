@@ -17,6 +17,7 @@ public class Lists extends AValueObject {
     private TimeUnit asList;
     private TimeUnit[] asMultiselectList;
     private TimeUnit[] asMultiselectPalette;
+    private TimeUnit[] asTable;
 
     public TimeUnit getDefaultSelect() {
         return defaultSelect;
@@ -48,6 +49,14 @@ public class Lists extends AValueObject {
 
     public void setAsMultiselectPalette(final TimeUnit[] asMultiselectPalette) {
         this.asMultiselectPalette = asMultiselectPalette;
+    }
+
+    public TimeUnit[] getAsTable() {
+        return asTable;
+    }
+
+    public void setAsTable(final TimeUnit[] asTable) {
+        this.asTable = asTable;
     }
 
 }

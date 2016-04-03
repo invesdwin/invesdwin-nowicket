@@ -30,6 +30,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtm
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
@@ -135,7 +136,8 @@ public class InterceptingBindingBuilder implements IBindingBuilder {
     }
 
     @Override
-    public IColumn<? extends Object, String> createRemoveFromButtonColumn(final TableRemoveFromButtonColumnHtmlElement e) {
+    public IColumn<? extends Object, String> createRemoveFromButtonColumn(
+            final TableRemoveFromButtonColumnHtmlElement e) {
         for (final IBindingBuilder b : orderedBindingBuilders) {
             final IColumn<? extends Object, String> c = b.createRemoveFromButtonColumn(e);
             if (c != null) {
@@ -193,6 +195,17 @@ public class InterceptingBindingBuilder implements IBindingBuilder {
     public IColumn<? extends Object, String> createUrlAnchorColumn(final TableAnchorColumnHtmlElement e) {
         for (final IBindingBuilder b : orderedBindingBuilders) {
             final IColumn<? extends Object, String> c = b.createUrlAnchorColumn(e);
+            if (c != null) {
+                return c;
+            }
+        }
+        throw newIllegalStateException();
+    }
+
+    @Override
+    public IColumn<? extends Object, String> createContainerColumn(final TableContainerColumnHtmlElement e) {
+        for (final IBindingBuilder b : orderedBindingBuilders) {
+            final IColumn<? extends Object, String> c = b.createContainerColumn(e);
             if (c != null) {
                 return c;
             }
