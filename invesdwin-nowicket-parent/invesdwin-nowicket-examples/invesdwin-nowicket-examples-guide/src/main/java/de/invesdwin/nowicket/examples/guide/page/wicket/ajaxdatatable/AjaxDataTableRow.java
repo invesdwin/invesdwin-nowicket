@@ -5,7 +5,8 @@ import java.util.Date;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.invesdwin.norva.beanpath.annotation.ColumnOrder;
-import de.invesdwin.norva.beanpath.spi.element.utility.RemoveFromBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
 import de.invesdwin.util.bean.AValueObject;
 
 /**
@@ -14,9 +15,9 @@ import de.invesdwin.util.bean.AValueObject;
  * You can also reference the parents remove from utility element.
  *
  */
-@ColumnOrder({ AjaxDataTableRowConstants.id, AjaxDataTableRowConstants.firstName, AjaxDataTableRowConstants.lastName,
-        AjaxDataTableRowConstants.homePhone, AjaxDataTableRowConstants.cellPhone,
-        RemoveFromBeanPathElement.REMOVE_FROM_PREFIX })
+@ColumnOrder({ TableSelectionButtonColumnBeanPathElement.COLUMN_ID, AjaxDataTableRowConstants.id,
+        AjaxDataTableRowConstants.firstName, AjaxDataTableRowConstants.lastName, AjaxDataTableRowConstants.homePhone,
+        AjaxDataTableRowConstants.cellPhone, TableRemoveFromButtonColumnBeanPathElement.COLUMN_ID })
 @NotThreadSafe
 public class AjaxDataTableRow extends AValueObject {
 

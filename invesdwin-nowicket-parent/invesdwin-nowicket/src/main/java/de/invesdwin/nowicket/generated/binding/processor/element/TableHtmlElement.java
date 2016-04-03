@@ -121,7 +121,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     public List<ATableColumnHtmlElement<?, ?>> getColumns() {
         if (columns == null) {
             columns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
-            for (final ATableColumnModelElement<?> column : getModelElement().getRawColumns()) {
+            for (final ATableColumnModelElement<?> column : getModelElement().getColumns()) {
                 final ATableColumnHtmlElement<?, ?> convertedColumn = convertColumn(column);
                 columns.add(convertedColumn);
             }

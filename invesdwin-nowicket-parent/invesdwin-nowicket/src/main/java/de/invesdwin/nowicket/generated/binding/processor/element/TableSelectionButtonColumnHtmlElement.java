@@ -49,7 +49,7 @@ public class TableSelectionButtonColumnHtmlElement
     @Override
     public ISubmitButtonCallback getButtonCallback(final IModel<Object> targetObjectModel) {
         return getContext().getSubmitButtonCallbackFactory().createSubmitButtonCallback(this, targetObjectModel,
-                getModelElement().getBeanPathElement().getSelectionModifier().getToggleSelectionInvoker());
+                getModelElement().getBeanPathElement().getInvoker());
     }
 
     @Deprecated

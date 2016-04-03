@@ -60,7 +60,7 @@ public class ModelSelectionButtonColumn extends ModelSubmitButtonColumn {
         });
         //remove border around the checked button
         button.setType(Type.Link);
-        button.add(CssClassNameModifier.append("class", CSS_CLASS));
+        button.add(CssClassNameModifier.append("class", getCssClass()));
         return button;
     }
 
