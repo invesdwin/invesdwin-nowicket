@@ -13,6 +13,10 @@ import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import de.agilecoders.wicket.core.util.Dependencies;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
+/**
+ * https://github.com/autarc/optimal-select
+ *
+ */
 @Immutable
 public final class OptimalSelectReference extends JavaScriptResourceReference implements IHeaderContributor {
 
