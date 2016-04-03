@@ -15,13 +15,13 @@ public class ListsAndChoices extends AValueObject {
 
     private TimeUnit defaultSelect;
     private TimeUnit asList;
-    private TimeUnit asTable;
     private TimeUnit asRadio;
     private TimeUnit asCheckbox;
+    private TimeUnit asTable;
     private TimeUnit[] asMultiselectList;
     private TimeUnit[] asMultiselectPalette;
-    private TimeUnit[] asMultiselectTable;
     private TimeUnit[] asMultiselectCheckbox;
+    private TimeUnit[] asMultiselectTable;
 
     public TimeUnit getDefaultSelect() {
         return defaultSelect;

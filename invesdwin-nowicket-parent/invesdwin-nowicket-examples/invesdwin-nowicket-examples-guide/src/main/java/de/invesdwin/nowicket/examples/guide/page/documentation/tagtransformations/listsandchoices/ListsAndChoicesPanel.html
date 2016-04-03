@@ -36,19 +36,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-6">
-					<div wicket:id="asTable_gridColumn">
-						<div class="table-responsive">
-							<table class="table table-condensed table-hover table-striped"
-								wicket:id="asTable"></table>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
-				</div>
-			</div>
-			<div class="form-group">
 				<label class="control-label col-sm-2" wicket:for="asRadio">
 					<wicket:label>
                             As Radio
@@ -72,6 +59,19 @@
 				</div>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-html">&lt;input type="checkbox"&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div wicket:id="asTable_gridColumn">
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover table-striped"
+								wicket:id="asTable"></table>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
 				</div>
 			</div>
 			<br />
@@ -120,6 +120,18 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="control-label col-sm-2"
+					wicket:for="asMultiselectCheckbox"> <wicket:label>
+                            As Multiselect Checkbox
+                        </wicket:label></label>
+				<div wicket:id="asMultiselectCheckbox_gridColumn" class="col-sm-4">
+					<input type="checkbox" wicket:id="asMultiselectCheckbox"></input>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;input type="checkbox"&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-6">
 					<div wicket:id="asMultiselectTable_gridColumn">
 						<div class="table-responsive">
@@ -130,18 +142,6 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 				</div>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2"
-					wicket:for="asMultiselectCheckbox"> <wicket:label>
-                            As Multiselect Checkbox
-                        </wicket:label></label>
-				<div wicket:id="asMultiselectCheckbox_gridColumn" class="col-sm-4">
-					<input type="checkbox" wicket:id="asMultiselectCheckbox"></input>
-				</div>
-				<div class="col-sm-6">
-					<pre class="prettyprint lang-html">&lt;input type="checkbox"&gt;</pre>
 				</div>
 			</div>
 		</form>
