@@ -49,6 +49,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.UnorderedListHt
 import de.invesdwin.nowicket.generated.binding.processor.element.UploadButtonHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.AjaxNotificationPanel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.GridColumnBorder;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelCheckBoxMultipleChoice;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelDateTextField;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelDropDownChoice;
@@ -217,7 +218,24 @@ public class DefaultBindingBuilder implements IBindingBuilder {
 
     @Override
     public Component createCheckBoxInput(final CheckBoxInputHtmlElement e) {
-        final CheckBox checkBox = new CheckBox(e.getWicketId(), e.getModel());
+        return e.createWicketCheckBox();
+    }
+
+    @Override
+    public Component createBooleanCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        final CheckBox checkBox = new CheckBox(e.getWicketId(), e.getBooleanModel());
+        return checkBox;
+    }
+
+    @Override
+    public Component createMultiSelectionCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        final ModelCheckBoxMultipleChoice checkBox = new ModelCheckBoxMultipleChoice(e);
+        return checkBox;
+    }
+
+    @Override
+    public Component createSingleSelectionCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        final ModelCheckBoxMultipleChoice checkBox = new ModelCheckBoxMultipleChoice(e);
         return checkBox;
     }
 
@@ -227,13 +245,13 @@ public class DefaultBindingBuilder implements IBindingBuilder {
     }
 
     @Override
-    public Component createSingleSelect(final SelectHtmlElement e) {
+    public Component createSingleSelectionSelect(final SelectHtmlElement e) {
         final ModelDropDownChoice dropDownChoice = new ModelDropDownChoice(e);
         return dropDownChoice;
     }
 
     @Override
-    public Component createMultiSelect(final SelectHtmlElement e) {
+    public Component createMultiSelectionSelect(final SelectHtmlElement e) {
         final ModelListMultipleChoice listMultipleChoice = new ModelListMultipleChoice(e);
         return listMultipleChoice;
     }

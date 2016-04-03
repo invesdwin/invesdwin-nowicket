@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.lists;
+package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,14 +11,17 @@ import de.invesdwin.util.bean.AValueObject;
 @NotThreadSafe
 @GeneratedMarkup
 @Eager
-public class Lists extends AValueObject {
+public class ListsAndChoices extends AValueObject {
 
     private TimeUnit defaultSelect;
     private TimeUnit asList;
     private TimeUnit asTable;
+    private TimeUnit asRadio;
+    private TimeUnit asCheckbox;
     private TimeUnit[] asMultiselectList;
     private TimeUnit[] asMultiselectPalette;
     private TimeUnit[] asMultiselectTable;
+    private TimeUnit[] asMultiselectCheckbox;
 
     public TimeUnit getDefaultSelect() {
         return defaultSelect;
@@ -44,6 +47,22 @@ public class Lists extends AValueObject {
         this.asTable = asTable;
     }
 
+    public TimeUnit getAsRadio() {
+        return asRadio;
+    }
+
+    public void setAsRadio(final TimeUnit asRadio) {
+        this.asRadio = asRadio;
+    }
+
+    public TimeUnit getAsCheckbox() {
+        return asCheckbox;
+    }
+
+    public void setAsCheckbox(final TimeUnit asCheckbox) {
+        this.asCheckbox = asCheckbox;
+    }
+
     public TimeUnit[] getAsMultiselectList() {
         return asMultiselectList;
     }
@@ -66,6 +85,14 @@ public class Lists extends AValueObject {
 
     public void setAsMultiselectTable(final TimeUnit[] asTable) {
         this.asMultiselectTable = asTable;
+    }
+
+    public TimeUnit[] getAsMultiselectCheckbox() {
+        return asMultiselectCheckbox;
+    }
+
+    public void setAsMultiselectCheckbox(final TimeUnit[] asMultiselectCheckbox) {
+        this.asMultiselectCheckbox = asMultiselectCheckbox;
     }
 
 }

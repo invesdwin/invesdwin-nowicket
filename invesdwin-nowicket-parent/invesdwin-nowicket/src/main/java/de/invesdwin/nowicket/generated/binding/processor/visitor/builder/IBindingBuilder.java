@@ -85,11 +85,17 @@ public interface IBindingBuilder {
 
     Component createCheckBoxInput(CheckBoxInputHtmlElement e);
 
+    Component createBooleanCheckBoxInput(CheckBoxInputHtmlElement e);
+
+    Component createSingleSelectionCheckBoxInput(CheckBoxInputHtmlElement e);
+
+    Component createMultiSelectionCheckBoxInput(CheckBoxInputHtmlElement e);
+
     Component createSelect(SelectHtmlElement e);
 
-    Component createSingleSelect(SelectHtmlElement e);
+    Component createSingleSelectionSelect(SelectHtmlElement e);
 
-    Component createMultiSelect(SelectHtmlElement e);
+    Component createMultiSelectionSelect(SelectHtmlElement e);
 
     Component createTextInput(TextInputHtmlElement e);
 

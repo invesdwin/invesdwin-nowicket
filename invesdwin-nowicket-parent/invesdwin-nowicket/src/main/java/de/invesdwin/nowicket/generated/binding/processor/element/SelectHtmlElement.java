@@ -42,10 +42,10 @@ public class SelectHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<? 
     }
 
     public Component createWicketSelect() {
-        if (isMultiSelect()) {
-            return getContext().getBindingBuilder().createMultiSelect(this);
+        if (isMultiSelection()) {
+            return getContext().getBindingBuilder().createMultiSelectionSelect(this);
         } else {
-            return getContext().getBindingBuilder().createSingleSelect(this);
+            return getContext().getBindingBuilder().createSingleSelectionSelect(this);
         }
     }
 

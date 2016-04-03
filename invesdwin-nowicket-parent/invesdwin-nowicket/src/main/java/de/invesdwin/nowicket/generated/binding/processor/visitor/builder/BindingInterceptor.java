@@ -170,17 +170,32 @@ public class BindingInterceptor implements IBindingBuilder, Serializable {
     }
 
     @Override
+    public Component createBooleanCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        return create(e);
+    }
+
+    @Override
+    public Component createMultiSelectionCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        return create(e);
+    }
+
+    @Override
+    public Component createSingleSelectionCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        return create(e);
+    }
+
+    @Override
     public Component createSelect(final SelectHtmlElement e) {
         return create(e);
     }
 
     @Override
-    public Component createSingleSelect(final SelectHtmlElement e) {
+    public Component createSingleSelectionSelect(final SelectHtmlElement e) {
         return create(e);
     }
 
     @Override
-    public Component createMultiSelect(final SelectHtmlElement e) {
+    public Component createMultiSelectionSelect(final SelectHtmlElement e) {
         return create(e);
     }
 

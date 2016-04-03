@@ -304,6 +304,39 @@ public class InterceptingBindingBuilder implements IBindingBuilder {
     }
 
     @Override
+    public Component createBooleanCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        for (final IBindingBuilder b : orderedBindingBuilders) {
+            final Component c = b.createBooleanCheckBoxInput(e);
+            if (c != null) {
+                return c;
+            }
+        }
+        throw newIllegalStateException();
+    }
+
+    @Override
+    public Component createSingleSelectionCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        for (final IBindingBuilder b : orderedBindingBuilders) {
+            final Component c = b.createSingleSelectionCheckBoxInput(e);
+            if (c != null) {
+                return c;
+            }
+        }
+        throw newIllegalStateException();
+    }
+
+    @Override
+    public Component createMultiSelectionCheckBoxInput(final CheckBoxInputHtmlElement e) {
+        for (final IBindingBuilder b : orderedBindingBuilders) {
+            final Component c = b.createMultiSelectionCheckBoxInput(e);
+            if (c != null) {
+                return c;
+            }
+        }
+        throw newIllegalStateException();
+    }
+
+    @Override
     public Component createSelect(final SelectHtmlElement e) {
         for (final IBindingBuilder b : orderedBindingBuilders) {
             final Component c = b.createSelect(e);
@@ -315,9 +348,9 @@ public class InterceptingBindingBuilder implements IBindingBuilder {
     }
 
     @Override
-    public Component createSingleSelect(final SelectHtmlElement e) {
+    public Component createSingleSelectionSelect(final SelectHtmlElement e) {
         for (final IBindingBuilder b : orderedBindingBuilders) {
-            final Component c = b.createSingleSelect(e);
+            final Component c = b.createSingleSelectionSelect(e);
             if (c != null) {
                 return c;
             }
@@ -326,9 +359,9 @@ public class InterceptingBindingBuilder implements IBindingBuilder {
     }
 
     @Override
-    public Component createMultiSelect(final SelectHtmlElement e) {
+    public Component createMultiSelectionSelect(final SelectHtmlElement e) {
         for (final IBindingBuilder b : orderedBindingBuilders) {
-            final Component c = b.createMultiSelect(e);
+            final Component c = b.createMultiSelectionSelect(e);
             if (c != null) {
                 return c;
             }

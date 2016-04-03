@@ -8,14 +8,12 @@ import org.apache.wicket.model.Model;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.choices.Choices;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.choices.ChoicesPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.collapsibles.Collapsibles;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.collapsibles.CollapsiblesPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.links.Links;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.links.LinksPanel;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.lists.Lists;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.lists.ListsPanel;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices.ListsAndChoices;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices.ListsAndChoicesPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables.Tables;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables.TablesPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.texts.Texts;
@@ -41,10 +39,7 @@ public class TagTransformationsPage extends AExampleWebPage {
                     return new TextsPanel(e.getWicketId(), Model.of(new Texts()));
                 }
                 if ("listsPanel".equals(e.getWicketId())) {
-                    return new ListsPanel(e.getWicketId(), Model.of(new Lists()));
-                }
-                if ("choicesPanel".equals(e.getWicketId())) {
-                    return new ChoicesPanel(e.getWicketId(), Model.of(new Choices()));
+                    return new ListsAndChoicesPanel(e.getWicketId(), Model.of(new ListsAndChoices()));
                 }
                 if ("tablesPanel".equals(e.getWicketId())) {
                     return new TablesPanel(e.getWicketId(), Model.of(new Tables()));

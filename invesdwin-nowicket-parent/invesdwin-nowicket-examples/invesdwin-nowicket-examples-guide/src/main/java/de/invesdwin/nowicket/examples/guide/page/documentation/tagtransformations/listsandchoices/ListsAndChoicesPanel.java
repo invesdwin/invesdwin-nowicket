@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.lists;
+package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -6,15 +6,16 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.lists.ListsConstants;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.palette.ModelPalette;
 
 @NotThreadSafe
-public class ListsPanel extends Panel {
+public class ListsAndChoicesPanel extends Panel {
 
-    public ListsPanel(final String id, final IModel<Lists> model) {
+    public ListsAndChoicesPanel(final String id, final IModel<ListsAndChoices> model) {
         super(id, model);
         new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
             @Override

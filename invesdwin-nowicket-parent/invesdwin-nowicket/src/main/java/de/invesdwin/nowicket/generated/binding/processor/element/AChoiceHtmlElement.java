@@ -122,6 +122,16 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                         }
                     }
                 }
+
+                @Override
+                public String getIdValue(final Enum object, final int index) {
+                    if (object == null) {
+                        //super is not null safe with CheckBoxMultipleChoice
+                        return null;
+                    } else {
+                        return super.getIdValue(object, index);
+                    }
+                }
             };
         } else {
             return new ChoiceRenderer<Object>() {
@@ -152,8 +162,12 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
         }
     }
 
-    public boolean isMultiSelect() {
-        return getModelElement().getBeanPathElement().isMultiSelect();
+    public boolean isSingleSelection() {
+        return getModelElement().getBeanPathElement().isSingleSelection();
+    }
+
+    public boolean isMultiSelection() {
+        return getModelElement().getBeanPathElement().isMultiSelection();
     }
 
     public IModel<List<Object>> getSelectionModel() {
