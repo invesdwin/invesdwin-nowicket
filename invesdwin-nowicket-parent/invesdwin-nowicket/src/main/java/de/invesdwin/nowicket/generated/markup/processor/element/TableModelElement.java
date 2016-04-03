@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.norva.beanpath.spi.element.ITableColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableButtonColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableTextColumnBeanPathElement;
@@ -22,8 +21,6 @@ public class TableModelElement extends ATableModelElement {
     private final List<TableNumberColumnModelElement> numberColumns;
     private final List<TableSubmitButtonColumnModelElement> buttonColumns;
     private final List<TableAnchorColumnModelElement> anchorColumns;
-    private List<ATableColumnModelElement<?>> columns;
-    private List<ATableColumnModelElement<?>> rawColumns;
 
     public TableModelElement(final AModelContext context, final TableBeanPathElement beanPathElement) {
         super(context, beanPathElement);
@@ -79,32 +76,6 @@ public class TableModelElement extends ATableModelElement {
     public TableContainerColumnModelElement getContainerColumn() {
         //not used in real tables
         return null;
-    }
-
-    @Override
-    public List<ATableColumnModelElement<?>> getColumns() {
-        if (columns == null) {
-            columns = new ArrayList<ATableColumnModelElement<?>>();
-            for (final ITableColumnBeanPathElement column : getBeanPathElement().getColumns()) {
-                final ATableColumnModelElement<?> columnElement = (ATableColumnModelElement<?>) getContext()
-                        .getElementRegistry().getElement(column.getBeanPath());
-                columns.add(columnElement);
-            }
-        }
-        return Collections.unmodifiableList(columns);
-    }
-
-    @Override
-    public List<ATableColumnModelElement<?>> getRawColumns() {
-        if (rawColumns == null) {
-            rawColumns = new ArrayList<ATableColumnModelElement<?>>();
-            for (final ITableColumnBeanPathElement column : getBeanPathElement().getRawColumns()) {
-                final ATableColumnModelElement<?> columnElement = (ATableColumnModelElement<?>) getContext()
-                        .getElementRegistry().getElement(column.getBeanPath());
-                rawColumns.add(columnElement);
-            }
-        }
-        return Collections.unmodifiableList(rawColumns);
     }
 
     @Override

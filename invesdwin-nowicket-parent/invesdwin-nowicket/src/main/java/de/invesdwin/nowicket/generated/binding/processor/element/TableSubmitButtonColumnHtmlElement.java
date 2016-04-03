@@ -16,7 +16,8 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TableSubmitButto
 
 @NotThreadSafe
 public class TableSubmitButtonColumnHtmlElement
-        extends ATableColumnHtmlElement<TableSubmitButtonColumnModelElement, Object> {
+        extends ATableColumnHtmlElement<TableSubmitButtonColumnModelElement, Object>
+        implements ITableButtonColumn<TableSubmitButtonColumnModelElement, Object> {
 
     public TableSubmitButtonColumnHtmlElement(final HtmlContext context,
             final TableSubmitButtonColumnModelElement modelElement) {
@@ -29,11 +30,13 @@ public class TableSubmitButtonColumnHtmlElement
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public ISubmitButtonCallback getButtonCallback(final IModel<Object> targetObjectModel) {
         return getContext().getSubmitButtonCallbackFactory().createSubmitButtonCallback(this, targetObjectModel,
                 getModelElement().getBeanPathElement().getInvoker());
     }
 
+    @Override
     public IModel<String> getIconCssClassModel() {
         return new ResourceModel(getModelElement().getIconCssClassPropertyName(), "")
                 .wrapOnAssignment(getContext().getMarkupContainer());

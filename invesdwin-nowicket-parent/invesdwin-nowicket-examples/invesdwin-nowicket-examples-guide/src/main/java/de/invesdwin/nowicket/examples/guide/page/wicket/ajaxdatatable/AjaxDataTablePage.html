@@ -12,8 +12,8 @@
 			and visibility of columns can be manipulated by the @ColumnOrder
 			annotation. The removeFrom utility method is also demonstrated for
 			how to remove elements in the parent model via adding a button to the
-			table. The BindingInterceptor is also used to make the select column
-			show dynamic icons to allow multiselect in the table.
+			table. The multiselection behavior is fully driven by the model
+			class.
 		</p>
 		<form class="form-horizontal" wicket:id="form">
 			<!-- <div wicket:id='feedback'></div>  -->
@@ -27,13 +27,15 @@
                         </wicket:label>
 						</label>
 						<div wicket:id="selected_gridColumn" class="col-sm-4">
-							<textarea type="text" class="form-control" wicket:id="selected" rows="3"></textarea>
+							<textarea type="text" class="form-control" wicket:id="selected"
+								rows="3"></textarea>
 						</div>
 					</div>
 					<p>This is a demo of the DataTable (DataView wrapper). Provided
 						features:</p>
 					<ul>
-						<li>Easy ordering and selection of columns from code (see BindingInterceptor in page which makes it dynamic)</li>
+						<li>Easy ordering and selection of columns from code (see
+							BindingInterceptor in page which makes it dynamic)</li>
 						<li>Takes care of sorting headers automatically</li>
 						<li>Takes care of page navigator automatically</li>
 						<li>Takes care of adding class=&quot;odd&quot; and

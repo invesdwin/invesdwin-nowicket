@@ -30,3 +30,8 @@ body {
 .btn-group-nowrap .btn {
 	margin-left: -4px !important;
 }
+
+.table-selection-column {
+	width: 32px;
+	padding: 0px;
+}

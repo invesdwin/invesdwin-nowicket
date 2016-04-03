@@ -35,6 +35,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumn
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableRemoveFromButtonColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableSelectionButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableSubmitButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableTextColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TextAreaHtmlElement;
@@ -206,6 +207,18 @@ public class InterceptingBindingBuilder implements IBindingBuilder {
     public IColumn<? extends Object, String> createContainerColumn(final TableContainerColumnHtmlElement e) {
         for (final IBindingBuilder b : orderedBindingBuilders) {
             final IColumn<? extends Object, String> c = b.createContainerColumn(e);
+            if (c != null) {
+                return c;
+            }
+        }
+        throw newIllegalStateException();
+    }
+
+    @Override
+    public IColumn<? extends Object, String> createSelectionButtonColumn(
+            final TableSelectionButtonColumnHtmlElement e) {
+        for (final IBindingBuilder b : orderedBindingBuilders) {
+            final IColumn<? extends Object, String> c = b.createSelectionButtonColumn(e);
             if (c != null) {
                 return c;
             }

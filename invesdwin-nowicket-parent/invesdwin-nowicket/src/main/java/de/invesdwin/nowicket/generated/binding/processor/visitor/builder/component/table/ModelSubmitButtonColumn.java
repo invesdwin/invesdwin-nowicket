@@ -13,24 +13,39 @@ import org.apache.wicket.model.IModel;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapAjaxFallbackButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons.Type;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
+import de.invesdwin.nowicket.generated.binding.processor.element.ITableButtonColumn;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableSubmitButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
-public class TableModelButtonColumn extends PropertyColumn<Object, String> {
+public class ModelSubmitButtonColumn extends PropertyColumn<Object, String> {
 
-    private final TableSubmitButtonColumnHtmlElement element;
+    private final ITableButtonColumn<?, ?> element;
 
-    public TableModelButtonColumn(final TableSubmitButtonColumnHtmlElement element) {
+    public ModelSubmitButtonColumn(final TableSubmitButtonColumnHtmlElement element) {
+        this((ITableButtonColumn<?, ?>) element);
+    }
+
+    protected ModelSubmitButtonColumn(final ITableButtonColumn<?, ?> element) {
         super(element.getTitleModel(null), element.getColumnId());
         this.element = element;
+    }
+
+    public ITableButtonColumn<?, ?> getElement() {
+        return element;
     }
 
     @Override
     public void populateItem(final Item<ICellPopulator<Object>> item, final String componentId,
             final IModel<Object> rowModel) {
         final BootstrapAjaxFallbackButton button = newButton(componentId, rowModel);
+        setIconCssClass(button);
+        button.add(new ModelComponentBehavior(element, button, rowModel));
+        item.add(button);
+    }
+
+    protected void setIconCssClass(final BootstrapAjaxFallbackButton button) {
         final String iconCssClass = element.getIconCssClassModel().getObject();
         if (Strings.isNotBlank(iconCssClass)) {
             button.setIconType(new IconType(iconCssClass) {
@@ -40,8 +55,6 @@ public class TableModelButtonColumn extends PropertyColumn<Object, String> {
                 }
             });
         }
-        button.add(new ModelComponentBehavior(element, button, rowModel));
-        item.add(button);
     }
 
     protected BootstrapAjaxFallbackButton newButton(final String componentId, final IModel<Object> rowModel) {

@@ -22,7 +22,7 @@ public abstract class ATableColumnHtmlElement<E extends ATableColumnModelElement
     }
 
     public String getColumnId() {
-        return getModelElement().getBeanPathElement().getAccessor().getBeanPathFragment();
+        return getModelElement().getColumnId();
     }
 
     @Override

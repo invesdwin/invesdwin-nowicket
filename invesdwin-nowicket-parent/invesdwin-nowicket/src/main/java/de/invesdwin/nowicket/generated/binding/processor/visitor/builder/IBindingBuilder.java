@@ -31,6 +31,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumn
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableRemoveFromButtonColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableSelectionButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableSubmitButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableTextColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TextAreaHtmlElement;
@@ -67,6 +68,8 @@ public interface IBindingBuilder {
     IColumn<? extends Object, String> createResourceReferenceAnchorColumn(TableAnchorColumnHtmlElement e);
 
     IColumn<? extends Object, String> createContainerColumn(TableContainerColumnHtmlElement e);
+
+    IColumn<? extends Object, String> createSelectionButtonColumn(TableSelectionButtonColumnHtmlElement e);
 
     Component createUnorderedList(UnorderedListHtmlElement e);
 

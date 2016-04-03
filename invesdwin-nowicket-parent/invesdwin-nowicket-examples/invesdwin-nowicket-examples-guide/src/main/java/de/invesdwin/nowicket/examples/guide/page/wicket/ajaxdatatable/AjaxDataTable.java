@@ -1,7 +1,9 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.ajaxdatatable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -15,26 +17,36 @@ import de.invesdwin.util.bean.AValueObject;
 @GeneratedMarkup
 public class AjaxDataTable extends AValueObject {
 
-    private final List<AjaxDataTableRow> rows = new ArrayList<AjaxDataTableRow>();
+    private final List<AjaxDataTableRow> rowsSelectionChoice = new ArrayList<AjaxDataTableRow>();
+    private Set<AjaxDataTableRow> rowsSelection = new HashSet<AjaxDataTableRow>();
 
     public AjaxDataTable() {
         regenerateRows();
     }
 
-    public List<AjaxDataTableRow> getRows() {
-        return rows;
+    public Set<AjaxDataTableRow> getRows() {
+        return this.rowsSelection;
+    }
+
+    public void setRows(final Set<AjaxDataTableRow> rowsSelection) {
+        this.rowsSelection = rowsSelection;
+    }
+
+    public List<AjaxDataTableRow> getRowsChoice() {
+        return rowsSelectionChoice;
     }
 
     public void regenerateRows() {
-        rows.clear();
-        new AjaxDataTableRowGenerator().generate(rows, 31);
+        rowsSelectionChoice.clear();
+        new AjaxDataTableRowGenerator().generate(rowsSelectionChoice, 31);
     }
 
     /**
      * here we demonstrate how to use the remove from utility element
      */
     public void removeFromRows(final AjaxDataTableRow row) {
-        rows.remove(row);
+        rowsSelection.remove(row);
+        rowsSelectionChoice.remove(row);
         GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.info)
                 .withTitle("Removed")
                 .withMessage(row.toString()));
@@ -43,14 +55,12 @@ public class AjaxDataTable extends AValueObject {
     public String getSelected() {
         final StringBuilder sb = new StringBuilder();
         int selectedCount = 0;
-        for (final AjaxDataTableRow row : getRows()) {
-            if (row.isSelected()) {
-                if (sb.length() > 0) {
-                    sb.append("; ");
-                }
-                sb.append(row.toString());
-                selectedCount++;
+        for (final AjaxDataTableRow row : rowsSelection) {
+            if (sb.length() > 0) {
+                sb.append("; ");
             }
+            sb.append(row.toString());
+            selectedCount++;
         }
         if (sb.length() == 0) {
             sb.append("No Contact Selected");
@@ -62,57 +72,49 @@ public class AjaxDataTable extends AValueObject {
 
     public void removeSelected() {
         final StringBuilder sb = new StringBuilder();
-        for (final AjaxDataTableRow row : new ArrayList<AjaxDataTableRow>(getRows())) {
-            if (row.isSelected()) {
-                if (sb.length() > 0) {
-                    sb.append("<br>");
-                }
-                sb.append(row.toString());
-                rows.remove(row);
+        for (final AjaxDataTableRow row : rowsSelection) {
+            if (sb.length() > 0) {
+                sb.append("<br>");
             }
+            sb.append(row.toString());
+            rowsSelectionChoice.remove(row);
         }
+        rowsSelection.clear();
         GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.info)
                 .withTitle("Removed")
                 .withMessage(sb.toString()));
     }
 
     public String disableRemoveSelected() {
-        for (final AjaxDataTableRow row : getRows()) {
-            if (row.isSelected()) {
-                return null;
-            }
+        if (rowsSelection.isEmpty()) {
+            return "None selected";
+        } else {
+            return null;
         }
-        return "None selected";
     }
 
     public void selectAll() {
-        for (final AjaxDataTableRow row : getRows()) {
-            row.setSelected(true);
-        }
+        rowsSelection.addAll(rowsSelectionChoice);
     }
 
     public String disableSelectAll() {
-        for (final AjaxDataTableRow row : getRows()) {
-            if (!row.isSelected()) {
-                return null;
-            }
+        if (rowsSelection.size() == rowsSelectionChoice.size()) {
+            return "Already all selected";
+        } else {
+            return null;
         }
-        return "Already all selected";
     }
 
     public void unselectAll() {
-        for (final AjaxDataTableRow row : getRows()) {
-            row.setSelected(false);
-        }
+        rowsSelection.clear();
     }
 
     public String disableUnselectAll() {
-        for (final AjaxDataTableRow row : getRows()) {
-            if (row.isSelected()) {
-                return null;
-            }
+        if (rowsSelection.isEmpty()) {
+            return "Already all unselected";
+        } else {
+            return null;
         }
-        return "Already all unselected";
     }
 
 }

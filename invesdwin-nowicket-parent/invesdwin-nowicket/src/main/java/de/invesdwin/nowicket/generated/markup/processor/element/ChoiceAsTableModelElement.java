@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.markup.processor.element;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,20 +12,12 @@ import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 public final class ChoiceAsTableModelElement extends ATableModelElement {
 
     private final TableContainerColumnModelElement containerColumn;
-    private final List<ATableColumnModelElement<?>> columns;
 
     private ChoiceAsTableModelElement(final AChoiceModelElement<?> choiceModelElement) {
         super(choiceModelElement.getContext(),
                 ChoiceAsTableBeanPathElement.maybeWrap(choiceModelElement.getBeanPathElement()));
         this.containerColumn = new TableContainerColumnModelElement(choiceModelElement.getContext(),
                 getBeanPathElement().getContainerColumn());
-
-        this.columns = new ArrayList<ATableColumnModelElement<?>>();
-        columns.add(containerColumn);
-
-        if (getRemoveFromButtonColumn() != null) {
-            columns.add(getRemoveFromButtonColumn());
-        }
     }
 
     @Override
@@ -62,16 +53,6 @@ public final class ChoiceAsTableModelElement extends ATableModelElement {
     public List<TableTextColumnModelElement> getTextColumns() {
         //only used in real tables
         return Collections.emptyList();
-    }
-
-    @Override
-    public List<ATableColumnModelElement<?>> getColumns() {
-        return Collections.unmodifiableList(columns);
-    }
-
-    @Override
-    public List<ATableColumnModelElement<?>> getRawColumns() {
-        return Collections.unmodifiableList(columns);
     }
 
     @Override

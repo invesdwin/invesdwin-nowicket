@@ -11,6 +11,9 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.jsoup.nodes.Element;
 
+import de.invesdwin.norva.beanpath.spi.element.TableContainerColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
@@ -19,7 +22,6 @@ import de.invesdwin.nowicket.generated.markup.processor.element.ATableColumnMode
 import de.invesdwin.nowicket.generated.markup.processor.element.ATableModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.ChoiceAsTableModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableAnchorColumnModelElement;
-import de.invesdwin.nowicket.generated.markup.processor.element.TableContainerColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableDateColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableNumberColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableSubmitButtonColumnModelElement;
@@ -36,10 +38,13 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     private final List<TableAnchorColumnHtmlElement> anchorColumns;
     private final TableContainerColumnHtmlElement containerColumn;
     private final TableRemoveFromButtonColumnHtmlElement removeFromButtonColumn;
+    private final TableSelectionButtonColumnHtmlElement selectionButtonColumn;
     private List<ATableColumnHtmlElement<?, ?>> columns;
     private List<ATableColumnHtmlElement<?, ?>> rawColumns;
 
+    //CHECKSTYLE:OFF
     public TableHtmlElement(final HtmlContext context, final Element element) {
+        //CHECKSTYLE:ON
         super(context, element);
         textColumns = new ArrayList<TableTextColumnHtmlElement>();
         for (final TableTextColumnModelElement textColumn : getModelElement().getTextColumns()) {
@@ -71,6 +76,12 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
                     getModelElement().getRemoveFromButtonColumn());
         } else {
             this.removeFromButtonColumn = null;
+        }
+        if (getModelElement().getSelectionButtonColumn() != null) {
+            this.selectionButtonColumn = new TableSelectionButtonColumnHtmlElement(context,
+                    getModelElement().getSelectionButtonColumn());
+        } else {
+            this.selectionButtonColumn = null;
         }
     }
 
@@ -110,32 +121,35 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     public List<ATableColumnHtmlElement<?, ?>> getColumns() {
         if (columns == null) {
             columns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
-            for (final ATableColumnModelElement<?> column : getModelElement().getColumns()) {
-                if (column instanceof TableContainerColumnModelElement) {
-                    Assertions.checkNotNull(containerColumn);
-                    columns.add(containerColumn);
-                } else {
-                    final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
-                            .getElement(column.getWicketId());
-                    columns.add(columnElement);
-                }
+            for (final ATableColumnModelElement<?> column : getModelElement().getRawColumns()) {
+                final ATableColumnHtmlElement<?, ?> convertedColumn = convertColumn(column);
+                columns.add(convertedColumn);
             }
         }
         return Collections.unmodifiableList(columns);
+    }
+
+    private ATableColumnHtmlElement<?, ?> convertColumn(final ATableColumnModelElement<?> column) {
+        final ATableColumnHtmlElement<?, ?> columnElement;
+        if (TableContainerColumnBeanPathElement.COLUMN_ID.equals(column.getColumnId())) {
+            columnElement = containerColumn;
+        } else if (TableRemoveFromButtonColumnBeanPathElement.COLUMN_ID.equals(column.getColumnId())) {
+            columnElement = removeFromButtonColumn;
+        } else if (TableSelectionButtonColumnBeanPathElement.COLUMN_ID.equals(column.getColumnId())) {
+            columnElement = selectionButtonColumn;
+        } else {
+            columnElement = getContext().getElementRegistry().getElement(column.getWicketId());
+        }
+        Assertions.checkNotNull(columnElement, "%s: %s", column.getWicketId(), column.getColumnId());
+        return columnElement;
     }
 
     public List<ATableColumnHtmlElement<?, ?>> getRawColumns() {
         if (rawColumns == null) {
             rawColumns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
             for (final ATableColumnModelElement<?> column : getModelElement().getRawColumns()) {
-                if (column instanceof TableContainerColumnModelElement) {
-                    Assertions.checkNotNull(containerColumn);
-                    columns.add(containerColumn);
-                } else {
-                    final ATableColumnHtmlElement<?, ?> columnElement = getContext().getElementRegistry()
-                            .getElement(column.getWicketId());
-                    rawColumns.add(columnElement);
-                }
+                final ATableColumnHtmlElement<?, ?> convertedColumn = convertColumn(column);
+                rawColumns.add(convertedColumn);
             }
         }
         return Collections.unmodifiableList(rawColumns);

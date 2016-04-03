@@ -40,6 +40,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumn
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableRemoveFromButtonColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableSelectionButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableSubmitButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableTextColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TextAreaHtmlElement;
@@ -75,9 +76,10 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelNumberColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelResourceAnchorColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelResourceReferenceAnchorColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelSelectionButtonColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelSubmitButtonColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelTextColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelUrlAnchorColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.TableModelButtonColumn;
 import de.invesdwin.nowicket.util.Components;
 
 // CHECKSTYLE:OFF fan out
@@ -118,7 +120,7 @@ public class DefaultBindingBuilder implements IBindingBuilder {
 
     @Override
     public IColumn<? extends Object, String> createSubmitButtonColumn(final TableSubmitButtonColumnHtmlElement e) {
-        final TableModelButtonColumn actionIconColumn = new TableModelButtonColumn(e);
+        final ModelSubmitButtonColumn actionIconColumn = new ModelSubmitButtonColumn(e);
         return actionIconColumn;
     }
 
@@ -168,6 +170,13 @@ public class DefaultBindingBuilder implements IBindingBuilder {
     public IColumn<? extends Object, String> createContainerColumn(final TableContainerColumnHtmlElement e) {
         final ModelContainerColumn containerColumn = new ModelContainerColumn(e);
         return containerColumn;
+    }
+
+    @Override
+    public IColumn<? extends Object, String> createSelectionButtonColumn(
+            final TableSelectionButtonColumnHtmlElement e) {
+        final ModelSelectionButtonColumn selectionButtonColumn = new ModelSelectionButtonColumn(e);
+        return selectionButtonColumn;
     }
 
     @Override
