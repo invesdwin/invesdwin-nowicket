@@ -121,10 +121,13 @@ public final class Components {
                 if (object.isEnabledInHierarchy() && object.isVisibleInHierarchy()
                 //fileUploadField chokes on FileNotFound if synchronized twice in a call!
                         && !(object instanceof FileUploadField)) {
+                    try {
+                        object.updateModel(); //fill in values regardless of valid state, since complex validation rules might require all inputs
+                    } catch (final Throwable t) {
+                        //ignore
+                    }
                     object.validate();
-                    if (object.isValid()) {
-                        object.updateModel();
-                    } else {
+                    if (!object.isValid()) {
                         invalidFound.set(true);
                     }
                 }

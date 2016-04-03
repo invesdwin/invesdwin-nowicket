@@ -13,11 +13,13 @@ import de.invesdwin.nowicket.util.Components;
 @NotThreadSafe
 public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
 
+    public static final String DEFAULT_EAGER_EVENT = "change";
+
     private final IHtmlElement<?, ?> element;
     private final Component component;
 
-    public EagerBehavior(final IHtmlElement<?, ?> element, final Component component) {
-        super("change");
+    public EagerBehavior(final IHtmlElement<?, ?> element, final Component component, final String eagerEvent) {
+        super(eagerEvent);
         this.element = element;
         this.component = component;
         final FormComponent<?> formComponent = Components.asFormComponent(component);
@@ -25,6 +27,10 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
             throw new IllegalArgumentException("Only " + FormComponent.class.getSimpleName() + "s are supported: "
                     + element.getWicketId() + ": " + component);
         }
+    }
+
+    public EagerBehavior(final IHtmlElement<?, ?> element, final Component component) {
+        this(element, component, DEFAULT_EAGER_EVENT);
     }
 
     @Override

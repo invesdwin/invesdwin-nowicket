@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.form.AbstractSingleSelectChoice;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 
+import de.invesdwin.nowicket.component.palette.Palette;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.ModelUtilityValidator;
@@ -62,7 +63,7 @@ public class ModelComponentBehavior extends Behavior {
     }
 
     private void addEagerBehavior() {
-        if (element.isEager()) {
+        if (element.isEager() && !(component instanceof Palette)) {
             //support IFormComponentAware properly here
             final FormComponent<?> formComponent = Components.asFormComponent(component);
             if (formComponent == null) {
