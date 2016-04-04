@@ -150,6 +150,7 @@ public class HtmlComponentBuilder {
     public Element createTable(final TableModelElement e) {
         final Div divTableResponsive = new Div();
         divTableResponsive.setClass("table-responsive");
+        setGridColumnId(e, divTableResponsive);
         final Table table = new Table();
         table.addAttribute(IHtmlElement.ATTR_WICKET_ID, e.getWicketId());
         table.setClass("table table-condensed table-hover table-striped");

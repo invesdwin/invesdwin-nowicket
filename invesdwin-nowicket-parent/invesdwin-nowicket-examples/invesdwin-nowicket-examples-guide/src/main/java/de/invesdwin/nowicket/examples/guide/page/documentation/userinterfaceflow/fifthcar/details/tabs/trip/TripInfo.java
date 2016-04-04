@@ -7,6 +7,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.fifthcar.details.tabs.trip.create.NewTrip;
+import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
@@ -30,7 +31,16 @@ public class TripInfo extends AValueObject {
         this.tripBook = tripBook;
     }
 
+    public String validateTripBook(final Collection<TripRow> newValue) {
+        if (newValue == null || newValue.isEmpty()) {
+            return "is empty, please add a Trip!";
+        } else {
+            return null;
+        }
+    }
+
     @ModalOpener
+    @Forced
     public NewTrip newTrip() {
         return new NewTrip() {
             @Override

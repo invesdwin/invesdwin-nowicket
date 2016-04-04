@@ -58,4 +58,10 @@ public class ValidatableSelectionModelDataTablePanel extends FormComponentPanel<
         //no-op to not destroy the selection
     }
 
+    @Override
+    public void convertInput() {
+        //prevent null values for validation
+        setConvertedInput(getDefaultModelObject());
+    }
+
 }
