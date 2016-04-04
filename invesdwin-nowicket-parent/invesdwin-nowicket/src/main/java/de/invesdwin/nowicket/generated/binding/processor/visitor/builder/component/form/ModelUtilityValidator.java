@@ -111,7 +111,9 @@ public final class ModelUtilityValidator implements INullAcceptingValidator<Obje
         if (!message.contains(title)) {
             message = title + " " + message;
         }
-        message = Strings.eventuallyAddSuffix(message, ".");
+        if (!Strings.endsWithAny(message, ".", "!", "?")) {
+            message += ".";
+        }
         return message;
     }
 
