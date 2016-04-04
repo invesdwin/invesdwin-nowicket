@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformatio
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import javax.validation.constraints.NotNull;
 
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
@@ -17,6 +18,7 @@ public class ListsAndChoices extends AValueObject {
     private TimeUnit asList;
     private TimeUnit asRadio;
     private TimeUnit asCheckbox;
+    @NotNull
     private TimeUnit asTable;
     private TimeUnit[] asMultiselectList;
     private TimeUnit[] asMultiselectPalette;

@@ -28,8 +28,11 @@ public class ModelDataTable extends DataTable<Object, String> {
     private final TableHtmlElement element;
 
     public ModelDataTable(final TableHtmlElement element, final long rowsPerPage) {
-        super(element.getWicketId(), element.createWicketColumns(), new ModelSortableDataProvider(element),
-                rowsPerPage);
+        this(element.getWicketId(), element, rowsPerPage);
+    }
+
+    public ModelDataTable(final String wicketId, final TableHtmlElement element, final long rowsPerPage) {
+        super(wicketId, element.createWicketColumns(), new ModelSortableDataProvider(element), rowsPerPage);
         this.element = element;
         setOutputMarkupId(true);
         final AbstractToolbar headersToolbar = newHeadersToolbar();

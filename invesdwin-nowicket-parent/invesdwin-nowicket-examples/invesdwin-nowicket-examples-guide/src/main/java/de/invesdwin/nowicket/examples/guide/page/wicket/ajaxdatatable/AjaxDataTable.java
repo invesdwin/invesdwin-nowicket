@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
@@ -24,6 +25,7 @@ public class AjaxDataTable extends AValueObject {
         regenerateRows();
     }
 
+    @Eager
     public Set<AjaxDataTableRow> getRows() {
         return this.rowsSelection;
     }

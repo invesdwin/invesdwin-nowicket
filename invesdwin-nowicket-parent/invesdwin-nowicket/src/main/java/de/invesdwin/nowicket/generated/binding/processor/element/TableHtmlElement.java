@@ -203,4 +203,5 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     public List<? extends IColumn<Object, String>> createWicketColumns() {
         return createWicketColumns(getContext().getBindingBuilder());
     }
+
 }

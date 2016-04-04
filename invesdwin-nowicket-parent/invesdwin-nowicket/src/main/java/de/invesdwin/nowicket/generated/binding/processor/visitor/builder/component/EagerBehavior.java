@@ -10,7 +10,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.form.palette.Palette;
 import org.apache.wicket.markup.html.form.FormComponent;
 
-import de.invesdwin.norva.beanpath.spi.element.APropertyBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.util.Components;
 
@@ -72,7 +72,7 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
          * order. This workaround works because setters are supposed to contain cheap actions and because and each field
          * that depends on other fields is supposed to be an eager field anyway.
          */
-        final APropertyBeanPathElement propertyElement = (APropertyBeanPathElement) element.getModelElement()
+        final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) element.getModelElement()
                 .getBeanPathElement();
         propertyElement.getModifier().setValue(propertyElement.getModifier().getValue());
 

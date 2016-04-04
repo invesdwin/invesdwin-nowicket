@@ -1,12 +1,155 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-    <head></head>
-    <body>
-        <wicket:panel>
-            <form class="form-horizontal" wicket:id="form">
-                <!-- <div wicket:id='feedback'></div>  -->
-                <div wicket:id="modal"></div>
-            </form>
-        </wicket:panel>
-    </body>
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<div wicket:id='feedback'></div>
+			<div wicket:id="modal"></div>
+			<code>
+				// here we use the choice utility element, it can also return an
+				Iterable, Collection, etc<br /> public &lt;TypeOfProperty&gt;
+				get&lt;PropertyName&gt;() { ... }<br /> &lt;TypeOfProperty&gt;[]
+				get&lt;PropertyName&gt;Choice() { ... }
+			</code>
+			<br /> <br />
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="defaultTable_legend">Default Table</legend>
+					<div wicket:id="defaultTable_gridColumn">
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover table-striped"
+								wicket:id="defaultTable"></table>
+						</div>
+					</div>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="asSelect">
+					<wicket:label>
+                             As Select 
+                        </wicket:label>
+				</label>
+				<div wicket:id="asSelect_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="asSelect"></select>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;select&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="asList"> <wicket:label>
+                             As List 
+                        </wicket:label></label>
+				<div wicket:id="asList_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="asList" size="8"></select>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;select size=&quot;8&quot;&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="asRadio">
+					<wicket:label>
+                             As Radio 
+                        </wicket:label>
+				</label>
+				<div wicket:id="asRadio_gridColumn" class="col-sm-4">
+					<input type="radio" wicket:id="asRadio"></input>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;input type=&quot;radio&quot;&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="asCheckbox">
+					<wicket:label>
+                             As Checkbox 
+                        </wicket:label>
+				</label>
+				<div wicket:id="asCheckbox_gridColumn" class="col-sm-4">
+					<input type="checkbox" wicket:id="asCheckbox"></input>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;input type=&quot;checkbox&quot;&gt;</pre>
+				</div>
+			</div>
+			<br />
+			<code>
+				// same as above, can also be an Iterable, Collection, etc<br />
+				public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }<br />public
+				&lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;Choice() { ... }
+			</code>
+			<br /> <br />
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asMultiselectTable_legend">Default
+						Table</legend>
+					<div wicket:id="asMultiselectTable_gridColumn">
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover table-striped"
+								wicket:id="asMultiselectTable"></table>
+						</div>
+					</div>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="asMultiselectList">
+					<wicket:label>
+                             As Multiselect List 
+                        </wicket:label>
+				</label>
+				<div wicket:id="asMultiselectList_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="asMultiselectList" size="8"
+						multiple="multiple"></select>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;!-- ListMultipleChoice does not support empty
+     selection once a selection was made --&gt;
+&lt;select size=&quot;8&quot; multiple=&quot;multiple&quot;&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2"
+					wicket:for="asMultiselectPalette"> <wicket:label>
+                             As Multiselect Palette 
+                        </wicket:label>
+				</label>
+				<div wicket:id="asMultiselectPalette_gridColumn" class="col-sm-4">
+					<select class="form-control" wicket:id="asMultiselectPalette"></select>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-java">// Palette allows to go back to empty selection though
+new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+    @Override
+    public Component createSelect(final SelectHtmlElement e) {
+        if (ListsConstants.asMultiselectPalette.equals(e.getWicketId())) {
+            return new ModelPalette(e);
+        }
+        return super.createSelect(e);
+    }
+}).bind();</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2"
+					wicket:for="asMultiselectCheckbox"> <wicket:label>
+                             As Multiselect Checkbox 
+                        </wicket:label></label>
+				<div wicket:id="asMultiselectCheckbox_gridColumn" class="col-sm-4">
+					<input type="checkbox" wicket:id="asMultiselectCheckbox"></input>
+				</div>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;input type=&quot;checkbox&quot;&gt;</pre>
+				</div>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
 </html>

@@ -165,6 +165,7 @@ public class WebApplicationInitializer {
         securePackageResourceGuard.addPattern("+*.ogv");
         securePackageResourceGuard.addPattern("+*.mp4");
         securePackageResourceGuard.addPattern("+*.woff2");
+        securePackageResourceGuard.addPattern("+*.map");
     }
 
     /**

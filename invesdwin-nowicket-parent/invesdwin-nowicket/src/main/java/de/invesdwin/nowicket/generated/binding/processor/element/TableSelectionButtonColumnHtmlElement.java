@@ -11,6 +11,7 @@ import org.apache.wicket.model.IModel;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.ISubmitButtonCallback;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.TableSelectionColumnBooleanModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.ATableModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.ChoiceAsTableModelElement;
@@ -56,6 +57,29 @@ public class TableSelectionButtonColumnHtmlElement
     @Override
     public IModel<String> getIconCssClassModel() {
         return null;
+    }
+
+    @Override
+    public boolean isForced() {
+        //always forced button
+        return true;
+    }
+
+    public boolean isSingleSelection() {
+        return getModelElement().getBeanPathElement().getTableElement().isSingleSelection();
+    }
+
+    public boolean isMultiSelection() {
+        return getModelElement().getBeanPathElement().getTableElement().isMultiSelection();
+    }
+
+    @Override
+    public boolean isEager() {
+        return super.isEager() || isSingleSelection();
+    }
+
+    public IModel<Boolean> newBooleanModel(final IModel<Object> rowModel) {
+        return new TableSelectionColumnBooleanModel(this, rowModel);
     }
 
 }

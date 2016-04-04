@@ -70,17 +70,17 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelResourceLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelContainerColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelDataTable;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelDateColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelDownloadAnchorColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelNumberColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelResourceAnchorColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelResourceReferenceAnchorColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelSelectionButtonColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelSubmitButtonColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelTextColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ModelUrlAnchorColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ValidatableSelectionModelDataTablePanel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelContainerColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelDateColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelDownloadAnchorColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelNumberColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelResourceAnchorColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelResourceReferenceAnchorColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelSubmitButtonColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelTextColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelUrlAnchorColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.selection.ModelSelectionButtonColumn;
 import de.invesdwin.nowicket.util.Components;
 
 // CHECKSTYLE:OFF fan out
@@ -109,7 +109,7 @@ public class DefaultBindingBuilder implements IBindingBuilder {
 
     @Override
     public Component createTable(final TableHtmlElement e) {
-        final ModelDataTable table = new ModelDataTable(e);
+        final ValidatableSelectionModelDataTablePanel table = new ValidatableSelectionModelDataTablePanel(e);
         return table;
     }
 
