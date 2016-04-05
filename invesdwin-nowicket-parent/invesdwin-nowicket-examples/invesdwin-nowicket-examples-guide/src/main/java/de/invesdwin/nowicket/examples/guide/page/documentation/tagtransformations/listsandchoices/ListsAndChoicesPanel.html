@@ -6,11 +6,11 @@
 		<form class="form-horizontal" wicket:id="form">
 			<div wicket:id='feedback'></div>
 			<div wicket:id="modal"></div>
-			<code>
-				// either use an enum type or add a choice utility element<br />
-				public &lt;TypeOfProperty&gt; get&lt;PropertyName&gt;() { ... }
-			</code>
-			<br /> <br />
+			Model Code:
+			<pre class="prettyprint lang-java linenums">// either use an enum type or add a choice utility element
+public &lt;TypeOfProperty&gt; get&lt;PropertyName&gt;() { ... }
+public void set&lt;PropertyName&gt;(&lt;TypeOfProperty&gt; value) { ... }</pre>
+			<br>
 			<div class="form-group">
 				<label class="control-label col-sm-2" wicket:for="defaultSelect">
 					<wicket:label>
@@ -72,13 +72,11 @@
 					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
 				</div>
 			</div>
-			<br />
-			<code>
-				// see above regarding enums, can also be an Iterable, Collection,
-				etc<br /> public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;()
-				{ ... }
-			</code>
-			<br /> <br />
+			Model Code:
+			<pre class="prettyprint lang-java linenums">// see above regarding enums, can also be an Iterable, Collection, etc
+public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }
+public void set&lt;PropertyName&gt;(&lt;TypeOfProperty&gt;[] value) { ... }</pre>
+			<br>
 			<div class="form-group">
 				<label class="control-label col-sm-2" wicket:for="asMultiselectList">
 					<wicket:label>

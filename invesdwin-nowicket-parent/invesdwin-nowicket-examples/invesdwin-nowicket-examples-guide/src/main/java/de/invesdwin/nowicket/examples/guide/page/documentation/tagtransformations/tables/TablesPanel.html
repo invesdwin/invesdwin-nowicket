@@ -6,13 +6,12 @@
 		<form class="form-horizontal" wicket:id="form">
 			<div wicket:id='feedback'></div>
 			<div wicket:id="modal"></div>
-			<code>
-				// here we use the choice utility element, it can also return an
-				Iterable, Collection, etc<br /> public &lt;TypeOfProperty&gt;
-				get&lt;PropertyName&gt;() { ... }<br /> &lt;TypeOfProperty&gt;[]
-				get&lt;PropertyName&gt;Choice() { ... }
-			</code>
-			<br /> <br />
+			Model Code:
+			<pre class="prettyprint lang-java linenums">// here we use the choice utility element, it can also return an Iterable, Collection, etc
+public &lt;TypeOfProperty&gt; get&lt;PropertyName&gt;() { ... }
+public void set&lt;PropertyName&gt;(&lt;TypeOfProperty&gt; value) { ... }
+public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;Choice() { ... }</pre>
+			<br>
 			<div class="form-group">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="defaultTable_legend">Default Table</legend>
@@ -75,13 +74,12 @@
 					<pre class="prettyprint lang-html">&lt;input type=&quot;checkbox&quot;&gt;</pre>
 				</div>
 			</div>
-			<br />
-			<code>
-				// same as above, can also be an Iterable, Collection, etc<br />
-				public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }<br />public
-				&lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;Choice() { ... }
-			</code>
-			<br /> <br />
+			<br> Model Code:
+			<pre class="prettyprint lang-java linenums">// same as above, can also be an Iterable, Collection, etc<br />
+public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }
+public void set&lt;PropertyName&gt;(&lt;TypeOfProperty&gt;[] value) { ... }
+public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;Choice() { ... }</pre>
+			<br>
 			<div class="form-group">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asMultiselectTable_legend">Default

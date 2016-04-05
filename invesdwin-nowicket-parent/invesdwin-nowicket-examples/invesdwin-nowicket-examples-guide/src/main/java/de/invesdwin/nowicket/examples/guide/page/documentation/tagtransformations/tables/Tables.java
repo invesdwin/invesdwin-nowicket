@@ -20,6 +20,7 @@ public class Tables extends AValueObject {
             for (int i = 1; i <= 3; i++) {
                 add(new ExtendedTableRow(i));
             }
+            add(null); // allow empty choice
         }
     };
 
