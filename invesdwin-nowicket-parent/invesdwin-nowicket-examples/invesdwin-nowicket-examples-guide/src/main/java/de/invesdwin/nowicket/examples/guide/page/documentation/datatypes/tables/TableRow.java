@@ -8,8 +8,8 @@ import de.invesdwin.util.bean.AValueObject;
 @NotThreadSafe
 public class TableRow extends AValueObject {
 
-    private final String column1;
-    private final String column2;
+    private String column1;
+    private String column2;
     private final TableRowNested nested;
 
     public TableRow(final int index) {
@@ -22,8 +22,16 @@ public class TableRow extends AValueObject {
         return column1;
     }
 
+    public void setColumn1(final String column1) {
+        this.column1 = column1;
+    }
+
     public String getColumn2() {
         return column2;
+    }
+
+    public void setColumn2(final String column2) {
+        this.column2 = column2;
     }
 
     public TableRowNested getNested() {

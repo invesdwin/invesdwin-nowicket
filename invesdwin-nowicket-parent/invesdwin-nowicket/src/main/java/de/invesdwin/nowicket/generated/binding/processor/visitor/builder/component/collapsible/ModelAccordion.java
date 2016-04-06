@@ -16,7 +16,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.util.lang.Objects;
 
 /**
@@ -30,7 +30,7 @@ public class ModelAccordion extends Panel {
     private final List<AccordionCollapsible> oldCollapsibles = new ArrayList<AccordionCollapsible>();
     private final List<AccordionCollapsible> collapsibles = new ArrayList<AccordionCollapsible>();
 
-    public ModelAccordion(final TabbedHtmlElement element) {
+    public ModelAccordion(final ITabbedHtmlElement<?, ?> element) {
         this(element.getWicketId(), new AbstractReadOnlyModel<Collection<ITab>>() {
             @Override
             public Collection<ITab> getObject() {

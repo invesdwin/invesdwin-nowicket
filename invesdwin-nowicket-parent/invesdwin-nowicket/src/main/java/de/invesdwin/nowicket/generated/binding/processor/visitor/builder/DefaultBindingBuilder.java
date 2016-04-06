@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.component.csrf.CsrfTokenForm;
@@ -32,7 +33,6 @@ import de.invesdwin.nowicket.generated.binding.processor.element.RadioInputHtmlE
 import de.invesdwin.nowicket.generated.binding.processor.element.RootHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtmlElement;
-import de.invesdwin.nowicket.generated.binding.processor.element.TabbedColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
@@ -187,8 +187,9 @@ public class DefaultBindingBuilder implements IBindingBuilder {
     }
 
     @Override
-    public ITab createTabbedColumn(final TabbedColumnHtmlElement e) {
-        final ModelTab tab = new ModelTab(e);
+    public ITab createTab(final IHtmlElement<?, ?> e, final IModel<String> tabTitleModel,
+            final IModel<Object> targetObjectModel) {
+        final ModelTab tab = new ModelTab(e, tabTitleModel, targetObjectModel);
         return tab;
     }
 

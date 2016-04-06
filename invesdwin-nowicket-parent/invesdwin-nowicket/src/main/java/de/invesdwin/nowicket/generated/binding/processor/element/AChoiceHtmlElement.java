@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.MissingResourceException;
@@ -7,6 +9,7 @@ import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.EnumChoiceRenderer;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
@@ -15,15 +18,18 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.jsoup.nodes.Element;
 
+import de.invesdwin.norva.beanpath.spi.element.utility.ContainerTitleBeanPathElement;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ChoiceTabTitleModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
-public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> extends AModelHtmlElement<E, Object> {
+public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> extends AModelHtmlElement<E, Object>
+        implements ITabbedHtmlElement<E, Object> {
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(AChoiceHtmlElement.class);
 
@@ -134,13 +140,20 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                 }
             };
         } else {
-            return new ChoiceRenderer<Object>() {
+            return new ChoiceRenderer<Object>(ContainerTitleBeanPathElement.CONTAINER_TITLE_BEAN_PATH_FRAGMENT) {
                 @Override
                 public Object getDisplayValue(final Object object) {
                     if (object == null) {
                         return null;
                     }
-                    final Object displayValue = super.getDisplayValue(object);
+                    Object displayValue;
+                    try {
+                        displayValue = super.getDisplayValue(object);
+                    } catch (final Throwable t) {
+                        //ignore when no title container method exists:
+                        //org.apache.wicket.WicketRuntimeException: No get method defined for class: ... expression: title
+                        displayValue = object;
+                    }
                     if (displayValue == null) {
                         return null;
                     } else {
@@ -173,4 +186,32 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
     public IModel<List<Object>> getSelectionModel() {
         return new SelectionModifierModel(this);
     }
+
+    @Override
+    public List<ITab> createWicketTabs() {
+        final List<ITab> tabs = new ArrayList<ITab>();
+        for (final Object row : getChoiceModel().getObject()) {
+            final IModel<Object> targetObjectModel = new AbstractReadOnlyModel<Object>() {
+                @Override
+                public Object getObject() {
+                    return row;
+                }
+            };
+            final IModel<String> tabTitleModel = new ChoiceTabTitleModel(this, targetObjectModel);
+            final ITab tab = getContext().getBindingBuilder().createTab(this, tabTitleModel, targetObjectModel);
+            tabs.add(tab);
+        }
+        return tabs;
+    }
+
+    @Override
+    public IModel<? extends Collection<? extends ITab>> getTabModel() {
+        return new AbstractReadOnlyModel<Collection<? extends ITab>>() {
+            @Override
+            public Collection<? extends ITab> getObject() {
+                return createWicketTabs();
+            }
+        };
+    }
+
 }

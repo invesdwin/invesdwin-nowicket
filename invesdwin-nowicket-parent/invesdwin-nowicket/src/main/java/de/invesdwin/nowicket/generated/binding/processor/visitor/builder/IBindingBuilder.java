@@ -4,6 +4,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
+import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.CheckBoxInputHtmlElement;
@@ -23,7 +24,6 @@ import de.invesdwin.nowicket.generated.binding.processor.element.RadioInputHtmlE
 import de.invesdwin.nowicket.generated.binding.processor.element.RootHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtmlElement;
-import de.invesdwin.nowicket.generated.binding.processor.element.TabbedColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
@@ -75,7 +75,7 @@ public interface IBindingBuilder {
 
     Component createTabbed(TabbedHtmlElement e);
 
-    ITab createTabbedColumn(TabbedColumnHtmlElement e);
+    ITab createTab(final IHtmlElement<?, ?> e, IModel<String> tabTitleModel, final IModel<Object> targetObjectModel);
 
     Component createGridColumn(GridColumnHtmlElement e);
 

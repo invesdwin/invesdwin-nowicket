@@ -19,19 +19,25 @@ public class ModelTab implements ITab {
     private static final MetaDataKey<Boolean> KEY_DISABLED_BEHAVIOR_ADDED = new MetaDataKey<Boolean>() {
     };
     private final IHtmlElement<?, ?> element;
+    private final IModel<String> tabTitleModel;
+    private final IModel<Object> targetObjectModel;
 
-    public ModelTab(final IHtmlElement<?, ?> element) {
+    public ModelTab(final IHtmlElement<?, ?> element, final IModel<String> tabTitleModel,
+            final IModel<Object> targetObjectModel) {
         this.element = element;
+        this.tabTitleModel = tabTitleModel;
+        this.targetObjectModel = targetObjectModel;
     }
 
     @Override
     public IModel<String> getTitle() {
-        return element.getTitleModel();
+        return tabTitleModel;
     }
 
     @Override
     public WebMarkupContainer getPanel(final String containerId) {
-        final Panel panel = PanelFactory.get().getPanel(containerId, element.getModel().getObject());
+        final Object modelValue = targetObjectModel.getObject();
+        final Panel panel = PanelFactory.get().getPanel(containerId, modelValue);
         final Boolean behaviorAdded = panel.getMetaData(KEY_DISABLED_BEHAVIOR_ADDED);
         if (behaviorAdded == null || !behaviorAdded) {
             panel.setMetaData(KEY_DISABLED_BEHAVIOR_ADDED, true);
@@ -51,11 +57,11 @@ public class ModelTab implements ITab {
 
     @Override
     public boolean isVisible() {
-        return element.isVisible(element.getTargetObjectModel());
+        return element.isVisible(targetObjectModel);
     }
 
     public boolean isEnabled() {
-        return element.isEnabled(element.getTargetObjectModel());
+        return element.isEnabled(targetObjectModel);
     }
 
 }

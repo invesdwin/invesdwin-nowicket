@@ -13,8 +13,10 @@ public class ExtendedTableRow extends TableRow {
         super(index);
     }
 
-    @Override
-    public String toString() {
+    /**
+     * We could also have overridden toString, as that is the default fallback if no container title method exists
+     */
+    public String title() {
         return TableRow.class.getSimpleName() + "-" + getColumn1() + "-" + getColumn2() + "-"
                 + getNested().getColumn3();
     }

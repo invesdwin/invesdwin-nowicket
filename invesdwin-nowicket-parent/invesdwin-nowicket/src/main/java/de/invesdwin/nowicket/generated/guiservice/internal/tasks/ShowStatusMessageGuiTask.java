@@ -7,6 +7,7 @@ import org.apache.wicket.Component;
 import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
 import de.invesdwin.nowicket.component.pnotify.PNotifyType;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
+import de.invesdwin.nowicket.util.Components;
 
 @NotThreadSafe
 public class ShowStatusMessageGuiTask implements IGuiTask {
@@ -19,6 +20,7 @@ public class ShowStatusMessageGuiTask implements IGuiTask {
 
     @Override
     public void process(final Component component) {
+        final Component root = Components.findForm(component).getRootForm();
         final PNotifyBehavior behavior = new PNotifyBehavior();
         if (config.getTitle() != null) {
             behavior.withTitle(config.getTitle());
@@ -35,6 +37,6 @@ public class ShowStatusMessageGuiTask implements IGuiTask {
         if (config.getType() != null) {
             behavior.withType(PNotifyType.valueOf(config.getType().name()));
         }
-        component.add(behavior);
+        root.add(behavior);
     }
 }

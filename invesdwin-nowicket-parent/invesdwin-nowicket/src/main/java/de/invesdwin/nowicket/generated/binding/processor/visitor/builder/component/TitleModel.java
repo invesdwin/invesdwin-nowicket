@@ -38,14 +38,12 @@ public class TitleModel extends AbstractReadOnlyModel<String> {
 
     @Override
     public String getObject() {
-        final String title = element.getModelElement().getBeanPathElement().getTitle(getTitleTarget());
+        final String title = getTitle();
         if (title == null) {
             return null;
         }
         try {
-            if ((element.getModelElement().getBeanPathElement().getTitleElement() != null
-                    || element.getModelElement().getBeanPathElement().getContainerTitleElement() != null)
-                    && !isVisibleName(title)) {
+            if (hasTitleUtilityElement() && !isVisibleName(title)) {
                 //title() or getXYZTitle() method has priority
                 String str = new StringResourceModel(title, element.getContext().getMarkupContainer(),
                         element.getContext().getMarkupContainer().getDefaultModel()).setDefaultValue(title).getObject();
@@ -63,11 +61,20 @@ public class TitleModel extends AbstractReadOnlyModel<String> {
         }
     }
 
-    private boolean isVisibleName(final String title) {
+    protected boolean hasTitleUtilityElement() {
+        return element.getModelElement().getBeanPathElement().getTitleElement() != null
+                || element.getModelElement().getBeanPathElement().getContainerTitleElement() != null;
+    }
+
+    protected String getTitle() {
+        return element.getModelElement().getBeanPathElement().getTitle(getTitleTarget());
+    }
+
+    protected boolean isVisibleName(final String title) {
         return Objects.equals(element.getModelElement().getBeanPathElement().getVisibleName(), title);
     }
 
-    private Object getTitleTarget() {
+    protected Object getTitleTarget() {
         if (targetObjectModel == null) {
             return null;
         } else {

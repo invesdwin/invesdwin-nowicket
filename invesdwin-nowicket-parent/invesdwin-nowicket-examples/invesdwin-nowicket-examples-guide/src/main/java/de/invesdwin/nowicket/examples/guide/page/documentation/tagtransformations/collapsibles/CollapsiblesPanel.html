@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-    <head></head>
-    <body>
-        <wicket:panel>
-            <form class="form-horizontal" wicket:id="form">
-                <!-- <div wicket:id='feedback'></div>  -->
-                <div wicket:id="modal"></div>
-            </form>
-        </wicket:panel>
-    </body>
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			Model Code:
+			<pre class="prettyprint lang-java linenums">// can also return an Iterable, Collection, etc
+public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
+			<br>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="defaultTable_legend">Default Table</legend>
+					<div wicket:id="defaultTable_gridColumn" class="table-responsive">
+						<table class="table table-condensed table-hover table-striped"
+							wicket:id="defaultTable"></table>
+					</div>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asUnorderedList_legend">As Unordered
+						List</legend>
+					<ul wicket:id="asUnorderedList"></ul>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;!-- this just puts a panel for each
+     element beneath one another --&gt;
+&lt;ul&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asCollapsible_legend">As Collapsible</legend>
+					<ul wicket:id="asCollapsible"></ul>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-java">// collapsibles are panels that can be opened/closed
+// all panels can be open at the same time
+new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+    @Override
+    protected Component create(final IHtmlElement<?, ?> e) {
+        if (CollapsiblesConstants.asCollapsible.equals(e.getWicketId())) {
+            return new ModelCollapsibleList((ITabbedHtmlElement<?, ?>) e);
+        }
+        return super.create(e);
+    }
+}).bind();</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asAccordion_legend">As Accordion</legend>
+					<ul wicket:id="asAccordion"></ul>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-java">// a special type of collapsibles where 
+// only one panel can be open at a time
+new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+    @Override
+    protected Component create(final IHtmlElement<?, ?> e) {
+        if (CollapsiblesConstants.asAccordion.equals(e.getWicketId())) {
+            return new ModelAccordion((ITabbedHtmlElement<?, ?>) e);
+        }
+        return super.create(e);
+    }
+}).bind();</pre>
+				</div>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
 </html>

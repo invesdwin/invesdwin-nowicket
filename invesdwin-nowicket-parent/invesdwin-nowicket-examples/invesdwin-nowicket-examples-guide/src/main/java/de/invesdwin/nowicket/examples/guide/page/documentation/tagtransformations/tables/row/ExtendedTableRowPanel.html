@@ -1,51 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-    <head></head>
-    <body>
-        <wicket:panel>
-            <form class="form-horizontal" wicket:id="form">
-                <!-- <div wicket:id='feedback'></div>  -->
-                <div wicket:id="modal"></div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" wicket:for="column1">
-                        <wicket:label>
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="column1">
+					<wicket:label>
                             Column1
-                        </wicket:label></label>
-                    <div wicket:id="column1_gridColumn" class="col-sm-4">
-                        <input type="text" class="form-control" wicket:id="column1"></input>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" wicket:for="column2">
-                        <wicket:label>
+                        </wicket:label>
+				</label>
+				<div wicket:id="column1_gridColumn" class="col-sm-4">
+					<input type="text" class="form-control" wicket:id="column1"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="column2">
+					<wicket:label>
                             Column2
-                        </wicket:label></label>
-                    <div wicket:id="column2_gridColumn" class="col-sm-4">
-                        <input type="text" class="form-control" wicket:id="column2"></input>
-                    </div>
-                </div>
-                <fieldset>
-                    <legend wicket:id="nested_legend">Nested</legend>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" wicket:for="nested.column3">
-                            <wicket:label>
+                        </wicket:label>
+				</label>
+				<div wicket:id="column2_gridColumn" class="col-sm-4">
+					<input type="text" class="form-control" wicket:id="column2"></input>
+				</div>
+			</div>
+			<fieldset>
+				<!-- <legend wicket:id="nested_legend">Nested</legend> -->
+				<div class="form-group">
+					<label class="control-label col-sm-2" wicket:for="nested.column3">
+						<wicket:label>
                                 Column3
-                            </wicket:label></label>
-                        <div wicket:id="nested.column3_gridColumn" class="col-sm-4">
-                            <input type="text" class="form-control" wicket:id="nested.column3"></input>
-                        </div>
-                    </div>
-                </fieldset>
-                <div class="form-group">
-                    <div class="col-sm-6">
-                        <div class="btn-toolbar">
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-default" wicket:id="action">Action</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </wicket:panel>
-    </body>
+                            </wicket:label>
+					</label>
+					<div wicket:id="nested.column3_gridColumn" class="col-sm-4">
+						<input type="text" class="form-control" wicket:id="nested.column3"></input>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default" wicket:id="action">Action</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
 </html>

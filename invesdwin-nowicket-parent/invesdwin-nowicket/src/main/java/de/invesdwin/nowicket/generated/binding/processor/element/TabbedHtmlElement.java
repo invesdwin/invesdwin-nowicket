@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -9,6 +10,8 @@ import java.util.Locale;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
+import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 import org.jsoup.nodes.Element;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
@@ -18,7 +21,8 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TabbedModelEleme
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
-public class TabbedHtmlElement extends AModelHtmlElement<TabbedModelElement, Object> {
+public class TabbedHtmlElement extends AModelHtmlElement<TabbedModelElement, Object>
+        implements ITabbedHtmlElement<TabbedModelElement, Object> {
 
     private final List<TabbedColumnHtmlElement> rawColumns;
     private List<TabbedColumnHtmlElement> columns;
@@ -66,12 +70,23 @@ public class TabbedHtmlElement extends AModelHtmlElement<TabbedModelElement, Obj
         visitor.visitTabbed(this);
     }
 
+    @Override
     public List<ITab> createWicketTabs() {
         final List<ITab> tabs = new ArrayList<ITab>();
         for (final TabbedColumnHtmlElement column : getColumns()) {
             tabs.add(column.createWicketTab());
         }
         return tabs;
+    }
+
+    @Override
+    public IModel<? extends Collection<? extends ITab>> getTabModel() {
+        return new AbstractReadOnlyModel<Collection<? extends ITab>>() {
+            @Override
+            public Collection<? extends ITab> getObject() {
+                return createWicketTabs();
+            }
+        };
     }
 
     @Override
