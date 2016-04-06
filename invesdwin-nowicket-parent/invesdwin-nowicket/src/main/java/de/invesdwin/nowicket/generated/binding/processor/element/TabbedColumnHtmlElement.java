@@ -30,7 +30,7 @@ public class TabbedColumnHtmlElement extends AModelHtmlElement<TabbedColumnModel
     }
 
     public ITab createWicketTab() {
-        return getContext().getBindingBuilder().createTab(this, getTitleModel(), getTargetObjectModel());
+        return getContext().getBindingBuilder().createTab(this, getTitleModel(), getModel(), getTargetObjectModel());
     }
 
     @Override

@@ -1,11 +1,11 @@
-package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.collapsibles;
+package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandpanels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables.row.ExtendedTableRow;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices.row.ExtendedTableRow;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -14,7 +14,7 @@ import de.invesdwin.util.lang.Objects;
 @NotThreadSafe
 @GeneratedMarkup
 @Eager
-public class Collapsibles extends AValueObject {
+public class TablesAndPanels extends AValueObject {
 
     private final List<ExtendedTableRow> choices = new ArrayList<ExtendedTableRow>() {
         {
@@ -28,6 +28,7 @@ public class Collapsibles extends AValueObject {
     private final List<ExtendedTableRow> asUnorderedList = Objects.deepClone(choices);
     private final List<ExtendedTableRow> asCollapsible = Objects.deepClone(choices);
     private final List<ExtendedTableRow> asAccordion = Objects.deepClone(choices);
+    private final List<?> asTabbed = Objects.deepClone(choices);
 
     public List<ExtendedTableRow> getDefaultTable() {
         return defaultTable;
@@ -43,6 +44,13 @@ public class Collapsibles extends AValueObject {
 
     public List<ExtendedTableRow> getAsUnorderedList() {
         return asUnorderedList;
+    }
+
+    /**
+     * We don't require static typing for tabbed panels, thus you can even mix different types into one list
+     */
+    public List<?> getAsTabbed() {
+        return asTabbed;
     }
 
 }

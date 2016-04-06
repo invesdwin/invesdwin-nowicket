@@ -1,11 +1,11 @@
-package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables;
+package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables.row.ExtendedTableRow;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices.row.ExtendedTableRow;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -13,7 +13,7 @@ import de.invesdwin.util.bean.AValueObject;
 @NotThreadSafe
 @GeneratedMarkup
 @Eager
-public class Tables extends AValueObject {
+public class TablesAndChoices extends AValueObject {
 
     private final List<ExtendedTableRow> choices = new ArrayList<ExtendedTableRow>() {
         {

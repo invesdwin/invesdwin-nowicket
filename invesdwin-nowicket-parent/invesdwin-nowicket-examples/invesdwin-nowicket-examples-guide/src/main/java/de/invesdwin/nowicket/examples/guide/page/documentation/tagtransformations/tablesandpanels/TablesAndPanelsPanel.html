@@ -9,7 +9,7 @@
 			Model Code:
 			<pre class="prettyprint lang-java linenums">// can also return an Iterable, Collection, etc
 public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
-			<br>
+			<br />
 			<div class="form-group">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="defaultTable_legend">Default Table</legend>
@@ -37,16 +37,17 @@ public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
 			<div class="form-group">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asCollapsible_legend">As Collapsible</legend>
-					<ul wicket:id="asCollapsible"></ul>
+					<table class="table table-condensed table-hover table-striped"
+						wicket:id="asCollapsible"></table>
 				</fieldset>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">// collapsibles are panels that can be opened/closed
 // all panels can be open at the same time
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
-    protected Component create(final IHtmlElement<?, ?> e) {
+    protected Component create(final IHtmlElement&lt;?, ?&gt; e) {
         if (CollapsiblesConstants.asCollapsible.equals(e.getWicketId())) {
-            return new ModelCollapsibleList((ITabbedHtmlElement<?, ?>) e);
+            return new ModelCollapsibleList((ITabbedHtmlElement&lt;?, ?&gt;) e);
         }
         return super.create(e);
     }
@@ -56,16 +57,38 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 			<div class="form-group">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asAccordion_legend">As Accordion</legend>
-					<ul wicket:id="asAccordion"></ul>
+					<table class="table table-condensed table-hover table-striped"
+						wicket:id="asAccordion"></table>
 				</fieldset>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">// a special type of collapsibles where 
 // only one panel can be open at a time
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
-    protected Component create(final IHtmlElement<?, ?> e) {
+    protected Component create(final IHtmlElement&lt;?, ?&gt; e) {
         if (CollapsiblesConstants.asAccordion.equals(e.getWicketId())) {
-            return new ModelAccordion((ITabbedHtmlElement<?, ?>) e);
+            return new ModelAccordion((ITabbedHtmlElement&lt;?, ?&gt;) e);
+        }
+        return super.create(e);
+    }
+}).bind();</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asTabbed_legend">As Tabbed</legend>
+					<table class="table table-condensed table-hover table-striped"
+						wicket:id="asTabbed"></table>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-java">// we can even turn it into a TabbedPanel easily,
+// no static typing required in model, thus 
+// we could even have different panels in it
+new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+    @Override
+    protected Component create(final IHtmlElement&lt;?, ?&gt; e) {
+        if (CollapsiblesConstants.asTabbed.equals(e.getWicketId())) {
+            return new ModelTabbedPanel((ITabbedHtmlElement&lt;?, ?&gt;) e);
         }
         return super.create(e);
     }

@@ -19,7 +19,7 @@ import org.apache.wicket.model.Model;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.tabs.AjaxBootstrapTabbedPanel;
 import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
-import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.DefaultSubmitButtonCallback;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.AModelAjaxFallbackLink;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
@@ -29,7 +29,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
 
     private final PNotifyBehavior validationErrorNotificationBehavior;
 
-    public ModelTabbedPanel(final TabbedHtmlElement element) {
+    public ModelTabbedPanel(final ITabbedHtmlElement<?, ?> element) {
         this(element.getWicketId(), element.createWicketTabs(), Model.of(0));
     }
 

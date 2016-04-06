@@ -8,14 +8,14 @@ import org.apache.wicket.model.Model;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.collapsibles.Collapsibles;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.collapsibles.CollapsiblesPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.links.Links;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.links.LinksPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices.ListsAndChoices;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices.ListsAndChoicesPanel;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables.Tables;
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables.TablesPanel;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices.TablesAndChoices;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices.TablesAndChoicesPanel;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandpanels.TablesAndPanels;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandpanels.TablesAndPanelsPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.texts.Texts;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.texts.TextsPanel;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
@@ -42,10 +42,10 @@ public class TagTransformationsPage extends AExampleWebPage {
                     return new ListsAndChoicesPanel(e.getWicketId(), Model.of(new ListsAndChoices()));
                 }
                 if ("tablesPanel".equals(e.getWicketId())) {
-                    return new TablesPanel(e.getWicketId(), Model.of(new Tables()));
+                    return new TablesAndChoicesPanel(e.getWicketId(), Model.of(new TablesAndChoices()));
                 }
                 if ("collapsiblesPanel".equals(e.getWicketId())) {
-                    return new CollapsiblesPanel(e.getWicketId(), Model.of(new Collapsibles()));
+                    return new TablesAndPanelsPanel(e.getWicketId(), Model.of(new TablesAndPanels()));
                 }
                 if ("linksPanel".equals(e.getWicketId())) {
                     return new LinksPanel(e.getWicketId(), Model.of(new Links()));

@@ -22,6 +22,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.FeedbackHtmlEle
 import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IUnknownHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.ImageHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.LabelHtmlElement;
@@ -33,7 +34,6 @@ import de.invesdwin.nowicket.generated.binding.processor.element.RadioInputHtmlE
 import de.invesdwin.nowicket.generated.binding.processor.element.RootHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtmlElement;
-import de.invesdwin.nowicket.generated.binding.processor.element.TabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumnHtmlElement;
@@ -181,15 +181,15 @@ public class DefaultBindingBuilder implements IBindingBuilder {
     }
 
     @Override
-    public Component createTabbed(final TabbedHtmlElement e) {
+    public Component createTabbed(final ITabbedHtmlElement<?, ?> e) {
         final ModelTabbedPanel tabbedPanel = new ModelTabbedPanel(e);
         return tabbedPanel;
     }
 
     @Override
     public ITab createTab(final IHtmlElement<?, ?> e, final IModel<String> tabTitleModel,
-            final IModel<Object> targetObjectModel) {
-        final ModelTab tab = new ModelTab(e, tabTitleModel, targetObjectModel);
+            final IModel<Object> panelModel, final IModel<Object> targetObjectModel) {
+        final ModelTab tab = new ModelTab(e, tabTitleModel, panelModel, targetObjectModel);
         return tab;
     }
 

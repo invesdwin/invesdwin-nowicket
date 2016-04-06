@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables.row;
+package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices.row;
 
 import javax.annotation.concurrent.NotThreadSafe;
 

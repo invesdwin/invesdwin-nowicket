@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tables;
+package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -13,9 +13,9 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.Binding
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.palette.ModelPalette;
 
 @NotThreadSafe
-public class TablesPanel extends Panel {
+public class TablesAndChoicesPanel extends Panel {
 
-    public TablesPanel(final String id, final IModel<Tables> model) {
+    public TablesAndChoicesPanel(final String id, final IModel<TablesAndChoices> model) {
         super(id, model);
         new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
             @Override

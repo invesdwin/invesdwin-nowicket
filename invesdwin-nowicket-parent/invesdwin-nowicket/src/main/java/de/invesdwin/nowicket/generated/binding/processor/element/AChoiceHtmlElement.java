@@ -198,7 +198,8 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                 }
             };
             final IModel<String> tabTitleModel = new ChoiceTabTitleModel(this, targetObjectModel);
-            final ITab tab = getContext().getBindingBuilder().createTab(this, tabTitleModel, targetObjectModel);
+            final ITab tab = getContext().getBindingBuilder().createTab(this, tabTitleModel, targetObjectModel,
+                    targetObjectModel);
             tabs.add(tab);
         }
         return tabs;
