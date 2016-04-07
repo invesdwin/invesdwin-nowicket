@@ -22,6 +22,10 @@ public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
 					<pre class="prettyprint lang-html">&lt;table&gt;</pre>
 				</div>
 			</div>
+			Model Code:
+			<pre class="prettyprint lang-java linenums">// no static typing required in model, thus we can even have different panels in it as demonstrated below
+// though you can also stick to the code above and use only one panel
+public List&lt;?&gt; get&lt;PropertyName&gt;() { ... }</pre>
 			<div class="form-group">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asUnorderedList_legend">As Unordered
@@ -81,9 +85,7 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 						wicket:id="asTabbed"></table>
 				</fieldset>
 				<div class="col-sm-6">
-					<pre class="prettyprint lang-java">// we can even turn it into a TabbedPanel easily,
-// no static typing required in model, thus 
-// we could even have different panels in it
+					<pre class="prettyprint lang-java">// we can even turn it into a TabbedPanel easily
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
     protected Component create(final IHtmlElement&lt;?, ?&gt; e) {
