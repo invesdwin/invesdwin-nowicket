@@ -21,7 +21,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TabbedModelEleme
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
-public class TabbedHtmlElement extends AModelHtmlElement<TabbedModelElement, Object>
+public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
         implements ITabbedHtmlElement<TabbedModelElement, Object> {
 
     private final List<TabbedColumnHtmlElement> rawColumns;

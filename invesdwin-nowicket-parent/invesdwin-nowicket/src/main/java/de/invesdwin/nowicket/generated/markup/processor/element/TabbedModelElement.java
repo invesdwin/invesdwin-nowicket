@@ -6,14 +6,14 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
-import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.norva.beanpath.spi.element.TabbedBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TabbedColumnBeanPathElement;
+import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
+import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
-public class TabbedModelElement extends AModelElement<TabbedBeanPathElement> {
+public class TabbedModelElement extends AChoiceModelElement<TabbedBeanPathElement> {
 
     private final List<TabbedColumnModelElement> rawColumns;
     private List<TabbedColumnModelElement> columns;
@@ -34,8 +34,8 @@ public class TabbedModelElement extends AModelElement<TabbedBeanPathElement> {
         if (columns == null) {
             columns = new ArrayList<TabbedColumnModelElement>();
             for (final TabbedColumnBeanPathElement column : getBeanPathElement().getColumns()) {
-                final TabbedColumnModelElement columnElement = (TabbedColumnModelElement) getContext().getElementRegistry()
-                        .getElement(column.getBeanPath());
+                final TabbedColumnModelElement columnElement = (TabbedColumnModelElement) getContext()
+                        .getElementRegistry().getElement(column.getBeanPath());
                 columns.add(columnElement);
             }
         }

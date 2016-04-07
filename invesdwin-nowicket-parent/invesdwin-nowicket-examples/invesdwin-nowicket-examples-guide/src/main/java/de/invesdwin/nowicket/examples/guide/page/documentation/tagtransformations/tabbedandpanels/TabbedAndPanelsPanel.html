@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			Model Code:
+			<pre class="prettyprint lang-java linenums">@Tabbed
+public &lt;TypeOfProperty&gt; get&lt;PropertyName&gt;() { ... }</pre>
+			<br />
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="defaultTabbed_legend">Default Tabbed</legend>
+					<iframe wicket:id="defaultTabbed"></iframe>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;!-- div and span work also, but iframe is the default 
+     to differentiate it better --&gt;
+&lt;iframe&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asUnorderedList_legend">As Unordered
+						List</legend>
+					<ul wicket:id="asUnorderedList"></ul>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-html">&lt;ul&gt;</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asCollapsible_legend">As Collapsible</legend>
+					<iframe wicket:id="asCollapsible"></iframe>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-java">
+new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+    @Override
+    public Component createTabbed(final ITabbedHtmlElement&lt;?, ?&gt; e) {
+        if (CollapsiblesConstants.asCollapsible.equals(e.getWicketId())) {
+            return new ModelCollapsibleList(e);
+        }
+        return super.createTabbed(e);
+    }
+}).bind();</pre>
+				</div>
+			</div>
+			<div class="form-group">
+				<fieldset class="col-sm-6">
+					<legend wicket:id="asAccordion_legend">As Accordion</legend>
+					<iframe wicket:id="asAccordion"></iframe>
+				</fieldset>
+				<div class="col-sm-6">
+					<pre class="prettyprint lang-java">
+new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+    @Override
+    public Component createTabbed(final ITabbedHtmlElement&lt;?, ?&gt; e) {
+        if (CollapsiblesConstants.asAccordion.equals(e.getWicketId())) {
+            return new ModelAccordion(e);
+        }
+        return super.createTabbed(e);
+    }
+}).bind();</pre>
+				</div>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>

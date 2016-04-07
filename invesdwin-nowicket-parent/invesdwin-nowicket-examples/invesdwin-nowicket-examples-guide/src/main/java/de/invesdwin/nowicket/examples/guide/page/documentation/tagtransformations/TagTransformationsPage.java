@@ -12,6 +12,8 @@ import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformation
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.links.LinksPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices.ListsAndChoices;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.listsandchoices.ListsAndChoicesPanel;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tabbedandpanels.TabbedAndPanels;
+import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tabbedandpanels.TabbedAndPanelsPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices.TablesAndChoices;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandchoices.TablesAndChoicesPanel;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.tablesandpanels.TablesAndPanels;
@@ -38,14 +40,17 @@ public class TagTransformationsPage extends AExampleWebPage {
                 if ("textsPanel".equals(e.getWicketId())) {
                     return new TextsPanel(e.getWicketId(), Model.of(new Texts()));
                 }
-                if ("listsPanel".equals(e.getWicketId())) {
+                if ("listsAndChoicesPanel".equals(e.getWicketId())) {
                     return new ListsAndChoicesPanel(e.getWicketId(), Model.of(new ListsAndChoices()));
                 }
-                if ("tablesPanel".equals(e.getWicketId())) {
+                if ("tablesAndChoicesPanel".equals(e.getWicketId())) {
                     return new TablesAndChoicesPanel(e.getWicketId(), Model.of(new TablesAndChoices()));
                 }
-                if ("collapsiblesPanel".equals(e.getWicketId())) {
+                if ("tablesAndPanelsPanel".equals(e.getWicketId())) {
                     return new TablesAndPanelsPanel(e.getWicketId(), Model.of(new TablesAndPanels()));
+                }
+                if ("tabbedAndPanelsPanel".equals(e.getWicketId())) {
+                    return new TabbedAndPanelsPanel(e.getWicketId(), Model.of(new TabbedAndPanels()));
                 }
                 if ("linksPanel".equals(e.getWicketId())) {
                     return new LinksPanel(e.getWicketId(), Model.of(new Links()));
