@@ -22,6 +22,7 @@ import de.invesdwin.norva.beanpath.spi.element.utility.ContainerTitleBeanPathEle
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ChoiceTabTitleModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
@@ -198,8 +199,8 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                 }
             };
             final IModel<String> tabTitleModel = new ChoiceTabTitleModel(this, targetObjectModel);
-            final ITab tab = getContext().getBindingBuilder().createTab(this, tabTitleModel, targetObjectModel,
-                    targetObjectModel);
+            //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
+            final ITab tab = new ModelTab(this, tabTitleModel, targetObjectModel, targetObjectModel);
             tabs.add(tab);
         }
         return tabs;

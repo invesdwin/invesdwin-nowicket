@@ -12,7 +12,6 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -31,12 +30,7 @@ public class ModelAccordion extends Panel {
     private final List<AccordionCollapsible> collapsibles = new ArrayList<AccordionCollapsible>();
 
     public ModelAccordion(final ITabbedHtmlElement<?, ?> element) {
-        this(element.getWicketId(), new AbstractReadOnlyModel<Collection<ITab>>() {
-            @Override
-            public Collection<ITab> getObject() {
-                return element.createWicketTabs();
-            }
-        });
+        this(element.getWicketId(), element.getTabModel());
     }
 
     public ModelAccordion(final String id, final IModel<? extends Collection<? extends ITab>> tabs) {

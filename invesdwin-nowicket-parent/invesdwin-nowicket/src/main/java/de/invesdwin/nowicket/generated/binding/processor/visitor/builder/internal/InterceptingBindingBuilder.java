@@ -7,8 +7,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.tabs.ITab;
-import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.CheckBoxInputHtmlElement;
@@ -230,18 +228,6 @@ public class InterceptingBindingBuilder implements IBindingBuilder {
     public Component createTabbed(final ITabbedHtmlElement<?, ?> e) {
         for (final IBindingBuilder b : orderedBindingBuilders) {
             final Component c = b.createTabbed(e);
-            if (c != null) {
-                return c;
-            }
-        }
-        throw newIllegalStateException();
-    }
-
-    @Override
-    public ITab createTab(final IHtmlElement<?, ?> e, final IModel<String> tabTitleModel,
-            final IModel<Object> panelModel, final IModel<Object> targetObjectModel) {
-        for (final IBindingBuilder b : orderedBindingBuilders) {
-            final ITab c = b.createTab(e, tabTitleModel, panelModel, targetObjectModel);
             if (c != null) {
                 return c;
             }

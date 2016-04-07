@@ -7,8 +7,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.tabs.ITab;
-import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.ATableColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
@@ -134,15 +132,6 @@ public class BindingInterceptor implements IBindingBuilder, Serializable {
     @Override
     public Component createTabbed(final ITabbedHtmlElement<?, ?> e) {
         return create(e);
-    }
-
-    /**
-     * this can be overridden to create a tabbed column
-     */
-    @Override
-    public ITab createTab(final IHtmlElement<?, ?> e, final IModel<String> tabTitleModel,
-            final IModel<Object> panelModel, final IModel<Object> targetObjectModel) {
-        return null;
     }
 
     @Override

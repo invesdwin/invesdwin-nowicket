@@ -5,12 +5,10 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.component.csrf.CsrfTokenForm;
@@ -68,7 +66,6 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelDownloadLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelExternalLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelResourceLink;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ValidatableSelectionModelDataTablePanel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelContainerColumn;
@@ -184,13 +181,6 @@ public class DefaultBindingBuilder implements IBindingBuilder {
     public Component createTabbed(final ITabbedHtmlElement<?, ?> e) {
         final ModelTabbedPanel tabbedPanel = new ModelTabbedPanel(e);
         return tabbedPanel;
-    }
-
-    @Override
-    public ITab createTab(final IHtmlElement<?, ?> e, final IModel<String> tabTitleModel,
-            final IModel<Object> panelModel, final IModel<Object> targetObjectModel) {
-        final ModelTab tab = new ModelTab(e, tabTitleModel, panelModel, targetObjectModel);
-        return tab;
     }
 
     @Override

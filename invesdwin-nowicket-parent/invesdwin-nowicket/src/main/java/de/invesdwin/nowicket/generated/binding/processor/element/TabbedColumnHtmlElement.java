@@ -9,6 +9,7 @@ import org.apache.wicket.extensions.markup.html.tabs.ITab;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTab;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedColumnModelElement;
 
 @NotThreadSafe
@@ -30,7 +31,8 @@ public class TabbedColumnHtmlElement extends AModelHtmlElement<TabbedColumnModel
     }
 
     public ITab createWicketTab() {
-        return getContext().getBindingBuilder().createTab(this, getTitleModel(), getModel(), getTargetObjectModel());
+        //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
+        return new ModelTab(this, getTitleModel(), getModel(), getTargetObjectModel());
     }
 
     @Override
