@@ -8,8 +8,7 @@ import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.collapsibles.CollapsiblesConstants;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
-import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
-import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.collapsible.ModelAccordion;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.collapsible.ModelCollapsibleList;
@@ -22,17 +21,17 @@ public class TablesAndPanelsPanel extends Panel {
         super(id, model);
         new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
             @Override
-            protected Component create(final IHtmlElement<?, ?> e) {
+            public Component createTable(final TableHtmlElement e) {
                 if (CollapsiblesConstants.asCollapsible.equals(e.getWicketId())) {
-                    return new ModelCollapsibleList((ITabbedHtmlElement<?, ?>) e);
+                    return new ModelCollapsibleList(e);
                 }
                 if (CollapsiblesConstants.asAccordion.equals(e.getWicketId())) {
-                    return new ModelAccordion((ITabbedHtmlElement<?, ?>) e);
+                    return new ModelAccordion(e);
                 }
                 if (CollapsiblesConstants.asTabbed.equals(e.getWicketId())) {
-                    return new ModelTabbedPanel((ITabbedHtmlElement<?, ?>) e);
+                    return new ModelTabbedPanel(e);
                 }
-                return super.create(e);
+                return super.createTable(e);
             }
 
         }).bind();
