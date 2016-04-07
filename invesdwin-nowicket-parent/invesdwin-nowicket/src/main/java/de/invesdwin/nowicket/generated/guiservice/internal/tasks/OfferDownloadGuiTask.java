@@ -6,6 +6,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes.Method;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.util.resource.IResourceStream;
@@ -32,7 +34,7 @@ public class OfferDownloadGuiTask implements IGuiTask {
 
     @Override
     public void process(final Component component) {
-        final Component root = Components.findForm(component).getRootForm();
+        final Component root = Components.findComponentForDomReadyAjaxCall(component);
         final Boolean behaviorAdded = root.getMetaData(KEY_OFFER_DOWNLOAD_BEHAVIOR_ADDED);
         if (behaviorAdded == null || !behaviorAdded) {
             root.setMetaData(KEY_OFFER_DOWNLOAD_BEHAVIOR_ADDED, true);
@@ -112,6 +114,12 @@ public class OfferDownloadGuiTask implements IGuiTask {
                         //make sure this behavior gets removed
                         component.remove(this);
                     }
+                }
+
+                @Override
+                protected void updateAjaxAttributes(final AjaxRequestAttributes attributes) {
+                    super.updateAjaxAttributes(attributes);
+                    attributes.setMethod(Method.POST); //prevent request is too large exception for GET requests
                 }
 
             });

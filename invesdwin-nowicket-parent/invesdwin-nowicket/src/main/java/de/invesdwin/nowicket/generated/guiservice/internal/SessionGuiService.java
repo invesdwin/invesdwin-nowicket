@@ -202,4 +202,8 @@ public class SessionGuiService implements IGuiService, Serializable {
     public void offerDownload(final OfferDownloadConfig config) {
         guiTasks.offerDownload(config);
     }
+
+    public GuiTasks getGuiTasks() {
+        return guiTasks;
+    }
 }

@@ -236,4 +236,12 @@ public final class Components {
         RequestCycle.get().setMetaData(KEY_PREVIOUS_MESSAGES, null);
     }
 
+    /**
+     * The root form is the most reliable way to do this, though you have to make sure to use Method.POST to not get
+     * errors regarding too large requests via GET.
+     */
+    public static Component findComponentForDomReadyAjaxCall(final Component component) {
+        return findForm(component).getRootForm();
+    }
+
 }

@@ -20,6 +20,11 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
     private WaitForNextAjaxCallGuiTask waitForHideModalPanelGuiTask;
     private final Deque<ShowStatusMessageGuiTask> showStatusMessageGuiTasks = new ArrayDeque<ShowStatusMessageGuiTask>();
 
+    public boolean showPageShouldWaitForNextAjaxCall() {
+        return offerDownloadGuiTask != null || !showModalPanelGuiTasks.isEmpty()
+                || !showStatusMessageGuiTasks.isEmpty();
+    }
+
     @Override
     public void showPage(final Object modelObject) {
         this.showPageGuiTask = new ShowPageGuiTask(modelObject);
