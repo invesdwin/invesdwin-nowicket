@@ -124,7 +124,7 @@ public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;Choice() { ... }</pre>
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createSelect(final SelectHtmlElement e) {
-        if (ListsConstants.asMultiselectPalette.equals(e.getWicketId())) {
+        if (TablesAndChoicesConstants.asMultiselectPalette.equals(e.getWicketId())) {
             return new ModelPalette(e);
         }
         return super.createSelect(e);

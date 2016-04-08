@@ -41,7 +41,7 @@ public &lt;TypeOfProperty&gt; get&lt;PropertyName&gt;() { ... }</pre>
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTabbed(final ITabbedHtmlElement&lt;?, ?&gt; e) {
-        if (CollapsiblesConstants.asCollapsible.equals(e.getWicketId())) {
+        if (TabbedAndPanelsConstants.asCollapsible.equals(e.getWicketId())) {
             return new ModelCollapsibleList(e);
         }
         return super.createTabbed(e);
@@ -59,7 +59,7 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTabbed(final ITabbedHtmlElement&lt;?, ?&gt; e) {
-        if (CollapsiblesConstants.asAccordion.equals(e.getWicketId())) {
+        if (TabbedAndPanelsConstants.asAccordion.equals(e.getWicketId())) {
             return new ModelAccordion(e);
         }
         return super.createTabbed(e);

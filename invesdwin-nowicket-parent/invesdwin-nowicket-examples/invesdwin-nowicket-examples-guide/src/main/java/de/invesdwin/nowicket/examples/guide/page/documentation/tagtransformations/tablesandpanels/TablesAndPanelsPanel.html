@@ -50,7 +50,7 @@ public List&lt;?&gt; get&lt;PropertyName&gt;() { ... }</pre>
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTable(final TableHtmlElement e) {
-        if (CollapsiblesConstants.asCollapsible.equals(e.getWicketId())) {
+        if (TablesAndPanelsConstants.asCollapsible.equals(e.getWicketId())) {
             return new ModelCollapsibleList(e);
         }
         return super.createTable(e);
@@ -70,7 +70,7 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTable(final TableHtmlElement e) {
-        if (CollapsiblesConstants.asAccordion.equals(e.getWicketId())) {
+        if (TablesAndPanelsConstants.asAccordion.equals(e.getWicketId())) {
             return new ModelAccordion(e);
         }
         return super.createTable(e);
@@ -89,7 +89,7 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTable(final TableHtmlElement e) {
-        if (CollapsiblesConstants.asTabbed.equals(e.getWicketId())) {
+        if (TablesAndPanelsConstants.asTabbed.equals(e.getWicketId())) {
             return new ModelTabbedPanel(e);
         }
         return super.createTable(e);

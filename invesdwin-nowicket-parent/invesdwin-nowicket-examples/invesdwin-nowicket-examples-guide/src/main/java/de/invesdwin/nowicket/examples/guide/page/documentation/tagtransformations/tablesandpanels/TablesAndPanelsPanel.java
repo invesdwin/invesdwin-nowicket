@@ -6,7 +6,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
-import de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformations.collapsibles.CollapsiblesConstants;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
@@ -22,13 +21,13 @@ public class TablesAndPanelsPanel extends Panel {
         new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createTable(final TableHtmlElement e) {
-                if (CollapsiblesConstants.asCollapsible.equals(e.getWicketId())) {
+                if (TablesAndPanelsConstants.asCollapsible.equals(e.getWicketId())) {
                     return new ModelCollapsibleList(e);
                 }
-                if (CollapsiblesConstants.asAccordion.equals(e.getWicketId())) {
+                if (TablesAndPanelsConstants.asAccordion.equals(e.getWicketId())) {
                     return new ModelAccordion(e);
                 }
-                if (CollapsiblesConstants.asTabbed.equals(e.getWicketId())) {
+                if (TablesAndPanelsConstants.asTabbed.equals(e.getWicketId())) {
                     return new ModelTabbedPanel(e);
                 }
                 return super.createTable(e);
