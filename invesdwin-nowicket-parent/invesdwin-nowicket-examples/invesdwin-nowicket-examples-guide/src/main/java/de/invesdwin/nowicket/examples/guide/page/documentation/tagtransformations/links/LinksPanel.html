@@ -1,12 +1,205 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-    <head></head>
-    <body>
-        <wicket:panel>
-            <form class="form-horizontal" wicket:id="form">
-                <!-- <div wicket:id='feedback'></div>  -->
-                <div wicket:id="modal"></div>
-            </form>
-        </wicket:panel>
-    </body>
+<head></head>
+<body>
+	<wicket:panel>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<a class="btn btn-default" wicket:id="file">File</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<iframe wicket:id="fileAsIFrame">File As IFrame</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<img wicket:id="fileAsImg">File As Img</img>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<a class="btn btn-default" wicket:id="resource">Resource</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<iframe wicket:id="resourceAsIFrame">Resource As IFrame</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<img wicket:id="resourceAsImg">Resource As Img</img>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<a class="btn btn-default" wicket:id="resourceReference">Resource
+								Reference</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<iframe wicket:id="resourceReferenceAsIFrame">Resource
+								Reference As IFrame</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<img wicket:id="resourceReferenceAsImg">Resource Reference
+							As Img</img>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<a class="btn btn-default" wicket:id="string">String</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<iframe wicket:id="stringAsIFrame">String As IFrame</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<img wicket:id="stringAsImg">String As Img</img>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<a class="btn btn-default" wicket:id="uri">Uri</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<iframe wicket:id="uriAsIFrame">Uri As IFrame</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<img wicket:id="uriAsImg">Uri As Img</img>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<a class="btn btn-default" wicket:id="url">Url</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<iframe wicket:id="urlAsIFrame">Url As IFrame</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<img wicket:id="urlAsImg">Url As Img</img>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<a class="btn btn-default" wicket:id="wicketUrl">Wicket Url</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<iframe wicket:id="wicketUrlAsIFrame">Wicket Url As
+								IFrame</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<img wicket:id="wicketUrlAsImg">Wicket Url As Img</img>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
 </html>

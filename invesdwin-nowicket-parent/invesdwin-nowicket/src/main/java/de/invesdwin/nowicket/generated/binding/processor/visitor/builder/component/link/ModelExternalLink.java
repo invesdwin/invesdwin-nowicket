@@ -23,7 +23,13 @@ public class ModelExternalLink extends ExternalLink {
     @Override
     protected void onComponentTag(final ComponentTag tag) {
         ModelResourceLink.maybeSetTargetBlank(tag);
-        super.onComponentTag(tag);
+        if ("iframe".equals(tag.getName())) {
+            //add support for iframe
+            final String url = getDefaultModelObjectAsString();
+            tag.put("src", url);
+        } else {
+            super.onComponentTag(tag);
+        }
     }
 
     @Override

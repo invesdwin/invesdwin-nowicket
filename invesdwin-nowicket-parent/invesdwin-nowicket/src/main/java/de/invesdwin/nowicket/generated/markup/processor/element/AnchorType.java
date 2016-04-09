@@ -10,7 +10,7 @@ import org.apache.wicket.request.Url;
 import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.ResourceReference;
 
-import de.invesdwin.norva.beanpath.spi.element.IActionBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 
 @Immutable
 public enum AnchorType {
@@ -19,7 +19,7 @@ public enum AnchorType {
     RESOURCE,
     RESOURCE_REFERENCE;
 
-    public static AnchorType valueOf(final IActionBeanPathElement element) {
+    public static AnchorType valueOf(final IBeanPathElement element) {
         if (element.getAccessor().getRawType().isInstanceOf(URL.class)
                 || element.getAccessor().getRawType().isInstanceOf(URI.class)
                 || element.getAccessor().getRawType().isInstanceOf(Url.class)
