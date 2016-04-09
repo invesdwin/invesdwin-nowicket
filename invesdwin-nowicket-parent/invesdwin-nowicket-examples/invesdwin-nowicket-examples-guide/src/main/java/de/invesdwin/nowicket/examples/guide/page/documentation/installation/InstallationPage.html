@@ -253,6 +253,54 @@ public class HomePage extends AWebPage {
 						href="http://localhost:8080">http://localhost:8080</a>.
 				</p>
 
+				<h3>4.6) Apache Server Reverse Proxy Configuration</h3>
+				<p style="font-size: medium">
+					If you want to embed/deploy your Wicket application behind an <a
+						target="_blank" href="https://httpd.apache.org/">Apache Server</a>
+					as a <a target="_blank"
+						href="https://en.wikipedia.org/wiki/Reverse_proxy">Reverse
+						Proxy</a>, you can use the following server configuration:
+				</p>
+				<pre class="prettyprint lang-bsh linenums"># Enable required modules with: "a2enmod proxy proxy_html proxy_http substitute headers"
+ProxyRequests Off
+&lt;Proxy *&gt;
+    Order deny,allow
+    Allow from all
+&lt;/Proxy&gt;
+ProxyPass /app/ http://example.com:8080/
+ProxyPassReverse /app/ http://example.com:8080/
+ProxyHTMLURLMap http://example.com:8080 /app/
+&lt;Location /app/&gt;
+    ProxyPassReverse /
+    SetOutputFilter proxy-html
+    ProxyHTMLURLMap http://example.com:8080 /app/
+    ProxyHTMLURLMap / /app/
+    ProxyHTMLURLMap /app/ /app/
+    AddOutputFilterByType SUBSTITUTE text/html
+    AddOutputFilterByType SUBSTITUTE text/css
+    AddOutputFilterByType SUBSTITUTE text/js
+    Substitute "s|example.com:8080/|example.com/app/|ni"
+    Substitute "s|example.com/|example.com/app/|ni"
+    RequestHeader unset Accept-Encoding
+&lt;/Location&gt;
+</pre>
+
+				<p style="font-size: medium">
+					Replace
+					<code>example.com</code>
+					with your domain,
+					<code>8080</code>
+					with the port your Wicket application is running on and
+					<code>app</code>
+					with the path you want to make the application available under.
+					With this you can make the application available in a web presence
+					at port
+					<code>80</code>
+					which is more firewall friendly. Also you can reuse the SSL
+					configuration of the Apache Server without having to configure it
+					in Java.
+				</p>
+
 				<br />
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
