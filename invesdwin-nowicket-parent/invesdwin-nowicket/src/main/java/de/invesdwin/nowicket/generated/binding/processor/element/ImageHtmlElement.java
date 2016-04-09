@@ -27,6 +27,7 @@ public class ImageHtmlElement extends AModelHtmlElement<IModelElement<?>, Object
         switch (getType()) {
         case URL:
         case RESOURCE_REFERENCE:
+        case FILE:
             return (IModel) new UrlAnchorModel(this);
         default:
             return super.getModel();

@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.link.DownloadLink;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UrlAnchorModel;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -26,7 +27,13 @@ public class ModelDownloadLink extends DownloadLink {
     @Override
     protected void onComponentTag(final ComponentTag tag) {
         ModelResourceLink.maybeSetTargetBlank(tag);
-        super.onComponentTag(tag);
+        if ("iframe".equals(tag.getName())) {
+            //add support for iframe
+            final String url = UrlAnchorModel.convertToAbsoluteUrl(getModelObject());
+            tag.put("src", url);
+        } else {
+            super.onComponentTag(tag);
+        }
     }
 
     @Override

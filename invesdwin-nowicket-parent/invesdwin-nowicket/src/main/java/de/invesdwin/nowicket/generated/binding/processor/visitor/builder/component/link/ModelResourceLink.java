@@ -36,7 +36,13 @@ public class ModelResourceLink extends ResourceLink<Object> {
     @Override
     protected void onComponentTag(final ComponentTag tag) {
         maybeSetTargetBlank(tag);
-        super.onComponentTag(tag);
+        if ("iframe".equals(tag.getName())) {
+            //add support for iframe
+            final String url = getURL().toString();
+            tag.put("src", url);
+        } else {
+            super.onComponentTag(tag);
+        }
     }
 
     protected boolean isBootstrapButtonStyle(final ComponentTag tag) {

@@ -71,11 +71,26 @@
 
 				<h2>10.6) Links</h2>
 				<p style="font-size: medium">Here we show you how to transform
-					links into other things.</p>
+					links into other things. In the model code, links are just action
+					methods with special return types as demonstrated below.</p>
 				<div
 					style="border: solid 1px; background: white; padding-top: 15px; padding-left: 15px; padding-right: 15px"
 					wicket:id="linksPanel"></div>
-				<br> <br>
+				<br>
+				<p style="font-size: medium">
+					Keep in mind that you can make anchor tags look like links by
+					removing the
+					<code>btn</code>
+					bootstrap css classes on them. You can even transform them to
+					<code>button</code>
+					tags if you want. The same applies vice versa to convert button
+					tags into anchors. Also image files are not the only things you can
+					link to, it works with any resource, but does not make logical
+					sense everywhere. For example a link to an external website or a
+					pdf file can be used as an iframe, but makes no sense as an image
+					tag.
+				</p>
+				<br>
 				<fieldset class="col-sm-12">
 					<div class="col-sm-6" style="text-align: center">
 						<div class="btn-group">

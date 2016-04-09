@@ -16,7 +16,9 @@ public class HtmlElementRegistry implements Serializable {
     private final Map<String, IHtmlElement<?, ?>> wicketId_element = new HashMap<String, IHtmlElement<?, ?>>();
 
     public void addElement(final IHtmlElement<?, ?> e) {
-        Assertions.assertThat(wicketId_element.put(e.getWicketId(), e)).isNull();
+        Assertions.assertThat(wicketId_element.put(e.getWicketId(), e))
+                .as("Duplicate wicketId [%s] found", e.getWicketId())
+                .isNull();
     }
 
     @SuppressWarnings("unchecked")

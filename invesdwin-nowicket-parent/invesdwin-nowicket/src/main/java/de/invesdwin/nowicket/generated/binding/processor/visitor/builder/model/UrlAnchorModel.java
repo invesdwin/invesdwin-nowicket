@@ -10,11 +10,11 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.UrlUtils;
 import org.apache.wicket.request.cycle.RequestCycle;
-import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.PackageResource;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
+import de.invesdwin.nowicket.component.FileResourceReference;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.util.lang.Strings;
 
@@ -42,11 +42,9 @@ public class UrlAnchorModel extends AbstractReadOnlyModel<String> {
     public String getObject() {
         final Object obj = delegate.getObject();
         if (obj instanceof File) {
-            throw new IllegalArgumentException(
-                    File.class.getSimpleName() + " is not supported as type for: " + element.getWicketId());
-        } else if (obj instanceof IResource) {
-            throw new IllegalArgumentException(
-                    IResource.class.getSimpleName() + " is not supported as type for: " + element.getWicketId());
+            final File file = (File) obj;
+            final String absoluteUrl = convertToAbsoluteUrl(file);
+            return absoluteUrl;
         } else if (obj instanceof ResourceReference) {
             final ResourceReference resourceReference = (ResourceReference) obj;
             final String absoluteUrl = convertToAbsoluteUrl(resourceReference);
@@ -80,11 +78,16 @@ public class UrlAnchorModel extends AbstractReadOnlyModel<String> {
         }
     }
 
-    private String convertToAbsoluteUrl(final ResourceReference resourceReference) {
+    public static String convertToAbsoluteUrl(final File file) {
+        final FileResourceReference resourceReference = new FileResourceReference(file);
+        return convertToAbsoluteUrl(resourceReference);
+    }
+
+    public static String convertToAbsoluteUrl(final ResourceReference resourceReference) {
         return convertToAbsoluteUrl(RequestCycle.get().urlFor(resourceReference, null).toString());
     }
 
-    private String convertToAbsoluteUrl(final String url) {
+    public static String convertToAbsoluteUrl(final String url) {
         return RequestCycle.get().getUrlRenderer().renderFullUrl(Url.parse(url));
     }
 }
