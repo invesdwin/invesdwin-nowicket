@@ -19,7 +19,7 @@ function btnPrimaryEnterBinding() {
 			if (e.which == 13) {
 				// invoke button on key up
 				e.preventDefault();
-				var btnPrimaryTag = $('button[type=submit].btn-primary:not(:disabled):visible');
+				var btnPrimaryTag = $('button.btn-primary:not(:disabled):visible');
 				if (btnPrimaryTag.length == 1) {
 					btnPrimaryTag.click();
 				}

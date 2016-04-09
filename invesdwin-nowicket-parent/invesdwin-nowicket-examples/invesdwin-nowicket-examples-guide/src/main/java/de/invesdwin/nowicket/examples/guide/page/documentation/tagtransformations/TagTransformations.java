@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformatio
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.nowicket.examples.guide.page.documentation.closingwords.ClosingWords;
 import de.invesdwin.nowicket.examples.guide.page.documentation.dynamiccomponents.DynamicComponents;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -14,8 +15,8 @@ public class TagTransformations extends AValueObject {
         return new DynamicComponents();
     }
 
-    public Object readNextChapter() {
-        return null;
+    public ClosingWords readNextChapter() {
+        return new ClosingWords();
     }
 
 }

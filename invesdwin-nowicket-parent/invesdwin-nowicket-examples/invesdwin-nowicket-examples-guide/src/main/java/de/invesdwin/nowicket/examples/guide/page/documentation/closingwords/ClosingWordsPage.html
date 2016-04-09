@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+</head>
+<body>
+	<wicket:extend>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<br />
+			<div class="jumbotron">
+				<legend>
+					<h2>Closing Words</h2>
+				</legend>
+
+				<div style="text-align: center">
+					<h1>
+						<b>Congratulations!</b>
+					</h1>
+					<p>You are now a master of writing Wicket applications without
+						actually writing code in Wicket.</p>
+
+					<p>&nbsp;</p>
+					<div class="col-sm-12">
+						<h2>You have truly earned yourself a reward:</h2>
+						<div class="col-sm-3"></div>
+						<div class="col-sm-6">
+							<button
+								onclick="cornify_add(); $('#nyancat').attr('src', document.URL.substr(0,document.URL.lastIndexOf('/'))+'/nyancat.html').attr('id', 'nyancat_enabled'); return false;"
+								class="btn btn-default btn-primary btn-lg btn-success btn-block">
+								<b>Claim Your Reward Now</b>
+							</button>
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
+					<p style="font-size: medium">
+						click button or hit
+						<kbd>Enter</kbd>
+						as often as you like,<br>sometimes you have to wait a bit
+					</p>
+					<p>&nbsp;</p>
+				</div>
+
+				<iframe id="nyancat" width="100%" style="border: none"></iframe>
+
+				<p>&nbsp;</p>
+
+				<p>
+					If you have ideas or suggestions for improvements, feel free to
+					submit a ticket for the <a target="_blank"
+						href="https://github.com/subes/invesdwin-nowicket">project on
+						GitHub</a> or directly make a pull request for your changes. Your help
+					is very much appreciated.
+				</p>
+				<br />
+				<fieldset class="col-sm-12">
+					<div class="col-sm-6" style="text-align: center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-default btn-info btn-lg"
+								wicket:id="goBackToPreviousChapter">Go Back To Previous
+								Chapter</button>
+						</div>
+					</div>
+					<div class="col-sm-6"></div>
+				</fieldset>
+				<br />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

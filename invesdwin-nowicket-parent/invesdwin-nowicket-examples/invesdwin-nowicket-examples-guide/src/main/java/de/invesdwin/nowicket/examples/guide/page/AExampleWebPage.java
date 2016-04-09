@@ -40,6 +40,7 @@ import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
+import de.invesdwin.nowicket.examples.guide.page.documentation.closingwords.ClosingWordsPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.concept.ConceptPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.datatypes.DataTypesPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.dynamiccomponents.DynamicComponentsPage;
@@ -296,6 +297,10 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(TagTransformationsPage.class,
                                 new ResourceModel("menu.tagtransformations").wrapOnAssignment(navbar)));
+
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(ClosingWordsPage.class,
+                                new ResourceModel("menu.closingwords").wrapOnAssignment(navbar))
+                                        .setIconType(FontAwesomeIconType.microphone));
 
                         return subMenu;
                     }

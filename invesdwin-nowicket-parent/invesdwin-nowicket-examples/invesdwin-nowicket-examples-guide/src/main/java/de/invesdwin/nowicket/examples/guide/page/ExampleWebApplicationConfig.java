@@ -16,6 +16,7 @@ import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.Main;
 import de.invesdwin.nowicket.examples.guide.component.ExampleThemeProvider;
+import de.invesdwin.nowicket.examples.guide.component.nyancat.NyancatHtmlResourceReference;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
 import de.invesdwin.nowicket.examples.guide.page.error.AccessDeniedPage;
 import de.invesdwin.nowicket.examples.guide.page.error.InternalErrorPage;
@@ -91,6 +92,12 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
                 return super.newBootstrapExtensionsHeaderContributor(bootstrapSettings)
                         //prevent "Read Next Chapter" button from intercepting the sample form submit
                         .withBtnPrimaryEnterBinding(false);
+            }
+
+            @Override
+            public void init() {
+                super.init();
+                webApplication.mountResource("nyancat.html", NyancatHtmlResourceReference.INSTANCE);
             }
         };
     }
