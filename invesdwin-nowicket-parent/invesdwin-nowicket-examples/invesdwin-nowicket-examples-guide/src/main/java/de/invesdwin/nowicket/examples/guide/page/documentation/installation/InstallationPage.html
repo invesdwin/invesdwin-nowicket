@@ -280,7 +280,6 @@ ProxyHTMLURLMap http://example.com:8080 /app/
     AddOutputFilterByType SUBSTITUTE text/css
     AddOutputFilterByType SUBSTITUTE text/js
     Substitute "s|example.com:8080/|example.com/app/|ni"
-    Substitute "s|example.com/|example.com/app/|ni"
     RequestHeader unset Accept-Encoding
 &lt;/Location&gt;
 </pre>
@@ -298,7 +297,9 @@ ProxyHTMLURLMap http://example.com:8080 /app/
 					<code>80</code>
 					which is more firewall friendly. Also you can reuse the SSL
 					configuration of the Apache Server without having to configure it
-					in Java.
+					in Java. The application can then be accessed at <a target="_blank"
+						href="http://example.com/app/">http://example.com/app/</a> (or
+					what you changed it to).
 				</p>
 
 				<br />

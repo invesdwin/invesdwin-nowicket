@@ -25,7 +25,7 @@ public class ModelUrlAnchorColumn extends PropertyColumn<String, String> {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public IModel<Object> getDataModel(final IModel<String> rowModel) {
-        return (IModel) new UrlAnchorModel(element, rowModel, getPropertyExpression());
+        return (IModel) new UrlAnchorModel(rowModel, getPropertyExpression());
     }
 
     @Override

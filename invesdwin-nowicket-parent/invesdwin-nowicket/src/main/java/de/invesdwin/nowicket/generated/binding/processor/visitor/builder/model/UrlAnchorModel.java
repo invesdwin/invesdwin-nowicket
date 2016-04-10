@@ -7,7 +7,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.request.Url;
 import org.apache.wicket.request.UrlUtils;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.PackageResource;
@@ -21,19 +20,16 @@ import de.invesdwin.util.lang.Strings;
 @NotThreadSafe
 public class UrlAnchorModel extends AbstractReadOnlyModel<String> {
 
-    private final IHtmlElement<?, ?> element;
     private final IModel<Object> delegate;
     private final IModel<?> targetObjectModel;
 
     public UrlAnchorModel(final IHtmlElement<?, ?> element) {
-        this.element = element;
         this.targetObjectModel = element.getTargetObjectModel();
         //makes getter work for an action accessor; dunno why BeanPathModel does not work here...
         this.delegate = new PropertyModel<Object>(element.getRootObjectModel().getObject(), element.getWicketId());
     }
 
-    public UrlAnchorModel(final IHtmlElement<?, ?> element, final IModel<?> rootObjectModel, final String beanPath) {
-        this.element = element;
+    public UrlAnchorModel(final IModel<?> rootObjectModel, final String beanPath) {
         this.targetObjectModel = rootObjectModel;
         this.delegate = new BeanPathModel<Object>(rootObjectModel, beanPath);
     }
@@ -43,11 +39,11 @@ public class UrlAnchorModel extends AbstractReadOnlyModel<String> {
         final Object obj = delegate.getObject();
         if (obj instanceof File) {
             final File file = (File) obj;
-            final String absoluteUrl = convertToAbsoluteUrl(file);
+            final String absoluteUrl = convertToUrl(file);
             return absoluteUrl;
         } else if (obj instanceof ResourceReference) {
             final ResourceReference resourceReference = (ResourceReference) obj;
-            final String absoluteUrl = convertToAbsoluteUrl(resourceReference);
+            final String absoluteUrl = convertToUrl(resourceReference);
             return absoluteUrl;
         } else {
             final String url = Strings.asString(obj);
@@ -60,34 +56,28 @@ public class UrlAnchorModel extends AbstractReadOnlyModel<String> {
                         final PackageResourceReference resourceRef = new PackageResourceReference(
                                 targetObjectModel.getObject().getClass(), url);
                         if (PackageResource.exists(resourceRef.getKey())) {
-                            final String absoluteUrl = convertToAbsoluteUrl(resourceRef);
+                            final String absoluteUrl = convertToUrl(resourceRef);
                             return absoluteUrl;
                         } else {
-                            final String absoluteUrl = convertToAbsoluteUrl(url);
-                            return absoluteUrl;
+                            return url;
                         }
                     } catch (final Throwable t) {
-                        final String absoluteUrl = convertToAbsoluteUrl(url);
-                        return absoluteUrl;
+                        return url;
                     }
                 } else {
-                    //already absolute
                     return url;
                 }
             }
         }
     }
 
-    public static String convertToAbsoluteUrl(final File file) {
+    public static String convertToUrl(final File file) {
         final FileResourceReference resourceReference = new FileResourceReference(file);
-        return convertToAbsoluteUrl(resourceReference);
+        return convertToUrl(resourceReference);
     }
 
-    public static String convertToAbsoluteUrl(final ResourceReference resourceReference) {
-        return convertToAbsoluteUrl(RequestCycle.get().urlFor(resourceReference, null).toString());
+    public static String convertToUrl(final ResourceReference resourceReference) {
+        return RequestCycle.get().urlFor(resourceReference, null).toString();
     }
 
-    public static String convertToAbsoluteUrl(final String url) {
-        return RequestCycle.get().getUrlRenderer().renderFullUrl(Url.parse(url));
-    }
 }

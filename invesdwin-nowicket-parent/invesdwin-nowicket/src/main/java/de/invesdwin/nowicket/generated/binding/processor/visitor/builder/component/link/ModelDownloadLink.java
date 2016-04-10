@@ -29,7 +29,7 @@ public class ModelDownloadLink extends DownloadLink {
         ModelResourceLink.maybeSetTargetBlank(tag);
         if ("iframe".equals(tag.getName())) {
             //add support for iframe
-            final String url = UrlAnchorModel.convertToAbsoluteUrl(getModelObject());
+            final String url = UrlAnchorModel.convertToUrl(getModelObject());
             tag.put("src", url);
         } else {
             super.onComponentTag(tag);

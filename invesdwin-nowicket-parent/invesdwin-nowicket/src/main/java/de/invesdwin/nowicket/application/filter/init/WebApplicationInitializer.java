@@ -65,7 +65,13 @@ public class WebApplicationInitializer {
         registerStoreSettings();
         registerCryptFactory();
         registerOnePassRenderForBots();
+        registerRootRequestMapper();
         runHooks();
+    }
+
+    protected void registerRootRequestMapper() {
+        webApplication.setRootRequestMapper(
+                new DelegateWicketResourceFixingRequestMapper(webApplication.getRootRequestMapperAsCompound()));
     }
 
     protected void runHooks() {
