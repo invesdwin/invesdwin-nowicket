@@ -71,8 +71,8 @@ public class Links extends AValueObject {
     }
 
     public URL url() {
-        final String url = RequestCycle.get().getUrlRenderer().renderFullUrl(wicketUrl());
-        return URIs.asUrl(url);
+        //always use relative urls: http://stackoverflow.com/questions/3665484/how-to-get-url-using-relative-path
+        return URIs.asUrl("http:" + wicketUrl().toString());
     }
 
     public URL urlAsImg() {
