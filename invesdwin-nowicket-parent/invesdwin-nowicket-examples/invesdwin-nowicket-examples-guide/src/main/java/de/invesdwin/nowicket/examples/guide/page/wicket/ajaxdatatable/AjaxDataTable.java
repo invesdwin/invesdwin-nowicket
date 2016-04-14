@@ -13,6 +13,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe
 @GeneratedMarkup
@@ -117,6 +118,21 @@ public class AjaxDataTable extends AValueObject {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        //configure page cache to always reuse instance
+        return getClass().hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        //configure page cache to always reuse instance
+        if (obj == null) {
+            return false;
+        }
+        return Objects.equals(getClass(), obj.getClass());
     }
 
 }
