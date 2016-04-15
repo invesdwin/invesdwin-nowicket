@@ -26,4 +26,11 @@
 		</snapshotRepository>
 	</distributionManagement>
 
+	<repositories>
+		<repository>
+			<id>invesdwin-oss</id>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss</url>
+		</repository>
+	</repositories>
+
 </project>
