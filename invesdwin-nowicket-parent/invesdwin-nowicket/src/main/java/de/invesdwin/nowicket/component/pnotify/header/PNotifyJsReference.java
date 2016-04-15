@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.component.pnotify.header.release;
+package de.invesdwin.nowicket.component.pnotify.header;
 
 import java.util.List;
 
@@ -8,18 +8,18 @@ import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.IHeaderContributor;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
 import de.agilecoders.wicket.core.util.Dependencies;
+import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceReference;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 @Immutable
-public final class PNotifyJsReference extends JavaScriptResourceReference implements IHeaderContributor {
+public final class PNotifyJsReference extends WebjarsJavaScriptResourceReference implements IHeaderContributor {
 
     public static final PNotifyJsReference INSTANCE = new PNotifyJsReference();
 
     private PNotifyJsReference() {
-        super(PNotifyJsReference.class, "pnotify.custom.js");
+        super("/pnotify/current/pnotify.core.js");
     }
 
     @Override
