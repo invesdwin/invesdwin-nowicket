@@ -24,7 +24,7 @@
 
 		<version.yuicompressor>2.4.7</version.yuicompressor>
 		<version.jquery>2.1.0-2</version.jquery>
-		<version.pnotify>2.0.1_inv</version.pnotify>
+		<version.pnotify>2.1.0-1</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
 		<version.ecs>1.4.2</version.ecs>
