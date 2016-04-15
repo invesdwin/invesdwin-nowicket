@@ -123,6 +123,12 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>bootstrap-modal</artifactId>
 			<version>${version.bootstrap-modal}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>bootstrap</artifactId>
+					<groupId>org.webjars.bower</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
