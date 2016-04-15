@@ -53,7 +53,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
             signIn.checkRememberMe();
         }
 
-        final HtmlTag htmlTag = new HtmlTag("html", getLocale(), true);
+        final HtmlTag htmlTag = newHtmlTag("html");
         add(htmlTag);
         //default title is the classname, though this can be changed by calling the setter afterwards
         titleModel = Model.of(
@@ -99,6 +99,10 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
         } else {
             add(new WebMarkupContainer("footer").setVisible(false));
         }
+    }
+
+    protected HtmlTag newHtmlTag(final String id) {
+        return new HtmlTag(id, getLocale(), true);
     }
 
     /**
