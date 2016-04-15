@@ -120,7 +120,7 @@
 			<version>${version.ecs}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.webjars</groupId>
+			<groupId>org.webjars.bower</groupId>
 			<artifactId>bootstrap-modal</artifactId>
 			<version>${version.bootstrap-modal}</version>
 		</dependency>
