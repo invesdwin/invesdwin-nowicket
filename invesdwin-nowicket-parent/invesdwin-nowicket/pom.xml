@@ -164,6 +164,20 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>de.odysseus.juel</groupId>
+			<artifactId>juel-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.odysseus.juel</groupId>
+			<artifactId>juel-api</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

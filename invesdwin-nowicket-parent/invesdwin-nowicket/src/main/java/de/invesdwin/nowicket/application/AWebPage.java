@@ -139,7 +139,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
             }
 
         };
-        navbar.setBrandName(Model.of("invesdwin-common-client-wicket"));
+        navbar.setBrandName(Model.of("invesdwin-NoWicket"));
         navbar.setBrandImage(DEFAULT_LOGO, Model.of("logo"));
 
         addSignInOrSignOutPageToNavbar(navbar);
