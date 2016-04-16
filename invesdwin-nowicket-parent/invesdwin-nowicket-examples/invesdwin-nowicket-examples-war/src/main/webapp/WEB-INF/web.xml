@@ -19,7 +19,7 @@
 			<param-value>/*</param-value>
 		</init-param>
 		<init-param>
-			<!-- enable production error-pages -->
+			<!-- enable production error-pages with "deployment" -->
 			<param-name>configuration</param-name>
 			<param-value>development</param-value>
 		</init-param>
