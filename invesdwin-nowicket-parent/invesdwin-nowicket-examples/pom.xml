@@ -13,6 +13,7 @@
 	<modules>
 		<module>invesdwin-nowicket-examples-guide</module>
 		<module>invesdwin-nowicket-examples-war</module>
+		<module>invesdwin-nowicket-examples-isis</module>
 		<module>invesdwin-nowicket-examples-mvp-bsgcoach</module>
 		<module>invesdwin-nowicket-examples-mvp-eva</module>
 	</modules>
