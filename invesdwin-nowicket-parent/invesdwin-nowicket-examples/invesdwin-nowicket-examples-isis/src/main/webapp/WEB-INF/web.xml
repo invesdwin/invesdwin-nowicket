@@ -6,6 +6,48 @@
 
 	<display-name>invesdwin-nowicket-examples-war</display-name>
 
+	<listener>
+		<listener-class>org.apache.isis.core.webapp.IsisWebAppBootstrapper</listener-class>
+	</listener>
+	
+	<!-- authenticate user, set up an Isis session -->
+	<filter>
+		<filter-name>IsisSessionFilterForRestfulObjects</filter-name>
+		<filter-class>org.apache.isis.core.webapp.IsisSessionFilter</filter-class>
+		<!-- authentication required for REST -->
+		<init-param>
+			<param-name>authenticationSessionStrategy</param-name>
+			<param-value>org.apache.isis.viewer.restfulobjects.server.authentication.AuthenticationSessionStrategyTrusted</param-value>
+		</init-param>
+		<init-param>
+			<!-- what to do if no session was found... -->
+			<param-name>whenNoSession</param-name>
+			<!-- ... 401 and a basic authentication challenge if request originates 
+				from web browser -->
+			<param-value>auto</param-value>
+		</init-param>
+		<init-param>
+			<param-name>passThru</param-name>
+			<param-value>/restful/swagger</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<!-- this is mapped to the entire app; however the IsisSessionFilter will 
+			"notice" if the session filter has already been executed for the request 
+			pipeline, and if so will do nothing -->
+		<filter-name>IsisSessionFilterForRestfulObjects</filter-name>
+		<servlet-name>RestfulObjectsRestEasyDispatcher</servlet-name>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>IsisTransactionFilterForRestfulObjects</filter-name>
+		<filter-class>org.apache.isis.viewer.restfulobjects.server.webapp.IsisTransactionFilterForRestfulObjects</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>IsisTransactionFilterForRestfulObjects</filter-name>
+		<servlet-name>RestfulObjectsRestEasyDispatcher</servlet-name>
+	</filter-mapping>
+
 	<filter>
 		<filter-name>wicket</filter-name>
 		<filter-class>de.invesdwin.nowicket.examples.isis.ExampleWicketFilter</filter-class>
@@ -55,5 +97,5 @@
 		<!-- Uncaught exception -->
 		<location>/internalerror</location>
 	</error-page>
-
+	
 </web-app>

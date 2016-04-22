@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.injection.Injector;
+import org.apache.isis.core.runtime.system.context.IsisContext;
 
 import com.google.inject.Inject;
 
@@ -19,11 +19,11 @@ public class Home implements Serializable {
     private AppUserRegistrationService appUserRegistrationService;
 
     public Home() {
-        Injector.get().inject(this);
+        IsisContext.getPersistenceSession().getServicesInjector().injectServicesInto(this);
     }
 
     public String getHello() {
-        return "NoWicket!" + appUserRegistrationService;
+        return "NoWicket! " + (appUserRegistrationService != null);
     }
 
 }
