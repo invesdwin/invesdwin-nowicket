@@ -7,17 +7,11 @@ import java.util.Set;
 
 import javax.annotation.concurrent.ThreadSafe;
 
-import org.apache.isis.core.commons.authentication.AnonymousSession;
-import org.apache.isis.core.runtime.runner.IsisInjectModule;
-import org.apache.isis.core.runtime.system.DeploymentType;
-import org.apache.isis.core.runtime.system.context.IsisContext;
-import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.request.cycle.AbstractRequestCycleListener;
 import org.apache.wicket.request.cycle.RequestCycle;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
+import org.apache.isis.core.commons.authentication.AnonymousSession;
+import org.apache.isis.core.runtime.system.context.IsisContext;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
@@ -31,10 +25,9 @@ public class ExampleWebApplication extends AWebApplication {
     @Override
     protected void init() {
         super.init();
-        final IsisInjectModule isisModule = new IsisInjectModule(DeploymentType.SERVER);
-        final Injector injector = Guice.createInjector(new Module[] { isisModule });
-        getComponentInstantiationListeners().add(new GuiceComponentInjector(this, injector, false));
-        injector.injectMembers(this);
+
+        // no need for IsisInjectModule stuff here... already done by IsisWebAppBootstrapper in web.xml
+
         getRequestCycleListeners().add(new AbstractRequestCycleListener() {
             @Override
             public void onBeginRequest(final RequestCycle cycle) {
@@ -50,6 +43,7 @@ public class ExampleWebApplication extends AWebApplication {
         });
 
     }
+
 
     @Override
     protected IWebApplicationConfig newConfig() {
