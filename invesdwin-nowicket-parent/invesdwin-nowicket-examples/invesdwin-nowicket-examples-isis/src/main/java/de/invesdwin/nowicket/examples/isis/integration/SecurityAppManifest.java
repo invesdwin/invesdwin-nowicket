@@ -29,7 +29,7 @@ public class SecurityAppManifest implements AppManifest {
 
     @Override
     public List<Class<?>> getModules() {
-        return Arrays.asList(SecurityModule.class, SecurityFixtureModule.class, SecurityAppModule.class);
+        return Arrays.asList(SecurityModule.class, SecurityAppModule.class);
     }
 
     @Override

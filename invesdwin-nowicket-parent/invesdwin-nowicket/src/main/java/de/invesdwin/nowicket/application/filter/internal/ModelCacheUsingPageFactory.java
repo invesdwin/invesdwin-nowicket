@@ -1,6 +1,6 @@
 package de.invesdwin.nowicket.application.filter.internal;
 
-import javax.annotation.concurrent.NotThreadSafe;
+import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.IPageFactory;
 import org.apache.wicket.Page;
@@ -11,7 +11,7 @@ import org.slf4j.ext.XLogger.Level;
 import de.invesdwin.nowicket.application.IPageFactoryHook;
 import de.invesdwin.nowicket.application.PageFactory;
 
-@NotThreadSafe
+@ThreadSafe
 public class ModelCacheUsingPageFactory implements IPageFactory {
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory

@@ -3,15 +3,11 @@ package de.invesdwin.nowicket.application.filter.init;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.IPageRendererProvider;
-import org.apache.wicket.Page;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
-import org.apache.wicket.core.request.handler.IPageRequestHandler;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
-import org.apache.wicket.request.cycle.AbstractRequestCycleListener;
 import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
-import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.handler.render.PageRenderer;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.crypt.CachingSunJceCryptFactory;
@@ -23,7 +19,6 @@ import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.javascript.YuiCssCompressor;
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
-import de.invesdwin.nowicket.application.PageFactory;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
 import de.invesdwin.nowicket.component.chart.header.HighstockWebjarInitializer;
@@ -179,15 +174,7 @@ public class WebApplicationInitializer {
      */
     protected void registerPageFactoryUpdatingRequestCycleListener() {
         webApplication.getRequestCycleListeners().add(new PageRequestHandlerTracker());
-        webApplication.getRequestCycleListeners().add(new AbstractRequestCycleListener() {
-            @Override
-            public void onEndRequest(final RequestCycle cycle) {
-                final IPageRequestHandler handler = PageRequestHandlerTracker.getLastHandler(cycle);
-                if (handler != null) {
-                    PageFactory.get().updatePage((Page) handler.getPage());
-                }
-            }
-        });
+        webApplication.getRequestCycleListeners().add(new PageFactoryUpdatingRequestCycleListener());
     }
 
     protected void registerHighstockWebjar() {

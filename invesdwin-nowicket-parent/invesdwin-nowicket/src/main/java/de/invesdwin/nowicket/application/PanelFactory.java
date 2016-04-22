@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.annotation.concurrent.NotThreadSafe;
+import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -14,7 +14,7 @@ import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContex
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.lang.Strings;
 
-@NotThreadSafe
+@ThreadSafe
 public final class PanelFactory {
 
     private static final String PANEL_CLASS_MODEL_SUFFIX = Panel.class.getSimpleName();

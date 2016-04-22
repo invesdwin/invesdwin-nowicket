@@ -17,7 +17,9 @@ public class Home implements Serializable {
     private transient AppUserRegistrationService appUserRegistrationService;
 
     public Home() {
-        IsisContext.getPersistenceSession().getServicesInjector().injectServicesInto(this);
+        if (IsisContext.inSession()) {
+            IsisContext.getPersistenceSession().getServicesInjector().injectServicesInto(this);
+        }
     }
 
     public String getHello() {
