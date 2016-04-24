@@ -1,12 +1,13 @@
 package de.invesdwin.nowicket.application.filter.internal;
 
+import java.util.List;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.request.Request;
 
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.auth.IAuthenticationService;
-import de.invesdwin.nowicket.application.auth.ISavedRequest;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.util.assertions.Assertions;
 
@@ -34,8 +35,11 @@ public class DelegateWebSession extends AWebSession {
         final Roles roles = new Roles();
         final IAuthenticationService authenticationService = Roles.getAuthenticationService();
         if (authenticationService != null && isSignedIn()) {
-            for (final String role : Roles.getAuthenticationService().getRoles()) {
-                roles.add(role);
+            final List<String> listRoles = Roles.getAuthenticationService().getRoles();
+            if (listRoles != null) {
+                for (final String role : listRoles) {
+                    roles.add(role);
+                }
             }
         }
         return roles;
@@ -49,15 +53,15 @@ public class DelegateWebSession extends AWebSession {
         }
         //copy previous savedRequest to new session in order to properly redirect after login
         final IAuthenticationService authenticationService = Roles.getAuthenticationService();
-        final ISavedRequest savedRequest;
+        final Object beforeReplaceSession;
         if (authenticationService != null) {
-            savedRequest = authenticationService.getSavedRequest();
+            beforeReplaceSession = authenticationService.beforeReplaceSession();
         } else {
-            savedRequest = null;
+            beforeReplaceSession = null;
         }
         super.replaceSession();
         if (authenticationService != null) {
-            authenticationService.setSavedRequest(savedRequest);
+            authenticationService.afterReplaceSession(beforeReplaceSession);
         }
     }
 

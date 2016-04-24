@@ -76,6 +76,10 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
         this.authenticationManager = authenticationManager;
     }
 
+    public AuthenticationManager getAuthenticationManager() {
+        return authenticationManager;
+    }
+
     @Override
     public boolean evaluateExpression(final String spel) {
         final org.springframework.expression.ExpressionParser parser = SECURITY_EXPRESSION_HANDLER
@@ -167,8 +171,13 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
     }
 
     @Override
-    public void setSavedRequest(final ISavedRequest savedRequest) {
-        final DelegateSavedRequest delegateSavedRequest = (DelegateSavedRequest) savedRequest;
+    public Object beforeReplaceSession() {
+        return getSavedRequest();
+    }
+
+    @Override
+    public void afterReplaceSession(final Object beforeReplaceSession) {
+        final DelegateSavedRequest delegateSavedRequest = (DelegateSavedRequest) beforeReplaceSession;
         SpringSecuritySessionAttributes.setSavedRequest(delegateSavedRequest.getDelegate());
         SpringSecuritySessionAttributes.updateSpringSecurityContext();
     }
@@ -181,6 +190,11 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
     @Override
     public void convertUsernamePasswordToRememberMeAuthentication() {
         SpringSecuritySessionAttributes.convertUsernamePasswordToRememberMeAuthentication();
+    }
+
+    @Override
+    public String getUsername() {
+        return getAuthentication().getName();
     }
 
 }

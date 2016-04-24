@@ -24,12 +24,16 @@ public interface IAuthenticationService {
 
     ISavedRequest getSavedRequest();
 
-    void setSavedRequest(ISavedRequest savedRequest);
+    void afterReplaceSession(Object beforeReplaceSession);
 
     boolean shouldShowAccessDeniedExceptionMessage(Throwable t);
 
     void convertUsernamePasswordToRememberMeAuthentication();
 
     void setAuthentication(Object authentication);
+
+    Object beforeReplaceSession();
+
+    String getUsername();
 
 }
