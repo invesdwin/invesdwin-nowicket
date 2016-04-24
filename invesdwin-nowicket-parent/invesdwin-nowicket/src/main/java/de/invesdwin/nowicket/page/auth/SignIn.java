@@ -7,13 +7,13 @@ import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.authentication.IAuthenticationStrategy;
 import org.apache.wicket.request.flow.RedirectToUrlException;
-import org.springframework.security.web.savedrequest.SavedRequest;
 
+import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.auth.ISavedRequest;
+import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
-import de.invesdwin.nowicket.util.SpringSecuritySessionAttributes;
-import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.util.bean.AValueObject;
 
 @GeneratedMarkup
@@ -89,7 +89,7 @@ public class SignIn extends AValueObject {
     public void onSignInSucceeded() {
         // If login has been called because the user was not yet logged in, then continue to the
         // original destination, otherwise to the Home page
-        final SavedRequest savedRequest = SpringSecuritySessionAttributes.getSavedRequest();
+        final ISavedRequest savedRequest = Roles.getAuthenticationService().getSavedRequest();
         //saved request might be null from spring-security, since redirect to login might have been handled by wicket instead
         if (savedRequest != null) {
             throw new RedirectToUrlException(savedRequest.getRedirectUrl());
@@ -113,7 +113,7 @@ public class SignIn extends AValueObject {
                 final String username = data[0];
                 final String password = data[1];
                 if (session.signIn(username, password)) {
-                    SpringSecuritySessionAttributes.convertUsernamePasswordToRememberMeAuthentication();
+                    Roles.getAuthenticationService().convertUsernamePasswordToRememberMeAuthentication();
                     onSignInSucceeded();
                 } else {
                     // the loaded credentials are wrong. erase them.

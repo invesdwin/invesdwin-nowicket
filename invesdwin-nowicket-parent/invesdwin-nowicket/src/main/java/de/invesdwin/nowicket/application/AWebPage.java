@@ -46,7 +46,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
     public AWebPage(final IModel<?> model) {
         super(model);
 
-        if (ABaseWebApplication.get().getDelegate().getAuthenticationManager() != null) {
+        if (ABaseWebApplication.get().getDelegate().getAuthenticationService() != null) {
             //check remember me before anything else
             final SignIn signIn = new SignIn();
             signIn.setComponent(this);
@@ -149,7 +149,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
 
     protected void addSignInOrSignOutPageToNavbar(final Navbar navbar) {
         final ABaseWebApplication webApplication = ABaseWebApplication.get();
-        if (webApplication.getDelegate().getAuthenticationManager() != null) {
+        if (webApplication.getDelegate().getAuthenticationService() != null) {
             if (AWebSession.get().isSignedIn()) {
                 addSignOutNavbarComponent(navbar, webApplication.getSignOutPage());
             } else {

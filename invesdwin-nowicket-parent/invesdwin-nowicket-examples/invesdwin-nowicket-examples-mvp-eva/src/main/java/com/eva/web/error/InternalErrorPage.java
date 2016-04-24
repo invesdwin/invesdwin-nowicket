@@ -11,7 +11,7 @@ import com.eva.web.AEvaWebPage;
 
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.page.error.InternalErrorPanel;
-import de.invesdwin.nowicket.util.SpringSecuritySessionAttributes;
+import de.invesdwin.nowicket.util.RequestCycles;
 
 @NotThreadSafe
 public class InternalErrorPage extends AEvaWebPage {
@@ -26,7 +26,7 @@ public class InternalErrorPage extends AEvaWebPage {
 
     @Override
     protected void setHeaders(final WebResponse response) {
-        final HttpServletRequest request = SpringSecuritySessionAttributes.getContainerRequest();
+        final HttpServletRequest request = RequestCycles.getContainerRequest();
         final Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         if (statusCode != null) {
             response.setStatus(statusCode);

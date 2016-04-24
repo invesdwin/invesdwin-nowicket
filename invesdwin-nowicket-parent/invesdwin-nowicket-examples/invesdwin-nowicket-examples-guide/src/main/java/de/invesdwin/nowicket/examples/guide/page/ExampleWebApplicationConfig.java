@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.Main;
@@ -24,6 +25,7 @@ import de.invesdwin.nowicket.examples.guide.page.error.PageExpiredPage;
 import de.invesdwin.nowicket.examples.guide.page.error.PageNotFoundPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.authentication.ExampleSignInPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.authentication.ExampleSignOutPage;
+import de.invesdwin.nowicket.security.spring.SpringSecurityAuthenticationService;
 
 @Immutable
 public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
@@ -33,8 +35,10 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
     }
 
     @Override
-    public AuthenticationManager getAuthenticationManager() {
-        return (AuthenticationManager) Main.getApplicationContext().getBean("exampleAuthenticationManager");
+    public IAuthenticationService getAuthenticationService() {
+        final AuthenticationManager authenticationManager = (AuthenticationManager) Main.getApplicationContext()
+                .getBean("exampleAuthenticationManager");
+        return new SpringSecurityAuthenticationService(authenticationManager);
     }
 
     @Override

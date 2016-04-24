@@ -6,9 +6,9 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.ResourceReference;
-import org.springframework.security.authentication.AuthenticationManager;
 
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 
 @NotThreadSafe
@@ -43,7 +43,7 @@ public class WebApplicationConfigSupport implements IWebApplicationConfig {
     public void postProcessNewSession(final AWebSession session) {}
 
     @Override
-    public AuthenticationManager getAuthenticationManager() {
+    public IAuthenticationService getAuthenticationService() {
         return null;
     }
 

@@ -9,7 +9,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
-import de.invesdwin.nowicket.util.SpringSecuritySessionAttributes;
+import de.invesdwin.nowicket.util.RequestCycles;
 
 @NotThreadSafe
 public abstract class AErrorPanel extends Panel {
@@ -22,7 +22,7 @@ public abstract class AErrorPanel extends Panel {
     }
 
     protected void showServletException() {
-        final HttpServletRequest request = SpringSecuritySessionAttributes.getContainerRequest();
+        final HttpServletRequest request = RequestCycles.getContainerRequest();
         final Throwable exception = (Throwable) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
         final Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         final String servletName = (String) request.getAttribute(RequestDispatcher.ERROR_SERVLET_NAME);

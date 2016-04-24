@@ -58,7 +58,7 @@
 
 		<dependency>
 			<groupId>de.invesdwin</groupId>
-			<artifactId>invesdwin-nowicket</artifactId>
+			<artifactId>invesdwin-nowicket-security-spring</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>de.invesdwin</groupId>

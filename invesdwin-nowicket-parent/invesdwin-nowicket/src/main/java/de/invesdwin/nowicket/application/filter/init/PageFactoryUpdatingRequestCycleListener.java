@@ -16,7 +16,7 @@ public class PageFactoryUpdatingRequestCycleListener extends AbstractRequestCycl
     @Override
     public void onEndRequest(final RequestCycle cycle) {
         final IPageRequestHandler handler = PageRequestHandlerTracker.getLastHandler(cycle);
-        if (handler != null && handler.getRenderCount() > 0) {
+        if (handler != null) {
             PageFactory.get().updatePage((Page) handler.getPage());
         }
     }

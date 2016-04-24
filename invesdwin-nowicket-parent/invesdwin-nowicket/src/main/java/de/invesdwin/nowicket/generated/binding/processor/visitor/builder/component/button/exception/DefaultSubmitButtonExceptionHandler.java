@@ -6,8 +6,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.model.StringResourceModel;
-import org.springframework.security.access.AccessDeniedException;
 
+import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
@@ -58,7 +58,7 @@ public class DefaultSubmitButtonExceptionHandler implements ISubmitButtonExcepti
     }
 
     protected boolean shouldShowAccessDeniedExceptionMessage(final Throwable t) {
-        return t instanceof AccessDeniedException;
+        return Roles.getAuthenticationService().shouldShowAccessDeniedExceptionMessage(t);
     }
 
     protected void propagateException(final Throwable t) {

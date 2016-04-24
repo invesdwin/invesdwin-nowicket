@@ -114,7 +114,7 @@ public class WebApplicationInitializer {
             new AnnotatedMountScanner().scanPackage(basePackage).mount(webApplication);
         }
 
-        if (webApplication.getDelegate().getAuthenticationManager() != null) {
+        if (webApplication.getDelegate().getAuthenticationService() != null) {
             webApplication.mountPage(DefaultSignInPage.MOUNT_PATH, webApplication.getSignInPage());
             webApplication.mountPage(DefaultSignOutPage.MOUNT_PATH, webApplication.getSignOutPage());
         }

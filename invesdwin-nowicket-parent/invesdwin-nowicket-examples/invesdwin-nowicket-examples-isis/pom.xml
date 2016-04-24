@@ -24,6 +24,7 @@
 		<version.wicket>7.1.0</version.wicket>
 		<version.hsqldb>2.3.1</version.hsqldb>
 		<version.jbcrypt>0.3m</version.jbcrypt>
+		<version.spring-security-shiro>3.0.0</version.spring-security-shiro>
 	</properties>
 
 	<!-- run this sample with "mvn tomcat7:run" and access the website at http://localhost:8080 -->
@@ -202,8 +203,6 @@
             <artifactId>jbcrypt</artifactId>
             <version>${version.jbcrypt}</version>
         </dependency>
-
-
 	</dependencies>
 
 	<distributionManagement>

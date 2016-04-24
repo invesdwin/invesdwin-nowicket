@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
-import org.springframework.security.authentication.AuthenticationManager;
 
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 
 public interface IWebApplicationConfig {
@@ -51,7 +51,7 @@ public interface IWebApplicationConfig {
     /**
      * You can return null here if no authentication is used for this application; thus no login needed
      */
-    AuthenticationManager getAuthenticationManager();
+    IAuthenticationService getAuthenticationService();
 
     /**
      * This is the page that is shown when another page has expired. You may return null here to keep the default.

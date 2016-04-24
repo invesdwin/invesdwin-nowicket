@@ -10,8 +10,202 @@
 
 	<modules>
 		<module>invesdwin-nowicket</module>
+		<module>invesdwin-nowicket-security-shiro</module>
+		<module>invesdwin-nowicket-security-spring</module>
 		<module>invesdwin-nowicket-examples</module>
 	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<version.compiler>1.7</version.compiler>
+
+		<version.maven-compiler-plugin>3.1</version.maven-compiler-plugin>
+		<version.maven-source-plugin>2.2.1</version.maven-source-plugin>
+		<version.maven-processor-plugin>2.2.4</version.maven-processor-plugin>
+		<version.invesdwin-maven-plugin>1.0.0-SNAPSHOT</version.invesdwin-maven-plugin>
+		<version.license-check-maven-plugin>0.5.4-inv</version.license-check-maven-plugin>
+
+		<version.invesdwin-bom>1.0.0-SNAPSHOT</version.invesdwin-bom>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.invesdwin</groupId>
+				<artifactId>invesdwin-bom</artifactId>
+				<version>${version.invesdwin-bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>de.invesdwin</groupId>
+				<artifactId>invesdwin-nowicket</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/java</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/test/java</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.maven-compiler-plugin}</version>
+				<configuration>
+					<source>${version.compiler}</source>
+					<target>${version.compiler}</target>
+					<complianceLevel>${version.compiler}</complianceLevel>
+					<encoding>${file.encoding}</encoding>
+					<compilerArgument>-proc:none</compilerArgument>
+					<Xlint>ignore</Xlint>
+					<verbose>false</verbose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>${version.maven-processor-plugin}</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/generated-sources/apt</outputDirectory>
+							<failOnError>false</failOnError>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${version.maven-source-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>de.invesdwin</groupId>
+				<artifactId>invesdwin-maven-plugin</artifactId>
+				<version>${version.invesdwin-maven-plugin}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>initialize</goal>
+							<goal>generate-sources</goal>
+							<goal>compile</goal>
+						</goals>
+						<configuration>
+							<useInvesdwinEclipseSettings>true</useInvesdwinEclipseSettings>
+							<codeComplianceLevel>${version.compiler}</codeComplianceLevel>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.complykit</groupId>
+				<artifactId>license-check-maven-plugin</artifactId>
+				<version>${version.license-check-maven-plugin}</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>os-check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<blacklist>
+						<param>agpl-1.0</param>
+						<param>agpl-2.0</param>
+						<param>agpl-3.0</param>
+						<param>gpl-1.0</param>
+						<param>gpl-2.0</param>
+						<param>gpl-3.0</param>
+					</blacklist>
+					<excludesRegex>
+						<!-- apache license -->
+						<param>ecs:ecs.*</param>
+						<!-- LGPL license -->
+						<param>org\.webjars:pnotify.*</param>
+						<!-- bsd license -->
+						<param>com\.yahoo\.platform\.yui:yuicompressor.*</param>
+						<!-- WARNING: optional, you need to buy a license to use this dependency -->
+						<param>org\.webjars:highstock.*</param>
+					</excludesRegex>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-plugin-plugin</artifactId>
+										<versionRange>[3.2,)</versionRange>
+										<goals>
+											<goal>descriptor</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<distributionManagement>
 		<repository>
