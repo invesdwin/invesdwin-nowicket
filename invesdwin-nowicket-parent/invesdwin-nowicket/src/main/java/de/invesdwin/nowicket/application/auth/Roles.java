@@ -29,28 +29,28 @@ public class Roles extends org.apache.wicket.authroles.authorization.strategies.
      * programmitcally-in
      */
     public static boolean isFullyAuthenticated() {
-        return getAuthenticationService().isFullyAuthenticated();
+        return AWebApplication.exists() && getAuthenticationService().isFullyAuthenticated();
     }
 
     /**
      * Returns true if the current principal is a remember-me user
      */
     public static boolean isRememberMe() {
-        return getAuthenticationService().isRememberMe();
+        return AWebApplication.exists() && getAuthenticationService().isRememberMe();
     }
 
     /**
      * Returns true if the current principal is an anonymous user
      */
     public static boolean isAnonymous() {
-        return getAuthenticationService().isAnonymous();
+        return !AWebApplication.exists() || getAuthenticationService().isAnonymous();
     }
 
     /**
      * Returns true if the user is not anonymous
      */
     public static boolean isAuthenticated() {
-        return getAuthenticationService().isAuthenticated();
+        return AWebApplication.exists() && getAuthenticationService().isAuthenticated();
     }
 
 }
