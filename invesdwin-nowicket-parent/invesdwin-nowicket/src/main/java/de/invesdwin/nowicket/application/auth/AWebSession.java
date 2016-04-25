@@ -52,7 +52,7 @@ public abstract class AWebSession extends org.apache.wicket.authroles.authentica
      */
     public final boolean signIn(final String username, final String password) {
         final boolean signedIn = authenticate(username, password);
-        if (signedIn) {
+        if (signedIn && Roles.getAuthenticationService().shouldReplaceSessionAfterSignIn()) {
             replaceSession();
         }
         return signedIn;

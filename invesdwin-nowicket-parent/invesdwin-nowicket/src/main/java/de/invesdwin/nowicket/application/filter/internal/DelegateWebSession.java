@@ -53,11 +53,9 @@ public class DelegateWebSession extends AWebSession {
         }
         //copy previous savedRequest to new session in order to properly redirect after login
         final IAuthenticationService authenticationService = Roles.getAuthenticationService();
-        final Object beforeReplaceSession;
+        Object beforeReplaceSession = null;
         if (authenticationService != null) {
             beforeReplaceSession = authenticationService.beforeReplaceSession();
-        } else {
-            beforeReplaceSession = null;
         }
         super.replaceSession();
         if (authenticationService != null) {

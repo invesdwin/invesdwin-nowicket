@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -42,7 +43,11 @@ public class ShiroAuthenticationService implements IAuthenticationService {
 
     @Override
     public boolean isRememberMe() {
-        return getAuthentication().isRemembered();
+        try {
+            return getAuthentication().isRemembered();
+        } catch (final UnavailableSecurityManagerException e) {
+            return false;
+        }
     }
 
     @Override
@@ -57,7 +62,11 @@ public class ShiroAuthenticationService implements IAuthenticationService {
 
     @Override
     public boolean isAuthenticated() {
-        return getAuthentication().isAuthenticated();
+        try {
+            return getAuthentication().isAuthenticated();
+        } catch (final UnavailableSecurityManagerException e) {
+            return false;
+        }
     }
 
     @Override
@@ -69,6 +78,8 @@ public class ShiroAuthenticationService implements IAuthenticationService {
     public boolean authenticate(final String username, final String password) {
         final UsernamePasswordToken token = new UsernamePasswordToken(username, password, false);
         try {
+            getAuthentication().getSession().stop();
+            AWebSession.get().replaceSession();
             getAuthentication().login(token);
             rememberRoles(token);
             return true;
@@ -119,19 +130,6 @@ public class ShiroAuthenticationService implements IAuthenticationService {
     }
 
     @Override
-    public Object beforeReplaceSession() {
-        getAuthentication().getSession().stop();
-        return AWebSession.get().getMetaData(KEY_ROLES);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public void afterReplaceSession(final Object beforeReplaceSession) {
-        final ArrayList<String> roles = (ArrayList<String>) beforeReplaceSession;
-        AWebSession.get().setMetaData(KEY_ROLES, roles);
-    }
-
-    @Override
     public boolean shouldShowAccessDeniedExceptionMessage(final Throwable t) {
         return t instanceof AuthorizationException;
     }
@@ -154,5 +152,21 @@ public class ShiroAuthenticationService implements IAuthenticationService {
     public String getUsername() {
         return Strings.asString(getAuthentication().getPrincipal());
     }
+
+    /**
+     * Return false, since shiro handles this: https://issues.apache.org/jira/browse/SHIRO-170
+     */
+    @Override
+    public boolean shouldReplaceSessionAfterSignIn() {
+        return false;
+    }
+
+    @Override
+    public Object beforeReplaceSession() {
+        return null;
+    }
+
+    @Override
+    public void afterReplaceSession(final Object beforeReplaceSession) {}
 
 }

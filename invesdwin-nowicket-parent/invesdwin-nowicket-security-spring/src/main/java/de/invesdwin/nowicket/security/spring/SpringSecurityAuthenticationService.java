@@ -197,4 +197,9 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
         return getAuthentication().getName();
     }
 
+    @Override
+    public boolean shouldReplaceSessionAfterSignIn() {
+        return true;
+    }
+
 }
