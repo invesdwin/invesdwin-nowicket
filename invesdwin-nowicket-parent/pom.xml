@@ -14,6 +14,13 @@
 		<module>invesdwin-nowicket-security-spring</module>
 		<module>invesdwin-nowicket-examples</module>
 	</modules>
+	
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License (LGPL), Version 3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.html</url>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
