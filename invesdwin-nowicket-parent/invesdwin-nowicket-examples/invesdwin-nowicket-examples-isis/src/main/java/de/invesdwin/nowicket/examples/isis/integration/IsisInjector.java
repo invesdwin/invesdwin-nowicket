@@ -27,7 +27,7 @@ public final class IsisInjector {
 
     public static void openSession() {
         final AuthenticationSession authenticationSession;
-        if (Roles.getAuthenticationService().isAuthenticated()) {
+        if (Roles.isAuthenticated()) {
             authenticationSession = new SimpleSession(Roles.getAuthenticationService().getUsername(),
                     Roles.getAuthenticationService().getRoles());
         } else {
