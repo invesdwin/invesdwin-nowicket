@@ -4,6 +4,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.wicket.request.IRequestParameters;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.cycle.RequestCycle;
@@ -35,6 +37,17 @@ public final class RequestCycles {
             return null;
         }
         return (HttpServletResponse) response.getContainerResponse();
+    }
+
+    public static boolean isOnePassRender() {
+        final IRequestParameters params = RequestCycle.get().getRequest().getQueryParameters();
+        for (final String param : new String[] { "onePassRender", "robot", "bot" }) {
+            final String onePassRender = String.valueOf(params.getParameterValue(param));
+            if (BooleanUtils.toBoolean(onePassRender)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

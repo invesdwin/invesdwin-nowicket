@@ -5,6 +5,7 @@ import javax.annotation.concurrent.ThreadSafe;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.request.handler.render.WebPageRenderer;
 
+import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.nowicket.util.UserAgents;
 
 /**
@@ -22,7 +23,7 @@ public class BotAwareWebPageRenderer extends WebPageRenderer {
     @Override
     protected boolean isOnePassRender() {
         // To avoid 302s with Google Bot and have good SEO.
-        if (UserAgents.isBot()) {
+        if (UserAgents.isBot() || RequestCycles.isOnePassRender()) {
             return true;
         } else {
             return super.isOnePassRender();
