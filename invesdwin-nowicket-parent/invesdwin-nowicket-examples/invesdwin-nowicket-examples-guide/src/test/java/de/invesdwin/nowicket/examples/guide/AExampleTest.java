@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import de.invesdwin.instrument.DynamicInstrumentationLoader;
 import de.invesdwin.nowicket.examples.guide.internal.ExampleWebApplication;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.test.GuiServiceTester;
@@ -17,6 +18,11 @@ import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
 public abstract class AExampleTest {
+
+    static {
+        DynamicInstrumentationLoader.waitForInitialized();
+        DynamicInstrumentationLoader.initLoadTimeWeavingContext();
+    }
 
     private static ConfigurableApplicationContext springContext;
     private static WicketTester wicketTester;
