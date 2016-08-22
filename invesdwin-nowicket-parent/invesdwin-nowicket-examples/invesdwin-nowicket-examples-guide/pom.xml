@@ -31,6 +31,7 @@
 		<!-- conflict between spring boot parent pom and invesdwin-bom import -->
 		<version.javassist>3.19.0-GA</version.javassist>
 		<version.assertj-core>3.1.0</version.assertj-core>
+		<version.objenesis>2.4</version.objenesis>
 
 		<start-class>de.invesdwin.nowicket.examples.guide.Main</start-class>
 	</properties>
@@ -124,6 +125,12 @@
 			<artifactId>javassist</artifactId>
 			<version>${version.javassist}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
+		<dependency>
+			<groupId>org.objenesis</groupId>
+			<artifactId>objenesis</artifactId>
+			<version>${version.objenesis}</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>de.agilecoders.wicket</groupId>
