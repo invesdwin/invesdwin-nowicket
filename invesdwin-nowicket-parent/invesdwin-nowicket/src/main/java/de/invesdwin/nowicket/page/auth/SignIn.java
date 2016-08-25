@@ -91,7 +91,7 @@ public class SignIn extends AValueObject {
         // original destination, otherwise to the Home page
         final ISavedRequest savedRequest = Roles.getAuthenticationService().getSavedRequest();
         //saved request might be null from spring-security, since redirect to login might have been handled by wicket instead
-        if (savedRequest != null) {
+        if (savedRequest != null && savedRequest.getRedirectUrl() != null) {
             throw new RedirectToUrlException(savedRequest.getRedirectUrl());
         }
         component.continueToOriginalDestination();

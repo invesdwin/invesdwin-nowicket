@@ -24,6 +24,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
+import org.springframework.security.web.savedrequest.SavedRequest;
 
 import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.auth.ISavedRequest;
@@ -167,7 +168,12 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
 
     @Override
     public ISavedRequest getSavedRequest() {
-        return new DelegateSavedRequest(SpringSecuritySessionAttributes.getSavedRequest());
+        final SavedRequest savedRequest = SpringSecuritySessionAttributes.getSavedRequest();
+        if (savedRequest == null) {
+            return null;
+        } else {
+            return new DelegateSavedRequest(savedRequest);
+        }
     }
 
     @Override
@@ -178,7 +184,9 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
     @Override
     public void afterReplaceSession(final Object beforeReplaceSession) {
         final DelegateSavedRequest delegateSavedRequest = (DelegateSavedRequest) beforeReplaceSession;
-        SpringSecuritySessionAttributes.setSavedRequest(delegateSavedRequest.getDelegate());
+        if (delegateSavedRequest != null) {
+            SpringSecuritySessionAttributes.setSavedRequest(delegateSavedRequest.getDelegate());
+        }
         SpringSecuritySessionAttributes.updateSpringSecurityContext();
     }
 

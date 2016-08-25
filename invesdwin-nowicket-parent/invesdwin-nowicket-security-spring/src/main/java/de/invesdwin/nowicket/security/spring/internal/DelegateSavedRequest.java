@@ -17,7 +17,11 @@ public class DelegateSavedRequest implements ISavedRequest {
 
     @Override
     public String getRedirectUrl() {
-        return delegate.getRedirectUrl();
+        if (delegate != null) {
+            return delegate.getRedirectUrl();
+        } else {
+            return null;
+        }
     }
 
     public SavedRequest getDelegate() {
