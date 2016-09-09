@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.context;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -76,7 +77,9 @@ public class HtmlContext implements Serializable {
 
     public Document getHtmlDocument() {
         try {
-            final String html = IOUtils.toString(getHtmlFile().getInputStream());
+            final InputStream in = getHtmlFile().getInputStream();
+            final String html = IOUtils.toString(in);
+            in.close();
             return Jsoup.parse(html);
         } catch (final IOException e) {
             throw new RuntimeException(e);

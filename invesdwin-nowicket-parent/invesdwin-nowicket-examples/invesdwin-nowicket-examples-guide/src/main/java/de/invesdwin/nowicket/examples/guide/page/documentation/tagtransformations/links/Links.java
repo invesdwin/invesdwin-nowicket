@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.tagtransformatio
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 
@@ -36,8 +37,9 @@ public class Links extends AValueObject {
             //not able to do this in static intializer, since GuiService is not available without wicket application during markup generation
             imageAsFile = new File(GuiService.get().getSessionFolder(), Links.class.getName() + "/" + IMAGE_FILE_NAME);
             try {
-                FileUtils.copyInputStreamToFile(new ClassPathResource(IMAGE_FILE_NAME, Links.class).getInputStream(),
-                        imageAsFile);
+                final InputStream in = new ClassPathResource(IMAGE_FILE_NAME, Links.class).getInputStream();
+                FileUtils.copyInputStreamToFile(in, imageAsFile);
+                in.close();
             } catch (final IOException e) {
                 throw new RuntimeException(e);
             }
