@@ -39,6 +39,7 @@ import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
+import de.invesdwin.nowicket.component.consent.CookieConsent;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.page.documentation.closingwords.ClosingWordsPage;
@@ -68,6 +69,7 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.modalwindow.ModalWindowS
 import de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.TabbedPanelPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.WizardStartPage;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.uri.URIs;
 
 @NotThreadSafe
 public abstract class AExampleWebPage extends AWebPage {
@@ -87,6 +89,8 @@ public abstract class AExampleWebPage extends AWebPage {
                 return AWebApplication.get().usesDeploymentConfig();
             }
         });
+
+        add(new CookieConsent("cookieConsent", Model.of(URIs.asUri("http://invesdwin.de/privacypolicy.html"))));
     }
 
     @Override
