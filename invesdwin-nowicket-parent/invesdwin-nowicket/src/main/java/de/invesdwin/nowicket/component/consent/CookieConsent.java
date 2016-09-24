@@ -17,7 +17,7 @@ import org.apache.wicket.util.resource.ResourceStreamNotFoundException;
 @NotThreadSafe
 public class CookieConsent extends WebMarkupContainer {
 
-    private Integer cookieDurationDays = null;
+    private Integer cookieDurationDays = 9999;
     private String buttonClass = "btn-success btn-sm";
     private String alertClass = "alert-info text-center";
     private String cookieName = "cookieConsent";
