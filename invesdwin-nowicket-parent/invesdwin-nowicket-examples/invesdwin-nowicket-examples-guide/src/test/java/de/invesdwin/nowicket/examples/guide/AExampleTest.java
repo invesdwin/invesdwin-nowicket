@@ -19,7 +19,8 @@ import de.invesdwin.util.assertions.Assertions;
 @NotThreadSafe
 public abstract class AExampleTest {
 
-    private static int testServerPort = 9002;
+    //0 means random port
+    private static int testServerPort = 0;
 
     static {
         DynamicInstrumentationLoader.waitForInitialized();
