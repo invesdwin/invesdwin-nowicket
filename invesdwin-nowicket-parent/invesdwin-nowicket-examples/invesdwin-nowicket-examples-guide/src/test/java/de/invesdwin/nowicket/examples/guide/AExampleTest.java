@@ -19,6 +19,8 @@ import de.invesdwin.util.assertions.Assertions;
 @NotThreadSafe
 public abstract class AExampleTest {
 
+    private static int testServerPort = 9002;
+
     static {
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
@@ -32,12 +34,20 @@ public abstract class AExampleTest {
     public static void setUpOnce() throws Exception {
         Assertions.assertThat(wicketTester).isNull();
         //make @Configurable and PropertyChangeSupport aspect work
-        AExampleTest.springContext = SpringApplication.run(Main.class);
+        AExampleTest.springContext = SpringApplication.run(Main.class, "--server.port=" + getTestServerPort());
         //wicketTester might sometimes still be needed
         AExampleTest.wicketTester = new WicketTester(new ExampleWebApplication());
         //the guiServiceTester is useful to test modals and other things
         AExampleTest.guiServiceTester = new GuiServiceTester();
         GuiService.setGuiServiceOverride(guiServiceTester);
+    }
+
+    public static int getTestServerPort() {
+        return testServerPort;
+    }
+
+    public static void setTestServerPort(final int testServerPort) {
+        AExampleTest.testServerPort = testServerPort;
     }
 
     /**
