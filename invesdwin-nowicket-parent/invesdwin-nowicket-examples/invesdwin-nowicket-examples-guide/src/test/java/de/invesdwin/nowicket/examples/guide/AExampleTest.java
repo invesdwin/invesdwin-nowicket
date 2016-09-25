@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.SocketUtils;
 
 import de.invesdwin.instrument.DynamicInstrumentationLoader;
 import de.invesdwin.nowicket.examples.guide.internal.ExampleWebApplication;
@@ -20,7 +21,7 @@ import de.invesdwin.util.assertions.Assertions;
 public abstract class AExampleTest {
 
     //0 means random port
-    private static int testServerPort = 0;
+    private static int testServerPort = SocketUtils.findAvailableTcpPort();
 
     static {
         DynamicInstrumentationLoader.waitForInitialized();

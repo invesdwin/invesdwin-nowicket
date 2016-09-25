@@ -15,14 +15,8 @@ import de.invesdwin.util.assertions.Assertions;
 @NotThreadSafe
 public class FormInputTest extends AExampleTest {
 
-    private final org.slf4j.ext.XLogger log = org.slf4j.ext.XLoggerFactory.getXLogger(getClass());
-
     @Test
     public void testResetWithDirtyCheck() {
-
-        log.warn("Webserver listening on http://localhost:"
-                + getSpringContext().getEnvironment().getProperty("local.server.port"));
-
         Assertions.assertThat(getGuiServiceTester().getMethodCalls()).isEmpty();
         final FormInput formInput = new FormInput();
 
