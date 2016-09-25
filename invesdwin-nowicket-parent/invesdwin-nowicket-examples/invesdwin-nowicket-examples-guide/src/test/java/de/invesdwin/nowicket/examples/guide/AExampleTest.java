@@ -20,7 +20,7 @@ import de.invesdwin.util.assertions.Assertions;
 @NotThreadSafe
 public abstract class AExampleTest {
 
-    //0 means random port
+    //using random port during tests
     private static int testServerPort = SocketUtils.findAvailableTcpPort();
 
     static {
