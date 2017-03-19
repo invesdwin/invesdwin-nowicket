@@ -14,11 +14,12 @@ import org.apache.wicket.request.cycle.RequestCycle;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.util.Components;
+import io.netty.util.concurrent.FastThreadLocal;
 
 @NotThreadSafe
 public class I18nModel extends AbstractReadOnlyModel<String> {
 
-    private static final ThreadLocal<Boolean> NESTED_PAGE_RETRIEVAL = new ThreadLocal<Boolean>() {
+    private static final FastThreadLocal<Boolean> NESTED_PAGE_RETRIEVAL = new FastThreadLocal<Boolean>() {
         @Override
         protected Boolean initialValue() {
             return false;
