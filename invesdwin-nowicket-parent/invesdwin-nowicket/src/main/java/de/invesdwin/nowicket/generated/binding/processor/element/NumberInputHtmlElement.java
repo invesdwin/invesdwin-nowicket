@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -32,6 +31,7 @@ public class NumberInputHtmlElement extends AModelHtmlElement<AModelElement<? ex
         visitor.visitNumberInput(this);
     }
 
+    @Override
     public Class<?> getType() {
         return getModelElement().getBeanPathElement().getModifier().getAccessor().getRawType().getType();
     }
@@ -43,7 +43,7 @@ public class NumberInputHtmlElement extends AModelHtmlElement<AModelElement<? ex
             if (format == null) {
                 format = DEFAULT_DECIMAL_FORMAT;
             }
-            propertyFormat = new DecimalFormat(format, DecimalFormatSymbols.getInstance(locale));
+            propertyFormat = Decimal.newDecimalFormatInstance(format, locale);
         }
         return propertyFormat;
     }
