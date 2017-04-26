@@ -144,13 +144,13 @@
 	<repositories>
 		<repository>
 			<id>invesdwin-oss</id>
-			<url>http://invesdwin.de/artifactory/invesdwin-oss</url>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss-remote</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>invesdwin-oss</id>
-			<url>http://invesdwin.de/artifactory/invesdwin-oss</url>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss-remote</url>
 		</pluginRepository>
 	</pluginRepositories>
 
