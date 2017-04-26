@@ -5,7 +5,7 @@ A [naked objects](https://en.wikipedia.org/wiki/Naked_objects) framework for wic
 
 Releases and snapshots are deployed to this maven repository:
 ```
-http://invesdwin.de/artifactory/invesdwin-oss
+http://invesdwin.de/artifactory/invesdwin-oss-remote
 ```
 
 Dependency declaration:
