@@ -27,9 +27,10 @@
 		<version.spring-boot-maven-plugin>1.4.0.RELEASE</version.spring-boot-maven-plugin>
 
 		<!-- conflict between spring boot parent pom and invesdwin-bom import -->
-		<version.javassist>3.19.0-GA</version.javassist>
+		<version.javassist>3.21.0-GA</version.javassist>
 		<version.assertj-core>3.1.0</version.assertj-core>
 		<version.h2>1.4.192</version.h2>
+		<version.jackson>2.8.8</version.jackson>
 
 		<start-class>com.bsgcoach.Main</start-class>
 	</properties>
@@ -110,8 +111,19 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>${version.h2}</version>
+			<version>${version.h2}</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${version.jackson}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

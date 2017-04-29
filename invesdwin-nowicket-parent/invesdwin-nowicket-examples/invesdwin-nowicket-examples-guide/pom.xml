@@ -29,9 +29,10 @@
 		<version.prettify>4-Mar-2013</version.prettify>
 
 		<!-- conflict between spring boot parent pom and invesdwin-bom import -->
-		<version.javassist>3.19.0-GA</version.javassist>
+		<version.javassist>3.21.0-GA</version.javassist>
 		<version.assertj-core>3.1.0</version.assertj-core>
-		<version.objenesis>2.4</version.objenesis>
+		<version.objenesis>2.5.1</version.objenesis>
+		<version.jackson>2.8.8</version.jackson>
 
 		<start-class>de.invesdwin.nowicket.examples.guide.Main</start-class>
 	</properties>
@@ -129,6 +130,16 @@
 			<groupId>org.objenesis</groupId>
 			<artifactId>objenesis</artifactId>
 			<version>${version.objenesis}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${version.jackson}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson}</version>
 		</dependency>
 
 

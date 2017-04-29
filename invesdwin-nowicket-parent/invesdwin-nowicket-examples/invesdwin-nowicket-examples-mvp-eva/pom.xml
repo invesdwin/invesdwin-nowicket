@@ -27,8 +27,9 @@
 		<version.spring-boot-maven-plugin>1.4.0.RELEASE</version.spring-boot-maven-plugin>
 
 		<!-- conflict between spring boot parent pom and invesdwin-bom import -->
-		<version.javassist>3.19.0-GA</version.javassist>
+		<version.javassist>3.21.0-GA</version.javassist>
 		<version.assertj-core>3.1.0</version.assertj-core>
+		<version.jackson>2.8.8</version.jackson>
 
 		<start-class>com.eva.Main</start-class>
 	</properties>
@@ -100,6 +101,16 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>${version.assertj-core}</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${version.jackson}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson}</version>
 		</dependency>
 	</dependencies>
 
