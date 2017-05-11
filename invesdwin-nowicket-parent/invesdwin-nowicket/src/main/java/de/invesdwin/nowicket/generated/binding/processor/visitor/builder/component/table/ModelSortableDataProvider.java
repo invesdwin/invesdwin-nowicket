@@ -11,11 +11,10 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import com.google.common.primitives.Ints;
-
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.util.lang.ADelegateComparator;
+import de.invesdwin.util.math.Integers;
 
 /**
  * http://stackoverflow.com/questions/2726373/how-do-i-display-a-wicket-datatable-sorted-by-a-specific-column-by-default
@@ -55,7 +54,7 @@ public class ModelSortableDataProvider extends SortableDataProvider<Object, Stri
         if (toIndex > rows.size()) {
             toIndex = rows.size();
         }
-        return rows.subList(Ints.checkedCast(first), Ints.checkedCast(toIndex)).listIterator();
+        return rows.subList(Integers.checkedCast(first), Integers.checkedCast(toIndex)).listIterator();
     }
 
     @Override
