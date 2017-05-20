@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.servlet.http.HttpSession;
 
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.IResource;
 import org.springframework.security.core.userdetails.User;
 
@@ -89,7 +90,14 @@ public class LoginDialog extends AValueObject {
             final SpringSecurityAuthenticationService springSecurityAuthenticationService = (SpringSecurityAuthenticationService) Roles
                     .getAuthenticationService();
             final User user = (User) springSecurityAuthenticationService.getAuthentication().getPrincipal();
-            return URIs.asUri(IntegrationProperties.WEBSERVER_BIND_URI + "/secure/index.html?id=" + curSessionId);
+            final RequestCycle requestCycle = RequestCycle.get();
+            final String baseUrl;
+            if (requestCycle != null) {
+                baseUrl = String.valueOf(requestCycle.getUrlRenderer().getBaseUrl());
+            } else {
+                baseUrl = String.valueOf(IntegrationProperties.WEBSERVER_BIND_URI);
+            }
+            return URIs.asUri(baseUrl + "/secure/index.html?id=" + curSessionId);
         }
         return null;
     }
