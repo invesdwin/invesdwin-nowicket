@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.granatasoft</groupId>
 	<artifactId>granatasoft-remotelist-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -18,7 +19,7 @@
 	</modules>
 
 	<properties>
-		<version.granatasoft-remotelist>${version.invesdwin-context}</version.granatasoft-remotelist>
+		<version.granatasoft-remotelist>0.0.1-SNAPSHOT</version.granatasoft-remotelist>
 		<version.invesdwin-context-client>${version.invesdwin-context}</version.invesdwin-context-client>
 	</properties>
 

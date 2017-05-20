@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.granatasoft</groupId>
 		<artifactId>granatasoft-remotelist-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>granatasoft-remotelist-website-dist</artifactId>
 	<packaging>jar</packaging>
