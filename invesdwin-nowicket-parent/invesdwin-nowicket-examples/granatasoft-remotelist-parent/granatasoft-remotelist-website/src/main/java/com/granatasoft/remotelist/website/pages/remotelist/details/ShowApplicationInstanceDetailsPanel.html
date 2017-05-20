@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+<wicket:panel>
+    <form class="form-horizontal" wicket:id="form">
+        <!-- <div wicket:id='feedback'></div>  -->
+        <div wicket:id="modal"></div>
+        <fieldset>
+            <legend wicket:id="servers_legend">Servers</legend>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover table-striped" wicket:id="servers"></table>
+            </div>
+        </fieldset>
+        <hr/>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-default" wicket:id="close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</wicket:panel>
+</body>
+</html>

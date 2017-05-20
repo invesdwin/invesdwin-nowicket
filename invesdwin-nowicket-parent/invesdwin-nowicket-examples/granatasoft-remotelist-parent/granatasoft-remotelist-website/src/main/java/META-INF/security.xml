@@ -1,0 +1,30 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <security:http authentication-manager-ref="remotelistAuthenticationManager"
+                   use-expressions="true">
+
+        <security:csrf disabled="true"/>
+        <security:headers>
+            <security:frame-options policy="SAMEORIGIN"/>
+        </security:headers>
+
+        <!-- register wicket sigin in page -->
+        <security:form-login login-page="/signin"/>
+        <!-- alternatively with use-expressions="false": access="ADMIN" -->
+        <security:intercept-url pattern="/secure/**" access="hasRole('ADMIN')"/>
+    </security:http>
+
+    <security:authentication-manager id="remotelistAuthenticationManager">
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="admin" password="4dm1nFTW"
+                               authorities="ADMIN,USER"/>
+                <security:user name="user" password="us3rFTW"
+                               authorities="USER"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>

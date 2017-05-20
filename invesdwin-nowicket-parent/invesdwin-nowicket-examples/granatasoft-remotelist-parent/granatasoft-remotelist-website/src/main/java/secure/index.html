@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Web RDP</title>
+</head>
+<body>
+<h1>Web RDP</h1>
+
+<p>
+(see the commented out code of this page for an actual example, it is disabled for demonstration hosting)
+</p>
+
+<iframe src="https://guacamole.incubator.apache.org/" width="800" height="600" ></iframe>
+
+<!-- 
+
+<!- - Guacamole - ->
+<script type="text/javascript"
+        src="guacamole-common-js/all.js"></script>
+
+<!- - Display - ->
+<div id="display"></div>
+
+<!- - Init - ->
+<script type="text/javascript"> /* <![CDATA[ */
+
+
+// Parsing request for params
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+            function (m, key, value) {
+                vars[key] = value;
+            });
+    return vars;
+}
+
+// Get display div from document
+var display = document.getElementById("display");
+
+// Instantiate client, using an HTTP tunnel for communications.
+var guac = new Guacamole.Client(
+        new Guacamole.HTTPTunnel("/secure/tunnel")
+);
+
+// Add client to display div
+display.appendChild(guac.getDisplay().getElement());
+
+// Error handler
+guac.onerror = function (error) {
+    alert(error);
+};
+
+var id = "id:"+getUrlVars()['id'];
+// Connect
+guac.connect(id);
+
+// Disconnect on close
+window.onunload = function () {
+    guac.disconnect();
+};
+
+// Mouse
+var mouse = new Guacamole.Mouse(guac.getDisplay().getElement());
+
+mouse.onmousedown =
+        mouse.onmouseup =
+                mouse.onmousemove = function (mouseState) {
+                    guac.sendMouseState(mouseState);
+                };
+
+// Keyboard
+var keyboard = new Guacamole.Keyboard(document);
+
+keyboard.onkeydown = function (keysym) {
+    guac.sendKeyEvent(1, keysym);
+};
+
+keyboard.onkeyup = function (keysym) {
+    guac.sendKeyEvent(0, keysym);
+};
+/* ]]> */ </script>
+
+-->
+</body>
+</html>

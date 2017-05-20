@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+<wicket:panel>
+    <div class="btn-toolbar" wicket:id="toolbar">
+        <div class="btn-group btn-group-nowrap btn-block">
+            <a wicket:id="masterButton">MasterButton</a>
+            <wicket:enclosure child="childButtons">
+                <button wicket:id="masterButtonToggle" type="button" class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown"><span class="caret"></span><span
+                        class="sr-only">Toggle Dropdown</span></button>
+                <ul class="dropdown-menu">
+                    <li wicket:id="childButtons"><a wicket:id="childButtonsPanel">Optimistic Defaults</a></li>
+                </ul>
+            </wicket:enclosure>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-fragment>
+    <name>com.granatasoft.remotelist.guacamole</name>
+
+    <!-- disabled for demonstration hosting
+    
+    <servlet>
+        <description>Guacamole tunnel servlet</description>
+        <servlet-name>Tunnel</servlet-name>
+        <servlet-class>
+            com.granatasoft.remotelist.guacamole.GuacamoleServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Tunnel</servlet-name>
+        <url-pattern>/secure/tunnel</url-pattern>
+    </servlet-mapping>-->
+</web-fragment>

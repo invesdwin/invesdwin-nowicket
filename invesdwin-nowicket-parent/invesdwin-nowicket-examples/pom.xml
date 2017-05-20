@@ -16,6 +16,7 @@
 		<module>invesdwin-nowicket-examples-isis</module>
 		<module>invesdwin-nowicket-examples-mvp-bsgcoach</module>
 		<module>invesdwin-nowicket-examples-mvp-eva</module>
+		<module>granatasoft-remotelist-parent</module>
 	</modules>
 
 </project>

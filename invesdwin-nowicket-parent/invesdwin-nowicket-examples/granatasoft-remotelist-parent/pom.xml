@@ -1,0 +1,82 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.invesdwin</groupId>
+		<artifactId>invesdwin-context-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.granatasoft</groupId>
+	<artifactId>granatasoft-remotelist-parent</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>granatasoft-remotelist-website</module>
+		<module>granatasoft-remotelist-website-dist</module>
+	</modules>
+
+	<properties>
+		<version.granatasoft-remotelist>${version.invesdwin-context}</version.granatasoft-remotelist>
+		<version.invesdwin-context-client>${version.invesdwin-context}</version.invesdwin-context-client>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.invesdwin</groupId>
+				<artifactId>invesdwin-context-client-parent</artifactId>
+				<version>${version.invesdwin-context-client}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.granatasoft</groupId>
+				<artifactId>granatasoft-remotelist-website</artifactId>
+				<version>${version.granatasoft-remotelist}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.complykit</groupId>
+				<artifactId>license-check-maven-plugin</artifactId>
+				<configuration>
+					<excludesRegex combine.children="append">
+						<param>com\.granatasoft:.*</param>
+					</excludesRegex>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>invesdwin.de-releases</name>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>invesdwin.de-snapshots</name>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>invesdwin-oss</id>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss-remote</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>invesdwin-oss</id>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss-remote</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
