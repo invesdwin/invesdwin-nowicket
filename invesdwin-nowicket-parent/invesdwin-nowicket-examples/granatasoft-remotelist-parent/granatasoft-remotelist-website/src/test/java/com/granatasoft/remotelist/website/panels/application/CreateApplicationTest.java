@@ -26,7 +26,7 @@ public class CreateApplicationTest extends ATest {
     public void assertThatApplicationIsCreated() throws IOException {
         final CreateApplication createApplication = new CreateApplication();
         createApplication.setName("Test Application");
-        createApplication.logoUpload(new File("secure/main/java/com/granatasoft/remotelist/website/pages/logo.png"));
+        createApplication.logoUpload(new File("src/main/java/com/granatasoft/remotelist/website/pages/logo.png"));
         Assertions.assertThat(BeanValidator.getInstance().validate(createApplication)).isNull();
         Assertions.assertThat(applicationDao.count()).isEqualTo(0);
         createApplication.create();
