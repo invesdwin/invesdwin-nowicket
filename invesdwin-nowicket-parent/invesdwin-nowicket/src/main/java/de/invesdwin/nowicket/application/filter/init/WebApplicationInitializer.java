@@ -11,7 +11,6 @@ import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.handler.render.PageRenderer;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.crypt.CachingSunJceCryptFactory;
-import org.apache.wicket.util.lang.Bytes;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
 
@@ -84,7 +83,7 @@ public class WebApplicationInitializer {
     }
 
     protected void registerStoreSettings() {
-        webApplication.getStoreSettings().setMaxSizePerSession(Bytes.megabytes(100));
+        webApplication.getStoreSettings().setMaxSizePerSession(org.apache.wicket.util.lang.Bytes.megabytes(100));
     }
 
     protected void registerBeanValidation() {
