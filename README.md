@@ -24,5 +24,5 @@ See our documentation website here: **http://invesdwin.de/nowicket/**
 
 ## Support
 
-If you need further assistance or have some ideas for improvements and don't want to create an issue here on github, feel free to ask a question in our [invesdwin-platform](https://groups.google.com/forum/#!forum/invesdwin-platform) mailing list.
+If you need further assistance or have some ideas for improvements and don't want to create an issue here on github, feel free to start a discussion in our [invesdwin-platform](https://groups.google.com/forum/#!forum/invesdwin-platform) mailing list.
 
