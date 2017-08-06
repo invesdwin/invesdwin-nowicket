@@ -28,7 +28,8 @@ public class ModelDateTextField extends DateTextField {
     public static DateTextFieldConfig newDateTextFieldConfig(final DateInputHtmlElement element) {
         return new DateTextFieldConfig().withFormat(element.getFormat(AWebSession.get().getLocale()).toPattern())
                 .highlightToday(true)
-                .autoClose(false)
+                //we need autoclose enabled or else we gets detached from the text field on eager value change
+                .autoClose(true)
                 .allowKeyboardNavigation(false)
                 .showTodayButton(TodayButton.LINKED)
                 .withWeekStart(Day.Monday)
