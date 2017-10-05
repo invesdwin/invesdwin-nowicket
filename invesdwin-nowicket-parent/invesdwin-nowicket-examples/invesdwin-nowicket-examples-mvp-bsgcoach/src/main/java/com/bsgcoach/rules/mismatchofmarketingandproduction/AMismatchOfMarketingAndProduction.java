@@ -30,14 +30,11 @@ public abstract class AMismatchOfMarketingAndProduction implements IRule {
         return null;
     }
 
-    protected abstract Significance internalGetSignificance(final Reports reports);
+    protected abstract Significance internalGetSignificance(Reports reports);
 
     private boolean hasOptLetterOnline(final Reports reports) {
-        return reports.getCor()
-                .getPlantOperations(getCompanyRegion())
-                .getUpgradeOptions()
-                .getOnline()
-                .hasOptLetter(getOptLetter());
+        return reports.getCor().getPlantOperations(getCompanyRegion()).getUpgradeOptions().getOnline().hasOptLetter(
+                getOptLetter());
     }
 
     private Decimal getCapacity(final Reports reports) {

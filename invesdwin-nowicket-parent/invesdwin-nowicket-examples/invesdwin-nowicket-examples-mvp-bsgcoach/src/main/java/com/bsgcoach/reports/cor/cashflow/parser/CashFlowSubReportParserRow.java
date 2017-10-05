@@ -265,6 +265,6 @@ public enum CashFlowSubReportParserRow {
         return null;
     }
 
-    public abstract void parse(final CashFlow report, final Decimal value);
+    public abstract void parse(CashFlow report, Decimal value);
 
 }

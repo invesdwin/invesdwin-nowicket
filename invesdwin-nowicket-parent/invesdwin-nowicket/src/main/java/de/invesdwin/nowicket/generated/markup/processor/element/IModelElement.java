@@ -2,9 +2,9 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 
 import java.util.List;
 
+import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
-import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 
 public interface IModelElement<E extends IBeanPathElement> {
 
@@ -16,8 +16,8 @@ public interface IModelElement<E extends IBeanPathElement> {
 
     String getStaticTitle();
 
-    boolean accept(final List<IModelVisitor> visitors);
+    boolean accept(List<IModelVisitor> visitors);
 
-    boolean accept(final IModelVisitor... visitors);
+    boolean accept(IModelVisitor... visitors);
 
 }

@@ -269,6 +269,6 @@ public enum InternetMarketingExpensesSubReportParserRow {
         return null;
     }
 
-    public abstract void parse(final InternetMarketingExpenses report, final Decimal value);
+    public abstract void parse(InternetMarketingExpenses report, Decimal value);
 
 }

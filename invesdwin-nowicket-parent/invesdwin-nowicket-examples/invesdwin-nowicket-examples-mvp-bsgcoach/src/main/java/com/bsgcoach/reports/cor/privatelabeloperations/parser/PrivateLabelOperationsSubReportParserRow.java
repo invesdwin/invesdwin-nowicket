@@ -378,6 +378,6 @@ public enum PrivateLabelOperationsSubReportParserRow {
         return null;
     }
 
-    public abstract void parse(final PrivateLabelOperations report, final Decimal value);
+    public abstract void parse(PrivateLabelOperations report, Decimal value);
 
 }

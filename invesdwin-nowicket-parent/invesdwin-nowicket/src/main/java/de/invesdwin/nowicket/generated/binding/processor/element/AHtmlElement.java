@@ -77,7 +77,7 @@ public abstract class AHtmlElement<E extends IModelElement<?>, M> implements IHt
      */
     protected void onFirstAccept() {}
 
-    protected abstract void innerAccept(final IHtmlVisitor visitor);
+    protected abstract void innerAccept(IHtmlVisitor visitor);
 
     @Override
     public final String toString() {

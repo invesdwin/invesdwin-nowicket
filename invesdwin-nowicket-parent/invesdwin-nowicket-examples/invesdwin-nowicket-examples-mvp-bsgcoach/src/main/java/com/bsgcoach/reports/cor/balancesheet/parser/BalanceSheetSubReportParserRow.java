@@ -233,6 +233,6 @@ public enum BalanceSheetSubReportParserRow {
         return null;
     }
 
-    public abstract void parse(final BalanceSheet report, final Decimal value);
+    public abstract void parse(BalanceSheet report, Decimal value);
 
 }

@@ -699,6 +699,6 @@ public enum BrandedWarehouseProductionsSubReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, trimmedTitle);
     }
 
-    public abstract void parse(final BrandedWarehouseProductions report, final Decimal value);
+    public abstract void parse(BrandedWarehouseProductions report, Decimal value);
 
 }

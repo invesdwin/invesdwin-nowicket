@@ -131,6 +131,6 @@ public interface IBindingBuilder {
     /**
      * @return true tells that no other configure calls should still be made, thus configuration is finished
      */
-    boolean configure(final IHtmlElement<?, ?> e, Component c);
+    boolean configure(IHtmlElement<?, ?> e, Component c);
 
 }

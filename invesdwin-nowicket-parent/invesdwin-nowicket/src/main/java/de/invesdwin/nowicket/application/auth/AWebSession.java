@@ -70,7 +70,7 @@ public abstract class AWebSession extends org.apache.wicket.authroles.authentica
      *            The password
      * @return True if the user was authenticated successfully
      */
-    protected abstract boolean authenticate(final String username, final String password);
+    protected abstract boolean authenticate(String username, String password);
 
     /**
      * Sign the user out.

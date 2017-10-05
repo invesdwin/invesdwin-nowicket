@@ -234,6 +234,6 @@ public enum PrivateLabelBidsSubReportParserRow {
         return null;
     }
 
-    public abstract void parse(final CompanyOperatingReports report, final Decimal value);
+    public abstract void parse(CompanyOperatingReports report, Decimal value);
 
 }

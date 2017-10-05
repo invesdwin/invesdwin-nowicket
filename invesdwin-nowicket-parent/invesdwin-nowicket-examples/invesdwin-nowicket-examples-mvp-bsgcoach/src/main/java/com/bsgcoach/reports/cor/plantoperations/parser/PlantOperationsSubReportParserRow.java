@@ -510,6 +510,6 @@ public enum PlantOperationsSubReportParserRow {
         return null;
     }
 
-    public abstract void parse(final PlantOperations report, final Decimal value);
+    public abstract void parse(PlantOperations report, Decimal value);
 
 }

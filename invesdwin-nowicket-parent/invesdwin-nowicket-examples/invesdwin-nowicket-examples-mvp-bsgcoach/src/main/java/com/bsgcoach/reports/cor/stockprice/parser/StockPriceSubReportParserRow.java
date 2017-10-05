@@ -74,6 +74,6 @@ public enum StockPriceSubReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, trimmedTitle);
     }
 
-    public abstract void parse(final StockPrice report, final Decimal value);
+    public abstract void parse(StockPrice report, Decimal value);
 
 }

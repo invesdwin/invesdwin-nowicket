@@ -226,7 +226,7 @@ public enum FootwearIndustryReportParserRow {
         this.title = title;
     }
 
-    public abstract void parse(final FootwearIndustryReport report, final Decimal value);
+    public abstract void parse(FootwearIndustryReport report, Decimal value);
 
     @Override
     public String toString() {

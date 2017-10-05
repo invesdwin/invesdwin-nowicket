@@ -187,6 +187,6 @@ public enum AdminExpensesSubReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, trimmedTitle);
     }
 
-    public abstract void parse(final AdminExpenses report, final Decimal value);
+    public abstract void parse(AdminExpenses report, Decimal value);
 
 }

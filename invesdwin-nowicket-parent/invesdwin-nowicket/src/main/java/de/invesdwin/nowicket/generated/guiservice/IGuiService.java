@@ -9,11 +9,11 @@ import de.invesdwin.nowicket.generated.guiservice.internal.tasks.IGuiTasksServic
 
 public interface IGuiService extends IGuiTasksService {
 
-    void showModalPanel(final Object modelObject);
+    void showModalPanel(Object modelObject);
 
-    void showStatusMessage(final String message);
+    void showStatusMessage(String message);
 
-    void showStatusMessage(final String title, final String message);
+    void showStatusMessage(String title, String message);
 
     void processRequestFinally(Component component);
 

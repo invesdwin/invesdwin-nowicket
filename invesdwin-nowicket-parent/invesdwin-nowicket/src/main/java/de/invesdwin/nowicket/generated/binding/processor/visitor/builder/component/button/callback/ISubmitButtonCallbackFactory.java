@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 import org.apache.wicket.model.IModel;
 
-import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.norva.beanpath.spi.element.simple.invoker.IBeanPathActionInvoker;
+import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 
 public interface ISubmitButtonCallbackFactory extends Serializable {
 
-    ISubmitButtonCallback createSubmitButtonCallback(final IHtmlElement<?, ?> element,
-            final IModel<Object> targetObjectModel, final IBeanPathActionInvoker invoker);
+    ISubmitButtonCallback createSubmitButtonCallback(IHtmlElement<?, ?> element, IModel<Object> targetObjectModel,
+            IBeanPathActionInvoker invoker);
 
 }

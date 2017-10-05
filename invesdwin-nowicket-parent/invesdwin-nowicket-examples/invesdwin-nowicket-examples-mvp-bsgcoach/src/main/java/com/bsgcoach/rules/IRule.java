@@ -6,7 +6,7 @@ import com.bsgcoach.resources.significance.Significance;
 
 public interface IRule {
 
-    String getFeedbackText(final Reports reports);
+    String getFeedbackText(Reports reports);
 
     CorrespondingTheories getCorrespondingTheories();
 

@@ -26,5 +26,5 @@ public enum Protocol {
         }
     };
 
-    public abstract IRemoteConfig getConfig(final Server server);
+    public abstract IRemoteConfig getConfig(Server server);
 }

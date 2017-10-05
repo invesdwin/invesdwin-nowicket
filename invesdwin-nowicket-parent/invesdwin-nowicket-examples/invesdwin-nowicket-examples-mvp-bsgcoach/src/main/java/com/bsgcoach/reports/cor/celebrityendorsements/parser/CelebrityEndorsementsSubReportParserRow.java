@@ -494,6 +494,6 @@ public enum CelebrityEndorsementsSubReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, trimmedTitle);
     }
 
-    public abstract void parse(final CelebrityEndorsements report, final Decimal value);
+    public abstract void parse(CelebrityEndorsements report, Decimal value);
 
 }

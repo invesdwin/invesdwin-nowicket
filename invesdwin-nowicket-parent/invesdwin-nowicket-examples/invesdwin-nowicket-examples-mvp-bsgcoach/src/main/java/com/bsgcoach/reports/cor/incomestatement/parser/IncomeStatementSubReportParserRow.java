@@ -525,6 +525,6 @@ public enum IncomeStatementSubReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, trimmedTitle);
     }
 
-    public abstract void parse(final IncomeStatement report, final Decimal value);
+    public abstract void parse(IncomeStatement report, Decimal value);
 
 }

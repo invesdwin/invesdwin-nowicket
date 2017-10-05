@@ -159,6 +159,6 @@ public enum InternetAndWhsleMarketPerformanceSubReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, trimmedTitle);
     }
 
-    public abstract void parse(final WhsleMarketPerformance report, final Decimal value);
+    public abstract void parse(WhsleMarketPerformance report, Decimal value);
 
 }

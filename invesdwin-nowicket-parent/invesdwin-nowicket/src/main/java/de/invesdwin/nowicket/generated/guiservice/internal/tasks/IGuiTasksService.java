@@ -26,6 +26,6 @@ public interface IGuiTasksService {
      */
     void hideModalPanel();
 
-    void offerDownload(final OfferDownloadConfig config);
+    void offerDownload(OfferDownloadConfig config);
 
 }

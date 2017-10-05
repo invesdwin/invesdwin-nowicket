@@ -205,6 +205,6 @@ public enum CompetitiveIntelligenceReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, title);
     }
 
-    public abstract void parse(final CompetitiveIntelligenceReport report, final Decimal value);
+    public abstract void parse(CompetitiveIntelligenceReport report, Decimal value);
 
 }

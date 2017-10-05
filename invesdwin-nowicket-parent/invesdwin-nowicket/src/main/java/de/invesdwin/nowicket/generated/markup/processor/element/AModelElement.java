@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
-import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe
@@ -67,7 +67,7 @@ public abstract class AModelElement<E extends IBeanPathElement> implements IMode
         return accept(Arrays.asList(visitors));
     }
 
-    protected abstract void innerAccept(final IModelVisitor visitor);
+    protected abstract void innerAccept(IModelVisitor visitor);
 
     @Override
     public final String toString() {

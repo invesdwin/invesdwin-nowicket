@@ -39,6 +39,6 @@ public enum ReturnOnAverageEquitySubReportParserRow {
         throw UnknownArgumentException.newInstance(String.class, trimmedTitle);
     }
 
-    public abstract void parse(final BalanceSheet report, final Decimal value);
+    public abstract void parse(BalanceSheet report, Decimal value);
 
 }

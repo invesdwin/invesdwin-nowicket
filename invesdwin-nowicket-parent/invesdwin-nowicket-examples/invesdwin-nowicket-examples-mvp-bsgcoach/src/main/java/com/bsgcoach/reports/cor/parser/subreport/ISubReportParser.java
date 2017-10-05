@@ -6,6 +6,6 @@ import com.bsgcoach.reports.cor.CompanyOperatingReports;
 
 public interface ISubReportParser {
 
-    void parse(final FieldSet fieldSet, final CompanyOperatingReports reports);
+    void parse(FieldSet fieldSet, CompanyOperatingReports reports);
 
 }
