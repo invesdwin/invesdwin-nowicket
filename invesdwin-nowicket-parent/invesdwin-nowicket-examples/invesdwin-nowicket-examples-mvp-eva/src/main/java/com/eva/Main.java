@@ -7,9 +7,9 @@ import javax.servlet.DispatcherType;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ErrorPage;
+import org.springframework.boot.web.server.ErrorPage;
+import org.springframework.boot.web.server.ErrorPageRegistrar;
+import org.springframework.boot.web.server.ErrorPageRegistry;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -42,8 +42,8 @@ public class Main {
     }
 
     @Bean
-    public FilterRegistrationBean filterInitializer() {
-        final FilterRegistrationBean noWicketFilter = new FilterRegistrationBean();
+    public FilterRegistrationBean<ExampleWicketFilter> filterInitializer() {
+        final FilterRegistrationBean<ExampleWicketFilter> noWicketFilter = new FilterRegistrationBean<ExampleWicketFilter>();
         noWicketFilter.setFilter(new ExampleWicketFilter());
         noWicketFilter.addInitParameter("applicationClassName", ExampleWebApplication.class.getName());
         noWicketFilter.addInitParameter("filterMappingUrlPattern", "/*");
@@ -67,18 +67,19 @@ public class Main {
     }
 
     @Bean
-    public EmbeddedServletContainerCustomizer filterCustomizer() {
-        return new EmbeddedServletContainerCustomizer() {
+    public ErrorPageRegistrar filterCustomizer() {
+        return new ErrorPageRegistrar() {
 
             @Override
-            public void customize(final ConfigurableEmbeddedServletContainer container) {
+            public void registerErrorPages(final ErrorPageRegistry registry) {
                 // Definition of custom error pages.
-                container.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, DefaultAccessDeniedPage.MOUNT_PATH));
-                container.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, DefaultAccessDeniedPage.MOUNT_PATH));
-                container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, DefaultPageNotFoundPage.MOUNT_PATH));
-                container.addErrorPages(new ErrorPage(HttpStatus.GONE, DefaultPageExpiredPage.MOUNT_PATH));
-                container.addErrorPages(new ErrorPage(DefaultInternalErrorPage.MOUNT_PATH));
+                registry.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, DefaultAccessDeniedPage.MOUNT_PATH));
+                registry.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, DefaultAccessDeniedPage.MOUNT_PATH));
+                registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, DefaultPageNotFoundPage.MOUNT_PATH));
+                registry.addErrorPages(new ErrorPage(HttpStatus.GONE, DefaultPageExpiredPage.MOUNT_PATH));
+                registry.addErrorPages(new ErrorPage(DefaultInternalErrorPage.MOUNT_PATH));
             }
+
         };
 
     }

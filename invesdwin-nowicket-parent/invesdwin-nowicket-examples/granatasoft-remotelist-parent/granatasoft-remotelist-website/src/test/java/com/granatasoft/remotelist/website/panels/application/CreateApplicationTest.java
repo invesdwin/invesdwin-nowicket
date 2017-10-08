@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.granatasoft.remotelist.persistence.Application;
 import com.granatasoft.remotelist.persistence.ApplicationDao;

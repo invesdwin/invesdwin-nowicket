@@ -10,10 +10,6 @@
 	<artifactId>invesdwin-nowicket-security-shiro</artifactId>
 	<packaging>jar</packaging>
 
-	<properties>
-		<version.shiro>1.2.4</version.shiro>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>de.invesdwin</groupId>
@@ -22,7 +18,10 @@
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-web</artifactId>
-			<version>${version.shiro}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
 		</dependency>
 	</dependencies>
 

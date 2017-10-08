@@ -43,7 +43,7 @@ public final class PageFactory implements Serializable {
      * 
      * need to use map here instead of LoadingCacheMap since we need a serializable instance
      */
-    @GuardedBy("self on each level")
+    @GuardedBy("modelClass_modelObjectHashCode_pageReferences" /* self on each level */)
     private final Map<Class<?>, Map<Integer, List<PageReferenceAndModel>>> modelClass_modelObjectHashCode_pageReferences = new LinkedHashMap<Class<?>, Map<Integer, List<PageReferenceAndModel>>>();
 
     private PageFactory() {}

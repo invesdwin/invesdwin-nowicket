@@ -15,7 +15,7 @@ public class ExampleSpringApplicationRunListener implements SpringApplicationRun
     public ExampleSpringApplicationRunListener(final SpringApplication application, final String[] args) {}
 
     @Override
-    public void started() {}
+    public void starting() {}
 
     @Override
     public void environmentPrepared(final ConfigurableEnvironment environment) {}

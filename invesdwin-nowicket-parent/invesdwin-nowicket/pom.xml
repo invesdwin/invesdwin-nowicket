@@ -21,7 +21,7 @@
 		<version.wicked-charts>1.5.0</version.wicked-charts>
 	</properties>
 
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>de.invesdwin</groupId>
@@ -29,8 +29,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
 			<scope>test</scope>
 		</dependency>
 

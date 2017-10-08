@@ -2,10 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>de.invesdwin</groupId>
+	<parent>
+		<groupId>de.invesdwin</groupId>
+		<artifactId>invesdwin-bom</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
 	<artifactId>invesdwin-nowicket-examples-war</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
@@ -13,27 +16,13 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<version.compiler>1.7</version.compiler>
 
-		<version.maven-compiler-plugin>3.1</version.maven-compiler-plugin>
-		<version.maven-source-plugin>2.2.1</version.maven-source-plugin>
-		<version.maven-processor-plugin>2.2.4</version.maven-processor-plugin>
+		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+		<version.maven-processor-plugin>3.3.2</version.maven-processor-plugin>
 
-		<version.invesdwin-bom>1.0.0-SNAPSHOT</version.invesdwin-bom>
 		<version.invesdwin-maven-plugin>1.0.0-SNAPSHOT</version.invesdwin-maven-plugin>
 	</properties>
 
 	<!-- run this sample with "mvn tomcat7:run" and access the website at http://localhost:8080 -->
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>de.invesdwin</groupId>
-				<artifactId>invesdwin-bom</artifactId>
-				<version>${version.invesdwin-bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
@@ -50,20 +39,6 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${version.maven-compiler-plugin}</version>
-				<configuration>
-					<source>${version.compiler}</source>
-					<target>${version.compiler}</target>
-					<complianceLevel>${version.compiler}</complianceLevel>
-					<encoding>${file.encoding}</encoding>
-					<compilerArgument>-proc:none</compilerArgument>
-					<Xlint>ignore</Xlint>
-					<verbose>false</verbose>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
