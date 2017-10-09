@@ -2,7 +2,7 @@ package com.bsgcoach.reports.cor.parser;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import com.bsgcoach.reports.cor.CompanyOperatingReports;
