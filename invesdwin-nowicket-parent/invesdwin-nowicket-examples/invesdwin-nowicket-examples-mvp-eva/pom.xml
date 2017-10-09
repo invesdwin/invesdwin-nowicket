@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
 		<spring.version>5.0.0.RELEASE</spring.version>
-		<aspectj.version>1.9.0.BETA-6</aspectj.version>
+		<aspectj.version>1.8.11</aspectj.version>
 		<junit-jupiter.version>5.0.1</junit-jupiter.version>
 		<junit-platform.version>1.0.1</junit-platform.version>
 
