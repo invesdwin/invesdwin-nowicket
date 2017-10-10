@@ -2,7 +2,7 @@ package com.bsgcoach.reports.morefields;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import com.bsgcoach.reports.cir.parser.CompetitiveIntelligenceReportParser;

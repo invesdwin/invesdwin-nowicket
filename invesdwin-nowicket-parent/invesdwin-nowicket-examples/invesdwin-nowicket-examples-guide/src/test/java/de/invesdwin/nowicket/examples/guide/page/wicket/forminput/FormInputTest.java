@@ -2,7 +2,7 @@ package de.invesdwin.nowicket.examples.guide.page.wicket.forminput;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
 import de.invesdwin.nowicket.examples.guide.AExampleTest;
