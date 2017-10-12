@@ -114,8 +114,8 @@
 			<version>${version.jquery}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty.orbit</groupId>
-			<artifactId>javax.servlet</artifactId>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.yahoo.platform.yui</groupId>
