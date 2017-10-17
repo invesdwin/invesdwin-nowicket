@@ -2,10 +2,10 @@ package com.granatasoft.remotelist.internal;
 
 import javax.annotation.concurrent.Immutable;
 
-import de.invesdwin.context.IBasePackageDefinition;
+import de.invesdwin.context.beans.hook.IBasePackageDefinitionHook;
 
 @Immutable
-public class GranatasoftBasePackageDefinition implements IBasePackageDefinition {
+public class GranatasoftBasePackageDefinitionHook implements IBasePackageDefinitionHook {
 
     @Override
     public String getBasePackage() {
