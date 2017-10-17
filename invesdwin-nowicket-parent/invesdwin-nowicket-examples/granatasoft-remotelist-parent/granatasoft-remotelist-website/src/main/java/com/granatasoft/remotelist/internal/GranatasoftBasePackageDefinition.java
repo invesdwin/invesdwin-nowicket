@@ -1,12 +1,10 @@
-package de.invesdwin;
+package com.granatasoft.remotelist.internal;
 
 import javax.annotation.concurrent.Immutable;
-import javax.inject.Named;
 
-import de.invesdwin.context.beans.init.locations.IBasePackageDefinition;
+import de.invesdwin.context.IBasePackageDefinition;
 
 @Immutable
-@Named
 public class GranatasoftBasePackageDefinition implements IBasePackageDefinition {
 
     @Override
