@@ -6,7 +6,9 @@ import javax.annotation.concurrent.Immutable;
 import javax.servlet.DispatcherType;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;
 import org.springframework.boot.web.server.ErrorPageRegistry;
@@ -29,6 +31,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 @ImportResource(locations = { "classpath:/META-INF/ctx.spring.weaving.xml",
         "classpath:/META-INF/ctx.example.security.xml" })
 @Immutable
+@EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
 public class Main {
 
     static {
