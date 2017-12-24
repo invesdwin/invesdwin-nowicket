@@ -32,7 +32,12 @@ public class ModelDataTable extends DataTable<Object, String> {
     }
 
     public ModelDataTable(final String wicketId, final TableHtmlElement element, final long rowsPerPage) {
-        super(wicketId, element.createWicketColumns(), new ModelSortableDataProvider(element), rowsPerPage);
+        this(wicketId, element, new ModelSortableDataProvider(element), rowsPerPage);
+    }
+
+    public ModelDataTable(final String wicketId, final TableHtmlElement element,
+            final ISortableDataProvider<Object, String> sortableDataProvider, final long rowsPerPage) {
+        super(wicketId, element.createWicketColumns(), sortableDataProvider, rowsPerPage);
         this.element = element;
         setOutputMarkupId(true);
         final AbstractToolbar headersToolbar = newHeadersToolbar();
