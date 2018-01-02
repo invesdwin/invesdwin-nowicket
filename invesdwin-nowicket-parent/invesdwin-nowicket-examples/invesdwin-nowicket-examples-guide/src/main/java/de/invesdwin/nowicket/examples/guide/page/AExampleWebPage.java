@@ -236,6 +236,9 @@ public abstract class AExampleWebPage extends AWebPage {
                         subMenu.add(new MenuBookmarkablePageLink<Void>(FileUploadPage.class,
                                 new ResourceModel("menu.fileupload").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.upload));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicEditorFieldsPage.class,
+                                new ResourceModel("menu.dynamiceditorfields").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.edit));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(GuestbookExamplePage.class,
                                 new ResourceModel("menu.guestbook").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.book));
@@ -245,9 +248,6 @@ public abstract class AExampleWebPage extends AWebPage {
                         subMenu.add(new MenuBookmarkablePageLink<Void>(SpringSecurePage.class,
                                 new ResourceModel("menu.springsecure").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.lock));
-                        subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicEditorFieldsPage.class,
-                                new ResourceModel("menu.dynamiceditorfields").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.edit));
 
                         if (Roles.isAuthenticated()) {
                             subMenu.add(new MenuBookmarkablePageLink<Void>(ABaseWebApplication.get().getSignOutPage(),
