@@ -61,6 +61,7 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxchoice.AjaxChoicePag
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxdatatable.AjaxDataTablePage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.authentication.secure.SpringSecurePage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.authentication.secure.WicketSecurePage;
+import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.DynamicEditorFieldsPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.fileupload.FileUploadPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.forminput.FormInputPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.guestbook.GuestbookExamplePage;
@@ -243,6 +244,9 @@ public abstract class AExampleWebPage extends AWebPage {
                                         .setIconType(GlyphIconType.lock));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(SpringSecurePage.class,
                                 new ResourceModel("menu.springsecure").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.lock));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicEditorFieldsPage.class,
+                                new ResourceModel("menu.dynamiceditorfields").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.lock));
 
                         if (Roles.isAuthenticated()) {

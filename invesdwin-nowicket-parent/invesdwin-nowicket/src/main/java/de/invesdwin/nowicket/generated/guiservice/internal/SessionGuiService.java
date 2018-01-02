@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -24,6 +25,7 @@ import org.apache.wicket.util.visit.IVisitor;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
@@ -99,9 +101,8 @@ public class SessionGuiService implements IGuiService, Serializable {
     }
 
     private void resetGuiTasks(final Throwable t) {
-        LOG.catching(new RuntimeException(
-                GuiTasks.class.getSimpleName()
-                        + ".process() threw an exception, resetting everything to keep the overall website working for the next request...",
+        LOG.catching(new RuntimeException(GuiTasks.class.getSimpleName()
+                + ".process() threw an exception, resetting everything to keep the overall website working for the next request...",
                 t));
         guiTasks = new GuiTasks();
     }
@@ -118,6 +119,14 @@ public class SessionGuiService implements IGuiService, Serializable {
                         if (object instanceof Form || object instanceof TabbedPanel
                                 || object instanceof ModalContainer) {
                             target.add(object);
+                        }
+                        if (!object.isVisible()) {
+                            final List<ModelComponentBehavior> modelComponentBehaviors = object
+                                    .getBehaviors(ModelComponentBehavior.class);
+                            for (final ModelComponentBehavior behavior : modelComponentBehaviors) {
+                                //update visibility manually since onConfigure() will be skipped
+                                behavior.onConfigure(object);
+                            }
                         }
                     }
                 });

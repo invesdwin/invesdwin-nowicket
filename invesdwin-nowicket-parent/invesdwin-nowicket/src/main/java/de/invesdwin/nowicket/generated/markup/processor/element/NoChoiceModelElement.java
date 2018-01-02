@@ -2,10 +2,10 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.norva.beanpath.spi.element.AChoiceBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.APropertyBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.NoChoiceBeanPathElement;
+import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 
 @NotThreadSafe
 public final class NoChoiceModelElement extends AChoiceModelElement<NoChoiceBeanPathElement> {
