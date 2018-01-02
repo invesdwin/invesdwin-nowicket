@@ -247,7 +247,7 @@ public abstract class AExampleWebPage extends AWebPage {
                                         .setIconType(GlyphIconType.lock));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicEditorFieldsPage.class,
                                 new ResourceModel("menu.dynamiceditorfields").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.lock));
+                                        .setIconType(GlyphIconType.edit));
 
                         if (Roles.isAuthenticated()) {
                             subMenu.add(new MenuBookmarkablePageLink<Void>(ABaseWebApplication.get().getSignOutPage(),
