@@ -43,7 +43,14 @@
 					this functionality. Validations generally occur when the form is
 					submitted (or when leaving the component when
 					<code>@Eager</code>
-					synchronization is used).
+					synchronization is used). The standard integration of wicket is
+					used for this feature. In comparison to the normal bean validation
+					it does not validate the whole model, but only specific fields that
+					are bound by the wicket components. This results in only visible
+					fields being validated (meaning hidden or invisible properties will
+					not get validated). To get the whole model validated you can still
+					invoke the normal bean validation manually (e.g. before inserting
+					into a database).
 				</p>
 
 				<h4>
