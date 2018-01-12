@@ -155,4 +155,10 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<scm>
+		<url>https://github.com/subes/invesdwin-nowicket</url>
+		<connection>scm:git:https://github.com/subes/invesdwin-nowicket.git</connection>
+		<tag>HEAD</tag>
+	</scm>
+
 </project>
