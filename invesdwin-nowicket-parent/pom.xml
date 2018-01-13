@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>de.invesdwin</groupId>
 		<artifactId>invesdwin-bom</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<artifactId>invesdwin-nowicket-parent</artifactId>
@@ -32,8 +32,8 @@
 
 		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
 		<version.maven-processor-plugin>3.3.2</version.maven-processor-plugin>
-		<version.invesdwin-maven-plugin>1.0.0-SNAPSHOT</version.invesdwin-maven-plugin>
-		<version.invesdwin-instrument>1.0.0-SNAPSHOT</version.invesdwin-instrument>
+		<version.invesdwin-maven-plugin>1.0.1-SNAPSHOT</version.invesdwin-maven-plugin>
+		<version.invesdwin-instrument>1.0.1-SNAPSHOT</version.invesdwin-instrument>
 		<version.invesdwin-aspects>1.0.0-SNAPSHOT</version.invesdwin-aspects>
 
 		<version.invesdwin-util>1.0.0-SNAPSHOT</version.invesdwin-util>
