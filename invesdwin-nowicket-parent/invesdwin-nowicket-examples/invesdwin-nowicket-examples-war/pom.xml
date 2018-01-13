@@ -10,10 +10,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<version.compiler>1.7</version.compiler>
+		<version.compiler>1.8</version.compiler>
 
 		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
 		<version.maven-processor-plugin>3.3.2</version.maven-processor-plugin>
+		<version.maven-compiler-plugin>3.7.0</version.maven-compiler-plugin>
 
 		<version.invesdwin-maven-plugin>1.0.0-SNAPSHOT</version.invesdwin-maven-plugin>
 		<version.invesdwin-bom>1.0.0-SNAPSHOT</version.invesdwin-bom>
@@ -104,6 +105,20 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.maven-compiler-plugin}</version>
+				<configuration>
+					<source>${version.compiler}</source>
+					<target>${version.compiler}</target>
+					<complianceLevel>${version.compiler}</complianceLevel>
+					<encoding>${file.encoding}</encoding>
+					<compilerArgument>-proc:none</compilerArgument>
+					<Xlint>ignore</Xlint>
+					<verbose>false</verbose>
+				</configuration>
 			</plugin>
 		</plugins>
 		<resources>
