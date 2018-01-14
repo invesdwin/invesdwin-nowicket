@@ -10,6 +10,7 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.Dyna
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.IDynamicEditorField;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.DynamicEditorFieldImplementation;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
+import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.error.UnknownArgumentException;
 
@@ -113,6 +114,8 @@ public class SimpleDynamicEditorField implements IDynamicEditorField, Serializab
         return type;
     }
 
+    //disable validations for eager by using forced
+    @Forced
     @Eager
     public void setType(final DynamicEditorFieldType type) {
         this.type = type;
