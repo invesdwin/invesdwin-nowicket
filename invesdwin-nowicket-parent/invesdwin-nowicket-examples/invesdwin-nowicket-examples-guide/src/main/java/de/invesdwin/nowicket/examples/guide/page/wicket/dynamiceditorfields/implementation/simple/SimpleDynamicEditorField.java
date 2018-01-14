@@ -35,6 +35,13 @@ public class SimpleDynamicEditorField implements IDynamicEditorField, Serializab
         this.strValue = strValue;
     }
 
+    public String validateStrValue(final String newValue) {
+        if (!hideStrValue() && newValue == null) {
+            return "should not be null";
+        }
+        return null;
+    }
+
     public boolean hideStrValue() {
         return type != DynamicEditorFieldType.String;
     }
@@ -48,6 +55,13 @@ public class SimpleDynamicEditorField implements IDynamicEditorField, Serializab
         this.intValue = intValue;
     }
 
+    public String validateIntValue(final Integer newValue) {
+        if (!hideIntValue() && newValue == null) {
+            return "should not be null";
+        }
+        return null;
+    }
+
     public boolean hideIntValue() {
         return type != DynamicEditorFieldType.Integer;
     }
@@ -59,6 +73,17 @@ public class SimpleDynamicEditorField implements IDynamicEditorField, Serializab
 
     public void setBoolValue(final Boolean boolValue) {
         this.boolValue = boolValue;
+    }
+
+    public String validateBoolValue(final Boolean newValue) {
+        if (!hideBoolValue() && newValue == null) {
+            /*
+             * we directly set it false since on next request cycle we will anyway receive a false, thus skip the
+             * validation message
+             */
+            setBoolValue(false);
+        }
+        return null;
     }
 
     public boolean hideBoolValue() {

@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.inheritance;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import javax.validation.constraints.NotNull;
 
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.annotation.Title;
@@ -11,6 +12,7 @@ import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 @GeneratedMarkup
 public class IntegerInheritanceDynamicEditorField extends AInheritanceDynamicEditorField {
 
+    @NotNull
     private Integer intValue;
 
     @Title("Value")

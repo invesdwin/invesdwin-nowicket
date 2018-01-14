@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.DynamicEditorFieldImplementation;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.simple.SimpleDynamicEditorField;
+import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
@@ -43,6 +44,7 @@ public class DynamicEditorFields extends AValueObject {
         return editorFields;
     }
 
+    @Forced
     public void addField() {
         final IDynamicEditorField field;
         switch (chooseImplementation) {
@@ -58,10 +60,16 @@ public class DynamicEditorFields extends AValueObject {
         editorFields.add(field);
     }
 
+    @Forced
     public void resetFields() {
         editorFields.clear();
     }
 
+    public void summarizeUnforced() throws Exception {
+        summarize();
+    }
+
+    @Forced
     public void summarize() throws Exception {
         if (editorFields.isEmpty()) {
             throw new Exception("Please add some fields first");
