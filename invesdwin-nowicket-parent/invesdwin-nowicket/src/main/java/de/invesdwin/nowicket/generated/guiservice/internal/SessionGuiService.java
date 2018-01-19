@@ -31,6 +31,7 @@ import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.internal.tasks.GuiTasks;
 import de.invesdwin.nowicket.util.Components;
+import de.invesdwin.util.error.Throwables;
 
 @NotThreadSafe
 public class SessionGuiService implements IGuiService, Serializable {
@@ -131,8 +132,16 @@ public class SessionGuiService implements IGuiService, Serializable {
                     }
                 });
             } catch (final Throwable t) {
-                //Ignoring exception for frozen components
-                if (!t.getMessage().contains("longer be added")) {
+                if (t.getMessage().contains("longer be added")) {
+                    //CHECKSTYLE:OFF
+                    LOG.debug("Ignoring exception cause for frozen components: {}", new Object() {
+                        @Override
+                        public String toString() {
+                            return Throwables.getFullStackTrace(t);
+                        }
+                    });
+                    //CHECKSTYLE:ON
+                } else {
                     throw t;
                 }
             }
