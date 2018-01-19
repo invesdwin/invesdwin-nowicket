@@ -131,9 +131,8 @@ public class SessionGuiService implements IGuiService, Serializable {
                     }
                 });
             } catch (final Throwable t) {
-                if (t.getMessage().contains("longer be added")) {
-                    LOG.catching(new RuntimeException("Ignoring exception cause for frozen components", t));
-                } else {
+                //Ignoring exception for frozen components
+                if (!t.getMessage().contains("longer be added")) {
                     throw t;
                 }
             }
