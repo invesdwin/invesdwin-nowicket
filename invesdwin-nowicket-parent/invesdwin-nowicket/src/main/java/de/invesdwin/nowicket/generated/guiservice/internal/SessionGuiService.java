@@ -134,12 +134,12 @@ public class SessionGuiService implements IGuiService, Serializable {
             } catch (final Throwable t) {
                 if (t.getMessage().contains("longer be added")) {
                     //CHECKSTYLE:OFF
-                    LOG.debug("Ignoring exception cause for frozen components: {}", new Object() {
-                        @Override
-                        public String toString() {
-                            return Throwables.getFullStackTrace(t);
-                        }
-                    });
+                    if (LOG.isDebugEnabled()) {
+                        LOG.debug("Ignoring exception cause for frozen components: {}",
+                                Throwables.getFullStackTrace(t));
+                    } else if (LOG.isWarnEnabled()) {
+                        LOG.warn("Ignoring exception cause for frozen components: {}", Throwables.concatMessages(t));
+                    }
                     //CHECKSTYLE:ON
                 } else {
                     throw t;
