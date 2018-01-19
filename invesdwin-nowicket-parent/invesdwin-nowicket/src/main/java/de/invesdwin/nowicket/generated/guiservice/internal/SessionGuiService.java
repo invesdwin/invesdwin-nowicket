@@ -42,6 +42,9 @@ public class SessionGuiService implements IGuiService, Serializable {
     };
     private static final MetaDataKey<Boolean> KEY_INITIALIZATION_FINISHED_BEHAVIOR_ALREADY_CONFIGURED = new MetaDataKey<Boolean>() {
     };
+    //CHECKSTYLE:OFF
+    private static final String FROZEN_COMPONENTS_LOG_MESSAGE = "Ignoring exception cause for frozen components (maybe the update was requested too late in the request lifecycle): {}";
+    //CHECKSTYLE:ON
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(SessionGuiService.class);
 
@@ -133,14 +136,11 @@ public class SessionGuiService implements IGuiService, Serializable {
                 });
             } catch (final Throwable t) {
                 if (t.getMessage().contains("longer be added")) {
-                    //CHECKSTYLE:OFF
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("Ignoring exception cause for frozen components: {}",
-                                Throwables.getFullStackTrace(t));
+                        LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.getFullStackTrace(t));
                     } else if (LOG.isWarnEnabled()) {
-                        LOG.warn("Ignoring exception cause for frozen components: {}", Throwables.concatMessages(t));
+                        LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.concatMessages(t));
                     }
-                    //CHECKSTYLE:ON
                 } else {
                     throw t;
                 }
