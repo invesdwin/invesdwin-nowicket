@@ -12,7 +12,7 @@ import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 
 public interface IWebApplicationConfig {
 
-    ResourceReference DEFAULT_FAVICON = new PackageResourceReference("/favicon.ico");
+    ResourceReference DEFAULT_FAVICON = new PackageResourceReference(IWebApplicationConfig.class, "/favicon.ico");
 
     /**
      * The home page that is shown as the default page when no path is given; also this will be the page that is opened

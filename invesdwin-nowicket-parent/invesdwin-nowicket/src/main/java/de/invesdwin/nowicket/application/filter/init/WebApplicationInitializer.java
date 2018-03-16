@@ -192,6 +192,8 @@ public class WebApplicationInitializer {
         final String faviconUrl = "/favicon-" + new FDate().millisValue() + ".ico";
         webApplication.mountResource(faviconUrl, favicon);
         webApplication.getHeaderContributorListeners().add(new FaviconHeaderContributor(faviconUrl));
+        final String fallbackFaviconUrl = "/favicon.ico";
+        webApplication.mountResource(fallbackFaviconUrl, favicon);
     }
 
     protected void registerOnePassRenderForBots() {
