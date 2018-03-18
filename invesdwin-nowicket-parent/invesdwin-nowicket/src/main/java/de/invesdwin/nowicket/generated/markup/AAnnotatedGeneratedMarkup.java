@@ -73,15 +73,20 @@ public abstract class AAnnotatedGeneratedMarkup {
         }
         for (final Entry<File, Set<Class<?>>> entry : directory_modelClasses.entrySet()) {
             final File directory = entry.getKey();
-            final Set<Class<?>> modelClasses = entry.getValue();
+            Set<Class<?>> modelClasses = entry.getValue();
             if (assertBaseClass != null) {
                 for (final Class<?> modelClass : modelClasses) {
                     Assertions.assertThat(assertBaseClass).isAssignableFrom(modelClass);
                 }
             }
+            modelClasses = filterModelClasses(modelClasses);
             final File destination = redirectDestination(directory);
             new SpecifiedGeneratedMarkup(destination, modelClasses).generate();
         }
+    }
+
+    protected Set<Class<?>> filterModelClasses(final Set<Class<?>> modelClasses) {
+        return modelClasses;
     }
 
     protected abstract Set<String> getClasspathBasePackages();
