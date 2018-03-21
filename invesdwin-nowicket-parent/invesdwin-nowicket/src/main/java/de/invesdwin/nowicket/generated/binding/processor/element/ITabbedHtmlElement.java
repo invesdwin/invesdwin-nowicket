@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
@@ -12,6 +11,6 @@ public interface ITabbedHtmlElement<E extends IModelElement<?>, M> extends IHtml
 
     List<ITab> createWicketTabs();
 
-    IModel<? extends Collection<? extends ITab>> getTabModel();
+    IModel<? extends List<? extends ITab>> getTabModel();
 
 }

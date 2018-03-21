@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -19,6 +18,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedModelElement;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.delegate.DelegateList;
 
 @NotThreadSafe
 public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
@@ -50,7 +50,8 @@ public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
             columns = new ArrayList<TabbedColumnHtmlElement>();
             for (final TabbedColumnModelElement column : getModelElement().getColumns()) {
                 final TabbedColumnHtmlElement columnElement = (TabbedColumnHtmlElement) getContext()
-                        .getElementRegistry().getElement(column.getWicketId());
+                        .getElementRegistry()
+                        .getElement(column.getWicketId());
                 columns.add(columnElement);
             }
         }
@@ -72,18 +73,24 @@ public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
 
     @Override
     public List<ITab> createWicketTabs() {
-        final List<ITab> tabs = new ArrayList<ITab>();
-        for (final TabbedColumnHtmlElement column : getColumns()) {
-            tabs.add(column.createWicketTab());
-        }
-        return tabs;
+        return new DelegateList<ITab>(null) {
+
+            @Override
+            public List<ITab> getDelegate() {
+                final List<ITab> tabs = new ArrayList<ITab>();
+                for (final TabbedColumnHtmlElement column : getColumns()) {
+                    tabs.add(column.createWicketTab());
+                }
+                return tabs;
+            }
+        };
     }
 
     @Override
-    public IModel<? extends Collection<? extends ITab>> getTabModel() {
-        return new AbstractReadOnlyModel<Collection<? extends ITab>>() {
+    public IModel<? extends List<? extends ITab>> getTabModel() {
+        return new AbstractReadOnlyModel<List<? extends ITab>>() {
             @Override
-            public Collection<? extends ITab> getObject() {
+            public List<? extends ITab> getObject() {
                 return createWicketTabs();
             }
         };

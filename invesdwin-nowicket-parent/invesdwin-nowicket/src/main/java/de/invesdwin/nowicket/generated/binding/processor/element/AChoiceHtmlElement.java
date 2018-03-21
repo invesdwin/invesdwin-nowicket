@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.MissingResourceException;
@@ -26,6 +25,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
+import de.invesdwin.util.collections.delegate.DelegateList;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -166,7 +166,8 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                             //lookup string value in resources, thus objects toString() might define some other property
                             return new StringResourceModel(displayValueString, getContext().getMarkupContainer(),
                                     getContext().getMarkupContainer().getDefaultModel())
-                                            .setDefaultValue(displayValueString).getObject();
+                                            .setDefaultValue(displayValueString)
+                                            .getObject();
                         } catch (final MissingResourceException e) {
                             return displayValueString;
                         }
@@ -190,27 +191,35 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
 
     @Override
     public List<ITab> createWicketTabs() {
-        final List<ITab> tabs = new ArrayList<ITab>();
-        for (final Object row : getChoiceModel().getObject()) {
-            final IModel<Object> targetObjectModel = new AbstractReadOnlyModel<Object>() {
-                @Override
-                public Object getObject() {
-                    return row;
+        return new DelegateList<ITab>(null) {
+            @Override
+            public List<ITab> getDelegate() {
+                final List<ITab> tabs = new ArrayList<ITab>();
+                for (final Object row : getChoiceModel().getObject()) {
+                    final IModel<Object> targetObjectModel = new AbstractReadOnlyModel<Object>() {
+                        @Override
+                        public Object getObject() {
+                            return row;
+                        }
+                    };
+                    final IModel<String> tabTitleModel = new ChoiceTabTitleModel(AChoiceHtmlElement.this,
+                            targetObjectModel);
+                    //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
+                    final ITab tab = new ModelTab(AChoiceHtmlElement.this, tabTitleModel, targetObjectModel,
+                            targetObjectModel);
+                    tabs.add(tab);
                 }
-            };
-            final IModel<String> tabTitleModel = new ChoiceTabTitleModel(this, targetObjectModel);
-            //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
-            final ITab tab = new ModelTab(this, tabTitleModel, targetObjectModel, targetObjectModel);
-            tabs.add(tab);
-        }
-        return tabs;
+                return tabs;
+            }
+        };
+
     }
 
     @Override
-    public IModel<? extends Collection<? extends ITab>> getTabModel() {
-        return new AbstractReadOnlyModel<Collection<? extends ITab>>() {
+    public IModel<? extends List<? extends ITab>> getTabModel() {
+        return new AbstractReadOnlyModel<List<? extends ITab>>() {
             @Override
-            public Collection<? extends ITab> getObject() {
+            public List<? extends ITab> getObject() {
                 return createWicketTabs();
             }
         };
