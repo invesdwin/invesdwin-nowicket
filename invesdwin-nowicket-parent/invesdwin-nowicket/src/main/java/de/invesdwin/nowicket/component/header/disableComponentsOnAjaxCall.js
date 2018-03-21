@@ -23,16 +23,28 @@ function disableComponentsOnAjaxCall() {
 		Wicket.Event.subscribe('/ajax/call/after', function(attributes,
 				jqXHR, settings) {
 			window.ajaxCallRunning = true;
-			setTimeout(function(){ 
-				window.disableComponentsOnAjaxCall_activeElement = OptimalSelect.select(document.activeElement); 
-				// do not disable file inputs, or their upload will fail!
-				$(':input:not(:disabled)').each(function(){
-					var tag = $(this);
-					tag.attr('data-disableComponentsOnAjaxCall', 'true')
-					tag.prop('disabled', true);
-				});
-			}, 1); //process after the focus might have traversed
+			// only disable components when we have an ajax indicator activated for this event
+			if (jqXHR.i) {
+				setTimeout(function(){ 
+					window.disableComponentsOnAjaxCall_activeElement = OptimalSelect.select(document.activeElement); 
+					// do not disable file inputs, or their upload will fail!
+					$(':input:not(:disabled)').each(function(){
+						var tag = $(this);
+						tag.attr('data-disableComponentsOnAjaxCall', 'true')
+						tag.prop('disabled', true);
+					});
+				}, 1); //process after the focus might have traversed
+			}
 		});
+		//execute undisable when ajax call is finished
+		Wicket.Event.subscribe('/ajax/call/done', function(attributes,
+				jqXHR, settings) {
+			// only undisable components when we had an ajax indicator activated for this event
+			if (jqXHR.i) {
+				undisableComponentsAfterAjaxCall();
+			}
+		});
+		
 		//see https://github.com/hubspot/offline
 		Offline.on("up", function(e) {
 			location.reload();
