@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -93,11 +92,19 @@ public class SessionGuiService implements IGuiService, Serializable {
 
     @Override
     public void processRequestFinally(final Component component) {
-        if (isDisableUpdateAllComponentsForCurrentRequest()) {
-            final Collection<? extends Component> updatedComponents = processRequestFinally(component, false);
-            Components.updateComponents(updatedComponents);
-        } else {
-            processRequestFinally(component, true);
+        try {
+            final Collection<? extends Component> updatedComponents = guiTasks.process(component);
+            if (isDisableUpdateAllComponentsForCurrentRequest()) {
+                Components.updateComponents(updatedComponents);
+            } else {
+                Components.updateAllComponents(component);
+            }
+        } catch (final ReplaceHandlerException e) {
+            resetGuiTasks(e);
+            //rethrow so that redirect can happen
+            throw e;
+        } catch (final Throwable t) {
+            resetGuiTasks(t);
         }
     }
 
@@ -110,26 +117,6 @@ public class SessionGuiService implements IGuiService, Serializable {
             return BooleanUtils.isTrue(disableUpdateAllComponentsForCurrentRequest);
         } else {
             return false;
-        }
-    }
-
-    private Collection<? extends Component> processRequestFinally(final Component component,
-            final boolean updateAllComponents) {
-        try {
-            final Collection<? extends Component> updatedComponents = guiTasks.process(component);
-            if (updateAllComponents) {
-                Components.updateAllComponents(component);
-                return Collections.emptyList();
-            } else {
-                return updatedComponents;
-            }
-        } catch (final ReplaceHandlerException e) {
-            resetGuiTasks(e);
-            //rethrow so that redirect can happen
-            throw e;
-        } catch (final Throwable t) {
-            resetGuiTasks(t);
-            return Collections.emptyList();
         }
     }
 
