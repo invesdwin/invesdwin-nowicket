@@ -79,6 +79,16 @@ public class GuiService implements FactoryBean<GuiService>, IGuiService {
     }
 
     @Override
+    public void disableUpdateAllComponentsForCurrentRequest() {
+        getGuiServiceImpl().disableUpdateAllComponentsForCurrentRequest();
+    }
+
+    @Override
+    public boolean isDisableUpdateAllComponentsForCurrentRequest() {
+        return getGuiServiceImpl().isDisableUpdateAllComponentsForCurrentRequest();
+    }
+
+    @Override
     public void processRequestFinally(final Component component) {
         getGuiServiceImpl().processRequestFinally(component);
     }

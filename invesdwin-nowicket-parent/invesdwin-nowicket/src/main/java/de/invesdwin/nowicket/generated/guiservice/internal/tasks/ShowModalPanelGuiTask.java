@@ -1,6 +1,8 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
 import java.awt.Dimension;
+import java.util.Arrays;
+import java.util.Collection;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -31,7 +33,7 @@ public class ShowModalPanelGuiTask implements IGuiTask {
     }
 
     @Override
-    public void process(final Component component) {
+    public Collection<? extends Component> process(final Component component) {
         Assertions.assertThat(isShowing()).isFalse();
         final Panel modalPanel = PanelFactory.get().getPanel(ModalContainer.PANEL_MARKUP_ID, modelObject);
         if (modal == null) {
@@ -50,6 +52,7 @@ public class ShowModalPanelGuiTask implements IGuiTask {
         Assertions.assertThat(modal).as("No %s found in component hierarchy!", ModalContainer.class).isNotNull();
         final IModel<String> title = getTitle(modalPanel);
         modal.show(title, modalPanel, dimension);
+        return Arrays.asList(modal);
     }
 
     private IModel<String> getTitle(final Panel modalPanel) {
@@ -65,9 +68,10 @@ public class ShowModalPanelGuiTask implements IGuiTask {
         }
     }
 
-    public void hide() {
+    public Collection<? extends Component> hide() {
         Assertions.assertThat(isShowing()).as("Can only hide modal panels if they are actually showing!").isTrue();
         modal.hide();
+        return Arrays.asList(modal);
     }
 
     public boolean isShowing() {

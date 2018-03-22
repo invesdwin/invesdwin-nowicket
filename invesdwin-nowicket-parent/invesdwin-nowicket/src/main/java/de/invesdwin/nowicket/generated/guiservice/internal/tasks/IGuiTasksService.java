@@ -23,6 +23,9 @@ public interface IGuiTasksService {
 
     /**
      * This hides the top most showing modal panel.
+     * 
+     * @return the updated components (they will be updated during processRequestFinally, or have to be manually updated
+     *         if that is not being called by custom code)
      */
     void hideModalPanel();
 

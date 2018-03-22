@@ -1,5 +1,8 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
@@ -18,12 +21,14 @@ public class ShowPageGuiTask implements IGuiTask {
     }
 
     @Override
-    public void process(final Component component) {
+    public Collection<? extends Component> process(final Component component) {
         final Page page = PageFactory.get().getPage(modelObject);
         component.setResponsePage(page);
         if (page.getRenderCount() > 0 && SessionGuiService.get().getGuiTasks().showPageShouldWaitForNextAjaxCall()) {
             //reusing an old page, thus might have to process request again when the page is rendering to handle status messages and modals
-            new WaitForNextAjaxCallGuiTask().process(page);
+            return new WaitForNextAjaxCallGuiTask().process(page);
+        } else {
+            return Collections.emptyList();
         }
     }
 

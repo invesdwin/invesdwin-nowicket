@@ -1,5 +1,8 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
@@ -19,7 +22,7 @@ public class ShowStatusMessageGuiTask implements IGuiTask {
     }
 
     @Override
-    public void process(final Component component) {
+    public Collection<? extends Component> process(final Component component) {
         final Component root = Components.findForm(component).getRootForm();
         final PNotifyBehavior behavior = new PNotifyBehavior();
         if (config.getTitle() != null) {
@@ -38,5 +41,6 @@ public class ShowStatusMessageGuiTask implements IGuiTask {
             behavior.withType(PNotifyType.valueOf(config.getType().name()));
         }
         root.add(behavior);
+        return Arrays.asList(root);
     }
 }

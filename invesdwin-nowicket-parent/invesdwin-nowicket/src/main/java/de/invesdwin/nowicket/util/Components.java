@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,8 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.extensions.markup.html.tabs.TabbedPanel;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -26,17 +29,26 @@ import org.apache.wicket.validation.IValidator;
 import org.apache.wicket.validation.Validatable;
 import org.apache.wicket.validation.ValidatorAdapter;
 
+import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.IFormComponentAware;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.ModelUtilityValidator;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.error.Throwables;
 
 @Immutable
 public final class Components {
 
+    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(Components.class);
+
     private static final MetaDataKey<Map<String, List<FeedbackMessage>>> KEY_PREVIOUS_MESSAGES = new MetaDataKey<Map<String, List<FeedbackMessage>>>() {
     };
+
+    //CHECKSTYLE:OFF
+    private static final String FROZEN_COMPONENTS_LOG_MESSAGE = "Ignoring exception cause for frozen components (maybe the update was requested too late in the request lifecycle): {}";
+    //CHECKSTYLE:ON
 
     private Components() {}
 
@@ -242,6 +254,60 @@ public final class Components {
      */
     public static Component findComponentForDomReadyAjaxCall(final Component component) {
         return findForm(component).getRootForm();
+    }
+
+    public static void updateAllComponents(final Component component) {
+        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class);
+        final Form<?> form = Components.findForm(component);
+        if (target != null && form != null) {
+            final MarkupContainer root = (MarkupContainer) Components.findRoot(form);
+            try {
+                root.visitChildren(new IVisitor<Component, Void>() {
+                    @Override
+                    public void component(final Component object, final IVisit<Void> visit) {
+                        if (object instanceof Form || object instanceof TabbedPanel
+                                || object instanceof ModalContainer) {
+                            target.add(object);
+                        }
+                        if (!object.isVisible()) {
+                            final List<ModelComponentBehavior> modelComponentBehaviors = object
+                                    .getBehaviors(ModelComponentBehavior.class);
+                            for (final ModelComponentBehavior behavior : modelComponentBehaviors) {
+                                //update visibility manually since onConfigure() will be skipped
+                                behavior.onConfigure(object);
+                            }
+                        }
+                    }
+                });
+            } catch (final Throwable t) {
+                handleFrozenComponentsException(t);
+            }
+        }
+    }
+
+    public static void updateComponents(final Collection<? extends Component> components) {
+        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class);
+        if (target != null) {
+            try {
+                for (final Component c : components) {
+                    target.add(c);
+                }
+            } catch (final Throwable t) {
+                handleFrozenComponentsException(t);
+            }
+        }
+    }
+
+    private static void handleFrozenComponentsException(final Throwable t) {
+        if (t.getMessage().contains("longer be added")) {
+            if (LOG.isDebugEnabled()) {
+                LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.getFullStackTrace(t));
+            } else if (LOG.isWarnEnabled()) {
+                LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.concatMessages(t));
+            }
+        } else {
+            throw Throwables.propagate(t);
+        }
     }
 
 }

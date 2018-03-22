@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -22,6 +23,7 @@ public class GuiServiceTester implements IGuiService {
 
     private final Stack<GuiServiceMethodCall> methodCalls = new Stack<GuiServiceMethodCall>();
     private final AtomicInteger modalPanelsShowing = new AtomicInteger();
+    private final AtomicBoolean skipUpdateAllComponentsForCurrentRequest = new AtomicBoolean(false);
 
     private final File sessionFolder = new File(ABaseWebApplication.get().getSessionsDirectory(),
             getClass().getSimpleName());
@@ -34,6 +36,7 @@ public class GuiServiceTester implements IGuiService {
         methodCalls.clear();
         modalPanelsShowing.set(0);
         FileUtils.deleteQuietly(sessionFolder);
+        skipUpdateAllComponentsForCurrentRequest.set(false);
     }
 
     @Override
@@ -65,6 +68,17 @@ public class GuiServiceTester implements IGuiService {
         if (modalPanelsShowing.get() > 0) {
             modalPanelsShowing.decrementAndGet();
         }
+    }
+
+    @Override
+    public void disableUpdateAllComponentsForCurrentRequest() {
+        methodCalls.add(new GuiServiceMethodCall(GuiServiceMethod.skipUpdateAllComponentsForCurrentRequest));
+        skipUpdateAllComponentsForCurrentRequest.set(true);
+    }
+
+    @Override
+    public boolean isDisableUpdateAllComponentsForCurrentRequest() {
+        return skipUpdateAllComponentsForCurrentRequest.get();
     }
 
     @Override

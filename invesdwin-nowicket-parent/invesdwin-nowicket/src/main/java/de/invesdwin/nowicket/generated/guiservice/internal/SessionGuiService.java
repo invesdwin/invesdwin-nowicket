@@ -4,34 +4,28 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.MetaDataKey;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.extensions.markup.html.tabs.TabbedPanel;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.request.RequestHandlerStack.ReplaceHandlerException;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.session.ISessionStore.UnboundListener;
-import org.apache.wicket.util.visit.IVisit;
-import org.apache.wicket.util.visit.IVisitor;
 
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
-import de.invesdwin.nowicket.component.modal.ModalContainer;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.internal.tasks.GuiTasks;
 import de.invesdwin.nowicket.util.Components;
-import de.invesdwin.util.error.Throwables;
 
 @NotThreadSafe
 public class SessionGuiService implements IGuiService, Serializable {
@@ -42,9 +36,8 @@ public class SessionGuiService implements IGuiService, Serializable {
     };
     private static final MetaDataKey<Boolean> KEY_INITIALIZATION_FINISHED_BEHAVIOR_ALREADY_CONFIGURED = new MetaDataKey<Boolean>() {
     };
-    //CHECKSTYLE:OFF
-    private static final String FROZEN_COMPONENTS_LOG_MESSAGE = "Ignoring exception cause for frozen components (maybe the update was requested too late in the request lifecycle): {}";
-    //CHECKSTYLE:ON
+    private static final MetaDataKey<Boolean> KEY_DISABLE_UPDATE_ALL_COMPONENTS_FOR_CURRENT_REQUEST = new MetaDataKey<Boolean>() {
+    };
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(SessionGuiService.class);
 
@@ -91,16 +84,52 @@ public class SessionGuiService implements IGuiService, Serializable {
     }
 
     @Override
+    public void disableUpdateAllComponentsForCurrentRequest() {
+        final RequestCycle requestCycle = RequestCycle.get();
+        if (requestCycle != null) {
+            requestCycle.setMetaData(KEY_DISABLE_UPDATE_ALL_COMPONENTS_FOR_CURRENT_REQUEST, true);
+        }
+    }
+
+    @Override
     public void processRequestFinally(final Component component) {
+        if (isDisableUpdateAllComponentsForCurrentRequest()) {
+            final Collection<? extends Component> updatedComponents = processRequestFinally(component, false);
+            Components.updateComponents(updatedComponents);
+        } else {
+            processRequestFinally(component, true);
+        }
+    }
+
+    @Override
+    public boolean isDisableUpdateAllComponentsForCurrentRequest() {
+        final RequestCycle requestCycle = RequestCycle.get();
+        if (requestCycle != null) {
+            final Boolean disableUpdateAllComponentsForCurrentRequest = requestCycle
+                    .getMetaData(KEY_DISABLE_UPDATE_ALL_COMPONENTS_FOR_CURRENT_REQUEST);
+            return BooleanUtils.isTrue(disableUpdateAllComponentsForCurrentRequest);
+        } else {
+            return false;
+        }
+    }
+
+    private Collection<? extends Component> processRequestFinally(final Component component,
+            final boolean updateAllComponents) {
         try {
-            guiTasks.process(component);
-            updateAllComponents(component);
+            final Collection<? extends Component> updatedComponents = guiTasks.process(component);
+            if (updateAllComponents) {
+                Components.updateAllComponents(component);
+                return Collections.emptyList();
+            } else {
+                return updatedComponents;
+            }
         } catch (final ReplaceHandlerException e) {
             resetGuiTasks(e);
             //rethrow so that redirect can happen
             throw e;
         } catch (final Throwable t) {
             resetGuiTasks(t);
+            return Collections.emptyList();
         }
     }
 
@@ -109,43 +138,6 @@ public class SessionGuiService implements IGuiService, Serializable {
                 + ".process() threw an exception, resetting everything to keep the overall website working for the next request...",
                 t));
         guiTasks = new GuiTasks();
-    }
-
-    private void updateAllComponents(final Component component) {
-        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class);
-        final Form<?> form = Components.findForm(component);
-        if (target != null && form != null) {
-            final MarkupContainer root = (MarkupContainer) Components.findRoot(form);
-            try {
-                root.visitChildren(new IVisitor<Component, Void>() {
-                    @Override
-                    public void component(final Component object, final IVisit<Void> visit) {
-                        if (object instanceof Form || object instanceof TabbedPanel
-                                || object instanceof ModalContainer) {
-                            target.add(object);
-                        }
-                        if (!object.isVisible()) {
-                            final List<ModelComponentBehavior> modelComponentBehaviors = object
-                                    .getBehaviors(ModelComponentBehavior.class);
-                            for (final ModelComponentBehavior behavior : modelComponentBehaviors) {
-                                //update visibility manually since onConfigure() will be skipped
-                                behavior.onConfigure(object);
-                            }
-                        }
-                    }
-                });
-            } catch (final Throwable t) {
-                if (t.getMessage().contains("longer be added")) {
-                    if (LOG.isDebugEnabled()) {
-                        LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.getFullStackTrace(t));
-                    } else if (LOG.isWarnEnabled()) {
-                        LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.concatMessages(t));
-                    }
-                } else {
-                    throw t;
-                }
-            }
-        }
     }
 
     @Override

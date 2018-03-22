@@ -1,5 +1,9 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
@@ -33,7 +37,7 @@ public class OfferDownloadGuiTask implements IGuiTask {
     }
 
     @Override
-    public void process(final Component component) {
+    public Collection<? extends Component> process(final Component component) {
         final Component root = Components.findComponentForDomReadyAjaxCall(component);
         final Boolean behaviorAdded = root.getMetaData(KEY_OFFER_DOWNLOAD_BEHAVIOR_ADDED);
         if (behaviorAdded == null || !behaviorAdded) {
@@ -123,6 +127,9 @@ public class OfferDownloadGuiTask implements IGuiTask {
                 }
 
             });
+            return Arrays.asList(component);
+        } else {
+            return Collections.emptyList();
         }
     }
 

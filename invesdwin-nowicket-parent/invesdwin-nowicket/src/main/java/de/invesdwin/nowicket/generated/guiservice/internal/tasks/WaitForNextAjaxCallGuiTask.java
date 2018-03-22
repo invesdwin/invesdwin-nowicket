@@ -1,5 +1,9 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
@@ -22,7 +26,7 @@ public class WaitForNextAjaxCallGuiTask implements IGuiTask {
     };
 
     @Override
-    public void process(final Component component) {
+    public Collection<? extends Component> process(final Component component) {
         final Component root = Components.findComponentForDomReadyAjaxCall(component);
         final Boolean behaviorAdded = root.getMetaData(KEY_WAIT_BEHAVIOR_ADDED);
         if (behaviorAdded == null || !behaviorAdded) {
@@ -72,6 +76,9 @@ public class WaitForNextAjaxCallGuiTask implements IGuiTask {
                 }
 
             });
+            return Arrays.asList(root);
+        } else {
+            return Collections.emptyList();
         }
     }
 

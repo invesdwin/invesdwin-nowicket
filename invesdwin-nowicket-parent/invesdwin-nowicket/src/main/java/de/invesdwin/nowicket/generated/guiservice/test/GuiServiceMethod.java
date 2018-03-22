@@ -9,6 +9,7 @@ public enum GuiServiceMethod {
     showModalPanel,
     isModalPanelShowing,
     hideModalPanel,
+    skipUpdateAllComponentsForCurrentRequest,
     processRequestFinally,
     processInitializationFinished,
     getSessionFolder,

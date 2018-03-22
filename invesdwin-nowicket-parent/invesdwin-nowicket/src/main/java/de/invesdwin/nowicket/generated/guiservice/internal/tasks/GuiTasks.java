@@ -2,14 +2,19 @@ package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
 import java.awt.Dimension;
 import java.util.ArrayDeque;
+import java.util.Collection;
 import java.util.Deque;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 
+import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
+import de.invesdwin.nowicket.util.Components;
 
 @NotThreadSafe
 public class GuiTasks implements IGuiTasksService, IGuiTask {
@@ -50,9 +55,12 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
     public void hideModalPanel() {
         final ShowModalPanelGuiTask lastShowing = getLastShowingModelPanel();
         if (lastShowing != null) {
-            lastShowing.hide();
+            final Collection<? extends Component> updatedComponents = lastShowing.hide();
             showModalPanelGuiTasks.remove(lastShowing);
             waitForHideModalPanelGuiTask = new WaitForNextAjaxCallGuiTask();
+            if (GuiService.get().isDisableUpdateAllComponentsForCurrentRequest()) {
+                Components.updateComponents(updatedComponents);
+            }
         } else {
             throw new IllegalStateException("No modal panel to hide!");
         }
@@ -78,36 +86,50 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
     }
 
     @Override
-    public void process(final Component component) {
+    public Collection<? extends Component> process(final Component component) {
         if (showPageGuiTask != null) {
-            showPageGuiTask.process(component);
+            final Collection<? extends Component> updatedComponents = showPageGuiTask.process(component);
             showPageGuiTask = null;
-            return;
+            return updatedComponents;
         }
         ShowModalPanelGuiTask firstNotShowing = getFirstNotShowingModelPanel();
         if (waitForHideModalPanelGuiTask != null) {
             try {
                 if (firstNotShowing != null) {
                     //skip if this workaround is not needed
-                    waitForHideModalPanelGuiTask.process(component);
-                    return;
+                    return waitForHideModalPanelGuiTask.process(component);
                 }
             } finally {
                 waitForHideModalPanelGuiTask = null;
             }
         }
+        final Map<Integer, Component> updatedComponentsIdentity = new LinkedHashMap<Integer, Component>();
         while (firstNotShowing != null) {
             firstNotShowing.process(component);
             firstNotShowing = getFirstNotShowingModelPanel();
         }
         while (!showStatusMessageGuiTasks.isEmpty()) {
             final ShowStatusMessageGuiTask last = showStatusMessageGuiTasks.removeLast();
-            last.process(component);
+            final Collection<? extends Component> updatedComponents = last.process(component);
+            addIdentityComponents(updatedComponentsIdentity, updatedComponents);
         }
         if (offerDownloadGuiTask != null) {
-            offerDownloadGuiTask.process(component);
+            final Collection<? extends Component> updatedComponents = offerDownloadGuiTask.process(component);
+            addIdentityComponents(updatedComponentsIdentity, updatedComponents);
             offerDownloadGuiTask = null;
-            return;
+            return updatedComponentsIdentity.values();
+        }
+
+        return updatedComponentsIdentity.values();
+    }
+
+    private void addIdentityComponents(final Map<Integer, Component> updatedComponentsIdentity,
+            final Collection<? extends Component> updatedComponents) {
+        for (final Component c : updatedComponents) {
+            final int identity = System.identityHashCode(c);
+            if (!updatedComponentsIdentity.containsKey(identity)) {
+                updatedComponentsIdentity.put(identity, c);
+            }
         }
     }
 
