@@ -211,6 +211,16 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                 }
                 return tabs;
             }
+
+            @Override
+            public int size() {
+                return getChoiceModel().getObject().size();
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return getChoiceModel().getObject().isEmpty();
+            }
         };
 
     }
