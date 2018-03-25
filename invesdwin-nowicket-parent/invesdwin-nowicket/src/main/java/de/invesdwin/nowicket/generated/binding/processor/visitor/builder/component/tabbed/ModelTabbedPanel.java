@@ -71,6 +71,15 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         return super.isEnabled();
     }
 
+    @Override
+    public boolean isVisible() {
+        if (getTabs().isEmpty()) {
+            return false;
+        } else {
+            return super.isVisible();
+        }
+    }
+
     /**
      * make click on tab submit form so no invalid tab can be left!
      */
