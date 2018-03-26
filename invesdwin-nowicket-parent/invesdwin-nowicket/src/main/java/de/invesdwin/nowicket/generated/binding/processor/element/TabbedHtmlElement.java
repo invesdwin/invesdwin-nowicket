@@ -83,6 +83,16 @@ public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
                 }
                 return tabs;
             }
+
+            @Override
+            public int size() {
+                return getColumns().size();
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return getColumns().isEmpty();
+            }
         };
     }
 

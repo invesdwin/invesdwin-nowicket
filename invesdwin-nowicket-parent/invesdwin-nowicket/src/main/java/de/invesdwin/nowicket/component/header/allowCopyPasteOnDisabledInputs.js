@@ -19,6 +19,8 @@ function allowCopyPasteOnDisabledInputs() {
 					fixedTag.attr("rows", tag.attr("rows"));
 					fixedTag.attr("id", tag.attr("id")
 							+ "_allowCopyPasteOnDisabledInputs");
+					
+					tag.attr("style", "display:none");
 
 					return;
 				} else {
@@ -79,6 +81,10 @@ function allowCopyPasteOnDisabledInputs() {
 
 		triggerAllowCopyPasteOnDisabledInputs();
 		Wicket.Event.add(window, 'shown.bs.modal', function(e) {
+			triggerAllowCopyPasteOnDisabledInputs();
+		});
+		Wicket.Event.subscribe('/ajax/call/done', function(attributes,
+				jqXHR, settings) {
 			triggerAllowCopyPasteOnDisabledInputs();
 		});
 	}
