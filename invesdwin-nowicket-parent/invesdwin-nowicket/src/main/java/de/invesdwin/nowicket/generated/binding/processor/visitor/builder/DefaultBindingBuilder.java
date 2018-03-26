@@ -365,6 +365,7 @@ public class DefaultBindingBuilder implements IBindingBuilder {
             }
         }
         c.setOutputMarkupId(true);
+        c.setOutputMarkupPlaceholderTag(true);
         return true;
     }
 
