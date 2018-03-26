@@ -52,7 +52,7 @@ public class GridColumnBorder extends Border {
         if (formComponent != null) {
             final StringBuilder sb = new StringBuilder();
             if (showHelpText()) {
-                if (!formComponent.isValid()) {
+                if (formComponent.isVisibleInHierarchy() && !formComponent.isValid()) {
                     boolean firstMessage = true;
                     for (final FeedbackMessage message : formComponent.getFeedbackMessages()) {
                         if (!firstMessage) {
