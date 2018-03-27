@@ -27,11 +27,12 @@ public class GridColumnBorder extends Border {
         final AttributeModifier hasError = AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
-                final Component component = element.getContext().getComponentRegistry().getComponent(
-                        element.getModelWicketId());
+                final Component component = element.getContext()
+                        .getComponentRegistry()
+                        .getComponent(element.getModelWicketId());
                 final FormComponent<?> formComponent = Components.asFormComponent(component);
                 if (formComponent != null) {
-                    if (formComponent.isVisibleInHierarchy() && !formComponent.isValid()) {
+                    if (!formComponent.isValid()) {
                         return "has-error";
                     }
                 }
@@ -46,8 +47,9 @@ public class GridColumnBorder extends Border {
 
     @Override
     protected void onConfigure() {
-        final Component component = element.getContext().getComponentRegistry().getComponent(
-                element.getModelWicketId());
+        final Component component = element.getContext()
+                .getComponentRegistry()
+                .getComponent(element.getModelWicketId());
         final FormComponent<?> formComponent = Components.asFormComponent(component);
         if (formComponent != null) {
             final StringBuilder sb = new StringBuilder();
@@ -73,6 +75,11 @@ public class GridColumnBorder extends Border {
      */
     protected boolean showHelpText() {
         return true;
+    }
+
+    @Override
+    public boolean isVisible() {
+        return element.getContext().getComponentRegistry().getComponent(element.getModelWicketId()).isVisible();
     }
 
 }
