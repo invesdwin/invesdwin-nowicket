@@ -7,6 +7,7 @@ import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
+import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
 public class ModelLabel extends Label {
@@ -19,6 +20,14 @@ public class ModelLabel extends Label {
         super(element.getWicketId(), model);
         setEscapeModelStrings(false);
         I18nModel.wrapExistingModel(this);
+    }
+
+    @Override
+    public boolean isVisible() {
+        if (Strings.isNullOrEmpty(getDefaultModelObjectAsString())) {
+            return false;
+        }
+        return super.isVisible();
     }
 
 }

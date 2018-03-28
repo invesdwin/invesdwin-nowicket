@@ -38,6 +38,9 @@ public class TitleModel extends AbstractReadOnlyModel<String> {
 
     @Override
     public String getObject() {
+        if (!element.isVisible(targetObjectModel)) {
+            return null;
+        }
         final String title = getTitle();
         if (title == null) {
             return null;

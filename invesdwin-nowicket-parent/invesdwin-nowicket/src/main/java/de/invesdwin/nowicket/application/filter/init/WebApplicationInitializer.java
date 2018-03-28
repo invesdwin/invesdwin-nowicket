@@ -7,9 +7,12 @@ import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
+import org.apache.wicket.markup.html.form.AutoLabelResolver;
+import org.apache.wicket.markup.resolver.IComponentResolver;
 import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.handler.render.PageRenderer;
 import org.apache.wicket.request.resource.ResourceReference;
+import org.apache.wicket.settings.PageSettings;
 import org.apache.wicket.util.crypt.CachingSunJceCryptFactory;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
@@ -60,7 +63,25 @@ public class WebApplicationInitializer {
         registerCryptFactory();
         registerOnePassRenderForBots();
         registerRootRequestMapper();
+        registerHidingAutoLabelResolver();
         runHooks();
+    }
+
+    protected void registerHidingAutoLabelResolver() {
+        final PageSettings pageSettings = webApplication.getPageSettings();
+        boolean resolverFound = false;
+        for (int i = 0; i < pageSettings.getComponentResolvers().size(); i++) {
+            final IComponentResolver resolver = pageSettings.getComponentResolvers().get(i);
+            if (resolver instanceof AutoLabelResolver) {
+                final AutoLabelResolver cResolver = (AutoLabelResolver) resolver;
+                pageSettings.getComponentResolvers().set(i, new HidingAutoLabelResolver(cResolver));
+                resolverFound = true;
+                break;
+            }
+        }
+        if (!resolverFound) {
+            throw new IllegalStateException(AutoLabelResolver.class.getName() + " not found!");
+        }
     }
 
     protected void registerRootRequestMapper() {
