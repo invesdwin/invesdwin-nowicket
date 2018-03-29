@@ -1,5 +1,8 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -23,9 +26,22 @@ import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElem
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.DefaultSubmitButtonCallback;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.AModelAjaxFallbackLink;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
+import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
 public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
+
+    private static final MethodHandle VISIBILITY_CACHE_FIELD_SETTER;
+
+    static {
+        final Field visibilityCacheField = Reflections.findField(TabbedPanel.class, "visibilityCache");
+        Reflections.makeAccessible(visibilityCacheField);
+        try {
+            VISIBILITY_CACHE_FIELD_SETTER = MethodHandles.lookup().unreflectSetter(visibilityCacheField);
+        } catch (final IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private final PNotifyBehavior validationErrorNotificationBehavior;
 
@@ -36,6 +52,20 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
     public ModelTabbedPanel(final String id, final List<ITab> tabs, final Model<Integer> model) {
         super(id, tabs, model);
         this.validationErrorNotificationBehavior = createValidationErrorNotificationBehavior();
+    }
+
+    @Override
+    protected void onConfigure() {
+        try {
+            /*
+             * reset visibility cache since tabs might have changed significantly since last render, we don't want to
+             * have wrong visibility and we don't want to get IndexOutOfBoundsExceptions
+             */
+            VISIBILITY_CACHE_FIELD_SETTER.invoke(this, null);
+        } catch (final Throwable e) {
+            throw new RuntimeException(e);
+        }
+        super.onConfigure();
     }
 
     protected PNotifyBehavior createValidationErrorNotificationBehavior() {
@@ -74,6 +104,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
     @Override
     public boolean isVisible() {
         if (getTabs().isEmpty()) {
+            //fix ArrayIndexOutOfBoundsException when tabs are empty
             return false;
         } else {
             return super.isVisible();
