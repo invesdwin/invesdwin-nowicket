@@ -35,3 +35,10 @@ body {
 	width: 32px;
 	padding: 0px;
 }
+
+/* fix modal window position with various themes */
+.modal {
+	right: 50% !important;
+	left: 50% !important;
+	bottom: auto !important;
+}
