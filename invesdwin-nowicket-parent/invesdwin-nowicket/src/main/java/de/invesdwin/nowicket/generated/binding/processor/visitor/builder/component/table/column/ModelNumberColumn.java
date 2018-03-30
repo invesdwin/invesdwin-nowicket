@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
@@ -11,7 +10,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.TableNumberColu
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 
 @NotThreadSafe
-public class ModelNumberColumn extends PropertyColumn<Number, String> {
+public class ModelNumberColumn extends ModelTextColumn {
 
     private final TableNumberColumnHtmlElement element;
 
@@ -21,7 +20,7 @@ public class ModelNumberColumn extends PropertyColumn<Number, String> {
     }
 
     @Override
-    public IModel<Object> getDataModel(final IModel<Number> rowModel) {
+    public IModel<Object> getDataModel(final IModel<Object> rowModel) {
         final IModel<Number> propertyModel = new BeanPathModel<Number>(rowModel, getPropertyExpression());
         return new AbstractReadOnlyModel<Object>() {
 
