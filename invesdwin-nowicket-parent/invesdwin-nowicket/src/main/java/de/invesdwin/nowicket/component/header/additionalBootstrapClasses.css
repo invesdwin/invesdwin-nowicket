@@ -38,7 +38,7 @@ body {
 
 /* fix modal window position with various themes */
 .modal {
-	right: 50% !important;
-	left: 50% !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
 	bottom: auto !important;
 }
