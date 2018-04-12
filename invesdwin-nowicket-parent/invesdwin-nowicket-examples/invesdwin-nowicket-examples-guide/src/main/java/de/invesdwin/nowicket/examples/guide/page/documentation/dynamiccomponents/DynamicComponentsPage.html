@@ -132,6 +132,9 @@
 					dynamic utility element for this:
 				</p>
 				<pre class="prettyprint lang-java linenums">public String[] columnOrder() { ... } // can also return Iterable, Collection, etc</pre>
+				
+				<pre class="prettyprint lang-java linenums">public String[] get&lt;NameOfProperty&gt;ColumnOrder() { ... } // also available as a suffix utility method</pre>
+				
 				<p style="font-size: medium">This is normally used to define the
 					column order of table models, but you can also use it to define the
 					order of tabbed panes and the order in which the HTML generator
