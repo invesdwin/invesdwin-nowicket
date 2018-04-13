@@ -8,6 +8,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
@@ -79,6 +80,13 @@ public class DynamicModelDataTablePanel extends FormComponentPanel<Object> imple
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onComponentTag(final ComponentTag tag) {
+        tag.setName("div");
+        tag.getAttributes().clear();
+        super.onComponentTag(tag);
     }
 
     @Override
