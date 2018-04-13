@@ -11,6 +11,7 @@ import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextField
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig.TodayButton;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlElement;
+import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
 public class ModelDateTextField extends DateTextField {
@@ -23,10 +24,12 @@ public class ModelDateTextField extends DateTextField {
 
     public ModelDateTextField(final DateInputHtmlElement element, final DateTextFieldConfig config) {
         super(element.getWicketId(), element.getModel(), config);
+        //fix underlying wicket date pattern so that time information is not broken
+        Reflections.field("datePattern").ofType(String.class).in(this).set(getFormat(element));
     }
 
     public static DateTextFieldConfig newDateTextFieldConfig(final DateInputHtmlElement element) {
-        return new DateTextFieldConfig().withFormat(element.getFormat(AWebSession.get().getLocale()).toPattern())
+        return new DateTextFieldConfig().withFormat(getFormat(element))
                 .highlightToday(true)
                 //we need autoclose enabled or else we gets detached from the text field on eager value change
                 .autoClose(true)
@@ -34,6 +37,10 @@ public class ModelDateTextField extends DateTextField {
                 .showTodayButton(TodayButton.LINKED)
                 .withWeekStart(Day.Monday)
                 .forceParse(false);
+    }
+
+    private static String getFormat(final DateInputHtmlElement element) {
+        return element.getFormat(AWebSession.get().getLocale()).toPattern();
     }
 
     @Override
