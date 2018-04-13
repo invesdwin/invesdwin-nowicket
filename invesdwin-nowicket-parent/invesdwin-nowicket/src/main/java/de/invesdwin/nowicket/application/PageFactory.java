@@ -11,6 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.ThreadSafe;
 
+import org.apache.commons.collections4.map.LRUMap;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Page;
 import org.apache.wicket.PageReference;
@@ -163,7 +164,8 @@ public final class PageFactory implements Serializable {
         synchronized (modelClass_modelObjectHashCode_pageReferences) {
             modelObjectHashCode_pageReferences = modelClass_modelObjectHashCode_pageReferences.get(modelClass);
             if (modelObjectHashCode_pageReferences == null) {
-                modelObjectHashCode_pageReferences = new LinkedHashMap<Integer, List<PageReferenceAndModel>>();
+                modelObjectHashCode_pageReferences = new LRUMap<Integer, List<PageReferenceAndModel>>(
+                        MAX_MODELS_PER_CLASS);
                 modelClass_modelObjectHashCode_pageReferences.put(modelClass, modelObjectHashCode_pageReferences);
             }
         }
@@ -174,14 +176,6 @@ public final class PageFactory implements Serializable {
                 //need CopyOnWrite to prevent ConcurrentModificationException when removing while iterating over it
                 list = new CopyOnWriteArrayList<PageReferenceAndModel>();
                 modelObjectHashCode_pageReferences.put(modelObjectHashCode, list);
-            } else {
-                //put the model to the end of the linkedHashMap to keep LRU working properly
-                modelObjectHashCode_pageReferences.remove(modelObjectHashCode); //remove is actually needed here
-                modelObjectHashCode_pageReferences.put(modelObjectHashCode, list);
-            }
-            //remove LRU (linked hash map)
-            while (modelObjectHashCode_pageReferences.size() > MAX_MODELS_PER_CLASS) {
-                modelObjectHashCode_pageReferences.entrySet().iterator().remove();
             }
         }
         synchronized (list) {
