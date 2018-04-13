@@ -67,7 +67,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelExternalLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelResourceLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.ValidatableSelectionModelDataTablePanel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.DynamicModelDataTablePanel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelContainerColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelDateColumn;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.ModelDownloadAnchorColumn;
@@ -106,7 +106,7 @@ public class DefaultBindingBuilder implements IBindingBuilder {
 
     @Override
     public Component createTable(final TableHtmlElement e) {
-        final ValidatableSelectionModelDataTablePanel table = new ValidatableSelectionModelDataTablePanel(e);
+        final DynamicModelDataTablePanel table = new DynamicModelDataTablePanel(e);
         return table;
     }
 
