@@ -19,6 +19,9 @@ import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElemen
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.IEagerFilter;
 import de.invesdwin.util.lang.Strings;
 
+/**
+ * This table wrapper supports validation of selection and a dynamic change of columnOrder.
+ */
 @NotThreadSafe
 public class DynamicModelDataTablePanel extends FormComponentPanel<Object> implements IEagerFilter {
 

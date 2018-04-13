@@ -21,6 +21,10 @@ import org.apache.wicket.model.IModel;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.ajax.BootstrapAjaxPagingNavigator;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 
+/**
+ * Please use DynamicModelDataTablePanel as a wrapper around this component for full support of validation and
+ * columnOrder.
+ */
 @NotThreadSafe
 public class ModelDataTable extends DataTable<Object, String> {
 
