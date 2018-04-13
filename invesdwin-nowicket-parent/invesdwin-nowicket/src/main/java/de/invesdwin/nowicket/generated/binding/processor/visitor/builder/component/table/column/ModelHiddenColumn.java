@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.hide;
+package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column;
 
 import javax.annotation.concurrent.Immutable;
 

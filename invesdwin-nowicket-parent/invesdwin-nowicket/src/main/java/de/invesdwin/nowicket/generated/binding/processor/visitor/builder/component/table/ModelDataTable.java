@@ -19,29 +19,16 @@ import org.apache.wicket.markup.repeater.OddEvenItem;
 import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.ajax.BootstrapAjaxPagingNavigator;
-import de.invesdwin.nowicket.NoWicketProperties;
-import de.invesdwin.nowicket.generated.binding.processor.element.ATableColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.hide.ModelDelegateHiddenColumn;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.hide.ModelHideColumnBehavior;
 
 @NotThreadSafe
 public class ModelDataTable extends DataTable<Object, String> {
 
     private final TableHtmlElement element;
 
-    public ModelDataTable(final TableHtmlElement element, final long rowsPerPage) {
-        this(element.getWicketId(), element, rowsPerPage);
-    }
-
-    public ModelDataTable(final String wicketId, final TableHtmlElement element, final long rowsPerPage) {
-        this(wicketId, element, new ModelSortableDataProvider(element), rowsPerPage);
-    }
-
     public ModelDataTable(final String wicketId, final TableHtmlElement element,
             final ISortableDataProvider<Object, String> sortableDataProvider, final long rowsPerPage) {
-        super(wicketId, ModelDelegateHiddenColumn.maybeWrap(element, element.createWicketColumns()),
-                sortableDataProvider, rowsPerPage);
+        super(wicketId, element.createWicketColumns(), sortableDataProvider, rowsPerPage);
         this.element = element;
         setOutputMarkupId(true);
         final AbstractToolbar headersToolbar = newHeadersToolbar();
@@ -58,8 +45,8 @@ public class ModelDataTable extends DataTable<Object, String> {
         }
     }
 
-    public ModelDataTable(final TableHtmlElement element) {
-        this(element, NoWicketProperties.DEFAULT_TABLE_ROWS_PER_PAGE);
+    public static ModelSortableDataProvider newSortableDataProvider(final TableHtmlElement element) {
+        return new ModelSortableDataProvider(element);
     }
 
     public TableHtmlElement getElement() {
@@ -82,10 +69,7 @@ public class ModelDataTable extends DataTable<Object, String> {
 
     protected WebMarkupContainer newSortableHeader(final DataTable<?, ?> table, final String headerId,
             final String property, final ISortStateLocator<String> locator) {
-        final IconOrderByBorder<String> border = new IconOrderByBorder<String>(table, headerId, property, locator);
-        final ATableColumnHtmlElement<?, ?> column = element.getColumn(property);
-        ModelHideColumnBehavior.maybeAdd(column, border);
-        return border;
+        return new IconOrderByBorder<String>(table, headerId, property, locator);
     }
 
     protected NoRecordsToolbar newNoRecordsToolbar() {
