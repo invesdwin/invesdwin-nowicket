@@ -47,13 +47,29 @@ public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
 
     public List<TabbedColumnHtmlElement> getColumns() {
         if (columns == null) {
-            columns = new ArrayList<TabbedColumnHtmlElement>();
-            for (final TabbedColumnModelElement column : getModelElement().getColumns()) {
-                final TabbedColumnHtmlElement columnElement = (TabbedColumnHtmlElement) getContext()
-                        .getElementRegistry()
-                        .getElement(column.getWicketId());
-                columns.add(columnElement);
-            }
+            columns = Collections.unmodifiableList(new DelegateList<TabbedColumnHtmlElement>(null) {
+                @Override
+                public List<TabbedColumnHtmlElement> getDelegate() {
+                    final List<TabbedColumnHtmlElement> delegate = new ArrayList<TabbedColumnHtmlElement>();
+                    for (final TabbedColumnModelElement column : getModelElement().getColumns()) {
+                        final TabbedColumnHtmlElement columnElement = (TabbedColumnHtmlElement) getContext()
+                                .getElementRegistry()
+                                .getElement(column.getWicketId());
+                        delegate.add(columnElement);
+                    }
+                    return delegate;
+                }
+
+                @Override
+                public int size() {
+                    return getModelElement().getColumns().size();
+                }
+
+                @Override
+                public boolean isEmpty() {
+                    return getModelElement().getColumns().isEmpty();
+                }
+            });
         }
         return Collections.unmodifiableList(columns);
     }

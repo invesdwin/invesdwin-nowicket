@@ -20,7 +20,10 @@ import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.ajax.BootstrapAjaxPagingNavigator;
 import de.invesdwin.nowicket.NoWicketProperties;
+import de.invesdwin.nowicket.generated.binding.processor.element.ATableColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.hide.ModelDelegateHiddenColumn;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.hide.ModelHideColumnBehavior;
 
 @NotThreadSafe
 public class ModelDataTable extends DataTable<Object, String> {
@@ -37,7 +40,8 @@ public class ModelDataTable extends DataTable<Object, String> {
 
     public ModelDataTable(final String wicketId, final TableHtmlElement element,
             final ISortableDataProvider<Object, String> sortableDataProvider, final long rowsPerPage) {
-        super(wicketId, element.createWicketColumns(), sortableDataProvider, rowsPerPage);
+        super(wicketId, ModelDelegateHiddenColumn.maybeWrap(element, element.createWicketColumns()),
+                sortableDataProvider, rowsPerPage);
         this.element = element;
         setOutputMarkupId(true);
         final AbstractToolbar headersToolbar = newHeadersToolbar();
@@ -73,13 +77,15 @@ public class ModelDataTable extends DataTable<Object, String> {
                     final ISortStateLocator<String> locator) {
                 return ModelDataTable.this.newSortableHeader(getTable(), headerId, property, locator);
             }
-
         };
     }
 
     protected WebMarkupContainer newSortableHeader(final DataTable<?, ?> table, final String headerId,
             final String property, final ISortStateLocator<String> locator) {
-        return new IconOrderByBorder<String>(table, headerId, property, locator);
+        final IconOrderByBorder<String> border = new IconOrderByBorder<String>(table, headerId, property, locator);
+        final ATableColumnHtmlElement<?, ?> column = element.getColumn(property);
+        ModelHideColumnBehavior.maybeAdd(column, border);
+        return border;
     }
 
     protected NoRecordsToolbar newNoRecordsToolbar() {

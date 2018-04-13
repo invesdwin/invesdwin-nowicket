@@ -3,8 +3,10 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 import java.text.Format;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -27,6 +29,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TableNumberColum
 import de.invesdwin.nowicket.generated.markup.processor.element.TableSubmitButtonColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableTextColumnModelElement;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.delegate.DelegateList;
 
 @NotThreadSafe
 public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>> {
@@ -41,6 +44,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     private final TableSelectionButtonColumnHtmlElement selectionButtonColumn;
     private List<ATableColumnHtmlElement<?, ?>> columns;
     private List<ATableColumnHtmlElement<?, ?>> rawColumns;
+    private Map<String, ATableColumnHtmlElement<?, ?>> property_column;
 
     //CHECKSTYLE:OFF
     public TableHtmlElement(final HtmlContext context, final Element element) {
@@ -120,13 +124,29 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
 
     public List<ATableColumnHtmlElement<?, ?>> getColumns() {
         if (columns == null) {
-            columns = new ArrayList<ATableColumnHtmlElement<?, ?>>();
-            for (final ATableColumnModelElement<?> column : getModelElement().getColumns()) {
-                final ATableColumnHtmlElement<?, ?> convertedColumn = convertColumn(column);
-                columns.add(convertedColumn);
-            }
+            columns = Collections.unmodifiableList(new DelegateList<ATableColumnHtmlElement<?, ?>>(null) {
+                @Override
+                public List<ATableColumnHtmlElement<?, ?>> getDelegate() {
+                    final List<ATableColumnHtmlElement<?, ?>> delegate = new ArrayList<ATableColumnHtmlElement<?, ?>>();
+                    for (final ATableColumnModelElement<?> column : getModelElement().getColumns()) {
+                        final ATableColumnHtmlElement<?, ?> convertedColumn = convertColumn(column);
+                        delegate.add(convertedColumn);
+                    }
+                    return delegate;
+                }
+
+                @Override
+                public int size() {
+                    return getModelElement().getColumns().size();
+                }
+
+                @Override
+                public boolean isEmpty() {
+                    return getModelElement().getColumns().isEmpty();
+                }
+            });
         }
-        return Collections.unmodifiableList(columns);
+        return columns;
     }
 
     private ATableColumnHtmlElement<?, ?> convertColumn(final ATableColumnModelElement<?> column) {
@@ -192,7 +212,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     @SuppressWarnings("unchecked")
     public List<? extends IColumn<Object, String>> createWicketColumns(final IBindingBuilder bindingBuilder) {
         final List<IColumn<Object, String>> wicketColumns = new ArrayList<IColumn<Object, String>>();
-        for (final ATableColumnHtmlElement<?, ?> column : getColumns()) {
+        for (final ATableColumnHtmlElement<?, ?> column : getRawColumns()) {
             final IColumn<Object, String> wicketColumn = (IColumn<Object, String>) column
                     .createWicketColumn(bindingBuilder);
             wicketColumns.add(wicketColumn);
@@ -202,6 +222,16 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
 
     public List<? extends IColumn<Object, String>> createWicketColumns() {
         return createWicketColumns(getContext().getBindingBuilder());
+    }
+
+    public ATableColumnHtmlElement<?, ?> getColumn(final String property) {
+        if (property_column == null) {
+            property_column = new HashMap<>();
+            for (final ATableColumnHtmlElement<?, ?> column : getRawColumns()) {
+                property_column.put(column.getColumnId(), column);
+            }
+        }
+        return property_column.get(property);
     }
 
 }

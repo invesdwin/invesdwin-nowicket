@@ -11,6 +11,7 @@ import de.invesdwin.norva.beanpath.spi.element.TabbedColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.delegate.DelegateList;
 
 @NotThreadSafe
 public class TabbedModelElement extends AChoiceModelElement<TabbedBeanPathElement> {
@@ -32,12 +33,29 @@ public class TabbedModelElement extends AChoiceModelElement<TabbedBeanPathElemen
 
     public List<TabbedColumnModelElement> getColumns() {
         if (columns == null) {
-            columns = new ArrayList<TabbedColumnModelElement>();
-            for (final TabbedColumnBeanPathElement column : getBeanPathElement().getColumns()) {
-                final TabbedColumnModelElement columnElement = (TabbedColumnModelElement) getContext()
-                        .getElementRegistry().getElement(column.getBeanPath());
-                columns.add(columnElement);
-            }
+            columns = Collections.unmodifiableList(new DelegateList<TabbedColumnModelElement>(null) {
+                @Override
+                public List<TabbedColumnModelElement> getDelegate() {
+                    final List<TabbedColumnModelElement> delegate = new ArrayList<TabbedColumnModelElement>();
+                    for (final TabbedColumnBeanPathElement column : getBeanPathElement().getColumns()) {
+                        final TabbedColumnModelElement columnElement = (TabbedColumnModelElement) getContext()
+                                .getElementRegistry()
+                                .getElement(column.getBeanPath());
+                        delegate.add(columnElement);
+                    }
+                    return delegate;
+                }
+
+                @Override
+                public int size() {
+                    return getBeanPathElement().getColumns().size();
+                }
+
+                @Override
+                public boolean isEmpty() {
+                    return getBeanPathElement().getColumns().isEmpty();
+                }
+            });
         }
         return Collections.unmodifiableList(columns);
     }

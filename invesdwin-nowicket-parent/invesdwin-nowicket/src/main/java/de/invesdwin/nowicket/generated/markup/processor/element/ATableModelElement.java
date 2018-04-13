@@ -13,6 +13,7 @@ import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPa
 import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.delegate.DelegateList;
 
 @NotThreadSafe
 public abstract class ATableModelElement extends AChoiceModelElement<ATableBeanPathElement> {
@@ -71,13 +72,29 @@ public abstract class ATableModelElement extends AChoiceModelElement<ATableBeanP
 
     public final List<ATableColumnModelElement<?>> getColumns() {
         if (columns == null) {
-            columns = new ArrayList<ATableColumnModelElement<?>>();
-            for (final ITableColumnBeanPathElement column : getBeanPathElement().getColumns()) {
-                final ATableColumnModelElement<?> convertedColumn = convertElement(column);
-                columns.add(convertedColumn);
-            }
+            columns = Collections.unmodifiableList(new DelegateList<ATableColumnModelElement<?>>(null) {
+                @Override
+                public List<ATableColumnModelElement<?>> getDelegate() {
+                    final List<ATableColumnModelElement<?>> delegate = new ArrayList<ATableColumnModelElement<?>>();
+                    for (final ITableColumnBeanPathElement column : getBeanPathElement().getColumns()) {
+                        final ATableColumnModelElement<?> convertedColumn = convertElement(column);
+                        delegate.add(convertedColumn);
+                    }
+                    return delegate;
+                }
+
+                @Override
+                public int size() {
+                    return getBeanPathElement().getColumns().size();
+                }
+
+                @Override
+                public boolean isEmpty() {
+                    return getBeanPathElement().getColumns().isEmpty();
+                }
+            });
         }
-        return Collections.unmodifiableList(columns);
+        return columns;
     }
 
     private ATableColumnModelElement<?> convertElement(final ITableColumnBeanPathElement column) {
