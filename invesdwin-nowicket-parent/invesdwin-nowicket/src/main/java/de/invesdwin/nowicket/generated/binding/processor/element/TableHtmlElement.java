@@ -13,7 +13,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.norva.beanpath.spi.element.ITableColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableContainerColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
@@ -213,7 +212,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     @SuppressWarnings("unchecked")
     public List<? extends IColumn<Object, String>> createWicketColumns(final IBindingBuilder bindingBuilder) {
         final List<IColumn<Object, String>> wicketColumns = new ArrayList<IColumn<Object, String>>();
-        for (final ATableColumnHtmlElement<?, ?> column : getColumns()) {
+        for (final ATableColumnHtmlElement<?, ?> column : getRawColumns()) {
             final IColumn<Object, String> wicketColumn = (IColumn<Object, String>) column
                     .createWicketColumn(bindingBuilder);
             wicketColumns.add(wicketColumn);
@@ -233,14 +232,6 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
             }
         }
         return property_column.get(property);
-    }
-
-    public List<String> getColumnOrder() {
-        final List<String> columnOrder = new ArrayList<>();
-        for (final ITableColumnBeanPathElement column : getModelElement().getBeanPathElement().getColumns()) {
-            columnOrder.add(column.getColumnId());
-        }
-        return columnOrder;
     }
 
 }
