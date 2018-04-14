@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
@@ -45,7 +46,7 @@ public abstract class AHtmlElement<E extends IModelElement<?>, M> implements IHt
     @Override
     public Element getElement() {
         if (unserializedElement == null) {
-            unserializedElement = new Element(element);
+            unserializedElement = Jsoup.parse(element).body().child(0);
         }
         return unserializedElement;
     }
