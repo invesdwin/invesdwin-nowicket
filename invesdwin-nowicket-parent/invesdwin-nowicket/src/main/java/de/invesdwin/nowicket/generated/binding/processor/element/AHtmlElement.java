@@ -7,21 +7,22 @@ import org.jsoup.nodes.Element;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.element.IModelElement;
-import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe
 public abstract class AHtmlElement<E extends IModelElement<?>, M> implements IHtmlElement<E, M> {
 
     private final HtmlContext context;
-    private transient Element element;
+    private final String element;
+    private transient Element unserializedElement;
     private final String wicketId;
 
     private boolean firstAccept = true;
 
     public AHtmlElement(final HtmlContext context, final Element element) {
         this.context = context;
-        this.element = element;
+        this.element = element.html();
+        this.unserializedElement = element;
         this.wicketId = getElement().attr(ATTR_WICKET_ID);
     }
 
@@ -43,10 +44,10 @@ public abstract class AHtmlElement<E extends IModelElement<?>, M> implements IHt
 
     @Override
     public Element getElement() {
-        Assertions.assertThat(element)
-                .as("%s is only available until serialization occurs!", Element.class)
-                .isNotNull();
-        return element;
+        if (unserializedElement == null) {
+            unserializedElement = new Element(element);
+        }
+        return unserializedElement;
     }
 
     @Override
