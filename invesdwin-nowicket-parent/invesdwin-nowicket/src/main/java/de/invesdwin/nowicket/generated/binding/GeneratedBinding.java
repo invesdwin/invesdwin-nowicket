@@ -30,7 +30,7 @@ public class GeneratedBinding implements Serializable {
     private ISubmitButtonExceptionHandler submitButtonExceptionHandler;
     private ISubmitButtonCallbackFactory submitButtonCallbackFactory;
     private boolean useSqlInjectionValidation;
-    private transient InterceptingBindingBuilder bindingBuilder;
+    private InterceptingBindingBuilder bindingBuilder;
 
     public GeneratedBinding(final Page page) {
         this((MarkupContainer) page);
