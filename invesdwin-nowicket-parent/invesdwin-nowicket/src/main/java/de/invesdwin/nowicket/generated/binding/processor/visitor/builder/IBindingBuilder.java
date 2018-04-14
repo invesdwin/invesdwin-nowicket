@@ -4,6 +4,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 
+import de.invesdwin.norva.marker.ISerializableValueObject;
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.CheckBoxInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlElement;
@@ -37,7 +38,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.TextInputHtmlEl
 import de.invesdwin.nowicket.generated.binding.processor.element.UnorderedListHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.UploadButtonHtmlElement;
 
-public interface IBindingBuilder {
+public interface IBindingBuilder extends ISerializableValueObject {
 
     Component createForm(FormHtmlElement e);
 
