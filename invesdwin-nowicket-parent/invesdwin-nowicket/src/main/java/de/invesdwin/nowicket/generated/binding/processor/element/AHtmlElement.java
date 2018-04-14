@@ -21,7 +21,7 @@ public abstract class AHtmlElement<E extends IModelElement<?>, M> implements IHt
 
     public AHtmlElement(final HtmlContext context, final Element element) {
         this.context = context;
-        this.element = element.html();
+        this.element = element.toString();
         this.unserializedElement = element;
         this.wicketId = getElement().attr(ATTR_WICKET_ID);
     }
