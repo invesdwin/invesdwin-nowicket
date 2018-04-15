@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.component.consent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.nio.charset.Charset;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -84,6 +85,7 @@ public class CookieConsent extends WebMarkupContainer {
 
     @Override
     public void renderHead(final IHeaderResponse response) {
+        super.renderHead(response);
         final CharSequence js = createJavaScript();
         response.render(JavaScriptHeaderItem.forScript(js, getClass().getSimpleName()));
     }
@@ -93,7 +95,7 @@ public class CookieConsent extends WebMarkupContainer {
             final InputStream in = new PackageResourceReference(getClass(), "cookieConsent.js").getResource()
                     .getResourceStream()
                     .getInputStream();
-            String js = IOUtils.toString(in);
+            String js = IOUtils.toString(in, Charset.defaultCharset());
             in.close();
 
             //cookie duration
