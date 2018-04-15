@@ -12,6 +12,7 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.PackageResource;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.util.resource.ResourceStreamNotFoundException;
 
@@ -92,9 +93,9 @@ public class CookieConsent extends WebMarkupContainer {
 
     private CharSequence createJavaScript() {
         try {
-            final InputStream in = new PackageResourceReference(getClass(), "cookieConsent.js").getResource()
-                    .getResourceStream()
-                    .getInputStream();
+            final PackageResource resource = new PackageResourceReference(getClass(), "cookieConsent.js").getResource();
+            resource.setCompress(false);
+            final InputStream in = resource.getResourceStream().getInputStream();
             String js = IOUtils.toString(in, Charset.defaultCharset());
             in.close();
 
