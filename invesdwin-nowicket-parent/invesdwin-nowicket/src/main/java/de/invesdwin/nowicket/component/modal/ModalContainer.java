@@ -7,6 +7,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
@@ -100,6 +101,12 @@ public class ModalContainer extends Panel {
                 }
             });
         }
+        add(new AttributeAppender("style", "max-height: 95%") {
+            @Override
+            public boolean isTemporary(final Component component) {
+                return true;
+            }
+        });
     }
 
     @Override
