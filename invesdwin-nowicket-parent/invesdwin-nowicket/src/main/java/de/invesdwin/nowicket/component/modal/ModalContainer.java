@@ -101,7 +101,7 @@ public class ModalContainer extends Panel {
                 }
             });
         }
-        add(new AttributeAppender("style", "max-height: 99%") {
+        add(new AttributeAppender("style", "max-height: 98%") {
             @Override
             public boolean isTemporary(final Component component) {
                 return true;
