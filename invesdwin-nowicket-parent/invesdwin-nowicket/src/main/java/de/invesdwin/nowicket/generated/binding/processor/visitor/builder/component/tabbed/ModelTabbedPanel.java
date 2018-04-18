@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -26,6 +27,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElem
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.DefaultSubmitButtonCallback;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.AModelAjaxFallbackLink;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
+import de.invesdwin.util.collections.delegate.DelegateList;
 import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
@@ -44,24 +46,36 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
     }
 
     private final PNotifyBehavior validationErrorNotificationBehavior;
+    private final RefreshingDelegateList<ITab> refreshingTabs;
 
     public ModelTabbedPanel(final ITabbedHtmlElement<?, ?> element) {
         this(element.getWicketId(), element.createWicketTabs(), Model.of(0));
     }
 
     public ModelTabbedPanel(final String id, final List<ITab> tabs, final Model<Integer> model) {
-        super(id, tabs, model);
+        super(id, new RefreshingDelegateList<ITab>(tabs), model);
+        this.refreshingTabs = (RefreshingDelegateList<ITab>) getTabs();
         this.validationErrorNotificationBehavior = createValidationErrorNotificationBehavior();
     }
 
     @Override
     protected void onConfigure() {
         try {
+            //refresh the tabs only here to prevent race conditions during render
+            refreshingTabs.refresh();
             /*
              * reset visibility cache since tabs might have changed significantly since last render, we don't want to
              * have wrong visibility and we don't want to get IndexOutOfBoundsExceptions
              */
             VISIBILITY_CACHE_FIELD_SETTER.invoke(this, null);
+            int selectedTab = getSelectedTab();
+            if (selectedTab < 0) {
+                selectedTab = 1;
+            } else if (selectedTab >= getTabs().size()) {
+                selectedTab = getTabs().size() - 1;
+            }
+            //update the visible panel, the tab could have been replaced
+            setSelectedTab(selectedTab);
         } catch (final Throwable e) {
             throw new RuntimeException(e);
         }
@@ -103,7 +117,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
 
     @Override
     public boolean isVisible() {
-        if (getTabs().isEmpty()) {
+        if (!refreshingTabs.isVisible()) {
             //fix ArrayIndexOutOfBoundsException when tabs are empty
             return false;
         } else {
@@ -252,5 +266,31 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         }
 
     };
+
+    private static class RefreshingDelegateList<E> extends DelegateList<E> {
+
+        private final List<E> delegate;
+        private List<E> delegateCopy;
+
+        RefreshingDelegateList(final List<E> delegate) {
+            super(null);
+            this.delegate = delegate;
+            refresh();
+        }
+
+        public boolean isVisible() {
+            return !delegate.isEmpty();
+        }
+
+        @Override
+        public List<E> getDelegate() {
+            return delegateCopy;
+        }
+
+        private void refresh() {
+            delegateCopy = new ArrayList<>(delegate);
+        }
+
+    }
 
 }

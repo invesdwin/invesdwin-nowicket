@@ -59,6 +59,7 @@ import de.invesdwin.nowicket.examples.guide.page.mvp.RedirectToMvpBsgcoachPage;
 import de.invesdwin.nowicket.examples.guide.page.mvp.RedirectToMvpEvaPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxchoice.AjaxChoicePage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxdatatable.AjaxDataTablePage;
+import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer.AjaxTimerPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.authentication.secure.SpringSecurePage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.authentication.secure.WicketSecurePage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.DynamicEditorFieldsPage;
@@ -239,6 +240,9 @@ public abstract class AExampleWebPage extends AWebPage {
                         subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicEditorFieldsPage.class,
                                 new ResourceModel("menu.dynamiceditorfields").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.edit));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxTimerPage.class,
+                                new ResourceModel("menu.ajaxtimer").wrapOnAssignment(navbar))
+                                        .setIconType(GlyphIconType.refresh));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(GuestbookExamplePage.class,
                                 new ResourceModel("menu.guestbook").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.book));
