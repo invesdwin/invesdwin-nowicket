@@ -3,10 +3,10 @@ package de.invesdwin.nowicket.application;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.ThreadSafe;
@@ -24,6 +24,7 @@ import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.concurrent.AFastIterableDelegateList;
 import de.invesdwin.util.lang.Strings;
 
 @ThreadSafe
@@ -126,32 +127,30 @@ public final class PageFactory implements Serializable {
 
     public Page getRegisteredPage(final Object modelObject) {
         final List<PageReferenceAndModel> pageReferences = getPageReferencesForModel(modelObject);
-        synchronized (pageReferences) {
-            //need to check all pageReferences to find the one that matches
-            for (final PageReferenceAndModel existingPageReference : pageReferences) {
+        //need to check all pageReferences to find the one that matches
+        for (final PageReferenceAndModel existingPageReference : pageReferences) {
+            try {
+                //see: http://mail-archives.apache.org/mod_mbox/wicket-users/201211.mbox/%3CCANgwjP4xsMKo6kKjVSOOnf_qKvdV+nbhXh8bkZ0R6oZN1BS8YA@mail.gmail.com%3E
+                final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(
+                        org.apache.wicket.util.time.Duration.ONE_SECOND);
+                pageAccessSynchronizer.lockPage(existingPageReference.getPageId());
                 try {
-                    //see: http://mail-archives.apache.org/mod_mbox/wicket-users/201211.mbox/%3CCANgwjP4xsMKo6kKjVSOOnf_qKvdV+nbhXh8bkZ0R6oZN1BS8YA@mail.gmail.com%3E
-                    final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(
-                            org.apache.wicket.util.time.Duration.ONE_SECOND);
-                    pageAccessSynchronizer.lockPage(existingPageReference.getPageId());
-                    try {
-                        final Page existingPage = existingPageReference.getPage();
-                        /*
-                         * relying on proper equals here, keeping the old model since otherwise user input could get
-                         * lost if those attributes were not relevant for equals/hashCode
-                         */
-                        if (existingPage != null && modelObject.equals(existingPage.getDefaultModelObject())) {
-                            existingPageReference.restoreLatestModel(existingPage);
-                            return existingPage;
-                        }
-                    } finally {
-                        pageAccessSynchronizer.unlockPage(existingPageReference.getPageId());
+                    final Page existingPage = existingPageReference.getPage();
+                    /*
+                     * relying on proper equals here, keeping the old model since otherwise user input could get lost if
+                     * those attributes were not relevant for equals/hashCode
+                     */
+                    if (existingPage != null && modelObject.equals(existingPage.getDefaultModelObject())) {
+                        existingPageReference.restoreLatestModel(existingPage);
+                        return existingPage;
                     }
-                    //CHECKSTYLE:OFF
-                } catch (final CouldNotLockPageException e) {
-                    //CHECKSTYLE:ON
-                    //ignore, check the other pages or create a new instance in the worst case
+                } finally {
+                    pageAccessSynchronizer.unlockPage(existingPageReference.getPageId());
                 }
+                //CHECKSTYLE:OFF
+            } catch (final CouldNotLockPageException e) {
+                //CHECKSTYLE:ON
+                //ignore, check the other pages or create a new instance in the worst case
             }
         }
         return null;
@@ -173,18 +172,21 @@ public final class PageFactory implements Serializable {
         synchronized (modelObjectHashCode_pageReferences) {
             list = modelObjectHashCode_pageReferences.get(modelObjectHashCode);
             if (list == null) {
-                //need CopyOnWrite to prevent ConcurrentModificationException when removing while iterating over it
-                list = new CopyOnWriteArrayList<PageReferenceAndModel>();
+                //prevent concurrent modification exception
+                list = new AFastIterableDelegateList<PageReferenceAndModel>() {
+                    @Override
+                    protected List<PageReferenceAndModel> newDelegate() {
+                        return new ArrayList<>();
+                    }
+                };
                 modelObjectHashCode_pageReferences.put(modelObjectHashCode, list);
             }
         }
-        synchronized (list) {
-            //remove LRU
-            while (list.size() > MAX_PAGE_REFERENCES_PER_MODEL) {
-                list.remove(0);
-            }
-            return list;
+        //remove LRU
+        while (list.size() > MAX_PAGE_REFERENCES_PER_MODEL) {
+            list.remove(0);
         }
+        return list;
     }
 
     public void updatePage(final Page page) {
@@ -194,30 +196,28 @@ public final class PageFactory implements Serializable {
         }
         // clean up existing page references if they are equal to the new one
         final List<PageReferenceAndModel> pageReferences = getPageReferencesForModel(modelObject);
-        synchronized (pageReferences) {
-            for (final PageReferenceAndModel existingPageReference : pageReferences) {
+        for (final PageReferenceAndModel existingPageReference : pageReferences) {
+            try {
+                //see: http://mail-archives.apache.org/mod_mbox/wicket-users/201211.mbox/%3CCANgwjP4xsMKo6kKjVSOOnf_qKvdV+nbhXh8bkZ0R6oZN1BS8YA@mail.gmail.com%3E
+                final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(
+                        org.apache.wicket.util.time.Duration.ONE_SECOND);
+                pageAccessSynchronizer.lockPage(existingPageReference.getPageId());
                 try {
-                    //see: http://mail-archives.apache.org/mod_mbox/wicket-users/201211.mbox/%3CCANgwjP4xsMKo6kKjVSOOnf_qKvdV+nbhXh8bkZ0R6oZN1BS8YA@mail.gmail.com%3E
-                    final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(
-                            org.apache.wicket.util.time.Duration.ONE_SECOND);
-                    pageAccessSynchronizer.lockPage(existingPageReference.getPageId());
-                    try {
-                        final Page existingPage = existingPageReference.getPage();
-                        //remove if page reference is lost or if its an equal model (which might be outdated)
-                        if (existingPage == null || modelObject.equals(existingPage.getDefaultModelObject())) {
-                            pageReferences.remove(existingPageReference);
-                        }
-                    } finally {
-                        pageAccessSynchronizer.unlockPage(existingPageReference.getPageId());
+                    final Page existingPage = existingPageReference.getPage();
+                    //remove if page reference is lost or if its an equal model (which might be outdated)
+                    if (existingPage == null || modelObject.equals(existingPage.getDefaultModelObject())) {
+                        pageReferences.remove(existingPageReference);
                     }
-                    //CHECKSTYLE:OFF
-                } catch (final CouldNotLockPageException e) {
-                    //CHECKSTYLE:ON
-                    //ignore, next call might clean up the existing references
+                } finally {
+                    pageAccessSynchronizer.unlockPage(existingPageReference.getPageId());
                 }
+                //CHECKSTYLE:OFF
+            } catch (final CouldNotLockPageException e) {
+                //CHECKSTYLE:ON
+                //ignore, next call might clean up the existing references
             }
-            pageReferences.add(new PageReferenceAndModel(page));
         }
+        pageReferences.add(new PageReferenceAndModel(page));
     }
 
     /**
