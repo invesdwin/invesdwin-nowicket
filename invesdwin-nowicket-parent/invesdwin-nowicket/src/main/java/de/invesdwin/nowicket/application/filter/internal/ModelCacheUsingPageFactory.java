@@ -4,8 +4,8 @@ import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.IPageFactory;
 import org.apache.wicket.Page;
-import org.apache.wicket.ajax.AjaxNewWindowNotifyingBehavior;
-import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.core.request.handler.PageProvider;
+import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.request.component.IRequestablePage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.crypt.Base64;
@@ -20,7 +20,7 @@ import de.invesdwin.util.lang.Objects;
 @ThreadSafe
 public class ModelCacheUsingPageFactory implements IPageFactory {
 
-    private static final String PAGE_PARAM_NO_CACHE = ModelCacheUsingPageFactory.class.getSimpleName() + "_NO_CACHE";
+    public static final String PAGE_PARAM_NO_CACHE = ModelCacheUsingPageFactory.class.getSimpleName() + "_NO_CACHE";
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
             .getXLogger(ModelCacheUsingPageFactory.class);
@@ -106,11 +106,21 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         return newPage;
     }
 
-    private boolean shouldUsePageFactoryCache(final Page newPage) {
+    private static boolean shouldUsePageFactoryCache(final Page newPage) {
+        final PageParameters pageParameters = newPage.getPageParameters();
+        if (pageParameters.getNamedKeys().contains(PAGE_PARAM_NO_CACHE)) {
+            maybeCopyGuiTasksHolder(newPage);
+            pageParameters.remove(PAGE_PARAM_NO_CACHE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private static void maybeCopyGuiTasksHolder(final Page newPage) {
         final PageParameters pageParameters = newPage.getPageParameters();
         final String noCacheStr = pageParameters.get(PAGE_PARAM_NO_CACHE).toString();
-        final boolean noCache = noCacheStr != null;
-        if (noCache) {
+        if (noCacheStr != null) {
             try {
                 final String decrypted = AWebApplication.get()
                         .getSecuritySettings()
@@ -118,16 +128,13 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
                         .newCrypt()
                         .decryptUrlSafe(noCacheStr);
                 final byte[] serialized = Base64.decodeBase64(decrypted);
-                final GuiTasksHolder deserialized = Objects.deserialize(serialized);
-                GuiTasksHolder.get(newPage).setGuiTasks(deserialized.getGuiTasks());
+                final GuiTasksHolder oldGuiTasksHolder = Objects.deserialize(serialized);
+                final GuiTasksHolder newGuiTasksHolder = GuiTasksHolder.get(newPage);
+                newGuiTasksHolder.setGuiTasks(oldGuiTasksHolder.getGuiTasks());
             } catch (final Throwable t) {
                 LOG.catching(Level.WARN, new RuntimeException("Ignoring " + PAGE_PARAM_NO_CACHE + " payload ["
                         + noCacheStr + "] due to error on deserialization.", t));
             }
-            pageParameters.remove(PAGE_PARAM_NO_CACHE);
-            return false;
-        } else {
-            return true;
         }
     }
 
@@ -136,24 +143,20 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         return delegate.isBookmarkable(pageClass);
     }
 
-    public static AjaxNewWindowNotifyingBehavior newAjaxNewWindowNotifyingBehavior() {
-        return new AjaxNewWindowNotifyingBehavior() {
-            @Override
-            protected void onNewWindow(final AjaxRequestTarget target) {
-                final Page page = target.getPage();
-                final PageParameters pageParameters = new PageParameters(page.getPageParameters());
-                if (!pageParameters.getNamedKeys().contains(PAGE_PARAM_NO_CACHE)) {
-                    final byte[] serialized = Objects.serialize(GuiTasksHolder.get(page));
-                    final String base64Str = new String(Base64.encodeBase64(serialized));
-                    final String encrypted = AWebApplication.get()
-                            .getSecuritySettings()
-                            .getCryptFactory()
-                            .newCrypt()
-                            .encryptUrlSafe(base64Str);
-                    pageParameters.add(PAGE_PARAM_NO_CACHE, encrypted);
-                }
-                page.setResponsePage(page.getPageClass(), pageParameters);
-            }
-        };
+    public static RenderPageRequestHandler onStalePageException() {
+        final Page page = GuiTasksHolder.getPage();
+        final PageParameters pageParameters = new PageParameters(page.getPageParameters());
+        if (!pageParameters.getNamedKeys().contains(PAGE_PARAM_NO_CACHE)) {
+            final GuiTasksHolder guiTasksHolder = Objects.clone(GuiTasksHolder.get(page));
+            final byte[] serialized = Objects.serialize(guiTasksHolder);
+            final String base64Str = new String(Base64.encodeBase64(serialized));
+            final String encrypted = AWebApplication.get()
+                    .getSecuritySettings()
+                    .getCryptFactory()
+                    .newCrypt()
+                    .encryptUrlSafe(base64Str);
+            pageParameters.add(PAGE_PARAM_NO_CACHE, encrypted);
+        }
+        return new RenderPageRequestHandler(new PageProvider(page.getClass(), pageParameters));
     }
 }

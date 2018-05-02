@@ -22,6 +22,7 @@ import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.javascript.YuiCssCompressor;
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
+import de.invesdwin.nowicket.application.filter.StalePageRequestCycleListener;
 import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
 import de.invesdwin.nowicket.component.chart.header.HighstockWebjarInitializer;
 import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContributor;
@@ -64,6 +65,7 @@ public class WebApplicationInitializer {
         registerOnePassRenderForBots();
         registerRootRequestMapper();
         registerHidingAutoLabelResolver();
+        registerStalePageRequestCycleListener();
         runHooks();
     }
 
@@ -224,5 +226,9 @@ public class WebApplicationInitializer {
                 return new BotAwareWebPageRenderer(handler);
             }
         });
+    }
+
+    protected void registerStalePageRequestCycleListener() {
+        webApplication.getRequestCycleListeners().add(new StalePageRequestCycleListener());
     }
 }

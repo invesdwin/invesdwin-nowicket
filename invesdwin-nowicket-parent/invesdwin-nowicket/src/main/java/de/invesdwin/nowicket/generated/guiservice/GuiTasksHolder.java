@@ -51,7 +51,7 @@ public class GuiTasksHolder implements ISerializableValueObject {
         return get(page);
     }
 
-    private static Page getPage() {
+    public static Page getPage() {
         Page page = RequestCycle.get().getMetaData(PAGE_KEY);
         if (page != null) {
             return page;
