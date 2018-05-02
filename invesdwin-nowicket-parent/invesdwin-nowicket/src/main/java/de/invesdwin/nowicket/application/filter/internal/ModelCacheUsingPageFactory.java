@@ -142,14 +142,16 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
             protected void onNewWindow(final AjaxRequestTarget target) {
                 final Page page = target.getPage();
                 final PageParameters pageParameters = new PageParameters(page.getPageParameters());
-                final byte[] serialized = Objects.serialize(GuiTasksHolder.get(page));
-                final String base64Str = new String(Base64.encodeBase64(serialized));
-                final String encrypted = AWebApplication.get()
-                        .getSecuritySettings()
-                        .getCryptFactory()
-                        .newCrypt()
-                        .encryptUrlSafe(base64Str);
-                pageParameters.add(PAGE_PARAM_NO_CACHE, encrypted);
+                if (!pageParameters.getNamedKeys().contains(PAGE_PARAM_NO_CACHE)) {
+                    final byte[] serialized = Objects.serialize(GuiTasksHolder.get(page));
+                    final String base64Str = new String(Base64.encodeBase64(serialized));
+                    final String encrypted = AWebApplication.get()
+                            .getSecuritySettings()
+                            .getCryptFactory()
+                            .newCrypt()
+                            .encryptUrlSafe(base64Str);
+                    pageParameters.add(PAGE_PARAM_NO_CACHE, encrypted);
+                }
                 page.setResponsePage(page.getPageClass(), pageParameters);
             }
         };
