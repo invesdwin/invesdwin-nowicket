@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.form.Form;
 
 import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
 import de.invesdwin.nowicket.component.pnotify.PNotifyType;
@@ -23,7 +24,8 @@ public class ShowStatusMessageGuiTask implements IGuiTask {
 
     @Override
     public Collection<? extends Component> process(final Component component) {
-        final Component root = Components.findForm(component).getRootForm();
+        final Form<?> form = Components.findForm(component);
+        final Component root = form.getRootForm();
         final PNotifyBehavior behavior = new PNotifyBehavior();
         if (config.getTitle() != null) {
             behavior.withTitle(config.getTitle());
