@@ -110,7 +110,7 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         final PageParameters pageParameters = newPage.getPageParameters();
         final String noCacheStr = pageParameters.get(PAGE_PARAM_NO_CACHE).toString();
         final boolean noCache = noCacheStr != null;
-        if (noCacheStr != null) {
+        if (noCache) {
             try {
                 final String decrypted = AWebApplication.get()
                         .getSecuritySettings()
@@ -125,8 +125,10 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
                         + noCacheStr + "] due to error on deserialization.", t));
             }
             pageParameters.remove(PAGE_PARAM_NO_CACHE);
+            return false;
+        } else {
+            return true;
         }
-        return !noCache;
     }
 
     @Override
