@@ -300,11 +300,7 @@ public final class Components {
 
     private static void handleFrozenComponentsException(final Throwable t) {
         if (t.getMessage().contains("longer be added")) {
-            if (LOG.isDebugEnabled()) {
-                LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.getFullStackTrace(t));
-            } else if (LOG.isWarnEnabled()) {
-                LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.concatMessages(t));
-            }
+            LOG.warn(FROZEN_COMPONENTS_LOG_MESSAGE, Throwables.getFullStackTrace(t));
         } else {
             throw Throwables.propagate(t);
         }

@@ -4,15 +4,21 @@ import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.IPageFactory;
 import org.apache.wicket.Page;
+import org.apache.wicket.ajax.AjaxNewWindowNotifyingBehavior;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.component.IRequestablePage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.util.string.StringValue;
 import org.slf4j.ext.XLogger.Level;
 
 import de.invesdwin.nowicket.application.IPageFactoryHook;
 import de.invesdwin.nowicket.application.PageFactory;
+import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 
 @ThreadSafe
 public class ModelCacheUsingPageFactory implements IPageFactory {
+
+    private static final String PAGE_PARAM_NO_CACHE = ModelCacheUsingPageFactory.class.getSimpleName() + "_NO_CACHE";
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
             .getXLogger(ModelCacheUsingPageFactory.class);
@@ -25,6 +31,8 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
     public static <C extends IRequestablePage> C postProcessUsedPage(final Object newModelObject, final C usedPage) {
         if (usedPage instanceof Page) {
             final Page cUsedPage = (Page) usedPage;
+            //execute guitasks that were created for the new page on the used page
+            GuiTasksHolder.setPage(cUsedPage);
             if (cUsedPage.getDefaultModelObject() != null && usedPage instanceof IPageFactoryHook) {
                 final IPageFactoryHook hook = (IPageFactoryHook) usedPage;
                 hook.onPageModelRefresh(newModelObject);
@@ -58,10 +66,26 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private <C extends IRequestablePage> C tryPageFactoryCache(final C newPage) {
+        final C usedPage = tryPageFactoryCacheInternal(newPage);
+        /*
+         * copy gui tasks from the constructor of the newly created page to the cached page instance for execution
+         */
+        if (usedPage != newPage && usedPage instanceof Page && newPage instanceof Page) {
+            final Page cUsedPage = (Page) usedPage;
+            final Page cNewPage = (Page) newPage;
+            GuiTasksHolder.get(cUsedPage).setGuiTasks(GuiTasksHolder.get(cNewPage).getGuiTasks());
+        }
+        return usedPage;
+    }
+
+    @SuppressWarnings("unchecked")
+    private <C extends IRequestablePage> C tryPageFactoryCacheInternal(final C newPage) {
         if (newPage instanceof Page) {
             final Page cNewPage = (Page) newPage;
+            if (!shouldUsePageFactoryCache(cNewPage)) {
+                return newPage;
+            }
             final Object modelObject = cNewPage.getDefaultModelObject();
             if (modelObject != null) {
                 try {
@@ -70,10 +94,9 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
                         return (C) page;
                     }
                 } catch (final Throwable t) {
-                    LOG.catching(Level.WARN,
-                            new RuntimeException(
-                                    "Not a generated model page or no suitable constructor available, falling back to default created page.",
-                                    t));
+                    LOG.catching(Level.WARN, new RuntimeException(
+                            "Not a generated model page or no suitable constructor available, falling back to default created page.",
+                            t));
                     return newPage;
                 }
             }
@@ -81,8 +104,39 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         return newPage;
     }
 
+    private boolean shouldUsePageFactoryCache(final Page newPage) {
+        final PageParameters pageParameters = newPage.getPageParameters();
+        final StringValue noCacheStr = pageParameters.get(PAGE_PARAM_NO_CACHE);
+        final boolean noCache = noCacheStr != null;
+        if (noCacheStr != null) {
+            final String uuid = noCacheStr.toString();
+            if (uuid != null) {
+                final GuiTasksHolder guiTasksHolder = GuiTasksHolderMap.get().get(uuid);
+                if (guiTasksHolder != null) {
+                    GuiTasksHolder.get(newPage).setGuiTasks(guiTasksHolder.getGuiTasks());
+                }
+                pageParameters.remove(PAGE_PARAM_NO_CACHE);
+            }
+        }
+        return !noCache;
+    }
+
     @Override
     public <C extends IRequestablePage> boolean isBookmarkable(final Class<C> pageClass) {
         return delegate.isBookmarkable(pageClass);
+    }
+
+    public static AjaxNewWindowNotifyingBehavior newAjaxNewWindowNotifyingBehavior() {
+        return new AjaxNewWindowNotifyingBehavior() {
+            @Override
+            protected void onNewWindow(final AjaxRequestTarget target) {
+                final Page page = target.getPage();
+                final PageParameters pageParameters = new PageParameters(page.getPageParameters());
+                final GuiTasksHolder guiTasksHolder = GuiTasksHolder.get(page);
+                final String uuid = GuiTasksHolderMap.get().put(guiTasksHolder);
+                pageParameters.add(PAGE_PARAM_NO_CACHE, uuid);
+                page.setResponsePage(page.getPageClass(), pageParameters);
+            }
+        };
     }
 }

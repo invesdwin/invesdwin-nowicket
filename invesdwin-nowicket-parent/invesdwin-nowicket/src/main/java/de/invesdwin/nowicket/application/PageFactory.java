@@ -22,6 +22,7 @@ import org.apache.wicket.page.PageAccessSynchronizer;
 
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
+import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.collections.concurrent.AFastIterableDelegateList;
@@ -67,6 +68,8 @@ public final class PageFactory implements Serializable {
             //only update here when using registeredPage
             ModelCacheUsingPageFactory.postProcessUsedPage(modelObject, usedPage);
         }
+        //execute guitasks that were created for the new page on the used page
+        GuiTasksHolder.get(usedPage).setGuiTasks(GuiTasksHolder.get().getGuiTasks());
         return usedPage;
     }
 

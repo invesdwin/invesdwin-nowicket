@@ -4,6 +4,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Page;
+import org.apache.wicket.ajax.AjaxNewWindowNotifyingBehavior;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxIndicatorAppender;
@@ -27,7 +28,9 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.page.auth.SignIn;
 import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
@@ -45,7 +48,10 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
 
     public AWebPage(final IModel<?> model) {
         super(model);
-
+        /*
+         * prevent endless loop when a gui task is added in the page constructor regarding gui tasks holder access
+         */
+        GuiTasksHolder.setPage(this);
         if (ABaseWebApplication.get().getDelegate().getAuthenticationService() != null) {
             //check remember me before anything else
             final SignIn signIn = new SignIn();
@@ -99,6 +105,16 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
         } else {
             add(new WebMarkupContainer("footer").setVisible(false));
         }
+
+        //http://apache-wicket.1842946.n4.nabble.com/Multi-tab-window-support-in-Wicket-7-5-tp4676393p4676419.html
+        final AjaxNewWindowNotifyingBehavior ajaxNewWindowNotifyingBehavior = newAjaxNewWindowNotifyingBehavior();
+        if (ajaxIndicatorAppenderContainer != null) {
+            add(ajaxNewWindowNotifyingBehavior);
+        }
+    }
+
+    protected AjaxNewWindowNotifyingBehavior newAjaxNewWindowNotifyingBehavior() {
+        return ModelCacheUsingPageFactory.newAjaxNewWindowNotifyingBehavior();
     }
 
     protected HtmlTag newHtmlTag(final String id) {

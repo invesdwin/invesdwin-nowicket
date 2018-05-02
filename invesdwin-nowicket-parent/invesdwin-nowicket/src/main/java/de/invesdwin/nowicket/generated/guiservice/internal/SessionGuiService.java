@@ -20,6 +20,7 @@ import org.apache.wicket.session.ISessionStore.UnboundListener;
 
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
@@ -40,7 +41,6 @@ public class SessionGuiService implements IGuiService, Serializable {
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(SessionGuiService.class);
 
-    private GuiTasks guiTasks = new GuiTasks();
     private File sessionFolder;
 
     public static SessionGuiService get() {
@@ -93,7 +93,7 @@ public class SessionGuiService implements IGuiService, Serializable {
     @Override
     public void processRequestFinally(final Component component) {
         try {
-            final Collection<? extends Component> updatedComponents = guiTasks.process(component);
+            final Collection<? extends Component> updatedComponents = getGuiTasks().process(component);
             if (isDisableUpdateAllComponentsForCurrentRequest()) {
                 Components.updateComponents(updatedComponents);
             } else {
@@ -124,32 +124,32 @@ public class SessionGuiService implements IGuiService, Serializable {
         LOG.catching(new RuntimeException(GuiTasks.class.getSimpleName()
                 + ".process() threw an exception, resetting everything to keep the overall website working for the next request...",
                 t));
-        guiTasks = new GuiTasks();
+        GuiTasksHolder.get().setGuiTasks(null);
     }
 
     @Override
     public void showPage(final Object modelObject) {
-        guiTasks.showPage(modelObject);
+        getGuiTasks().showPage(modelObject);
     }
 
     @Override
     public void showModalPanel(final Object modelObject, final Dimension dimension) {
-        guiTasks.showModalPanel(modelObject, dimension);
+        getGuiTasks().showModalPanel(modelObject, dimension);
     }
 
     @Override
     public void showStatusMessage(final StatusMessageConfig config) {
-        guiTasks.showStatusMessage(config);
+        getGuiTasks().showStatusMessage(config);
     }
 
     @Override
     public boolean isModalPanelShowing() {
-        return guiTasks.isModalPanelShowing();
+        return getGuiTasks().isModalPanelShowing();
     }
 
     @Override
     public void hideModalPanel() {
-        guiTasks.hideModalPanel();
+        getGuiTasks().hideModalPanel();
     }
 
     @Override
@@ -196,10 +196,10 @@ public class SessionGuiService implements IGuiService, Serializable {
 
     @Override
     public void offerDownload(final OfferDownloadConfig config) {
-        guiTasks.offerDownload(config);
+        getGuiTasks().offerDownload(config);
     }
 
     public GuiTasks getGuiTasks() {
-        return guiTasks;
+        return GuiTasksHolder.get().getGuiTasks();
     }
 }

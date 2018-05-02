@@ -40,6 +40,10 @@ public abstract class AWebApplication extends ABaseWebApplication {
         initializer.init();
     }
 
+    public static AWebApplication get() {
+        return (AWebApplication) ABaseWebApplication.get();
+    }
+
     @Override
     public final IWebApplicationConfig getDelegate() {
         if (delegate == null) {
