@@ -113,18 +113,20 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         final boolean noCache = noCacheStr != null;
         if (noCacheStr != null) {
             final String encrypted = noCacheStr.toString();
-            try {
-                final String decrypted = AWebApplication.get()
-                        .getSecuritySettings()
-                        .getCryptFactory()
-                        .newCrypt()
-                        .decryptUrlSafe(encrypted);
-                final byte[] serialized = Base64.decodeBase64(decrypted);
-                final GuiTasksHolder deserialized = Objects.deserialize(serialized);
-                GuiTasksHolder.get(newPage).setGuiTasks(deserialized.getGuiTasks());
-            } catch (final Throwable t) {
-                LOG.catching(Level.WARN, new RuntimeException("Ignoring " + PAGE_PARAM_NO_CACHE + " payload ["
-                        + encrypted + "] due to error on deserialization.", t));
+            if (encrypted != null) {
+                try {
+                    final String decrypted = AWebApplication.get()
+                            .getSecuritySettings()
+                            .getCryptFactory()
+                            .newCrypt()
+                            .decryptUrlSafe(encrypted);
+                    final byte[] serialized = Base64.decodeBase64(decrypted);
+                    final GuiTasksHolder deserialized = Objects.deserialize(serialized);
+                    GuiTasksHolder.get(newPage).setGuiTasks(deserialized.getGuiTasks());
+                } catch (final Throwable t) {
+                    LOG.catching(Level.WARN, new RuntimeException("Ignoring " + PAGE_PARAM_NO_CACHE + " payload ["
+                            + encrypted + "] due to error on deserialization.", t));
+                }
             }
             pageParameters.remove(PAGE_PARAM_NO_CACHE);
         }
