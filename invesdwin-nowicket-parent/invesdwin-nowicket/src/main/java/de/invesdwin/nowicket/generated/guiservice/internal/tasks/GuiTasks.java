@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 import java.awt.Dimension;
 import java.util.ArrayDeque;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.form.Form;
 
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
@@ -87,6 +89,12 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
 
     @Override
     public Collection<? extends Component> process(final Component component) {
+        final Form<?> form = Components.findForm(component);
+        if (form == null) {
+            //wait for a valid page to execute on
+            return Collections.emptyList();
+        }
+
         if (showPageGuiTask != null) {
             final Collection<? extends Component> updatedComponents = showPageGuiTask.process(component);
             showPageGuiTask = null;
