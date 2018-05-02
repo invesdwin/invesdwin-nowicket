@@ -9,7 +9,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.component.IRequestablePage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.crypt.Base64;
-import org.apache.wicket.util.string.StringValue;
 import org.slf4j.ext.XLogger.Level;
 
 import de.invesdwin.nowicket.application.IPageFactoryHook;
@@ -109,24 +108,21 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
 
     private boolean shouldUsePageFactoryCache(final Page newPage) {
         final PageParameters pageParameters = newPage.getPageParameters();
-        final StringValue noCacheStr = pageParameters.get(PAGE_PARAM_NO_CACHE);
+        final String noCacheStr = pageParameters.get(PAGE_PARAM_NO_CACHE).toString();
         final boolean noCache = noCacheStr != null;
         if (noCacheStr != null) {
-            final String encrypted = noCacheStr.toString();
-            if (encrypted != null) {
-                try {
-                    final String decrypted = AWebApplication.get()
-                            .getSecuritySettings()
-                            .getCryptFactory()
-                            .newCrypt()
-                            .decryptUrlSafe(encrypted);
-                    final byte[] serialized = Base64.decodeBase64(decrypted);
-                    final GuiTasksHolder deserialized = Objects.deserialize(serialized);
-                    GuiTasksHolder.get(newPage).setGuiTasks(deserialized.getGuiTasks());
-                } catch (final Throwable t) {
-                    LOG.catching(Level.WARN, new RuntimeException("Ignoring " + PAGE_PARAM_NO_CACHE + " payload ["
-                            + encrypted + "] due to error on deserialization.", t));
-                }
+            try {
+                final String decrypted = AWebApplication.get()
+                        .getSecuritySettings()
+                        .getCryptFactory()
+                        .newCrypt()
+                        .decryptUrlSafe(noCacheStr);
+                final byte[] serialized = Base64.decodeBase64(decrypted);
+                final GuiTasksHolder deserialized = Objects.deserialize(serialized);
+                GuiTasksHolder.get(newPage).setGuiTasks(deserialized.getGuiTasks());
+            } catch (final Throwable t) {
+                LOG.catching(Level.WARN, new RuntimeException("Ignoring " + PAGE_PARAM_NO_CACHE + " payload ["
+                        + noCacheStr + "] due to error on deserialization.", t));
             }
             pageParameters.remove(PAGE_PARAM_NO_CACHE);
         }
