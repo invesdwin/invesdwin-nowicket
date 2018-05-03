@@ -5,13 +5,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.Page;
+import org.apache.wicket.core.request.handler.IPageRequestHandler;
 import org.apache.wicket.request.IRequestParameters;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
+import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.cycle.RequestCycle;
+
+import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 
 @NotThreadSafe
 public final class RequestCycles {
+
+    private static final MetaDataKey<Page> PAGE_KEY = new MetaDataKey<Page>() {
+    };
 
     private RequestCycles() {}
 
@@ -48,6 +57,28 @@ public final class RequestCycles {
             }
         }
         return false;
+    }
+
+    public static Page getPage() {
+        Page page = RequestCycle.get().getMetaData(PAGE_KEY);
+        if (page != null) {
+            return page;
+        }
+        final IPageRequestHandler lastHandler = PageRequestHandlerTracker.getLastHandler(RequestCycle.get());
+        if (lastHandler == null) {
+            return null;
+        }
+        page = (Page) lastHandler.getPage();
+        setPage(page);
+        return page;
+    }
+
+    public static void setPage(final Page page) {
+        final Page existingPage = RequestCycle.get().getMetaData(PAGE_KEY);
+        if (existingPage != null && existingPage != page) {
+            GuiTasksHolder.get(page).setGuiTasks(GuiTasksHolder.get(existingPage).getGuiTasks());
+        }
+        RequestCycle.get().setMetaData(PAGE_KEY, page);
     }
 
 }

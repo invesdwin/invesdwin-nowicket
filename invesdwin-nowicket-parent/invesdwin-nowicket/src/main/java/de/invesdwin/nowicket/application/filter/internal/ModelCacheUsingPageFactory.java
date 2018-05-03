@@ -2,25 +2,28 @@ package de.invesdwin.nowicket.application.filter.internal;
 
 import javax.annotation.concurrent.ThreadSafe;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.wicket.IPageFactory;
+import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.PageProvider;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.request.component.IRequestablePage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.crypt.Base64;
 import org.slf4j.ext.XLogger.Level;
 
 import de.invesdwin.nowicket.application.IPageFactoryHook;
 import de.invesdwin.nowicket.application.PageFactory;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
 import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
-import de.invesdwin.util.lang.Objects;
+import de.invesdwin.nowicket.util.RequestCycles;
 
 @ThreadSafe
 public class ModelCacheUsingPageFactory implements IPageFactory {
 
-    public static final String PAGE_PARAM_NO_CACHE = ModelCacheUsingPageFactory.class.getSimpleName() + "_NO_CACHE";
+    public static final MetaDataKey<Boolean> NO_CACHE_KEY = new MetaDataKey<Boolean>() {
+    };
+    public static final String NO_CACHE_PARAM = ModelCacheUsingPageFactory.class.getSimpleName() + "_NO_CACHE";
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
             .getXLogger(ModelCacheUsingPageFactory.class);
@@ -34,7 +37,7 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         if (usedPage instanceof Page) {
             final Page cUsedPage = (Page) usedPage;
             //execute guitasks that were created for the new page on the used page
-            GuiTasksHolder.setPage(cUsedPage);
+            RequestCycles.setPage(cUsedPage);
             if (cUsedPage.getDefaultModelObject() != null && usedPage instanceof IPageFactoryHook) {
                 final IPageFactoryHook hook = (IPageFactoryHook) usedPage;
                 hook.onPageModelRefresh(newModelObject);
@@ -85,7 +88,9 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
     private <C extends IRequestablePage> C tryPageFactoryCacheInternal(final C newPage) {
         if (newPage instanceof Page) {
             final Page cNewPage = (Page) newPage;
-            if (!shouldUsePageFactoryCache(cNewPage)) {
+            if (isCacheDisabledForPage(cNewPage)) {
+                //copy gui tasks to execute on the new page
+                GuiTasksHolder.get(cNewPage).setGuiTasks(GuiTasksHolder.get().getGuiTasks());
                 return newPage;
             }
             final Object modelObject = cNewPage.getDefaultModelObject();
@@ -106,36 +111,21 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         return newPage;
     }
 
-    private static boolean shouldUsePageFactoryCache(final Page newPage) {
-        final PageParameters pageParameters = newPage.getPageParameters();
-        if (pageParameters.getNamedKeys().contains(PAGE_PARAM_NO_CACHE)) {
-            maybeCopyGuiTasksHolder(newPage);
-            pageParameters.remove(PAGE_PARAM_NO_CACHE);
-            return false;
-        } else {
+    public static boolean isCacheDisabledForPage(final Page newPage) {
+        if (BooleanUtils.isTrue(newPage.getMetaData(NO_CACHE_KEY))) {
             return true;
         }
-    }
-
-    private static void maybeCopyGuiTasksHolder(final Page newPage) {
         final PageParameters pageParameters = newPage.getPageParameters();
-        final String noCacheStr = pageParameters.get(PAGE_PARAM_NO_CACHE).toString();
+        final String noCacheStr = pageParameters.get(NO_CACHE_PARAM).toString();
         if (noCacheStr != null) {
-            try {
-                final String decrypted = AWebApplication.get()
-                        .getSecuritySettings()
-                        .getCryptFactory()
-                        .newCrypt()
-                        .decryptUrlSafe(noCacheStr);
-                final byte[] serialized = Base64.decodeBase64(decrypted);
-                final GuiTasksHolder oldGuiTasksHolder = Objects.deserialize(serialized);
-                final GuiTasksHolder newGuiTasksHolder = GuiTasksHolder.get(newPage);
-                newGuiTasksHolder.setGuiTasks(oldGuiTasksHolder.getGuiTasks());
-            } catch (final Throwable t) {
-                LOG.catching(Level.WARN, new RuntimeException("Ignoring " + PAGE_PARAM_NO_CACHE + " payload ["
-                        + noCacheStr + "] due to error on deserialization.", t));
+            final boolean noCache = BooleanUtils.toBoolean(noCacheStr);
+            if (noCache) {
+                newPage.setMetaData(NO_CACHE_KEY, true);
             }
+            pageParameters.remove(NO_CACHE_PARAM);
+            return noCache;
         }
+        return false;
     }
 
     @Override
@@ -144,19 +134,13 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
     }
 
     public static RenderPageRequestHandler onStalePageException() {
-        final Page page = GuiTasksHolder.getPage();
+        final IPageFactory pageFactory = AWebApplication.get().getPageFactory();
+        final Page page = RequestCycles.getPage();
         final PageParameters pageParameters = new PageParameters(page.getPageParameters());
-        if (!pageParameters.getNamedKeys().contains(PAGE_PARAM_NO_CACHE)) {
-            final GuiTasksHolder guiTasksHolder = Objects.clone(GuiTasksHolder.get(page));
-            final byte[] serialized = Objects.serialize(guiTasksHolder);
-            final String base64Str = new String(Base64.encodeBase64(serialized));
-            final String encrypted = AWebApplication.get()
-                    .getSecuritySettings()
-                    .getCryptFactory()
-                    .newCrypt()
-                    .encryptUrlSafe(base64Str);
-            pageParameters.add(PAGE_PARAM_NO_CACHE, encrypted);
+        if (!pageParameters.getNamedKeys().contains(NO_CACHE_PARAM)) {
+            pageParameters.add(NO_CACHE_PARAM, true);
         }
-        return new RenderPageRequestHandler(new PageProvider(page.getClass(), pageParameters));
+        final Page newPage = pageFactory.newPage(page.getClass(), pageParameters);
+        return new RenderPageRequestHandler(new PageProvider(newPage));
     }
 }

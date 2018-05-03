@@ -28,8 +28,8 @@ import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIc
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.footer.AFooter;
-import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.page.auth.SignIn;
+import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
 
@@ -49,7 +49,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
         /*
          * prevent endless loop when a gui task is added in the page constructor regarding gui tasks holder access
          */
-        GuiTasksHolder.setPage(this);
+        RequestCycles.setPage(this);
         if (ABaseWebApplication.get().getDelegate().getAuthenticationService() != null) {
             //check remember me before anything else
             final SignIn signIn = new SignIn();

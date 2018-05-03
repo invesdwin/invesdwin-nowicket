@@ -194,7 +194,7 @@ public final class PageFactory implements Serializable {
 
     public void updatePage(final Page page) {
         final Object modelObject = page.getDefaultModelObject();
-        if (modelObject == null) {
+        if (modelObject == null || ModelCacheUsingPageFactory.isCacheDisabledForPage(page)) {
             return;
         }
         // clean up existing page references if they are equal to the new one
