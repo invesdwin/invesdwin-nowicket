@@ -13,6 +13,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlEl
 import de.invesdwin.nowicket.generated.binding.processor.element.FeedbackHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.HiddenInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IUnknownHtmlElement;
@@ -229,6 +230,11 @@ public class BindingInterceptor implements IBindingBuilder {
 
     @Override
     public Component createNumberInput(final NumberInputHtmlElement e) {
+        return create(e);
+    }
+
+    @Override
+    public Component createHiddenInput(final HiddenInputHtmlElement e) {
         return create(e);
     }
 

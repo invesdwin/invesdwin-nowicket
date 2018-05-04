@@ -8,6 +8,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlEl
 import de.invesdwin.nowicket.generated.binding.processor.element.FeedbackHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.HiddenInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IUnknownHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.ImageHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.LabelHtmlElement;
@@ -67,6 +68,8 @@ public interface IHtmlVisitor {
     void visitDateInput(DateInputHtmlElement e);
 
     void visitNumberInput(NumberInputHtmlElement e);
+
+    void visitHiddenInput(HiddenInputHtmlElement e);
 
     void visitTextArea(TextAreaHtmlElement e);
 

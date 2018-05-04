@@ -16,6 +16,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlEl
 import de.invesdwin.nowicket.generated.binding.processor.element.FeedbackHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.HiddenInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IUnknownHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.ImageHtmlElement;
@@ -188,6 +189,12 @@ public class BindingVisitor extends AHtmlVisitor {
     @Override
     public void visitDateInput(final DateInputHtmlElement e) {
         final Component c = bindingBuilder.createDateInput(e);
+        add(e, c);
+    }
+
+    @Override
+    public void visitHiddenInput(final HiddenInputHtmlElement e) {
+        final Component c = bindingBuilder.createHiddenInput(e);
         add(e, c);
     }
 

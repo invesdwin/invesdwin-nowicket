@@ -13,6 +13,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlEl
 import de.invesdwin.nowicket.generated.binding.processor.element.FeedbackHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.HiddenInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.ImageHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.LabelHtmlElement;
@@ -98,9 +99,8 @@ public class HtmlProcessor {
     }
 
     private boolean isUnknownElement(final IHtmlElement<?, ?> htmlElement) {
-        return htmlElement.isModelElement() && getContext().getModelObjectContext()
-                .getElementRegistry()
-                .getElement(htmlElement.getWicketId()) == null;
+        return htmlElement.isModelElement() && getContext().getModelObjectContext().getElementRegistry().getElement(
+                htmlElement.getWicketId()) == null;
     }
 
     private IHtmlElement<?, ?> detectHtmlElement(final Element element) {
@@ -182,9 +182,8 @@ public class HtmlProcessor {
     }
 
     private IHtmlElement<?, ?> newButtonOrAnchor(final Element element, final String wicketId) {
-        final IModelElement<?> modelElement = getContext().getModelObjectContext()
-                .getElementRegistry()
-                .getElement(wicketId);
+        final IModelElement<?> modelElement = getContext().getModelObjectContext().getElementRegistry().getElement(
+                wicketId);
         if (modelElement instanceof SubmitButtonModelElement) {
             return new SubmitButtonHtmlElement(getContext(), element);
         } else {
@@ -194,17 +193,20 @@ public class HtmlProcessor {
 
     private IHtmlElement<?, ?> detectTextFieldInputElement(final Element element, final String inputType) {
         //text input is default
-        if (Strings.isBlank(inputType) || TextInputHtmlElement.INPUT_TYPE_TEXT.equals(inputType)) {
+        if (Strings.isBlank(inputType) || TextInputHtmlElement.INPUT_TYPE_TEXT.equalsIgnoreCase(inputType)) {
             return new TextInputHtmlElement(getContext(), element);
         }
-        if (PasswordInputHtmlElement.INPUT_TYPE_PASSWORD.equals(inputType)) {
+        if (PasswordInputHtmlElement.INPUT_TYPE_PASSWORD.equalsIgnoreCase(inputType)) {
             return new PasswordInputHtmlElement(getContext(), element);
         }
-        if (NumberInputHtmlElement.INPUT_TYPE_NUMBER.equals(inputType)) {
+        if (NumberInputHtmlElement.INPUT_TYPE_NUMBER.equalsIgnoreCase(inputType)) {
             return new NumberInputHtmlElement(getContext(), element);
         }
-        if (DateInputHtmlElement.INPUT_TYPE_DATE.equals(inputType)) {
+        if (DateInputHtmlElement.INPUT_TYPE_DATE.equalsIgnoreCase(inputType)) {
             return new DateInputHtmlElement(getContext(), element);
+        }
+        if (HiddenInputHtmlElement.INPUT_TYPE_HIDDEN.equalsIgnoreCase(inputType)) {
+            return new HiddenInputHtmlElement(context, element);
         }
         return null;
     }
@@ -247,17 +249,15 @@ public class HtmlProcessor {
 
     private IHtmlElement<?, ?> detectTabbedElement(final Element element, final String wicketId) {
         if (Strings.equalsAny(element.tagName(), "div", "span")) {
-            final IModelElement<?> modelElement = getContext().getModelObjectContext()
-                    .getElementRegistry()
-                    .getElement(wicketId);
+            final IModelElement<?> modelElement = getContext().getModelObjectContext().getElementRegistry().getElement(
+                    wicketId);
             if (modelElement instanceof TabbedModelElement) {
                 return new TabbedHtmlElement(context, element);
             }
         }
         if ("iframe".equals(element.tagName())) {
-            final IModelElement<?> modelElement = getContext().getModelObjectContext()
-                    .getElementRegistry()
-                    .getElement(wicketId);
+            final IModelElement<?> modelElement = getContext().getModelObjectContext().getElementRegistry().getElement(
+                    wicketId);
             if (modelElement instanceof TabbedModelElement) {
                 return new TabbedHtmlElement(getContext(), element);
             } else {

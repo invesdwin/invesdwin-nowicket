@@ -11,6 +11,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlEl
 import de.invesdwin.nowicket.generated.binding.processor.element.FeedbackHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.HiddenInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IUnknownHtmlElement;
@@ -111,6 +112,8 @@ public interface IBindingBuilder extends ISerializableValueObject {
     Component createDateInput(DateInputHtmlElement e);
 
     Component createNumberInput(NumberInputHtmlElement e);
+
+    Component createHiddenInput(HiddenInputHtmlElement e);
 
     Component createTextArea(TextAreaHtmlElement e);
 

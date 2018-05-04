@@ -19,6 +19,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlEl
 import de.invesdwin.nowicket.generated.binding.processor.element.FeedbackHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.FormHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.HiddenInputHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IUnknownHtmlElement;
@@ -52,6 +53,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelDateTextField;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelDropDownChoice;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelFileUploadField;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelHiddenField;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelImage;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelLabel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelListMultipleChoice;
@@ -299,6 +301,12 @@ public class DefaultBindingBuilder implements IBindingBuilder {
     public Component createNumberInput(final NumberInputHtmlElement e) {
         final ModelNumberTextField numberTextField = new ModelNumberTextField(e);
         return numberTextField;
+    }
+
+    @Override
+    public Component createHiddenInput(final HiddenInputHtmlElement e) {
+        final ModelHiddenField hiddenField = new ModelHiddenField(e);
+        return hiddenField;
     }
 
     @Override
