@@ -26,6 +26,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     private boolean disableComponentsOnAjaxCall = true;
     private boolean allowCopyPasteOnDisabledInputs = true;
     private boolean updateFooterMarginOnResize = true;
+    private EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips = new EnableBootstrapTooltipsHeaderContributor();
 
     public BootstrapExtensionsHeaderContributor(final BootstrapSettings bootstrapSettings) {
         this.bootstrapSettings = bootstrapSettings;
@@ -88,6 +89,14 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return updateFooterMarginOnResize;
     }
 
+    public void withEnableBootstrapTooltips(final EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips) {
+        this.enableBootstrapTooltips = enableBootstrapTooltips;
+    }
+
+    public EnableBootstrapTooltipsHeaderContributor getEnableBootstrapTooltips() {
+        return enableBootstrapTooltips;
+    }
+
     @Override
     public void renderHead(final IHeaderResponse response) {
         //bootstrap needs to be before bootstrap-modal
@@ -117,6 +126,9 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         }
         if (updateFooterMarginOnResize) {
             UpdateFooterMarginOnResizeJsReference.INSTANCE.renderHead(response);
+        }
+        if (enableBootstrapTooltips != null) {
+            enableBootstrapTooltips.renderHead(response);
         }
 
         //misc
