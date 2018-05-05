@@ -55,8 +55,6 @@ import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow
 import de.invesdwin.nowicket.examples.guide.page.documentation.validation.ValidationPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.wicketintegration.WicketIntegrationPage;
 import de.invesdwin.nowicket.examples.guide.page.footer.FooterPanel;
-import de.invesdwin.nowicket.examples.guide.page.mvp.RedirectToMvpBsgcoachPage;
-import de.invesdwin.nowicket.examples.guide.page.mvp.RedirectToMvpEvaPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxchoice.AjaxChoicePage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxdatatable.AjaxDataTablePage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer.AjaxTimerPage;
@@ -104,7 +102,6 @@ public abstract class AExampleWebPage extends AWebPage {
 
         addDocumentationNav(navbar, ComponentPosition.LEFT);
         addWicketExamplesNav(navbar, ComponentPosition.LEFT);
-        addMvpExamplesNav(navbar, ComponentPosition.LEFT);
         addSourceCodeNav(navbar, ComponentPosition.RIGHT);
         addThemesNav(navbar, ComponentPosition.RIGHT);
 
@@ -175,34 +172,6 @@ public abstract class AExampleWebPage extends AWebPage {
             }
 
         }.setTarget(Target.blank).setLabel(new ResourceModel("menu.source.code"))));
-    }
-
-    private void addMvpExamplesNav(final Navbar navbar, final ComponentPosition position) {
-        navbar.addComponents(
-                NavbarComponents.transform(position, new NavbarDropDownButton(new ResourceModel("menu.mvp.examples")) {
-
-                    @Override
-                    protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
-                        final List<AbstractLink> subMenu = new ArrayList<AbstractLink>();
-
-                        subMenu.add(new IconMenuBookmarkablePageLink<Void>(RedirectToMvpBsgcoachPage.class,
-                                new ResourceModel("menu.bsgcoach").wrapOnAssignment(navbar),
-                                RedirectToMvpBsgcoachPage.ICON));
-
-                        subMenu.add(new IconMenuBookmarkablePageLink<Void>(RedirectToMvpEvaPage.class,
-                                new ResourceModel("menu.eva").wrapOnAssignment(navbar), RedirectToMvpEvaPage.ICON));
-
-                        return subMenu;
-                    }
-
-                    @Override
-                    protected Component newButtonLabel(final String markupId, final IModel<?> labelModel) {
-                        final Label label = (Label) super.newButtonLabel(markupId, labelModel);
-                        label.setEscapeModelStrings(false);
-                        return label;
-                    }
-
-                }));
     }
 
     private void addWicketExamplesNav(final Navbar navbar, final ComponentPosition position) {
