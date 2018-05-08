@@ -23,11 +23,6 @@ public class ModelLabel extends Label {
     }
 
     @Override
-    protected void onConfigure() {
-        super.onConfigure();
-    }
-
-    @Override
     public boolean isVisible() {
         final IModel<?> model = getDefaultModel();
         if (model == null) {
