@@ -23,8 +23,18 @@ public class ModelLabel extends Label {
     }
 
     @Override
+    protected void onConfigure() {
+        super.onConfigure();
+    }
+
+    @Override
     public boolean isVisible() {
-        if (Strings.isNullOrEmpty(getDefaultModelObjectAsString())) {
+        final IModel<?> model = getDefaultModel();
+        if (model == null) {
+            return false;
+        }
+        final Object modelObject = model.getObject();
+        if (modelObject == null || Strings.isEmpty(getDefaultModelObjectAsString(modelObject))) {
             return false;
         }
         return super.isVisible();
