@@ -24,7 +24,7 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
 
     private transient ShowPageGuiTask showPageGuiTask;
     private transient OfferDownloadGuiTask offerDownloadGuiTask;
-    private Deque<ShowModalPanelGuiTask> showModalPanelGuiTasks = new ArrayDeque<ShowModalPanelGuiTask>();
+    private transient Deque<ShowModalPanelGuiTask> showModalPanelGuiTasks = new ArrayDeque<ShowModalPanelGuiTask>();
     private transient WaitForNextAjaxCallGuiTask waitForHideModalPanelGuiTask;
     private final Deque<ShowStatusMessageGuiTask> showStatusMessageGuiTasks = new ArrayDeque<ShowStatusMessageGuiTask>();
 
