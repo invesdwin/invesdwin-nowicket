@@ -9,7 +9,7 @@ import org.apache.wicket.extensions.markup.html.tabs.ITab;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTab;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelTab;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedColumnModelElement;
 
 @NotThreadSafe

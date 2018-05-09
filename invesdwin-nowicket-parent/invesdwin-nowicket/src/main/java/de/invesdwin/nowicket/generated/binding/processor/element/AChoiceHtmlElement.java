@@ -21,7 +21,7 @@ import de.invesdwin.norva.beanpath.spi.element.utility.ContainerTitleBeanPathEle
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ChoiceTabTitleModel;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTab;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;

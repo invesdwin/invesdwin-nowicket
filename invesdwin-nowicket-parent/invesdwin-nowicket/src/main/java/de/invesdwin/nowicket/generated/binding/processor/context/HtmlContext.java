@@ -140,6 +140,19 @@ public class HtmlContext implements Serializable {
         return null;
     }
 
+    public static HtmlContext getRoot(final Component component) {
+        HtmlContext lastContext = null;
+        Component parent = component;
+        while (parent != null) {
+            final HtmlContext context = parent.getMetaData(META_DATA_KEY);
+            if (context != null) {
+                lastContext = context;
+            }
+            parent = parent.getParent();
+        }
+        return lastContext;
+    }
+
     public static IModel<?> getModel(final Component component) {
         final HtmlContext context = get(component);
         if (context == null) {

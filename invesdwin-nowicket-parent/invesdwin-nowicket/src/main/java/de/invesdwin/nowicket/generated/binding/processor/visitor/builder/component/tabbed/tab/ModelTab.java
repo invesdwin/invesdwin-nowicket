@@ -1,11 +1,10 @@
-package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed;
+package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -14,7 +13,7 @@ import de.invesdwin.nowicket.application.PanelFactory;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 
 @NotThreadSafe
-public class ModelTab implements ITab {
+public class ModelTab extends AModelTab {
 
     private static final MetaDataKey<Boolean> KEY_DISABLED_BEHAVIOR_ADDED = new MetaDataKey<Boolean>() {
     };
@@ -37,7 +36,7 @@ public class ModelTab implements ITab {
     }
 
     @Override
-    public WebMarkupContainer getPanel(final String containerId) {
+    protected WebMarkupContainer newPanel(final String containerId) {
         final Object modelValue = panelModel.getObject();
         final Panel panel = PanelFactory.get().getPanel(containerId, modelValue);
         final Boolean behaviorAdded = panel.getMetaData(KEY_DISABLED_BEHAVIOR_ADDED);
@@ -64,6 +63,11 @@ public class ModelTab implements ITab {
 
     public boolean isEnabled() {
         return element.isEnabled(targetObjectModel);
+    }
+
+    @Override
+    protected IModel<?> getPanelModel() {
+        return panelModel;
     }
 
 }

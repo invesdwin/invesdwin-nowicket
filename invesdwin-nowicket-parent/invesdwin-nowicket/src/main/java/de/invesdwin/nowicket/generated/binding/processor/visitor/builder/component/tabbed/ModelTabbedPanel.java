@@ -4,6 +4,7 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -19,6 +20,10 @@ import org.apache.wicket.extensions.markup.html.tabs.TabbedPanel;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.LoopItem;
+import org.apache.wicket.markup.repeater.IItemFactory;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.tabs.AjaxBootstrapTabbedPanel;
@@ -26,8 +31,14 @@ import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
 import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.DefaultSubmitButtonCallback;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.AModelAjaxFallbackLink;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.AModelTab;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelDelegateTab;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelTab;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.util.collections.delegate.DelegateList;
+import de.invesdwin.util.collections.iterable.ATransformingCloseableIterator;
+import de.invesdwin.util.collections.iterable.EmptyCloseableIterator;
+import de.invesdwin.util.collections.iterable.WrapperCloseableIterable;
 import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
@@ -46,15 +57,15 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
     }
 
     private final PNotifyBehavior validationErrorNotificationBehavior;
-    private final RefreshingDelegateList<ITab> refreshingTabs;
+    private final RefreshingDelegateList refreshingTabs;
 
     public ModelTabbedPanel(final ITabbedHtmlElement<?, ?> element) {
         this(element.getWicketId(), element.createWicketTabs(), Model.of(0));
     }
 
     public ModelTabbedPanel(final String id, final List<ITab> tabs, final Model<Integer> model) {
-        super(id, new RefreshingDelegateList<ITab>(tabs), model);
-        this.refreshingTabs = (RefreshingDelegateList<ITab>) getTabs();
+        super(id, new RefreshingDelegateList(tabs), model);
+        this.refreshingTabs = (RefreshingDelegateList) getTabs();
         this.validationErrorNotificationBehavior = createValidationErrorNotificationBehavior();
     }
 
@@ -267,12 +278,19 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
 
     };
 
-    private static class RefreshingDelegateList<E> extends DelegateList<E> {
+    private static class RefreshingDelegateList extends DelegateList<ITab> {
 
-        private final List<E> delegate;
-        private List<E> delegateCopy;
+        private static final IItemFactory<ITab> ITEM_FACTORY = new IItemFactory<ITab>() {
+            @Override
+            public Item<ITab> newItem(final int index, final IModel<ITab> model) {
+                return new Item<ITab>(AModelTab.DUMMY_CONTAINER_ID, index, model);
+            }
+        };
+        private final List<ITab> delegate;
+        private List<ITab> delegateCopy;
+        private final ReuseIfModelsEqualStrategy reuseStrategy = new ReuseIfModelsEqualStrategy();
 
-        RefreshingDelegateList(final List<E> delegate) {
+        RefreshingDelegateList(final List<ITab> delegate) {
             super(null);
             this.delegate = delegate;
             refresh();
@@ -283,14 +301,50 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         }
 
         @Override
-        public List<E> getDelegate() {
+        public List<ITab> getDelegate() {
             return delegateCopy;
         }
 
         private void refresh() {
-            delegateCopy = new ArrayList<>(delegate);
+            final Iterator<IModel<ITab>> newModels = newModels(delegate);
+            final Iterator<Item<ITab>> existingItems = existingItems(delegateCopy);
+            final Iterator<Item<ITab>> items = reuseStrategy.getItems(ITEM_FACTORY, newModels, existingItems);
+            delegateCopy = new ArrayList<>(delegate.size());
+            while (items.hasNext()) {
+                final Item<ITab> item = items.next();
+                delegateCopy.add(item.getModelObject());
+            }
         }
 
+        private Iterator<Item<ITab>> existingItems(final List<ITab> tabs) {
+            if (tabs == null || tabs.isEmpty()) {
+                return EmptyCloseableIterator.getInstance();
+            }
+            return new ATransformingCloseableIterator<ITab, Item<ITab>>(
+                    WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
+                private int index = 0;
+
+                @Override
+                protected Item<ITab> transform(final ITab value) {
+                    return ITEM_FACTORY.newItem(index++, newModel(value));
+                }
+            };
+        }
+
+        private Iterator<IModel<ITab>> newModels(final List<ITab> tabs) {
+            return new ATransformingCloseableIterator<ITab, IModel<ITab>>(
+                    WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
+                @Override
+                protected IModel<ITab> transform(final ITab value) {
+                    return newModel(value);
+                }
+            };
+        }
+
+        private IModel<ITab> newModel(final ITab value) {
+            final ITab tab = ModelDelegateTab.valueOf(value);
+            return Model.of(tab);
+        }
     }
 
 }
