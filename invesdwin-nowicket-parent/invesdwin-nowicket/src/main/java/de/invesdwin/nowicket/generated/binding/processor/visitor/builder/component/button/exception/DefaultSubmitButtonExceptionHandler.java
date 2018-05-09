@@ -7,6 +7,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.StringResourceModel;
 
+import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
@@ -58,7 +59,11 @@ public class DefaultSubmitButtonExceptionHandler implements ISubmitButtonExcepti
     }
 
     protected boolean shouldShowAccessDeniedExceptionMessage(final Throwable t) {
-        return Roles.getAuthenticationService().shouldShowAccessDeniedExceptionMessage(t);
+        final IAuthenticationService authenticationService = Roles.getAuthenticationService();
+        if (authenticationService == null) {
+            return false;
+        }
+        return authenticationService.shouldShowAccessDeniedExceptionMessage(t);
     }
 
     protected void propagateException(final Throwable t) {
