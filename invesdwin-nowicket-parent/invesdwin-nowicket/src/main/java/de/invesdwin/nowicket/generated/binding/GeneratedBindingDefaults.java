@@ -22,7 +22,6 @@ public final class GeneratedBindingDefaults {
     private ISubmitButtonExceptionHandler defaultSubmitButtonExceptionHandler = new DefaultSubmitButtonExceptionHandler();
     private ISubmitButtonCallbackFactory defaultSubmitButtonCallbackFactory = new DefaultSubmitButtonCallbackFactory();
     private String defaultModelClassNameSuffix = null;
-    private boolean useSqlInjectionValidation = true;
 
     private GeneratedBindingDefaults() {}
 
@@ -96,11 +95,4 @@ public final class GeneratedBindingDefaults {
         return defaultModelClassNameSuffix;
     }
 
-    public boolean isUseSqlInjectionValidation() {
-        return useSqlInjectionValidation;
-    }
-
-    public void setUseSqlInjectionValidation(final boolean useSqlInjectionValidation) {
-        this.useSqlInjectionValidation = useSqlInjectionValidation;
-    }
 }

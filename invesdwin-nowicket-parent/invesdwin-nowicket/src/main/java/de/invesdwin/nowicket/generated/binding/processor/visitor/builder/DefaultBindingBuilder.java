@@ -64,7 +64,6 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.ModelButton;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.FormComponentAwarePropertyResolver;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.ModelPropertyValidator;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.SQLInjectionValidator;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelDownloadLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelExternalLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelResourceLink;
@@ -363,9 +362,6 @@ public class DefaultBindingBuilder implements IBindingBuilder {
         if (formComponent != null) {
             if (e.isModelElement()) {
                 formComponent.setLabel(e.getTitleModel());
-            }
-            if (e.getContext().isUseSqlInjectionValidation()) {
-                formComponent.add(new SQLInjectionValidator(c));
             }
             if (e.getModelElement().getBeanPathElement().isProperty()) {
                 FormComponentAwarePropertyResolver.maybeRegisterElement(e, c, formComponent);

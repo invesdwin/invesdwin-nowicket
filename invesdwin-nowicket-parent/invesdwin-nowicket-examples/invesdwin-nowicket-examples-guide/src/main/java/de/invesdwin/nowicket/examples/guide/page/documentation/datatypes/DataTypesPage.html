@@ -33,19 +33,7 @@
 					<li>fractional digits are only allowed on appropriate number
 						types</li>
 					<li>dates have to be in correct format</li>
-					<li>enum literals are validated against value manipulation
-						(e.g. with <a target="_blank" href="http://getfirebug.com/">Firebug</a>)
-					</li>
-					<li><a target="_blank"
-						href="http://www.mvvm.ro/2011/03/sanitize-strings-against-sql-injection.html">rudimentary
-							sql injection validation</a> is performed on string values (try
-						";drop table users"); though don't mistake it for <a
-						target="_blank"
-						href="https://en.wikipedia.org/wiki/Prepared_statement">real
-							security</a>, it only works against <a target="_blank"
-						href="https://www.noisebridge.net/images/9/96/ScriptKITTY.jpg">script
-							kitties</a>, thus this feature can be disabled in the
-						GeneratedBinding if desired</li>
+					<li>enum literals are validated against value manipulation</li>
 				</ul>
 
 				<p style="font-size: medium">
@@ -98,16 +86,18 @@
 					collection/array. To achieve a detailed visualization of domain
 					objects from a collection, the collection should be typed using
 					Java generics. Otherwise the framework can only display "the least
-					common denominator" which is <code>toString()</code> for all contained objects.
-					The table displays only the data of the contained type. As a
-					consequence, if the collection also contains objects of derived
-					types, the additional properties of these types are not displayed
-					(e.g. a collection of vehicles contains cars and bikes with
-					additional properties, but the generic type is of car. Thus the
-					table displays only the properties of the vehicle base class). Also
-					note that tables only allow shallow columns to be displayed,
-					everything else is displayed as <code>toString()</code>. You see this below in
-					the
+					common denominator" which is
+					<code>toString()</code>
+					for all contained objects. The table displays only the data of the
+					contained type. As a consequence, if the collection also contains
+					objects of derived types, the additional properties of these types
+					are not displayed (e.g. a collection of vehicles contains cars and
+					bikes with additional properties, but the generic type is of car.
+					Thus the table displays only the properties of the vehicle base
+					class). Also note that tables only allow shallow columns to be
+					displayed, everything else is displayed as
+					<code>toString()</code>
+					. You see this below in the
 					<code>nested</code>
 					column that contains
 					<code>column3</code>

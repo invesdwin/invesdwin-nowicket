@@ -29,7 +29,6 @@ public class GeneratedBinding implements Serializable {
     private final List<BindingInterceptor> bindingInterceptors = new ArrayList<BindingInterceptor>();
     private ISubmitButtonExceptionHandler submitButtonExceptionHandler;
     private ISubmitButtonCallbackFactory submitButtonCallbackFactory;
-    private boolean useSqlInjectionValidation;
     private InterceptingBindingBuilder bindingBuilder;
 
     public GeneratedBinding(final Page page) {
@@ -43,7 +42,6 @@ public class GeneratedBinding implements Serializable {
     private GeneratedBinding(final MarkupContainer markupContainer) {
         this.submitButtonExceptionHandler = GeneratedBindingDefaults.get().getDefaultSubmitButtonExceptionHandler();
         this.submitButtonCallbackFactory = GeneratedBindingDefaults.get().getDefaultSubmitButtonCallbackFactory();
-        this.useSqlInjectionValidation = GeneratedBindingDefaults.get().isUseSqlInjectionValidation();
         this.context = new HtmlContext(markupContainer, this);
     }
 
@@ -81,15 +79,6 @@ public class GeneratedBinding implements Serializable {
                 .as("%s can only be added before bind() call", BindingInterceptor.class.getSimpleName())
                 .isNull();
         bindingInterceptors.add(bindingInterceptor);
-        return this;
-    }
-
-    public boolean isUseSqlInjectionValidation() {
-        return useSqlInjectionValidation;
-    }
-
-    public GeneratedBinding withUseSqlInjectionValidation(final boolean useSqlInjectionValidation) {
-        this.useSqlInjectionValidation = useSqlInjectionValidation;
         return this;
     }
 
