@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
 import java.awt.Dimension;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,10 +22,10 @@ import de.invesdwin.nowicket.util.Components;
 @NotThreadSafe
 public class GuiTasks implements IGuiTasksService, IGuiTask {
 
-    private ShowPageGuiTask showPageGuiTask;
-    private OfferDownloadGuiTask offerDownloadGuiTask;
-    private final Deque<ShowModalPanelGuiTask> showModalPanelGuiTasks = new ArrayDeque<ShowModalPanelGuiTask>();
-    private WaitForNextAjaxCallGuiTask waitForHideModalPanelGuiTask;
+    private transient ShowPageGuiTask showPageGuiTask;
+    private transient OfferDownloadGuiTask offerDownloadGuiTask;
+    private Deque<ShowModalPanelGuiTask> showModalPanelGuiTasks = new ArrayDeque<ShowModalPanelGuiTask>();
+    private transient WaitForNextAjaxCallGuiTask waitForHideModalPanelGuiTask;
     private final Deque<ShowStatusMessageGuiTask> showStatusMessageGuiTasks = new ArrayDeque<ShowStatusMessageGuiTask>();
 
     public boolean showPageShouldWaitForNextAjaxCall() {
@@ -144,5 +145,10 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
     @Override
     public void offerDownload(final OfferDownloadConfig config) {
         this.offerDownloadGuiTask = new OfferDownloadGuiTask(config);
+    }
+
+    private void readObject(final java.io.ObjectInputStream stream) throws ClassNotFoundException, IOException {
+        stream.defaultReadObject();
+        showModalPanelGuiTasks = new ArrayDeque<ShowModalPanelGuiTask>();
     }
 }
