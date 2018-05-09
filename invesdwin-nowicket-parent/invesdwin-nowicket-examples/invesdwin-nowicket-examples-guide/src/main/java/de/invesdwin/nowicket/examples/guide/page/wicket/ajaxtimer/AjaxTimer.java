@@ -39,8 +39,7 @@ public class AjaxTimer extends AValueObject {
         while (getTabs().size() >= MAX_TABS_COUNT) {
             getTabs().remove(0);
         }
-        final AjaxTimerTab tab = new AjaxTimerTab();
-        tab.setRequiredInput(String.valueOf(tabIndex.incrementAndGet()));
+        final AjaxTimerTab tab = new AjaxTimerTab(String.valueOf(tabIndex.incrementAndGet()));
         getTabs().add(tab);
     }
 
