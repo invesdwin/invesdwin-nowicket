@@ -11,15 +11,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.M4</version>
+		<version>2.0.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
-		<spring.version>5.0.0.RELEASE</spring.version>
-		<aspectj.version>1.8.11</aspectj.version>
+		<spring.version>5.0.6.RELEASE</spring.version>
+		<aspectj.version>1.8.13</aspectj.version>
 		<junit-jupiter.version>5.0.1</junit-jupiter.version>
 
 		<version.invesdwin-bom>1.0.1-SNAPSHOT</version.invesdwin-bom>
@@ -27,7 +27,7 @@
 		<version.invesdwin-maven-plugin>1.0.1-SNAPSHOT</version.invesdwin-maven-plugin>
 		<version.javax.inject>1</version.javax.inject>
 		<version.maven-processor-plugin>3.3.2</version.maven-processor-plugin>
-		<version.spring-boot-maven-plugin>2.0.0.M4</version.spring-boot-maven-plugin>
+		<version.spring-boot-maven-plugin>2.0.1.RELEASE</version.spring-boot-maven-plugin>
 
 		<version.prettify>4-Mar-2013</version.prettify>
 

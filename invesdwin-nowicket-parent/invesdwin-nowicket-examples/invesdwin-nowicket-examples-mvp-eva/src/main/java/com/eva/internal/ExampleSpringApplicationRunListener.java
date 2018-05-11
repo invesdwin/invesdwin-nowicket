@@ -28,9 +28,6 @@ public class ExampleSpringApplicationRunListener implements SpringApplicationRun
         setApplicationContext(context);
     }
 
-    @Override
-    public void finished(final ConfigurableApplicationContext context, final Throwable exception) {}
-
     public static void setApplicationContext(final ConfigurableApplicationContext applicationContext) {
         ExampleSpringApplicationRunListener.applicationContext = applicationContext;
     }
@@ -38,5 +35,14 @@ public class ExampleSpringApplicationRunListener implements SpringApplicationRun
     public static ConfigurableApplicationContext getApplicationContext() {
         return applicationContext;
     }
+
+    @Override
+    public void started(final ConfigurableApplicationContext context) {}
+
+    @Override
+    public void running(final ConfigurableApplicationContext context) {}
+
+    @Override
+    public void failed(final ConfigurableApplicationContext context, final Throwable exception) {}
 
 }
