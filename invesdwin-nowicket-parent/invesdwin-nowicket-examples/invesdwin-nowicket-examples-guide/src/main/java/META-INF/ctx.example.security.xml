@@ -29,6 +29,9 @@
 		<!-- alternatively with use-expressions="false": access="ADMIN" -->
 	</security:http>
 
+	<bean name="noopPasswordEncoder"
+		class="org.springframework.security.crypto.password.NoOpPasswordEncoder" />
+
 	<security:authentication-manager
 		id="exampleAuthenticationManager">
 		<security:authentication-provider>
