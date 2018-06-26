@@ -69,6 +69,7 @@ public class SessionGuiService implements IGuiService, Serializable {
                     if (behaviorAlreadyConfigured == null || !behaviorAlreadyConfigured) {
                         root.setMetaData(KEY_INITIALIZATION_FINISHED_BEHAVIOR_ALREADY_CONFIGURED, true);
                         //run before first render and execute any tasks that are scheduled directly
+                        disableUpdateAllComponentsForCurrentRequest();
                         processRequestFinally(root);
                     }
                 }
