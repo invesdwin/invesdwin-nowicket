@@ -13,7 +13,6 @@
 
 	<properties>
 		<version.yuicompressor>2.4.7</version.yuicompressor>
-		<version.jquery>2.1.0-2</version.jquery>
 		<version.pnotify>2.1.0-1</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
@@ -111,7 +110,6 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
-			<version>${version.jquery}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
