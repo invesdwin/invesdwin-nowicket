@@ -1,6 +1,7 @@
 package de.invesdwin.nowicket.util;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -79,6 +80,18 @@ public final class RequestCycles {
             GuiTasksHolder.get(page).setGuiTasks(GuiTasksHolder.get(existingPage).getGuiTasks());
         }
         RequestCycle.get().setMetaData(PAGE_KEY, page);
+    }
+
+    public static String getFullURL(final HttpServletRequest request) {
+        final StringBuilder requestURL = new StringBuilder(
+                (String) request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI));
+        final String queryString = request.getQueryString();
+
+        if (queryString == null) {
+            return requestURL.toString();
+        } else {
+            return requestURL.append('?').append(queryString).toString();
+        }
     }
 
 }

@@ -26,7 +26,7 @@ public abstract class AErrorPanel extends Panel {
         final Throwable exception = (Throwable) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
         final Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         final String servletName = (String) request.getAttribute(RequestDispatcher.ERROR_SERVLET_NAME);
-        final String requestUri = (String) request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI);
+        final String requestUri = RequestCycles.getFullURL(request);
         final Class<?> exceptionType = (Class<?>) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION_TYPE);
         final String message = (String) request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
         final StringBuilder sb = new StringBuilder();
