@@ -3,7 +3,7 @@ function offlineReloadPageOnUp() {
 		window.offlineReloadPageOnUpRegistered = true;
 		//see https://github.com/hubspot/offline
 		Offline.on("up", function(e) {
-			$('form:first').submit();
+			location.reload();
 		});
 	}
 }
