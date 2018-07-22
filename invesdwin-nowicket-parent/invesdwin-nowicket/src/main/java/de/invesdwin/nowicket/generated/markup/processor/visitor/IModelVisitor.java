@@ -7,7 +7,6 @@ import de.invesdwin.nowicket.generated.markup.processor.element.DateInputModelEl
 import de.invesdwin.nowicket.generated.markup.processor.element.FieldSetOpenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.HiddenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
-import de.invesdwin.nowicket.generated.markup.processor.element.PanelModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.RootModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SelectModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
@@ -27,8 +26,6 @@ public interface IModelVisitor {
     void visitTable(TableModelElement e);
 
     void visitTabbed(TabbedModelElement e);
-
-    void visitPanel(PanelModelElement e);
 
     void visitSubmitButton(SubmitButtonModelElement e);
 

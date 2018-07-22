@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.m
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -24,7 +23,6 @@ import de.invesdwin.nowicket.generated.markup.processor.element.FieldSetOpenMode
 import de.invesdwin.nowicket.generated.markup.processor.element.HiddenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.IModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
-import de.invesdwin.nowicket.generated.markup.processor.element.PanelModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.RootModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SelectModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
@@ -55,7 +53,7 @@ public class HtmlMergeVisitor extends AModelVisitor {
         this.markupType = markupType;
         this.componentBuilder = new HtmlComponentBuilder();
         try {
-            final String html = FileUtils.readFileToString(context.getHtmlFile(markupType), Charset.defaultCharset());
+            final String html = FileUtils.readFileToString(context.getHtmlFile(markupType));
             this.document = Jsoup.parse(html);
             // need to have original html for comparison later
             this.originalHtml = Documents.toString(document);
@@ -88,7 +86,7 @@ public class HtmlMergeVisitor extends AModelVisitor {
 
     private void maybeAdd(final IModelElement<?> e, final Element component) {
         if (document.getElementsByAttributeValue("wicket:id", e.getWicketId()).isEmpty()
-                //maybe commented out
+        //maybe commented out
                 && !originalHtml.contains("wicket:id=\"" + e.getWicketId() + "\"")) {
             mergeLayerStack.getLast().add(component);
         }
@@ -103,12 +101,6 @@ public class HtmlMergeVisitor extends AModelVisitor {
     public void visitTextInput(final TextInputModelElement e) {
         final Element textInput = componentBuilder.createTextInput(e);
         maybeAdd(e, textInput);
-    }
-
-    @Override
-    public void visitPanel(final PanelModelElement e) {
-        final Element panel = componentBuilder.createPanel(e);
-        maybeAdd(e, panel);
     }
 
     @Override
@@ -199,7 +191,7 @@ public class HtmlMergeVisitor extends AModelVisitor {
 
         try {
             FileUtils.forceMkdir(htmlFile.getParentFile());
-            FileUtils.writeStringToFile(htmlFile, s, Charset.defaultCharset());
+            FileUtils.writeStringToFile(htmlFile, s);
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }

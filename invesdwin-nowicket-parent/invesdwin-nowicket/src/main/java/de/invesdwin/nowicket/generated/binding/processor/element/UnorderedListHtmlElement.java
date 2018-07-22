@@ -7,22 +7,15 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.norva.beanpath.spi.element.AChoiceBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
-import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
-import de.invesdwin.nowicket.generated.markup.processor.element.NoChoiceModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.TableModelElement;
 
 @NotThreadSafe
-public class UnorderedListHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>> {
+public class UnorderedListHtmlElement extends AChoiceHtmlElement<TableModelElement> {
 
     public UnorderedListHtmlElement(final HtmlContext context, final Element element) {
         super(context, element);
-    }
-
-    @Override
-    public AChoiceModelElement<? extends AChoiceBeanPathElement> getModelElement() {
-        return NoChoiceModelElement.maybeWrap(super.getModelElement());
     }
 
     @Deprecated

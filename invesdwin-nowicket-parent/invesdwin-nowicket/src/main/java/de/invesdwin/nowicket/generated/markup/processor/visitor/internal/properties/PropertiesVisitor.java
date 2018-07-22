@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -27,7 +26,6 @@ import de.invesdwin.nowicket.generated.markup.processor.element.HiddenModelEleme
 import de.invesdwin.nowicket.generated.markup.processor.element.IButtonModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.IModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
-import de.invesdwin.nowicket.generated.markup.processor.element.PanelModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.RootModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SelectModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
@@ -116,11 +114,6 @@ public class PropertiesVisitor extends AModelVisitor {
     }
 
     @Override
-    public void visitPanel(final PanelModelElement e) {
-        //no need to add property for panel elment itself, since it cannot be localized here anyway
-    }
-
-    @Override
     public void visitTabbed(final TabbedModelElement e) {
         //no need to add property for tabbed elment itself, since fieldset open already added it
         for (final TabbedColumnModelElement column : e.getRawColumns()) {
@@ -189,7 +182,7 @@ public class PropertiesVisitor extends AModelVisitor {
                     }
                 }
                 try (FileOutputStream fos = new FileOutputStream(getContext().getPropertiesFile(markupType), true)) {
-                    IOUtils.write(appendString, fos, Charset.defaultCharset());
+                    IOUtils.write(appendString, fos);
                 }
             } catch (final IOException e) {
                 throw new RuntimeException(e);

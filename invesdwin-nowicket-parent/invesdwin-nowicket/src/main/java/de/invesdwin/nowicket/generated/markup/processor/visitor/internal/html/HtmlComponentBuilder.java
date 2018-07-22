@@ -17,7 +17,6 @@ import org.apache.ecs.html.Label;
 import org.apache.ecs.html.Legend;
 import org.apache.ecs.html.Select;
 import org.apache.ecs.html.Table;
-import org.apache.ecs.html.UL;
 import org.apache.ecs.xml.XML;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.CheckBoxInputHtmlElement;
@@ -34,7 +33,6 @@ import de.invesdwin.nowicket.generated.markup.processor.element.DateInputModelEl
 import de.invesdwin.nowicket.generated.markup.processor.element.FieldSetOpenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.IModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
-import de.invesdwin.nowicket.generated.markup.processor.element.PanelModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SelectModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedModelElement;
@@ -242,12 +240,6 @@ public class HtmlComponentBuilder {
         wicketLabel.setTagText(e.getStaticTitle());
         label.addElement(wicketLabel);
         return label;
-    }
-
-    public Element createPanel(final PanelModelElement e) {
-        final UL div = new UL();
-        div.addAttribute(IHtmlElement.ATTR_WICKET_ID, e.getWicketId());
-        return div;
     }
 
 }
