@@ -86,6 +86,7 @@ public class ModalContainer extends Panel {
 
     @Override
     protected void onConfigure() {
+        super.onConfigure();
         alreadyRendered = false;
         if (dimension != null) {
             add(new AttributeModifier("data-width", dimension.width) {

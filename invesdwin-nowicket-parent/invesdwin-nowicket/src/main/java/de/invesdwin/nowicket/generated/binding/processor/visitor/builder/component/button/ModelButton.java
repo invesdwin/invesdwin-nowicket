@@ -1,18 +1,20 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapAjaxFallbackButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons.Type;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtmlElement;
-import de.invesdwin.util.lang.Reflections;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -33,9 +35,14 @@ public class ModelButton extends BootstrapAjaxFallbackButton {
                 }
             });
         }
+    }
+
+    @Override
+    protected <L extends Serializable> Component newLabel(final String markupId, final IModel<L> model) {
+        final Label label = (Label) super.newLabel(markupId, model);
         //allow styled properties for label
-        final Label label = Reflections.field("label").ofType(Label.class).in(this).get();
         label.setEscapeModelStrings(false);
+        return label;
     }
 
     @Override

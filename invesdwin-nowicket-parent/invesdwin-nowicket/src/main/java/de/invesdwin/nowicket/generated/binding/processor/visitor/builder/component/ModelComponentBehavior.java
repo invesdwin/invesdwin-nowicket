@@ -41,6 +41,7 @@ public class ModelComponentBehavior extends Behavior {
 
                 @Override
                 public void onConfigure(final Component component) {
+                    super.onConfigure(component);
                     boolean nullValidChoice = false;
                     //use modifier instead of model, since model removes null so that isNullValid properly handles null selection
                     final List<?> choices = selectElement.getModelElement()
@@ -67,6 +68,7 @@ public class ModelComponentBehavior extends Behavior {
 
     @Override
     public void onConfigure(final Component component) {
+        super.onConfigure(component);
         /*
          * disable either if the element itself is disabled or a modal panel currently creates an overlay over this
          * component. the modal check is needed so that the default button keybinding does not detect the wrong button

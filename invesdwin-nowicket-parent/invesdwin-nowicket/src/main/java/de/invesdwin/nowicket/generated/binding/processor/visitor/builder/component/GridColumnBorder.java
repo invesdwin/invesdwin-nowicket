@@ -46,6 +46,7 @@ public class GridColumnBorder extends Border {
 
     @Override
     protected void onConfigure() {
+        super.onConfigure();
         final Component component = element.getContext().getComponentRegistry().getComponent(
                 element.getModelWicketId());
         final FormComponent<?> formComponent = Components.asFormComponent(component);

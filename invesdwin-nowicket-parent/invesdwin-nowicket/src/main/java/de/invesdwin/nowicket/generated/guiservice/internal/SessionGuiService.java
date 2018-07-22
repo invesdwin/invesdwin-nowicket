@@ -62,6 +62,7 @@ public class SessionGuiService implements IGuiService, Serializable {
 
                 @Override
                 public void onConfigure(final Component component) {
+                    super.onConfigure(component);
                     //second safety net is required since the hierarchy might not have been put together properly when the initializationFinished calls were made
                     final Component root = Components.findRoot(component);
                     final Boolean behaviorAlreadyConfigured = root

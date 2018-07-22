@@ -16,6 +16,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.AModelTab;
 import de.invesdwin.util.lang.Objects;
 
 /**
@@ -64,11 +65,11 @@ public class ModelAccordion extends Panel {
                     int curIndex = 0;
                     final Object activeIndexObject = collapsibles.get(activeIndex)
                             .getTab()
-                            .getPanel(AccordionCollapsible.COLLAPSIBLE_WICKET_ID)
+                            .getPanel(AModelTab.DUMMY_CONTAINER_ID)
                             .getDefaultModelObject();
                     for (final IModel<ITab> model : models) {
                         final Object newActiveIndexObject = model.getObject()
-                                .getPanel(AccordionCollapsible.COLLAPSIBLE_WICKET_ID)
+                                .getPanel(AModelTab.DUMMY_CONTAINER_ID)
                                 .getDefaultModelObject();
                         if (Objects.equals(activeIndexObject, newActiveIndexObject)) {
                             newActiveIndex = curIndex;
@@ -94,10 +95,9 @@ public class ModelAccordion extends Panel {
             private AccordionCollapsible newCollapsible(final ITab tab, final int index) {
                 for (final AccordionCollapsible oldCollapsible : oldCollapsibles) {
                     final Object oldModelObject = oldCollapsible.getTab()
-                            .getPanel(AccordionCollapsible.COLLAPSIBLE_WICKET_ID)
+                            .getPanel(AModelTab.DUMMY_CONTAINER_ID)
                             .getDefaultModelObject();
-                    final IModel<?> newModel = tab.getPanel(AccordionCollapsible.COLLAPSIBLE_WICKET_ID)
-                            .getDefaultModel();
+                    final IModel<?> newModel = tab.getPanel(AModelTab.DUMMY_CONTAINER_ID).getDefaultModel();
                     final Object newModelObject = newModel.getObject();
                     if (Objects.equals(oldModelObject, newModelObject)) {
                         //update model object to detect changes
