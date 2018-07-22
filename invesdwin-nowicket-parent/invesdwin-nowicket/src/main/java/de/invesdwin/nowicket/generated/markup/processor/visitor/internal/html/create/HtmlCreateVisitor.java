@@ -29,6 +29,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.DateInputModelEl
 import de.invesdwin.nowicket.generated.markup.processor.element.FieldSetOpenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.HiddenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.PanelModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.RootModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SelectModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
@@ -92,6 +93,12 @@ public class HtmlCreateVisitor extends AModelVisitor {
     public void visitTextInput(final TextInputModelElement e) {
         final Element textInput = componentBuilder.createTextInput(e);
         maybeAdd(textInput);
+    }
+
+    @Override
+    public void visitPanel(final PanelModelElement e) {
+        final Element panel = componentBuilder.createPanel(e);
+        maybeAdd(panel);
     }
 
     @Override

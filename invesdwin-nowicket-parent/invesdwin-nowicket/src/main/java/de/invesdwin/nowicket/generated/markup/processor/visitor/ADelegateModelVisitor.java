@@ -9,6 +9,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.DateInputModelEl
 import de.invesdwin.nowicket.generated.markup.processor.element.FieldSetOpenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.HiddenModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NumberInputModelElement;
+import de.invesdwin.nowicket.generated.markup.processor.element.PanelModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.RootModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SelectModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
@@ -48,6 +49,11 @@ public abstract class ADelegateModelVisitor extends AModelVisitor {
     @Override
     public void visitTable(final TableModelElement e) {
         getDelegate().visitTable(e);
+    }
+
+    @Override
+    public void visitPanel(final PanelModelElement e) {
+        getDelegate().visitPanel(e);
     }
 
     @Override
