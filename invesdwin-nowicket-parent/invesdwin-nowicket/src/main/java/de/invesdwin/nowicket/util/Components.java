@@ -257,7 +257,7 @@ public final class Components {
     }
 
     public static void updateAllComponents(final Component component) {
-        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class);
+        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class).orElse(null);
         final Form<?> form = Components.findForm(component);
         if (target != null && form != null) {
             final MarkupContainer root = (MarkupContainer) Components.findRoot(form);
@@ -286,7 +286,7 @@ public final class Components {
     }
 
     public static void updateComponents(final Collection<? extends Component> components) {
-        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class);
+        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class).orElse(null);
         if (target != null) {
             try {
                 for (final Component c : components) {

@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.collapsible;
 
+import java.util.Optional;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
@@ -136,7 +138,7 @@ public class ModelCollapsible extends Panel {
                 protected void onSubmit(final AjaxRequestTarget target) {
                     try {
                         super.onSubmit(target);
-                        onClick(target);
+                        onClick(Optional.ofNullable(target));
                     } finally {
                         GuiService.get().processRequestFinally(ModelCollapsible.this);
                     }
@@ -151,7 +153,7 @@ public class ModelCollapsible extends Panel {
                             setActive(true);
                         } else {
                             //allow toggling if this is not the cause of the validation error
-                            onClick(target);
+                            onClick(Optional.ofNullable(target));
                         }
                         if (validationErrorNotificationBehavior != null) {
                             ModelCollapsible.this.add(validationErrorNotificationBehavior);
@@ -179,7 +181,7 @@ public class ModelCollapsible extends Panel {
         }
 
         @Override
-        public void onClick(final AjaxRequestTarget target) {
+        public void onClick(final Optional<AjaxRequestTarget> target) {
             setActive(!isActive());
         }
 

@@ -14,7 +14,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.request.RequestHandlerStack.ReplaceHandlerException;
+import org.apache.wicket.request.RequestHandlerExecutor.ReplaceHandlerException;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.session.ISessionStore.UnboundListener;
 

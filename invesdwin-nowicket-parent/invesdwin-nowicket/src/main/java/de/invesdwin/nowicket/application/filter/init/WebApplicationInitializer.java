@@ -222,8 +222,8 @@ public class WebApplicationInitializer {
     protected void registerOnePassRenderForBots() {
         webApplication.setPageRendererProvider(new IPageRendererProvider() {
             @Override
-            public PageRenderer get(final RenderPageRequestHandler handler) {
-                return new BotAwareWebPageRenderer(handler);
+            public PageRenderer apply(final RenderPageRequestHandler t) {
+                return new BotAwareWebPageRenderer(t);
             }
         });
     }

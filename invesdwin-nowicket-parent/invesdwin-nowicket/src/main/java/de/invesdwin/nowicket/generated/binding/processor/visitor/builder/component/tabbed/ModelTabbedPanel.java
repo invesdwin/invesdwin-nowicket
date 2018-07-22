@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -209,7 +210,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
                 protected void onSubmit(final AjaxRequestTarget target) {
                     try {
                         super.onSubmit(target);
-                        onClick(target);
+                        onClick(Optional.ofNullable(target));
                     } finally {
                         GuiService.get().processRequestFinally(ModelTabbedPanel.this);
                     }
@@ -268,10 +269,10 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         }
 
         @Override
-        public void onClick(final AjaxRequestTarget target) {
+        public void onClick(final Optional<AjaxRequestTarget> target) {
             setSelectedTab(index);
-            if (target != null) {
-                target.add(ModelTabbedPanel.this);
+            if (target.isPresent()) {
+                target.get().add(ModelTabbedPanel.this);
             }
             onAjaxUpdate(target);
         }

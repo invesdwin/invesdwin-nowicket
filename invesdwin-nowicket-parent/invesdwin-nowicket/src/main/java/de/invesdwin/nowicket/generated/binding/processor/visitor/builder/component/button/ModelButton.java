@@ -1,11 +1,12 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button;
 
+import java.util.Optional;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapAjaxFallbackButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons.Type;
@@ -58,13 +59,13 @@ public class ModelButton extends BootstrapAjaxFallbackButton {
     }
 
     @Override
-    protected void onSubmit(final AjaxRequestTarget target, final Form<?> form) {
-        element.getButtonCallback().onSubmit(form);
+    protected void onSubmit(final Optional<AjaxRequestTarget> target) {
+        element.getButtonCallback().onSubmit(getForm());
     }
 
     @Override
-    protected void onError(final AjaxRequestTarget target, final Form<?> form) {
-        element.getButtonCallback().onError(form);
+    protected void onError(final Optional<AjaxRequestTarget> target) {
+        element.getButtonCallback().onError(getForm());
     }
 
 }

@@ -1,12 +1,13 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column;
 
+import java.util.Optional;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 
@@ -68,13 +69,13 @@ public class ModelSubmitButtonColumn extends PropertyColumn<Object, String> {
             }
 
             @Override
-            protected void onSubmit(final AjaxRequestTarget target, final Form<?> form) {
-                element.getButtonCallback(rowModel).onSubmit(form);
+            protected void onSubmit(final Optional<AjaxRequestTarget> target) {
+                element.getButtonCallback(rowModel).onSubmit(getForm());
             }
 
             @Override
-            protected void onError(final AjaxRequestTarget target, final Form<?> form) {
-                element.getButtonCallback(rowModel).onError(form);
+            protected void onError(final Optional<AjaxRequestTarget> target) {
+                element.getButtonCallback(rowModel).onError(getForm());
             }
 
         };
