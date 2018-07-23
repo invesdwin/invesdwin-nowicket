@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head></head>
+<body>
+	<wicket:extend>
+		<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
+			This example shows how to dynamically update a tabbed pane via a web
+			socket. Alternatively you can update a table or any other
+			component(s) this way. There is no need to disabled the ajax
+			indicator overlay as with the timer behavior because ajax is not
+			used.</p>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id='feedback'></div>  -->
+			<div wicket:id="modal"></div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="lastRefreshCheck">
+					<wicket:label>
+                            Last Refresh Check
+                        </wicket:label>
+				</label>
+				<div wicket:id="lastRefreshCheck_gridColumn" class="col-sm-3">
+					<input type="date" class="form-control"
+						wicket:id="lastRefreshCheck">
+				</div>
+				<div class="col-sm-2">
+					<div class="btn-toolbar">
+						<button type="submit" class="btn btn-default btn-block"
+							wicket:id="refresh">Refresh</button>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" wicket:for="lastRefresh">
+					<wicket:label>
+                             Last Refresh 
+                        </wicket:label>
+				</label>
+				<div wicket:id="lastRefresh_gridColumn" class="col-sm-3">
+					<input type="date" class="form-control" wicket:id="lastRefresh">
+				</div>
+				<div wicket:id="refreshAutomatically_gridColumn" class="col-sm-4">
+					<div class="checkbox">
+						<label wicket:for="refreshAutomatically"><input
+							type="checkbox" wicket:id="refreshAutomatically"> <wicket:label>
+                                     Refresh Automatically 
+                                </wicket:label></label>
+					</div>
+				</div>
+			</div>
+			<fieldset>
+				<legend wicket:id="tabs_legend">Tabs</legend>
+				<div wicket:id="tabs_gridColumn">
+					<!-- the table gets replaced by tabs via the BindingInterceptor -->
+					<table class="table table-condensed table-hover table-striped"
+						wicket:id="tabs"></table>
+				</div>
+			</fieldset>
+		</form>
+	</wicket:extend>
+</body>
+</html>

@@ -67,6 +67,7 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.guestbook.GuestbookExamp
 import de.invesdwin.nowicket.examples.guide.page.wicket.helloworld.HelloWorldPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.modalwindow.ModalWindowStartPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.TabbedPanelPage;
+import de.invesdwin.nowicket.examples.guide.page.wicket.websocket.WebSocketPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.WizardStartPage;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.uri.URIs;
@@ -212,6 +213,9 @@ public abstract class AExampleWebPage extends AWebPage {
                         subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxTimerPage.class,
                                 new ResourceModel("menu.ajaxtimer").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.refresh));
+                        subMenu.add(new MenuBookmarkablePageLink<Void>(WebSocketPage.class,
+                                new ResourceModel("menu.websocket").wrapOnAssignment(navbar))
+                                        .setIconType(FontAwesomeIconType.plug));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(GuestbookExamplePage.class,
                                 new ResourceModel("menu.guestbook").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.book));
