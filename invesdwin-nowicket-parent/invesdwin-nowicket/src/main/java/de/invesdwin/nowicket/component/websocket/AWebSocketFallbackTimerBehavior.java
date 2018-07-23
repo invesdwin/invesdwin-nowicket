@@ -47,20 +47,14 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
         @Override
         protected void onTimer(final AjaxRequestTarget target) {
-            if (websocket != null && ajax != null) {
+            if (!websocket.isStopped() && !ajax.isStopped()) {
                 if (firstAjaxEvent == null) {
                     firstAjaxEvent = new FDate();
                 } else if (new Duration(firstAjaxEvent).isGreaterThan(websocketTimeout)) {
                     websocket.stop(target);
-                    websocket = null;
                 }
             }
             AWebSocketFallbackTimerBehavior.this.onTimer(target);
-        }
-
-        @Override
-        public boolean isTemporary(final Component component) {
-            return ajax == null;
         }
 
         @Override
@@ -78,22 +72,17 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
         @Override
         protected void onTimer(final WebSocketRequestHandler handler) {
-            if (ajax != null) {
+            if (!ajax.isStopped()) {
                 ajax.stop(handler);
-                ajax = null;
             }
             AWebSocketFallbackTimerBehavior.this.onTimer(handler);
         }
 
-        @Override
-        public boolean isTemporary(final Component component) {
-            return websocket == null;
-        }
     }
 
     private final Duration websocketTimeout;
-    private FallbackWebSocketTimerBehavior websocket;
-    private FallbackAjaxTimerBehavior ajax;
+    private final FallbackWebSocketTimerBehavior websocket;
+    private final FallbackAjaxTimerBehavior ajax;
 
     /** the component that this handler is bound to. */
     private Component component;
