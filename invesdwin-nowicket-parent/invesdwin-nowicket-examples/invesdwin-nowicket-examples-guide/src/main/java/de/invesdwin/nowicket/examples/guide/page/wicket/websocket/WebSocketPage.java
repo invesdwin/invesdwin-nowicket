@@ -6,12 +6,12 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.wicket.Component;
+import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
 import org.wicketstuff.annotation.mount.MountPath;
 
-import de.invesdwin.nowicket.component.websocket.AWebSocketTimerBehavior;
+import de.invesdwin.nowicket.component.websocket.AWebSocketFallbackTimerBehavior;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.context.ComponentRegistry;
@@ -44,12 +44,12 @@ public class WebSocketPage extends AExampleWebPage {
                 return super.create(e);
             }
         }).bind();
-        add(new AWebSocketTimerBehavior(org.apache.wicket.util.time.Duration.seconds(1)) {
+        add(new AWebSocketFallbackTimerBehavior(org.apache.wicket.util.time.Duration.seconds(1)) {
 
             private FDate prevLastRefresh = FDate.MIN_DATE;
 
             @Override
-            protected void onTimer(final WebSocketRequestHandler handler) {
+            protected void onTimer(final IPartialPageRequestHandler handler) {
                 final HtmlContext context = HtmlContext.get(WebSocketPage.this);
                 final WebSocket model = (WebSocket) context.getMarkupContainer().getDefaultModel().getObject();
                 //listen to the users preference
