@@ -4,6 +4,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- https://lists.apache.org/thread.html/%3CCAJi=3dUcd9qqaJb+YeVBoG8bL=yVEQLXMHWA10mC0Drq8ZmG_A@mail.gmail.com%3E 
+		https://stackoverflow.com/questions/48453980/spring-5-0-3-requestrejectedexception-the-request-was-rejected-because-the-url -->
+	<bean name="httpFirewall"
+		class="org.springframework.security.web.firewall.DefaultHttpFirewall" />
+	<security:http-firewall ref="httpFirewall" />
+
 	<!-- JSR250 is not supported yet in spring-security-aspects, so it stays 
 		disabled here: https://jira.spring.io/browse/SEC-1671 -->
 	<!-- also disabling the old @Secured annotation here in favor of the newer 

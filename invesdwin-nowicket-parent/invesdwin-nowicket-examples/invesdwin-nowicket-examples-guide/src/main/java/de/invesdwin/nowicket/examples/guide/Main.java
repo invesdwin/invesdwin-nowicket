@@ -18,6 +18,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 import de.invesdwin.instrument.DynamicInstrumentationLoader;
 import de.invesdwin.nowicket.examples.guide.internal.ExampleSpringApplicationRunListener;
@@ -33,6 +35,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
         "classpath:/META-INF/ctx.example.security.xml" })
 @Immutable
 @EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
+@EnableWebSocket
 public class Main {
 
     static {
@@ -89,6 +92,11 @@ public class Main {
 
         };
 
+    }
+
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
     }
 
     @Bean
