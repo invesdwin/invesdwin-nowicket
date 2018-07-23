@@ -24,7 +24,6 @@ import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.filter.StalePageRequestCycleListener;
 import de.invesdwin.nowicket.application.filter.init.hook.IWebApplicationInitializerHook;
-import de.invesdwin.nowicket.component.chart.header.HighstockWebjarInitializer;
 import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContributor;
 import de.invesdwin.nowicket.component.header.FaviconHeaderContributor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.FormComponentAwarePropertyResolver;
@@ -59,7 +58,6 @@ public class WebApplicationInitializer {
         registerPackageResourceGuardPatterns();
         registerMountedPages();
         registerPageFactoryUpdatingRequestCycleListener();
-        registerHighstockWebjar();
         registerStoreSettings();
         registerCryptFactory();
         registerOnePassRenderForBots();
@@ -197,10 +195,6 @@ public class WebApplicationInitializer {
     protected void registerPageFactoryUpdatingRequestCycleListener() {
         webApplication.getRequestCycleListeners().add(new PageRequestHandlerTracker());
         webApplication.getRequestCycleListeners().add(new PageFactoryUpdatingRequestCycleListener());
-    }
-
-    protected void registerHighstockWebjar() {
-        HighstockWebjarInitializer.init();
     }
 
     protected void registerFavicon() {

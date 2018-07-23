@@ -17,7 +17,6 @@
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
 		<version.ecs>1.4.2</version.ecs>
-		<version.wicked-charts>1.5.0</version.wicked-charts>
 	</properties>
 
 
@@ -115,17 +114,6 @@
 			<groupId>com.yahoo.platform.yui</groupId>
 			<artifactId>yuicompressor</artifactId>
 			<version>${version.yuicompressor}</version>
-		</dependency>
-		<dependency>
-			<!-- should not redistribute due to license, thus optional -->
-			<groupId>org.webjars</groupId>
-			<artifactId>highstock</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.wicked-charts</groupId>
-			<artifactId>wicked-charts-wicket6</artifactId>
-			<version>${version.wicked-charts}</version>
 		</dependency>
 
 		<dependency>
