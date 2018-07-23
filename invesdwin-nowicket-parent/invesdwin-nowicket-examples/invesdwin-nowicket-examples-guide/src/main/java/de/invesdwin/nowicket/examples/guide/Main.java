@@ -5,6 +5,7 @@ import java.io.File;
 import javax.annotation.concurrent.Immutable;
 import javax.servlet.DispatcherType;
 
+import org.apache.wicket.protocol.ws.javax.WicketServerEndpointConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -88,6 +89,11 @@ public class Main {
 
         };
 
+    }
+
+    @Bean
+    public WicketServerEndpointConfig wicketServerEndpointConfig() {
+        return new WicketServerEndpointConfig();
     }
 
 }
