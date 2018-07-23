@@ -133,8 +133,12 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         component = hostComponent;
 
         //let websocket handle the first request
-        hostComponent.add(websocket);
-        hostComponent.add(ajax);
+        if (websocket != null) {
+            hostComponent.add(websocket);
+        }
+        if (ajax != null) {
+            hostComponent.add(ajax);
+        }
 
         // call the callback
         onBind();
