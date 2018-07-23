@@ -112,12 +112,8 @@ public abstract class AWebSocketTimerBehavior extends WebSocketBehavior {
                     setTimeout(handler.getHeaderResponse());
                 }
             }
-        } else {
-            onTextMessage(handler, message);
         }
     }
-
-    protected void onTextMessage(final WebSocketRequestHandler handler, final TextMessage message) {}
 
     /**
      * Gets the component that this handler is bound to.
