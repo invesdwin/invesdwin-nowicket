@@ -1,8 +1,8 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.ajaxchoice;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -40,17 +40,23 @@ public class AjaxChoice extends AValueObject {
     }
 
     public void setModel(final String model) {
-        this.model = model;
+        //validate choice here since setters can be invoked in an arbitrary order
+        final Set<String> modelChoice = getModelChoice();
+        if (modelChoice != null && modelChoice.contains(model)) {
+            this.model = model;
+        } else {
+            this.model = null;
+        }
     }
 
     /**
      * Explicit choices in select box, note that you can return any type of iterable or even arrays
      */
-    public List<String> getModelChoice() {
+    public Set<String> getModelChoice() {
         if (manufacturer == null) {
             return null; //no choice
         } else {
-            final List<String> models = new ArrayList<String>();
+            final Set<String> models = new LinkedHashSet<String>();
             models.add(null); //no selection is also a valid selection
             models.addAll(Arrays.asList(manufacturer.getModels()));
             return models;
@@ -69,8 +75,9 @@ public class AjaxChoice extends AValueObject {
             throw new Exception("Please select a model for manufacturer '<b>" + manufacturer + "</b>'!");
         }
 
-        GuiService.get().showStatusMessage(new StatusMessageConfig()
-                .withMessage("You have selected: " + manufacturer + " " + model).withType(StatusMessageType.success));
+        GuiService.get().showStatusMessage(
+                new StatusMessageConfig().withMessage("You have selected: " + manufacturer + " " + model)
+                        .withType(StatusMessageType.success));
     }
 
 }
