@@ -1,7 +1,5 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.websocket;
 
-import java.io.IOException;
-
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.commons.lang3.RandomUtils;
@@ -22,7 +20,6 @@ import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElem
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
-import de.invesdwin.nowicket.util.WebSockets;
 import de.invesdwin.util.time.fdate.FDate;
 
 @MountPath("websocket")
@@ -81,11 +78,6 @@ public class WebSocketPage extends AExampleWebPage {
                     final Component lastRefreshCheck = componentRegistry
                             .getComponent(AjaxTimerConstants.lastRefreshCheck);
                     handler.add(lastRefreshCheck);
-                    try {
-                        WebSockets.getConnection(getComponent()).sendMessage("asdf");
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e);
-                    }
                 } finally {
                     //process outstanding gui tasks if there are any
                     GuiService.get().processRequestFinally(WebSocketPage.this);
