@@ -5,13 +5,13 @@ import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.protocol.http.WicketFilter;
+import org.apache.wicket.protocol.ws.javax.JavaxWebSocketFilter;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
-public abstract class AWicketFilter extends WicketFilter {
+public abstract class AWicketFilter extends JavaxWebSocketFilter {
 
     {
         final Set<String> ignorePaths = Reflections.field("ignorePaths").ofType(Set.class).in(this).get();
