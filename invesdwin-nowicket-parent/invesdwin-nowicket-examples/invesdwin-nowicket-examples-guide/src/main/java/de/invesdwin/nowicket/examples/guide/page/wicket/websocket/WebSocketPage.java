@@ -1,5 +1,7 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.websocket;
 
+import java.io.IOException;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.commons.lang3.RandomUtils;
@@ -7,6 +9,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.protocol.ws.api.IWebSocketConnection;
+import org.apache.wicket.protocol.ws.api.IWebSocketRequestHandler;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import de.invesdwin.nowicket.component.websocket.AWebSocketFallbackTimerBehavior;
@@ -20,6 +24,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElem
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
+import de.invesdwin.nowicket.util.WebSockets;
 import de.invesdwin.util.time.fdate.FDate;
 
 @MountPath("websocket")
@@ -78,6 +83,8 @@ public class WebSocketPage extends AExampleWebPage {
                     final Component lastRefreshCheck = componentRegistry
                             .getComponent(AjaxTimerConstants.lastRefreshCheck);
                     handler.add(lastRefreshCheck);
+
+                    //pushMessage(handler);
                 } finally {
                     //process outstanding gui tasks if there are any
                     GuiService.get().processRequestFinally(WebSocketPage.this);
@@ -85,6 +92,25 @@ public class WebSocketPage extends AExampleWebPage {
             }
 
         });
+    }
+
+    /**
+     * This is example code on how to push messages directly either via casting the handler or by obtaining the web
+     * socket connection from the registry.
+     */
+    private void pushMessage(final IPartialPageRequestHandler handler) {
+        if (handler instanceof IWebSocketRequestHandler) {
+            final IWebSocketRequestHandler webSocketHandler = (IWebSocketRequestHandler) handler;
+            webSocketHandler.push("message");
+        }
+        final IWebSocketConnection webSocketConnection = WebSockets.getConnection(this);
+        if (webSocketConnection != null) {
+            try {
+                webSocketConnection.sendMessage("message");
+            } catch (final IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }
