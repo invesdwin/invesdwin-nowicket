@@ -37,7 +37,7 @@ function disableComponentsOnAjaxCall() {
 			}
 		});
 		//execute undisable when ajax call is finished
-		Wicket.Event.subscribe('/ajax/call/done', function(attributes,
+		Wicket.Event.subscribe('/ajax/call/success', function(attributes,
 				jqXHR, settings) {
 			// only undisable components when we had an ajax indicator activated for this event
 			if (jqXHR.i) {

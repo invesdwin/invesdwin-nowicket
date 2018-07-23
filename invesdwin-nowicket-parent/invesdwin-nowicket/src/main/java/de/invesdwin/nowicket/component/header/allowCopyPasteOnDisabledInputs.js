@@ -83,7 +83,7 @@ function allowCopyPasteOnDisabledInputs() {
 		Wicket.Event.add(window, 'shown.bs.modal', function(e) {
 			triggerAllowCopyPasteOnDisabledInputs();
 		});
-		Wicket.Event.subscribe('/ajax/call/done', function(attributes,
+		Wicket.Event.subscribe('/ajax/call/success', function(attributes,
 				jqXHR, settings) {
 			triggerAllowCopyPasteOnDisabledInputs();
 		});
