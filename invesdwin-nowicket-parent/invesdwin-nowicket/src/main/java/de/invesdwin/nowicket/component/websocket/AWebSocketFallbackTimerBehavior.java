@@ -47,7 +47,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
         @Override
         protected void onTimer(final AjaxRequestTarget target) {
-            if (!websocket.isStopped() && !ajax.isStopped()) {
+            if (websocket != null && !websocket.isStopped() && ajax != null && !ajax.isStopped()) {
                 if (firstAjaxEvent == null) {
                     firstAjaxEvent = new FDate();
                 } else if (new Duration(firstAjaxEvent).isGreaterThan(websocketTimeout)) {
@@ -72,7 +72,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
         @Override
         protected void onTimer(final WebSocketRequestHandler handler) {
-            if (!ajax.isStopped()) {
+            if (ajax != null && !ajax.isStopped()) {
                 ajax.stop(handler);
             }
             AWebSocketFallbackTimerBehavior.this.onTimer(handler);
@@ -214,14 +214,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
     }
 
     @Override
-    public void onRemove(final Component component) {
-        if (websocket != null) {
-            component.remove(websocket);
-        }
-        if (ajax != null) {
-            component.remove(ajax);
-        }
-    }
+    public void onRemove(final Component component) {}
 
     @Override
     public void unbind(final Component component) {
