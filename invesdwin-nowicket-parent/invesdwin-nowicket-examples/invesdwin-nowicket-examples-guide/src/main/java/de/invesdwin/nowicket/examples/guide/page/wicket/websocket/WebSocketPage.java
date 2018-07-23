@@ -99,10 +99,12 @@ public class WebSocketPage extends AExampleWebPage {
      * socket connection from the registry.
      */
     private void pushMessage(final IPartialPageRequestHandler handler) {
+        //handler method
         if (handler instanceof IWebSocketRequestHandler) {
             final IWebSocketRequestHandler webSocketHandler = (IWebSocketRequestHandler) handler;
             webSocketHandler.push("message");
         }
+        //registry method
         final IWebSocketConnection webSocketConnection = WebSockets.getConnection(this);
         if (webSocketConnection != null) {
             try {
