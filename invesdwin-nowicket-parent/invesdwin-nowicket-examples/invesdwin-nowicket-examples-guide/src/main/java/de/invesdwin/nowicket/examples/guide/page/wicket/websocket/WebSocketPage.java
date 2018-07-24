@@ -40,7 +40,7 @@ public class WebSocketPage extends AExampleWebPage {
         new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
-                if (e.getWicketId().equals(AjaxTimerConstants.tabs)) {
+                if (e.getWicketId().equals(WebSocketConstants.tabs)) {
                     return new ModelTabbedPanel((ITabbedHtmlElement<?, ?>) e);
                 }
                 return super.create(e);
@@ -74,14 +74,14 @@ public class WebSocketPage extends AExampleWebPage {
                          * a placeholder tab printed when the component is invisible
                          */
                         final Component tabs = componentRegistry.getComponent(
-                                AjaxTimerConstants.tabs + GridColumnHtmlElement.GRID_COLUMN_WICKET_ID_SUFFIX);
+                                WebSocketConstants.tabs + GridColumnHtmlElement.GRID_COLUMN_WICKET_ID_SUFFIX);
                         handler.add(tabs);
-                        final Component lastRefresh = componentRegistry.getComponent(AjaxTimerConstants.lastRefresh);
+                        final Component lastRefresh = componentRegistry.getComponent(WebSocketConstants.lastRefresh);
                         handler.add(lastRefresh);
                         prevLastRefresh = newLastRefresh;
                     }
                     final Component lastRefreshCheck = componentRegistry
-                            .getComponent(AjaxTimerConstants.lastRefreshCheck);
+                            .getComponent(WebSocketConstants.lastRefreshCheck);
                     handler.add(lastRefreshCheck);
 
                     //pushMessage(handler);
