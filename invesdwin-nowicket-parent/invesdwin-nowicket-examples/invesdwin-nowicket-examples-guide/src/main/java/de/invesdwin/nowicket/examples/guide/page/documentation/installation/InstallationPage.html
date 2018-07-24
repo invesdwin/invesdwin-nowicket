@@ -270,6 +270,7 @@ ProxyRequests Off
 ProxyPass /app/ http://example.com:8080/
 ProxyPassReverse /app/ http://example.com:8080/
 ProxyHTMLURLMap http://example.com:8080 /app/
+ProxyPass /wicket/websocket ws://example.com:8080/wicket/websocket
 &lt;Location /app/&gt;
     ProxyPassReverse /
     SetOutputFilter proxy-html
