@@ -100,7 +100,7 @@ public abstract class AWebSocketTimerBehavior extends WebSocketBehavior {
     }
 
     @Override
-    protected final void onMessage(final WebSocketRequestHandler handler, final TextMessage message) {
+    protected void onMessage(final WebSocketRequestHandler handler, final TextMessage message) {
         if (message.getText().equals(getTimerId())) {
             // timerId is no longer valid after timer has triggered
             timerId = null;

@@ -17,12 +17,16 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
+import org.apache.wicket.protocol.ws.api.message.TextMessage;
 import org.apache.wicket.util.lang.Args;
+import org.apache.wicket.util.string.StringValue;
 import org.danekja.java.util.function.serializable.SerializableConsumer;
 
+import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.time.duration.Duration;
 import de.invesdwin.util.time.fdate.FDate;
 import de.invesdwin.util.time.fdate.FTimeUnit;
@@ -35,6 +39,7 @@ import de.invesdwin.util.time.fdate.FTimeUnit;
 @NotThreadSafe
 public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
+    private static final String ATTR_CLIENT_RESPONSE = "CLIENT_RESPONSE";
     private static final Duration MIN_WEBSOCKET_TIMEOUT = new Duration(10, FTimeUnit.SECONDS);
 
     public class FallbackAjaxTimerBehavior extends AbstractAjaxTimerBehavior {
@@ -54,6 +59,15 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
                     websocket.stop(target);
                 }
             }
+            final StringValue clientResponseValue = getComponent().getRequest()
+                    .getRequestParameters()
+                    .getParameterValue(ATTR_CLIENT_RESPONSE);
+            if (clientResponseValue != null) {
+                final String clientResponseStr = clientResponseValue.toString();
+                if (Strings.isNotBlank(clientResponseStr)) {
+                    processClientResponse(clientResponseStr);
+                }
+            }
             AWebSocketFallbackTimerBehavior.this.onTimer(target);
         }
 
@@ -63,11 +77,32 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
             return null;
         }
 
+        @Override
+        protected void updateAjaxAttributes(final AjaxRequestAttributes attributes) {
+            super.updateAjaxAttributes(attributes);
+            final String clientResponseJs = createClientResponseScript();
+            if (Strings.isNotBlank(clientResponseJs)) {
+                attributes.getDynamicExtraParameters()
+                        .add("return {'" + ATTR_CLIENT_RESPONSE + "': " + clientResponseJs + "}");
+            }
+        }
+
     }
 
     public class FallbackWebSocketTimerBehavior extends AWebSocketTimerBehavior {
+
         public FallbackWebSocketTimerBehavior(final org.apache.wicket.util.time.Duration updateInterval) {
             super(updateInterval);
+        }
+
+        @Override
+        protected void onMessage(final WebSocketRequestHandler handler, final TextMessage message) {
+            if (message.getText().equals(ATTR_CLIENT_RESPONSE + "=")) {
+                final String clientResponse = Strings.removeStart(message.getText(), ATTR_CLIENT_RESPONSE);
+                processClientResponse(clientResponse);
+            } else {
+                super.onMessage(handler, message);
+            }
         }
 
         @Override
@@ -76,6 +111,11 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
                 ajax.stop(handler);
             }
             AWebSocketFallbackTimerBehavior.this.onTimer(handler);
+            final String clientResponseJs = createClientResponseScript();
+            if (Strings.isNotBlank(clientResponseJs)) {
+                handler.appendJavaScript(
+                        "Wicket.WebSocket.send('clientResponse='+function(){return " + clientResponseJs + "});");
+            }
         }
 
     }
@@ -168,6 +208,14 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
      *            The request handler
      */
     protected abstract void onTimer(IPartialPageRequestHandler handler);
+
+    protected String createClientResponseScript() {
+        return null;
+    }
+
+    protected void processClientResponse(final String clientResponse) {
+
+    }
 
     /**
      * @return {@code true} if has been stopped via {@link #stop(IPartialPageRequestHandler)}
