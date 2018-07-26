@@ -13,7 +13,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.MetaDataKey;
-import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.extensions.markup.html.tabs.TabbedPanel;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.Form;
@@ -256,10 +256,9 @@ public final class Components {
         return findForm(component).getRootForm();
     }
 
-    public static void updateAllComponents(final Component component) {
-        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class).orElse(null);
+    public static void updateAllComponents(final IPartialPageRequestHandler handler, final Component component) {
         final Form<?> form = Components.findForm(component);
-        if (target != null && form != null) {
+        if (handler != null && form != null) {
             final MarkupContainer root = (MarkupContainer) Components.findRoot(form);
             try {
                 root.visitChildren(new IVisitor<Component, Void>() {
@@ -267,7 +266,7 @@ public final class Components {
                     public void component(final Component object, final IVisit<Void> visit) {
                         if (object instanceof Form || object instanceof TabbedPanel
                                 || object instanceof ModalContainer) {
-                            target.add(object);
+                            handler.add(object);
                         }
                         if (!object.isVisible()) {
                             final List<ModelComponentBehavior> modelComponentBehaviors = object
@@ -285,12 +284,12 @@ public final class Components {
         }
     }
 
-    public static void updateComponents(final Collection<? extends Component> components) {
-        final AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class).orElse(null);
-        if (target != null) {
+    public static void updateComponents(final IPartialPageRequestHandler handler,
+            final Collection<? extends Component> components) {
+        if (handler != null) {
             try {
                 for (final Component c : components) {
-                    target.add(c);
+                    handler.add(c);
                 }
             } catch (final Throwable t) {
                 handleFrozenComponentsException(t);

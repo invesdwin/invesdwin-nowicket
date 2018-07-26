@@ -6,6 +6,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -24,6 +25,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElem
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
+import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.nowicket.util.WebSockets;
 import de.invesdwin.util.time.fdate.FDate;
 
@@ -49,6 +51,7 @@ public class WebSocketPage extends AExampleWebPage {
         add(new AWebSocketFallbackTimerBehavior(org.apache.wicket.util.time.Duration.seconds(1)) {
 
             private FDate prevLastRefresh = FDate.MIN_DATE;
+            private boolean roundtripComplete = false;
 
             @Override
             protected void onTimer(final IPartialPageRequestHandler handler) {
@@ -83,12 +86,30 @@ public class WebSocketPage extends AExampleWebPage {
                     final Component lastRefreshCheck = componentRegistry
                             .getComponent(WebSocketConstants.lastRefreshCheck);
                     handler.add(lastRefreshCheck);
-
-                    //pushMessage(handler);
                 } finally {
                     //process outstanding gui tasks if there are any
                     GuiService.get().processRequestFinally(WebSocketPage.this);
                 }
+            }
+
+            @Override
+            protected String createClientResponseScript() {
+                if (!roundtripComplete) {
+                    final IPartialPageRequestHandler handler = RequestCycles
+                            .getPartialPageRequestHandler(getComponent());
+                    if (handler instanceof AjaxRequestTarget) {
+                        return "'Ajax'";
+                    } else if (handler instanceof IWebSocketRequestHandler) {
+                        return "'WebSocket'";
+                    }
+                }
+                return null;
+            }
+
+            @Override
+            protected void processClientResponse(final String clientResponse) {
+                GuiService.get().showStatusMessage("Hello " + clientResponse + "!");
+                roundtripComplete = true;
             }
 
         });
@@ -98,8 +119,9 @@ public class WebSocketPage extends AExampleWebPage {
      * This is example code on how to push messages directly either via casting the handler or by obtaining the web
      * socket connection from the registry.
      */
-    private void pushMessage(final IPartialPageRequestHandler handler) {
+    private void pushMessage() {
         //handler method
+        final IPartialPageRequestHandler handler = RequestCycles.getPartialPageRequestHandler(this);
         if (handler instanceof IWebSocketRequestHandler) {
             final IWebSocketRequestHandler webSocketHandler = (IWebSocketRequestHandler) handler;
             webSocketHandler.push("message");

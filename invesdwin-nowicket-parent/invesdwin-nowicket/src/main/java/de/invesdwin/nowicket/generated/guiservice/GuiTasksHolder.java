@@ -5,6 +5,7 @@ import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Page;
+import org.apache.wicket.request.cycle.RequestCycle;
 
 import de.invesdwin.norva.marker.ISerializableValueObject;
 import de.invesdwin.nowicket.generated.guiservice.internal.tasks.GuiTasks;
@@ -42,18 +43,32 @@ public class GuiTasksHolder implements ISerializableValueObject {
     public static GuiTasksHolder get() {
         final Page page = RequestCycles.getPage();
         if (page == null) {
-            return new GuiTasksHolder();
+            return newGuiTasksHolder();
         }
         return get(page);
     }
 
+    private static GuiTasksHolder newGuiTasksHolder() {
+        final RequestCycle requestCycle = RequestCycles.getRequestCycle(null);
+        if (requestCycle != null) {
+            GuiTasksHolder guiTasksHolder = requestCycle.getMetaData(HOLDER_KEY);
+            if (guiTasksHolder == null) {
+                guiTasksHolder = new GuiTasksHolder();
+                requestCycle.setMetaData(HOLDER_KEY, guiTasksHolder);
+            }
+            return guiTasksHolder;
+        } else {
+            return new GuiTasksHolder();
+        }
+    }
+
     public static GuiTasksHolder get(final Page page) {
         if (page == null) {
-            return new GuiTasksHolder();
+            return newGuiTasksHolder();
         }
         GuiTasksHolder guiTasksHolder = page.getMetaData(HOLDER_KEY);
         if (guiTasksHolder == null) {
-            guiTasksHolder = new GuiTasksHolder();
+            guiTasksHolder = newGuiTasksHolder();
             page.setMetaData(HOLDER_KEY, guiTasksHolder);
         }
         return guiTasksHolder;

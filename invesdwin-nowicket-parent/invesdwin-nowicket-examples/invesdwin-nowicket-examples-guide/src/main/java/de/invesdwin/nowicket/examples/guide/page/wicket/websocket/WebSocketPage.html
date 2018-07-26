@@ -12,7 +12,9 @@
 			to the ajax behavior when web sockets are not supported by the
 			browser. You can also have a look at the java code of
 			WebSocketPage.pushMessage(handler) for examples on how to push
-			messages directly.</p>
+			messages through the web socket directly. Though for a method that
+			also works through the ajax fallback, check out the
+			createClientResponseScript/processClientResponse parts.</p>
 		<form class="form-horizontal" wicket:id="form">
 			<!-- <div wicket:id='feedback'></div>  -->
 			<div wicket:id="modal"></div>

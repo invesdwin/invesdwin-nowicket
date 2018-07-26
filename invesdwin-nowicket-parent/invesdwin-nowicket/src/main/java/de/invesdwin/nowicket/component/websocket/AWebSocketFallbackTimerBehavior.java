@@ -40,6 +40,7 @@ import de.invesdwin.util.time.fdate.FTimeUnit;
 public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
     private static final String ATTR_CLIENT_RESPONSE = "CLIENT_RESPONSE";
+    private static final String ATTR_CLIENT_RESPONSE_PREFIX = ATTR_CLIENT_RESPONSE + ": ";
     private static final Duration MIN_WEBSOCKET_TIMEOUT = new Duration(10, FTimeUnit.SECONDS);
 
     public class FallbackAjaxTimerBehavior extends AbstractAjaxTimerBehavior {
@@ -97,8 +98,8 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
         @Override
         protected void onMessage(final WebSocketRequestHandler handler, final TextMessage message) {
-            if (message.getText().equals(ATTR_CLIENT_RESPONSE + "=")) {
-                final String clientResponse = Strings.removeStart(message.getText(), ATTR_CLIENT_RESPONSE);
+            if (message.getText().startsWith(ATTR_CLIENT_RESPONSE_PREFIX)) {
+                final String clientResponse = Strings.removeStart(message.getText(), ATTR_CLIENT_RESPONSE_PREFIX);
                 processClientResponse(clientResponse);
             } else {
                 super.onMessage(handler, message);
@@ -114,7 +115,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
             final String clientResponseJs = createClientResponseScript();
             if (Strings.isNotBlank(clientResponseJs)) {
                 handler.appendJavaScript(
-                        "Wicket.WebSocket.send('clientResponse='+function(){return " + clientResponseJs + "});");
+                        "Wicket.WebSocket.send('" + ATTR_CLIENT_RESPONSE_PREFIX + "'+" + clientResponseJs + ");");
             }
         }
 
@@ -132,6 +133,14 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         this.ajax = newAjaxTimerBehavior(updateInterval);
         this.websocketTimeout = new Duration(updateInterval.getMilliseconds(), FTimeUnit.MILLISECONDS).multiply(10)
                 .orHigher(MIN_WEBSOCKET_TIMEOUT);
+    }
+
+    public FallbackWebSocketTimerBehavior getWebsocket() {
+        return websocket;
+    }
+
+    public FallbackAjaxTimerBehavior getAjax() {
+        return ajax;
     }
 
     protected FallbackAjaxTimerBehavior newAjaxTimerBehavior(

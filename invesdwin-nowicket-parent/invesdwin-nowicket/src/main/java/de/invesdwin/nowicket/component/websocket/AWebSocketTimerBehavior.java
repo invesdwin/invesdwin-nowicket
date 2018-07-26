@@ -19,7 +19,6 @@ import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnLoadHeaderItem;
-import org.apache.wicket.protocol.ws.api.WebSocketBehavior;
 import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
 import org.apache.wicket.protocol.ws.api.message.TextMessage;
 import org.apache.wicket.util.lang.Args;
@@ -30,7 +29,7 @@ import org.danekja.java.util.function.serializable.SerializableConsumer;
  * 
  */
 @NotThreadSafe
-public abstract class AWebSocketTimerBehavior extends WebSocketBehavior {
+public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
     private static final long serialVersionUID = 1L;
 
     /** The update interval */

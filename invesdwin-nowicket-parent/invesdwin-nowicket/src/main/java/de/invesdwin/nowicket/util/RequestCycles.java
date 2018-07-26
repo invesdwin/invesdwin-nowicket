@@ -1,14 +1,18 @@
 package de.invesdwin.nowicket.util;
 
+import java.util.Optional;
+
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.wicket.Component;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.IPageRequestHandler;
+import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.request.IRequestParameters;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
@@ -21,6 +25,8 @@ import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 public final class RequestCycles {
 
     private static final MetaDataKey<Page> PAGE_KEY = new MetaDataKey<Page>() {
+    };
+    private static final MetaDataKey<IPartialPageRequestHandler> PARTIAL_PAGE_REQUEST_HANDLER_KEY = new MetaDataKey<IPartialPageRequestHandler>() {
     };
 
     private RequestCycles() {}
@@ -91,6 +97,33 @@ public final class RequestCycles {
             return requestURL.toString();
         } else {
             return requestURL.append('?').append(queryString).toString();
+        }
+    }
+
+    public static void setPartialPageRequestHandler(final Component component,
+            final IPartialPageRequestHandler handler) {
+        final RequestCycle requestCycle = getRequestCycle(component);
+        requestCycle.setMetaData(PARTIAL_PAGE_REQUEST_HANDLER_KEY, handler);
+        if (component != null) {
+            setPage(component.getPage());
+        }
+    }
+
+    public static IPartialPageRequestHandler getPartialPageRequestHandler(final Component component) {
+        final RequestCycle requestCycle = getRequestCycle(component);
+        final Optional<IPartialPageRequestHandler> handler = requestCycle.find(IPartialPageRequestHandler.class);
+        if (handler.isPresent()) {
+            return handler.get();
+        } else {
+            return requestCycle.getMetaData(PARTIAL_PAGE_REQUEST_HANDLER_KEY);
+        }
+    }
+
+    public static RequestCycle getRequestCycle(final Component component) {
+        if (component == null) {
+            return RequestCycle.get();
+        } else {
+            return component.getRequestCycle();
         }
     }
 

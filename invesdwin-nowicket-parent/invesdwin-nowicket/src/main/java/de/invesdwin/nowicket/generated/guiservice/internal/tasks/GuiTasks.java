@@ -11,12 +11,14 @@ import java.util.Map;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.markup.html.form.Form;
 
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.util.Components;
+import de.invesdwin.nowicket.util.RequestCycles;
 
 @NotThreadSafe
 public class GuiTasks implements IGuiTasksService, IGuiTask {
@@ -61,7 +63,9 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
             showModalPanelGuiTasks.remove(lastShowing);
             waitForHideModalPanelGuiTask = new WaitForNextAjaxCallGuiTask();
             if (GuiService.get().isDisableUpdateAllComponentsForCurrentRequest()) {
-                Components.updateComponents(updatedComponents);
+                final IPartialPageRequestHandler handler = RequestCycles
+                        .getPartialPageRequestHandler(lastShowing.getComponent());
+                Components.updateComponents(handler, updatedComponents);
             }
         } else {
             throw new IllegalStateException("No modal panel to hide!");

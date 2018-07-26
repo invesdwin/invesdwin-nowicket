@@ -74,6 +74,10 @@ public class ShowModalPanelGuiTask implements IGuiTask {
         return Arrays.asList(modal);
     }
 
+    public Component getComponent() {
+        return modal;
+    }
+
     public boolean isShowing() {
         if (modal != null) {
             return modal.isShowing();
