@@ -89,8 +89,12 @@ public final class RequestCycles {
     }
 
     public static String getFullURL(final HttpServletRequest request) {
-        final StringBuilder requestURL = new StringBuilder(
-                (String) request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI));
+        String requestUri = (String) request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI);
+        if (requestUri == null) {
+            requestUri = request.getRequestURI();
+        }
+        final StringBuilder requestURL = new StringBuilder();
+        requestURL.append(requestUri);
         final String queryString = request.getQueryString();
 
         if (queryString == null) {

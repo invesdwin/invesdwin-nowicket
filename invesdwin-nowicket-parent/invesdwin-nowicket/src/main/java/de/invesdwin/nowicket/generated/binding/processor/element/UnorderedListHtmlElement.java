@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.model.IModel;
 import org.jsoup.nodes.Element;
 
 import de.invesdwin.norva.beanpath.spi.element.AChoiceBeanPathElement;
@@ -34,6 +35,12 @@ public class UnorderedListHtmlElement extends AChoiceHtmlElement<AChoiceModelEle
     @Override
     protected void innerAccept(final IHtmlVisitor visitor) {
         visitor.visitUnorderedList(this);
+    }
+
+    @Override
+    public boolean isEnabled(final IModel<Object> targetObjectModel) {
+        //always enabled
+        return true;
     }
 
 }
