@@ -10,6 +10,13 @@ import org.apache.wicket.protocol.ws.api.event.WebSocketPayload;
 
 import de.invesdwin.nowicket.util.RequestCycles;
 
+/**
+ * This is a WebSocketBehavior that supports GuiService calls by setting up the partial page request handler before
+ * executing the events.
+ * 
+ * @author subes
+ *
+ */
 @NotThreadSafe
 public abstract class AWebSocketBehavior extends WebSocketBehavior {
 
