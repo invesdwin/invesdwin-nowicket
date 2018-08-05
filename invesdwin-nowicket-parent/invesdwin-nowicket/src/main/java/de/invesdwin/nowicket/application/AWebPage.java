@@ -45,7 +45,14 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
     private AjaxIndicatorAppender ajaxIndicatorAppender;
 
     public AWebPage(final IModel<?> model) {
+        this(model, null);
+    }
+
+    public AWebPage(final IModel<?> model, final PageParameters params) {
         super(model);
+        if (params != null) {
+            getPageParameters().mergeWith(params);
+        }
         /*
          * prevent endless loop when a gui task is added in the page constructor regarding gui tasks holder access
          */
