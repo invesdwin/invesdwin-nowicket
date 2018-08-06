@@ -1,21 +1,31 @@
 package de.invesdwin.nowicket.component.logviewer;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import de.invesdwin.nowicket.component.logviewer.js.LogViewerJsReference;
 import de.invesdwin.nowicket.component.websocket.AWebSocketFallbackTimerBehavior;
 import de.invesdwin.util.collections.iterable.ICloseableIterable;
 import de.invesdwin.util.collections.iterable.ICloseableIterator;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.math.decimal.Decimal;
+import de.invesdwin.util.math.decimal.scaled.Percent;
+import de.invesdwin.util.math.decimal.scaled.PercentScale;
 import de.invesdwin.util.time.fdate.FDate;
 
 /**
@@ -23,6 +33,11 @@ import de.invesdwin.util.time.fdate.FDate;
  */
 @NotThreadSafe
 public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
+
+    private static final int SUPPRESS_HIGHTLIGHT_THRESHOLD = 20;
+
+    private static final Resource JS_RESOURCE = new ClassPathResource(LogViewerPanel.class.getSimpleName() + ".js",
+            LogViewerPanel.class);
 
     private FDate logTo;
     private int expectedRowCount;
@@ -96,6 +111,26 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
     public void renderHead(final IHeaderResponse response) {
         super.renderHead(response);
         LogViewerJsReference.INSTANCE.renderHead(response);
+        final CharSequence js = createJavaScript();
+        response.render(JavaScriptHeaderItem.forScript(js, getClass().getSimpleName()));
+    }
+
+    private CharSequence createJavaScript() {
+        try {
+            final InputStream in = JS_RESOURCE.getInputStream();
+            String js = IOUtils.toString(in, Charset.defaultCharset());
+            in.close();
+
+            js = js.replace("${LOG_HEIGHT}", getLogHeight().getRate().toString());
+
+            return js;
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Percent getLogHeight() {
+        return new Percent(new Decimal("80"), PercentScale.PERCENT);
     }
 
     protected String tailLog() {
@@ -106,7 +141,8 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
             from = logTo;
         }
         final StringBuilder js = new StringBuilder();
-        final ICloseableIterable<LogViewerEntry> entries = getModelObject().getLogViewerEntries(from);
+        int countEntries = 0;
+        final ICloseableIterable<LogViewerEntry> entries = getModelObject().getLogViewerEntries(from, null);
         try (ICloseableIterator<LogViewerEntry> iterator = entries.iterator()) {
             while (true) {
                 final LogViewerEntry entry = iterator.next();
@@ -129,10 +165,15 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
                     }
                     js.append(messageStr);
                     expectedRowCount++;
+                    countEntries++;
                 }
             }
         } catch (final NoSuchElementException e) {
             //end reached
+        }
+        if (countEntries > SUPPRESS_HIGHTLIGHT_THRESHOLD) {
+            js.insert(0, "window.logViewer_supressHighlightCount = " + (countEntries - SUPPRESS_HIGHTLIGHT_THRESHOLD)
+                    + "\n");
         }
         return js.toString();
     }

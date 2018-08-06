@@ -6,6 +6,6 @@ import de.invesdwin.util.time.fdate.FDate;
 
 public interface ILogViewerSource extends ISerializableValueObject {
 
-    ICloseableIterable<LogViewerEntry> getLogViewerEntries(FDate from);
+    ICloseableIterable<LogViewerEntry> getLogViewerEntries(FDate from, Integer tailCount);
 
 }
