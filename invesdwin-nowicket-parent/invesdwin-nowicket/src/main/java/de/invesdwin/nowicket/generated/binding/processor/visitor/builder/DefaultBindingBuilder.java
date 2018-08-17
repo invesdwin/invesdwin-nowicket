@@ -6,12 +6,12 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextArea;
 
 import de.invesdwin.nowicket.application.AWebPage;
-import de.invesdwin.nowicket.component.csrf.CsrfTokenForm;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.CheckBoxInputHtmlElement;
@@ -89,7 +89,7 @@ public class DefaultBindingBuilder implements IBindingBuilder {
 
     @Override
     public Component createForm(final FormHtmlElement e) {
-        final CsrfTokenForm<Object> form = new CsrfTokenForm<Object>(e.getWicketId());
+        final Form<Object> form = new Form<Object>(e.getWicketId());
         return form;
     }
 
