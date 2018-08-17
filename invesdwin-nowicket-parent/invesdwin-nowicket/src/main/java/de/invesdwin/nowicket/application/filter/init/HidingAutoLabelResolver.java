@@ -46,7 +46,13 @@ public class HidingAutoLabelResolver implements IComponentResolver {
     @Override
     public Component resolve(final MarkupContainer container, final MarkupStream markupStream, final ComponentTag tag) {
         try {
-            final Component autoLabel = delegate.resolve(container, markupStream, tag);
+            final Component autoLabel;
+            try {
+                autoLabel = delegate.resolve(container, markupStream, tag);
+            } catch (final Throwable t) {
+                //e.g. ComponentNotFoundException
+                return null;
+            }
             if (autoLabel == null) {
                 return null;
             }

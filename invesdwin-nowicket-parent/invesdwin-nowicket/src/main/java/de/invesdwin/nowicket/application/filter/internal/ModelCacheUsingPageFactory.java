@@ -136,6 +136,9 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
     public static RenderPageRequestHandler onStalePageException() {
         final IPageFactory pageFactory = AWebApplication.get().getPageFactory();
         final Page page = RequestCycles.getPage();
+        if (page == null) {
+            return null;
+        }
         final PageParameters pageParameters = new PageParameters(page.getPageParameters());
         if (!pageParameters.getNamedKeys().contains(NO_CACHE_PARAM)) {
             pageParameters.add(NO_CACHE_PARAM, true);
