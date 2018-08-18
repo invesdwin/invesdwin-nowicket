@@ -34,8 +34,6 @@ import de.invesdwin.util.time.fdate.FDate;
 @NotThreadSafe
 public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
 
-    private static final int SUPPRESS_HIGHTLIGHT_THRESHOLD = 20;
-
     private static final Resource JS_RESOURCE = new ClassPathResource(LogViewerPanel.class.getSimpleName() + ".js",
             LogViewerPanel.class);
 
@@ -81,6 +79,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
          */
         if (shouldReset) {
             shouldReset = false;
+            expectedRowCount = 0;
             lastLogToMessages.clear();
             logTo = null;
             handler.appendJavaScript("window." + LogViewerJsReference.FUNCTION_NAME + "_reset()");
@@ -171,9 +170,8 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
         } catch (final NoSuchElementException e) {
             //end reached
         }
-        if (countEntries > SUPPRESS_HIGHTLIGHT_THRESHOLD) {
-            js.insert(0, "window.logViewer_supressHighlightCount = " + (countEntries - SUPPRESS_HIGHTLIGHT_THRESHOLD)
-                    + "\n");
+        if (countEntries > 0) {
+            js.append("\nwindow." + LogViewerJsReference.FUNCTION_NAME + "_update();");
         }
         return js.toString();
     }

@@ -4,28 +4,49 @@ function logViewer_init(highlight) {
 
 		// data
 		window.logViewer_rowCount = 0;
-		window.logViewer_supressHighlightCount = 0;
+		window.logViewer_toBeAppendedLogs = new Array();
 		
 		// reset
 		window.logViewer_reset = function(){
 			$('#logData').empty();
 			window.logViewer_rowCount = 0;
-			$('#evictedLogData').text('');
+			window.logViewer_toBeAppendedLogs.length = 0;
 		};
 		
 		window.logViewer_append = function(time, error, message){
 			window.logViewer_rowCount++;
-			var attributes = "";
-			if(error){
-				attributes += ' style="color: red"';
-			}
-			var logData = $('#logData').prepend('<div '+attributes+'><b>'+time+':</b> '+message);
-			if(window.logViewer_supressHighlightCount === 0){
-				logData.find(':first').effect('highlight', {}, 1000);
-			}else{
-				window.logViewer_supressHighlightCount--;
-			}
+			window.logViewer_toBeAppendedLogs.push({time: time, error: error, message: message});
 		};
+		
+		window.logViewer_update = function(){
+			var length = window.logViewer_toBeAppendedLogs.length;
+			var supressHighlightCount = 0;
+			if(length > 20){
+			 	supressHighlightCount = length - 20;
+			}
+			for (var i = 0; i < length; i++) {
+				var log = window.logViewer_toBeAppendedLogs[0];
+				var time = log.time;
+				var error = log.error;
+				var message = log.message;
+				
+				var attributes = "";
+				if(error){
+					attributes += ' style="color: red"';
+				}
+				var logData = $('#logData').prepend('<div '+attributes+'><b>'+time+':</b> '+message);
+				if(supressHighlightCount === 0){
+					logData.find(':first').effect('highlight', {}, 1000);
+				}else{
+					supressHighlightCount--;
+				}
+				window.logViewer_toBeAppendedLogs.shift();
+				if(i >= 100){
+					setTimeout(function(){ window.logViewer_update(); }, 1);
+					break;
+				}
+			}
+		}
 		
 	}
 }
