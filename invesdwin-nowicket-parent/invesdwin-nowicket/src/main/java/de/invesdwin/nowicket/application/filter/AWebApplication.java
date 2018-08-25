@@ -166,4 +166,9 @@ public abstract class AWebApplication extends ABaseWebApplication {
     public File getSessionsDirectory() {
         return new File(".sessions");
     }
+
+    @Override
+    public String getSessionCookieName() {
+        return null;
+    }
 }

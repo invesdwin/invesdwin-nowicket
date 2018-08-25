@@ -65,4 +65,11 @@ public abstract class ABaseWebApplication
      */
     public abstract File getSessionsDirectory();
 
+    /**
+     * Return null to keep the default session cookie name which normally is "JSESSIONID". Otherwise return a unique
+     * name for this application instance so that when multiple applications are run from the same domain the cookies
+     * don't conflict with each other.
+     */
+    public abstract String getSessionCookieName();
+
 }

@@ -70,7 +70,7 @@ public class WebApplicationInitializer {
     }
 
     private void registerSessionCookieConfig() {
-        final String sessionCookieName = webApplication.getDelegate().getSessionCookieName();
+        final String sessionCookieName = webApplication.getSessionCookieName();
         if (Strings.isNotBlank(sessionCookieName)) {
             webApplication.getServletContext().getSessionCookieConfig().setName(sessionCookieName);
         }
