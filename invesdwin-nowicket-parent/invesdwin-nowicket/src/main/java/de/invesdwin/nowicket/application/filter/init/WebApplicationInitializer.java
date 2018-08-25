@@ -33,6 +33,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
+import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.time.fdate.FDate;
 
 /**
@@ -64,7 +65,15 @@ public class WebApplicationInitializer {
         registerRootRequestMapper();
         registerHidingAutoLabelResolver();
         registerStalePageRequestCycleListener();
+        registerSessionCookieConfig();
         runHooks();
+    }
+
+    private void registerSessionCookieConfig() {
+        final String sessionCookieName = webApplication.getDelegate().getSessionCookieName();
+        if (Strings.isNotBlank(sessionCookieName)) {
+            webApplication.getServletContext().getSessionCookieConfig().setName(sessionCookieName);
+        }
     }
 
     protected void registerHidingAutoLabelResolver() {

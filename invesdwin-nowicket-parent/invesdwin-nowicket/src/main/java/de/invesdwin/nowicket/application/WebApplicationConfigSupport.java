@@ -72,4 +72,9 @@ public class WebApplicationConfigSupport implements IWebApplicationConfig {
         return null;
     }
 
+    @Override
+    public String getSessionCookieName() {
+        return null;
+    }
+
 }
