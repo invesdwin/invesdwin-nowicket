@@ -1,6 +1,8 @@
 package de.invesdwin.nowicket.application.filter.init;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import javax.servlet.ServletContext;
+import javax.servlet.SessionCookieConfig;
 
 import org.apache.wicket.IPageRendererProvider;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
@@ -72,7 +74,11 @@ public class WebApplicationInitializer {
     private void registerSessionCookieConfig() {
         final String sessionCookieName = webApplication.getSessionCookieName();
         if (Strings.isNotBlank(sessionCookieName)) {
-            webApplication.getServletContext().getSessionCookieConfig().setName(sessionCookieName);
+            final ServletContext servletContext = webApplication.getServletContext();
+            final SessionCookieConfig sessionCookieConfig = servletContext.getSessionCookieConfig();
+            if (sessionCookieConfig != null) {
+                sessionCookieConfig.setName(sessionCookieName);
+            }
         }
     }
 
