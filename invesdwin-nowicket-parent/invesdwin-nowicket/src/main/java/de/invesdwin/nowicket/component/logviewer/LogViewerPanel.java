@@ -27,6 +27,7 @@ import de.invesdwin.util.math.decimal.Decimal;
 import de.invesdwin.util.math.decimal.scaled.Percent;
 import de.invesdwin.util.math.decimal.scaled.PercentScale;
 import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.fdate.FDates;
 
 /**
  * http://apache-wicket.1842946.n4.nabble.com/How-to-build-a-hudson-jenkins-like-live-log-viewer-td4090224.html#a4659629
@@ -147,7 +148,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
                 final LogViewerEntry entry = iterator.next();
                 final StringBuilder message = new StringBuilder();
                 message.append("window." + LogViewerJsReference.FUNCTION_NAME + "_append('");
-                message.append(entry.getTime().toString());
+                message.append(FDates.toString(entry.getTime()));
                 message.append("', ");
                 message.append(entry.isError());
                 message.append(", '");

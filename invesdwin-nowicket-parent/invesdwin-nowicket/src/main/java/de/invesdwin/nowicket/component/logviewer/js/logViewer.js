@@ -5,12 +5,14 @@ function logViewer_init(highlight) {
 		// data
 		window.logViewer_rowCount = 0;
 		window.logViewer_toBeAppendedLogs = new Array();
+		window.logViewer_background = true;
 		
 		// reset
 		window.logViewer_reset = function(){
 			$('#logData').empty();
 			window.logViewer_rowCount = 0;
 			window.logViewer_toBeAppendedLogs.length = 0;
+			window.logViewer_background = true;
 		};
 		
 		window.logViewer_append = function(time, error, message){
@@ -32,8 +34,20 @@ function logViewer_init(highlight) {
 				
 				var attributes = "";
 				if(error){
-					attributes += ' style="color: red"';
+					attributes += 'color: red';
 				}
+				window.logViewer_background = !window.logViewer_background;
+				if(window.logViewer_background){
+					if (attributes.length != 0) {
+						attributes = attributes+"; ";
+					}
+					attributes = attributes + "background-color: #F2F2F2";
+				}
+				
+				if (attributes.length != 0) {
+					attributes = ' style="'+attributes+'"';
+				}
+				
 				var logData = $('#logData').prepend('<div '+attributes+'><b>'+time+':</b> '+message);
 				if(supressHighlightCount === 0){
 					logData.find(':first').effect('highlight', {}, 1000);
