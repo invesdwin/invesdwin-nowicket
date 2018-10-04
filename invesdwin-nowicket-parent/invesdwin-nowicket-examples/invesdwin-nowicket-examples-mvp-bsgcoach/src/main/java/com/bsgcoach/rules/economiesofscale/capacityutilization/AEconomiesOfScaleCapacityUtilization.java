@@ -18,8 +18,7 @@ public abstract class AEconomiesOfScaleCapacityUtilization implements IRule {
 
     @Override
     public String getFeedbackText(final Reports reports) {
-        return "Your production plant in "
-                + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle())
+        return "Your production plant in " + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle())
                 + " operates at a capacity utilization of  "
                 + FeedbackFormatter.highlightVariable(getUtilisation(reports).toString(PercentScale.PERCENT))
                 + ". The theory of scale economies says that the higher the capacity utilization of a production plant is the lower the variable costs of production become. As a results, companies making use of scale effects operate at lower production costs per output unit and achieve a cost advantage on the market.";
@@ -42,7 +41,7 @@ public abstract class AEconomiesOfScaleCapacityUtilization implements IRule {
         final Decimal capacity = getCapacity(reports);
         if (capacity != null && capacity.isPositiveNonZero()) {
             //CHECKSTYLE:ON
-            final Decimal utilisationPercent = getUtilisation(reports).getValue(PercentScale.PERCENT);
+            final Decimal utilisationPercent = new Decimal(getUtilisation(reports).getValue(PercentScale.PERCENT));
             //        < 60
             if (utilisationPercent.isLessThan(new Decimal("60"))) {
                 return Significance._10;

@@ -121,7 +121,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
             String js = IOUtils.toString(in, Charset.defaultCharset());
             in.close();
 
-            js = js.replace("${LOG_HEIGHT}", getLogHeight().getRate().toString());
+            js = js.replace("${LOG_HEIGHT}", new Decimal(getLogHeight().getRate()).toString());
 
             return js;
         } catch (final IOException e) {
@@ -130,7 +130,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
     }
 
     protected Percent getLogHeight() {
-        return new Percent(new Decimal("80"), PercentScale.PERCENT);
+        return new Percent(80D, PercentScale.PERCENT);
     }
 
     protected String tailLog() {
