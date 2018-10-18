@@ -176,7 +176,6 @@
 								<exclude>javax.servlet.jsp:jsp-api</exclude>
 								<exclude>net.sf.ehcache:ehcache-core</exclude>
 								<exclude>javax.transaction:jta</exclude>
-								<exclude>org.fusesource.leveldbjni:leveldbjni-all</exclude>
 								<exclude>javax.enterprise:cdi-api</exclude>
 								<exclude>net.jcip:jcip-annotations</exclude>
 								<exclude>org.glassfish:javax.servlet</exclude>
