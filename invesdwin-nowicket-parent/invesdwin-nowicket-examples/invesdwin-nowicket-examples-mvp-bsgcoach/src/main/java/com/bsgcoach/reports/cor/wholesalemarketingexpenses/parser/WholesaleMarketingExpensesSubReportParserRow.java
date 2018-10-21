@@ -19,7 +19,7 @@ public enum WholesaleMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final CompanyOperatingReports report, final Decimal value) {
             report.getWholesaleMarketingExpenses(CompanyRegion.NorthAmerica)
-                    .setAllocationPercentagesWholesaleOnly(new Percent(value, PercentScale.PERCENT));
+                    .setAllocationPercentagesWholesaleOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     //    (wholesale only)          E-A
@@ -27,7 +27,7 @@ public enum WholesaleMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final CompanyOperatingReports report, final Decimal value) {
             report.getWholesaleMarketingExpenses(CompanyRegion.EuropeAfrica)
-                    .setAllocationPercentagesWholesaleOnly(new Percent(value, PercentScale.PERCENT));
+                    .setAllocationPercentagesWholesaleOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     //              A-P
@@ -35,7 +35,7 @@ public enum WholesaleMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final CompanyOperatingReports report, final Decimal value) {
             report.getWholesaleMarketingExpenses(CompanyRegion.AsiaPacific)
-                    .setAllocationPercentagesWholesaleOnly(new Percent(value, PercentScale.PERCENT));
+                    .setAllocationPercentagesWholesaleOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     //              L.A.
@@ -43,7 +43,7 @@ public enum WholesaleMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final CompanyOperatingReports report, final Decimal value) {
             report.getWholesaleMarketingExpenses(CompanyRegion.LatinAmerica)
-                    .setAllocationPercentagesWholesaleOnly(new Percent(value, PercentScale.PERCENT));
+                    .setAllocationPercentagesWholesaleOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
 

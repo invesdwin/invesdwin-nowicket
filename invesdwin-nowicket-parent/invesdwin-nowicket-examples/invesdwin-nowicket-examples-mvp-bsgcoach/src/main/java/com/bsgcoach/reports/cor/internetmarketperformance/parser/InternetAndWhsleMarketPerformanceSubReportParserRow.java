@@ -88,7 +88,7 @@ public enum InternetAndWhsleMarketPerformanceSubReportParserRow {
     PercentOfPairsSold("% of Pairs Sold", null) {
         @Override
         public void parse(final WhsleMarketPerformance report, final Decimal value) {
-            report.setPercentOfPairsSld(new Percent(value, PercentScale.PERCENT));
+            report.setPercentOfPairsSld(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     //    This Yr-------  Pairs Sold

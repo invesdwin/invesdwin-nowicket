@@ -160,43 +160,44 @@ public enum FootwearIndustryReportParserRow {
     CostPercent("Cost %") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getSelectedFinancialStats().setCostPercent(new Percent(value, PercentScale.PERCENT));
+            report.getSelectedFinancialStats().setCostPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     WhsePercent("Whse %") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getSelectedFinancialStats().setWhsePercent(new Percent(value, PercentScale.PERCENT));
+            report.getSelectedFinancialStats().setWhsePercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     MktngPercent("Mktng %") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getSelectedFinancialStats().setMktngPercent(new Percent(value, PercentScale.PERCENT));
+            report.getSelectedFinancialStats().setMktngPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     AdminPercent("Admin %") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getSelectedFinancialStats().setAdminPercent(new Percent(value, PercentScale.PERCENT));
+            report.getSelectedFinancialStats().setAdminPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     OpProfPercent("OpProf %") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getSelectedFinancialStats().setOpProfPercent(new Percent(value, PercentScale.PERCENT));
+            report.getSelectedFinancialStats().setOpProfPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     NetProfPercent("NetProf %") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getSelectedFinancialStats().setNetProfPercent(new Percent(value, PercentScale.PERCENT));
+            report.getSelectedFinancialStats()
+                    .setNetProfPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
         }
     },
     CurRatio("Cur Ratio") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getSelectedFinancialStats().setCurRatio(new Percent(value, PercentScale.RATE));
+            report.getSelectedFinancialStats().setCurRatio(new Percent(value.doubleValue(), PercentScale.RATE));
         }
     },
     InvDays("InvDays") {
@@ -210,13 +211,13 @@ public enum FootwearIndustryReportParserRow {
     InterestCoverage("Interest Coverage") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getCreditRatingData().setInterestCoverage(new Percent(value, PercentScale.RATE));
+            report.getCreditRatingData().setInterestCoverage(new Percent(value.doubleValue(), PercentScale.RATE));
         }
     },
     DebtAssetsRatio("Debt Asstes Ratio") {
         @Override
         public void parse(final FootwearIndustryReport report, final Decimal value) {
-            report.getCreditRatingData().setDebtAssetsRatio(new Percent(value, PercentScale.RATE));
+            report.getCreditRatingData().setDebtAssetsRatio(new Percent(value.doubleValue(), PercentScale.RATE));
         }
     };
 
