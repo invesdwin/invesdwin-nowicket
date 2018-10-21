@@ -69,7 +69,7 @@ public enum PlantOperationsSubReportParserRow {
     PercentOfTotalCapacity("% of Total Capacity", null) {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getPlantCapacity().setPercentOfTotalCapacity(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getPlantCapacity().setPercentOfTotalCapacity(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    Const (for next yr)
@@ -266,8 +266,7 @@ public enum PlantOperationsSubReportParserRow {
     PercentChngFromLastYr("% Chng from Last Yr", null) {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getCompensationDollarsPerWorker()
-                    .setPercentChngFromLastYr(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getCompensationDollarsPerWorker().setPercentChngFromLastYr(new Percent(value, PercentScale.PERCENT));
         }
     },
 
@@ -275,8 +274,7 @@ public enum PlantOperationsSubReportParserRow {
     WageChangePercent("Wage Change (%)", null) {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getProductivityFactors()
-                    .setWageChangePercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getProductivityFactors().setWageChangePercent(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    Expected Incent Pay
@@ -297,8 +295,7 @@ public enum PlantOperationsSubReportParserRow {
     TotalCompPercentOfAvg("Total Comp (% of avg)", null) {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getProductivityFactors()
-                    .setTotalCompPercentOfAvg(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getProductivityFactors().setTotalCompPercentOfAvg(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    Best Pract (per wkr)
@@ -327,21 +324,21 @@ public enum PlantOperationsSubReportParserRow {
     PercentChngWage("% Chng--", "Wage") {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getProductivityCalc().setPercentChngWage(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getProductivityCalc().setPercentChngWage(new Percent(value, PercentScale.PERCENT));
         }
     },
     //        BestP
     PercentChngBestP("% Chng--", "BestP") {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getProductivityCalc().setPercentChngBestP(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getProductivityCalc().setPercentChngBestP(new Percent(value, PercentScale.PERCENT));
         }
     },
     //        Opt D
     PercentChngOptD("% Chng--", "Opt D") {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getProductivityCalc().setPercentChngOptD(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getProductivityCalc().setPercentChngOptD(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    New Base (this yr)
@@ -355,15 +352,14 @@ public enum PlantOperationsSubReportParserRow {
     PercentChngIncentive("% Chng--", "Incentive") {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getProductivityCalc()
-                    .setPercentChngIncentive(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getProductivityCalc().setPercentChngIncentive(new Percent(value, PercentScale.PERCENT));
         }
     },
     //        Tot Comp
     PercentChngTotComp("% Chng--", "Tot Comp") {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getProductivityCalc().setPercentChngTotComp(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getProductivityCalc().setPercentChngTotComp(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    Productivity (this yr)
@@ -428,8 +424,7 @@ public enum PlantOperationsSubReportParserRow {
     TqmDollarPerPairCap("TQM----------", "$/pair Cap") {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getCumulatives().getTqm().setDollarPerPairCap(
-                    new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getCumulatives().getTqm().setDollarPerPairCap(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    BestP---------  $000s
@@ -450,8 +445,7 @@ public enum PlantOperationsSubReportParserRow {
     BestPDollarPerPairProd("BestP---------", "$/pair Prod") {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getCumulatives().getBestP().setDollarPerPairCap(
-                    new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getCumulatives().getBestP().setDollarPerPairCap(new Percent(value, PercentScale.PERCENT));
         }
     },
     //        Employees
@@ -465,7 +459,7 @@ public enum PlantOperationsSubReportParserRow {
     BestPEffectPercent("BestP Effect %", null) {
         @Override
         public void parse(final PlantOperations report, final Decimal value) {
-            report.getMaterialsCosts().setBestPEffectPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getMaterialsCosts().setBestPEffectPercent(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    Per Pair------  Normal

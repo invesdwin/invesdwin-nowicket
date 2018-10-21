@@ -572,8 +572,7 @@ public enum BrandedWarehouseProductionsSubReportParserRow {
     InventoryMarginReductionPercent("Clearance", "Margin Reduction %", null) {
         @Override
         public void parse(final BrandedWarehouseProductions report, final Decimal value) {
-            report.getInventoryClearance()
-                    .setMarginReductionPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getInventoryClearance().setMarginReductionPercent(new Percent(value, PercentScale.PERCENT));
         }
     },
     //       Intended Price

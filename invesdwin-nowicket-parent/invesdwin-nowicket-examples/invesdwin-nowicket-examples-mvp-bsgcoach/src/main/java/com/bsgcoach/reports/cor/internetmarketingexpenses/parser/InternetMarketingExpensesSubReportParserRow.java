@@ -29,10 +29,10 @@ public enum InternetMarketingExpensesSubReportParserRow {
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
             final PerRegion perRegion = report.getPerRegion(CompanyRegion.NorthAmerica);
             if (perRegion.getAllocationPercentageWithinRegion() == null) {
-                perRegion.setAllocationPercentageWithinRegion(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                perRegion.setAllocationPercentageWithinRegion(new Percent(value, PercentScale.PERCENT));
             } else {
                 Assertions.assertThat(perRegion.getAllocationPercentageInternetOnly()).isNull();
-                perRegion.setAllocationPercentageInternetOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                perRegion.setAllocationPercentageInternetOnly(new Percent(value, PercentScale.PERCENT));
             }
         }
     },
@@ -41,7 +41,7 @@ public enum InternetMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.EuropeAfrica)
-                    .setAllocationPercentageWithinRegion(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentageWithinRegion(new Percent(value, PercentScale.PERCENT));
         }
     },
     //              A-P
@@ -49,7 +49,7 @@ public enum InternetMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.AsiaPacific)
-                    .setAllocationPercentageWithinRegion(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentageWithinRegion(new Percent(value, PercentScale.PERCENT));
         }
     },
     //              L.A.
@@ -57,14 +57,14 @@ public enum InternetMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.LatinAmerica)
-                    .setAllocationPercentageWithinRegion(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentageWithinRegion(new Percent(value, PercentScale.PERCENT));
         }
     },
     //              Global
     AllocationPercentagesWithinRegionGlobal("(within region)", null, null, "Global") {
         @Override
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
-            report.setGlobalAllocationPercentageWithinRegion(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.setGlobalAllocationPercentageWithinRegion(new Percent(value, PercentScale.PERCENT));
         }
     },
     //  Allocation Percentages-----------------         N.A.
@@ -73,7 +73,7 @@ public enum InternetMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.EuropeAfrica)
-                    .setAllocationPercentageInternetOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentageInternetOnly(new Percent(value, PercentScale.PERCENT));
         }
     },
     //              A-P
@@ -81,7 +81,7 @@ public enum InternetMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.AsiaPacific)
-                    .setAllocationPercentageInternetOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentageInternetOnly(new Percent(value, PercentScale.PERCENT));
         }
     },
     //              L.A.
@@ -89,7 +89,7 @@ public enum InternetMarketingExpensesSubReportParserRow {
         @Override
         public void parse(final InternetMarketingExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.LatinAmerica)
-                    .setAllocationPercentageInternetOnly(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentageInternetOnly(new Percent(value, PercentScale.PERCENT));
         }
     },
 

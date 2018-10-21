@@ -47,7 +47,7 @@ public enum PlantOperationsProductionSubReportParserRow {
     BaseRejectRatePercent("Reject--------", "Base Reject Rate %", null) {
         @Override
         public void parse(final Production report, final Decimal value) {
-            report.getRejectCalcs().setBaseRejectRatePercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getRejectCalcs().setBaseRejectRatePercent(new Percent(value, PercentScale.PERCENT));
         }
     },
     //Calcs   Adders------    Models
@@ -82,7 +82,7 @@ public enum PlantOperationsProductionSubReportParserRow {
     InitialRejectRate("Calcs", "Initial Reject Rate", null) {
         @Override
         public void parse(final Production report, final Decimal value) {
-            report.getRejectCalcs().setInitialRejectRate(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getRejectCalcs().setInitialRejectRate(new Percent(value, PercentScale.PERCENT));
         }
     },
     //Upgrade Opt A Mult
@@ -247,7 +247,7 @@ public enum PlantOperationsProductionSubReportParserRow {
     BrandedCostAllocationPercent("Branded Cost Allocation %", null, null) {
         @Override
         public void parse(final Production report, final Decimal value) {
-            report.setBrandedCostAllocationPercent(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.setBrandedCostAllocationPercent(new Percent(value, PercentScale.PERCENT));
         }
     },
     //

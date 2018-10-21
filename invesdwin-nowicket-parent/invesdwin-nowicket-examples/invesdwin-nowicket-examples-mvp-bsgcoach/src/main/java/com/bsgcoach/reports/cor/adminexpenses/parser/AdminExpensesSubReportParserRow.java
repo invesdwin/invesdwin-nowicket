@@ -75,7 +75,7 @@ public enum AdminExpensesSubReportParserRow {
         @Override
         public void parse(final AdminExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.NorthAmerica)
-                    .setAllocationPercentagesOverall(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentagesOverall(new Percent(value, PercentScale.PERCENT));
         }
     },
     //(overall)         E-A
@@ -83,7 +83,7 @@ public enum AdminExpensesSubReportParserRow {
         @Override
         public void parse(final AdminExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.EuropeAfrica)
-                    .setAllocationPercentagesOverall(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentagesOverall(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    A-P
@@ -91,7 +91,7 @@ public enum AdminExpensesSubReportParserRow {
         @Override
         public void parse(final AdminExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.AsiaPacific)
-                    .setAllocationPercentagesOverall(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentagesOverall(new Percent(value, PercentScale.PERCENT));
         }
     },
     //    L.A.
@@ -99,7 +99,7 @@ public enum AdminExpensesSubReportParserRow {
         @Override
         public void parse(final AdminExpenses report, final Decimal value) {
             report.getPerRegion(CompanyRegion.LatinAmerica)
-                    .setAllocationPercentagesOverall(new Percent(value.doubleValue(), PercentScale.PERCENT));
+                    .setAllocationPercentagesOverall(new Percent(value, PercentScale.PERCENT));
         }
     },
 

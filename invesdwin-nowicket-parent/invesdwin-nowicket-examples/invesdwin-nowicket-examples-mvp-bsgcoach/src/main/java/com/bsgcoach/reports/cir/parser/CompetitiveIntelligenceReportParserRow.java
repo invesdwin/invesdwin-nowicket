@@ -63,7 +63,7 @@ public enum CompetitiveIntelligenceReportParserRow {
     Internet_PercentShare(CompetitiveIntelligenceReportParserCategory.Internet, "% Share") {
         @Override
         public void parse(final CompetitiveIntelligenceReport report, final Decimal value) {
-            report.getInternet().setPercentShare(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getInternet().setPercentShare(new Percent(value, PercentScale.PERCENT));
         }
     },
 
@@ -142,7 +142,7 @@ public enum CompetitiveIntelligenceReportParserRow {
     Wholesale_PercentShare(CompetitiveIntelligenceReportParserCategory.Wholesale, "% Share") {
         @Override
         public void parse(final CompetitiveIntelligenceReport report, final Decimal value) {
-            report.getWholesale().setPercentShare(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getWholesale().setPercentShare(new Percent(value, PercentScale.PERCENT));
         }
     },
 
@@ -173,7 +173,7 @@ public enum CompetitiveIntelligenceReportParserRow {
     PLabel_PercentShare(CompetitiveIntelligenceReportParserCategory.PLabel, "% Share") {
         @Override
         public void parse(final CompetitiveIntelligenceReport report, final Decimal value) {
-            report.getPLabel().setPercentShare(new Percent(value.doubleValue(), PercentScale.PERCENT));
+            report.getPLabel().setPercentShare(new Percent(value, PercentScale.PERCENT));
         }
     };
 
