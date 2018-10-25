@@ -133,6 +133,10 @@
 			<groupId>de.odysseus.juel</groupId>
 			<artifactId>juel-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>javax.activation-api</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
