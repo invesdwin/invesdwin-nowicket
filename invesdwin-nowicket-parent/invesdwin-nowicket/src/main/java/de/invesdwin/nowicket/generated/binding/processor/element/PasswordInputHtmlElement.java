@@ -29,8 +29,9 @@ public class PasswordInputHtmlElement extends AModelHtmlElement<TextInputModelEl
     @Override
     protected void onFirstAccept() {
         super.onFirstAccept();
-        Assertions.assertThat(String.class).isAssignableFrom(
-                getModelElement().getBeanPathElement().getModifier().getAccessor().getRawType().getType());
+        Assertions.assertThat(String.class)
+                .isAssignableFrom(
+                        getModelElement().getBeanPathElement().getModifier().getBeanClassAccessor().getRawType().getType());
     }
 
     @Override

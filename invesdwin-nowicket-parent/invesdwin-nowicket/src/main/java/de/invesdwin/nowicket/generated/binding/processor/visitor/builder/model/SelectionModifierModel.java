@@ -80,7 +80,7 @@ public class SelectionModifierModel
 
     @Override
     public Field getPropertyField() {
-        final IBeanClassAccessor accessor = selectionModifierModel.getObject().getAccessor().getBeanClassAccessor();
+        final IBeanClassAccessor accessor = selectionModifierModel.getObject().getBeanClassAccessor();
         /*
          * field is maybe private, but might have important annotation that wicket needs to know about; methods should
          * instead only be considered if public
@@ -90,18 +90,18 @@ public class SelectionModifierModel
 
     @Override
     public Method getPropertyGetter() {
-        return selectionModifierModel.getObject().getAccessor().getBeanClassAccessor().getPublicGetterMethod();
+        return selectionModifierModel.getObject().getBeanClassAccessor().getPublicGetterMethod();
     }
 
     @Override
     public Method getPropertySetter() {
-        return selectionModifierModel.getObject().getAccessor().getBeanClassAccessor().getPublicSetterMethod();
+        return selectionModifierModel.getObject().getBeanClassAccessor().getPublicSetterMethod();
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public Class getObjectClass() {
-        final IBeanClassAccessor accessor = selectionModifierModel.getObject().getAccessor().getBeanClassAccessor();
+        final IBeanClassAccessor accessor = selectionModifierModel.getObject().getBeanClassAccessor();
         return accessor.getRawType().getType();
     }
 

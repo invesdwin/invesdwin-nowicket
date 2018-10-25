@@ -10,13 +10,13 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.IObjectClassAwareModel;
 import org.apache.wicket.model.IPropertyReflectionAwareModel;
 
-import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.norva.beanpath.impl.clazz.IBeanClassAccessor;
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectContext;
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectProcessor;
 import de.invesdwin.norva.beanpath.spi.element.IActionBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
+import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 
 /**
  * PropertyModel is unsuitable cases where anchors are used on invokers while there is also a field with the same name.
@@ -74,8 +74,8 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
             final T value = (T) actionElement.getInvoker().invokeFromRoot(rootObjectModel.getObject());
             return value;
         } else {
-            throw new IllegalArgumentException("Not a property or action element: "
-                    + beanPathElement.getClass().getSimpleName());
+            throw new IllegalArgumentException(
+                    "Not a property or action element: " + beanPathElement.getClass().getSimpleName());
         }
     }
 
@@ -95,7 +95,7 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
         final IBeanPathElement beanPathElement = beanPathElementModel.getObject();
         if (beanPathElement instanceof IPropertyBeanPathElement) {
             final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) beanPathElement;
-            final IBeanClassAccessor accessor = propertyElement.getModifier().getAccessor().getBeanClassAccessor();
+            final IBeanClassAccessor accessor = propertyElement.getModifier().getBeanClassAccessor();
             /*
              * field is maybe private, but might have important annotation that wicket needs to know about; methods
              * should instead only be considered if public
@@ -110,15 +110,15 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
         final IBeanPathElement beanPathElement = beanPathElementModel.getObject();
         if (beanPathElement instanceof IPropertyBeanPathElement) {
             final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) beanPathElement;
-            final IBeanClassAccessor accessor = propertyElement.getModifier().getAccessor().getBeanClassAccessor();
+            final IBeanClassAccessor accessor = propertyElement.getModifier().getBeanClassAccessor();
             return accessor.getPublicGetterMethod();
         } else if (beanPathElement instanceof IActionBeanPathElement) {
             final IActionBeanPathElement actionElement = (IActionBeanPathElement) beanPathElement;
-            final IBeanClassAccessor accessor = actionElement.getInvoker().getAccessor().getBeanClassAccessor();
+            final IBeanClassAccessor accessor = actionElement.getInvoker().getBeanClassAccessor();
             return accessor.getPublicActionMethod();
         } else {
-            throw new IllegalArgumentException("Not a property or action element: "
-                    + beanPathElement.getClass().getSimpleName());
+            throw new IllegalArgumentException(
+                    "Not a property or action element: " + beanPathElement.getClass().getSimpleName());
         }
     }
 
@@ -127,7 +127,7 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
         final IBeanPathElement beanPathElement = beanPathElementModel.getObject();
         if (beanPathElement instanceof IPropertyBeanPathElement) {
             final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) beanPathElement;
-            return propertyElement.getModifier().getAccessor().getBeanClassAccessor().getPublicSetterMethod();
+            return propertyElement.getModifier().getBeanClassAccessor().getPublicSetterMethod();
         } else {
             return null;
         }
@@ -139,15 +139,15 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
         final IBeanPathElement beanPathElement = beanPathElementModel.getObject();
         if (beanPathElement instanceof IPropertyBeanPathElement) {
             final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) beanPathElement;
-            final IBeanClassAccessor accessor = propertyElement.getModifier().getAccessor().getBeanClassAccessor();
+            final IBeanClassAccessor accessor = propertyElement.getModifier().getBeanClassAccessor();
             return accessor.getRawType().getType();
         } else if (beanPathElement instanceof IActionBeanPathElement) {
             final IActionBeanPathElement actionElement = (IActionBeanPathElement) beanPathElement;
-            final IBeanClassAccessor accessor = actionElement.getInvoker().getAccessor().getBeanClassAccessor();
+            final IBeanClassAccessor accessor = actionElement.getInvoker().getBeanClassAccessor();
             return accessor.getRawType().getType();
         } else {
-            throw new IllegalArgumentException("Not a property or action element: "
-                    + beanPathElement.getClass().getSimpleName());
+            throw new IllegalArgumentException(
+                    "Not a property or action element: " + beanPathElement.getClass().getSimpleName());
         }
     }
 

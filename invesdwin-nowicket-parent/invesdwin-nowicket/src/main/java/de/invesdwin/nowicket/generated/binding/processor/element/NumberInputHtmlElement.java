@@ -33,7 +33,7 @@ public class NumberInputHtmlElement extends AModelHtmlElement<AModelElement<? ex
 
     @Override
     public Class<?> getType() {
-        return getModelElement().getBeanPathElement().getModifier().getAccessor().getRawType().getType();
+        return getModelElement().getBeanPathElement().getModifier().getBeanClassAccessor().getRawType().getType();
     }
 
     @Override

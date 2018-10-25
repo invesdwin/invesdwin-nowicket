@@ -30,7 +30,7 @@ public class TextInputHtmlElement extends AModelHtmlElement<AModelElement<? exte
 
     @Override
     public Class<?> getType() {
-        return getModelElement().getBeanPathElement().getModifier().getAccessor().getRawType().getType();
+        return getModelElement().getBeanPathElement().getModifier().getBeanClassAccessor().getRawType().getType();
     }
 
     @Deprecated
