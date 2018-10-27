@@ -149,6 +149,13 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
                 return getNavbarHomePage();
             }
 
+            @Override
+            protected Label newBrandLabel(final String markupId) {
+                final Label brandLabel = super.newBrandLabel(markupId);
+                brandLabel.setEscapeModelStrings(false);
+                return brandLabel;
+            }
+
         };
         navbar.setBrandName(Model.of("invesdwin-NoWicket"));
         navbar.setBrandImage(DEFAULT_LOGO, Model.of("logo"));
