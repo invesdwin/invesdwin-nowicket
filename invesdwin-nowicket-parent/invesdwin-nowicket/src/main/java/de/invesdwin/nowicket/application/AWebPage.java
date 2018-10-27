@@ -135,34 +135,22 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
     }
 
     protected Navbar newNavbar(final String id) {
-        final Navbar navbar = new Navbar(id) {
-
-            @Override
-            protected TransparentWebMarkupContainer newContainer(final String componentId) {
-                final TransparentWebMarkupContainer container = super.newCollapseContainer(componentId);
-                container.add(AttributeModifier.replace("class", getContainerClass()));
-                return container;
-            }
-
-            @Override
-            protected Class<? extends Page> getHomePage() {
-                return getNavbarHomePage();
-            }
-
-            @Override
-            protected Label newBrandLabel(final String markupId) {
-                final Label brandLabel = super.newBrandLabel(markupId);
-                brandLabel.setEscapeModelStrings(false);
-                return brandLabel;
-            }
-
-        };
+        final AWebPageNavbar navbar = newWebPageNavbar(id);
         navbar.setBrandName(Model.of("invesdwin-NoWicket"));
         navbar.setBrandImage(DEFAULT_LOGO, Model.of("logo"));
 
         addSignInOrSignOutPageToNavbar(navbar);
 
         return navbar;
+    }
+
+    protected AWebPageNavbar newWebPageNavbar(final String id) {
+        return new AWebPageNavbar(id) {
+            @Override
+            protected AWebPage getWebPageParent() {
+                return AWebPage.this;
+            }
+        };
     }
 
     protected void addSignInOrSignOutPageToNavbar(final Navbar navbar) {
