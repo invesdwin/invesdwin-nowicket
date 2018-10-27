@@ -19,6 +19,11 @@ public class SignOutPanel extends Panel {
     public SignOutPanel(final String id, final IModel<SignOut> model) {
         super(id, model);
         new GeneratedBinding(this).bind();
+    }
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
         if (AWebSession.get().isSignedIn()) {
             getSession().invalidate();
         }

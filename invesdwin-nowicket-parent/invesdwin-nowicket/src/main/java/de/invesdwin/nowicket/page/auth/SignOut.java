@@ -20,6 +20,16 @@ public class SignOut extends AValueObject {
         this.message = message;
     }
 
+    @Override
+    public boolean equals(final Object obj) {
+        return obj == this;
+    }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
+    }
+
     public String getMessage() {
         return message;
     }
