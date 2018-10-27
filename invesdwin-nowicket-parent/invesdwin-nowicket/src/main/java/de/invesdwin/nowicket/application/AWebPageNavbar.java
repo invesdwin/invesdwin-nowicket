@@ -6,7 +6,6 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.TransparentWebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.image.Image;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 
@@ -25,11 +24,6 @@ public abstract class AWebPageNavbar extends Navbar {
     }
 
     protected abstract AWebPage getWebPageParent();
-
-    @Override
-    protected Image newBrandImage(final String markupId) {
-        return super.newBrandImage(markupId);
-    }
 
     @Override
     protected Class<? extends Page> getHomePage() {
