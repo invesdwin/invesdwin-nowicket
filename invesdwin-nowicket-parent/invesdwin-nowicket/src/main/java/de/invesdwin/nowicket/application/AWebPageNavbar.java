@@ -13,8 +13,8 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 @NotThreadSafe
 public abstract class AWebPageNavbar extends Navbar {
 
-    public AWebPageNavbar(final String componentId) {
-        super(componentId);
+    public AWebPageNavbar(final String id) {
+        super(id);
     }
 
     @Override
