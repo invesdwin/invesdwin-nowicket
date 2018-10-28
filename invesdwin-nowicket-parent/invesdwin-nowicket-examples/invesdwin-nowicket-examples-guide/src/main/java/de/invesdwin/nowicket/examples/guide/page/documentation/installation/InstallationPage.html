@@ -262,27 +262,36 @@ public class HomePage extends AWebPage {
 						Proxy</a> (under the same context path between the java web server and
 					apache2), you can use the following server configuration:
 				</p>
-				<pre class="prettyprint lang-bsh linenums"># enable required modules with: "a2enmod proxy proxy_html proxy_http proxy_connect substitute headers"
+				<pre class="prettyprint lang-bsh linenums"># enable required modules with: "a2enmod proxy proxy_html proxy_http proxy_connect substitute headers rewrite"
 ProxyRequests Off
 &lt;Proxy *&gt;
     Order deny,allow
     Allow from all
 &lt;/Proxy&gt;
 ProxyPreserveHost On
+RewriteEngine On
 
 &lt;Location /app/&gt;
     Order allow,deny
     Allow from all
     ProxyPass http://example.com:8080/app/ flushpackets=on
     ProxyPassReverse http://example.com:8080/app/
-&lt;/Location&gt;
-&lt;Location /app/wicket/websocket&gt;
-    Order allow,deny
-    Allow from all
-    ProxyPass ws://example.com:8080/app/wicket/websocket
-    ProxyPassReverse ws://example.com:8080/app/wicket/websocket
-&lt;/Location&gt;
+    RewriteCond %{REQUEST_URI}  ^/app/wicket/websocket    [NC,OR]
+    RewriteCond %{HTTP:UPGRADE} ^WebSocket$           [NC,OR]
+    RewriteCond %{HTTP:CONNECTION} ^Upgrade$          [NC]
+    RewriteRule .* ws://example.com:8080%{REQUEST_URI}  [P,QSA,L]
 
+    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+    RewriteRule .* http://example.com:8080%{REQUEST_URI} [P,QSA,L]
+
+    SetOutputFilter proxy-html
+    ProxyHTMLURLMap http://example.com:8080/app/ /app/
+    AddOutputFilterByType SUBSTITUTE text/html
+    AddOutputFilterByType SUBSTITUTE text/css
+    AddOutputFilterByType SUBSTITUTE text/js
+    Substitute "s|http://example.com:8080/app/|https://example.com/app/|ni"
+    RequestHeader unset Accept-Encoding
+&lt;/Location&gt;
 </pre>
 
 				<p style="font-size: medium">
@@ -298,7 +307,8 @@ ProxyPreserveHost On
 					<code>80</code>
 					which is more firewall friendly. Also you can reuse the SSL
 					configuration of the Apache Server without having to configure it
-					in Java. The application can then be accessed at <a target="_blank"
+					in Java (if not, just replace https above with http). The
+					application can then be accessed at <a target="_blank"
 						href="http://example.com/app/">http://example.com/app/</a> (or
 					what you changed it to).
 				</p>
