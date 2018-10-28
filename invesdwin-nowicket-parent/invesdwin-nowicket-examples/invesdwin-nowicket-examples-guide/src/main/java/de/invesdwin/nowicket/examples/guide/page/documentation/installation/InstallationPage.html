@@ -272,20 +272,17 @@ ProxyPass /app/ http://example.com:8080/app/
 ProxyPassReverse /app/ http://example.com:8080/app/
 ProxyHTMLURLMap http://example.com:8080/app/ /app/
 &lt;Location /app/&gt;
-    ProxyPassReverse /
+    ProxyPassReverse /app/
     SetOutputFilter proxy-html
     ProxyHTMLURLMap http://example.com:8080/app/ /app/
-    ProxyHTMLURLMap / /app/
     ProxyHTMLURLMap /app/ /app/
     AddOutputFilterByType SUBSTITUTE text/html
     AddOutputFilterByType SUBSTITUTE text/css
     AddOutputFilterByType SUBSTITUTE text/js
-    Substitute "s|example.com:8080/app/|example.com/app/|ni"
+    Substitute "s|example.com:8080|example.com|ni"
     RequestHeader unset Accept-Encoding
 &lt;/Location&gt;
 &lt;Location /app/wicket/websocket&gt;
-    Order allow,deny
-    Allow from all
     ProxyPass ws://example.com:8080/app/wicket/websocket
     ProxyPassReverse ws://example.com:8080/app/wicket/websocket
 &lt;/Location&gt;

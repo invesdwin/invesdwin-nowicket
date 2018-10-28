@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.savedrequest.ExtendedHttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
 import de.invesdwin.nowicket.util.RequestCycles;
@@ -32,26 +32,26 @@ public final class SpringSecuritySessionAttributes {
         }
     }
 
-    private static final ExtendedHttpSessionRequestCache HTTP_SESSION_REQUEST_CACHE = new ExtendedHttpSessionRequestCache();
-
     private SpringSecuritySessionAttributes() {}
 
     public static SavedRequest getSavedRequest() {
         final HttpServletRequest request = RequestCycles.getContainerRequest();
         final HttpServletResponse response = RequestCycles.getContainerResponse();
-        final SavedRequest savedRequest = HTTP_SESSION_REQUEST_CACHE.getRequest(request, response);
+        final SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
         return savedRequest;
     }
 
     public static void setSavedRequest(final SavedRequest savedRequest) {
         final HttpServletRequest request = RequestCycles.getContainerRequest();
-        HTTP_SESSION_REQUEST_CACHE.copyRequest(request, savedRequest);
+        final HttpServletResponse response = RequestCycles.getContainerResponse();
+        new HttpSessionRequestCache().saveRequest(request, response);
     }
 
     public static void updateSpringSecurityContext() {
         final HttpServletRequest request = RequestCycles.getContainerRequest();
-        request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
-                SecurityContextHolder.getContext());
+        request.getSession()
+                .setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                        SecurityContextHolder.getContext());
     }
 
     public static void setAuthentication(final Authentication authentication) {
