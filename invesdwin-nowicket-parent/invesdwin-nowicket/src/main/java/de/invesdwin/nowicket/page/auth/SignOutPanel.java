@@ -19,11 +19,7 @@ public class SignOutPanel extends Panel {
     public SignOutPanel(final String id, final IModel<SignOut> model) {
         super(id, model);
         new GeneratedBinding(this).bind();
-    }
-
-    @Override
-    protected void onConfigure() {
-        super.onConfigure();
+        //this needs to happen in constructor or else remember me cookie will not be deleted
         if (AWebSession.get().isSignedIn()) {
             getSession().invalidate();
         }
