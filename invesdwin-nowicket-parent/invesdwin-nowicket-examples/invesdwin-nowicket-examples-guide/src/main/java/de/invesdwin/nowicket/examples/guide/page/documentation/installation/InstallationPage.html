@@ -262,30 +262,27 @@ public class HomePage extends AWebPage {
 						Proxy</a> (under the same context path between the java web server and
 					apache2), you can use the following server configuration:
 				</p>
-				<pre class="prettyprint lang-bsh linenums"># enable required modules with: "a2enmod proxy proxy_html proxy_http substitute headers"
+				<pre class="prettyprint lang-bsh linenums"># enable required modules with: "a2enmod proxy proxy_html proxy_http proxy_connect substitute headers"
 ProxyRequests Off
 &lt;Proxy *&gt;
     Order deny,allow
     Allow from all
 &lt;/Proxy&gt;
-ProxyPass /app/ http://example.com:8080/app/
-ProxyPassReverse /app/ http://example.com:8080/app/
-ProxyHTMLURLMap http://example.com:8080/app/ /app/
+ProxyPreserveHost On
+
 &lt;Location /app/&gt;
-    ProxyPassReverse /app/
-    SetOutputFilter proxy-html
-    ProxyHTMLURLMap http://example.com:8080/app/ /app/
-    ProxyHTMLURLMap /app/ /app/
-    AddOutputFilterByType SUBSTITUTE text/html
-    AddOutputFilterByType SUBSTITUTE text/css
-    AddOutputFilterByType SUBSTITUTE text/js
-    Substitute "s|example.com:8080|example.com|ni"
-    RequestHeader unset Accept-Encoding
+    Order allow,deny
+    Allow from all
+    ProxyPass http://example.com:8080/app/ flushpackets=on
+    ProxyPassReverse http://example.com:8080/app/
 &lt;/Location&gt;
 &lt;Location /app/wicket/websocket&gt;
+    Order allow,deny
+    Allow from all
     ProxyPass ws://example.com:8080/app/wicket/websocket
     ProxyPassReverse ws://example.com:8080/app/wicket/websocket
 &lt;/Location&gt;
+
 </pre>
 
 				<p style="font-size: medium">
