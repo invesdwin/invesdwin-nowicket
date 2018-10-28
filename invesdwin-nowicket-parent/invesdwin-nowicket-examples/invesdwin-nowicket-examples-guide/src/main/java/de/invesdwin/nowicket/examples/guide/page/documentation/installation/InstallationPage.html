@@ -292,6 +292,10 @@ RewriteEngine On
     Substitute "s|http://example.com:8080/app/|https://example.com/app/|ni"
     RequestHeader unset Accept-Encoding
 &lt;/Location&gt;
+
+#also put this into the default site for port 80:
+RewriteEngine On
+RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 </pre>
 
 				<p style="font-size: medium">
