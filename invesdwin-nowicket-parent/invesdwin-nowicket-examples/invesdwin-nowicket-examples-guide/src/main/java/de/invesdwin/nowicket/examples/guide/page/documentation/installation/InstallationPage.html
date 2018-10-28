@@ -259,7 +259,8 @@ public class HomePage extends AWebPage {
 						target="_blank" href="https://httpd.apache.org/">Apache Server</a>
 					as a <a target="_blank"
 						href="https://en.wikipedia.org/wiki/Reverse_proxy">Reverse
-						Proxy</a>, you can use the following server configuration:
+						Proxy</a> under a different context path, you can use the following
+					server configuration:
 				</p>
 				<pre class="prettyprint lang-bsh linenums"># enable required modules with: "a2enmod proxy proxy_html proxy_http substitute headers"
 ProxyRequests Off
@@ -302,6 +303,26 @@ ProxyPass /wicket/websocket ws://example.com:8080/wicket/websocket
 						href="http://example.com/app/">http://example.com/app/</a> (or
 					what you changed it to).
 				</p>
+
+				<p style="font-size: medium">Alternatively when your context
+					path stays the same between your java webserver and apache2 and/or
+					you require support for websockets, you can use the following
+					configuration:</p>
+
+				<pre class="prettyprint lang-bsh linenums"># enable required modules with: "a2enmod proxy proxy_wstunnnel"
+&lt;Location /app/&gt;
+    Order allow,deny
+    Allow from all
+    ProxyPass http://example.com:8080/app/ flushpackets=on
+    ProxyPassReverse http://example.com:8080/app/
+&lt;/Location&gt;
+&lt;Location /app/wicket/websocket&gt;
+    Order allow,deny
+    Allow from all
+    ProxyPass ws://example.com:8080/app/wicket/websocket
+    ProxyPassReverse ws://example.com:8080/app/wicket/websocket
+&lt;/Location&gt;
+</pre>
 
 				<br />
 				<fieldset class="col-sm-12">
