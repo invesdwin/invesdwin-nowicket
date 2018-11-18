@@ -25,7 +25,7 @@ import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFact
 import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.util.assertions.Assertions;
-import de.invesdwin.util.collections.concurrent.AFastIterableDelegateList;
+import de.invesdwin.util.collections.fast.concurrent.ASynchronizedFastIterableDelegateList;
 import de.invesdwin.util.lang.Strings;
 
 @ThreadSafe
@@ -176,7 +176,7 @@ public final class PageFactory implements Serializable {
             list = modelObjectHashCode_pageReferences.get(modelObjectHashCode);
             if (list == null) {
                 //prevent concurrent modification exception
-                list = new AFastIterableDelegateList<PageReferenceAndModel>() {
+                list = new ASynchronizedFastIterableDelegateList<PageReferenceAndModel>() {
                     @Override
                     protected List<PageReferenceAndModel> newDelegate() {
                         return new ArrayList<>();
