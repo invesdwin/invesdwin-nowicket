@@ -15,10 +15,10 @@ import org.jsoup.nodes.Element;
 
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.binding.annotation.Forced;
-import de.invesdwin.nowicket.generated.binding.annotation.Format;
 import de.invesdwin.nowicket.generated.binding.annotation.Lazy;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
@@ -50,15 +50,12 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     }
 
     protected String getFormatString() {
-        if (!getModelElement().getBeanPathElement().isProperty()) {
+        final IBeanPathElement beanPathElement = getModelElement().getBeanPathElement();
+        if (!beanPathElement.isProperty()) {
             return null;
         }
-        final Format annotation = getModelElement().getBeanPathElement().getAccessor().getAnnotation(Format.class);
-        if (annotation != null) {
-            Assertions.assertThat(annotation.value()).isNotBlank();
-            return annotation.value();
-        }
-        return null;
+        final IPropertyBeanPathElement property = (IPropertyBeanPathElement) getModelElement().getBeanPathElement();
+        return property.getFormatString();
     }
 
     @Override

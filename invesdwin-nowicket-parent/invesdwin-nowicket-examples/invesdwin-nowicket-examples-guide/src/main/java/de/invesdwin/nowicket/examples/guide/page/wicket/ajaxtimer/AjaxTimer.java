@@ -6,9 +6,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.norva.beanpath.annotation.Format;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer.tab.AjaxTimerTab;
 import de.invesdwin.nowicket.generated.binding.annotation.Eager;
-import de.invesdwin.nowicket.generated.binding.annotation.Format;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.time.fdate.FDate;
