@@ -2,11 +2,11 @@ package de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.WizardStart;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step1.CreateUserWizardStep1;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.steppage.PageWizardStep;
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;

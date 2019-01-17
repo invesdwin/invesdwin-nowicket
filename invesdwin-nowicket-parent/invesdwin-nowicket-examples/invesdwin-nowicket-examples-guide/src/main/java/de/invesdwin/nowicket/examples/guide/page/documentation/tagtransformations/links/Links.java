@@ -16,7 +16,7 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.springframework.core.io.ClassPathResource;
 
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
+import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;

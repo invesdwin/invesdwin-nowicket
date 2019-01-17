@@ -17,9 +17,6 @@ import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
-import de.invesdwin.nowicket.generated.binding.annotation.Lazy;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
@@ -60,37 +57,17 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
 
     @Override
     public boolean isEager() {
-        IBeanPathElement parent = getModelElement().getBeanPathElement();
-        while (parent != null) {
-            if (!parent.isProperty()) {
-                return false;
-            }
-            if (parent.getAccessor().getAnnotation(Lazy.class) != null) {
-                return false;
-            }
-            if (parent.getAccessor().getAnnotation(Eager.class) != null) {
-                return true;
-            }
-            if (parent.getContainer().getType().getAnnotation(Lazy.class) != null) {
-                return false;
-            }
-            if (parent.getContainer().getType().getAnnotation(Eager.class) != null) {
-                return true;
-            }
-            parent = parent.getParentElement();
+        final IBeanPathElement beanPathElement = getModelElement().getBeanPathElement();
+        if (!beanPathElement.isProperty()) {
+            return false;
         }
-        return false;
+        final IPropertyBeanPathElement property = (IPropertyBeanPathElement) getModelElement().getBeanPathElement();
+        return property.isEager();
     }
 
     @Override
     public boolean isForced() {
-        if (getModelElement().getBeanPathElement().getAccessor().getAnnotation(Forced.class) != null) {
-            return true;
-        }
-        if (getModelElement().getBeanPathElement().getContainer().getType().getAnnotation(Forced.class) != null) {
-            return true;
-        }
-        return false;
+        return getModelElement().getBeanPathElement().isForced();
     }
 
     @Override

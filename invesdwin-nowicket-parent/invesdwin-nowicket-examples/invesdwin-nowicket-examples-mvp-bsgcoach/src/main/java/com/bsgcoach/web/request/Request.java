@@ -19,9 +19,9 @@ import com.bsgcoach.util.MailSender;
 import com.bsgcoach.web.feedback.Feedback;
 import com.bsgcoach.web.feedback.sample.SampleFeedback;
 
+import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.error.Throwables;

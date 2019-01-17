@@ -4,8 +4,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import com.granatasoft.remotelist.persistence.Protocol;
 
+import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 

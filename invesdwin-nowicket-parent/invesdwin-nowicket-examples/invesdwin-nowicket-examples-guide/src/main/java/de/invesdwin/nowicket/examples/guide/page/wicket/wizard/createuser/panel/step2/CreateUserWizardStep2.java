@@ -5,6 +5,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.hibernate.validator.constraints.NotBlank;
 
 import de.invesdwin.norva.beanpath.annotation.BeanPathEndPoint;
+import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.domain.User;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.CreateUserWizardStepControl;
@@ -12,7 +13,6 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step1.CreateUserWizardStep1;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step3optional.CreateUserWizardStep3Optional;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step4.CreateUserWizardStep4;
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 

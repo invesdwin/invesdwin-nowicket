@@ -13,9 +13,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.nowicket.examples.guide.page.documentation.datatypes.thirdcar.CarBrand;
 import de.invesdwin.nowicket.examples.guide.page.documentation.datatypes.thirdcar.Trip;
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.time.fdate.FDateBuilder;

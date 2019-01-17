@@ -6,9 +6,9 @@ import java.util.List;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.validation.constraints.NotNull;
 
+import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.DynamicEditorFieldImplementation;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.simple.SimpleDynamicEditorField;
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;

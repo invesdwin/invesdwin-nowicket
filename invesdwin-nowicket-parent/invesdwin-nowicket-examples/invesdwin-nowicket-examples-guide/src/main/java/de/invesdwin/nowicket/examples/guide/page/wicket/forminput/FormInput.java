@@ -12,10 +12,10 @@ import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
 import de.invesdwin.norva.beanpath.annotation.BeanPathEndPoint;
+import de.invesdwin.norva.beanpath.annotation.Eager;
+import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;

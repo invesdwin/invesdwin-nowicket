@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.norva.beanpath.annotation.Eager;
+import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.annotation.Title;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.DynamicEditorFieldType;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.IDynamicEditorField;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.DynamicEditorFieldImplementation;
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.error.UnknownArgumentException;
 

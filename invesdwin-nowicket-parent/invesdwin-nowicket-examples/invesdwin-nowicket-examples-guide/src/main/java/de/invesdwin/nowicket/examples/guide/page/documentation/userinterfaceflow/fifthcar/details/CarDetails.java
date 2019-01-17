@@ -2,10 +2,10 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflo
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.norva.beanpath.annotation.Tabbed;
 import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.fifthcar.CarSearch;
 import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.fifthcar.details.tabs.CarTabs;
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 

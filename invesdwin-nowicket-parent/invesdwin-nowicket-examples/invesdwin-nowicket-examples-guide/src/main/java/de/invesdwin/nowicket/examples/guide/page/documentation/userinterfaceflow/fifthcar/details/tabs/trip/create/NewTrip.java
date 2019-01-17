@@ -4,7 +4,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
+import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;

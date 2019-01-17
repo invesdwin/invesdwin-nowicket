@@ -27,8 +27,8 @@ import com.granatasoft.remotelist.website.panels.application.create.CreateApplic
 import com.granatasoft.remotelist.website.panels.application.update.UpdateApplication;
 import com.granatasoft.remotelist.website.panels.servers.edit.EditServers;
 
-import de.invesdwin.nowicket.generated.binding.annotation.Eager;
-import de.invesdwin.nowicket.generated.binding.annotation.Forced;
+import de.invesdwin.norva.beanpath.annotation.Eager;
+import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
