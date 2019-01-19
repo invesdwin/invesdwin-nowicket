@@ -14,7 +14,7 @@ import com.granatasoft.remotelist.website.components.confirm.Confirm;
 import com.granatasoft.remotelist.website.panels.applicationinstance.update.UpdateApplicationInstance;
 
 import de.invesdwin.norva.beanpath.annotation.ColumnOrder;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.uri.URIs;

@@ -6,8 +6,8 @@ import org.isisaddons.module.security.dom.role.ApplicationRole;
 import org.isisaddons.module.security.dom.user.ApplicationUser;
 
 import de.invesdwin.norva.beanpath.annotation.ColumnOrder;
+import de.invesdwin.norva.beanpath.annotation.ModalOpener;
 import de.invesdwin.nowicket.examples.isis.page.users.changepassword.ChangePassword;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.Strings;
 

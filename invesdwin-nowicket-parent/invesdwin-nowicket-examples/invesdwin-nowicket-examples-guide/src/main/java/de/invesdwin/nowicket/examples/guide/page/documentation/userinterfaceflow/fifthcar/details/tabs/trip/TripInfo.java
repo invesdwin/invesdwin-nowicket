@@ -7,9 +7,9 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
+import de.invesdwin.norva.beanpath.annotation.ModalOpener;
 import de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.fifthcar.details.tabs.trip.create.NewTrip;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 

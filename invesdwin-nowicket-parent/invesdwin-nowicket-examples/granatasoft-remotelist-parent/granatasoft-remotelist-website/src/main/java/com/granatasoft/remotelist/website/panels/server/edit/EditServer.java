@@ -9,7 +9,7 @@ import com.granatasoft.remotelist.persistence.Server;
 import com.granatasoft.remotelist.persistence.ServerDao;
 
 import de.invesdwin.norva.beanpath.annotation.Forced;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 

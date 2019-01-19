@@ -17,7 +17,7 @@ import com.granatasoft.remotelist.persistence.CategoryDao;
 import de.invesdwin.context.integration.img.BufferedImages;
 import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 

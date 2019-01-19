@@ -23,7 +23,7 @@ import com.granatasoft.remotelist.website.pages.remotelist.create.server.CreateS
 import com.granatasoft.remotelist.website.panels.application.create.CreateApplication;
 
 import de.invesdwin.norva.beanpath.annotation.Forced;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;

@@ -13,12 +13,12 @@ import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.jsoup.nodes.Element;
 
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
+import de.invesdwin.norva.beanpath.annotation.ModalOpener;
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalOpener;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.TitleModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;

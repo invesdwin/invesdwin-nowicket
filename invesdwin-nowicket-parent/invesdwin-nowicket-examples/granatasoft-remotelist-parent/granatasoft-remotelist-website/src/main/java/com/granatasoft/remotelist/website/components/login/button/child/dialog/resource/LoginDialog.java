@@ -16,8 +16,8 @@ import com.granatasoft.remotelist.persistence.Server;
 
 import de.invesdwin.context.integration.IntegrationProperties;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.application.auth.Roles;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.nowicket.security.spring.SpringSecurityAuthenticationService;
 import de.invesdwin.nowicket.util.RequestCycles;

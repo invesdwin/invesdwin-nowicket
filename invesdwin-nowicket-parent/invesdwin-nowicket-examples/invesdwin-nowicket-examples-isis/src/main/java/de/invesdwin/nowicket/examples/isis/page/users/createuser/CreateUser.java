@@ -10,9 +10,9 @@ import org.apache.isis.applib.services.userreg.UserDetails;
 
 import de.invesdwin.norva.beanpath.annotation.BeanPathRedirect;
 import de.invesdwin.norva.beanpath.annotation.Forced;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.examples.isis.integration.AppUserRegistrationService;
 import de.invesdwin.nowicket.examples.isis.integration.IsisInjector;
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.Objects;

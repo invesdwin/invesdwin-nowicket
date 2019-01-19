@@ -71,12 +71,12 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
         }
     }
 
-    protected boolean shouldHideModalPanel() {
-        return GuiService.get().isModalPanelShowing() && element.isModalCloser();
-    }
-
     protected void handleButtonException(final Component component, final Throwable t) {
         element.getContext().getSubmitButtonExceptionHandler().handleSubmitButtonException(element, component, t);
+    }
+
+    protected boolean shouldHideModalPanel() {
+        return GuiService.get().isModalPanelShowing() && element.isModalCloser();
     }
 
     @Override

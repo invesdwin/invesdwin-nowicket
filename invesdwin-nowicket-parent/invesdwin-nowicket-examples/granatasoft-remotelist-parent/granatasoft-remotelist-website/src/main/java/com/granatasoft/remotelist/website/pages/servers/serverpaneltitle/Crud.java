@@ -11,7 +11,7 @@ import com.granatasoft.remotelist.website.pages.servers.serverrow.ServerRow;
 import com.granatasoft.remotelist.website.panels.server.details.ServerDetails;
 import com.granatasoft.remotelist.website.panels.server.edit.EditServer;
 
-import de.invesdwin.nowicket.generated.binding.annotation.ModalCloser;
+import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
