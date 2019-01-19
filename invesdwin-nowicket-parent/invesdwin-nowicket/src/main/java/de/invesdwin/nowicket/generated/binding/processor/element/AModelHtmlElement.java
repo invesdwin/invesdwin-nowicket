@@ -13,9 +13,8 @@ import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.norva.beanpath.annotation.ModalCloser;
-import de.invesdwin.norva.beanpath.annotation.ModalOpener;
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
+import de.invesdwin.norva.beanpath.spi.element.IActionBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
@@ -75,10 +74,8 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
         if (!getModelElement().getBeanPathElement().isAction()) {
             return false;
         }
-        if (getModelElement().getBeanPathElement().getAccessor().getAnnotation(ModalCloser.class) != null) {
-            return true;
-        }
-        return false;
+        final IActionBeanPathElement action = (IActionBeanPathElement) getModelElement().getBeanPathElement();
+        return action.isModalCloser();
     }
 
     @Override
@@ -86,10 +83,8 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
         if (!getModelElement().getBeanPathElement().isAction()) {
             return false;
         }
-        if (getModelElement().getBeanPathElement().getAccessor().getAnnotation(ModalOpener.class) != null) {
-            return true;
-        }
-        return false;
+        final IActionBeanPathElement action = (IActionBeanPathElement) getModelElement().getBeanPathElement();
+        return action.isModalOpener();
     }
 
     @Override
