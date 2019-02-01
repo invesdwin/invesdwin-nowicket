@@ -23,6 +23,7 @@
 		<junit-jupiter.version>5.0.1</junit-jupiter.version>
 		<hibernate.version>5.3.6.Final</hibernate.version>
 		<byte-buddy.version>1.8.17</byte-buddy.version>
+		<commons-lang3.version>3.8</commons-lang3.version>
 
 		<version.invesdwin-bom>1.0.3-SNAPSHOT</version.invesdwin-bom>
 		<version.invesdwin-nowicket>1.0.0-SNAPSHOT</version.invesdwin-nowicket>
