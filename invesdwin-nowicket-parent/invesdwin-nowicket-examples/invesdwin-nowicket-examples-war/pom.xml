@@ -13,8 +13,8 @@
 		<version.compiler>1.8</version.compiler>
 
 		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
-		<version.maven-processor-plugin>3.3.2</version.maven-processor-plugin>
-		<version.maven-compiler-plugin>3.7.0</version.maven-compiler-plugin>
+		<version.maven-processor-plugin>3.3.3</version.maven-processor-plugin>
+		<version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
 
 		<version.invesdwin-maven-plugin>1.0.3-SNAPSHOT</version.invesdwin-maven-plugin>
 		<version.invesdwin-bom>1.0.3-SNAPSHOT</version.invesdwin-bom>
