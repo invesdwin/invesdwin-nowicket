@@ -20,7 +20,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<glassfish-jaxb.version>2.3.2</glassfish-jaxb.version>
-		<slf4j.version>1.8.0-beta2</slf4j.version>
 
 		<version.invesdwin-bom>1.0.3-SNAPSHOT</version.invesdwin-bom>
 		<version.invesdwin-nowicket>1.0.0-SNAPSHOT</version.invesdwin-nowicket>
