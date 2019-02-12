@@ -15,8 +15,8 @@
 	<!-- also disabling the old @Secured annotation here in favor of the newer 
 		@PreAuthorize and @PostAuthorize -->
 	<security:global-method-security
-		mode="aspectj" secured-annotations="disabled"
-		jsr250-annotations="disabled" pre-post-annotations="enabled" />
+		secured-annotations="disabled" jsr250-annotations="disabled"
+		pre-post-annotations="enabled" />
 
 	<security:http
 		authentication-manager-ref="exampleAuthenticationManager"
