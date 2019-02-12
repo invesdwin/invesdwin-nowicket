@@ -11,7 +11,6 @@ import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextField
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlElement;
-import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
 public class ModelDateTextField extends DateTextField {
@@ -24,15 +23,14 @@ public class ModelDateTextField extends DateTextField {
 
     public ModelDateTextField(final DateInputHtmlElement element, final DateTextFieldConfig config) {
         super(element.getWicketId(), element.getModel(), config);
-        //fix underlying wicket date pattern so that time information is not broken
-        Reflections.field("datePattern").ofType(String.class).in(this).set(getFormat(element));
     }
 
     public static DateTextFieldConfig newDateTextFieldConfig(final DateInputHtmlElement element) {
         return new DateTextFieldConfig().withFormat(getFormat(element))
                 .highlightToday(true)
-                //we need autoclose enabled or else we gets detached from the text field on eager value change
+                //we need autoclose enabled or else we get detached from the text field on eager value change
                 .autoClose(true)
+                .withFormat(getFormat(element))
                 .allowKeyboardNavigation(false)
                 .showTodayButton(TodayButton.LINKED)
                 .withWeekStart(Day.Monday)
