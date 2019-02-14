@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import com.granatasoft.remotelist.persistence.Application;
@@ -14,6 +15,7 @@ import com.granatasoft.remotelist.website.panels.application.create.CreateApplic
 
 import de.invesdwin.context.beans.validator.BeanValidator;
 import de.invesdwin.context.test.ATest;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.FileUploadModel;
 import de.invesdwin.util.assertions.Assertions;
 
 @NotThreadSafe
@@ -26,7 +28,10 @@ public class CreateApplicationTest extends ATest {
     public void assertThatApplicationIsCreated() throws IOException {
         final CreateApplication createApplication = new CreateApplication();
         createApplication.setName("Test Application");
-        createApplication.logoUpload(new File("src/main/java/com/granatasoft/remotelist/website/pages/logo.png"));
+        final File srcFile = new File("src/main/java/com/granatasoft/remotelist/website/pages/logo.png");
+        final File logoFile = FileUploadModel.newFile(srcFile.getName());
+        FileUtils.copyFile(srcFile, logoFile);
+        createApplication.logoUpload(logoFile);
         Assertions.assertThat(BeanValidator.getInstance().validate(createApplication)).isNull();
         Assertions.assertThat(applicationDao.count()).isEqualTo(0);
         createApplication.create();
