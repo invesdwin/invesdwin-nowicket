@@ -80,6 +80,12 @@
 				<artifactId>invesdwin-aspects</artifactId>
 				<version>${version.invesdwin-aspects}</version>
 			</dependency>
+			<dependency>
+				<groupId>de.invesdwin</groupId>
+				<artifactId>invesdwin-aspects</artifactId>
+				<version>${version.invesdwin-aspects}</version>
+				<type>test-jar</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
