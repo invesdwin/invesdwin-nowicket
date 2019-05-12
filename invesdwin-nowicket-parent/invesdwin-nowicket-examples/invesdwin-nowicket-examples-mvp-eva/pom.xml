@@ -28,6 +28,7 @@
 		<version.javax.inject>1</version.javax.inject>
 		<version.maven-processor-plugin>3.3.3</version.maven-processor-plugin>
 		<version.spring-boot-maven-plugin>2.0.1.RELEASE</version.spring-boot-maven-plugin>
+		<aspectj.version>1.9.3</aspectj.version>
 
 		<start-class>com.eva.Main</start-class>
 	</properties>
