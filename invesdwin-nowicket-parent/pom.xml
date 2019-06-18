@@ -204,5 +204,10 @@
 		<connection>scm:git:https://github.com/subes/invesdwin-nowicket.git</connection>
 		<tag>HEAD</tag>
 	</scm>
+	
+	<ciManagement>
+		<system>jenkins</system>
+		<url>https://invesdwin.de/jenkins/job/dgr-deploy-invesdwin-nowicket/</url>
+	</ciManagement>
 
 </project>
