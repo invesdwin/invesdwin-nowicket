@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -16,7 +17,9 @@
 		<module>invesdwin-nowicket-examples-isis</module>
 		<module>invesdwin-nowicket-examples-mvp-bsgcoach</module>
 		<module>invesdwin-nowicket-examples-mvp-eva</module>
-		<module>granatasoft-remotelist-parent</module>
+		<!-- dgr does not like a cyclic dependency here, thus reference it from 
+			invesdwin-oss instead -->
+		<!-- <module>granatasoft-remotelist-parent</module> -->
 	</modules>
 
 	<profiles>
