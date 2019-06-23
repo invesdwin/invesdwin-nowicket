@@ -22,7 +22,7 @@
 		<version.hsqldb>2.3.1</version.hsqldb>
 		<version.jbcrypt>0.3m</version.jbcrypt>
 		<version.spring-security-shiro>3.0.0</version.spring-security-shiro>
-		<version.invesdwin-bom>1.0.4-SNAPSHOT</version.invesdwin-bom>
+		<version.invesdwin-bom>1.0.4</version.invesdwin-bom>
 		<version.invesdwin-nowicket>1.0.0-SNAPSHOT</version.invesdwin-nowicket>
 		
 		<failOnMissingWebXml>false</failOnMissingWebXml>
