@@ -21,7 +21,7 @@
 
 	<properties>
 		<version.granatasoft-remotelist>0.0.1-SNAPSHOT</version.granatasoft-remotelist>
-		<version.invesdwin-context-client>${version.invesdwin-context}</version.invesdwin-context-client>
+		<version.invesdwin-context-client>1.0.0-SNAPSHOT</version.invesdwin-context-client>
 	</properties>
 
 	<dependencyManagement>
