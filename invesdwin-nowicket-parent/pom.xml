@@ -16,7 +16,8 @@
 		<module>invesdwin-nowicket</module>
 		<module>invesdwin-nowicket-security-shiro</module>
 		<module>invesdwin-nowicket-security-spring</module>
-		<module>invesdwin-nowicket-examples</module>
+		<!-- excluding examples so that no releases happen for them in DGR -->
+		<!--<module>invesdwin-nowicket-examples</module>-->
 	</modules>
 
 	<licenses>

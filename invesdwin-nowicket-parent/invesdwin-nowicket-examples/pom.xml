@@ -17,26 +17,7 @@
 		<module>invesdwin-nowicket-examples-isis</module>
 		<module>invesdwin-nowicket-examples-mvp-bsgcoach</module>
 		<module>invesdwin-nowicket-examples-mvp-eva</module>
-		<!-- dgr does not like a cyclic dependency here, thus reference it from 
-			invesdwin-oss instead -->
-		<!-- <module>granatasoft-remotelist-parent</module> -->
+		<module>granatasoft-remotelist-parent</module>
 	</modules>
-
-	<profiles>
-		<profile>
-			<id>releases</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-deploy-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>
