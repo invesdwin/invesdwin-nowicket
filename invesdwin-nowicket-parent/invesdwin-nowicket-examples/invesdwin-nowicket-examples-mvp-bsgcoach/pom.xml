@@ -50,6 +50,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>de.invesdwin</groupId>
+				<artifactId>invesdwin-maven-plugin</artifactId>
+				<version>${version.invesdwin-maven-plugin}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
