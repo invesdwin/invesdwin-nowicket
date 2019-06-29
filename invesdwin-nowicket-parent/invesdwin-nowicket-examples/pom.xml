@@ -16,5 +16,18 @@
 		<module>invesdwin-nowicket-examples-mvp-eva</module>
 		<module>granatasoft-remotelist-parent</module>
 	</modules>
+	
+	<repositories>
+		<repository>
+			<id>invesdwin-oss</id>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss-remote</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>invesdwin-oss</id>
+			<url>http://invesdwin.de/artifactory/invesdwin-oss-remote</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>
