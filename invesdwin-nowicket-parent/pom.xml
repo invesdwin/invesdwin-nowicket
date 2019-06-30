@@ -29,17 +29,18 @@
 	</licenses>
 
 	<properties>
+		<project.version.invesdwin-nowicket>${project.version}</project.version.invesdwin-nowicket>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<version.compiler>1.8</version.compiler>
 
 		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
 		<version.maven-processor-plugin>3.3.3</version.maven-processor-plugin>
-		<version.invesdwin-maven-plugin>1.0.5-SNAPSHOT</version.invesdwin-maven-plugin>
-		<version.invesdwin-instrument>1.0.4</version.invesdwin-instrument>
-		<version.invesdwin-aspects>1.0.0</version.invesdwin-aspects>
+		<project.version.invesdwin-maven-plugin>1.0.5-SNAPSHOT</project.version.invesdwin-maven-plugin>
+		<project.version.invesdwin-instrument>1.0.4</project.version.invesdwin-instrument>
+		<project.version.invesdwin-aspects>1.0.0</project.version.invesdwin-aspects>
 
-		<version.invesdwin-util>1.0.1-SNAPSHOT</version.invesdwin-util>
+		<project.version.invesdwin-util>1.0.1-SNAPSHOT</project.version.invesdwin-util>
 	</properties>
 
 	<dependencyManagement>
@@ -47,50 +48,50 @@
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-util</artifactId>
-				<version>${version.invesdwin-util}</version>
+				<version>${project.version.invesdwin-util}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-maven-plugin</artifactId>
-				<version>${version.invesdwin-maven-plugin}</version>
+				<version>${project.version.invesdwin-maven-plugin}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-nowicket</artifactId>
-				<version>${project.version}</version>
+				<version>${project.version.invesdwin-nowicket}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-nowicket-security-spring</artifactId>
-				<version>${project.version}</version>
+				<version>${project.version.invesdwin-nowicket}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-nowicket-security-shiro</artifactId>
-				<version>${project.version}</version>
+				<version>${project.version.invesdwin-nowicket}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-util</artifactId>
-				<version>${version.invesdwin-util}</version>
+				<version>${project.version.invesdwin-util}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-instrument</artifactId>
-				<version>${version.invesdwin-instrument}</version>
+				<version>${project.version.invesdwin-instrument}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-aspects</artifactId>
-				<version>${version.invesdwin-aspects}</version>
+				<version>${project.version.invesdwin-aspects}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-aspects</artifactId>
-				<version>${version.invesdwin-aspects}</version>
+				<version>${project.version.invesdwin-aspects}</version>
 				<type>test-jar</type>
 			</dependency>
 		</dependencies>
@@ -162,7 +163,7 @@
 			<plugin>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-maven-plugin</artifactId>
-				<version>${version.invesdwin-maven-plugin}</version>
+				<version>${project.version.invesdwin-maven-plugin}</version>
 				<executions>
 					<execution>
 						<goals>

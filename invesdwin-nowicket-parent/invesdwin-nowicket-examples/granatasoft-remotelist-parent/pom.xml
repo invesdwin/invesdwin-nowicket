@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.granatasoft</groupId>
 	<artifactId>granatasoft-remotelist-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project.version.granatesoft-remotelist}</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -20,9 +20,9 @@
 	</modules>
 
 	<properties>
-		<version.granatasoft-remotelist>${project.version}</version.granatasoft-remotelist>
-		<version.invesdwin-context>1.0.0-SNAPSHOT</version.invesdwin-context>
-		<version.invesdwin-context-client>1.0.0-SNAPSHOT</version.invesdwin-context-client>
+		<project.version.granatasoft-remotelist>0.0.1-SNAPSHOT</project.version.granatasoft-remotelist>
+		<project.version.invesdwin-context>1.0.0-SNAPSHOT</project.version.invesdwin-context>
+		<project.version.invesdwin-context-client>1.0.0-SNAPSHOT</project.version.invesdwin-context-client>
 	</properties>
 
 	<dependencyManagement>
@@ -30,7 +30,7 @@
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-context-client-parent</artifactId>
-				<version>${version.invesdwin-context-client}</version>
+				<version>${project.version.invesdwin-context-client}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -38,7 +38,7 @@
 			<dependency>
 				<groupId>com.granatasoft</groupId>
 				<artifactId>granatasoft-remotelist-website</artifactId>
-				<version>${version.granatasoft-remotelist}</version>
+				<version>${project.version.granatasoft-remotelist}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
