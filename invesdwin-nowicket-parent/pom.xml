@@ -38,7 +38,6 @@
 		<version.invesdwin-maven-plugin>1.0.5-SNAPSHOT</version.invesdwin-maven-plugin>
 		<version.invesdwin-instrument>1.0.4</version.invesdwin-instrument>
 		<version.invesdwin-aspects>1.0.0</version.invesdwin-aspects>
-		<version.invesdwin-nowicket>${project.version}</version.invesdwin-nowicket>
 
 		<version.invesdwin-util>1.0.1-SNAPSHOT</version.invesdwin-util>
 	</properties>
@@ -61,17 +60,17 @@
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-nowicket</artifactId>
-				<version>${version.invesdwin-nowicket}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-nowicket-security-spring</artifactId>
-				<version>${version.invesdwin-nowicket}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-nowicket-security-shiro</artifactId>
-				<version>${version.invesdwin-nowicket}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.invesdwin</groupId>
