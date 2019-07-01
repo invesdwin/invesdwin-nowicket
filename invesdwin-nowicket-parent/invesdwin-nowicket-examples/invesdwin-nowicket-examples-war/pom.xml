@@ -17,9 +17,9 @@
 		<version.maven-processor-plugin>3.3.3</version.maven-processor-plugin>
 		<version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
 
-		<project.version.invesdwin-maven-plugin>1.0.5</project.version.invesdwin-maven-plugin>
-		<project.version.invesdwin-bom>1.0.8</project.version.invesdwin-bom>
-		<project.version.invesdwin-nowicket>1.0.0</project.version.invesdwin-nowicket>
+		<project.version.invesdwin-maven-plugin>1.0.6-SNAPSHOT</project.version.invesdwin-maven-plugin>
+		<project.version.invesdwin-bom>1.0.9-SNAPSHOT</project.version.invesdwin-bom>
+		<project.version.invesdwin-nowicket>1.0.1-SNAPSHOT</project.version.invesdwin-nowicket>
 
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
