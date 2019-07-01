@@ -13,7 +13,7 @@ Dependency declaration:
 <dependency>
 	<groupId>de.invesdwin</groupId>
 	<artifactId>invesdwin-nowicket</artifactId>
-	<version>1.0.0</version><!---version.invesdwin-nowicket-parent-->
+	<version>1.0.0</version><!---project.version.invesdwin-nowicket-parent-->
 </dependency>
 ```
 ## Documentation
