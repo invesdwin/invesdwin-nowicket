@@ -11,6 +11,7 @@ import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextField
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlElement;
+import de.invesdwin.util.lang.Reflections;
 
 @NotThreadSafe
 public class ModelDateTextField extends DateTextField {
@@ -23,6 +24,12 @@ public class ModelDateTextField extends DateTextField {
 
     public ModelDateTextField(final DateInputHtmlElement element, final DateTextFieldConfig config) {
         super(element.getWicketId(), element.getModel(), config);
+        //fix underlying wicket date pattern so that time information is not broken (sadly minutes will become month due to javascript conversion)
+        final org.apache.wicket.markup.html.form.TextField<?> converterDelegate = Reflections.field("converterDelegate")
+                .ofType(org.apache.wicket.markup.html.form.TextField.class)
+                .in(this)
+                .get();
+        Reflections.field("datePattern").ofType(String.class).in(converterDelegate).set(getFormat(element));
     }
 
     public static DateTextFieldConfig newDateTextFieldConfig(final DateInputHtmlElement element) {
