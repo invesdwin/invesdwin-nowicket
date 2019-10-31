@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 
@@ -17,6 +16,7 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
+import de.invesdwin.util.lang.Files;
 
 @NotThreadSafe
 public class GuiServiceTester implements IGuiService {
@@ -35,7 +35,7 @@ public class GuiServiceTester implements IGuiService {
     public void reset() {
         methodCalls.clear();
         modalPanelsShowing.set(0);
-        FileUtils.deleteQuietly(sessionFolder);
+        Files.deleteQuietly(sessionFolder);
         skipUpdateAllComponentsForCurrentRequest.set(false);
     }
 
@@ -96,7 +96,7 @@ public class GuiServiceTester implements IGuiService {
         methodCalls.add(new GuiServiceMethodCall(GuiServiceMethod.getSessionFolder));
         if (!sessionFolder.exists()) {
             try {
-                FileUtils.forceMkdir(sessionFolder);
+                Files.forceMkdir(sessionFolder);
             } catch (final IOException e) {
                 throw new RuntimeException(e);
             }

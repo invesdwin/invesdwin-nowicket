@@ -8,7 +8,6 @@ import java.net.URL;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.IResource;
@@ -20,6 +19,7 @@ import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.lang.Files;
 import de.invesdwin.util.lang.uri.URIs;
 
 @NotThreadSafe
@@ -38,7 +38,7 @@ public class Links extends AValueObject {
             imageAsFile = new File(GuiService.get().getSessionFolder(), Links.class.getName() + "/" + IMAGE_FILE_NAME);
             try {
                 final InputStream in = new ClassPathResource(IMAGE_FILE_NAME, Links.class).getInputStream();
-                FileUtils.copyInputStreamToFile(in, imageAsFile);
+                Files.copyInputStreamToFile(in, imageAsFile);
                 in.close();
             } catch (final IOException e) {
                 throw new RuntimeException(e);

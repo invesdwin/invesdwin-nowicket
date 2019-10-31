@@ -12,11 +12,11 @@ import java.util.zip.ZipOutputStream;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
 
+import de.invesdwin.util.lang.Files;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.UniqueNameGenerator;
 
@@ -61,7 +61,7 @@ public class OfferDownloadConfig implements Serializable {
         }
         final File tempFile = new File(GuiService.get().getSessionFolder(),
                 OfferDownloadConfig.class.getSimpleName() + "/" + modifiedFileName);
-        FileUtils.forceMkdir(tempFile.getParentFile());
+        Files.forceMkdir(tempFile.getParentFile());
         final ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(tempFile));
         final UniqueNameGenerator uniqueNames = new UniqueNameGenerator();
         for (final File file : files) {

@@ -7,7 +7,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
-import org.apache.wicket.util.file.Files;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import com.granatasoft.remotelist.persistence.Application;
@@ -20,6 +19,7 @@ import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.lang.Files;
 
 @NotThreadSafe
 @GeneratedMarkup
@@ -64,7 +64,7 @@ public class CreateApplication extends AValueObject {
     public void create() throws IOException {
 
         if (logo != null) {
-            createdApplication = new Application(this.name, Files.readBytes(this.logo), logo.getName());
+            createdApplication = new Application(this.name, Files.readFileToByteArray(this.logo), logo.getName());
         } else {
             createdApplication = new Application(this.name);
         }

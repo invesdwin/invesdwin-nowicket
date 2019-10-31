@@ -8,7 +8,6 @@ import java.util.Collection;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
@@ -28,6 +27,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.internal.tasks.GuiTasks;
 import de.invesdwin.nowicket.util.Components;
 import de.invesdwin.nowicket.util.RequestCycles;
+import de.invesdwin.util.lang.Files;
 
 @NotThreadSafe
 public class SessionGuiService implements IGuiService, Serializable {
@@ -163,7 +163,7 @@ public class SessionGuiService implements IGuiService, Serializable {
             sessionFolder = new File(ABaseWebApplication.get().getSessionsDirectory(),
                     getClass().getSimpleName() + "/" + AWebSession.get().getId());
             //clean up folder initially to prevent session clash with stale data
-            FileUtils.deleteQuietly(sessionFolder);
+            Files.deleteQuietly(sessionFolder);
             //add listener to clean up the session directory on session unbind aswell
             final ABaseWebApplication application = ABaseWebApplication.get();
             application.getSessionStore().registerUnboundListener(new UnboundListener() {
@@ -171,12 +171,12 @@ public class SessionGuiService implements IGuiService, Serializable {
                 public void sessionUnbound(final String sessionId) {
                     if (sessionFolder.getAbsolutePath().contains(sessionId)) {
                         application.getSessionStore().unregisterUnboundListener(this);
-                        FileUtils.deleteQuietly(sessionFolder);
+                        Files.deleteQuietly(sessionFolder);
                     }
                 }
             });
             try {
-                FileUtils.forceMkdir(sessionFolder);
+                Files.forceMkdir(sessionFolder);
             } catch (final IOException e) {
                 throw new RuntimeException(e);
             }

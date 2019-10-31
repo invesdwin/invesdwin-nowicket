@@ -7,7 +7,6 @@ import java.util.Deque;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.ecs.Element;
 import org.apache.ecs.MultiPartElement;
 import org.apache.ecs.html.Body;
@@ -41,6 +40,7 @@ import de.invesdwin.nowicket.generated.markup.processor.visitor.AModelVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.Documents;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.HtmlComponentBuilder;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.lang.Files;
 
 @NotThreadSafe
 public class HtmlCreateVisitor extends AModelVisitor {
@@ -179,8 +179,8 @@ public class HtmlCreateVisitor extends AModelVisitor {
         s = Documents.toString(document);
         final File htmlFile = getContext().getHtmlFile(markupType);
         try {
-            FileUtils.forceMkdir(htmlFile.getParentFile());
-            FileUtils.writeStringToFile(htmlFile, s);
+            Files.forceMkdir(htmlFile.getParentFile());
+            Files.writeStringToFile(htmlFile, s);
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }

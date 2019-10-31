@@ -7,7 +7,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import com.granatasoft.remotelist.persistence.Category;
@@ -20,6 +19,7 @@ import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.lang.Files;
 
 @NotThreadSafe
 @GeneratedMarkup
@@ -68,7 +68,7 @@ public class UpdateCategory extends AValueObject {
     public void save() {
         if (logo != null) {
             try {
-                category.setLogo(FileUtils.readFileToByteArray(logo));
+                category.setLogo(Files.readFileToByteArray(logo));
                 category.setLogoFileName(logo.getName());
             } catch (final IOException e) {
                 throw new RuntimeException(e);

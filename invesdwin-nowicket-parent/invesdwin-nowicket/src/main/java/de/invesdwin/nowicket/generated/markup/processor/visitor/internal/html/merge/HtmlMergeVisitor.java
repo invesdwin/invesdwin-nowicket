@@ -8,7 +8,6 @@ import java.util.Deque;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.ecs.Element;
 import org.apache.ecs.html.FieldSet;
 import org.jsoup.Jsoup;
@@ -39,6 +38,7 @@ import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.me
 import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.merge.layer.EcsMergeLayer;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.merge.layer.JSoupMergeLayer;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.lang.Files;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
@@ -55,7 +55,7 @@ public class HtmlMergeVisitor extends AModelVisitor {
         this.markupType = markupType;
         this.componentBuilder = new HtmlComponentBuilder();
         try {
-            final String html = FileUtils.readFileToString(context.getHtmlFile(markupType), Charset.defaultCharset());
+            final String html = Files.readFileToString(context.getHtmlFile(markupType), Charset.defaultCharset());
             this.document = Jsoup.parse(html);
             // need to have original html for comparison later
             this.originalHtml = Documents.toString(document);
@@ -198,8 +198,8 @@ public class HtmlMergeVisitor extends AModelVisitor {
         }
 
         try {
-            FileUtils.forceMkdir(htmlFile.getParentFile());
-            FileUtils.writeStringToFile(htmlFile, s, Charset.defaultCharset());
+            Files.forceMkdir(htmlFile.getParentFile());
+            Files.writeStringToFile(htmlFile, s, Charset.defaultCharset());
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }

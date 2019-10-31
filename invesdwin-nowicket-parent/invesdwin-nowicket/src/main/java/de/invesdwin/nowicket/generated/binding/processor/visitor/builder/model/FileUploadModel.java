@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.model.IModel;
 
@@ -14,6 +13,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.UploadButtonHtm
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
+import de.invesdwin.util.lang.Files;
 
 @NotThreadSafe
 public class FileUploadModel implements IModel<List<FileUpload>> {
@@ -42,9 +42,9 @@ public class FileUploadModel implements IModel<List<FileUpload>> {
             final List<File> files = new ArrayList<File>();
             for (final FileUpload upload : object) {
                 final File file = newFile(upload);
-                FileUtils.deleteQuietly(file);
+                Files.deleteQuietly(file);
                 try {
-                    FileUtils.forceMkdir(file.getParentFile());
+                    Files.forceMkdir(file.getParentFile());
                     upload.writeTo(file);
                 } catch (final Exception e) {
                     throw new RuntimeException(e);
