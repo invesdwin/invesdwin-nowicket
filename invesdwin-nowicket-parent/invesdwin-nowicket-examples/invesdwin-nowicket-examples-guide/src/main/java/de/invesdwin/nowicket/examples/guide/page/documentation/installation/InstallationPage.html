@@ -285,6 +285,7 @@ RewriteEngine On
     RewriteRule .* http://example.com:8080%{REQUEST_URI} [P,QSA,L]
 
     SetOutputFilter proxy-html
+    ProxyHTMLDoctype &quot;&lt;!DOCTYPE HTML&gt;&quot;
     ProxyHTMLURLMap http://example.com:8080/app/ /app/
     AddOutputFilterByType SUBSTITUTE text/html
     AddOutputFilterByType SUBSTITUTE text/css
