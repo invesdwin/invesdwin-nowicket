@@ -8,7 +8,7 @@ import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.border.Border;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
@@ -24,11 +24,12 @@ public class GridColumnBorder extends Border {
         super(element.getWicketId());
         this.element = element;
 
-        final AttributeModifier hasError = AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
+        final AttributeModifier hasError = AttributeModifier.append("class", new IModel<String>() {
             @Override
             public String getObject() {
-                final Component component = element.getContext().getComponentRegistry().getComponent(
-                        element.getModelWicketId());
+                final Component component = element.getContext()
+                        .getComponentRegistry()
+                        .getComponent(element.getModelWicketId());
                 final FormComponent<?> formComponent = Components.asFormComponent(component);
                 if (formComponent != null) {
                     if (!formComponent.isValid()) {
@@ -47,8 +48,9 @@ public class GridColumnBorder extends Border {
     @Override
     protected void onConfigure() {
         super.onConfigure();
-        final Component component = element.getContext().getComponentRegistry().getComponent(
-                element.getModelWicketId());
+        final Component component = element.getContext()
+                .getComponentRegistry()
+                .getComponent(element.getModelWicketId());
         final FormComponent<?> formComponent = Components.asFormComponent(component);
         if (formComponent != null) {
             final StringBuilder sb = new StringBuilder();
@@ -78,8 +80,9 @@ public class GridColumnBorder extends Border {
 
     @Override
     public boolean isVisible() {
-        final Component component = element.getContext().getComponentRegistry().getComponent(
-                element.getModelWicketId());
+        final Component component = element.getContext()
+                .getComponentRegistry()
+                .getComponent(element.getModelWicketId());
         if (component != null) {
             return component.isVisible();
         } else {

@@ -4,7 +4,6 @@ import java.util.MissingResourceException;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 
@@ -14,7 +13,7 @@ import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
-public class TitleModel extends AbstractReadOnlyModel<String> {
+public class TitleModel implements IModel<String> {
 
     private final String wicketId;
     private final AModelHtmlElement<?, ?> element;

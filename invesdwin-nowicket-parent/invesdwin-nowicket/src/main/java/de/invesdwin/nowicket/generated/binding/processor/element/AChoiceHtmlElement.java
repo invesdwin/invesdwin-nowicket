@@ -12,7 +12,6 @@ import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.EnumChoiceRenderer;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.jsoup.nodes.Element;
@@ -44,7 +43,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
     }
 
     public IModel<List<Object>> getChoiceModel() {
-        return new AbstractReadOnlyModel<List<Object>>() {
+        return new IModel<List<Object>>() {
 
             @Override
             public List<Object> getObject() {
@@ -196,7 +195,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
             public List<ITab> getDelegate() {
                 final List<ITab> tabs = new ArrayList<ITab>();
                 for (final Object row : getChoiceModel().getObject()) {
-                    final IModel<Object> targetObjectModel = new AbstractReadOnlyModel<Object>() {
+                    final IModel<Object> targetObjectModel = new IModel<Object>() {
                         @Override
                         public Object getObject() {
                             return row;
@@ -227,7 +226,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
 
     @Override
     public IModel<? extends List<? extends ITab>> getTabModel() {
-        return new AbstractReadOnlyModel<List<? extends ITab>>() {
+        return new IModel<List<? extends ITab>>() {
             @Override
             public List<? extends ITab> getObject() {
                 return createWicketTabs();

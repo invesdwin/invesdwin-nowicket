@@ -5,7 +5,6 @@ import java.util.MissingResourceException;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.MarkupContainer;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.StringResourceModel;
@@ -144,7 +143,7 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
 
     @Override
     public IModel<String> getTooltipModel(final IModel<Object> targetObjectModel) {
-        return new AbstractReadOnlyModel<String>() {
+        return new IModel<String>() {
             @Override
             public String getObject() {
                 final String tooltip = getModelElement().getBeanPathElement().getTooltip(targetObjectModel.getObject());

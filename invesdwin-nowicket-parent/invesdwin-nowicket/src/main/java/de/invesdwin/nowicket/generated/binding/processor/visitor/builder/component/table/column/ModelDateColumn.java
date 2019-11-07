@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.application.auth.AWebSession;
@@ -26,7 +25,7 @@ public class ModelDateColumn extends ModelTextColumn {
     public IModel<Object> getDataModel(final IModel<Object> rowModel) {
         final DatePropertyModel propertyModel = new DatePropertyModel(
                 new BeanPathModel<Object>(rowModel, getPropertyExpression()));
-        return new AbstractReadOnlyModel<Object>() {
+        return new IModel<Object>() {
 
             @Override
             public void detach() {

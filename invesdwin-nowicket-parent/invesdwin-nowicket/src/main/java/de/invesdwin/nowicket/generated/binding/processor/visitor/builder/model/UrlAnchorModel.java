@@ -4,7 +4,6 @@ import java.io.File;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.UrlUtils;
@@ -18,7 +17,7 @@ import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
-public class UrlAnchorModel extends AbstractReadOnlyModel<String> {
+public class UrlAnchorModel implements IModel<String> {
 
     private final IModel<Object> delegate;
     private final IModel<?> targetObjectModel;

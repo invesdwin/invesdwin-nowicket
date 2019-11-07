@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.IObjectClassAwareModel;
 import org.apache.wicket.model.IPropertyReflectionAwareModel;
@@ -31,7 +30,7 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
 
     public BeanPathModel(final IHtmlElement<?, ?> element) {
         this.rootObjectModel = element.getRootObjectModel();
-        this.beanPathElementModel = new AbstractReadOnlyModel<IBeanPathElement>() {
+        this.beanPathElementModel = new IModel<IBeanPathElement>() {
             @Override
             public IBeanPathElement getObject() {
                 return element.getModelElement().getBeanPathElement();
@@ -41,7 +40,7 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
 
     public BeanPathModel(final IModel<?> rootObjectModel, final String beanPath) {
         this.rootObjectModel = rootObjectModel;
-        this.beanPathElementModel = new AbstractReadOnlyModel<IBeanPathElement>() {
+        this.beanPathElementModel = new IModel<IBeanPathElement>() {
 
             private transient BeanObjectContext ctx;
 

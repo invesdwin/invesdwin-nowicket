@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.application.auth.AWebSession;
@@ -22,7 +21,7 @@ public class ModelNumberColumn extends ModelTextColumn {
     @Override
     public IModel<Object> getDataModel(final IModel<Object> rowModel) {
         final IModel<Number> propertyModel = new BeanPathModel<Number>(rowModel, getPropertyExpression());
-        return new AbstractReadOnlyModel<Object>() {
+        return new IModel<Object>() {
 
             @Override
             public void detach() {

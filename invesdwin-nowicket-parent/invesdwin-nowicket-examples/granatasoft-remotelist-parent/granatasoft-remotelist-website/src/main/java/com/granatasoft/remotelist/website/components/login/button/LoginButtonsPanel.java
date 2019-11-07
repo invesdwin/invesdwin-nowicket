@@ -9,7 +9,6 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 import com.granatasoft.remotelist.website.components.login.button.child.LoginButtonsChild;
@@ -33,7 +32,7 @@ public class LoginButtonsPanel extends Panel {
                 if (LoginButtonsConstants.masterButton.equals(e.getWicketId())) {
                     return newLoginButtonsChildPanel(e.getWicketId(), (IModel<LoginButtonsChild>) e.getModel(), true);
                 } else if (LoginButtonsConstants.childButtons.equals(e.getWicketId())) {
-                    final IModel<? extends List<LoginButtonsChild>> listViewModel = new AbstractReadOnlyModel<List<LoginButtonsChild>>() {
+                    final IModel<? extends List<LoginButtonsChild>> listViewModel = new IModel<List<LoginButtonsChild>>() {
                         @Override
                         public List<LoginButtonsChild> getObject() {
                             return model.getObject().getChildButtons();

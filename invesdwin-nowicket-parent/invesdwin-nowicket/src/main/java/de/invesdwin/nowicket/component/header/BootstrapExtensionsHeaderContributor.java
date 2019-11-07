@@ -7,7 +7,6 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.IHeaderContributor;
 
-import de.agilecoders.wicket.core.markup.html.references.ModernizrJavaScriptReference;
 import de.agilecoders.wicket.core.markup.html.references.RespondJavaScriptReference;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeCssReference;
@@ -137,7 +136,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         response.render(CssHeaderItem.forReference(OpenWebIconsCssReference.instance()));
         AjaxIndicatorAppenderCssReference.INSTANCE.renderHead(response);
         AdditionalBootstrapClassesCssReference.INSTANCE.renderHead(response);
-        response.render(JavaScriptHeaderItem.forReference(ModernizrJavaScriptReference.instance()));
+        response.render(JavaScriptHeaderItem.forReference(ModernizrMinJavaScriptReference.instance()));
         response.render(CssHeaderItem.forReference(BootstrapFixesCssReference.INSTANCE));
     }
 

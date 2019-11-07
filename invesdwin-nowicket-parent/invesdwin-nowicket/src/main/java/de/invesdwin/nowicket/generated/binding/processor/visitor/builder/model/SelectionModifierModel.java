@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.IObjectClassAwareModel;
 import org.apache.wicket.model.IPropertyReflectionAwareModel;
@@ -28,7 +27,7 @@ public class SelectionModifierModel
 
     public SelectionModifierModel(final AChoiceHtmlElement<?> element) {
         this.rootObjectModel = element.getRootObjectModel();
-        this.selectionModifierModel = new AbstractReadOnlyModel<IBeanPathPropertyModifier<List<?>>>() {
+        this.selectionModifierModel = new IModel<IBeanPathPropertyModifier<List<?>>>() {
             @Override
             public IBeanPathPropertyModifier<List<?>> getObject() {
                 return element.getModelElement().getBeanPathElement().getSelectionModifier();

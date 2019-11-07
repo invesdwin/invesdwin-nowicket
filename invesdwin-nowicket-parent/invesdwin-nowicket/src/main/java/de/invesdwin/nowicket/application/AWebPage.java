@@ -7,12 +7,13 @@ import org.apache.wicket.Page;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxIndicatorAppender;
+import org.apache.wicket.markup.head.HeaderItem;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.TransparentWebMarkupContainer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -28,6 +29,7 @@ import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIc
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.component.header.ModernizrMinJavaScriptReference;
 import de.invesdwin.nowicket.page.auth.SignIn;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.lang.Objects;
@@ -69,7 +71,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
         //default title is the classname, though this can be changed by calling the setter afterwards
         titleModel = Model.of(
                 Objects.toVisibleName(Strings.removeTrailing(getClass().getSimpleName(), Page.class.getSimpleName())));
-        final Label title = new Label("title", new AbstractReadOnlyModel<String>() {
+        final Label title = new Label("title", new IModel<String>() {
             @Override
             public String getObject() {
                 return getTitleModel().getObject();
@@ -113,7 +115,13 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
     }
 
     protected HtmlTag newHtmlTag(final String id) {
-        return new HtmlTag(id, getLocale(), true);
+        return new HtmlTag(id, getLocale(), true) {
+            @Override
+            protected HeaderItem newModernizrHeaderItem() {
+                //fix 404 because only minified modernizr exists
+                return JavaScriptHeaderItem.forReference(ModernizrMinJavaScriptReference.instance());
+            }
+        };
     }
 
     /**

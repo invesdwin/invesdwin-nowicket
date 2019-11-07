@@ -9,7 +9,6 @@ import java.util.Locale;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.jsoup.nodes.Element;
 
@@ -114,7 +113,7 @@ public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
 
     @Override
     public IModel<? extends List<? extends ITab>> getTabModel() {
-        return new AbstractReadOnlyModel<List<? extends ITab>>() {
+        return new IModel<List<? extends ITab>>() {
             @Override
             public List<? extends ITab> getObject() {
                 return createWicketTabs();

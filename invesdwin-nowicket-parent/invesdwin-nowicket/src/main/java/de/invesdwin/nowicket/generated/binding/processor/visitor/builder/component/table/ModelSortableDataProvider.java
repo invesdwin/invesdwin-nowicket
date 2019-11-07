@@ -7,7 +7,6 @@ import java.util.List;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -36,7 +35,7 @@ public class ModelSortableDataProvider extends SortableDataProvider<Object, Stri
             final ADelegateComparator<Object> comparator = new ADelegateComparator<Object>() {
                 @Override
                 protected Comparable<?> getCompareCriteria(final Object e) {
-                    final AbstractReadOnlyModel<Object> eModel = new AbstractReadOnlyModel<Object>() {
+                    final IModel<Object> eModel = new IModel<Object>() {
                         @Override
                         public Object getObject() {
                             return e;

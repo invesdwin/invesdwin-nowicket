@@ -12,7 +12,6 @@ import org.apache.wicket.authroles.authorization.strategies.role.annotations.Aut
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.wicketstuff.annotation.mount.MountPath;
@@ -49,7 +48,7 @@ public class ShowServersPage extends ARemotelistPage {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (e.getWicketId().equals(ShowServersConstants.servers)) {
-                    final IModel<? extends Collection<? extends ITab>> iModel = new AbstractReadOnlyModel<Collection<? extends ITab>>() {
+                    final IModel<? extends Collection<? extends ITab>> iModel = new IModel<Collection<? extends ITab>>() {
 
                         @Override
                         public Collection<? extends ITab> getObject() {
@@ -101,7 +100,7 @@ public class ShowServersPage extends ARemotelistPage {
                             return new AccordionCollapsible(componentId, tab) {
                                 @Override
                                 protected Component newTitle(final String markupId, final ITab tab) {
-                                    final IModel<String> badgeModel = new AbstractReadOnlyModel<String>() {
+                                    final IModel<String> badgeModel = new IModel<String>() {
                                         @Override
                                         public String getObject() {
                                             final ServerRow serverRowRowModelObject = (ServerRow) getPanelModel()

@@ -6,7 +6,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulato
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
@@ -21,7 +20,7 @@ public class ModelContainerColumn extends PropertyColumn<Object, String> {
 
     @Override
     public IModel<Object> getDataModel(final IModel<Object> rowModel) {
-        return new AbstractReadOnlyModel<Object>() {
+        return new IModel<Object>() {
             @Override
             public Object getObject() {
                 return Strings.asString(rowModel.getObject());

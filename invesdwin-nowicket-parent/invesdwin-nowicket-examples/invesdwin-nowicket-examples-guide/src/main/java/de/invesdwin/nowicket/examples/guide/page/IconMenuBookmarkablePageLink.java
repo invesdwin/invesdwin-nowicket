@@ -5,7 +5,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -17,7 +16,7 @@ public class IconMenuBookmarkablePageLink<T> extends MenuBookmarkablePageLink<T>
 
     public <P extends Page> IconMenuBookmarkablePageLink(final Class<P> pageClass, final IModel<String> label,
             final ResourceReference icon) {
-        super(pageClass, new AbstractReadOnlyModel<String>() {
+        super(pageClass, new IModel<String>() {
             @Override
             public String getObject() {
                 final String withIcon = "<img style=\"margin-top: -3px\" src=\"" + RequestCycle.get().urlFor(icon, null)

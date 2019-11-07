@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.jsoup.nodes.Element;
@@ -40,7 +39,7 @@ public abstract class ATableColumnHtmlElement<E extends ATableColumnModelElement
      */
     @Override
     public IModel<String> getTitleModel(final IModel<Object> targetObjectModel) {
-        return new AbstractReadOnlyModel<String>() {
+        return new IModel<String>() {
             @Override
             public String getObject() {
                 final Object target;
@@ -51,7 +50,8 @@ public abstract class ATableColumnHtmlElement<E extends ATableColumnModelElement
                 }
                 return new StringResourceModel(getWicketId(), getContext().getMarkupContainer(),
                         getContext().getMarkupContainer().getDefaultModel())
-                                .setDefaultValue(getModelElement().getBeanPathElement().getTitle(target)).getObject();
+                                .setDefaultValue(getModelElement().getBeanPathElement().getTitle(target))
+                                .getObject();
             }
         };
     }

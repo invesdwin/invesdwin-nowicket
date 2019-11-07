@@ -4,7 +4,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
-import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step1.CreateUserWizardStep1Constants;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
@@ -22,15 +22,13 @@ public class CreateUserWizardStepBindingInterceptor extends BindingInterceptor {
     @Override
     protected Component create(final IHtmlElement<?, ?> e) {
         if (CreateUserWizardStep1Constants.control.equals(e.getWicketId())) {
-            return new CreateUserWizardStepControlPanel(e.getWicketId(),
-                    new AbstractReadOnlyModel<CreateUserWizardStepControl>() {
-                        @Override
-                        public CreateUserWizardStepControl getObject() {
-                            final ICreateUserWizardStep model = (ICreateUserWizardStep) container
-                                    .getDefaultModelObject();
-                            return model.getControl();
-                        }
-                    });
+            return new CreateUserWizardStepControlPanel(e.getWicketId(), new IModel<CreateUserWizardStepControl>() {
+                @Override
+                public CreateUserWizardStepControl getObject() {
+                    final ICreateUserWizardStep model = (ICreateUserWizardStep) container.getDefaultModelObject();
+                    return model.getControl();
+                }
+            });
         }
         return super.create(e);
     }

@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.examples.guide.page.wicket.forminput;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.wicketstuff.annotation.mount.MountPath;
@@ -31,7 +30,7 @@ public class FormInputPage extends AExampleWebPage {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (FormInputConstants.multiply.equals(e.getWicketId())) {
-                    return new MultiplyPanel(e.getWicketId(), new AbstractReadOnlyModel<Multiply>() {
+                    return new MultiplyPanel(e.getWicketId(), new IModel<Multiply>() {
                         @Override
                         public Multiply getObject() {
                             //always retrieve data from the same model in page

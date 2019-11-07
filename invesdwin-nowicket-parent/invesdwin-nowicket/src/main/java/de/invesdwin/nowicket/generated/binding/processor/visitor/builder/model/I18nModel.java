@@ -5,7 +5,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.IPageRequestHandler;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
@@ -17,7 +16,7 @@ import de.invesdwin.nowicket.util.Components;
 import io.netty.util.concurrent.FastThreadLocal;
 
 @NotThreadSafe
-public class I18nModel extends AbstractReadOnlyModel<String> {
+public class I18nModel implements IModel<String> {
 
     private static final FastThreadLocal<Boolean> NESTED_PAGE_RETRIEVAL = new FastThreadLocal<Boolean>() {
         @Override
@@ -70,7 +69,8 @@ public class I18nModel extends AbstractReadOnlyModel<String> {
             try {
                 final Component usedComponent = getComponent();
                 localizedMessage = new StringResourceModel(message, usedComponent, HtmlContext.getModel(usedComponent))
-                        .setDefaultValue(message).getObject();
+                        .setDefaultValue(message)
+                        .getObject();
             } catch (final Throwable e) {
                 localizedMessage = message;
             }
