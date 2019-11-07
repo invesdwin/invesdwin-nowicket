@@ -25,7 +25,7 @@ public class ConfiguredGoogleClosureJavaScriptCompressor extends GoogleClosureJa
         super.overrideOptions(options);
         WarningLevel.QUIET.setOptionsForWarningLevel(options);
         //http://stackoverflow.com/questions/13261325/how-can-i-set-the-language-in-option-for-the-closure-compiler
-        options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+        options.setLanguageIn(LanguageMode.STABLE_IN);
     }
 
 }

@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>de.invesdwin</groupId>
@@ -10,6 +12,8 @@
 
 	<properties>
 		<version.yuicompressor>2.4.8</version.yuicompressor>
+		<version.closure-compiler-unshaded>v20191027</version.closure-compiler-unshaded>
+		<version.protobuf>3.10.0</version.protobuf>
 		<version.pnotify>2.1.0-1</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
@@ -115,6 +119,16 @@
 			<groupId>com.yahoo.platform.yui</groupId>
 			<artifactId>yuicompressor</artifactId>
 			<version>${version.yuicompressor}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.javascript</groupId>
+			<artifactId>closure-compiler-unshaded</artifactId>
+			<version>${version.closure-compiler-unshaded}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>${version.protobuf}</version>
 		</dependency>
 
 		<dependency>
