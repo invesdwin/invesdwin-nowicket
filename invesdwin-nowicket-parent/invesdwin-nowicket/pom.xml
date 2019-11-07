@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<version.yuicompressor>2.4.7</version.yuicompressor>
+		<version.yuicompressor>2.4.8</version.yuicompressor>
 		<version.pnotify>2.1.0-1</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
