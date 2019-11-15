@@ -22,7 +22,7 @@ import org.apache.isis.applib.AppManifest;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.isisaddons.module.security.SecurityModule;
 
-import de.invesdwin.util.collections.Lists;
+import de.invesdwin.util.collections.list.Lists;
 
 @Immutable
 public class SecurityAppManifest implements AppManifest {

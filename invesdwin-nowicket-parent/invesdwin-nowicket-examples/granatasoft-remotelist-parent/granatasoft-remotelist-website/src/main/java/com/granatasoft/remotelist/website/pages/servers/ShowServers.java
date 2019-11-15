@@ -13,7 +13,7 @@ import com.granatasoft.remotelist.website.pages.servers.serverrow.ServerRow;
 
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.collections.Lists;
+import de.invesdwin.util.collections.list.Lists;
 
 @NotThreadSafe
 @GeneratedMarkup

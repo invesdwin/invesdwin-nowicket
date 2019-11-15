@@ -16,7 +16,7 @@ import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.collections.Lists;
+import de.invesdwin.util.collections.list.Lists;
 
 @NotThreadSafe
 @GeneratedMarkup
