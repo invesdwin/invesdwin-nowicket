@@ -67,7 +67,7 @@ function allowCopyPasteOnDisabledInputs() {
 				return input;
 			});
 			$(
-					'input:disabled:not([type=radio]):not([type=checkbox]):not([type=file]):visible')
+					'input:disabled:not([type=radio]):not([type=checkbox]):not([type=file])')
 					.after(
 							function(e) {
 								var tag = $(this);
