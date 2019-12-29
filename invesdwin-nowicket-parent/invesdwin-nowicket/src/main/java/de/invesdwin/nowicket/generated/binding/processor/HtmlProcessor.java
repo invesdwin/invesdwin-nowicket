@@ -99,8 +99,9 @@ public class HtmlProcessor {
     }
 
     private boolean isUnknownElement(final IHtmlElement<?, ?> htmlElement) {
-        return htmlElement.isModelElement() && getContext().getModelObjectContext().getElementRegistry().getElement(
-                htmlElement.getWicketId()) == null;
+        return htmlElement.isModelElement() && getContext().getModelObjectContext()
+                .getElementRegistry()
+                .getElement(htmlElement.getWicketId()) == null;
     }
 
     private IHtmlElement<?, ?> detectHtmlElement(final Element element) {
@@ -182,8 +183,9 @@ public class HtmlProcessor {
     }
 
     private IHtmlElement<?, ?> newButtonOrAnchor(final Element element, final String wicketId) {
-        final IModelElement<?> modelElement = getContext().getModelObjectContext().getElementRegistry().getElement(
-                wicketId);
+        final IModelElement<?> modelElement = getContext().getModelObjectContext()
+                .getElementRegistry()
+                .getElement(wicketId);
         if (modelElement instanceof SubmitButtonModelElement) {
             return new SubmitButtonHtmlElement(getContext(), element);
         } else {
@@ -232,7 +234,7 @@ public class HtmlProcessor {
         if ("select".equals(element.tagName())) {
             return new SelectHtmlElement(getContext(), element);
         }
-        if ("legend".equals(element.tagName())) {
+        if ("legend".equals(element.tagName()) || wicketId.endsWith(LegendHtmlElement.LEGEND_WICKET_ID_SUFFIX)) {
             return new LegendHtmlElement(getContext(), element);
         }
         if ("ul".equals(element.tagName())) {
@@ -249,15 +251,17 @@ public class HtmlProcessor {
 
     private IHtmlElement<?, ?> detectTabbedElement(final Element element, final String wicketId) {
         if (Strings.equalsAny(element.tagName(), "div", "span")) {
-            final IModelElement<?> modelElement = getContext().getModelObjectContext().getElementRegistry().getElement(
-                    wicketId);
+            final IModelElement<?> modelElement = getContext().getModelObjectContext()
+                    .getElementRegistry()
+                    .getElement(wicketId);
             if (modelElement instanceof TabbedModelElement) {
                 return new TabbedHtmlElement(context, element);
             }
         }
         if ("iframe".equals(element.tagName())) {
-            final IModelElement<?> modelElement = getContext().getModelObjectContext().getElementRegistry().getElement(
-                    wicketId);
+            final IModelElement<?> modelElement = getContext().getModelObjectContext()
+                    .getElementRegistry()
+                    .getElement(wicketId);
             if (modelElement instanceof TabbedModelElement) {
                 return new TabbedHtmlElement(getContext(), element);
             } else {
