@@ -15,7 +15,7 @@ public class FormHtmlElement extends ANoModelHtmlElement {
 
     public FormHtmlElement(final HtmlContext context, final Element element) {
         super(context, element);
-        Assertions.assertThat(getWicketId()).isEqualTo(WICKET_ID);
+        Assertions.assertThat(getWicketId()).startsWith(WICKET_ID);
     }
 
     @Override
