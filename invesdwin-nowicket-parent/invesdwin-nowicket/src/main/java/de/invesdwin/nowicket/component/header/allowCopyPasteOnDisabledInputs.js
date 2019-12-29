@@ -51,13 +51,13 @@ function allowCopyPasteOnDisabledInputs() {
 						+ tag.attr("id") + ']')
 			}
 
-			$('textarea:disabled:visible').after(function(e) {
+			$('textarea:disabled').after(function(e) {
 				var tag = $(this);
 				var value = tag.val();
 				var input = replaceWithReadonlyInput(tag, "<textarea>", value);
 				return input;
 			});
-			$('select:disabled:visible').filter(function() {
+			$('select:disabled').filter(function() {
 				var size = $(this).attr("size");
 				return !(size > 1);
 			}).after(function(e) {
