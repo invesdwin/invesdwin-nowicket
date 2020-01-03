@@ -17,6 +17,7 @@ import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
 
 import de.invesdwin.util.lang.Files;
+import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.UniqueNameGenerator;
 
@@ -80,6 +81,11 @@ public class OfferDownloadConfig implements Serializable {
 
     public String getFileName() {
         return fileName;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toString(this);
     }
 
 }

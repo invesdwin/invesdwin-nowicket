@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.guiservice;
 
-import java.awt.Dimension;
 import java.io.File;
 
 import javax.annotation.concurrent.ThreadSafe;
@@ -9,6 +8,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.springframework.beans.factory.FactoryBean;
 
+import de.invesdwin.nowicket.component.modal.ModalConfig;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.generated.guiservice.internal.SessionGuiService;
 
@@ -59,8 +59,8 @@ public class GuiService implements FactoryBean<GuiService>, IGuiService {
     }
 
     @Override
-    public void showModalPanel(final Object modelObject, final Dimension dimension) {
-        getGuiServiceImpl().showModalPanel(modelObject, dimension);
+    public void showModalPanel(final Object modelObject, final ModalConfig config) {
+        getGuiServiceImpl().showModalPanel(modelObject, config);
     }
 
     @Override

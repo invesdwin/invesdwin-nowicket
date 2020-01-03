@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
-import java.awt.Dimension;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,6 +13,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.markup.html.form.Form;
 
+import de.invesdwin.nowicket.component.modal.ModalConfig;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
@@ -40,8 +40,8 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
     }
 
     @Override
-    public void showModalPanel(final Object modelObject, final Dimension dimension) {
-        this.showModalPanelGuiTasks.addLast(new ShowModalPanelGuiTask(modelObject, dimension));
+    public void showModalPanel(final Object modelObject, final ModalConfig config) {
+        this.showModalPanelGuiTasks.addLast(new ShowModalPanelGuiTask(modelObject, config));
     }
 
     @Override

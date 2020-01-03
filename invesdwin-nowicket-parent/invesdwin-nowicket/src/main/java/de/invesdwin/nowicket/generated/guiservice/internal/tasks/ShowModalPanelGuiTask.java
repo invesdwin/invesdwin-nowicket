@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
-import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -13,6 +12,7 @@ import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.application.PanelFactory;
 import de.invesdwin.nowicket.component.modal.ModalContainer;
+import de.invesdwin.nowicket.component.modal.ModalConfig;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.element.ModalHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.RootHtmlElement;
@@ -24,12 +24,12 @@ import de.invesdwin.util.lang.Objects;
 public class ShowModalPanelGuiTask implements IGuiTask {
 
     private final Object modelObject;
-    private final Dimension dimension;
+    private final ModalConfig config;
     private ModalContainer modal;
 
-    public ShowModalPanelGuiTask(final Object modelObject, final Dimension dimension) {
+    public ShowModalPanelGuiTask(final Object modelObject, final ModalConfig config) {
         this.modelObject = modelObject;
-        this.dimension = dimension;
+        this.config = config;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ShowModalPanelGuiTask implements IGuiTask {
         }
         Assertions.assertThat(modal).as("No %s found in component hierarchy!", ModalContainer.class).isNotNull();
         final IModel<String> title = getTitle(modalPanel);
-        modal.show(title, modalPanel, dimension);
+        modal.show(title, modalPanel, config);
         return Arrays.asList(modal);
     }
 

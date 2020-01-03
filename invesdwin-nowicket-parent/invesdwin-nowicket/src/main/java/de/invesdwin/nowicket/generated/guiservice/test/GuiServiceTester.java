@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.guiservice.test;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.Stack;
@@ -13,6 +12,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
+import de.invesdwin.nowicket.component.modal.ModalConfig;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
@@ -51,8 +51,8 @@ public class GuiServiceTester implements IGuiService {
     }
 
     @Override
-    public void showModalPanel(final Object modelObject, final Dimension dimension) {
-        methodCalls.add(new GuiServiceMethodCall(GuiServiceMethod.showModalPanel, modelObject, dimension));
+    public void showModalPanel(final Object modelObject, final ModalConfig config) {
+        methodCalls.add(new GuiServiceMethodCall(GuiServiceMethod.showModalPanel, modelObject, config));
         modalPanelsShowing.incrementAndGet();
     }
 

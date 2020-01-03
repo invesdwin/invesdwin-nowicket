@@ -1,7 +1,5 @@
 package com.granatasoft.remotelist.website.pages.remotelist.applicationinstancerow;
 
-import java.awt.Dimension;
-
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
 
@@ -19,6 +17,7 @@ import com.granatasoft.remotelist.website.panels.applicationinstance.update.Upda
 import de.invesdwin.norva.beanpath.annotation.ColumnOrder;
 import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.application.auth.Roles;
+import de.invesdwin.nowicket.component.modal.ModalConfig;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.util.bean.AValueObject;
 
@@ -74,7 +73,7 @@ public class ApplicationInstanceRow extends AValueObject {
             public void yes() {
                 applicationInstanceDao.delete(applicationInstance);
             }
-        }, new Dimension(350, 150));
+        }, new ModalConfig(350, 150));
     }
 
     public boolean hideDelete() {

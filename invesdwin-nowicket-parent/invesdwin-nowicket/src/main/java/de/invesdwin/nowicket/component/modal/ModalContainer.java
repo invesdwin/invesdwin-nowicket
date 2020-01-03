@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.component.modal;
 
-import java.awt.Dimension;
 import java.util.Stack;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -20,6 +19,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameApp
 import de.agilecoders.wicket.jquery.util.Strings2;
 import de.invesdwin.nowicket.util.Components;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
 public class ModalContainer extends Panel {
@@ -31,7 +31,7 @@ public class ModalContainer extends Panel {
     private final WebMarkupContainer modalContent;
 
     private final Label titleLabel;
-    private Dimension dimension;
+    private ModalConfig config;
     private boolean alreadyRendered;
 
     private final Stack<HeaderItem> rootRenderHeadQueue = new Stack<HeaderItem>();
@@ -56,12 +56,12 @@ public class ModalContainer extends Panel {
         add(new AttributeModifier("data-backdrop", "static"));
     }
 
-    public void show(final IModel<String> title, final Panel panel, final Dimension dimension) {
+    public void show(final IModel<String> title, final Panel panel, final ModalConfig config) {
         Assertions.assertThat(this.showing).isFalse();
         Assertions.assertThat(panel.getId()).isEqualTo(PANEL_MARKUP_ID);
         modalContent.addOrReplace(panel);
         this.titleLabel.setDefaultModel(title);
-        this.dimension = dimension;
+        this.config = config;
         this.showing = true;
     }
 
@@ -88,19 +88,23 @@ public class ModalContainer extends Panel {
     protected void onConfigure() {
         super.onConfigure();
         alreadyRendered = false;
-        if (dimension != null) {
-            add(new AttributeModifier("data-width", dimension.width) {
-                @Override
-                public boolean isTemporary(final Component component) {
-                    return true;
-                }
-            });
-            add(new AttributeModifier("data-max-height", dimension.height) {
-                @Override
-                public boolean isTemporary(final Component component) {
-                    return true;
-                }
-            });
+        if (config != null) {
+            if (Strings.isNotBlank(config.getWidth())) {
+                add(new AttributeModifier("data-width", config.getWidth()) {
+                    @Override
+                    public boolean isTemporary(final Component component) {
+                        return true;
+                    }
+                });
+            }
+            if (Strings.isNotBlank(config.getHeight())) {
+                add(new AttributeModifier("data-max-height", config.getHeight()) {
+                    @Override
+                    public boolean isTemporary(final Component component) {
+                        return true;
+                    }
+                });
+            }
         }
         add(new AttributeAppender("style", "max-height: 98%") {
             @Override

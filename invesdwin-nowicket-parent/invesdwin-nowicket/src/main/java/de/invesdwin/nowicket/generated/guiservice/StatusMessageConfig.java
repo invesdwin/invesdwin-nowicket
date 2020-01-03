@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.invesdwin.nowicket.NoWicketProperties;
+import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.time.duration.Duration;
 
 @NotThreadSafe
@@ -59,6 +60,11 @@ public class StatusMessageConfig implements Serializable {
     public StatusMessageConfig withMessage(final String message) {
         this.message = message;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toString(this);
     }
 
 }
