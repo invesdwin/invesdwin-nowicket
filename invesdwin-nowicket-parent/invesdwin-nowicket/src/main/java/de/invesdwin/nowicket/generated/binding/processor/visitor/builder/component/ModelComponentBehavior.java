@@ -85,6 +85,8 @@ public class ModelComponentBehavior extends Behavior {
                 if (Strings.isNotBlank(title)) {
                     //on img title is also the tooltip, not alt
                     tag.put("title", title);
+                    tag.put("data-toggle", "tooltip");
+                    tag.put("data-html", "true");
                 }
             }
         });
