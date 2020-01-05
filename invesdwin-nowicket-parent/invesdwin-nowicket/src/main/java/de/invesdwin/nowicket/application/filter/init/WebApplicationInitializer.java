@@ -18,6 +18,7 @@ import org.apache.wicket.settings.PageSettings;
 import org.apache.wicket.util.crypt.CachingSunJceCryptFactory;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
+import org.wicketstuff.pageserializer.fast2.Fast2WicketSerializer;
 
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
@@ -35,6 +36,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
+import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.time.fdate.FDate;
 
@@ -68,6 +70,7 @@ public class WebApplicationInitializer {
         registerHidingAutoLabelResolver();
         registerStalePageRequestCycleListener();
         registerSessionCookieConfig();
+        registerFastSerializer();
         runHooks();
     }
 
@@ -239,5 +242,9 @@ public class WebApplicationInitializer {
 
     protected void registerStalePageRequestCycleListener() {
         webApplication.getRequestCycleListeners().add(new StalePageRequestCycleListener());
+    }
+
+    private void registerFastSerializer() {
+        webApplication.getFrameworkSettings().setSerializer(new Fast2WicketSerializer(Objects.SERIALIZATION_CONFIG));
     }
 }
