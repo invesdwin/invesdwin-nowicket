@@ -19,7 +19,7 @@ public final class PNotifyJsReference extends WebjarsJavaScriptResourceReference
     public static final PNotifyJsReference INSTANCE = new PNotifyJsReference();
 
     private PNotifyJsReference() {
-        super("/pnotify/current/pnotify.core.js");
+        super("/pnotify/current/pnotify.js");
     }
 
     @Override

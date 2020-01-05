@@ -14,7 +14,7 @@ public final class PNotifyCssReference extends WebjarsCssResourceReference imple
     public static final PNotifyCssReference INSTANCE = new PNotifyCssReference();
 
     private PNotifyCssReference() {
-        super("/pnotify/current/pnotify.core.css");
+        super("/pnotify/current/pnotify.css");
     }
 
     @Override
