@@ -7,7 +7,7 @@ import org.apache.wicket.model.IModel;
 @NotThreadSafe
 public class DelegateModel<E> implements IModel<E> {
 
-    private final IModel<E> delegate;
+    private IModel<E> delegate;
 
     public DelegateModel(final IModel<E> delegate) {
         this.delegate = delegate;
@@ -26,6 +26,10 @@ public class DelegateModel<E> implements IModel<E> {
     @Override
     public void setObject(final E object) {
         delegate.setObject(object);
+    }
+
+    public void setDelegate(final IModel<E> delegate) {
+        this.delegate = delegate;
     }
 
 }

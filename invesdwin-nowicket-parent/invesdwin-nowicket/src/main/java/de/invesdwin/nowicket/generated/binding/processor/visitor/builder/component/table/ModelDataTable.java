@@ -1,12 +1,16 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table;
 
+import java.util.List;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackHeadersToolbar;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxNavigationToolbar;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.DataGridView;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortStateLocator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.NavigationToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.NoRecordsToolbar;
@@ -16,6 +20,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.OddEvenItem;
+import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.ajax.BootstrapAjaxPagingNavigator;
@@ -115,6 +120,12 @@ public class ModelDataTable extends DataTable<Object, String> {
     @Override
     protected Item<Object> newRowItem(final String id, final int index, final IModel<Object> model) {
         return new OddEvenItem<Object>(id, index, model);
+    }
+
+    @Override
+    protected DataGridView<Object> newDataGridView(final String id,
+            final List<? extends IColumn<Object, String>> columns, final IDataProvider<Object> dataProvider) {
+        return super.newDataGridView(id, columns, dataProvider);
     }
 
 }

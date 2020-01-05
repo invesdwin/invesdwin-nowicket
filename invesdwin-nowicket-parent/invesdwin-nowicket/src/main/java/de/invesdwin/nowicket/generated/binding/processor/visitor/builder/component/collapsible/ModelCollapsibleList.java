@@ -67,12 +67,12 @@ public class ModelCollapsibleList extends Panel {
             }
 
             private AccordionCollapsible newCollapsible(final ITab tab) {
+                final IModel<?> newModel = tab.getPanel(AModelTab.DUMMY_CONTAINER_ID).getDefaultModel();
+                final Object newModelObject = newModel.getObject();
                 for (final AccordionCollapsible oldCollapsible : oldCollapsibles) {
                     final Object oldModelObject = oldCollapsible.getTab()
                             .getPanel(AModelTab.DUMMY_CONTAINER_ID)
                             .getDefaultModelObject();
-                    final IModel<?> newModel = tab.getPanel(AModelTab.DUMMY_CONTAINER_ID).getDefaultModel();
-                    final Object newModelObject = newModel.getObject();
                     if (Objects.equals(oldModelObject, newModelObject)) {
                         //update model object to detect changes
                         oldCollapsible.updateModel(tab, newModelObject);

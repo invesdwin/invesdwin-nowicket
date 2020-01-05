@@ -17,6 +17,7 @@ import de.invesdwin.norva.beanpath.spi.element.ITableColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableContainerColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
+import de.invesdwin.nowicket.component.ReusingDelegateColumn;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
@@ -216,7 +217,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
         for (final ATableColumnHtmlElement<?, ?> column : getColumns()) {
             final IColumn<Object, String> wicketColumn = (IColumn<Object, String>) column
                     .createWicketColumn(bindingBuilder);
-            wicketColumns.add(wicketColumn);
+            wicketColumns.add(ReusingDelegateColumn.maybeWrap(wicketColumn));
         }
         return wicketColumns;
     }
