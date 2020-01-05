@@ -28,3 +28,9 @@
 .datepicker.datepicker-dropdown.dropdown-menu {
 	z-index: 999999 !important;
 }
+
+
+/* allow wider tooltips https://stackoverflow.com/questions/24241678/bootstrap-3-tooltip-gets-wrapped-on-every-white-space */
+.tooltip-inner  {
+  max-width: 500px !important;
+}
