@@ -8,13 +8,13 @@ import org.nustaq.serialization.FSTConfiguration;
 import org.wicketstuff.pageserializer.fast2.Fast2WicketSerializer;
 
 import de.invesdwin.util.error.Throwables;
-import de.invesdwin.util.lang.Objects;
 
 @Immutable
 public class ConfiguredFast2WicketSerializer extends Fast2WicketSerializer {
 
     public ConfiguredFast2WicketSerializer() {
-        this(Objects.SERIALIZATION_CONFIG);
+        //don't register classes so that application restarts don't cause problems with saved state
+        this(getDefaultFSTConfiguration());
     }
 
     public ConfiguredFast2WicketSerializer(final FSTConfiguration config) {
