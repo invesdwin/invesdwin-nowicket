@@ -9,11 +9,12 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelExternalLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UrlAnchorModel;
 
 @NotThreadSafe
-public class ModelUrlAnchorColumn extends PropertyColumn<String, String> {
+public class ModelUrlAnchorColumn extends PropertyColumn<Object, String> {
 
     private final TableAnchorColumnHtmlElement element;
 
@@ -24,20 +25,21 @@ public class ModelUrlAnchorColumn extends PropertyColumn<String, String> {
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public IModel<Object> getDataModel(final IModel<String> rowModel) {
+    public IModel<Object> getDataModel(final IModel<Object> rowModel) {
         return (IModel) new UrlAnchorModel(rowModel, getPropertyExpression());
     }
 
     @Override
-    public void populateItem(final Item<ICellPopulator<String>> item, final String componentId,
-            final IModel<String> rowModel) {
-        item.add(newLink(componentId, rowModel));
+    public void populateItem(final Item<ICellPopulator<Object>> item, final String componentId,
+            final IModel<Object> rowModel) {
+        final ModelExternalLink link = newLink(componentId, rowModel);
+        link.add(new ModelComponentBehavior(element, link, rowModel));
+        item.add(link);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected ModelExternalLink newLink(final String componentId, final IModel<String> rowModel) {
-        return new ModelExternalLink(componentId, (IModel) getDataModel(rowModel),
-                element.getTitleModel((IModel) rowModel)) {
+    protected ModelExternalLink newLink(final String componentId, final IModel<Object> rowModel) {
+        return new ModelExternalLink(componentId, (IModel) getDataModel(rowModel), element.getTitleModel(rowModel)) {
             @Override
             protected void onComponentTag(final ComponentTag tag) {
                 tag.setName("a");

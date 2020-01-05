@@ -10,11 +10,12 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.resource.ResourceReference;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.TableAnchorColumnHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.ModelResourceLink;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 
 @NotThreadSafe
-public class ModelResourceReferenceAnchorColumn extends PropertyColumn<ResourceReference, String> {
+public class ModelResourceReferenceAnchorColumn extends PropertyColumn<Object, String> {
 
     private final TableAnchorColumnHtmlElement element;
 
@@ -24,20 +25,21 @@ public class ModelResourceReferenceAnchorColumn extends PropertyColumn<ResourceR
     }
 
     @Override
-    public IModel<Object> getDataModel(final IModel<ResourceReference> rowModel) {
+    public IModel<Object> getDataModel(final IModel<Object> rowModel) {
         return new BeanPathModel<Object>(rowModel, getPropertyExpression());
     }
 
     @Override
-    public void populateItem(final Item<ICellPopulator<ResourceReference>> item, final String componentId,
-            final IModel<ResourceReference> rowModel) {
-        item.add(newLink(componentId, rowModel));
+    public void populateItem(final Item<ICellPopulator<Object>> item, final String componentId,
+            final IModel<Object> rowModel) {
+        final ModelResourceLink link = newLink(componentId, rowModel);
+        link.add(new ModelComponentBehavior(element, link, rowModel));
+        item.add(link);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected ModelResourceLink newLink(final String componentId, final IModel<ResourceReference> rowModel) {
+    protected ModelResourceLink newLink(final String componentId, final IModel<Object> rowModel) {
         return new ModelResourceLink(componentId, (ResourceReference) getDataModel(rowModel).getObject(),
-                element.getTitleModel((IModel) rowModel)) {
+                element.getTitleModel(rowModel)) {
             @Override
             protected void onComponentTag(final ComponentTag tag) {
                 tag.setName("a");
