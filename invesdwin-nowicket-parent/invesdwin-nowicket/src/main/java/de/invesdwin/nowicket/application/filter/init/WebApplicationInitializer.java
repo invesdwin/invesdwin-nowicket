@@ -243,6 +243,6 @@ public class WebApplicationInitializer {
     }
 
     private void registerFastSerializer() {
-        webApplication.getFrameworkSettings().setSerializer(new ConfiguredFast2WicketSerializer());
+        webApplication.getFrameworkSettings().setSerializer(new ConfiguredWicketSerializer());
     }
 }
