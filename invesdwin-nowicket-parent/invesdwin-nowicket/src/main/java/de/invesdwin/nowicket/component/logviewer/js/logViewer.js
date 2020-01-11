@@ -32,21 +32,19 @@ function logViewer_init(highlight) {
 				var error = log.error;
 				var message = log.message;
 				
-				var attributes = "";
+				var attributes = ' style="';
 				if(error){
-					attributes += 'color: red';
+					attributes += 'color: red;';
+				}else{
+					attributes += 'color: black;';
 				}
 				window.logViewer_background = !window.logViewer_background;
 				if(window.logViewer_background){
-					if (attributes.length != 0) {
-						attributes = attributes+"; ";
-					}
 					attributes = attributes + "background-color: #F2F2F2";
+				}else{
+					attributes = attributes + "background-color: white";
 				}
-				
-				if (attributes.length != 0) {
-					attributes = ' style="'+attributes+'"';
-				}
+				attributes += '"';
 				
 				var logData = $('#logData').prepend('<div '+attributes+'><b>'+time+':</b> '+message);
 				if(supressHighlightCount === 0){
@@ -54,6 +52,7 @@ function logViewer_init(highlight) {
 				}else{
 					supressHighlightCount--;
 				}
+				//remove first element
 				window.logViewer_toBeAppendedLogs.shift();
 				if(i >= 100){
 					setTimeout(function(){ window.logViewer_update(); }, 1);
