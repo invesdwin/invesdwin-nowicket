@@ -179,7 +179,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
     }
 
     protected Integer getMaxTrailingMessages() {
-        return 25000;
+        return 10000;
     }
 
 }
