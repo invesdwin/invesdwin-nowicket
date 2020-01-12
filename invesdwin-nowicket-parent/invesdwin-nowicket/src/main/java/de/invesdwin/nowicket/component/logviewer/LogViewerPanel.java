@@ -142,7 +142,8 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
         }
         final StringBuilder js = new StringBuilder();
         int countEntries = 0;
-        final ICloseableIterable<LogViewerEntry> entries = getModelObject().getLogViewerEntries(from, null);
+        final ICloseableIterable<LogViewerEntry> entries = getModelObject().getLogViewerEntries(from,
+                getMaxTrailingMessages());
         try (ICloseableIterator<LogViewerEntry> iterator = entries.iterator()) {
             while (true) {
                 final LogViewerEntry entry = iterator.next();
@@ -175,6 +176,10 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
             js.append("\nwindow." + LogViewerJsReference.FUNCTION_NAME + "_update();");
         }
         return js.toString();
+    }
+
+    protected Integer getMaxTrailingMessages() {
+        return 10000;
     }
 
 }
