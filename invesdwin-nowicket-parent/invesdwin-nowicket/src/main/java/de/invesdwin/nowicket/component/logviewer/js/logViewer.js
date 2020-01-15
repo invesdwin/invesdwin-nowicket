@@ -46,7 +46,13 @@ function logViewer_init(highlight) {
 				}
 				attributes += '"';
 				
-				var logData = $('#logData').prepend('<div '+attributes+'><b>'+time+':</b> '+message);
+				var str = '<div '+attributes+'>';
+				if(time !== "null"){
+					str += '<b>'+time+':</b> ';
+				}
+				str += message;
+				
+				var logData = $('#logData').prepend(str);
 				if(supressHighlightCount === 0){
 					logData.find(':first').effect('highlight', {}, 1000);
 				}else{

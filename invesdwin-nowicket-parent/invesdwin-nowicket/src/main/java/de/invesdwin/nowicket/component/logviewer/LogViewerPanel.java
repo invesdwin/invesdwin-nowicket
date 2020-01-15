@@ -22,6 +22,7 @@ import de.invesdwin.nowicket.component.logviewer.js.LogViewerJsReference;
 import de.invesdwin.nowicket.component.websocket.AWebSocketFallbackTimerBehavior;
 import de.invesdwin.util.collections.iterable.ICloseableIterable;
 import de.invesdwin.util.collections.iterable.ICloseableIterator;
+import de.invesdwin.util.lang.Objects;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 import de.invesdwin.util.math.decimal.scaled.Percent;
@@ -134,15 +135,9 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
     }
 
     protected String tailLog() {
-        final FDate from;
-        if (logTo == null) {
-            from = FDate.MIN_DATE;
-        } else {
-            from = logTo;
-        }
         final StringBuilder js = new StringBuilder();
         int countEntries = 0;
-        final ICloseableIterable<LogViewerEntry> entries = getModelObject().getLogViewerEntries(from,
+        final ICloseableIterable<LogViewerEntry> entries = getModelObject().getLogViewerEntries(logTo,
                 getMaxTrailingMessages());
         try (ICloseableIterator<LogViewerEntry> iterator = entries.iterator()) {
             while (true) {
@@ -155,7 +150,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
                 message.append(", '");
                 message.append(entry.getMessage().replace("'", "&#x27;"));
                 message.append("');");
-                if (logTo == null || logTo.isBefore(entry.getTime())) {
+                if (!Objects.equals(logTo, entry.getTime()) && (logTo == null || logTo.isBefore(entry.getTime()))) {
                     lastLogToMessages.clear();
                     logTo = entry.getTime();
                 }
