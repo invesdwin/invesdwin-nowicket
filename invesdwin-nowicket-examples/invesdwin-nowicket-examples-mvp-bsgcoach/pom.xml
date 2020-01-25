@@ -21,7 +21,7 @@
 		<java.version>1.8</java.version>
 		<glassfish-jaxb.version>2.3.2</glassfish-jaxb.version>
 		<hibernate-validator.version>6.1.1.Final</hibernate-validator.version>
-		<spring.version>5.2.2.RELEASE</spring.version>
+		<spring.version>5.2.3.RELEASE</spring.version>
 		<commons-codec.version>1.13</commons-codec.version>
 
 		<project.version.invesdwin-bom>1.0.9-SNAPSHOT</project.version.invesdwin-bom>

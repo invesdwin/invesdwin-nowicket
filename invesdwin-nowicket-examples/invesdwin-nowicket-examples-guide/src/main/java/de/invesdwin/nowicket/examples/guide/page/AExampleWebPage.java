@@ -1,18 +1,17 @@
 package de.invesdwin.nowicket.examples.guide.page;
 
-import java.awt.Component;
-import java.awt.Label;
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -22,6 +21,7 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
 import de.agilecoders.wicket.core.Bootstrap;
+import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapExternalLink.Target;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.DropDownButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.MenuBookmarkablePageLink;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
@@ -162,7 +162,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
     private void addSourceCodeNav(final Navbar navbar, final ComponentPosition position) {
         navbar.addComponents(NavbarComponents.transform(position, new NavbarExternalLink(Model.of(
-                "https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page")) {
+                "https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-parent/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page")) {
 
             @Override
             protected Component newLabel(final String markupId) {
