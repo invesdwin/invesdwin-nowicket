@@ -194,74 +194,6 @@
 					</rules>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<shadedArtifactAttached>true</shadedArtifactAttached>
-							<shadedClassifierName>standalone</shadedClassifierName>
-							<transformers combine.self="override">
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>META-INF/spring.handlers</resource>
-								</transformer>
-								<transformer
-									implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
-									<resource>META-INF/spring.factories</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>META-INF/spring.schemas</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>${start-class}</mainClass>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>META-INF/spring.tooling</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>META-INF/cxf/bus-extensions.txt</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>META-INF/mime.types</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-									<resource>META-INF/aop.xml</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-									<resource>META-INF/wsdl.plugin.xml</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer" />
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
-							</transformers>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-						<version>${version.spring-boot-maven-plugin}</version>
-						<scope>compile</scope>
-					</dependency>
-				</dependencies>
-			</plugin>
 		</plugins>
 
 		<resources>
@@ -324,5 +256,86 @@
 			<url>http://invesdwin.de/artifactory/invesdwin-oss-remote</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+	<profiles>
+		<profile>
+			<id>dist</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-shade-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>shade</goal>
+								</goals>
+								<configuration>
+									<shadedArtifactAttached>true</shadedArtifactAttached>
+									<shadedClassifierName>standalone</shadedClassifierName>
+									<transformers combine.self="override">
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>META-INF/spring.handlers</resource>
+										</transformer>
+										<transformer
+											implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+											<resource>META-INF/spring.factories</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>META-INF/spring.schemas</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+											<mainClass>${start-class}</mainClass>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>META-INF/spring.tooling</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>META-INF/cxf/bus-extensions.txt</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>META-INF/mime.types</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+											<resource>META-INF/aop.xml</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+											<resource>META-INF/wsdl.plugin.xml</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer" />
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
+									</transformers>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.springframework.boot</groupId>
+								<artifactId>spring-boot-maven-plugin</artifactId>
+								<version>${version.spring-boot-maven-plugin}</version>
+								<scope>compile</scope>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
