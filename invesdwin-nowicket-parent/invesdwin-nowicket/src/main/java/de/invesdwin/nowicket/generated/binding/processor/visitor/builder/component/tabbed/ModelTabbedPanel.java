@@ -37,7 +37,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelTab;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.util.collections.delegate.DelegateList;
-import de.invesdwin.util.collections.iterable.ATransformingCloseableIterator;
+import de.invesdwin.util.collections.iterable.ATransformingIterator;
 import de.invesdwin.util.collections.iterable.EmptyCloseableIterator;
 import de.invesdwin.util.collections.iterable.WrapperCloseableIterable;
 import de.invesdwin.util.lang.Reflections;
@@ -321,7 +321,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
             if (tabs == null || tabs.isEmpty()) {
                 return EmptyCloseableIterator.getInstance();
             }
-            return new ATransformingCloseableIterator<ITab, Item<ITab>>(
+            return new ATransformingIterator<ITab, Item<ITab>>(
                     WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
                 private int index = 0;
 
@@ -333,7 +333,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         }
 
         private Iterator<IModel<ITab>> newModels(final List<ITab> tabs) {
-            return new ATransformingCloseableIterator<ITab, IModel<ITab>>(
+            return new ATransformingIterator<ITab, IModel<ITab>>(
                     WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
                 @Override
                 protected IModel<ITab> transform(final ITab value) {
