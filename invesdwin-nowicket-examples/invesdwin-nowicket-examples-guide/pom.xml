@@ -24,7 +24,7 @@
 		<spring.version>5.2.3.RELEASE</spring.version>
 		<commons-codec.version>1.13</commons-codec.version>
 
-		<project.version.invesdwin-bom>1.0.12-SNAPSHOT</project.version.invesdwin-bom>
+		<project.version.invesdwin-bom>1.0.12</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.2-SNAPSHOT</project.version.invesdwin-nowicket>
 		<project.version.invesdwin-maven-plugin>1.0.8</project.version.invesdwin-maven-plugin>
 		<version.javax.inject>1</version.javax.inject>
