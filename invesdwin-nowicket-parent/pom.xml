@@ -38,7 +38,7 @@
 		<project.version.invesdwin-instrument>1.0.8</project.version.invesdwin-instrument>
 		<project.version.invesdwin-aspects>1.0.3-SNAPSHOT</project.version.invesdwin-aspects>
 
-		<project.version.invesdwin-util>1.0.3-SNAPSHOT</project.version.invesdwin-util>
+		<project.version.invesdwin-util>1.0.3</project.version.invesdwin-util>
 	</properties>
 
 	<dependencyManagement>
