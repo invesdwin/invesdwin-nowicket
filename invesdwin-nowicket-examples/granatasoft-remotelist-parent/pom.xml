@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.invesdwin</groupId>
 		<artifactId>invesdwin-context-parent</artifactId>
-		<version>1.0.2-SNAPSHOT</version>
+		<version>1.0.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.granatasoft</groupId>
@@ -21,7 +21,7 @@
 
 	<properties>
 		<project.version.granatasoft-remotelist>${project.version}</project.version.granatasoft-remotelist>
-		<project.version.invesdwin-context>1.0.2-SNAPSHOT</project.version.invesdwin-context>
+		<project.version.invesdwin-context>1.0.2</project.version.invesdwin-context>
 		<project.version.invesdwin-context-client>1.0.1</project.version.invesdwin-context-client>
 	</properties>
 
