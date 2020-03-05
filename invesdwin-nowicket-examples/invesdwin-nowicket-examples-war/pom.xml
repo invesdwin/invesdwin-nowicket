@@ -19,7 +19,7 @@
 
 		<project.version.invesdwin-maven-plugin>1.0.8</project.version.invesdwin-maven-plugin>
 		<project.version.invesdwin-bom>1.0.12</project.version.invesdwin-bom>
-		<project.version.invesdwin-nowicket>1.0.2-SNAPSHOT</project.version.invesdwin-nowicket>
+		<project.version.invesdwin-nowicket>1.0.2</project.version.invesdwin-nowicket>
 
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
