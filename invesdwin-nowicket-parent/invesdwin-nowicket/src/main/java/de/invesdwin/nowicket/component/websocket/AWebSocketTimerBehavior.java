@@ -24,6 +24,8 @@ import org.apache.wicket.protocol.ws.api.message.TextMessage;
 import org.apache.wicket.util.lang.Args;
 import org.danekja.java.util.function.serializable.SerializableConsumer;
 
+import de.invesdwin.util.lang.description.TextDescription;
+
 /**
  * A behavior that generates an WebSocket update callback at a regular interval.
  * 
@@ -78,7 +80,8 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
         onBind();
     }
 
-    private void onBind() {}
+    private void onBind() {
+    }
 
     /**
      * Returns the update interval
@@ -197,8 +200,8 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
         // remember id to be able to clear it later
         timerId = getTimerId();
 
-        headerResponse.render(OnLoadHeaderItem.forScript(String.format("Wicket.Timer.set('%s', function(){%s}, %d);",
-                timerId, js, updateInterval.getMilliseconds())));
+        headerResponse.render(OnLoadHeaderItem.forScript(TextDescription
+                .format("Wicket.Timer.set('%s', function(){%s}, %d);", timerId, js, updateInterval.getMilliseconds())));
     }
 
     protected CharSequence getCallbackScript() {
@@ -231,8 +234,9 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
 
     @Override
     public void onRemove(final Component component) {
-        component.getRequestCycle().find(IPartialPageRequestHandler.class).ifPresent(
-                target -> clearTimeout(target.getHeaderResponse()));
+        component.getRequestCycle()
+                .find(IPartialPageRequestHandler.class)
+                .ifPresent(target -> clearTimeout(target.getHeaderResponse()));
     }
 
     @Override
@@ -244,8 +248,9 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
     protected void onUnbind() {
         final Component component = getComponent();
 
-        component.getRequestCycle().find(IPartialPageRequestHandler.class).ifPresent(
-                target -> clearTimeout(target.getHeaderResponse()));
+        component.getRequestCycle()
+                .find(IPartialPageRequestHandler.class)
+                .ifPresent(target -> clearTimeout(target.getHeaderResponse()));
     }
 
     /**
