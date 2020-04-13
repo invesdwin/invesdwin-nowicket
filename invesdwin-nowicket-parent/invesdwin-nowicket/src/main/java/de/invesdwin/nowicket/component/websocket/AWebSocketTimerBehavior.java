@@ -201,7 +201,7 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
         timerId = getTimerId();
 
         headerResponse.render(OnLoadHeaderItem.forScript(TextDescription
-                .format("Wicket.Timer.set('%s', function(){%s}, %d);", timerId, js, updateInterval.getMilliseconds())));
+                .format("Wicket.Timer.set('%s', function(){%s}, %s);", timerId, js, updateInterval.getMilliseconds())));
     }
 
     protected CharSequence getCallbackScript() {
