@@ -27,9 +27,9 @@ import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.form.HiddenField;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.util.string.Strings;
 
 import de.invesdwin.nowicket.component.palette.Palette;
+import de.invesdwin.util.lang.Strings;
 
 /**
  * Component to keep track of selections on the html side. Also used for encoding and decoding those selections between
@@ -215,7 +215,7 @@ public class Recorder<T> extends HiddenField<Object> {
         getSelectedIds().clear();
 
         if (!Strings.isEmpty(value)) {
-            for (final String id : Strings.split(value, ',')) {
+            for (final String id : Strings.splitPreserveAllTokens(value, ',')) {
                 getSelectedIds().add(id);
             }
         }

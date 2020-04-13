@@ -33,7 +33,8 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
         private Boolean allowOrder;
         private Boolean allowMoveAll;
 
-        public ModelPaletteOptions() {}
+        public ModelPaletteOptions() {
+        }
 
         public ModelPaletteOptions withMaxRows(final Integer maxRows) {
             this.maxRows = maxRows;
@@ -160,7 +161,7 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
             for (final Object choice : getChoices()) {
                 id_choice.put(getChoiceRenderer().getIdValue(choice, 0), choice);
             }
-            for (final String newId : Strings.split(newIds, ",")) {
+            for (final String newId : Strings.splitPreserveAllTokens(newIds, ",")) {
                 final Object choice = id_choice.get(newId);
                 if (choice != null) {
                     selected.add(choice);

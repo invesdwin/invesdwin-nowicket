@@ -683,7 +683,7 @@ public enum BrandedWarehouseProductionsSubReportParserRow {
                 .values()) {
             final String rStr = r.toString();
             if (rStr.contains("?")) {
-                final String[] split = Strings.split(rStr, "?");
+                final String[] split = Strings.splitPreserveAllTokens(rStr, "?");
                 for (final String s : split) {
                     if (!trimmedTitle.contains(s)) {
                         continue;
