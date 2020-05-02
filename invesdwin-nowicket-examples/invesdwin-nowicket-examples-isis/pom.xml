@@ -126,7 +126,6 @@
 					<source>${version.compiler}</source>
 					<target>${version.compiler}</target>
 					<complianceLevel>${version.compiler}</complianceLevel>
-					<encoding>${file.encoding}</encoding>
 					<compilerArgument>-proc:none</compilerArgument>
 					<Xlint>ignore</Xlint>
 					<verbose>false</verbose>
