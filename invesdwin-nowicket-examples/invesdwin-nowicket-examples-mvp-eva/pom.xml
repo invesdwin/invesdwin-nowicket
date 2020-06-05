@@ -24,6 +24,7 @@
 		<spring.version>5.2.5.RELEASE</spring.version>
 		<commons-codec.version>1.13</commons-codec.version>
 		<assertj.version>3.15.0</assertj.version>
+		<okhttp3.version>4.7.12</okhttp3.version>
 
 		<project.version.invesdwin-bom>1.0.13-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.3-SNAPSHOT</project.version.invesdwin-nowicket>
