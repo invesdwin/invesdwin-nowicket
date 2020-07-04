@@ -40,7 +40,7 @@ import de.invesdwin.util.collections.delegate.DelegateList;
 import de.invesdwin.util.collections.iterable.ATransformingIterator;
 import de.invesdwin.util.collections.iterable.EmptyCloseableIterator;
 import de.invesdwin.util.collections.iterable.WrapperCloseableIterable;
-import de.invesdwin.util.lang.Reflections;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {

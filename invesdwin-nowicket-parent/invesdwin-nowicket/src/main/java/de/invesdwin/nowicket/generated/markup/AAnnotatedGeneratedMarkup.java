@@ -16,7 +16,7 @@ import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContex
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.classpath.ClassPathScanner;
 import de.invesdwin.util.collections.loadingcache.ALoadingCache;
-import de.invesdwin.util.lang.Reflections;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 public abstract class AAnnotatedGeneratedMarkup {

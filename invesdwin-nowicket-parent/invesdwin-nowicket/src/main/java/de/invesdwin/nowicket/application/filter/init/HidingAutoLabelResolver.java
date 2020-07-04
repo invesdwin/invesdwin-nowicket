@@ -17,7 +17,7 @@ import org.apache.wicket.model.IModel;
 import org.assertj.core.util.Strings;
 
 import de.invesdwin.util.collections.loadingcache.ALoadingCache;
-import de.invesdwin.util.lang.Reflections;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @ThreadSafe
 public class HidingAutoLabelResolver implements IComponentResolver {

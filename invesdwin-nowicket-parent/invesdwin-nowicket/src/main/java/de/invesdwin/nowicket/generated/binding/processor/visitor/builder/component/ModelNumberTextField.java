@@ -12,7 +12,7 @@ import org.apache.wicket.util.convert.IConverter;
 import org.apache.wicket.util.convert.converter.AbstractDecimalConverter;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.NumberInputHtmlElement;
-import de.invesdwin.util.lang.Reflections;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @NotThreadSafe

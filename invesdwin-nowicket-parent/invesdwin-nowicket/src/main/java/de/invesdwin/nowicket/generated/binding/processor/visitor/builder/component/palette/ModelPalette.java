@@ -21,8 +21,8 @@ import de.invesdwin.nowicket.component.palette.Palette;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.IFormComponentAware;
 import de.invesdwin.util.assertions.Assertions;
-import de.invesdwin.util.lang.Reflections;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 public class ModelPalette extends Palette<Object> implements IFormComponentAware, ILabelProvider<String> {

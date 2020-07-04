@@ -24,8 +24,8 @@ import org.apache.wicket.MetaDataKey;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.auth.ISavedRequest;
-import de.invesdwin.util.lang.Reflections;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 public class ShiroAuthenticationService implements IAuthenticationService {

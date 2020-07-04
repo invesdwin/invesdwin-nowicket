@@ -9,8 +9,8 @@ import org.apache.wicket.model.IModel;
 import de.invesdwin.norva.beanpath.spi.element.RootBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.utility.ContainerTitleBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.AChoiceHtmlElement;
-import de.invesdwin.util.lang.Reflections;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 public class ChoiceTabTitleModel extends TitleModel {

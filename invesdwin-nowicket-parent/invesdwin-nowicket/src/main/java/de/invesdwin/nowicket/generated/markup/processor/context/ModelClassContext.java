@@ -10,8 +10,8 @@ import de.invesdwin.nowicket.generated.binding.GeneratedBindingDefaults;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.norva.beanpath.impl.clazz.BeanClassContext;
 import de.invesdwin.util.collections.loadingcache.ALoadingCache;
-import de.invesdwin.util.lang.Reflections;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 public class ModelClassContext extends AModelContext {

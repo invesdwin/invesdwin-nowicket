@@ -8,7 +8,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.protocol.ws.javax.JavaxWebSocketFilter;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
-import de.invesdwin.util.lang.Reflections;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 public abstract class AWicketFilter extends JavaxWebSocketFilter {

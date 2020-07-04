@@ -7,7 +7,7 @@ import javax.inject.Named;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.expression.SecurityExpressionHandler;
 
-import de.invesdwin.util.lang.Reflections;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
 @Named
