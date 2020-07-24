@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.6.RELEASE</version>
+		<version>2.3.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -21,9 +21,7 @@
 		<java.version>1.8</java.version>
 		<glassfish-jaxb.version>2.3.2</glassfish-jaxb.version>
 		<hibernate-validator.version>6.1.1.Final</hibernate-validator.version>
-		<spring.version>5.2.6.RELEASE</spring.version>
-		<commons-codec.version>1.13</commons-codec.version>
-		<assertj.version>3.15.0</assertj.version>
+		<spring.version>5.2.8.RELEASE</spring.version>
 		<okhttp3.version>4.7.2</okhttp3.version>
 
 		<project.version.invesdwin-bom>1.0.13-SNAPSHOT</project.version.invesdwin-bom>
@@ -31,7 +29,7 @@
 		<project.version.invesdwin-maven-plugin>1.0.9-SNAPSHOT</project.version.invesdwin-maven-plugin>
 		<version.javax.inject>1</version.javax.inject>
 		<version.maven-processor-plugin>3.3.3</version.maven-processor-plugin>
-		<version.spring-boot-maven-plugin>2.2.6.RELEASE</version.spring-boot-maven-plugin>
+		<version.spring-boot-maven-plugin>2.3.1.RELEASE</version.spring-boot-maven-plugin>
 		<aspectj.version>1.9.5</aspectj.version>
 
 		<start-class>com.bsgcoach.Main</start-class>
