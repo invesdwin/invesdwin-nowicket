@@ -36,7 +36,7 @@ public abstract class AModelTab implements ITab {
             panel = newPanel(containerId);
         }
         if (isNewContainerId(containerId)) {
-            if (panel.getId().equals(DUMMY_CONTAINER_ID)) {
+            if (DUMMY_CONTAINER_ID.equals(panel.getId())) {
                 panel = newPanel(containerId);
             } else {
                 throw new IllegalStateException(
