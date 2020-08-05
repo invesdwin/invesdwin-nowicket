@@ -36,8 +36,12 @@ public abstract class AModelTab implements ITab {
             panel = newPanel(containerId);
         }
         if (isNewContainerId(containerId)) {
-            throw new IllegalStateException(
-                    "Unable to change containerId to [" + containerId + "], existing: " + panel.getId());
+            if (panel.getId().equals(DUMMY_CONTAINER_ID)) {
+                panel = newPanel(containerId);
+            } else {
+                throw new IllegalStateException(
+                        "Unable to change containerId to [" + containerId + "], existing: " + panel.getId());
+            }
         }
         return panel;
     }
