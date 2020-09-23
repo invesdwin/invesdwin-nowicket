@@ -10,7 +10,6 @@ import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
@@ -82,13 +81,6 @@ public abstract class AExampleWebPage extends AWebPage {
 
     public AExampleWebPage(final IModel<?> model) {
         super(model);
-
-        add(new WebMarkupContainer("sumome") {
-            @Override
-            public boolean isVisible() {
-                return AWebApplication.get().usesDeploymentConfig();
-            }
-        });
 
         add(new CookieConsent("cookieConsent", Model.of(URIs.asUri("http://invesdwin.de/privacypolicy.html"))));
     }
