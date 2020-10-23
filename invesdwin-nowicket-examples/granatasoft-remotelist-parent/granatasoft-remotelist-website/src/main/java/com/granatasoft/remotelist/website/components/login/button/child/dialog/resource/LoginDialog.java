@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.IResource;
-import org.springframework.security.core.userdetails.User;
 
 import com.granatasoft.remotelist.persistence.ApplicationInstance;
 import com.granatasoft.remotelist.persistence.Protocol;
@@ -17,9 +16,7 @@ import com.granatasoft.remotelist.persistence.Server;
 import de.invesdwin.context.integration.IntegrationProperties;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.annotation.ModalCloser;
-import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
-import de.invesdwin.nowicket.security.spring.SpringSecurityAuthenticationService;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.uri.URIs;
@@ -86,10 +83,6 @@ public class LoginDialog extends AValueObject {
 
     public URI guacButton() {
         if (!hideGuacButton()) {
-            final String server = this.server.getIpv4();
-            final SpringSecurityAuthenticationService springSecurityAuthenticationService = (SpringSecurityAuthenticationService) Roles
-                    .getAuthenticationService();
-            final User user = (User) springSecurityAuthenticationService.getAuthentication().getPrincipal();
             final RequestCycle requestCycle = RequestCycle.get();
             final String baseUrl;
             if (requestCycle != null) {

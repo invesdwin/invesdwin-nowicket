@@ -66,9 +66,7 @@ public class GuacamoleServlet extends GuacamoleHTTPTunnelServlet {
     }
 
     private String readBody(final HttpServletRequest request) {
-
         String sessionId = null;
-        final StringBuffer jb = new StringBuffer();
         String line = null;
         try {
             final BufferedReader reader = request.getReader();
