@@ -20,7 +20,7 @@ public class BalanceSheet extends AValueObject {
         //    Total Curetn Assets     
         private Decimal totalCurrentAssets;
 
-        public class FixedAssets {
+        public static class FixedAssets {
             //  Fixed---------- Net Plant Investment    
             private Decimal netPlantInvestment;
             //    Assets    Work in Progress   

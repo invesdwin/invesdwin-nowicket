@@ -18,7 +18,7 @@ public class Production extends AValueObject {
         //Reject--------  Base Reject Rate %
         private Percent baseRejectRatePercent;
 
-        public class Adders {
+        public static class Adders {
             //   Adders------    Models
             private Decimal models;
             //    Avg TQM

@@ -130,7 +130,7 @@ public class CashFlow extends AValueObject {
         //            Capacity Construct  
         private Decimal capitalCapacityConstruct;
 
-        public class PrincipalRepay {
+        public static class PrincipalRepay {
             //        Principal-----------    Overdraft Loan  
             private Decimal overdraftLoan;
             //          Repay 1-Year Loan 
@@ -176,7 +176,7 @@ public class CashFlow extends AValueObject {
 
         private final PrincipalRepay principalRepay = new PrincipalRepay();
 
-        public class InterestPmts {
+        public static class InterestPmts {
             //        Interest--------    Overdraft Loan  
             private Decimal overdraftLoan;
             //          Pmts  Bank Loans  

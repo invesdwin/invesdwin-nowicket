@@ -21,8 +21,6 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.Binding
 @NotThreadSafe
 public class LoginButtonsPanel extends Panel {
 
-    private String btnClass;
-
     public LoginButtonsPanel(final String wicketId, final IModel<LoginButtons> model) {
         super(wicketId, model);
         new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
