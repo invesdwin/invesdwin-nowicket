@@ -115,6 +115,18 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<complianceLevel>${java.version}</complianceLevel>
+					<compilerArgument>-proc:none</compilerArgument>
+					<Xlint>ignore</Xlint>
+					<verbose>false</verbose>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>de.invesdwin</groupId>
 				<artifactId>invesdwin-maven-plugin</artifactId>
 				<version>${project.version.invesdwin-maven-plugin}</version>
@@ -127,7 +139,7 @@
 						</goals>
 						<configuration>
 							<useInvesdwinEclipseSettings>true</useInvesdwinEclipseSettings>
-							<codeComplianceLevel>${version.compiler}</codeComplianceLevel>
+							<codeComplianceLevel>${java.version}</codeComplianceLevel>
 						</configuration>
 					</execution>
 				</executions>
@@ -253,7 +265,7 @@
 			<url>https://invesdwin.de/artifactory/invesdwin-oss-remote</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<profiles>
 		<profile>
 			<id>dist</id>
