@@ -11,7 +11,7 @@ import de.invesdwin.util.math.decimal.Decimal;
 @NotThreadSafe
 public class CelebrityEndorsements extends AValueObject {
 
-    public class Celebs extends AValueObject {
+    public static class Celebs extends AValueObject {
 
         private final CompanyRegion companyRegion;
 

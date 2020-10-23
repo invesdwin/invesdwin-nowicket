@@ -21,7 +21,7 @@ public class AdminExpenses extends AValueObject {
     //Includes Ethics and/or Workforce Spending
     private Decimal includesEthicsAndOrWorkforceSpending;
 
-    public class PerRegion {
+    public static class PerRegion {
         private final CompanyRegion companyRegion;
 
         //    Fixed Cost of Unused Plant-----------           N.A.

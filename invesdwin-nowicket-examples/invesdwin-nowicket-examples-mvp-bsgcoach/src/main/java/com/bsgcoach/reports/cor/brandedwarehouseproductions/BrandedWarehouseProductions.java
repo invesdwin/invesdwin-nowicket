@@ -60,7 +60,7 @@ public class BrandedWarehouseProductions extends AValueObject {
 
     private final Inventory inventoryFromLastYr = new Inventory();
 
-    public class InventoryCleared {
+    public static class InventoryCleared {
         //        Pairs
         private Decimal pairs;
         //        Cost
@@ -192,7 +192,7 @@ public class BrandedWarehouseProductions extends AValueObject {
 
     private final Inventory availableForSale = new Inventory();
 
-    public class Pairs {
+    public static class Pairs {
         //        Internet
         private Decimal internet;
         //        Wholesale
@@ -242,7 +242,7 @@ public class BrandedWarehouseProductions extends AValueObject {
     //    Industry Total Inv
     private Decimal industryTotalInv;
 
-    public class Market {
+    public static class Market {
         //    Demand----  Internet
         private Decimal demandInternet;
         //        Wholesale
@@ -288,7 +288,7 @@ public class BrandedWarehouseProductions extends AValueObject {
 
     private final Market market = new Market();
 
-    public class WhseOperExp {
+    public static class WhseOperExp {
         //        Inventory Storage
         private Decimal inventoryStorage;
         //        Pack/Ship---    Internet
@@ -349,7 +349,7 @@ public class BrandedWarehouseProductions extends AValueObject {
     //    Total Freight and Tariffs
     private Decimal totalFreightAndTariffs;
 
-    public class InventoryClearance {
+    public static class InventoryClearance {
         //        Ind Inv / Ind Demand
         private Decimal indInvPerIndDemand;
         //        Co Cleared / Ind Inv

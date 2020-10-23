@@ -13,6 +13,7 @@ import com.bsgcoach.rules.IRule;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.ADelegateComparator;
+import de.invesdwin.util.math.Integers;
 
 @NotThreadSafe
 @GeneratedMarkup
@@ -78,7 +79,7 @@ public class RuleMatch extends AValueObject {
     public int compareTo(final Object o) {
         if (o instanceof RuleMatch) {
             final RuleMatch cO = (RuleMatch) o;
-            return ((Integer) rawSignificance.ordinal()).compareTo(cO.rawSignificance.ordinal());
+            return Integers.compare(rawSignificance.ordinal(), cO.rawSignificance.ordinal());
         } else {
             return 1;
         }

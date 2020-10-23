@@ -8,7 +8,7 @@ import de.invesdwin.util.math.decimal.Decimal;
 @NotThreadSafe
 public class UpgradeOptions extends AValueObject {
 
-    public class Online {
+    public static class Online {
         private OptLetter optLetter1;
         private OptLetter optLetter2;
 
@@ -34,7 +34,7 @@ public class UpgradeOptions extends AValueObject {
 
     }
 
-    public class Ordered {
+    public static class Ordered {
         private OptLetter optLetter;
         private Decimal cost;
 

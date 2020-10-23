@@ -56,8 +56,8 @@ public class PropertiesVisitor extends AModelVisitor {
         final File propertiesFile = getContext().getPropertiesFile(markupType);
         final Properties properties = new Properties();
         if (propertiesFile.exists()) {
-            try {
-                properties.load(new FileInputStream(propertiesFile));
+            try (FileInputStream fis = new FileInputStream(propertiesFile)) {
+                properties.load(fis);
             } catch (final IOException e) {
                 throw new RuntimeException();
             }
@@ -173,9 +173,9 @@ public class PropertiesVisitor extends AModelVisitor {
                  * 
                  * properties.store() does not preserve order, thus using separate properties instances here
                  */
-                String appendString = "";
+                final StringBuilder appendString = new StringBuilder();
                 if (existingProperties.size() > 0) {
-                    appendString += "\n";
+                    appendString.append("\n");
                 }
                 for (final Properties newProperties : newPropertiesOrdered) {
                     final ByteArrayOutputStream encodedProperties = new ByteArrayOutputStream();
@@ -184,7 +184,8 @@ public class PropertiesVisitor extends AModelVisitor {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         if (line.contains("=")) {
-                            appendString += line + "\n";
+                            appendString.append(line);
+                            appendString.append("\n");
                         }
                     }
                 }

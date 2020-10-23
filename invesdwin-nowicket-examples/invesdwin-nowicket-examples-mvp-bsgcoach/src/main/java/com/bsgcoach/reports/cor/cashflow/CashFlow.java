@@ -12,7 +12,7 @@ public class CashFlow extends AValueObject {
     private Decimal beginningCashBalance;
 
     //    
-    public class CashInflows {
+    public static class CashInflows {
         //    Cash Inflows----------------        Receipts from Sales 
         private Decimal receiptsFromSales;
         //            Bank----------  1-Year
@@ -113,7 +113,7 @@ public class CashFlow extends AValueObject {
     private Decimal totalCashAvailableFromAllSources;
 
     //                
-    public class CashOutlays {
+    public static class CashOutlays {
 
         //    Cash----------  Payments to Materials Suppliers   
         private Decimal paymentsToMaterialsSuppliers;

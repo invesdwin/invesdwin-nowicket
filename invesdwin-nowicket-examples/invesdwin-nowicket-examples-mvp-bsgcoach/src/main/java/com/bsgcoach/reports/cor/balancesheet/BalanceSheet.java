@@ -8,7 +8,7 @@ import de.invesdwin.util.math.decimal.Decimal;
 @NotThreadSafe
 public class BalanceSheet extends AValueObject {
 
-    public class Assets {
+    public static class Assets {
         //    Assets--------  Cash On Hand    
         private Decimal cashOnHand;
         //    Interest Rate     
@@ -109,7 +109,7 @@ public class BalanceSheet extends AValueObject {
     private Decimal totalAssets;
 
     //          
-    public class Liabilities {
+    public static class Liabilities {
         //Liabilities------   Accounts Payable        
         private Decimal accountsPayable;
         //  Overdraft Loan Payable      
@@ -206,7 +206,7 @@ public class BalanceSheet extends AValueObject {
     private final Liabilities liabilities = new Liabilities();
 
     //          
-    public class Equity {
+    public static class Equity {
         //Equity----------    Common Stock-----------     This Year
         private Decimal commonStockThisYear;
         //          Last Year

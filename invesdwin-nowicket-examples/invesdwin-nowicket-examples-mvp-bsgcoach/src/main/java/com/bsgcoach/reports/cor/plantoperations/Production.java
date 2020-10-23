@@ -14,7 +14,7 @@ public class Production extends AValueObject {
     //Last Year
     private Decimal numberOfModesLastYr;
 
-    public class RejectCalcs {
+    public static class RejectCalcs {
         //Reject--------  Base Reject Rate %
         private Percent baseRejectRatePercent;
 
@@ -121,7 +121,7 @@ public class Production extends AValueObject {
 
     private final RejectCalcs rejectCalcs = new RejectCalcs();
 
-    public class SqCalcs {
+    public static class SqCalcs {
         //S/Q------------ Points--------- L-W %
         private Decimal pointsLWPercent;
         //Calcs       Styling
@@ -201,7 +201,7 @@ public class Production extends AValueObject {
     //    Last Year
     private Decimal sqRatingNumberOfStarsLastYr;
 
-    public class PairsProduced000s {
+    public static class PairsProduced000s {
         //Pairs Produced-----------       Regular
         private Decimal regular;
         //(000s)     Overtime
@@ -290,7 +290,7 @@ public class Production extends AValueObject {
     //Branded Cost Allocation %    
     private Percent brandedCostAllocationPercent;
 
-    public class Costs {
+    public static class Costs {
 
         //Costs---------- Materials-----  Standard
         private Decimal materialsStandard;
@@ -427,7 +427,7 @@ public class Production extends AValueObject {
 
     private final Costs costs = new Costs();
 
-    public class CostPrProd {
+    public static class CostPrProd {
         //Cost/Pr------   Before Rejects  
         private Decimal beforeRejects;
         //Prod    After Rejects   

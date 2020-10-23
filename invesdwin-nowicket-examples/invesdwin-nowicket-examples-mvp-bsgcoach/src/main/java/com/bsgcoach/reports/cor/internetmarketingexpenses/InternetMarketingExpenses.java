@@ -22,7 +22,7 @@ public class InternetMarketingExpenses extends AValueObject {
     //              Global
     private Percent globalAllocationPercentageWithinRegion;
 
-    public class PerRegion {
+    public static class PerRegion {
 
         private final CompanyRegion companyRegion;
 

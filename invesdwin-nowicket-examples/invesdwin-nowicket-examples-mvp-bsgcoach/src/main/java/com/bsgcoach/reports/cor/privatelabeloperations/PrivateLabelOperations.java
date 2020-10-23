@@ -28,7 +28,7 @@ public class PrivateLabelOperations extends AValueObject {
     //    Net Revenues
     private Decimal netRevenues;
 
-    public class DirectCosts extends AValueObject {
+    public static class DirectCosts extends AValueObject {
         //    Direct--------- Production Costs
         private Decimal productionCosts;
         //      Costs Exchange Rate Adj

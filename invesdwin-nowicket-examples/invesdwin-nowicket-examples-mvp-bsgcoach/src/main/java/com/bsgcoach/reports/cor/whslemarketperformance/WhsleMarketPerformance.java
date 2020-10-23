@@ -20,7 +20,7 @@ public class WhsleMarketPerformance extends AValueObject {
     //    Net Revenues    
     private Decimal netRevenues;
 
-    public class Costs {
+    public static class Costs {
         //    Costs--------   COBPS
         private Decimal cobps;
         //        Whse

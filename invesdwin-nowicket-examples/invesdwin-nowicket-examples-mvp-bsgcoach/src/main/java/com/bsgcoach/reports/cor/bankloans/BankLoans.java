@@ -12,7 +12,7 @@ import de.invesdwin.util.math.decimal.Decimal;
 @NotThreadSafe
 public class BankLoans extends AValueObject {
 
-    public class NewBankLoansThisYear {
+    public static class NewBankLoansThisYear {
         //    New Bank Loans This Year-----------         5-Year
         private Decimal year5;
         //    10-Year

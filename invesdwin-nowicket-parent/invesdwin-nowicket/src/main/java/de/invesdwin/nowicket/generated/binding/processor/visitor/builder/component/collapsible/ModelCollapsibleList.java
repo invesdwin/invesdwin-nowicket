@@ -105,7 +105,7 @@ public class ModelCollapsibleList extends Panel {
         return collapsibles;
     }
 
-    public class AccordionCollapsible extends ModelCollapsible {
+    public static class AccordionCollapsible extends ModelCollapsible {
 
         public AccordionCollapsible(final String id, final ITab tab) {
             super(id, tab);

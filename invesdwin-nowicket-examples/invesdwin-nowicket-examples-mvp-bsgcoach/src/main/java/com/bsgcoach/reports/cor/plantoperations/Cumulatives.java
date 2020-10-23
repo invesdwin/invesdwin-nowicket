@@ -9,7 +9,7 @@ import de.invesdwin.util.math.decimal.scaled.Percent;
 @NotThreadSafe
 public class Cumulatives extends AValueObject {
 
-    public class Tqm {
+    public static class Tqm {
         //    TQM----------   $000s
         private Decimal dollar000s;
         //    Capacity
@@ -43,7 +43,7 @@ public class Cumulatives extends AValueObject {
 
     }
 
-    public class BestP {
+    public static class BestP {
         //    BestP---------  $000s
         private Decimal dollar000s;
         //    Pairs

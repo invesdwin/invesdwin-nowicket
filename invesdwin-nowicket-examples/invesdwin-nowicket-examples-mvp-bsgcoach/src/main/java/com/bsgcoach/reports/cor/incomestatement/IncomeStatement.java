@@ -11,11 +11,11 @@ import de.invesdwin.util.math.decimal.Decimal;
 @NotThreadSafe
 public class IncomeStatement extends AValueObject {
 
-    public class PerRegion {
+    public static class PerRegion {
 
         private final CompanyRegion companyRegion;
 
-        public class GrossRevenues {
+        public static class GrossRevenues {
             //N.A.------------    Gross Revenues----------        Internet
             private Decimal internet;
             //    Wholesale
@@ -66,7 +66,7 @@ public class IncomeStatement extends AValueObject {
         //Net Revenues
         private Decimal netRevenues;
 
-        public class OperatingCosts {
+        public static class OperatingCosts {
 
             //Operating Costs----------       COPS
             private Decimal cops;
