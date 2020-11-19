@@ -16,6 +16,8 @@ import de.invesdwin.norva.beanpath.spi.element.TabbedBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TableBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.TextFieldBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.UploadButtonBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.simple.SimpleActionBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.simple.SimplePropertyBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.visitor.ABeanPathVisitor;
 import de.invesdwin.nowicket.generated.binding.annotation.Panel;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
@@ -128,6 +130,16 @@ public class ModelProcessorVisitor extends ABeanPathVisitor {
         for (final IModelVisitor visitor : visitors) {
             visitor.finish();
         }
+    }
+
+    @Override
+    public void visitInvalidAction(final SimpleActionBeanPathElement e) {
+        //noop
+    }
+
+    @Override
+    public void visitInvalidProperty(final SimplePropertyBeanPathElement e) {
+        //noop
     }
 
 }
