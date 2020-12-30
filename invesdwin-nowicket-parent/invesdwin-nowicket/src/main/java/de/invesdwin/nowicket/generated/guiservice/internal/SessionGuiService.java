@@ -163,7 +163,7 @@ public class SessionGuiService implements IGuiService, Serializable {
             sessionFolder = new File(ABaseWebApplication.get().getSessionsDirectory(),
                     getClass().getSimpleName() + "/" + AWebSession.get().getId());
             //clean up folder initially to prevent session clash with stale data
-            Files.deleteQuietly(sessionFolder);
+            Files.deleteNative(sessionFolder);
             //add listener to clean up the session directory on session unbind aswell
             final ABaseWebApplication application = ABaseWebApplication.get();
             application.getSessionStore().registerUnboundListener(new UnboundListener() {
@@ -171,7 +171,7 @@ public class SessionGuiService implements IGuiService, Serializable {
                 public void sessionUnbound(final String sessionId) {
                     if (sessionFolder.getAbsolutePath().contains(sessionId)) {
                         application.getSessionStore().unregisterUnboundListener(this);
-                        Files.deleteQuietly(sessionFolder);
+                        Files.deleteNative(sessionFolder);
                     }
                 }
             });
