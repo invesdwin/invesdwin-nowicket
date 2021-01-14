@@ -141,13 +141,14 @@ public class Request extends AValueObject {
             final Reports reports = new Reports(companyLetter, gameEndsInYear, creditRating,
                     new FileSystemResource(firReportCsv), new FileSystemResource(corReportCsv),
                     new FileSystemResource(cirReportCsv));
-            sendMail("Feedback given on https://github.com/subes/invesdwin-nowicket", null, Collections.emptyList());
+            sendMail("Feedback given on https://github.com/invesdwin/invesdwin-nowicket", null,
+                    Collections.emptyList());
             return new Feedback(reports);
         } catch (final Throwable t) {
             final String message = "Our feedback tool was not able to read the reports you have provided. Please try again and make sure that you upload the correct ones.<br><br>If this does not help, then please <a href=\"mailto:gsubes@gmail.com\">email us</a>. It would be of great help to us if you shortly describe the problem and attach the reports you have used as well as a screenshot of the error message. We will get the feedback tool back on track as soon as possible.<br><br><h4>Reason:</h4> "
                     + t.getMessage();
             final Exception exception = new Exception(message, t);
-            sendMail("Error in getting feedback on https://github.com/subes/invesdwin-nowicket", exception,
+            sendMail("Error in getting feedback on https://github.com/invesdwin/invesdwin-nowicket", exception,
                     Arrays.asList(firReportCsv, cirReportCsv, corReportCsv));
             throw exception;
         }
@@ -193,6 +194,7 @@ public class Request extends AValueObject {
         return "Request.title";
     }
 
-    public void upload() {}
+    public void upload() {
+    }
 
 }

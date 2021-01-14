@@ -206,8 +206,8 @@
 	</pluginRepositories>
 
 	<scm>
-		<url>https://github.com/subes/invesdwin-nowicket</url>
-		<connection>scm:git:https://github.com/subes/invesdwin-nowicket.git</connection>
+		<url>https://github.com/invesdwin/invesdwin-nowicket</url>
+		<connection>scm:git:https://github.com/invesdwin/invesdwin-nowicket.git</connection>
 		<tag>HEAD</tag>
 	</scm>
 

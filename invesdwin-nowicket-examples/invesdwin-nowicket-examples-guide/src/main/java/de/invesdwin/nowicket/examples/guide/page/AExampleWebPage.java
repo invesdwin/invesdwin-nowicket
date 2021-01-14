@@ -154,7 +154,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
     private void addSourceCodeNav(final Navbar navbar, final ComponentPosition position) {
         navbar.addComponents(NavbarComponents.transform(position, new NavbarExternalLink(Model.of(
-                "https://github.com/subes/invesdwin-nowicket/tree/master/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page")) {
+                "https://github.com/invesdwin/invesdwin-nowicket/tree/master/invesdwin-nowicket-examples/invesdwin-nowicket-examples-guide/src/main/java/de/invesdwin/nowicket/examples/guide/page")) {
 
             @Override
             protected Component newLabel(final String markupId) {

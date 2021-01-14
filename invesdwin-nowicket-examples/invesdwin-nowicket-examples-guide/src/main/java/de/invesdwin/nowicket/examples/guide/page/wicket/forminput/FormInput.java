@@ -40,7 +40,7 @@ public class FormInput extends AValueObject {
     private Integer valueBetween0and100 = 50;
     @NotNull
     @URL
-    private String url = "https://github.com/subes/invesdwin-nowicket/";
+    private String url = "https://github.com/invesdwin/invesdwin-nowicket/";
     private String usPhoneNumber = "(123) 456-1234";
     private Integer selectANumberRadioChoicee = 1;
     private Integer selectANumberRadioGroup;
@@ -223,9 +223,10 @@ public class FormInput extends AValueObject {
                 public void ok() {
                     //reset by redirecting to a clean page
                     GuiService.get().showPage(new FormInput());
-                    GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.success)
-                            .withTitle(i18n("reset"))
-                            .withMessage(i18n("reset.success")));
+                    GuiService.get()
+                            .showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.success)
+                                    .withTitle(i18n("reset"))
+                                    .withMessage(i18n("reset.success")));
                 }
 
                 public String okTitle() {
@@ -243,9 +244,10 @@ public class FormInput extends AValueObject {
                 }
             });
         } else {
-            GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.error)
-                    .withTitle(i18n("reset"))
-                    .withMessage(i18n("reset.error")));
+            GuiService.get()
+                    .showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.error)
+                            .withTitle(i18n("reset"))
+                            .withMessage(i18n("reset.error")));
         }
     }
 
