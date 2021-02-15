@@ -3,7 +3,7 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
-import de.invesdwin.norva.beanpath.spi.element.table.TableButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.column.TableButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 
 @NotThreadSafe

@@ -2,7 +2,7 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.norva.beanpath.spi.element.table.ITableColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.column.ITableColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 

@@ -7,8 +7,8 @@ import java.util.List;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.invesdwin.norva.beanpath.spi.element.table.TableBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.table.TableButtonColumnBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.table.TableTextColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.column.TableButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.column.TableTextColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.util.assertions.Assertions;
