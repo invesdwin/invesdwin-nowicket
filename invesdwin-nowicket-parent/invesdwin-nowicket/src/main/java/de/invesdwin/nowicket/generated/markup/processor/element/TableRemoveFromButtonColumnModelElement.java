@@ -3,8 +3,8 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
+import de.invesdwin.norva.beanpath.spi.element.table.TableRemoveFromButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
-import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPathElement;
 
 @NotThreadSafe
 public class TableRemoveFromButtonColumnModelElement extends TableSubmitButtonColumnModelElement {

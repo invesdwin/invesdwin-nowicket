@@ -13,10 +13,10 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.norva.beanpath.spi.element.ITableColumnBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.TableContainerColumnBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.ITableColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.TableContainerColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.TableRemoveFromButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.TableSelectionButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.component.ReusingDelegateColumn;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;

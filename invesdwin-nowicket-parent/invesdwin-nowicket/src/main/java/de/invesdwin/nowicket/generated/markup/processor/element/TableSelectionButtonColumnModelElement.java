@@ -2,7 +2,7 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.TableSelectionButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 
 @NotThreadSafe

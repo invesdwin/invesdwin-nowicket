@@ -6,11 +6,11 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.norva.beanpath.spi.element.ATableBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.ITableColumnBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.TableContainerColumnBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.TableRemoveFromButtonColumnBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.element.TableSelectionButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.ATableBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.ITableColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.TableContainerColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.TableRemoveFromButtonColumnBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.TableSelectionButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.collections.delegate.DelegateList;

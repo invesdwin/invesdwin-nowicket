@@ -3,8 +3,8 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
+import de.invesdwin.norva.beanpath.spi.element.table.TableButtonColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
-import de.invesdwin.norva.beanpath.spi.element.TableButtonColumnBeanPathElement;
 
 @NotThreadSafe
 public class TableSubmitButtonColumnModelElement extends ATableColumnModelElement<TableButtonColumnBeanPathElement> implements
