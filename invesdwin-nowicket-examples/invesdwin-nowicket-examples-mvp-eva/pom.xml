@@ -162,6 +162,17 @@
 							<failOnError>false</failOnError>
 						</configuration>
 					</execution>
+					<execution>
+						<id>process-test</id>
+						<goals>
+							<goal>process-test</goal>
+						</goals>
+						<phase>generate-test-sources</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/generated-test-sources/apt</outputDirectory>
+							<failOnError>false</failOnError>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -350,7 +361,8 @@
 		<profile>
 			<id>jacoco</id>
 			<activation>
-				<!-- use "mvn clean install -Pjacoco" to enable target/jacoco.exec file generation -->
+				<!-- use "mvn clean install -Pjacoco" to enable target/jacoco.exec file 
+					generation -->
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<dependencies>
@@ -359,7 +371,8 @@
 					<groupId>org.jacoco</groupId>
 					<artifactId>org.jacoco.agent</artifactId>
 					<classifier>runtime</classifier>
-					<!-- not using test scope so that annotation processors work properly, requires less overrides in pom.xmls -->
+					<!-- not using test scope so that annotation processors work properly, 
+						requires less overrides in pom.xmls -->
 					<version>${version.jacoco-maven-plugin}</version>
 				</dependency>
 			</dependencies>
