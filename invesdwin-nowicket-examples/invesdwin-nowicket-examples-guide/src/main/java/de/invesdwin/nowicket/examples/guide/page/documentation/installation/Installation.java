@@ -2,11 +2,11 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.installation;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.wicket.util.string.Strings;
 
 import de.invesdwin.nowicket.examples.guide.page.documentation.frameworkhistory.FrameworkHistory;
 import de.invesdwin.nowicket.examples.guide.page.documentation.tutorialstart.TutorialStart;
@@ -43,8 +43,8 @@ public class Installation extends AValueObject {
 
     private CharSequence getFileContent(final String relativeClasspath) throws IOException {
         final InputStream in = getClass().getResourceAsStream(relativeClasspath);
-        final String str = IOUtils.toString(in);
-        return Strings.escapeMarkup(str.replace("\t", "    ").trim());
+        final String str = IOUtils.toString(in, Charset.defaultCharset());
+        return org.apache.wicket.util.string.Strings.escapeMarkup(str.replace("\t", "    ").trim());
     }
 
 }

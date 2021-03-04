@@ -23,7 +23,6 @@ import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.util.convert.IConverter;
-import org.apache.wicket.util.string.Strings;
 import org.apache.wicket.util.value.IValueMap;
 
 import de.invesdwin.nowicket.component.palette.Palette;
@@ -80,7 +79,7 @@ public abstract class AOptions<T> extends FormComponent<T> {
                 final String value = renderer.getIdValue(choice, 0);
 
                 if (getEscapeModelStrings()) {
-                    id = Strings.escapeMarkup(value);
+                    id = org.apache.wicket.util.string.Strings.escapeMarkup(value);
                 } else {
                     id = value;
                 }
@@ -101,7 +100,7 @@ public abstract class AOptions<T> extends FormComponent<T> {
                 }
 
                 if (getEscapeModelStrings()) {
-                    value = Strings.escapeMarkup(displayString);
+                    value = org.apache.wicket.util.string.Strings.escapeMarkup(displayString);
                 } else {
                     value = displayString;
                 }
@@ -175,7 +174,8 @@ public abstract class AOptions<T> extends FormComponent<T> {
      * {@inheritDoc}
      */
     @Override
-    public void updateModel() {}
+    public void updateModel() {
+    }
 
     /**
      * {@inheritDoc}

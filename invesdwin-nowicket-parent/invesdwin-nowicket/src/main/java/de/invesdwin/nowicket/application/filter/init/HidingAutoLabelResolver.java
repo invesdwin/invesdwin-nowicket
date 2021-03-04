@@ -14,9 +14,9 @@ import org.apache.wicket.markup.html.form.AutoLabelResolver;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.resolver.IComponentResolver;
 import org.apache.wicket.model.IModel;
-import org.assertj.core.util.Strings;
 
 import de.invesdwin.util.collections.loadingcache.ALoadingCache;
+import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.reflection.Reflections;
 
 @ThreadSafe
@@ -72,7 +72,7 @@ public class HidingAutoLabelResolver implements IComponentResolver {
         if (relatedComponent instanceof FormComponent) {
             final FormComponent<?> cRelatedComponent = (FormComponent<?>) relatedComponent;
             final IModel<String> label = cRelatedComponent.getLabel();
-            if (label != null && Strings.isNullOrEmpty(label.getObject())) {
+            if (label != null && Strings.isBlank(label.getObject())) {
                 return false;
             }
         }
