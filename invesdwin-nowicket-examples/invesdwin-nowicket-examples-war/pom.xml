@@ -21,6 +21,8 @@
 		<project.version.invesdwin-bom>1.0.14-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.3-SNAPSHOT</project.version.invesdwin-nowicket>
 
+		<version.maven-war-plugin>3.2.2</version.maven-war-plugin>
+
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
 
@@ -61,6 +63,11 @@
 						<port>8080</port>
 						<path>/</path>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${version.maven-war-plugin}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
