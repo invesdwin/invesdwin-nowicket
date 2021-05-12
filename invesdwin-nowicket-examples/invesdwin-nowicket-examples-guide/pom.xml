@@ -34,6 +34,7 @@
 		<version.jacoco-maven-plugin>0.8.6</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
 		<aspectj.version>1.9.6</aspectj.version>
+		<commons-codec.version>1.15</commons-codec.version>
 
 		<version.prettify>4-Mar-2013</version.prettify>
 
