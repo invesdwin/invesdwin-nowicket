@@ -60,6 +60,18 @@
 				<artifactId>invesdwin-maven-plugin</artifactId>
 				<version>${project.version.invesdwin-maven-plugin}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<exclusions>
+					<exclusion>
+						<!-- tries to bring in 2.0.0-alpha1 -->
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
