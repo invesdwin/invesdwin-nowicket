@@ -26,7 +26,7 @@
 		<slf4j.version>1.7.31</slf4j.version>
 
 		<project.version.invesdwin-bom>1.0.14</project.version.invesdwin-bom>
-		<project.version.invesdwin-nowicket>1.0.3-SNAPSHOT</project.version.invesdwin-nowicket>
+		<project.version.invesdwin-nowicket>1.0.3</project.version.invesdwin-nowicket>
 		<project.version.invesdwin-maven-plugin>1.0.10</project.version.invesdwin-maven-plugin>
 		<version.javax.inject>1</version.javax.inject>
 		<version.maven-processor-plugin>3.3.3</version.maven-processor-plugin>
