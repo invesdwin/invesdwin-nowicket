@@ -23,7 +23,6 @@
 		<hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
 		<spring.version>5.3.8</spring.version>
 		<okhttp3.version>4.9.1</okhttp3.version>
-		<caffeine.version>2.9.0</caffeine.version>
 		<slf4j.version>1.7.31</slf4j.version>
 
 		<project.version.invesdwin-bom>1.0.14-SNAPSHOT</project.version.invesdwin-bom>
