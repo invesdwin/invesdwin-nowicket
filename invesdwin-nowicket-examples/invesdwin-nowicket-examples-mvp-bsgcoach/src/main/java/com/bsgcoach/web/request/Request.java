@@ -25,7 +25,7 @@ import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.error.Throwables;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @GeneratedMarkup
 @NotThreadSafe

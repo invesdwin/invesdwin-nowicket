@@ -9,7 +9,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.model.IPropertyReflectionAwareModel;
 
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @NotThreadSafe
 public class DatePropertyModel implements IPropertyReflectionAwareModel<Date> {

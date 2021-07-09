@@ -12,8 +12,8 @@ import org.apache.wicket.model.StringResourceModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.time.date.FTimeUnit;
 import de.invesdwin.util.time.duration.Duration;
-import de.invesdwin.util.time.fdate.FTimeUnit;
 
 @NotThreadSafe
 public class PNotifyBehavior extends Behavior {

@@ -8,7 +8,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.time.fdate.FDateBuilder;
+import de.invesdwin.util.time.date.FDateBuilder;
 
 @Eager
 @NotThreadSafe

@@ -11,7 +11,7 @@ import de.invesdwin.norva.beanpath.annotation.Format;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer.tab.AjaxTimerTab;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @GeneratedMarkup
 @NotThreadSafe

@@ -3,7 +3,7 @@ package de.invesdwin.nowicket.component.logviewer;
 import javax.annotation.concurrent.Immutable;
 
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @Immutable
 public class LogViewerEntry extends AValueObject {

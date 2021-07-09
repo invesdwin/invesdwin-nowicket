@@ -36,7 +36,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 import de.invesdwin.util.lang.Strings;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 /**
  * Not using JS-Footer, since it makes respond.js load quite late and might destroy custom css in header.

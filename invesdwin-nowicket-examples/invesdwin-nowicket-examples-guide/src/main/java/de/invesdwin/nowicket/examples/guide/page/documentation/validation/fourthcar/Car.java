@@ -18,7 +18,7 @@ import de.invesdwin.nowicket.examples.guide.page.documentation.datatypes.thirdca
 import de.invesdwin.nowicket.examples.guide.page.documentation.datatypes.thirdcar.Trip;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.time.fdate.FDateBuilder;
+import de.invesdwin.util.time.date.FDateBuilder;
 
 @GeneratedMarkup
 @NotThreadSafe

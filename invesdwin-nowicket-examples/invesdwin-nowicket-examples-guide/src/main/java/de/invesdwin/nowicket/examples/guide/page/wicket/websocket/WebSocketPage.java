@@ -27,7 +27,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.nowicket.util.WebSockets;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @MountPath("websocket")
 @NotThreadSafe

@@ -13,7 +13,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.DateInputModelElement;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @NotThreadSafe
 public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElement, Date> {

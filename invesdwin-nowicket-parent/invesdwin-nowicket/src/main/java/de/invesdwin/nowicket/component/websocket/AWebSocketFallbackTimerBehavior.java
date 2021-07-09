@@ -27,9 +27,9 @@ import org.apache.wicket.util.string.StringValue;
 import org.danekja.java.util.function.serializable.SerializableConsumer;
 
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.time.date.FDate;
+import de.invesdwin.util.time.date.FTimeUnit;
 import de.invesdwin.util.time.duration.Duration;
-import de.invesdwin.util.time.fdate.FDate;
-import de.invesdwin.util.time.fdate.FTimeUnit;
 
 /**
  * A behavior that generates an WebSocket update callback at a regular interval that falls back to an ajax update

@@ -25,7 +25,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.F
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.Components;
 import de.invesdwin.util.lang.Strings;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @NotThreadSafe
 public final class ModelUtilityValidator implements INullAcceptingValidator<Object> {

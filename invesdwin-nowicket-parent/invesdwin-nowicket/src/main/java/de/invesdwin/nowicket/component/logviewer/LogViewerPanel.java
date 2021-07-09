@@ -27,8 +27,8 @@ import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 import de.invesdwin.util.math.decimal.scaled.Percent;
 import de.invesdwin.util.math.decimal.scaled.PercentScale;
-import de.invesdwin.util.time.fdate.FDate;
-import de.invesdwin.util.time.fdate.FDates;
+import de.invesdwin.util.time.date.FDate;
+import de.invesdwin.util.time.date.FDates;
 
 /**
  * http://apache-wicket.1842946.n4.nabble.com/How-to-build-a-hudson-jenkins-like-live-log-viewer-td4090224.html#a4659629

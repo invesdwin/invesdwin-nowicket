@@ -14,7 +14,7 @@ import com.bsgcoach.resources.creditrating.CreditRating;
 import com.bsgcoach.web.request.CompanyLetter;
 
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.time.fdate.FDate;
+import de.invesdwin.util.time.date.FDate;
 
 @NotThreadSafe
 public class Reports extends AValueObject {
