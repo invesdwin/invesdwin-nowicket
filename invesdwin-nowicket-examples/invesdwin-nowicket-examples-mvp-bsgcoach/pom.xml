@@ -24,6 +24,7 @@
 		<spring.version>5.3.8</spring.version>
 		<okhttp3.version>4.9.1</okhttp3.version>
 		<slf4j.version>1.7.31</slf4j.version>
+		<spring-security.version>5.5.1</spring-security.version>
 
 		<project.version.invesdwin-bom>1.0.15-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
