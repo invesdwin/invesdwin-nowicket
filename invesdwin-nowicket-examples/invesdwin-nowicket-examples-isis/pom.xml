@@ -22,7 +22,7 @@
 		<version.isis>1.12.0</version.isis>
 		<version.hsqldb>2.3.1</version.hsqldb>
 		<version.jbcrypt>0.3m</version.jbcrypt>
-		<project.version.invesdwin-bom>1.0.15-SNAPSHOT</project.version.invesdwin-bom>
+		<project.version.invesdwin-bom>1.0.15</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
 
 		<version.maven-war-plugin>3.2.2</version.maven-war-plugin>
