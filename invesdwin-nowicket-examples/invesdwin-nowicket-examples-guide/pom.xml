@@ -28,7 +28,7 @@
 
 		<project.version.invesdwin-bom>1.0.17-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
-		<project.version.invesdwin-maven-plugin>1.0.13-SNAPSHOT</project.version.invesdwin-maven-plugin>
+		<project.version.invesdwin-maven-plugin>1.0.13</project.version.invesdwin-maven-plugin>
 		<version.javax.inject>1</version.javax.inject>
 		<version.maven-processor-plugin>4.5-jdk8</version.maven-processor-plugin>
 		<version.spring-boot-maven-plugin>2.5.1</version.spring-boot-maven-plugin>
