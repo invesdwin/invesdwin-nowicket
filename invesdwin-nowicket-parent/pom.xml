@@ -34,7 +34,7 @@
 
 		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
 		<version.maven-processor-plugin>4.5-jdk8</version.maven-processor-plugin>
-		<project.version.invesdwin-maven-plugin>1.0.13-SNAPSHOT</project.version.invesdwin-maven-plugin>
+		<project.version.invesdwin-maven-plugin>1.0.13</project.version.invesdwin-maven-plugin>
 		<project.version.invesdwin-instrument>1.0.14-SNAPSHOT</project.version.invesdwin-instrument>
 		<project.version.invesdwin-aspects>1.0.5-SNAPSHOT</project.version.invesdwin-aspects>
 
