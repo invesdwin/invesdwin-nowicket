@@ -10,7 +10,7 @@
 
 	<properties>
 		<version.yuicompressor>2.4.8</version.yuicompressor>
-		<version.closure-compiler-unshaded>v20200315</version.closure-compiler-unshaded>
+		<version.closure-compiler-unshaded>v20210808</version.closure-compiler-unshaded>
 		<version.pnotify>3.2.1</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
