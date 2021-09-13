@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.generated.markup.processor.visitor.internal.properties;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,6 +36,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TableModelElemen
 import de.invesdwin.nowicket.generated.markup.processor.element.TextInputModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.UploadButtonModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.AModelVisitor;
+import de.invesdwin.util.streams.pool.PooledFastByteArrayOutputStream;
 
 @NotThreadSafe
 public class PropertiesVisitor extends AModelVisitor {
@@ -178,14 +178,17 @@ public class PropertiesVisitor extends AModelVisitor {
                     appendString.append("\n");
                 }
                 for (final Properties newProperties : newPropertiesOrdered) {
-                    final ByteArrayOutputStream encodedProperties = new ByteArrayOutputStream();
-                    newProperties.store(encodedProperties, "");
-                    final BufferedReader reader = new BufferedReader(new StringReader(encodedProperties.toString()));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        if (line.contains("=")) {
-                            appendString.append(line);
-                            appendString.append("\n");
+                    try (PooledFastByteArrayOutputStream encodedProperties = PooledFastByteArrayOutputStream
+                            .newInstance()) {
+                        newProperties.store(encodedProperties.asNonClosing(), "");
+                        final BufferedReader reader = new BufferedReader(
+                                new StringReader(encodedProperties.toString()));
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            if (line.contains("=")) {
+                                appendString.append(line);
+                                appendString.append("\n");
+                            }
                         }
                     }
                 }

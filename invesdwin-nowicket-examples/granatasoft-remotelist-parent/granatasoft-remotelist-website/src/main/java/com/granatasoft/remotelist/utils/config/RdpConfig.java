@@ -1,6 +1,5 @@
 package com.granatasoft.remotelist.utils.config;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -13,6 +12,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.invesdwin.context.log.error.Err;
+import de.invesdwin.util.streams.pool.PooledFastByteArrayOutputStream;
 
 @NotThreadSafe
 public class RdpConfig implements IRemoteConfig {
@@ -181,16 +181,16 @@ public class RdpConfig implements IRemoteConfig {
 
         final ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        final ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        String json = null;
-        try {
-            mapper.writeValue(stream, this);
-            json = new String(stream.toByteArray(), "UTF-8");
-        } catch (final IOException e) {
-            Err.process(e);
+        try (PooledFastByteArrayOutputStream stream = PooledFastByteArrayOutputStream.newInstance()) {
+            String json = null;
+            try {
+                mapper.writeValue(stream, this);
+                json = stream.toString();
+            } catch (final IOException e) {
+                Err.process(e);
+            }
+            //TODO serialize Object as JSON
+            return json;
         }
-
-        //TODO serialize Object as JSON
-        return json;
     }
 }
