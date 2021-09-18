@@ -15,6 +15,7 @@ import org.springframework.batch.item.file.transform.FieldSetFactory;
 import org.springframework.core.io.Resource;
 
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.lang.Strings;
 
 @NotThreadSafe
 public class CsvItemReaderBuilder<T> {
@@ -31,7 +32,7 @@ public class CsvItemReaderBuilder<T> {
     private RecordSeparatorPolicy recordSeparatorPolicy;
 
     public CsvItemReaderBuilder<T> withNames(final List<String> names) {
-        this.names = names.toArray(new String[0]);
+        this.names = names.toArray(Strings.EMPTY_ARRAY);
         return this;
     }
 
