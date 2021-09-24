@@ -12,19 +12,14 @@ import com.bsgcoach.rules.IRule;
 
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.lang.ADelegateComparator;
+import de.invesdwin.util.lang.comparator.IComparator;
 import de.invesdwin.util.math.Integers;
 
 @NotThreadSafe
 @GeneratedMarkup
 public class RuleMatch extends AValueObject {
 
-    public static final ADelegateComparator<RuleMatch> COMPARATOR = new ADelegateComparator<RuleMatch>() {
-        @Override
-        protected Comparable<?> getCompareCriteria(final RuleMatch e) {
-            return e;
-        }
-    };
+    public static final IComparator<RuleMatch> COMPARATOR = IComparator.getDefaultInstance();
 
     private Rank rawRank;
     private final String ruleName;

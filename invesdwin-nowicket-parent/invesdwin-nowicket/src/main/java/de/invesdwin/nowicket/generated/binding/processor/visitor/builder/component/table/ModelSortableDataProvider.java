@@ -12,7 +12,8 @@ import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
-import de.invesdwin.util.lang.ADelegateComparator;
+import de.invesdwin.util.lang.comparator.ACriteriaComparator;
+import de.invesdwin.util.lang.comparator.IComparator;
 import de.invesdwin.util.math.Integers;
 
 /**
@@ -20,6 +21,21 @@ import de.invesdwin.util.math.Integers;
  */
 @NotThreadSafe
 public class ModelSortableDataProvider extends SortableDataProvider<Object, String> {
+
+    private final IComparator<Object> comparator = new ACriteriaComparator<Object>() {
+        @Override
+        public Comparable<?> getCompareCriteriaNotNullSafe(final Object e) {
+            final IModel<Object> eModel = new IModel<Object>() {
+                @Override
+                public Object getObject() {
+                    return e;
+                }
+            };
+            final IModel<Comparable<Object>> model = new BeanPathModel<Comparable<Object>>(eModel,
+                    getSort().getProperty());
+            return model.getObject();
+        }
+    };
 
     private final TableHtmlElement element;
 
@@ -32,21 +48,7 @@ public class ModelSortableDataProvider extends SortableDataProvider<Object, Stri
         final List<Object> rows = element.getChoiceModel().getObject();
 
         if (getSort() != null) {
-            final ADelegateComparator<Object> comparator = new ADelegateComparator<Object>() {
-                @Override
-                protected Comparable<?> getCompareCriteria(final Object e) {
-                    final IModel<Object> eModel = new IModel<Object>() {
-                        @Override
-                        public Object getObject() {
-                            return e;
-                        }
-                    };
-                    final IModel<Comparable<Object>> model = new BeanPathModel<Comparable<Object>>(eModel,
-                            getSort().getProperty());
-                    return model.getObject();
-                }
-            };
-            comparator.sort(rows, getSort().isAscending());
+            comparator.asAscending(getSort().isAscending()).sort(rows);
         }
 
         long toIndex = first + count;
