@@ -39,7 +39,7 @@ public class Feedback extends AValueObject {
                     ruleMatches.add(new RuleMatch(reports, rule));
                 }
             }
-            RuleMatch.COMPARATOR.asDescending().sort(ruleMatches);
+            RuleMatch.COMPARATOR.asDescending().asNotNullSafe().sort(ruleMatches);
             while (ruleMatches.size() > 5) {
                 ruleMatches.remove(ruleMatches.size() - 1);
             }
