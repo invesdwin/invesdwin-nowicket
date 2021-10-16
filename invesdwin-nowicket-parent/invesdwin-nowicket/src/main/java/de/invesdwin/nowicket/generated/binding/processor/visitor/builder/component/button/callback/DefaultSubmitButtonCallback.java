@@ -26,20 +26,23 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
 
     private final IHtmlElement<?, ?> element;
     private final IModel<Object> targetObjectModel;
+    private final IModel<Object[]> parametersModel;
     private final IBeanPathActionInvoker invoker;
     private final PNotifyBehavior validationErrorNotificationBehavior;
 
     public DefaultSubmitButtonCallback(final IHtmlElement<?, ?> element, final IModel<Object> targetObjectModel,
-            final IBeanPathActionInvoker invoker, final PNotifyBehavior validationErrorNotificationBehavior) {
+            final IModel<Object[]> parametersModel, final IBeanPathActionInvoker invoker,
+            final PNotifyBehavior validationErrorNotificationBehavior) {
         this.element = element;
         this.targetObjectModel = targetObjectModel;
+        this.parametersModel = parametersModel;
         this.invoker = invoker;
         this.validationErrorNotificationBehavior = validationErrorNotificationBehavior;
     }
 
     public DefaultSubmitButtonCallback(final IHtmlElement<?, ?> element, final IModel<Object> targetObjectModel,
-            final IBeanPathActionInvoker invoker) {
-        this(element, targetObjectModel, invoker, newValidationErrorNotificationBehavior());
+            final IModel<Object[]> parametersModel, final IBeanPathActionInvoker invoker) {
+        this(element, targetObjectModel, parametersModel, invoker, newValidationErrorNotificationBehavior());
     }
 
     @Override
@@ -49,7 +52,7 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
 
     protected void invokeButtonMethod(final Component component) {
         try {
-            final Object result = invoker.invokeFromTarget(targetObjectModel.getObject());
+            final Object result = invoker.invokeFromTarget(targetObjectModel.getObject(), parametersModel.getObject());
             processResult(result);
         } catch (final UndeclaredThrowableException e) {
             handleButtonException(component, e.getUndeclaredThrowable());

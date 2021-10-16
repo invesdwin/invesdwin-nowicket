@@ -77,7 +77,8 @@ public abstract class AHtmlElement<E extends IModelElement<?>, M> implements IHt
     /**
      * Can be overriden to do additional things on first accept.
      */
-    protected void onFirstAccept() {}
+    protected void onFirstAccept() {
+    }
 
     protected abstract void innerAccept(IHtmlVisitor visitor);
 

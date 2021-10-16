@@ -12,6 +12,7 @@ import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.core.io.ClassPathResource;
@@ -40,6 +41,7 @@ public class HtmlContext implements Serializable {
     private final MarkupContainer markupContainer;
     private final ComponentRegistry componentRegistry;
     private final String modelNameSuffix;
+    private IModel<Object> rootObjectModel;
 
     public HtmlContext(final MarkupContainer markupContainer, final GeneratedBinding parent) {
         Assertions.assertThat(markupContainer.getDefaultModelObject()).isNotNull();
@@ -166,6 +168,18 @@ public class HtmlContext implements Serializable {
 
     public IBindingBuilder getBindingBuilder() {
         return parent.getBindingBuilder();
+    }
+
+    public IModel<Object> getRootObjectModel() {
+        if (rootObjectModel == null) {
+            rootObjectModel = new LoadableDetachableModel<Object>() {
+                @Override
+                protected Object load() {
+                    return getModelObjectContext().getModelObject();
+                }
+            };
+        }
+        return rootObjectModel;
     }
 
 }

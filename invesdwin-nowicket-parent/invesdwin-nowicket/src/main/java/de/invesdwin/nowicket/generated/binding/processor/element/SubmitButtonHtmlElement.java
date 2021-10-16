@@ -14,6 +14,7 @@ import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.ISubmitButtonCallback;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
+import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe
 public class SubmitButtonHtmlElement extends AModelHtmlElement<SubmitButtonModelElement, Object> {
@@ -31,8 +32,9 @@ public class SubmitButtonHtmlElement extends AModelHtmlElement<SubmitButtonModel
     }
 
     public ISubmitButtonCallback getButtonCallback() {
-        return getContext().getSubmitButtonCallbackFactory().createSubmitButtonCallback(this, getTargetObjectModel(),
-                getModelElement().getBeanPathElement().getInvoker());
+        return getContext().getSubmitButtonCallbackFactory()
+                .createSubmitButtonCallback(this, getTargetObjectModel(), () -> Objects.EMPTY_ARRAY,
+                        getModelElement().getBeanPathElement().getInvoker());
     }
 
     public IModel<String> getIconCssClassModel() {

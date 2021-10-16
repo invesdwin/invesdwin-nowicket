@@ -15,12 +15,14 @@ public class TableSelectionColumnBooleanModel implements IModel<Boolean> {
     private static final MetaDataKey<OnlyOnceTruePerRequestCycleModel> KEY_SHOULD_UPDATE_MODEL = new MetaDataKey<OnlyOnceTruePerRequestCycleModel>() {
     };
     private final TableSelectionButtonColumnHtmlElement element;
+    private final IModel<Object> rootObjectModel;
     private final IModel<Object> rowModel;
     private final boolean singleSelection;
 
     public TableSelectionColumnBooleanModel(final TableSelectionButtonColumnHtmlElement element,
             final IModel<Object> rowModel) {
         this.element = element;
+        this.rootObjectModel = element.getContext().getRootObjectModel();
         this.rowModel = rowModel;
         this.singleSelection = element.isSingleSelection();
     }
@@ -36,7 +38,7 @@ public class TableSelectionColumnBooleanModel implements IModel<Boolean> {
         final SelectionBeanPathPropertyModifier selectionModifier = element.getModelElement()
                 .getBeanPathElement()
                 .getSelectionModifier();
-        final boolean selected = selectionModifier.isSelected(row);
+        final boolean selected = selectionModifier.isSelectedFromRoot(rootObjectModel.getObject(), row);
         return selected;
     }
 
@@ -51,9 +53,9 @@ public class TableSelectionColumnBooleanModel implements IModel<Boolean> {
                 .getBeanPathElement()
                 .getSelectionModifier();
         if (object) {
-            selectionModifier.select(row);
+            selectionModifier.selectFromRoot(rootObjectModel.getObject(), row);
         } else {
-            selectionModifier.unselect(row);
+            selectionModifier.unselectFromRoot(rootObjectModel.getObject(), row);
         }
     }
 

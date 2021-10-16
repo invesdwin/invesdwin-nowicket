@@ -130,13 +130,11 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
             columns = Collections.unmodifiableList(new DelegateList<ATableColumnHtmlElement<?, ?>>(null) {
 
                 private final IModel<Object> targetObjectModel = getTargetObjectModel();
-                private final List<ATableColumnModelElement<?>> source = getModelElement()
-                        .getColumns(targetObjectModel);
 
                 @Override
                 public List<ATableColumnHtmlElement<?, ?>> getDelegate() {
                     final List<ATableColumnHtmlElement<?, ?>> converted = new ArrayList<ATableColumnHtmlElement<?, ?>>();
-                    for (final ATableColumnModelElement<?> column : source) {
+                    for (final ATableColumnModelElement<?> column : getModelElement().getColumns(targetObjectModel)) {
                         final ATableColumnHtmlElement<?, ?> convertedColumn = convertColumn(column);
                         converted.add(convertedColumn);
                     }
@@ -145,12 +143,12 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
 
                 @Override
                 public int size() {
-                    return source.size();
+                    return getModelElement().getColumns(targetObjectModel).size();
                 }
 
                 @Override
                 public boolean isEmpty() {
-                    return source.isEmpty();
+                    return getModelElement().getColumns(targetObjectModel).isEmpty();
                 }
             });
         }

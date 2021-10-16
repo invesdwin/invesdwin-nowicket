@@ -10,6 +10,6 @@ import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 public interface ISubmitButtonCallbackFactory extends Serializable {
 
     ISubmitButtonCallback createSubmitButtonCallback(IHtmlElement<?, ?> element, IModel<Object> targetObjectModel,
-            IBeanPathActionInvoker invoker);
+            IModel<Object[]> parametersModel, IBeanPathActionInvoker invoker);
 
 }

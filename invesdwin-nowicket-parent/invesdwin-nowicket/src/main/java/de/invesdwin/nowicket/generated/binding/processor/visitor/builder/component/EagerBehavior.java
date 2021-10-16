@@ -9,9 +9,9 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.form.palette.Palette;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.IModel;
 
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
+import de.invesdwin.norva.beanpath.spi.element.table.column.ITableColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.util.Components;
 
@@ -34,14 +34,12 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
         });
     }
 
-    private final IModel<Object> targetObjectModel;
     private final IHtmlElement<?, ?> element;
     private final Component component;
 
     public EagerBehavior(final IHtmlElement<?, ?> element, final Component component, final String eagerEvent) {
         super(eagerEvent);
         this.element = element;
-        this.targetObjectModel = element.getTargetObjectModel();
         this.component = component;
         if (!isAllowed(element, component)) {
             throw new IllegalArgumentException("Eager not supported: " + element.getWicketId() + ": " + component);
@@ -71,15 +69,18 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
     protected void innerOnSubmit(final AjaxRequestTarget target) {
         /*
          * Reinvoke the eager setter, so that he can do checks and create side effects when all other fields have been
-         * synchronized aswell by now. This workaround is required because wicket does not invoke setters in a specific
+         * synchronized as well by now. This workaround is required because wicket does not invoke setters in a specific
          * order. This workaround works because setters are supposed to contain cheap actions and because and each field
          * that depends on other fields is supposed to be an eager field anyway.
          */
         final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) element.getModelElement()
                 .getBeanPathElement();
-        final Object targetObject = targetObjectModel.getObject();
-        propertyElement.getModifier()
-                .setValueFromTarget(targetObject, propertyElement.getModifier().getValueFromTarget(targetObject));
+        //can not do this on columns, since we don't know the row here that was modified
+        if (!(propertyElement instanceof ITableColumnBeanPathElement)) {
+            final Object targetObject = element.getTargetObjectModel().getObject();
+            propertyElement.getModifier()
+                    .setValueFromTarget(targetObject, propertyElement.getModifier().getValueFromTarget(targetObject));
+        }
 
         //after that validate again to maybe have more errors being detected
         Components.validateModelUtilityValidators(target.getPage());

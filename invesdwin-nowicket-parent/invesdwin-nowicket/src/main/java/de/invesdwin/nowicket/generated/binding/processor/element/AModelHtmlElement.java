@@ -30,7 +30,6 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     public static final String VALUE_PLACEHOLDER = "$(" + VALUE + ")";
 
     private transient E modelElement;
-    private IModel<Object> rootObjectModel;
     private IModel<Object> targetObjectModel;
 
     public AModelHtmlElement(final HtmlContext context, final Element element) {
@@ -122,15 +121,7 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
 
     @Override
     public IModel<Object> getRootObjectModel() {
-        if (rootObjectModel == null) {
-            rootObjectModel = new LoadableDetachableModel<Object>() {
-                @Override
-                protected Object load() {
-                    return getContext().getModelObjectContext().getModelObject();
-                }
-            };
-        }
-        return rootObjectModel;
+        return getContext().getRootObjectModel();
     }
 
     @SuppressWarnings("unchecked")
