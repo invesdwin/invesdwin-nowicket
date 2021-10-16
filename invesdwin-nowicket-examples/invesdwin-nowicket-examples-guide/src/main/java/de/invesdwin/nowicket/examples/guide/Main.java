@@ -29,6 +29,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
+import de.invesdwin.util.lang.reflection.Reflections;
 
 @SpringBootApplication
 @ImportResource(locations = { "classpath:/META-INF/ctx.spring.weaving.xml",
@@ -39,6 +40,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 public class Main {
 
     static {
+        Reflections.disableJavaModuleSystemRestrictions();
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
     }

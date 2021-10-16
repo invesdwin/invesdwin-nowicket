@@ -12,7 +12,7 @@ import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.jsoup.nodes.Element;
 
-import de.invesdwin.norva.beanpath.impl.object.BeanObjectContainer;
+import de.invesdwin.norva.beanpath.impl.clazz.BeanClassContainer;
 import de.invesdwin.norva.beanpath.spi.element.IActionBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
@@ -107,9 +107,10 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
         return new LoadableDetachableModel<Object>() {
             @Override
             protected Object load() {
-                final BeanObjectContainer container = (BeanObjectContainer) getModelElement().getBeanPathElement()
+                final Object rootObject = getContext().getModelObjectContext().getModelObject();
+                final BeanClassContainer container = (BeanClassContainer) getModelElement().getBeanPathElement()
                         .getContainer();
-                return container.getObject();
+                return container.getObjectFromRoot(rootObject);
             }
         };
     }
@@ -119,9 +120,7 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
         return new LoadableDetachableModel<Object>() {
             @Override
             protected Object load() {
-                final BeanObjectContainer container = (BeanObjectContainer) getModelElement().getBeanPathElement()
-                        .getContainer();
-                return container.getRoot().getObject();
+                return getContext().getModelObjectContext().getModelObject();
             }
         };
     }
