@@ -9,10 +9,10 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.IObjectClassAwareModel;
 import org.apache.wicket.model.IPropertyReflectionAwareModel;
 
+import de.invesdwin.norva.beanpath.impl.clazz.BeanClassContext;
+import de.invesdwin.norva.beanpath.impl.clazz.BeanClassProcessor;
+import de.invesdwin.norva.beanpath.impl.clazz.BeanClassProcessorConfig;
 import de.invesdwin.norva.beanpath.impl.clazz.IBeanClassAccessor;
-import de.invesdwin.norva.beanpath.impl.object.BeanObjectContext;
-import de.invesdwin.norva.beanpath.impl.object.BeanObjectProcessor;
-import de.invesdwin.norva.beanpath.spi.BeanPathProcessorConfig;
 import de.invesdwin.norva.beanpath.spi.element.IActionBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
@@ -43,13 +43,13 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
         this.rootObjectModel = rootObjectModel;
         this.beanPathElementModel = new IModel<IBeanPathElement>() {
 
-            private transient BeanObjectContext ctx;
+            private transient BeanClassContext ctx;
 
             @Override
             public IBeanPathElement getObject() {
                 if (ctx == null) {
-                    ctx = new BeanObjectContext(rootObjectModel.getObject());
-                    new BeanObjectProcessor(BeanPathProcessorConfig.DEFAULT, ctx).process();
+                    ctx = BeanClassProcessor
+                            .getContext(BeanClassProcessorConfig.getDefault(rootObjectModel.getObject().getClass()));
                 }
                 return ctx.getElementRegistry().getElement(beanPath);
             }
@@ -62,6 +62,7 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
         rootObjectModel.detach();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public T getObject() {
         final IBeanPathElement beanPathElement = beanPathElementModel.getObject();
