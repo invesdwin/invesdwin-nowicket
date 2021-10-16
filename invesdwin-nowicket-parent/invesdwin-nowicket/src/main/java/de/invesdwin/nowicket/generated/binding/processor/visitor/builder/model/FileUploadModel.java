@@ -81,7 +81,9 @@ public class FileUploadModel implements IModel<List<FileUpload>> {
                     .showStatusMessage(new StatusMessageConfig().withTitle(element.getTitleModel().getObject())
                             .withMessage(statusMessage.toString())
                             .withType(StatusMessageType.success));
-            element.getModelElement().getBeanPathElement().setUploadedFiles(files);
+            element.getModelElement()
+                    .getBeanPathElement()
+                    .setUploadedFilesFromRoot(element.getContext().getRootObjectModel().getObject(), files);
         }
     }
 }

@@ -11,7 +11,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
-import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.lang.Strings;
 
 @ThreadSafe
@@ -22,7 +21,8 @@ public final class PanelFactory {
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(PanelFactory.class);
 
-    private PanelFactory() {}
+    private PanelFactory() {
+    }
 
     public static PanelFactory get() {
         return INSTANCE;
@@ -30,10 +30,10 @@ public final class PanelFactory {
 
     public Panel getPanel(final String wicketId, final Object modelObject) {
         final Class<Panel> panelClass = findPanelClass(modelObject.getClass());
-        Assertions.assertThat(panelClass)
-                .as("Unable to find any %s for model class [%s] or any of its super classes!", PANEL_CLASS_MODEL_SUFFIX,
-                        modelObject.getClass().getName())
-                .isNotNull();
+        if (panelClass == null) {
+            throw new IllegalStateException("Unable to find any " + PANEL_CLASS_MODEL_SUFFIX + " for model class ["
+                    + modelObject.getClass().getName() + "] or any of its super classes!");
+        }
         return tryIModelConstructor(wicketId, modelObject, panelClass);
     }
 

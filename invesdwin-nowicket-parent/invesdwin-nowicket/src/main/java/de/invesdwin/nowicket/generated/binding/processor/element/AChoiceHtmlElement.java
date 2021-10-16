@@ -205,8 +205,8 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                     final IModel<String> tabTitleModel = new ChoiceTabTitleModel(AChoiceHtmlElement.this,
                             rowObjectModel);
                     //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
-                    final ITab tab = new ModelTab(AChoiceHtmlElement.this, tabTitleModel, getTargetObjectModel(),
-                            rowObjectModel, rowObjectModel);
+                    final ITab tab = new ModelTab(AChoiceHtmlElement.this, tabTitleModel, rowObjectModel,
+                            getTargetObjectModel(), rowObjectModel);
                     tabs.add(tab);
                 }
                 return tabs;
