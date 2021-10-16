@@ -12,6 +12,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
@@ -36,10 +37,12 @@ public final class ModelUtilityValidator implements INullAcceptingValidator<Obje
 
     private final IHtmlElement<?, ?> element;
     private final Component component;
+    private final IModel<Object> targetObjectModel;
 
     private ModelUtilityValidator(final IHtmlElement<?, ?> element, final Component component) {
         this.element = element;
         this.component = component;
+        this.targetObjectModel = element.getTargetObjectModel();
     }
 
     @Override
@@ -49,7 +52,8 @@ public final class ModelUtilityValidator implements INullAcceptingValidator<Obje
                     .getBeanPathElement();
             final Object validatableValue = Components.getValidatableValue(component, validatable);
             final Object convertedValidatableValue = convertValidatableValueToBeanPathValue(cElement, validatableValue);
-            final String message = cElement.getValidateElement().validate(convertedValidatableValue);
+            final String message = cElement.getValidateElement()
+                    .validateFromTarget(targetObjectModel.getObject(), convertedValidatableValue);
             if (Strings.isNotBlank(message)) {
                 //use translated key or use message as fallback if no translation found
                 final String normalizedMessage = normalizeMessage(message);

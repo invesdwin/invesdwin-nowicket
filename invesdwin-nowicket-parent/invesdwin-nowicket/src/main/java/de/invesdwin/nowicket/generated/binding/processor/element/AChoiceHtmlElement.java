@@ -43,13 +43,14 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
     }
 
     public IModel<List<Object>> getChoiceModel() {
+        final IModel<Object> targetObjectModel = getTargetObjectModel();
         return new IModel<List<Object>>() {
 
             @Override
             public List<Object> getObject() {
                 final List<Object> list = (List<Object>) getModelElement().getBeanPathElement()
                         .getChoiceModifier()
-                        .getValue();
+                        .getValueFromTarget(targetObjectModel.getObject());
                 //check before removing null
                 maybeCheckDuplicateRenderedStringsInDevMode(list);
                 //setNullValid Behavior in ModelComponentBehavior already handles null properly; ListMultipleChoice does not support null selection

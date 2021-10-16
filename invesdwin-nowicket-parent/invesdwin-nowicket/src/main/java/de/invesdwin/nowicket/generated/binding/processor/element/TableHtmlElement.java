@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
+import org.apache.wicket.model.IModel;
 import org.jsoup.nodes.Element;
 
 import de.invesdwin.norva.beanpath.spi.element.table.column.ITableColumnBeanPathElement;
@@ -127,24 +128,29 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     public List<ATableColumnHtmlElement<?, ?>> getColumns() {
         if (columns == null) {
             columns = Collections.unmodifiableList(new DelegateList<ATableColumnHtmlElement<?, ?>>(null) {
+
+                private final IModel<Object> targetObjectModel = getTargetObjectModel();
+                private final List<ATableColumnModelElement<?>> source = getModelElement()
+                        .getColumns(targetObjectModel);
+
                 @Override
                 public List<ATableColumnHtmlElement<?, ?>> getDelegate() {
-                    final List<ATableColumnHtmlElement<?, ?>> delegate = new ArrayList<ATableColumnHtmlElement<?, ?>>();
-                    for (final ATableColumnModelElement<?> column : getModelElement().getColumns()) {
+                    final List<ATableColumnHtmlElement<?, ?>> converted = new ArrayList<ATableColumnHtmlElement<?, ?>>();
+                    for (final ATableColumnModelElement<?> column : source) {
                         final ATableColumnHtmlElement<?, ?> convertedColumn = convertColumn(column);
-                        delegate.add(convertedColumn);
+                        converted.add(convertedColumn);
                     }
-                    return delegate;
+                    return converted;
                 }
 
                 @Override
                 public int size() {
-                    return getModelElement().getColumns().size();
+                    return source.size();
                 }
 
                 @Override
                 public boolean isEmpty() {
-                    return getModelElement().getColumns().isEmpty();
+                    return source.isEmpty();
                 }
             });
         }
@@ -238,7 +244,8 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
 
     public List<String> getColumnOrder() {
         final List<String> columnOrder = new ArrayList<>();
-        for (final ITableColumnBeanPathElement column : getModelElement().getBeanPathElement().getColumns()) {
+        for (final ITableColumnBeanPathElement column : getModelElement().getBeanPathElement()
+                .getColumnsFromTarget(getTargetObjectModel().getObject())) {
             columnOrder.add(column.getColumnId());
         }
         return columnOrder;

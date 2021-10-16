@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.model.IModel;
+
 import de.invesdwin.norva.beanpath.spi.element.table.ATableBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.table.column.ITableColumnBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.table.column.TableContainerColumnBeanPathElement;
@@ -70,13 +72,15 @@ public abstract class ATableModelElement extends AChoiceModelElement<ATableBeanP
         return Collections.unmodifiableList(rawColumns);
     }
 
-    public final List<ATableColumnModelElement<?>> getColumns() {
+    public final List<ATableColumnModelElement<?>> getColumns(final IModel<Object> targetObjectModel) {
         if (columns == null) {
             columns = Collections.unmodifiableList(new DelegateList<ATableColumnModelElement<?>>(null) {
+
                 @Override
                 public List<ATableColumnModelElement<?>> getDelegate() {
                     final List<ATableColumnModelElement<?>> delegate = new ArrayList<ATableColumnModelElement<?>>();
-                    for (final ITableColumnBeanPathElement column : getBeanPathElement().getColumns()) {
+                    for (final ITableColumnBeanPathElement column : getBeanPathElement()
+                            .getColumnsFromTarget(targetObjectModel.getObject())) {
                         final ATableColumnModelElement<?> convertedColumn = convertElement(column);
                         delegate.add(convertedColumn);
                     }
@@ -85,12 +89,12 @@ public abstract class ATableModelElement extends AChoiceModelElement<ATableBeanP
 
                 @Override
                 public int size() {
-                    return getBeanPathElement().getColumns().size();
+                    return getBeanPathElement().getColumnsFromTarget(targetObjectModel.getObject()).size();
                 }
 
                 @Override
                 public boolean isEmpty() {
-                    return getBeanPathElement().getColumns().isEmpty();
+                    return getBeanPathElement().getColumnsFromTarget(targetObjectModel.getObject()).isEmpty();
                 }
             });
         }

@@ -9,6 +9,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.form.palette.Palette;
 import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.model.IModel;
 
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
@@ -33,12 +34,14 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
         });
     }
 
+    private final IModel<Object> targetObjectModel;
     private final IHtmlElement<?, ?> element;
     private final Component component;
 
     public EagerBehavior(final IHtmlElement<?, ?> element, final Component component, final String eagerEvent) {
         super(eagerEvent);
         this.element = element;
+        this.targetObjectModel = element.getTargetObjectModel();
         this.component = component;
         if (!isAllowed(element, component)) {
             throw new IllegalArgumentException("Eager not supported: " + element.getWicketId() + ": " + component);
@@ -74,7 +77,9 @@ public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
          */
         final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) element.getModelElement()
                 .getBeanPathElement();
-        propertyElement.getModifier().setValue(propertyElement.getModifier().getValue());
+        final Object targetObject = targetObjectModel.getObject();
+        propertyElement.getModifier()
+                .setValueFromTarget(targetObject, propertyElement.getModifier().getValueFromTarget(targetObject));
 
         //after that validate again to maybe have more errors being detected
         Components.validateModelUtilityValidators(target.getPage());

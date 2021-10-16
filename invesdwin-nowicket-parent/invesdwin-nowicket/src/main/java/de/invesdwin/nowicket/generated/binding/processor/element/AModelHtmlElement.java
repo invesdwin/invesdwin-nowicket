@@ -30,6 +30,8 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     public static final String VALUE_PLACEHOLDER = "$(" + VALUE + ")";
 
     private transient E modelElement;
+    private IModel<Object> rootObjectModel;
+    private IModel<Object> targetObjectModel;
 
     public AModelHtmlElement(final HtmlContext context, final Element element) {
         super(context, element);
@@ -104,25 +106,31 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
 
     @Override
     public IModel<Object> getTargetObjectModel() {
-        return new LoadableDetachableModel<Object>() {
-            @Override
-            protected Object load() {
-                final Object rootObject = getContext().getModelObjectContext().getModelObject();
-                final BeanClassContainer container = (BeanClassContainer) getModelElement().getBeanPathElement()
-                        .getContainer();
-                return container.getObjectFromRoot(rootObject);
-            }
-        };
+        if (targetObjectModel == null) {
+            targetObjectModel = new LoadableDetachableModel<Object>() {
+                @Override
+                protected Object load() {
+                    final Object rootObject = getContext().getModelObjectContext().getModelObject();
+                    final BeanClassContainer container = (BeanClassContainer) getModelElement().getBeanPathElement()
+                            .getContainer();
+                    return container.getObjectFromRoot(rootObject);
+                }
+            };
+        }
+        return targetObjectModel;
     }
 
     @Override
     public IModel<Object> getRootObjectModel() {
-        return new LoadableDetachableModel<Object>() {
-            @Override
-            protected Object load() {
-                return getContext().getModelObjectContext().getModelObject();
-            }
-        };
+        if (rootObjectModel == null) {
+            rootObjectModel = new LoadableDetachableModel<Object>() {
+                @Override
+                protected Object load() {
+                    return getContext().getModelObjectContext().getModelObject();
+                }
+            };
+        }
+        return rootObjectModel;
     }
 
     @SuppressWarnings("unchecked")

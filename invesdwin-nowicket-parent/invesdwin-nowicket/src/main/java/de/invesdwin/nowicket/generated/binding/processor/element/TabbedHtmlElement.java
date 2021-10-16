@@ -46,11 +46,12 @@ public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
 
     public List<TabbedColumnHtmlElement> getColumns() {
         if (columns == null) {
+            final IModel<Object> targetObjectModel = getTargetObjectModel();
             columns = Collections.unmodifiableList(new DelegateList<TabbedColumnHtmlElement>(null) {
                 @Override
                 public List<TabbedColumnHtmlElement> getDelegate() {
                     final List<TabbedColumnHtmlElement> delegate = new ArrayList<TabbedColumnHtmlElement>();
-                    for (final TabbedColumnModelElement column : getModelElement().getColumns()) {
+                    for (final TabbedColumnModelElement column : getModelElement().getColumns(targetObjectModel)) {
                         final TabbedColumnHtmlElement columnElement = (TabbedColumnHtmlElement) getContext()
                                 .getElementRegistry()
                                 .getElement(column.getWicketId());
@@ -61,12 +62,12 @@ public class TabbedHtmlElement extends AChoiceHtmlElement<TabbedModelElement>
 
                 @Override
                 public int size() {
-                    return getModelElement().getColumns().size();
+                    return getModelElement().getColumns(targetObjectModel).size();
                 }
 
                 @Override
                 public boolean isEmpty() {
-                    return getModelElement().getColumns().isEmpty();
+                    return getModelElement().getColumns(targetObjectModel).isEmpty();
                 }
             });
         }
