@@ -45,7 +45,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
     private boolean shouldReset;
 
     public LogViewerPanel(final String id, final IModel<ILogViewerSource> model,
-            final org.apache.wicket.util.time.Duration refreshInterval) {
+            final java.time.Duration refreshInterval) {
         super(id, model);
         final AWebSocketFallbackTimerBehavior timer = newWebsocketTimerBehavior(refreshInterval);
         if (timer != null) {
@@ -53,8 +53,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
         }
     }
 
-    protected AWebSocketFallbackTimerBehavior newWebsocketTimerBehavior(
-            final org.apache.wicket.util.time.Duration refreshInterval) {
+    protected AWebSocketFallbackTimerBehavior newWebsocketTimerBehavior(final java.time.Duration refreshInterval) {
         return new AWebSocketFallbackTimerBehavior(refreshInterval) {
 
             @Override

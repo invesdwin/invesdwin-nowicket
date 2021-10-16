@@ -35,7 +35,7 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
     private static final long serialVersionUID = 1L;
 
     /** The update interval */
-    private org.apache.wicket.util.time.Duration updateInterval;
+    private java.time.Duration updateInterval;
 
     private boolean stopped = false;
 
@@ -47,12 +47,12 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
     /** the component that this handler is bound to. */
     private Component component;
 
-    public AWebSocketTimerBehavior(final org.apache.wicket.util.time.Duration updateInterval) {
+    public AWebSocketTimerBehavior(final java.time.Duration updateInterval) {
         setUpdateInterval(updateInterval);
     }
 
-    protected final void setUpdateInterval(final org.apache.wicket.util.time.Duration updateInterval) {
-        if (updateInterval == null || updateInterval.getMilliseconds() <= 0) {
+    protected final void setUpdateInterval(final java.time.Duration updateInterval) {
+        if (updateInterval == null || updateInterval.toMillis() <= 0) {
             throw new IllegalArgumentException("Invalid update interval");
         }
         this.updateInterval = updateInterval;
@@ -88,7 +88,7 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
      * 
      * @return The update interval
      */
-    public final org.apache.wicket.util.time.Duration getUpdateInterval() {
+    public final java.time.Duration getUpdateInterval() {
         return updateInterval;
     }
 
@@ -201,7 +201,7 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
         timerId = getTimerId();
 
         headerResponse.render(OnLoadHeaderItem.forScript(TextDescription
-                .format("Wicket.Timer.set('%s', function(){%s}, %s);", timerId, js, updateInterval.getMilliseconds())));
+                .format("Wicket.Timer.set('%s', function(){%s}, %s);", timerId, js, updateInterval.toMillis())));
     }
 
     protected CharSequence getCallbackScript() {
@@ -262,7 +262,7 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
      *            the consumer which accepts the {@link WebSocketRequestHandler}
      * @return the {@link AWebSocketTimerBehavior}
      */
-    public static AWebSocketTimerBehavior onTimer(final org.apache.wicket.util.time.Duration interval,
+    public static AWebSocketTimerBehavior onTimer(final java.time.Duration interval,
             final SerializableConsumer<WebSocketRequestHandler> onTimer) {
         Args.notNull(onTimer, "onTimer");
 

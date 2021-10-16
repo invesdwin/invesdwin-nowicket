@@ -4,14 +4,14 @@ import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.IPageRequestHandler;
-import org.apache.wicket.request.cycle.AbstractRequestCycleListener;
+import org.apache.wicket.request.cycle.IRequestCycleListener;
 import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.cycle.RequestCycle;
 
 import de.invesdwin.nowicket.application.PageFactory;
 
 @ThreadSafe
-public class PageFactoryUpdatingRequestCycleListener extends AbstractRequestCycleListener {
+public class PageFactoryUpdatingRequestCycleListener implements IRequestCycleListener {
 
     @Override
     public void onEndRequest(final RequestCycle cycle) {

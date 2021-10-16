@@ -47,7 +47,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
         private FDate firstAjaxEvent = null;
 
-        public FallbackAjaxTimerBehavior(final org.apache.wicket.util.time.Duration updateInterval) {
+        public FallbackAjaxTimerBehavior(final java.time.Duration updateInterval) {
             super(updateInterval);
         }
 
@@ -92,7 +92,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
     public class FallbackWebSocketTimerBehavior extends AWebSocketTimerBehavior {
 
-        public FallbackWebSocketTimerBehavior(final org.apache.wicket.util.time.Duration updateInterval) {
+        public FallbackWebSocketTimerBehavior(final java.time.Duration updateInterval) {
             super(updateInterval);
         }
 
@@ -128,10 +128,10 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
     /** the component that this handler is bound to. */
     private Component component;
 
-    public AWebSocketFallbackTimerBehavior(final org.apache.wicket.util.time.Duration updateInterval) {
+    public AWebSocketFallbackTimerBehavior(final java.time.Duration updateInterval) {
         this.websocket = newWebSocketTimerBehavior(updateInterval);
         this.ajax = newAjaxTimerBehavior(updateInterval);
-        this.websocketTimeout = new Duration(updateInterval.getMilliseconds(), FTimeUnit.MILLISECONDS).multiply(10)
+        this.websocketTimeout = new Duration(updateInterval.toMillis(), FTimeUnit.MILLISECONDS).multiply(10)
                 .orHigher(MIN_WEBSOCKET_TIMEOUT);
     }
 
@@ -143,13 +143,11 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         return ajax;
     }
 
-    protected FallbackAjaxTimerBehavior newAjaxTimerBehavior(
-            final org.apache.wicket.util.time.Duration updateInterval) {
+    protected FallbackAjaxTimerBehavior newAjaxTimerBehavior(final java.time.Duration updateInterval) {
         return new FallbackAjaxTimerBehavior(updateInterval);
     }
 
-    protected FallbackWebSocketTimerBehavior newWebSocketTimerBehavior(
-            final org.apache.wicket.util.time.Duration updateInterval) {
+    protected FallbackWebSocketTimerBehavior newWebSocketTimerBehavior(final java.time.Duration updateInterval) {
         return new FallbackWebSocketTimerBehavior(updateInterval);
     }
 
@@ -193,14 +191,15 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         onBind();
     }
 
-    private void onBind() {}
+    private void onBind() {
+    }
 
     /**
      * Returns the update interval
      * 
      * @return The update interval
      */
-    public final org.apache.wicket.util.time.Duration getUpdateInterval() {
+    public final java.time.Duration getUpdateInterval() {
         if (websocket != null) {
             return websocket.getUpdateInterval();
         }
@@ -275,7 +274,8 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
     }
 
     @Override
-    public void onRemove(final Component component) {}
+    public void onRemove(final Component component) {
+    }
 
     @Override
     public void unbind(final Component component) {
@@ -289,7 +289,8 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         super.unbind(component);
     }
 
-    protected void onUnbind() {}
+    protected void onUnbind() {
+    }
 
     /**
      * Creates an {@link AWebSocketFallbackTimerBehavior} based on lambda expressions
@@ -300,7 +301,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
      *            the consumer which accepts the {@link WebSocketRequestHandler}
      * @return the {@link AWebSocketFallbackTimerBehavior}
      */
-    public static AWebSocketFallbackTimerBehavior onTimer(final org.apache.wicket.util.time.Duration interval,
+    public static AWebSocketFallbackTimerBehavior onTimer(final java.time.Duration interval,
             final SerializableConsumer<IPartialPageRequestHandler> onTimer) {
         Args.notNull(onTimer, "onTimer");
 

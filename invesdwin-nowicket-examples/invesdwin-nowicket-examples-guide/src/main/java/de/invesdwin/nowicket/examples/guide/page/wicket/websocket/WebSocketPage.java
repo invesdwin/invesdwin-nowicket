@@ -28,6 +28,7 @@ import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.nowicket.util.WebSockets;
 import de.invesdwin.util.time.date.FDate;
+import de.invesdwin.util.time.duration.Duration;
 
 @MountPath("websocket")
 @NotThreadSafe
@@ -48,7 +49,7 @@ public class WebSocketPage extends AExampleWebPage {
                 return super.create(e);
             }
         }).bind();
-        add(new AWebSocketFallbackTimerBehavior(org.apache.wicket.util.time.Duration.seconds(1)) {
+        add(new AWebSocketFallbackTimerBehavior(Duration.ONE_SECOND.javaTimeValue()) {
 
             private FDate prevLastRefresh = FDate.MIN_DATE;
             private boolean roundtripComplete = false;

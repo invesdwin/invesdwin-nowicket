@@ -27,10 +27,12 @@ import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContex
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.collections.fast.concurrent.ASynchronizedFastIterableDelegateList;
 import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.time.duration.Duration;
 
 @ThreadSafe
 public final class PageFactory implements Serializable {
 
+    private static final java.time.Duration TIMEOUT = Duration.ONE_SECOND.javaTimeValue();
     private static final int MAX_PAGE_REFERENCES_PER_MODEL = 10;
     private static final int MAX_MODELS_PER_CLASS = 100;
     private static final String PAGE_CLASS_MODEL_SUFFIX = Page.class.getSimpleName();
@@ -49,7 +51,8 @@ public final class PageFactory implements Serializable {
     @GuardedBy("modelClass_modelObjectHashCode_pageReferences" /* self on each level */)
     private final Map<Class<?>, Map<Integer, List<PageReferenceAndModel>>> modelClass_modelObjectHashCode_pageReferences = new LinkedHashMap<Class<?>, Map<Integer, List<PageReferenceAndModel>>>();
 
-    private PageFactory() {}
+    private PageFactory() {
+    }
 
     public static PageFactory get() {
         PageFactory pageFactory = AWebSession.get().getMetaData(KEY_PAGE_FACTORY);
@@ -134,8 +137,7 @@ public final class PageFactory implements Serializable {
         for (final PageReferenceAndModel existingPageReference : pageReferences) {
             try {
                 //see: http://mail-archives.apache.org/mod_mbox/wicket-users/201211.mbox/%3CCANgwjP4xsMKo6kKjVSOOnf_qKvdV+nbhXh8bkZ0R6oZN1BS8YA@mail.gmail.com%3E
-                final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(
-                        org.apache.wicket.util.time.Duration.ONE_SECOND);
+                final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(TIMEOUT);
                 pageAccessSynchronizer.lockPage(existingPageReference.getPageId());
                 try {
                     final Page existingPage = existingPageReference.getPage();
@@ -202,8 +204,7 @@ public final class PageFactory implements Serializable {
         for (final PageReferenceAndModel existingPageReference : pageReferences) {
             try {
                 //see: http://mail-archives.apache.org/mod_mbox/wicket-users/201211.mbox/%3CCANgwjP4xsMKo6kKjVSOOnf_qKvdV+nbhXh8bkZ0R6oZN1BS8YA@mail.gmail.com%3E
-                final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(
-                        org.apache.wicket.util.time.Duration.ONE_SECOND);
+                final PageAccessSynchronizer pageAccessSynchronizer = new PageAccessSynchronizer(TIMEOUT);
                 pageAccessSynchronizer.lockPage(existingPageReference.getPageId());
                 try {
                     final Page existingPage = existingPageReference.getPage();

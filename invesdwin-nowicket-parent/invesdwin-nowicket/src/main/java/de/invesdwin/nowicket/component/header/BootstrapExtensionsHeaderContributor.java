@@ -7,7 +7,6 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.IHeaderContributor;
 
-import de.agilecoders.wicket.core.markup.html.references.RespondJavaScriptReference;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeCssReference;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.OpenWebIconsCssReference;
@@ -104,8 +103,6 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         renderHeadAfterBootstrap(response);
         BootstrapModalHeaderContributor.INSTANCE.renderHead(response);
         EnableTooltipsOnDisabledButtonsCssReference.INSTANCE.renderHead(response);
-        //fix layout in IE8
-        response.render(RespondJavaScriptReference.headerItem());
 
         //order is relevant here since scripts might depend on changes they do individually to the components
         if (disableComponentsOnAjaxCall) {
@@ -143,5 +140,6 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     /**
      * You can put Themes here that will be rendered before bootstrap modal, but after bootstrap itself.
      */
-    protected void renderHeadAfterBootstrap(final IHeaderResponse response) {}
+    protected void renderHeadAfterBootstrap(final IHeaderResponse response) {
+    }
 }
