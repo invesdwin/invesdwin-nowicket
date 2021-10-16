@@ -12,6 +12,7 @@ import org.apache.wicket.model.IPropertyReflectionAwareModel;
 import de.invesdwin.norva.beanpath.impl.clazz.IBeanClassAccessor;
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectContext;
 import de.invesdwin.norva.beanpath.impl.object.BeanObjectProcessor;
+import de.invesdwin.norva.beanpath.spi.BeanPathProcessorConfig;
 import de.invesdwin.norva.beanpath.spi.element.IActionBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
@@ -48,7 +49,7 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
             public IBeanPathElement getObject() {
                 if (ctx == null) {
                     ctx = new BeanObjectContext(rootObjectModel.getObject());
-                    new BeanObjectProcessor(ctx).process();
+                    new BeanObjectProcessor(BeanPathProcessorConfig.DEFAULT, ctx).process();
                 }
                 return ctx.getElementRegistry().getElement(beanPath);
             }

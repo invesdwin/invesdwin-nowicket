@@ -5,11 +5,11 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.norva.beanpath.impl.clazz.BeanClassProcessor;
+import de.invesdwin.norva.beanpath.spi.visitor.PrintVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.nowicket.generated.markup.processor.internal.ModelProcessorVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
-import de.invesdwin.norva.beanpath.impl.clazz.BeanClassProcessor;
-import de.invesdwin.norva.beanpath.spi.visitor.PrintVisitor;
 
 @NotThreadSafe
 public class ModelClassProcessor {
@@ -31,8 +31,8 @@ public class ModelClassProcessor {
     }
 
     public void process() {
-        new BeanClassProcessor(context.getBeanClassContext(), new ModelProcessorVisitor(context.getBeanClassContext(),
-                context, visitors), new PrintVisitor(context.getBeanClassContext())).process();
+        BeanClassProcessor.process(context.getModelClass(), new ModelProcessorVisitor(context, visitors),
+                new PrintVisitor());
     }
 
 }

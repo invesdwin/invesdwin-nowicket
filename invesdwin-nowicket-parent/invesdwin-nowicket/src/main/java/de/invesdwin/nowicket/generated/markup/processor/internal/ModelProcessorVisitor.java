@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.invesdwin.norva.beanpath.spi.context.ABeanPathContext;
 import de.invesdwin.norva.beanpath.spi.element.ButtonBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.CheckBoxBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.ComboBoxBeanPathElement;
@@ -18,7 +17,7 @@ import de.invesdwin.norva.beanpath.spi.element.UploadButtonBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.simple.SimpleActionBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.simple.SimplePropertyBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.table.TableBeanPathElement;
-import de.invesdwin.norva.beanpath.spi.visitor.ABeanPathVisitor;
+import de.invesdwin.norva.beanpath.spi.visitor.IBeanPathVisitor;
 import de.invesdwin.nowicket.generated.binding.annotation.Panel;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.element.AnchorModelElement;
@@ -39,19 +38,16 @@ import de.invesdwin.nowicket.generated.markup.processor.element.UploadButtonMode
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 
 @NotThreadSafe
-public class ModelProcessorVisitor extends ABeanPathVisitor {
+public class ModelProcessorVisitor implements IBeanPathVisitor {
 
     private final AModelContext context;
     private final List<IModelVisitor> visitors;
 
-    public ModelProcessorVisitor(final ABeanPathContext beanPathContext, final AModelContext context,
-            final IModelVisitor... visitors) {
-        this(beanPathContext, context, Arrays.asList(visitors));
+    public ModelProcessorVisitor(final AModelContext context, final IModelVisitor... visitors) {
+        this(context, Arrays.asList(visitors));
     }
 
-    public ModelProcessorVisitor(final ABeanPathContext beanPathContext, final AModelContext context,
-            final List<IModelVisitor> visitors) {
-        super(beanPathContext);
+    public ModelProcessorVisitor(final AModelContext context, final List<IModelVisitor> visitors) {
         this.context = context;
         this.visitors = visitors;
     }
