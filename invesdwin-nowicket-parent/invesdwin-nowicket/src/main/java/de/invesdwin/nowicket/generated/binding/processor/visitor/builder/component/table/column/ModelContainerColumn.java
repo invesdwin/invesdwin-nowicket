@@ -11,7 +11,7 @@ import de.invesdwin.util.lang.Strings;
 public class ModelContainerColumn extends ModelTextColumn {
 
     public ModelContainerColumn(final TableContainerColumnHtmlElement element) {
-        super(element, element.getTitleModel(null), /* not sortable */null, element.getColumnId());
+        super(element, element.getTitleModelFromTarget(null), /* not sortable */null, element.getColumnId());
     }
 
     @Override

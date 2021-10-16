@@ -20,7 +20,7 @@ public class ModelResourceReferenceAnchorColumn extends PropertyColumn<Object, S
     private final TableAnchorColumnHtmlElement element;
 
     public ModelResourceReferenceAnchorColumn(final TableAnchorColumnHtmlElement element) {
-        super(element.getTitleModel(null), element.getColumnId(), element.getColumnId());
+        super(element.getTitleModelFromTarget(null), element.getColumnId(), element.getColumnId());
         this.element = element;
     }
 
@@ -39,7 +39,7 @@ public class ModelResourceReferenceAnchorColumn extends PropertyColumn<Object, S
 
     protected ModelResourceLink newLink(final String componentId, final IModel<Object> rowModel) {
         return new ModelResourceLink(componentId, (ResourceReference) getDataModel(rowModel).getObject(),
-                element.getTitleModel(rowModel)) {
+                element.getTitleModelFromTarget(rowModel)) {
             @Override
             protected void onComponentTag(final ComponentTag tag) {
                 tag.setName("a");

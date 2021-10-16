@@ -26,6 +26,11 @@ public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDat
     }
 
     @Override
+    protected boolean isRowContainer() {
+        return true;
+    }
+
+    @Override
     public java.text.SimpleDateFormat getFormat(final Locale locale) {
         if (propertyFormat == null) {
             String format = getFormatString();

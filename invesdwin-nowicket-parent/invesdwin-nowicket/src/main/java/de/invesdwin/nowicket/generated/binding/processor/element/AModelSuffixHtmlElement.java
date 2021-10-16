@@ -76,7 +76,7 @@ public abstract class AModelSuffixHtmlElement extends AModelHtmlElement<IModelEl
 
     @Deprecated
     @Override
-    public IModel<String> getTooltipModel(final IModel<Object> targetModel) {
+    public IModel<String> getTooltipModelFromTarget(final IModel<Object> rootModel, final IModel<Object> targetModel) {
         throw new UnsupportedOperationException();
     }
 

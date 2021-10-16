@@ -19,7 +19,7 @@ public class ModelSelectionButtonColumn extends PropertyColumn<Object, String> {
     private final TableSelectionButtonColumnHtmlElement element;
 
     public ModelSelectionButtonColumn(final TableSelectionButtonColumnHtmlElement element) {
-        super(element.getTitleModel(null), element.getColumnId());
+        super(element.getTitleModelFromTarget(null), element.getColumnId());
         this.element = element;
     }
 

@@ -44,14 +44,14 @@ public interface IHtmlElement<E extends IModelElement<?>, M> extends Serializabl
 
     boolean isModalOpener();
 
-    IModel<String> getTitleModel(IModel<Object> targetObjectModel);
+    IModel<String> getTitleModelFromTarget(IModel<Object> targetObjectModel);
 
     IModel<String> getTitleModel();
 
-    IModel<String> getTooltipModel(IModel<Object> targetObjectModel);
+    IModel<String> getTooltipModelFromTarget(IModel<Object> rootObjectModel, IModel<Object> targetObjectModel);
 
-    boolean isEnabled(IModel<Object> targetObjectModel);
+    boolean isEnabledFromTarget(IModel<Object> rootObjectModel, IModel<Object> targetObjectModel);
 
-    boolean isVisible(IModel<Object> targetObjectModel);
+    boolean isVisibleFromTarget(IModel<Object> rootObjectModel, IModel<Object> targetObjectModel);
 
 }

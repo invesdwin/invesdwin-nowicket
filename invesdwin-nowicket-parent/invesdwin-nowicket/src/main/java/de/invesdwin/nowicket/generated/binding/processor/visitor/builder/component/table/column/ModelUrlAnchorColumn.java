@@ -19,7 +19,7 @@ public class ModelUrlAnchorColumn extends PropertyColumn<Object, String> {
     private final TableAnchorColumnHtmlElement element;
 
     public ModelUrlAnchorColumn(final TableAnchorColumnHtmlElement element) {
-        super(element.getTitleModel(null), element.getColumnId(), element.getColumnId());
+        super(element.getTitleModelFromTarget(null), element.getColumnId(), element.getColumnId());
         this.element = element;
     }
 
@@ -39,7 +39,8 @@ public class ModelUrlAnchorColumn extends PropertyColumn<Object, String> {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     protected ModelExternalLink newLink(final String componentId, final IModel<Object> rowModel) {
-        return new ModelExternalLink(componentId, (IModel) getDataModel(rowModel), element.getTitleModel(rowModel)) {
+        return new ModelExternalLink(componentId, (IModel) getDataModel(rowModel),
+                element.getTitleModelFromTarget(rowModel)) {
             @Override
             protected void onComponentTag(final ComponentTag tag) {
                 tag.setName("a");

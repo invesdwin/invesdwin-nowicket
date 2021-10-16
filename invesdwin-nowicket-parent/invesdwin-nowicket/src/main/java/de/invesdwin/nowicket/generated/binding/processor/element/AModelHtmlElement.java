@@ -88,7 +88,7 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     }
 
     @Override
-    public IModel<String> getTitleModel(final IModel<Object> targetObjectModel) {
+    public IModel<String> getTitleModelFromTarget(final IModel<Object> targetObjectModel) {
         return new TitleModel(getWicketId(), this, targetObjectModel,
                 getModelElement().getBeanPathElement().getAccessor().getBeanPathFragment());
     }
@@ -112,7 +112,7 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
                     final Object rootObject = getContext().getModelObjectContext().getModelObject();
                     final BeanClassContainer container = (BeanClassContainer) getModelElement().getBeanPathElement()
                             .getContainer();
-                    return container.getObjectFromRoot(rootObject);
+                    return container.getTargetFromRoot(rootObject);
                 }
             };
         }
@@ -140,11 +140,13 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     }
 
     @Override
-    public IModel<String> getTooltipModel(final IModel<Object> targetObjectModel) {
+    public IModel<String> getTooltipModelFromTarget(final IModel<Object> rootObjectModel,
+            final IModel<Object> targetObjectModel) {
         return new IModel<String>() {
             @Override
             public String getObject() {
-                final String tooltip = getModelElement().getBeanPathElement().getTooltip(targetObjectModel.getObject());
+                final String tooltip = getModelElement().getBeanPathElement()
+                        .getTooltipFromTarget(rootObjectModel, targetObjectModel.getObject());
                 if (tooltip == null) {
                     return null;
                 } else {
@@ -161,8 +163,9 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     }
 
     @Override
-    public boolean isEnabled(final IModel<Object> targetObjectModel) {
-        final boolean enabled = getModelElement().getBeanPathElement().isEnabled(targetObjectModel.getObject())
+    public boolean isEnabledFromTarget(final IModel<Object> rootObjectModel, final IModel<Object> targetObjectModel) {
+        final boolean enabled = getModelElement().getBeanPathElement()
+                .isEnabledFromTarget(rootObjectModel.getObject(), targetObjectModel.getObject())
                 && !isHiddenByModalContainer();
         return enabled;
     }
@@ -188,8 +191,9 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     }
 
     @Override
-    public boolean isVisible(final IModel<Object> targetObjectModel) {
-        return getModelElement().getBeanPathElement().isVisible(targetObjectModel.getObject());
+    public boolean isVisibleFromTarget(final IModel<Object> rootObjectModel, final IModel<Object> targetObjectModel) {
+        return getModelElement().getBeanPathElement()
+                .isVisibleFromTarget(rootObjectModel.getObject(), targetObjectModel.getObject());
     }
 
 }

@@ -66,7 +66,7 @@ public abstract class ANoModelHtmlElement extends AHtmlElement<IModelElement<?>,
 
     @Deprecated
     @Override
-    public IModel<String> getTitleModel(final IModel<Object> targetObjectModel) {
+    public IModel<String> getTitleModelFromTarget(final IModel<Object> targetObjectModel) {
         throw new UnsupportedOperationException();
     }
 
@@ -96,19 +96,19 @@ public abstract class ANoModelHtmlElement extends AHtmlElement<IModelElement<?>,
 
     @Deprecated
     @Override
-    public IModel<String> getTooltipModel(final IModel<Object> targetModel) {
+    public IModel<String> getTooltipModelFromTarget(final IModel<Object> rootModel, final IModel<Object> targetModel) {
         throw new UnsupportedOperationException();
     }
 
     @Deprecated
     @Override
-    public boolean isEnabled(final IModel<Object> targetObjectModel) {
+    public boolean isEnabledFromTarget(final IModel<Object> rootModel, final IModel<Object> targetObjectModel) {
         throw new UnsupportedOperationException();
     }
 
     @Deprecated
     @Override
-    public boolean isVisible(final IModel<Object> targetObjectModel) {
+    public boolean isVisibleFromTarget(final IModel<Object> rootModel, final IModel<Object> targetObjectModel) {
         throw new UnsupportedOperationException();
     }
 

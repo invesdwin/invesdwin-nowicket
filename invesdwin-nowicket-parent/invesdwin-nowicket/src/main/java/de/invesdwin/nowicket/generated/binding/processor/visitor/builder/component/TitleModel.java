@@ -17,12 +17,14 @@ public class TitleModel implements IModel<String> {
 
     private final String wicketId;
     private final AModelHtmlElement<?, ?> element;
+    private final IModel<Object> rootObjectModel;
     private final IModel<Object> targetObjectModel;
     private final IModel<Object> propertyModel;
 
     public TitleModel(final String wicketId, final AModelHtmlElement<?, ?> element) {
         this.wicketId = wicketId;
         this.element = element;
+        this.rootObjectModel = element.getRootObjectModel();
         this.targetObjectModel = element.getTargetObjectModel();
         this.propertyModel = new BeanPathModel<Object>(element);
     }
@@ -31,13 +33,14 @@ public class TitleModel implements IModel<String> {
             final IModel<Object> targetObjectModel, final String propertyPath) {
         this.wicketId = wicketId;
         this.element = element;
+        this.rootObjectModel = element.getRootObjectModel();
         this.targetObjectModel = targetObjectModel;
         this.propertyModel = new BeanPathModel<Object>(targetObjectModel, propertyPath);
     }
 
     @Override
     public String getObject() {
-        if (!element.isVisible(targetObjectModel)) {
+        if (!element.isVisibleFromTarget(rootObjectModel, targetObjectModel)) {
             return null;
         }
         final String title = getTitle();
@@ -69,7 +72,7 @@ public class TitleModel implements IModel<String> {
     }
 
     protected String getTitle() {
-        return element.getModelElement().getBeanPathElement().getTitle(getTitleTarget());
+        return element.getModelElement().getBeanPathElement().getTitleFromTarget(getTitleTarget());
     }
 
     protected boolean isVisibleName(final String title) {

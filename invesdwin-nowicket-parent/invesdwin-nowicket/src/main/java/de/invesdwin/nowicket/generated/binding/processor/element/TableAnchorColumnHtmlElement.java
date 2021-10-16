@@ -22,6 +22,11 @@ public class TableAnchorColumnHtmlElement extends ATableColumnHtmlElement<TableA
         super(context, element);
     }
 
+    @Override
+    protected boolean isRowContainer() {
+        return true;
+    }
+
     @Deprecated
     @Override
     public Format getFormat(final Locale locale) {

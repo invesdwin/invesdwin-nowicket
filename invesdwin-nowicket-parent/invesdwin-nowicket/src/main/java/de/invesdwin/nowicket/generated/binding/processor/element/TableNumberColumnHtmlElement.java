@@ -23,6 +23,11 @@ public class TableNumberColumnHtmlElement extends ATableColumnHtmlElement<TableN
     }
 
     @Override
+    protected boolean isRowContainer() {
+        return true;
+    }
+
+    @Override
     public DecimalFormat getFormat(final Locale locale) {
         if (propertyFormat == null) {
             String format = super.getFormatString();

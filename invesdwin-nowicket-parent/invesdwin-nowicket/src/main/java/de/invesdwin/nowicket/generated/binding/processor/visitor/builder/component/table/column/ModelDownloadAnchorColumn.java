@@ -19,7 +19,7 @@ public class ModelDownloadAnchorColumn extends PropertyColumn<Object, String> {
     private final TableAnchorColumnHtmlElement element;
 
     public ModelDownloadAnchorColumn(final TableAnchorColumnHtmlElement element) {
-        super(element.getTitleModel(null), element.getColumnId(), element.getColumnId());
+        super(element.getTitleModelFromTarget(null), element.getColumnId(), element.getColumnId());
         this.element = element;
     }
 
@@ -39,7 +39,8 @@ public class ModelDownloadAnchorColumn extends PropertyColumn<Object, String> {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     protected ModelDownloadLink newLink(final String componentId, final IModel<Object> rowModel) {
-        return new ModelDownloadLink(componentId, (IModel) getDataModel(rowModel), element.getTitleModel(rowModel)) {
+        return new ModelDownloadLink(componentId, (IModel) getDataModel(rowModel),
+                element.getTitleModelFromTarget(rowModel)) {
             @Override
             protected void onComponentTag(final ComponentTag tag) {
                 tag.setName("a");

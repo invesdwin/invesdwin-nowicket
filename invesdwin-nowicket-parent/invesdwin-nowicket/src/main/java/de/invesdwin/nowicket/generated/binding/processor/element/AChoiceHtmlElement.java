@@ -196,17 +196,17 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
             public List<ITab> getDelegate() {
                 final List<ITab> tabs = new ArrayList<ITab>();
                 for (final Object row : getChoiceModel().getObject()) {
-                    final IModel<Object> targetObjectModel = new IModel<Object>() {
+                    final IModel<Object> rowObjectModel = new IModel<Object>() {
                         @Override
                         public Object getObject() {
                             return row;
                         }
                     };
                     final IModel<String> tabTitleModel = new ChoiceTabTitleModel(AChoiceHtmlElement.this,
-                            targetObjectModel);
+                            rowObjectModel);
                     //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
-                    final ITab tab = new ModelTab(AChoiceHtmlElement.this, tabTitleModel, targetObjectModel,
-                            targetObjectModel);
+                    final ITab tab = new ModelTab(AChoiceHtmlElement.this, tabTitleModel, getTargetObjectModel(),
+                            rowObjectModel, rowObjectModel);
                     tabs.add(tab);
                 }
                 return tabs;

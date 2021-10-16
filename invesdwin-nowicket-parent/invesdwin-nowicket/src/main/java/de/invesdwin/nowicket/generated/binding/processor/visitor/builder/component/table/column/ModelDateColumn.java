@@ -17,7 +17,7 @@ public class ModelDateColumn extends ModelTextColumn {
     private final TableDateColumnHtmlElement element;
 
     public ModelDateColumn(final TableDateColumnHtmlElement element) {
-        super(element, element.getTitleModel(null), element.getColumnId(), element.getColumnId());
+        super(element, element.getTitleModelFromTarget(null), element.getColumnId(), element.getColumnId());
         this.element = element;
     }
 

@@ -23,6 +23,11 @@ public class TableContainerColumnHtmlElement extends ATableColumnHtmlElement<Tab
     }
 
     @Override
+    protected boolean isRowContainer() {
+        return false;
+    }
+
+    @Override
     public TableContainerColumnModelElement getModelElement() {
         final AChoiceModelElement<?> choiceModelElement = getContext().getModelObjectContext()
                 .getElementRegistry()

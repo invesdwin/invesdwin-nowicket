@@ -14,7 +14,7 @@ public class ModelNumberColumn extends ModelTextColumn {
     private final TableNumberColumnHtmlElement element;
 
     public ModelNumberColumn(final TableNumberColumnHtmlElement element) {
-        super(element, element.getTitleModel(null), element.getColumnId(), element.getColumnId());
+        super(element, element.getTitleModelFromTarget(null), element.getColumnId(), element.getColumnId());
         this.element = element;
     }
 

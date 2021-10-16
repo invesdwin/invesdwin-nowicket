@@ -38,7 +38,7 @@ public class UnorderedListHtmlElement extends AChoiceHtmlElement<AChoiceModelEle
     }
 
     @Override
-    public boolean isEnabled(final IModel<Object> targetObjectModel) {
+    public boolean isEnabledFromTarget(final IModel<Object> rootObjectModel, final IModel<Object> targetObjectModel) {
         //always enabled
         return true;
     }

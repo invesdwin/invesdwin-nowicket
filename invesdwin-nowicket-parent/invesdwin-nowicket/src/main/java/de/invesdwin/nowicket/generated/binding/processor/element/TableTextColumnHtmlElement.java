@@ -18,6 +18,11 @@ public class TableTextColumnHtmlElement extends ATableColumnHtmlElement<TableTex
         super(context, modelElement);
     }
 
+    @Override
+    protected boolean isRowContainer() {
+        return true;
+    }
+
     @Deprecated
     @Override
     public Format getFormat(final Locale locale) {

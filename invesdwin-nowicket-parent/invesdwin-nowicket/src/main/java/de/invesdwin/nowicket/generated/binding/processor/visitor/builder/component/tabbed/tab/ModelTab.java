@@ -20,14 +20,17 @@ public class ModelTab extends AModelTab {
     private final IHtmlElement<?, ?> element;
     private final IModel<String> tabTitleModel;
     private final IModel<Object> panelModel;
-    private final IModel<Object> targetObjectModel;
+    private final IModel<Object> rowObjectModel;
+    private final IModel<Object> tableObjectModel;
 
     public ModelTab(final IHtmlElement<?, ?> element, final IModel<String> tabTitleModel,
-            final IModel<Object> panelModel, final IModel<Object> targetObjectModel) {
+            final IModel<Object> panelModel, final IModel<Object> tableObjectModel,
+            final IModel<Object> rowObjectModel) {
         this.element = element;
         this.tabTitleModel = tabTitleModel;
         this.panelModel = panelModel;
-        this.targetObjectModel = targetObjectModel;
+        this.tableObjectModel = tableObjectModel;
+        this.rowObjectModel = rowObjectModel;
     }
 
     @Override
@@ -58,11 +61,11 @@ public class ModelTab extends AModelTab {
 
     @Override
     public boolean isVisible() {
-        return element.isVisible(targetObjectModel);
+        return element.isVisibleFromTarget(tableObjectModel, rowObjectModel);
     }
 
     public boolean isEnabled() {
-        return element.isEnabled(targetObjectModel);
+        return element.isEnabledFromTarget(tableObjectModel, rowObjectModel);
     }
 
     @Override

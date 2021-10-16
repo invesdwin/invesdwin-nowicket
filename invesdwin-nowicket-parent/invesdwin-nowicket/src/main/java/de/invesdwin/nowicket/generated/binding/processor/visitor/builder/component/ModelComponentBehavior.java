@@ -20,12 +20,14 @@ public class ModelComponentBehavior extends Behavior {
 
     private final IHtmlElement<?, ?> element;
     private final Component component;
+    private final IModel<Object> rootObjectModel;
     private final IModel<Object> targetObjectModel;
 
     public ModelComponentBehavior(final IHtmlElement<?, ?> element, final Component component,
             final IModel<Object> targetObjectModel) {
         this.element = element;
         this.component = component;
+        this.rootObjectModel = element.getRootObjectModel();
         this.targetObjectModel = targetObjectModel;
         addEagerBehavior();
         addNullValidBehavior();
@@ -74,15 +76,15 @@ public class ModelComponentBehavior extends Behavior {
          * disable either if the element itself is disabled or a modal panel currently creates an overlay over this
          * component. the modal check is needed so that the default button keybinding does not detect the wrong button
          */
-        component.setEnabled(element.isEnabled(targetObjectModel));
-        component.setVisible(element.isVisible(targetObjectModel));
+        component.setEnabled(element.isEnabledFromTarget(rootObjectModel, targetObjectModel));
+        component.setVisible(element.isVisibleFromTarget(rootObjectModel, targetObjectModel));
     }
 
     private void addTooltipBehavior() {
         component.add(new Behavior() {
             @Override
             public void onComponentTag(final Component component, final ComponentTag tag) {
-                final String title = element.getTooltipModel(targetObjectModel).getObject();
+                final String title = element.getTooltipModelFromTarget(rootObjectModel, targetObjectModel).getObject();
                 if (Strings.isNotBlank(title)) {
                     //on img title is also the tooltip, not alt
                     tag.put("title", title);

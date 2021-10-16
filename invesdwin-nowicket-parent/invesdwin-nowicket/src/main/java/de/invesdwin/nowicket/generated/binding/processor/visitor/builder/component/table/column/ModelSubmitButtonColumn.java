@@ -29,7 +29,7 @@ public class ModelSubmitButtonColumn extends PropertyColumn<Object, String> {
     }
 
     protected ModelSubmitButtonColumn(final ITableButtonColumn<?, ?> element) {
-        super(element.getTitleModel(null), element.getColumnId());
+        super(element.getTitleModelFromTarget(null), element.getColumnId());
         this.element = element;
     }
 

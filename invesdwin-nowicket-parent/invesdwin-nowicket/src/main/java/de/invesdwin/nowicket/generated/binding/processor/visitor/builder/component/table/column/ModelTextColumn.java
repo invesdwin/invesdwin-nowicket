@@ -17,7 +17,7 @@ public class ModelTextColumn extends PropertyColumn<Object, String> {
     private final ATableColumnHtmlElement<?, ?> element;
 
     public ModelTextColumn(final ATableColumnHtmlElement<?, ?> element) {
-        this(element, element.getTitleModel(null), element.getColumnId(), element.getColumnId());
+        this(element, element.getTitleModelFromTarget(null), element.getColumnId(), element.getColumnId());
     }
 
     protected ModelTextColumn(final ATableColumnHtmlElement<?, ?> element, final IModel<String> displayModel,
