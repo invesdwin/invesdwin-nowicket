@@ -17,7 +17,6 @@ import org.jsoup.nodes.Document;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import de.invesdwin.norva.beanpath.impl.object.IRootObjectReference;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.ISubmitButtonCallbackFactory;
@@ -108,12 +107,7 @@ public class HtmlContext implements Serializable {
 
     public ModelObjectContext getModelObjectContext() {
         if (modelObjectContext == null) {
-            modelObjectContext = new ModelObjectContext(new IRootObjectReference() {
-                @Override
-                public Object getRootObject() {
-                    return getMarkupContainer().getDefaultModelObject();
-                }
-            });
+            modelObjectContext = new ModelObjectContext(() -> getMarkupContainer().getDefaultModelObject());
             //populate model element registry
             new ModelObjectProcessor(modelObjectContext).process();
         }
