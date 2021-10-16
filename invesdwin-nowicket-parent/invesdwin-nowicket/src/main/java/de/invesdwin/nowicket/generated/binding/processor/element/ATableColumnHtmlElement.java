@@ -75,7 +75,7 @@ public abstract class ATableColumnHtmlElement<E extends ATableColumnModelElement
                     if (isRowContainer()) {
                         tableContainer = tableContainer.getParent();
                     }
-                    final BeanClassContainer container = (BeanClassContainer) tableContainer;
+                    final BeanClassContainer container = tableContainer.unwrap(BeanClassContainer.class);
                     return container.getTargetFromRoot(rootObject);
                 }
             };

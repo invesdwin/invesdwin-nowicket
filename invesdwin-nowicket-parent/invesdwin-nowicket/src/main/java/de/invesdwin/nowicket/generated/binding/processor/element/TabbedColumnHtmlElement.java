@@ -56,7 +56,7 @@ public class TabbedColumnHtmlElement extends AModelHtmlElement<TabbedColumnModel
                     final Object rootObject = getContext().getModelObjectContext().getModelObject();
                     final TabbedColumnBeanPathElement element = getModelElement().getBeanPathElement();
                     final IBeanPathContainer tableContainer = element.getContainer();
-                    final BeanClassContainer container = (BeanClassContainer) tableContainer;
+                    final BeanClassContainer container = tableContainer.unwrap(BeanClassContainer.class);
                     return container.getTargetFromRoot(rootObject);
                 }
             };

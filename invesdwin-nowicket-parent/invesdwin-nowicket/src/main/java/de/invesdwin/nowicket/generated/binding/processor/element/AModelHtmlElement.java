@@ -110,8 +110,9 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
                 @Override
                 protected Object load() {
                     final Object rootObject = getContext().getModelObjectContext().getModelObject();
-                    final BeanClassContainer container = (BeanClassContainer) getModelElement().getBeanPathElement()
-                            .getContainer();
+                    final BeanClassContainer container = getModelElement().getBeanPathElement()
+                            .getContainer()
+                            .unwrap(BeanClassContainer.class);
                     return container.getTargetFromRoot(rootObject);
                 }
             };

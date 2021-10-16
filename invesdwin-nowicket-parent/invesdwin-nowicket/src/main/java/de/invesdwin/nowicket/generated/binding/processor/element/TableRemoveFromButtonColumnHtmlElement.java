@@ -18,4 +18,9 @@ public class TableRemoveFromButtonColumnHtmlElement extends TableSubmitButtonCol
         return (TableRemoveFromButtonColumnModelElement) super.getModelElement();
     }
 
+    @Override
+    protected boolean isRowContainer() {
+        return false;
+    }
+
 }
