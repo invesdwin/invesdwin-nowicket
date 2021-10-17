@@ -29,10 +29,15 @@ public final class RequestCycles {
     private static final MetaDataKey<IPartialPageRequestHandler> PARTIAL_PAGE_REQUEST_HANDLER_KEY = new MetaDataKey<IPartialPageRequestHandler>() {
     };
 
-    private RequestCycles() {}
+    private RequestCycles() {
+    }
 
     public static HttpServletRequest getContainerRequest() {
         final RequestCycle requestCycle = RequestCycle.get();
+        return getContainerRequest(requestCycle);
+    }
+
+    public static HttpServletRequest getContainerRequest(final RequestCycle requestCycle) {
         if (requestCycle == null) {
             return null;
         }
@@ -45,6 +50,10 @@ public final class RequestCycles {
 
     public static HttpServletResponse getContainerResponse() {
         final RequestCycle requestCycle = RequestCycle.get();
+        return getContainerResponse(requestCycle);
+    }
+
+    public static HttpServletResponse getContainerResponse(final RequestCycle requestCycle) {
         if (requestCycle == null) {
             return null;
         }
@@ -56,7 +65,12 @@ public final class RequestCycles {
     }
 
     public static boolean isOnePassRender() {
-        final IRequestParameters params = RequestCycle.get().getRequest().getQueryParameters();
+        final RequestCycle requestCycle = RequestCycle.get();
+        return isOnePassRender(requestCycle);
+    }
+
+    public static boolean isOnePassRender(final RequestCycle requestCycle) {
+        final IRequestParameters params = requestCycle.getRequest().getQueryParameters();
         for (final String param : new String[] { "onePassRender", "robot", "bot" }) {
             final String onePassRender = String.valueOf(params.getParameterValue(param));
             if (BooleanUtils.toBoolean(onePassRender)) {
@@ -67,11 +81,16 @@ public final class RequestCycles {
     }
 
     public static Page getPage() {
-        Page page = RequestCycle.get().getMetaData(PAGE_KEY);
+        final RequestCycle requestCycle = RequestCycle.get();
+        return getPage(requestCycle);
+    }
+
+    public static Page getPage(final RequestCycle requestCycle) {
+        Page page = requestCycle.getMetaData(PAGE_KEY);
         if (page != null) {
             return page;
         }
-        final IPageRequestHandler lastHandler = PageRequestHandlerTracker.getLastHandler(RequestCycle.get());
+        final IPageRequestHandler lastHandler = PageRequestHandlerTracker.getLastHandler(requestCycle);
         if (lastHandler == null) {
             return null;
         }

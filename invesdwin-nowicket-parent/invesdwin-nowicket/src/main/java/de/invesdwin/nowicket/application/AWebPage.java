@@ -4,6 +4,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Page;
+import org.apache.wicket.ajax.AjaxNewWindowNotifyingBehavior;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxIndicatorAppender;
@@ -28,6 +30,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.component.header.ModernizrMinJavaScriptReference;
 import de.invesdwin.nowicket.page.auth.SignIn;
@@ -112,6 +115,23 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
         } else {
             add(new WebMarkupContainer("footer").setVisible(false));
         }
+
+        final AjaxNewWindowNotifyingBehavior newWindowBehavior = newAjaxNewWindowNotifyingBehavior();
+        if (newWindowBehavior != null) {
+            add(newWindowBehavior);
+        }
+    }
+
+    /**
+     * https://stackoverflow.com/questions/29508123/wicket-multi-tab-ajax-page-serialization
+     */
+    protected AjaxNewWindowNotifyingBehavior newAjaxNewWindowNotifyingBehavior() {
+        return new AjaxNewWindowNotifyingBehavior() {
+            @Override
+            protected void onNewWindow(final AjaxRequestTarget target) {
+                ModelCacheUsingPageFactory.onNewWindow(getComponent(), target.getPage());
+            }
+        };
     }
 
     protected HtmlTag newHtmlTag(final String id) {
@@ -229,5 +249,6 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
     }
 
     @Override
-    public void onPageModelRefresh(final Object newModelObject) {}
+    public void onPageModelRefresh(final Object newModelObject) {
+    }
 }

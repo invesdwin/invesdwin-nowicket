@@ -2,6 +2,7 @@ package de.invesdwin.nowicket.application.filter;
 
 import javax.annotation.concurrent.Immutable;
 
+import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.ComponentNotFoundException;
 import org.apache.wicket.core.request.mapper.StalePageException;
 import org.apache.wicket.request.IRequestHandler;
@@ -16,8 +17,9 @@ public final class StalePageRequestCycleListener implements IRequestCycleListene
     @Override
     public IRequestHandler onException(final RequestCycle cycle, final Exception ex) {
         if (ex instanceof StalePageException) {
+            final StalePageException cEx = (StalePageException) ex;
             //going back through the history is sometimes impossible, just show the latest version in that case
-            return ModelCacheUsingPageFactory.onStalePageException();
+            return ModelCacheUsingPageFactory.onStalePageException((Page) cEx.getPage());
         }
         if (ex instanceof ComponentNotFoundException) {
             //handle more gracefully when clicking on table buttons very fast by showing the latest version instead

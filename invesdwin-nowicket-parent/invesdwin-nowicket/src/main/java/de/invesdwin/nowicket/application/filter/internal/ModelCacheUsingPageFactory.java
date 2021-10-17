@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.application.filter.internal;
 import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.wicket.Component;
 import org.apache.wicket.IPageFactory;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Page;
@@ -23,7 +24,7 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
 
     public static final MetaDataKey<Boolean> NO_CACHE_KEY = new MetaDataKey<Boolean>() {
     };
-    public static final String NO_CACHE_PARAM = ModelCacheUsingPageFactory.class.getSimpleName() + "_NO_CACHE";
+    public static final String NO_CACHE_PARAM = "noCache";
 
     private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
             .getXLogger(ModelCacheUsingPageFactory.class);
@@ -134,8 +135,11 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
     }
 
     public static RenderPageRequestHandler onStalePageException() {
-        final IPageFactory pageFactory = AWebApplication.get().getPageFactory();
         final Page page = RequestCycles.getPage();
+        return onStalePageException(page);
+    }
+
+    public static RenderPageRequestHandler onStalePageException(final Page page) {
         if (page == null) {
             return null;
         }
@@ -143,7 +147,20 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
         if (!pageParameters.getNamedKeys().contains(NO_CACHE_PARAM)) {
             pageParameters.add(NO_CACHE_PARAM, true);
         }
+        final IPageFactory pageFactory = AWebApplication.get().getPageFactory();
         final Page newPage = pageFactory.newPage(page.getClass(), pageParameters);
         return new RenderPageRequestHandler(new PageProvider(newPage));
     }
+
+    public static void onNewWindow(final Component component, final Page page) {
+        if (page == null) {
+            return;
+        }
+        final PageParameters pageParameters = new PageParameters(page.getPageParameters());
+        if (!pageParameters.getNamedKeys().contains(NO_CACHE_PARAM)) {
+            pageParameters.add(NO_CACHE_PARAM, true);
+        }
+        component.setResponsePage(page.getClass(), pageParameters);
+    }
+
 }

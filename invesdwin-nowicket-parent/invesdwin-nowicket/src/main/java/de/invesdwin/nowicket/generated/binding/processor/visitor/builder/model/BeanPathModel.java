@@ -85,7 +85,10 @@ public class BeanPathModel<T> implements IPropertyReflectionAwareModel<T>, IObje
         final IBeanPathElement beanPathElement = beanPathElementModel.getObject();
         if (beanPathElement instanceof IPropertyBeanPathElement) {
             final IPropertyBeanPathElement propertyElement = (IPropertyBeanPathElement) beanPathElement;
-            propertyElement.getModifier().setValueFromRoot(rootObjectModel.getObject(), object);
+            //skip if it is a final field
+            if (propertyElement.getAccessor().hasPublicSetterOrField()) {
+                propertyElement.getModifier().setValueFromRoot(rootObjectModel.getObject(), object);
+            }
         } else {
             throw new IllegalArgumentException("Not a property element: " + beanPathElement.getClass().getSimpleName());
         }
