@@ -50,7 +50,8 @@ public final class Components {
     private static final String FROZEN_COMPONENTS_LOG_MESSAGE = "Ignoring exception cause for frozen components (maybe the update was requested too late in the request lifecycle): {}";
     //CHECKSTYLE:ON
 
-    private Components() {}
+    private Components() {
+    }
 
     public static Component findRoot(final Component component) {
         Component parent = component;
@@ -134,7 +135,15 @@ public final class Components {
                 //fileUploadField chokes on FileNotFound if synchronized twice in a call!
                         && !(object instanceof FileUploadField)) {
                     try {
-                        object.updateModel(); //fill in values regardless of valid state, since complex validation rules might require all inputs
+                        /*
+                         * fill in values regardless of valid state, since complex validation rules might require all
+                         * inputs
+                         * 
+                         * we need to call convertInput here because otherwise wicket will leave the value null at that
+                         * point, which would use null in updateModel()
+                         */
+                        object.convertInput();
+                        object.updateModel();
                     } catch (final Throwable t) {
                         //ignore
                     }
