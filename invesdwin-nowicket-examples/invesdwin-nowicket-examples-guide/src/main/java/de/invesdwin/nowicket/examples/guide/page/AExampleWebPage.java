@@ -32,7 +32,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownBut
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarExternalLink;
 import de.agilecoders.wicket.core.settings.IBootstrapSettings;
 import de.agilecoders.wicket.core.settings.ITheme;
-import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome5IconType;
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
@@ -191,7 +191,7 @@ public abstract class AExampleWebPage extends AWebPage {
                                         .setIconType(GlyphIconType.newwindow));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WizardStartPage.class,
                                 new ResourceModel("menu.wizard").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.magic));
+                                        .setIconType(FontAwesome5IconType.magic_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(TabbedPanelPage.class,
                                 new ResourceModel("menu.tabbedpanel").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.creditcard));
@@ -206,7 +206,7 @@ public abstract class AExampleWebPage extends AWebPage {
                                         .setIconType(GlyphIconType.refresh));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WebSocketPage.class,
                                 new ResourceModel("menu.websocket").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.plug));
+                                        .setIconType(FontAwesome5IconType.plug_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(GuestbookExamplePage.class,
                                 new ResourceModel("menu.guestbook").wrapOnAssignment(navbar))
                                         .setIconType(GlyphIconType.book));
@@ -284,7 +284,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(ClosingWordsPage.class,
                                 new ResourceModel("menu.closingwords").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.microphone));
+                                        .setIconType(FontAwesome5IconType.microphone_s));
 
                         return subMenu;
                     }

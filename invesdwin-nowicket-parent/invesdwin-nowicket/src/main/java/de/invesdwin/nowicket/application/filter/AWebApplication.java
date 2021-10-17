@@ -33,6 +33,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
     @Override
     protected void init() {
         super.init();
+        getCspSettings().blocking().disabled();
         WebApplicationInitializer initializer = getDelegate().getInitializerOverride();
         if (initializer == null) {
             initializer = new WebApplicationInitializer();

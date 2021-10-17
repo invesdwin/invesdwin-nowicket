@@ -22,7 +22,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarExternalLink;
-import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome5IconType;
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
@@ -50,16 +50,16 @@ public abstract class AEvaWebPage extends AWebPage {
                         .setIconType(GlyphIconType.home)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(PleaseWaitPage.class, Model.of("Ask EVA"))
-                        .setIconType(FontAwesomeIconType.question_circle)));
+                        .setIconType(FontAwesome5IconType.question_circle_s)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(FeedbackPage.class, Model.of("Feedback"))
-                        .setIconType(FontAwesomeIconType.exclamation_circle)));
+                        .setIconType(FontAwesome5IconType.exclamation_circle_s)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(DashboardPage.class, Model.of("Dashboard"))
-                        .setIconType(FontAwesomeIconType.tachometer)));
+                        .setIconType(FontAwesome5IconType.tachometer_alt_s)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(DetailsPage.class, Model.of("Details"))
-                        .setIconType(FontAwesomeIconType.search)));
+                        .setIconType(FontAwesome5IconType.search_s)));
         navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
                 new NavbarExternalLink(Model.of("mailto:gsubes@gmail.com")).setLabel(Model.of(""))
                         .setIconType(GlyphIconType.envelope)));

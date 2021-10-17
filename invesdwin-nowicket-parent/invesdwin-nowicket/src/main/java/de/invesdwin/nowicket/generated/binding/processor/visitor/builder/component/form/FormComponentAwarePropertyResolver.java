@@ -8,8 +8,8 @@ import org.apache.wicket.bean.validation.IPropertyResolver;
 import org.apache.wicket.bean.validation.Property;
 import org.apache.wicket.markup.html.form.FormComponent;
 
+import de.invesdwin.norva.beanpath.impl.clazz.BeanClassAccessor;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
-import de.invesdwin.norva.beanpath.impl.object.BeanObjectAccessor;
 
 /**
  * This class fixes the following problem in PropertyResolver for IFormComponentAware:
@@ -25,7 +25,8 @@ public final class FormComponentAwarePropertyResolver implements IPropertyResolv
     private static final MetaDataKey<Property> PROPERTY_KEY = new MetaDataKey<Property>() {
     };
 
-    public FormComponentAwarePropertyResolver() {}
+    public FormComponentAwarePropertyResolver() {
+    }
 
     @Override
     public Property resolveProperty(final FormComponent<?> component) {
@@ -35,9 +36,10 @@ public final class FormComponentAwarePropertyResolver implements IPropertyResolv
     public static void maybeRegisterElement(final IHtmlElement<?, ?> element, final Component component,
             final FormComponent<?> formComponent) {
         if (component instanceof IFormComponentAware) {
-            final BeanObjectAccessor accessor = (BeanObjectAccessor) element.getModelElement()
+            final BeanClassAccessor accessor = element.getModelElement()
                     .getBeanPathElement()
-                    .getAccessor();
+                    .getAccessor()
+                    .unwrap(BeanClassAccessor.class);
             formComponent.setMetaData(PROPERTY_KEY,
                     new Property(accessor.getContainer().getType().getType(), accessor.getBeanPathFragment()));
         }
