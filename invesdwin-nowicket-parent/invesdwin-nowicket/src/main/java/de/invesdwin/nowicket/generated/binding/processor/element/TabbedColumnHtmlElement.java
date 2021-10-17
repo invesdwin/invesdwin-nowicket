@@ -39,7 +39,8 @@ public class TabbedColumnHtmlElement extends AModelHtmlElement<TabbedColumnModel
 
     public ITab createWicketTab() {
         //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
-        return new ModelTab(this, getTitleModel(), getModel(), getTableObjectModel(), getTargetObjectModel());
+        return new ModelTab(this, getTitleModel(), getModel(), getContext().getRootObjectModel(),
+                getTargetObjectModel());
     }
 
     @Override

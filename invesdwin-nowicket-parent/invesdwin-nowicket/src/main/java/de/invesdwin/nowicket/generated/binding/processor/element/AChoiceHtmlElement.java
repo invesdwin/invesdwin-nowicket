@@ -43,14 +43,14 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
     }
 
     public IModel<List<Object>> getChoiceModel() {
-        final IModel<Object> targetObjectModel = getTargetObjectModel();
         return new IModel<List<Object>>() {
-
             @Override
             public List<Object> getObject() {
+                final IModel<Object> targetObjectModel = getTargetObjectModel();
+                final Object target = targetObjectModel.getObject();
                 final List<Object> list = (List<Object>) getModelElement().getBeanPathElement()
                         .getChoiceModifier()
-                        .getValueFromTarget(targetObjectModel.getObject());
+                        .getValueFromTarget(target);
                 //check before removing null
                 maybeCheckDuplicateRenderedStringsInDevMode(list);
                 //setNullValid Behavior in ModelComponentBehavior already handles null properly; ListMultipleChoice does not support null selection
@@ -206,7 +206,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
                             rowObjectModel);
                     //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle
                     final ITab tab = new ModelTab(AChoiceHtmlElement.this, tabTitleModel, rowObjectModel,
-                            getTargetObjectModel(), rowObjectModel);
+                            getContext().getRootObjectModel(), rowObjectModel);
                     tabs.add(tab);
                 }
                 return tabs;

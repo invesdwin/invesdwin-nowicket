@@ -29,8 +29,8 @@ public abstract class AModelHtmlElement<E extends IModelElement<?>, M> extends A
     public static final String VALUE = "value";
     public static final String VALUE_PLACEHOLDER = "$(" + VALUE + ")";
 
+    protected IModel<Object> targetObjectModel;
     private transient E modelElement;
-    private IModel<Object> targetObjectModel;
 
     public AModelHtmlElement(final HtmlContext context, final Element element) {
         super(context, element);
