@@ -7,6 +7,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.IPageFactory;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Page;
+import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.core.request.handler.PageProvider;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.request.component.IRequestablePage;
@@ -161,6 +162,17 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
             pageParameters.add(NO_CACHE_PARAM, true);
         }
         component.setResponsePage(page.getClass(), pageParameters);
+    }
+
+    public static void onNewWindowRestart(final Component component, final Page page) {
+        if (page == null) {
+            return;
+        }
+        final PageParameters pageParameters = new PageParameters(page.getPageParameters());
+        if (!pageParameters.getNamedKeys().contains(NO_CACHE_PARAM)) {
+            pageParameters.add(NO_CACHE_PARAM, true);
+        }
+        throw new RestartResponseException(page.getClass(), pageParameters);
     }
 
 }

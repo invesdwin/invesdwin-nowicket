@@ -4,15 +4,35 @@ import javax.annotation.concurrent.Immutable;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.ComponentNotFoundException;
+import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.core.request.mapper.StalePageException;
 import org.apache.wicket.request.IRequestHandler;
 import org.apache.wicket.request.cycle.IRequestCycleListener;
 import org.apache.wicket.request.cycle.RequestCycle;
 
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
+import de.invesdwin.nowicket.component.websocket.AWebSocketBehavior;
 
 @Immutable
 public final class StalePageRequestCycleListener implements IRequestCycleListener {
+
+    /**
+     * prevent websocket connections from being stolen by other tabs when url is just copied
+     * 
+     * https://stackoverflow.com/questions/41678672/wicket-web-sockets-cannot-work-with-multiple-browser-windows
+     */
+    @Override
+    public void onRequestHandlerResolved(final RequestCycle cycle, final IRequestHandler handler) {
+        if (handler instanceof RenderPageRequestHandler) {
+            final RenderPageRequestHandler cHandler = (RenderPageRequestHandler) handler;
+            final Page page = (Page) cHandler.getPage();
+            if (page != null) {
+                if (page.getRenderCount() > 0 && AWebSocketBehavior.isWebsocket(page)) {
+                    ModelCacheUsingPageFactory.onNewWindowRestart(page, page);
+                }
+            }
+        }
+    }
 
     @Override
     public IRequestHandler onException(final RequestCycle cycle, final Exception ex) {

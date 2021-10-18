@@ -66,6 +66,7 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
      */
     @Override
     public final void bind(final Component hostComponent) {
+        super.bind(hostComponent);
         Args.notNull(hostComponent, "hostComponent");
 
         if (component != null) {
@@ -80,7 +81,7 @@ public abstract class AWebSocketTimerBehavior extends AWebSocketBehavior {
         onBind();
     }
 
-    private void onBind() {
+    protected void onBind() {
     }
 
     /**
