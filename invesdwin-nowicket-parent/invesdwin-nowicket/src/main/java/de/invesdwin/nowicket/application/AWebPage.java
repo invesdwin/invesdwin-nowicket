@@ -131,6 +131,12 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
             protected void onNewWindow(final AjaxRequestTarget target) {
                 ModelCacheUsingPageFactory.onNewWindow(getComponent(), target.getPage());
             }
+
+            @Override
+            protected String findIndicatorId() {
+                //disable the ajax indicator for these updates
+                return null;
+            }
         };
     }
 
