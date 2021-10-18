@@ -6,15 +6,10 @@ import org.apache.wicket.Page;
 import org.apache.wicket.core.request.handler.ComponentNotFoundException;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.core.request.mapper.StalePageException;
-import org.apache.wicket.protocol.ws.WebSocketSettings;
-import org.apache.wicket.protocol.ws.api.IWebSocketConnection;
-import org.apache.wicket.protocol.ws.api.registry.IWebSocketConnectionRegistry;
-import org.apache.wicket.protocol.ws.api.registry.PageIdKey;
 import org.apache.wicket.request.IRequestHandler;
 import org.apache.wicket.request.cycle.IRequestCycleListener;
 import org.apache.wicket.request.cycle.RequestCycle;
 
-import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.component.websocket.AWebSocketBehavior;
 
@@ -44,8 +39,6 @@ public final class StalePageRequestCycleListener implements IRequestCycleListene
                 }
             }
         }
-    }
-
     }
 
     @Override
