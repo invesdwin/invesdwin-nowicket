@@ -19,7 +19,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<glassfish-jaxb.version>2.3.2</glassfish-jaxb.version>
 		<hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
 		<spring.version>5.3.11</spring.version>
 		<okhttp3.version>4.9.1</okhttp3.version>
