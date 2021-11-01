@@ -28,7 +28,7 @@ public class AjaxDataTablePage extends AExampleWebPage {
 
     public AjaxDataTablePage(final IModel<AjaxDataTable> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createTable(final TableHtmlElement e) {
                 if (AjaxDataTableConstants.rows.equals(e.getWicketId())) {

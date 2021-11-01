@@ -22,7 +22,7 @@ public class TutorialStartPage extends AExampleWebPage {
 
     public TutorialStartPage(final IModel<TutorialStart> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if ("firstCarPanel".equals(e.getWicketId())) {

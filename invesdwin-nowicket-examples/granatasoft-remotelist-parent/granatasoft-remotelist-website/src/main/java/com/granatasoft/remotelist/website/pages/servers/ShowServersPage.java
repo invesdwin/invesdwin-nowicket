@@ -44,7 +44,7 @@ public class ShowServersPage extends ARemotelistPage {
 
     public ShowServersPage(final IModel<ShowServers> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (e.getWicketId().equals(ShowServersConstants.servers)) {

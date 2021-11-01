@@ -38,7 +38,7 @@ public &lt;TypeOfProperty&gt; get&lt;PropertyName&gt;() { ... }</pre>
 				</fieldset>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">
-new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTabbed(final ITabbedHtmlElement&lt;?, ?&gt; e) {
         if (TabbedAndPanelsConstants.asCollapsible.equals(e.getWicketId())) {
@@ -56,7 +56,7 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 				</fieldset>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">
-new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTabbed(final ITabbedHtmlElement&lt;?, ?&gt; e) {
         if (TabbedAndPanelsConstants.asAccordion.equals(e.getWicketId())) {

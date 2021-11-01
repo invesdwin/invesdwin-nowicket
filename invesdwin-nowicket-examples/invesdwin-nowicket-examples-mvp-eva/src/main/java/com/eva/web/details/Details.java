@@ -14,9 +14,9 @@ public class Details extends AValueObject {
 
     public Details() {
         GuiService.get().showStatusMessage(
-                new StatusMessageConfig().withTitle("Message from EVA")
-                .withMessage("Your action is needed, Max needs help!")
-                .withType(StatusMessageType.error));
+                new StatusMessageConfig().setTitle("Message from EVA")
+                .setMessage("Your action is needed, Max needs help!")
+                .setType(StatusMessageType.error));
     }
 
     public String detailsImg() {

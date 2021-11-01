@@ -31,7 +31,7 @@ public class CategoryRowPanel extends Panel {
 
     public CategoryRowPanel(final String id, final IModel<CategoryRow> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected IColumn<Object, String> createTableColumn(final ATableColumnHtmlElement<?, ?> e) {
                 if (e.getWicketId().equals(CategoryRowConstants.applicationInstances_login)) {

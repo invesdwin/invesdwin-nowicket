@@ -17,7 +17,7 @@ public class TabbedAndPanelsPanel extends Panel {
 
     public TabbedAndPanelsPanel(final String id, final IModel<TabbedAndPanels> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createTabbed(final ITabbedHtmlElement<?, ?> e) {
                 if (TabbedAndPanelsConstants.asCollapsible.equals(e.getWicketId())) {

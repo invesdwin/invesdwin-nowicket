@@ -36,17 +36,17 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
         public ModelPaletteOptions() {
         }
 
-        public ModelPaletteOptions withMaxRows(final Integer maxRows) {
+        public ModelPaletteOptions setMaxRows(final Integer maxRows) {
             this.maxRows = maxRows;
             return this;
         }
 
-        public ModelPaletteOptions withAllowOrder(final Boolean allowOrder) {
+        public ModelPaletteOptions setAllowOrder(final Boolean allowOrder) {
             this.allowOrder = allowOrder;
             return this;
         }
 
-        public ModelPaletteOptions withAllowMoveAll(final Boolean allowMoveAll) {
+        public ModelPaletteOptions setAllowMoveAll(final Boolean allowMoveAll) {
             this.allowMoveAll = allowMoveAll;
             return this;
         }

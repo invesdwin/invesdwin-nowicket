@@ -13,7 +13,7 @@ public class CreateUserWizardStep3OptionalPanel extends Panel {
 
     public CreateUserWizardStep3OptionalPanel(final String id, final IModel<CreateUserWizardStep3Optional> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new CreateUserWizardStepBindingInterceptor(this)).bind();
+        new GeneratedBinding(this).addBindingInterceptor(new CreateUserWizardStepBindingInterceptor(this)).bind();
     }
 
 }

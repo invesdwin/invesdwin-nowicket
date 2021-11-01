@@ -22,7 +22,7 @@ public class ValidationPage extends AExampleWebPage {
 
     public ValidationPage(final IModel<Validation> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if ("fourthCarPanel".equals(e.getWicketId())) {

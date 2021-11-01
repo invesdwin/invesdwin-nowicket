@@ -196,7 +196,7 @@ public class SessionGuiService implements IGuiService, Serializable {
 
     @Override
     public void showStatusMessage(final String title, final String message) {
-        showStatusMessage(new StatusMessageConfig().withTitle(title).withMessage(message));
+        showStatusMessage(new StatusMessageConfig().setTitle(title).setMessage(message));
     }
 
     @Override

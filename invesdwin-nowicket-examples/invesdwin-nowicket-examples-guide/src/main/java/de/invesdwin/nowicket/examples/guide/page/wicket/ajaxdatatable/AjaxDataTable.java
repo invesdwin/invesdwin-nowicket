@@ -50,9 +50,9 @@ public class AjaxDataTable extends AValueObject {
     public void removeFromRows(final AjaxDataTableRow row) {
         rowsSelection.remove(row);
         rowsSelectionChoice.remove(row);
-        GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.info)
-                .withTitle("Removed")
-                .withMessage(row.toString()));
+        GuiService.get().showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.info)
+                .setTitle("Removed")
+                .setMessage(row.toString()));
     }
 
     public String getSelected() {
@@ -83,9 +83,9 @@ public class AjaxDataTable extends AValueObject {
             rowsSelectionChoice.remove(row);
         }
         rowsSelection.clear();
-        GuiService.get().showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.info)
-                .withTitle("Removed")
-                .withMessage(sb.toString()));
+        GuiService.get().showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.info)
+                .setTitle("Removed")
+                .setMessage(sb.toString()));
     }
 
     public String disableRemoveSelected() {

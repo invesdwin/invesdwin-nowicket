@@ -13,7 +13,7 @@ public class CreateUserWizardStep4Panel extends Panel {
 
     public CreateUserWizardStep4Panel(final String id, final IModel<CreateUserWizardStep4> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new CreateUserWizardStepBindingInterceptor(this)).bind();
+        new GeneratedBinding(this).addBindingInterceptor(new CreateUserWizardStepBindingInterceptor(this)).bind();
     }
 
 }

@@ -24,7 +24,7 @@ public class FileUploadPage extends AExampleWebPage {
 
     public FileUploadPage(final IModel<FileUpload> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createForm(final FormHtmlElement e) {
                 final Form<?> form = (Form<?>) new DefaultBindingBuilder().createForm(e);

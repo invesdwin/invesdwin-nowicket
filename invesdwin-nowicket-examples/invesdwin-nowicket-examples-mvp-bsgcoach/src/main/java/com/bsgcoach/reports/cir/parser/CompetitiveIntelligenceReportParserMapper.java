@@ -155,11 +155,11 @@ public class CompetitiveIntelligenceReportParserMapper implements FieldSetMapper
 
     public static FlatFileItemReader<CompetitiveIntelligenceReports> newItemReader(final Resource resource,
             final CompetitiveIntelligenceReports reports) {
-        return new CsvItemReaderBuilder<CompetitiveIntelligenceReports>().withResource(resource)
-                .withNames(FORMAT)
-                .withFieldSetMapper(new CompetitiveIntelligenceReportParserMapper(reports))
-                .withRecordSeparatorPolicy(new SimpleRecordSeparatorPolicy())
-                .withStrict(false)
+        return new CsvItemReaderBuilder<CompetitiveIntelligenceReports>().setResource(resource)
+                .setNames(FORMAT)
+                .setFieldSetMapper(new CompetitiveIntelligenceReportParserMapper(reports))
+                .setRecordSeparatorPolicy(new SimpleRecordSeparatorPolicy())
+                .setStrict(false)
                 .get();
     }
 

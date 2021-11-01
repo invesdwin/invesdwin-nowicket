@@ -17,7 +17,7 @@ public class MultiplyPanel extends Panel {
 
     public MultiplyPanel(final String id, final IModel<Multiply> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createGridColumn(final GridColumnHtmlElement e) {
                 if (Strings.equalsAny(e.getModelWicketId(), MultiplyConstants.left, MultiplyConstants.right)) {

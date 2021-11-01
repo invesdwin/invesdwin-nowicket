@@ -45,7 +45,7 @@ public class GeneratedBinding implements Serializable {
         this.context = new HtmlContext(markupContainer, this);
     }
 
-    public GeneratedBinding withSubmitButtonExceptionHandler(
+    public GeneratedBinding setSubmitButtonExceptionHandler(
             final ISubmitButtonExceptionHandler submitButtonExceptionHandler) {
         Assertions.assertThat(submitButtonExceptionHandler).isNotNull();
         Assertions.assertThat(bindingBuilder)
@@ -59,7 +59,7 @@ public class GeneratedBinding implements Serializable {
         return submitButtonExceptionHandler;
     }
 
-    public GeneratedBinding withModelButtonCallbackFactory(
+    public GeneratedBinding setModelButtonCallbackFactory(
             final ISubmitButtonCallbackFactory submitButtonCallbackFactory) {
         Assertions.assertThat(submitButtonCallbackFactory).isNotNull();
         Assertions.assertThat(bindingBuilder)
@@ -73,7 +73,7 @@ public class GeneratedBinding implements Serializable {
         return submitButtonCallbackFactory;
     }
 
-    public GeneratedBinding withBindingInterceptor(final BindingInterceptor bindingInterceptor) {
+    public GeneratedBinding addBindingInterceptor(final BindingInterceptor bindingInterceptor) {
         Assertions.assertThat(bindingInterceptor).isNotNull();
         Assertions.assertThat(bindingBuilder)
                 .as("%s can only be added before bind() call", BindingInterceptor.class.getSimpleName())

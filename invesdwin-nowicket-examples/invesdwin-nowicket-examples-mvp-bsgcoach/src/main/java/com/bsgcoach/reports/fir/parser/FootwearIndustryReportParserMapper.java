@@ -86,11 +86,11 @@ public final class FootwearIndustryReportParserMapper implements FieldSetMapper<
 
     public static FlatFileItemReader<FootwearIndustryReports> newItemReader(final Resource resource,
             final FootwearIndustryReports reports) {
-        return new CsvItemReaderBuilder<FootwearIndustryReports>().withResource(resource)
-                .withNames(FORMAT)
-                .withFieldSetMapper(new FootwearIndustryReportParserMapper(reports))
-                .withRecordSeparatorPolicy(new SimpleRecordSeparatorPolicy())
-                .withStrict(false)
+        return new CsvItemReaderBuilder<FootwearIndustryReports>().setResource(resource)
+                .setNames(FORMAT)
+                .setFieldSetMapper(new FootwearIndustryReportParserMapper(reports))
+                .setRecordSeparatorPolicy(new SimpleRecordSeparatorPolicy())
+                .setStrict(false)
                 .get();
     }
 

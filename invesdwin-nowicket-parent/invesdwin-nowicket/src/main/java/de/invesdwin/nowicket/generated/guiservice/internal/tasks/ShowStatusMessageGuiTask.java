@@ -28,19 +28,19 @@ public class ShowStatusMessageGuiTask implements IGuiTask {
         final Component root = form.getRootForm();
         final PNotifyBehavior behavior = new PNotifyBehavior();
         if (config.getTitle() != null) {
-            behavior.withTitle(config.getTitle());
+            behavior.setTitle(config.getTitle());
         }
         if (config.getMessage() != null) {
-            behavior.withText(config.getMessage());
+            behavior.setText(config.getMessage());
         }
         if (config.getDuration() != null) {
-            behavior.withDuration(config.getDuration());
+            behavior.setDuration(config.getDuration());
         }
         if (config.getIconCssClass() != null) {
-            behavior.withIconCssClass(config.getIconCssClass());
+            behavior.setIconCssClass(config.getIconCssClass());
         }
         if (config.getType() != null) {
-            behavior.withType(PNotifyType.valueOf(config.getType().name()));
+            behavior.setType(PNotifyType.valueOf(config.getType().name()));
         }
         root.add(behavior);
         return Arrays.asList(root);

@@ -121,7 +121,7 @@ public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;Choice() { ... }</pre>
 				</div>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">// Palette allows to go back to empty selection though
-new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createSelect(final SelectHtmlElement e) {
         if (TablesAndChoicesConstants.asMultiselectPalette.equals(e.getWicketId())) {

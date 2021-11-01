@@ -18,7 +18,7 @@ public class TablesAndPanelsPanel extends Panel {
 
     public TablesAndPanelsPanel(final String id, final IModel<TablesAndPanels> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createTable(final TableHtmlElement e) {
                 if (TablesAndPanelsConstants.asCollapsible.equals(e.getWicketId())) {

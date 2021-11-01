@@ -35,7 +35,7 @@ public abstract class AAnnotatedGeneratedMarkup {
         this(DEFAULT_POSSIBLE_DIRECTORIES);
     }
 
-    public AAnnotatedGeneratedMarkup withAssertBaseClass(final Class<?> assertBaseClass) {
+    public AAnnotatedGeneratedMarkup setAssertBaseClass(final Class<?> assertBaseClass) {
         this.assertBaseClass = assertBaseClass;
         return this;
     }

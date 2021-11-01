@@ -30,7 +30,7 @@ public class CookieConsent extends WebMarkupContainer {
         super(id, policyUri);
     }
 
-    public CookieConsent withCookieDurationDays(final Integer cookieDurationDays) {
+    public CookieConsent setCookieDurationDays(final Integer cookieDurationDays) {
         this.cookieDurationDays = cookieDurationDays;
         return this;
     }
@@ -39,7 +39,7 @@ public class CookieConsent extends WebMarkupContainer {
         return cookieDurationDays;
     }
 
-    public CookieConsent withButtonClass(final String buttonClass) {
+    public CookieConsent setButtonClass(final String buttonClass) {
         this.buttonClass = buttonClass;
         return this;
     }
@@ -48,7 +48,7 @@ public class CookieConsent extends WebMarkupContainer {
         return buttonClass;
     }
 
-    public CookieConsent withAlertClass(final String alertClass) {
+    public CookieConsent setAlertClass(final String alertClass) {
         this.alertClass = alertClass;
         return this;
     }
@@ -57,7 +57,7 @@ public class CookieConsent extends WebMarkupContainer {
         return alertClass;
     }
 
-    public CookieConsent withCookieName(final String cookieName) {
+    public CookieConsent setCookieName(final String cookieName) {
         this.cookieName = cookieName;
         return this;
     }
@@ -66,7 +66,7 @@ public class CookieConsent extends WebMarkupContainer {
         return cookieName;
     }
 
-    public CookieConsent withCookieValue(final String cookieValue) {
+    public CookieConsent setCookieValue(final String cookieValue) {
         this.cookieValue = cookieValue;
         return this;
     }
@@ -75,7 +75,7 @@ public class CookieConsent extends WebMarkupContainer {
         return cookieValue;
     }
 
-    public CookieConsent withPosition(final CookieConsentPosition position) {
+    public CookieConsent setPosition(final CookieConsentPosition position) {
         this.position = position;
         return this;
     }

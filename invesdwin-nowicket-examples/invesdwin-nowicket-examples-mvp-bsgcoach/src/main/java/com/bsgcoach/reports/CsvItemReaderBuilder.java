@@ -31,62 +31,62 @@ public class CsvItemReaderBuilder<T> {
     private Boolean strict;
     private RecordSeparatorPolicy recordSeparatorPolicy;
 
-    public CsvItemReaderBuilder<T> withNames(final List<String> names) {
+    public CsvItemReaderBuilder<T> setNames(final List<String> names) {
         this.names = names.toArray(Strings.EMPTY_ARRAY);
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withNames(final String[] names) {
+    public CsvItemReaderBuilder<T> setNames(final String[] names) {
         this.names = names.clone();
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withFieldSetFactory(final FieldSetFactory fieldSetFactory) {
+    public CsvItemReaderBuilder<T> setFieldSetFactory(final FieldSetFactory fieldSetFactory) {
         this.fieldSetFactory = fieldSetFactory;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withEncoding(final String encoding) {
+    public CsvItemReaderBuilder<T> setEncoding(final String encoding) {
         this.encoding = encoding;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withEncoding(final Charset encoding) {
+    public CsvItemReaderBuilder<T> setEncoding(final Charset encoding) {
         this.encoding = encoding.name();
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withDelimiter(final String delimiter) {
+    public CsvItemReaderBuilder<T> setDelimiter(final String delimiter) {
         this.delimiter = delimiter;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withFieldSetMapper(final FieldSetMapper<T> fieldSetMapper) {
+    public CsvItemReaderBuilder<T> setFieldSetMapper(final FieldSetMapper<T> fieldSetMapper) {
         this.fieldSetMapper = fieldSetMapper;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withResource(final Resource resource) {
+    public CsvItemReaderBuilder<T> setResource(final Resource resource) {
         this.resource = resource;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withQuoteCharacter(final String quoteCharacter) {
+    public CsvItemReaderBuilder<T> setQuoteCharacter(final String quoteCharacter) {
         this.quoteCharacter = quoteCharacter;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withLineMapper(final LineMapper<T> lineMapper) {
+    public CsvItemReaderBuilder<T> setLineMapper(final LineMapper<T> lineMapper) {
         this.lineMapper = lineMapper;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withStrict(final Boolean strict) {
+    public CsvItemReaderBuilder<T> setStrict(final Boolean strict) {
         this.strict = strict;
         return this;
     }
 
-    public CsvItemReaderBuilder<T> withRecordSeparatorPolicy(final RecordSeparatorPolicy recordSeparatorPolicy) {
+    public CsvItemReaderBuilder<T> setRecordSeparatorPolicy(final RecordSeparatorPolicy recordSeparatorPolicy) {
         this.recordSeparatorPolicy = recordSeparatorPolicy;
         return this;
     }

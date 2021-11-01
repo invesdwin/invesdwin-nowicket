@@ -40,7 +40,7 @@ public class WebSocketPage extends AExampleWebPage {
 
     public WebSocketPage(final IModel<WebSocket> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (e.getWicketId().equals(WebSocketConstants.tabs)) {

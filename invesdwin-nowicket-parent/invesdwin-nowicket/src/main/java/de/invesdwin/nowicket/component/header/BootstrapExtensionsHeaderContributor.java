@@ -29,7 +29,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         this.bootstrapSettings = bootstrapSettings;
     }
 
-    public BootstrapExtensionsHeaderContributor withBtnPrimaryEnterBinding(final boolean btnPrimaryEnterBinding) {
+    public BootstrapExtensionsHeaderContributor setBtnPrimaryEnterBinding(final boolean btnPrimaryEnterBinding) {
         this.btnPrimaryEnterBinding = btnPrimaryEnterBinding;
         return this;
     }
@@ -38,7 +38,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return btnPrimaryEnterBinding;
     }
 
-    public BootstrapExtensionsHeaderContributor withOfflineJS(final boolean offlineJS) {
+    public BootstrapExtensionsHeaderContributor setOfflineJS(final boolean offlineJS) {
         this.offlineJS = offlineJS;
         return this;
     }
@@ -47,7 +47,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return offlineJS;
     }
 
-    public BootstrapExtensionsHeaderContributor withSetDefaultFocusInitially(final boolean setDefaultFocusInitially) {
+    public BootstrapExtensionsHeaderContributor setDefaultFocusInitially(final boolean setDefaultFocusInitially) {
         this.setDefaultFocusInitially = setDefaultFocusInitially;
         return this;
     }
@@ -56,7 +56,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return setDefaultFocusInitially;
     }
 
-    public BootstrapExtensionsHeaderContributor withAllowCopyPasteOnDisabledInputs(
+    public BootstrapExtensionsHeaderContributor setAllowCopyPasteOnDisabledInputs(
             final boolean allowCopyPasteOnDisabledInputs) {
         this.allowCopyPasteOnDisabledInputs = allowCopyPasteOnDisabledInputs;
         return this;
@@ -66,7 +66,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return allowCopyPasteOnDisabledInputs;
     }
 
-    public BootstrapExtensionsHeaderContributor withDisableComponentsOnAjaxCall(
+    public BootstrapExtensionsHeaderContributor setDisableComponentsOnAjaxCall(
             final boolean disableComponentsOnAjaxCall) {
         this.disableComponentsOnAjaxCall = disableComponentsOnAjaxCall;
         return this;
@@ -76,7 +76,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return disableComponentsOnAjaxCall;
     }
 
-    public BootstrapExtensionsHeaderContributor withUpdateFooterMarginOnResize(
+    public BootstrapExtensionsHeaderContributor setUpdateFooterMarginOnResize(
             final boolean updateFooterMarginOnResize) {
         this.updateFooterMarginOnResize = updateFooterMarginOnResize;
         return this;
@@ -86,8 +86,10 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return updateFooterMarginOnResize;
     }
 
-    public void withEnableBootstrapTooltips(final EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips) {
+    public BootstrapExtensionsHeaderContributor setEnableBootstrapTooltips(
+            final EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips) {
         this.enableBootstrapTooltips = enableBootstrapTooltips;
+        return this;
     }
 
     public EnableBootstrapTooltipsHeaderContributor getEnableBootstrapTooltips() {

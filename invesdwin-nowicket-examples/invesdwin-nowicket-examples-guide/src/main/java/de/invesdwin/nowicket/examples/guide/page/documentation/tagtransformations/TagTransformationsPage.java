@@ -34,7 +34,7 @@ public class TagTransformationsPage extends AExampleWebPage {
 
     public TagTransformationsPage(final IModel<TagTransformations> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if ("textsPanel".equals(e.getWicketId())) {

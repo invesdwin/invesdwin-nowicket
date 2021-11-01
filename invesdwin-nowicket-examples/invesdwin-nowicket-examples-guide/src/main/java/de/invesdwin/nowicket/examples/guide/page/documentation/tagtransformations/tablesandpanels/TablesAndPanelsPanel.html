@@ -47,7 +47,7 @@ public List&lt;?&gt; get&lt;PropertyName&gt;() { ... }</pre>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">// collapsibles are panels that can be opened/closed
 // all panels can be open at the same time
-new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTable(final TableHtmlElement e) {
         if (TablesAndPanelsConstants.asCollapsible.equals(e.getWicketId())) {
@@ -67,7 +67,7 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">// a special type of collapsibles where 
 // only one panel can be open at a time
-new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTable(final TableHtmlElement e) {
         if (TablesAndPanelsConstants.asAccordion.equals(e.getWicketId())) {
@@ -86,7 +86,7 @@ new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
 				</fieldset>
 				<div class="col-sm-6">
 					<pre class="prettyprint lang-java">// we can even turn it into a TabbedPanel easily
-new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
     @Override
     public Component createTable(final TableHtmlElement e) {
         if (TablesAndPanelsConstants.asTabbed.equals(e.getWicketId())) {

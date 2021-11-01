@@ -78,9 +78,9 @@ public class FileUploadModel implements IModel<List<FileUpload>> {
             }
             statusMessage.append("</ul>");
             GuiService.get()
-                    .showStatusMessage(new StatusMessageConfig().withTitle(element.getTitleModel().getObject())
-                            .withMessage(statusMessage.toString())
-                            .withType(StatusMessageType.success));
+                    .showStatusMessage(new StatusMessageConfig().setTitle(element.getTitleModel().getObject())
+                            .setMessage(statusMessage.toString())
+                            .setType(StatusMessageType.success));
             element.getModelElement()
                     .getBeanPathElement()
                     .setUploadedFilesFromRoot(element.getContext().getRootObjectModel().getObject(), files);

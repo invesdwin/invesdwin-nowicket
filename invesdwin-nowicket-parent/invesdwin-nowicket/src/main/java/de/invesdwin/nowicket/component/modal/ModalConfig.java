@@ -26,7 +26,7 @@ public class ModalConfig implements Serializable {
         return width;
     }
 
-    public ModalConfig withWidth(final String width) {
+    public ModalConfig setWidth(final String width) {
         this.width = width;
         return this;
     }
@@ -35,7 +35,7 @@ public class ModalConfig implements Serializable {
         return height;
     }
 
-    public ModalConfig withHeight(final String height) {
+    public ModalConfig setHeight(final String height) {
         this.height = height;
         return this;
     }

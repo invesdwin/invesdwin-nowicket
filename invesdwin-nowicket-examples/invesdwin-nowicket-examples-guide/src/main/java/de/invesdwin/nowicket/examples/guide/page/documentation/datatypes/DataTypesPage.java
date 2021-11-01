@@ -26,7 +26,7 @@ public class DataTypesPage extends AExampleWebPage {
 
     public DataTypesPage(final IModel<DataTypes> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if ("simpleDataTypesPanel".equals(e.getWicketId())) {

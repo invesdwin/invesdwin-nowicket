@@ -21,7 +21,7 @@ public class StatusMessageConfig implements Serializable {
         return duration;
     }
 
-    public StatusMessageConfig withDuration(final Duration duration) {
+    public StatusMessageConfig setDuration(final Duration duration) {
         this.duration = duration;
         return this;
     }
@@ -30,7 +30,7 @@ public class StatusMessageConfig implements Serializable {
         return type;
     }
 
-    public StatusMessageConfig withType(final StatusMessageType type) {
+    public StatusMessageConfig setType(final StatusMessageType type) {
         this.type = type;
         return this;
     }
@@ -39,7 +39,7 @@ public class StatusMessageConfig implements Serializable {
         return iconCssClass;
     }
 
-    public StatusMessageConfig withIconCssClass(final String iconCssClass) {
+    public StatusMessageConfig setIconCssClass(final String iconCssClass) {
         this.iconCssClass = iconCssClass;
         return this;
     }
@@ -48,7 +48,7 @@ public class StatusMessageConfig implements Serializable {
         return title;
     }
 
-    public StatusMessageConfig withTitle(final String title) {
+    public StatusMessageConfig setTitle(final String title) {
         this.title = title;
         return this;
     }
@@ -57,7 +57,7 @@ public class StatusMessageConfig implements Serializable {
         return message;
     }
 
-    public StatusMessageConfig withMessage(final String message) {
+    public StatusMessageConfig setMessage(final String message) {
         this.message = message;
         return this;
     }

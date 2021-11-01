@@ -95,7 +95,7 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
                     final BootstrapSettings bootstrapSettings) {
                 return super.newBootstrapExtensionsHeaderContributor(bootstrapSettings)
                         //prevent "Read Next Chapter" button from intercepting the sample form submit
-                        .withBtnPrimaryEnterBinding(false);
+                        .setBtnPrimaryEnterBinding(false);
             }
 
             @Override

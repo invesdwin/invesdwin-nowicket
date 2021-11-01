@@ -16,7 +16,7 @@ public class ModalMessagePanel extends Panel {
 
     public ModalMessagePanel(final String id, final IModel<ModalMessage> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (ModalMessageConstants.message.equals(e.getWicketId())) {

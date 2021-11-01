@@ -23,7 +23,7 @@ public class LoginButtonsPanel extends Panel {
 
     public LoginButtonsPanel(final String wicketId, final IModel<LoginButtons> model) {
         super(wicketId, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
 
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {

@@ -65,11 +65,11 @@ public class CompanyOperatingReportParserMapper implements FieldSetMapper<Compan
 
     public static FlatFileItemReader<CompanyOperatingReports> newItemReader(final Resource resource,
             final CompanyOperatingReports reports) {
-        return new CsvItemReaderBuilder<CompanyOperatingReports>().withResource(resource)
-                .withNames(FORMAT)
-                .withFieldSetMapper(new CompanyOperatingReportParserMapper(reports))
-                .withRecordSeparatorPolicy(new SimpleRecordSeparatorPolicy())
-                .withStrict(false)
+        return new CsvItemReaderBuilder<CompanyOperatingReports>().setResource(resource)
+                .setNames(FORMAT)
+                .setFieldSetMapper(new CompanyOperatingReportParserMapper(reports))
+                .setRecordSeparatorPolicy(new SimpleRecordSeparatorPolicy())
+                .setStrict(false)
                 .get();
     }
 

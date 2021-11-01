@@ -66,8 +66,8 @@ public class AjaxChoice extends AValueObject {
     public void submit() throws Exception {
         if (manufacturer == null) {
             //we can use different colors in the status messages by defining different types (though normally we prefer validators for things like this
-            GuiService.get().showStatusMessage(new StatusMessageConfig().withMessage("Please select a manufacturer!")
-                    .withType(StatusMessageType.error));
+            GuiService.get().showStatusMessage(new StatusMessageConfig().setMessage("Please select a manufacturer!")
+                    .setType(StatusMessageType.error));
             return;
         }
         if (model == null) {
@@ -76,8 +76,8 @@ public class AjaxChoice extends AValueObject {
         }
 
         GuiService.get().showStatusMessage(
-                new StatusMessageConfig().withMessage("You have selected: " + manufacturer + " " + model)
-                        .withType(StatusMessageType.success));
+                new StatusMessageConfig().setMessage("You have selected: " + manufacturer + " " + model)
+                        .setType(StatusMessageType.success));
     }
 
 }

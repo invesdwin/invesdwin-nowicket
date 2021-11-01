@@ -33,57 +33,57 @@ public class PNotifyBehavior extends Behavior {
     private boolean stack = true;
     private boolean iconOnly;
 
-    public PNotifyBehavior withType(final PNotifyType type) {
+    public PNotifyBehavior setType(final PNotifyType type) {
         this.type = type;
         return this;
     }
 
-    public PNotifyBehavior withIconCssClass(final String iconCssClass) {
+    public PNotifyBehavior setIconCssClass(final String iconCssClass) {
         this.iconCssClass = iconCssClass;
         return this;
     }
 
-    public PNotifyBehavior withPosition(final PNotifyPosition position) {
+    public PNotifyBehavior setPosition(final PNotifyPosition position) {
         this.position = position;
         return this;
     }
 
-    public PNotifyBehavior withDuration(final Duration duration) {
+    public PNotifyBehavior setDuration(final Duration duration) {
         this.duration = duration;
         return this;
     }
 
-    public PNotifyBehavior withButtons(final boolean buttons) {
+    public PNotifyBehavior setButtons(final boolean buttons) {
         this.buttons = buttons;
         return this;
     }
 
-    public PNotifyBehavior withWidthPixels(final Integer widthPixels) {
+    public PNotifyBehavior setWidthPixels(final Integer widthPixels) {
         this.widthPixels = widthPixels;
         return this;
     }
 
-    public PNotifyBehavior withIconOnly() {
+    public PNotifyBehavior setIconOnly() {
         this.iconOnly = true;
-        return withWidthPixels(40);
+        return setWidthPixels(40);
     }
 
-    public PNotifyBehavior withAddclass(final String addclass) {
+    public PNotifyBehavior setAddclass(final String addclass) {
         this.addclass = addclass;
         return this;
     }
 
-    public PNotifyBehavior withTitle(final String title) {
+    public PNotifyBehavior setTitle(final String title) {
         this.title = title;
         return this;
     }
 
-    public PNotifyBehavior withText(final String text) {
+    public PNotifyBehavior setText(final String text) {
         this.text = text;
         return this;
     }
 
-    public PNotifyBehavior withStack(final boolean stack) {
+    public PNotifyBehavior setStack(final boolean stack) {
         this.stack = stack;
         return this;
     }

@@ -18,12 +18,12 @@ public class UpdateApplicationInstancePanel extends Panel {
 
     public UpdateApplicationInstancePanel(final String id, final IModel<UpdateApplicationInstance> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createSelect(final SelectHtmlElement e) {
                 if (e.getWicketId().equals(UpdateApplicationInstanceConstants.server)) {
                     final ModelPaletteOptions modelPaletteOptions = new ModelPaletteOptions();
-                    modelPaletteOptions.withMaxRows(5);
+                    modelPaletteOptions.setMaxRows(5);
                     return new ModelPalette(e, modelPaletteOptions);
                 }
                 return super.createSelect(e);

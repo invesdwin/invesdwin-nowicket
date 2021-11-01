@@ -23,7 +23,7 @@ public class IntroductionPage extends AExampleWebPage {
 
     public IntroductionPage(final IModel<Introduction> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (IntroductionConstants.frameworkSloganImgs.equals(e.getWicketId())) {

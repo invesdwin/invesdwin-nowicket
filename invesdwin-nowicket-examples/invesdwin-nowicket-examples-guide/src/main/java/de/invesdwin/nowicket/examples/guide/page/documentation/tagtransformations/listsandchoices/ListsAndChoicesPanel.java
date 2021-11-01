@@ -16,7 +16,7 @@ public class ListsAndChoicesPanel extends Panel {
 
     public ListsAndChoicesPanel(final String id, final IModel<ListsAndChoices> model) {
         super(id, model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             public Component createSelect(final SelectHtmlElement e) {
                 if (ListsAndChoicesConstants.asMultiselectPalette.equals(e.getWicketId())) {

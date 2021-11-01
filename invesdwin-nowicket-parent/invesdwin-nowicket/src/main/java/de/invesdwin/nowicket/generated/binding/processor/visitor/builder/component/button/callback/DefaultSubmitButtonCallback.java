@@ -142,12 +142,12 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
     }
 
     public static PNotifyBehavior newValidationErrorNotificationBehavior() {
-        return new PNotifyBehavior().withIconOnly()
-                .withButtons(false)
-                .withPosition(PNotifyPosition.top_right)
-                .withType(PNotifyType.error)
-                .withDuration(new Duration(1, FTimeUnit.SECONDS))
-                .withStack(false);
+        return new PNotifyBehavior().setIconOnly()
+                .setButtons(false)
+                .setPosition(PNotifyPosition.top_right)
+                .setType(PNotifyType.error)
+                .setDuration(new Duration(1, FTimeUnit.SECONDS))
+                .setStack(false);
     }
 
 }

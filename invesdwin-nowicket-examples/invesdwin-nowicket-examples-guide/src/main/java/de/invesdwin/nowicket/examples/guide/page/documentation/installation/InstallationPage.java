@@ -24,7 +24,7 @@ public class InstallationPage extends AExampleWebPage {
 
     public InstallationPage(final IModel<Installation> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (Strings.equalsAny(e.getWicketId(), InstallationConstants.pomXmlContent,

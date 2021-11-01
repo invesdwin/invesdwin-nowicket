@@ -224,9 +224,9 @@ public class FormInput extends AValueObject {
                     //reset by redirecting to a clean page
                     GuiService.get().showPage(new FormInput());
                     GuiService.get()
-                            .showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.success)
-                                    .withTitle(i18n("reset"))
-                                    .withMessage(i18n("reset.success")));
+                            .showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.success)
+                                    .setTitle(i18n("reset"))
+                                    .setMessage(i18n("reset.success")));
                 }
 
                 public String okTitle() {
@@ -245,9 +245,9 @@ public class FormInput extends AValueObject {
             });
         } else {
             GuiService.get()
-                    .showStatusMessage(new StatusMessageConfig().withType(StatusMessageType.error)
-                            .withTitle(i18n("reset"))
-                            .withMessage(i18n("reset.error")));
+                    .showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.error)
+                            .setTitle(i18n("reset"))
+                            .setMessage(i18n("reset.error")));
         }
     }
 

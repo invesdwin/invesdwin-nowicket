@@ -32,7 +32,7 @@ public class AjaxTimerPage extends AExampleWebPage {
 
     public AjaxTimerPage(final IModel<AjaxTimer> model) {
         super(model);
-        new GeneratedBinding(this).withBindingInterceptor(new BindingInterceptor() {
+        new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (e.getWicketId().equals(AjaxTimerConstants.tabs)) {
