@@ -5,23 +5,18 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.env.ConfigurableEnvironment;
 
 @NotThreadSafe
 public class ExampleSpringApplicationRunListener implements SpringApplicationRunListener {
 
     private static ConfigurableApplicationContext applicationContext;
 
-    public ExampleSpringApplicationRunListener(final SpringApplication application, final String[] args) {}
+    public ExampleSpringApplicationRunListener(final SpringApplication application, final String[] args) {
+    }
 
     @Override
-    public void starting() {}
-
-    @Override
-    public void environmentPrepared(final ConfigurableEnvironment environment) {}
-
-    @Override
-    public void contextPrepared(final ConfigurableApplicationContext context) {}
+    public void contextPrepared(final ConfigurableApplicationContext context) {
+    }
 
     @Override
     public void contextLoaded(final ConfigurableApplicationContext context) {
@@ -37,12 +32,15 @@ public class ExampleSpringApplicationRunListener implements SpringApplicationRun
     }
 
     @Override
-    public void started(final ConfigurableApplicationContext context) {}
+    public void started(final ConfigurableApplicationContext context) {
+    }
 
     @Override
-    public void running(final ConfigurableApplicationContext context) {}
+    public void running(final ConfigurableApplicationContext context) {
+    }
 
     @Override
-    public void failed(final ConfigurableApplicationContext context, final Throwable exception) {}
+    public void failed(final ConfigurableApplicationContext context, final Throwable exception) {
+    }
 
 }
