@@ -178,8 +178,8 @@ public class RdpConfig implements IRemoteConfig {
 
     @Override
     public String toJSON() {
-
         final ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         try (PooledFastByteArrayOutputStream stream = PooledFastByteArrayOutputStream.newInstance()) {
             String json = null;
