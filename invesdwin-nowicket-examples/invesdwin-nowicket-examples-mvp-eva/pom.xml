@@ -35,7 +35,7 @@
 		<version.spring-boot-maven-plugin>2.5.1</version.spring-boot-maven-plugin>
 		<version.jacoco-maven-plugin>0.8.6</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
-		<aspectj.version>1.9.8.M1</aspectj.version>
+		<aspectj.version>1.9.8.RC3</aspectj.version>
 		<commons-codec.version>1.15</commons-codec.version>
 
 		<start-class>com.eva.Main</start-class>
