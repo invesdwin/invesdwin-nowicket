@@ -3,9 +3,9 @@ package de.invesdwin.nowicket.examples.guide;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.util.tester.WicketTester;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,7 +32,7 @@ public abstract class AExampleTest {
     private static WicketTester wicketTester;
     private static GuiServiceTester guiServiceTester;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpOnce() throws Exception {
         Assertions.assertThat(wicketTester).isNull();
         //make @Configurable and PropertyChangeSupport aspect work
@@ -70,7 +70,7 @@ public abstract class AExampleTest {
         return AExampleTest.guiServiceTester;
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         if (wicketTester.getLastRenderedPage() != null) {
             wicketTester.clearFeedbackMessages();
@@ -78,7 +78,7 @@ public abstract class AExampleTest {
         guiServiceTester.reset();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownOnce() throws Exception {
         Assertions.assertThat(wicketTester).isNotNull();
         wicketTester.destroy();
