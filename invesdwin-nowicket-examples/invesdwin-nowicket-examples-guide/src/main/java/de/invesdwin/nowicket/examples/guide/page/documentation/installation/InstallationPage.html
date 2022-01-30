@@ -299,12 +299,30 @@ RewriteEngine On
 RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 </pre>
 
+				<h3>4.7) Nginx Server Reverse Proxy Configuration</h3>
+								<p style="font-size: medium">
+									If you want to embed/deploy your Wicket application behind an <a
+										target="_blank" href="https://www.nginx.com/">Nginx</a>
+									as a <a target="_blank"
+										href="https://en.wikipedia.org/wiki/Reverse_proxy">Reverse
+										Proxy</a> (under the same context path between the java web server and
+									apache2), you can use the following server configuration:
+								</p>
+								<pre class="prettyprint lang-bsh linenums">location /app/ {
+    proxy_pass http://example.com:8080/app/;
+    proxy_set_header       Host $host;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+</pre>
+
 				<p style="font-size: medium">
 					Replace
 					<code>example.com</code>
 					with your domain,
 					<code>8080</code>
-					with the port your Wicket application is running on and
+					with the port of your Wicket application is running on and
 					<code>app</code>
 					with the path you want to make the application available under.
 					With this you can make the application available in a web presence
