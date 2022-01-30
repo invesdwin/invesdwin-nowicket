@@ -6,12 +6,17 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Page;
 import org.apache.wicket.event.IEvent;
+import org.apache.wicket.protocol.ws.WebSocketSettings;
+import org.apache.wicket.protocol.ws.api.IWebSocketConnection;
 import org.apache.wicket.protocol.ws.api.WebSocketBehavior;
 import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
 import org.apache.wicket.protocol.ws.api.event.WebSocketPayload;
+import org.apache.wicket.protocol.ws.api.registry.IWebSocketConnectionRegistry;
+import org.apache.wicket.protocol.ws.api.registry.PageIdKey;
 
+import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.filter.AWebApplication;
 import de.invesdwin.nowicket.util.RequestCycles;
-import de.invesdwin.util.math.Booleans;
 
 /**
  * This is a WebSocketBehavior that supports GuiService calls by setting up the partial page request handler before
@@ -23,7 +28,7 @@ import de.invesdwin.util.math.Booleans;
 @NotThreadSafe
 public abstract class AWebSocketBehavior extends WebSocketBehavior {
 
-    private static final MetaDataKey<Boolean> KEY_INSTANCE = new MetaDataKey<Boolean>() {
+    private static final MetaDataKey<Integer> KEY_REQUEST_CYCLE_HASH = new MetaDataKey<Integer>() {
     };
 
     @Override
@@ -46,11 +51,31 @@ public abstract class AWebSocketBehavior extends WebSocketBehavior {
     }
 
     private void setWebsocket(final Page page) {
-        page.setMetaData(KEY_INSTANCE, Boolean.TRUE);
+        page.setMetaData(KEY_REQUEST_CYCLE_HASH, RequestCycles.getRequestCycle(page).hashCode());
     }
 
     public static boolean isWebsocket(final Page page) {
-        return Booleans.isTrue(page.getMetaData(KEY_INSTANCE));
+        return page.getMetaData(KEY_REQUEST_CYCLE_HASH) != null;
+    }
+
+    /**
+     * Ignores websockets that were registered in exactly this request cycle. On other request cycles from pontentially
+     * other tabs that we might steal will return true.
+     */
+    public static boolean isForeignWebsocket(final Page page) {
+        final boolean foreignRequestCycle = page
+                .getMetaData(KEY_REQUEST_CYCLE_HASH) != RequestCycles.getRequestCycle(page).hashCode();
+        if (foreignRequestCycle) {
+            final AWebApplication application = AWebApplication.get();
+            final WebSocketSettings webSocketSettings = WebSocketSettings.Holder.get(application);
+            final IWebSocketConnectionRegistry registry = webSocketSettings.getConnectionRegistry();
+            final IWebSocketConnection connection = registry.getConnection(application, AWebSession.get().getId(),
+                    new PageIdKey(page.getPageId()));
+            final boolean foreignWebsocket = connection != null && connection.isOpen();
+            return foreignWebsocket;
+        } else {
+            return false;
+        }
     }
 
 }

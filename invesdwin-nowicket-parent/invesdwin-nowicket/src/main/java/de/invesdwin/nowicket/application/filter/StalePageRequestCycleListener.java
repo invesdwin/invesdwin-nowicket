@@ -27,14 +27,8 @@ public final class StalePageRequestCycleListener implements IRequestCycleListene
             final RenderPageRequestHandler cHandler = (RenderPageRequestHandler) handler;
             final Page page = (Page) cHandler.getPage();
             if (page != null && page.getRenderCount() > 0) {
-                //                final AWebApplication application = AWebApplication.get();
-                //                final WebSocketSettings webSocketSettings = WebSocketSettings.Holder.get(application);
-                //                final IWebSocketConnectionRegistry registry = webSocketSettings.getConnectionRegistry();
-                //                final IWebSocketConnection connection = registry.getConnection(application, AWebSession.get().getId(),
-                //                        new PageIdKey(page.getPageId()));
-                //                if (connection != null && connection.isOpen()) {
                 //we can shortcut the lookups a bit
-                if (AWebSocketBehavior.isWebsocket(page)) {
+                if (AWebSocketBehavior.isForeignWebsocket(page)) {
                     ModelCacheUsingPageFactory.onNewWindowRestart(page, page);
                 }
             }
