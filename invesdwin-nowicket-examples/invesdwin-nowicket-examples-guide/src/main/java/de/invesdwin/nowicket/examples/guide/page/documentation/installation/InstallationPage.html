@@ -104,7 +104,7 @@ import java.util.Set;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
-				
+                
 public class ExampleWebApplication extends AWebApplication {
 
     // also referenced in ExampleMarkupGenerator
@@ -300,20 +300,28 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 </pre>
 
 				<h3>4.7) Nginx Server Reverse Proxy Configuration</h3>
-								<p style="font-size: medium">
-									If you want to embed/deploy your Wicket application behind an <a
-										target="_blank" href="https://www.nginx.com/">Nginx</a>
-									as a <a target="_blank"
-										href="https://en.wikipedia.org/wiki/Reverse_proxy">Reverse
-										Proxy</a> (under the same context path between the java web server and
-									apache2), you can use the following server configuration:
-								</p>
-								<pre class="prettyprint lang-bsh linenums">location /app/ {
+				<p style="font-size: medium">
+					If you want to embed/deploy your Wicket application behind an <a
+						target="_blank" href="https://www.nginx.com/">Nginx</a> as a <a
+						target="_blank" href="https://en.wikipedia.org/wiki/Reverse_proxy">Reverse
+						Proxy</a> (under the same context path between the java web server and
+					apache2), you can use the following server configuration:
+				</p>
+				<pre class="prettyprint lang-bsh linenums">location /app/ {
     proxy_pass http://example.com:8080/app/;
-    proxy_set_header       Host $host;
+    proxy_redirect http://example.com:8080/app/ https://example.com/app/;
+    sub_filter "http://example.com:8080/app/" "https://example.com/app/";
+    sub_filter_once off;
+    sub_filter_types text/html;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Server $host;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header Host $host;
 }
 </pre>
 
