@@ -47,12 +47,12 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
 
         @Override
         public String getExpressionSuffix() {
-            return null;
+            return "";
         }
 
         @Override
         public String getExpressionPrefix() {
-            return null;
+            return "";
         }
     };
     private static final FilterChain FILTER_CHAIN = new FilterChain() {
