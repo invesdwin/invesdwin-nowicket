@@ -63,8 +63,8 @@ public abstract class AWebSocketBehavior extends WebSocketBehavior {
      * other tabs that we might steal will return true.
      */
     public static boolean isForeignWebsocket(final Page page) {
-        final boolean foreignRequestCycle = page
-                .getMetaData(KEY_REQUEST_CYCLE_HASH) != RequestCycles.getRequestCycle(page).hashCode();
+        final Integer key = page.getMetaData(KEY_REQUEST_CYCLE_HASH);
+        final boolean foreignRequestCycle = key == null || key != RequestCycles.getRequestCycle(page).hashCode();
         if (foreignRequestCycle) {
             final AWebApplication application = AWebApplication.get();
             final WebSocketSettings webSocketSettings = WebSocketSettings.Holder.get(application);
