@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.component.logviewer;
 import javax.annotation.concurrent.Immutable;
 
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.time.date.FDate;
 
 @Immutable
@@ -15,7 +16,7 @@ public class LogViewerEntry extends AValueObject {
     public LogViewerEntry(final FDate time, final boolean error, final String message) {
         this.time = time;
         this.error = error;
-        this.message = message;
+        this.message = Strings.asStringSpacesHtml(message);
     }
 
     public FDate getTime() {
