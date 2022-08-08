@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.markup.processor.element;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -8,6 +7,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import de.invesdwin.norva.beanpath.spi.element.IBeanPathElement;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
+import de.invesdwin.util.collections.Arrays;
 import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe
@@ -45,7 +45,8 @@ public abstract class AModelElement<E extends IBeanPathElement> implements IMode
     /**
      * Can be overriden to do additional things on first accept.
      */
-    protected void onFirstAccept() {}
+    protected void onFirstAccept() {
+    }
 
     @Override
     public boolean accept(final List<IModelVisitor> visitors) {

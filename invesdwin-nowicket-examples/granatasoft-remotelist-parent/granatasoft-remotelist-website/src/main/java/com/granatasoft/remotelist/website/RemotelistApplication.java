@@ -1,6 +1,5 @@
 package com.granatasoft.remotelist.website;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.ThreadSafe;
@@ -23,6 +22,7 @@ import com.granatasoft.remotelist.website.pages.remotelist.ShowCategoriesPage;
 import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
 import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.security.spring.SpringSecurityAuthenticationService;
+import de.invesdwin.util.collections.Arrays;
 
 @ThreadSafe
 @Named

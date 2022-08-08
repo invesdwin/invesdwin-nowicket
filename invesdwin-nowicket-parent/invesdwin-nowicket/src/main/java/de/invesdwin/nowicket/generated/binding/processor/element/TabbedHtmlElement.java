@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,6 +16,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedModelElement;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.Collections;
 import de.invesdwin.util.collections.delegate.DelegateList;
 
 @NotThreadSafe

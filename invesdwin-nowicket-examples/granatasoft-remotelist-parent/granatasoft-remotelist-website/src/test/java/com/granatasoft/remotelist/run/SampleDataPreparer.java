@@ -1,7 +1,5 @@
 package com.granatasoft.remotelist.run;
 
-import java.util.Arrays;
-
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
 
@@ -20,6 +18,7 @@ import com.granatasoft.remotelist.persistence.ServerConnection;
 import com.granatasoft.remotelist.persistence.ServerDao;
 
 import de.invesdwin.context.persistence.jpa.test.APersistenceTestPreparer;
+import de.invesdwin.util.collections.Arrays;
 
 @NotThreadSafe
 @Configurable

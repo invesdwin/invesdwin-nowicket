@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +31,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TableNumberColum
 import de.invesdwin.nowicket.generated.markup.processor.element.TableSubmitButtonColumnModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableTextColumnModelElement;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.Collections;
 import de.invesdwin.util.collections.delegate.DelegateList;
 
 @NotThreadSafe

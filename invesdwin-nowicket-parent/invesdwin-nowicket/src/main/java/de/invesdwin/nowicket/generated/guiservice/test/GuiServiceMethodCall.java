@@ -1,9 +1,10 @@
 package de.invesdwin.nowicket.generated.guiservice.test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.Immutable;
+
+import de.invesdwin.util.collections.Arrays;
 
 @Immutable
 public class GuiServiceMethodCall {

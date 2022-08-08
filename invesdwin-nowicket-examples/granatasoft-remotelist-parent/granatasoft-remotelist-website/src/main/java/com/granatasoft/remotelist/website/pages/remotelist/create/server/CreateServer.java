@@ -1,7 +1,6 @@
 package com.granatasoft.remotelist.website.pages.remotelist.create.server;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -21,6 +20,7 @@ import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.Arrays;
 
 @NotThreadSafe
 @GeneratedMarkup
@@ -94,6 +94,7 @@ public class CreateServer extends AValueObject {
 
     @Forced
     @ModalCloser
-    public void close() {}
+    public void close() {
+    }
 
 }

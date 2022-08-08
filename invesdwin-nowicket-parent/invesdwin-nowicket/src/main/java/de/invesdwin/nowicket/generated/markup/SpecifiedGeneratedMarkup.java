@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.markup;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContex
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.HtmlGeneratorVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.properties.PropertiesVisitor;
+import de.invesdwin.util.collections.Arrays;
 
 @NotThreadSafe
 public class SpecifiedGeneratedMarkup {

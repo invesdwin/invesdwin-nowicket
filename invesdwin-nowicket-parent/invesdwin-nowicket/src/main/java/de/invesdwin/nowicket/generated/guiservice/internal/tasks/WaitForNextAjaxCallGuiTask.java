@@ -1,8 +1,6 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -18,6 +16,8 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import de.invesdwin.nowicket.component.header.DisableComponentsOnAjaxCallJsReference;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.Components;
+import de.invesdwin.util.collections.Arrays;
+import de.invesdwin.util.collections.Collections;
 
 @NotThreadSafe
 public class WaitForNextAjaxCallGuiTask implements IGuiTask {

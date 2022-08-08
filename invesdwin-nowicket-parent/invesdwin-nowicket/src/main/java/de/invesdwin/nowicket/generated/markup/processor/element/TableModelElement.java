@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.generated.markup.processor.element;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -12,6 +11,7 @@ import de.invesdwin.norva.beanpath.spi.element.table.column.TableTextColumnBeanP
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.Collections;
 
 @NotThreadSafe
 public class TableModelElement extends ATableModelElement {

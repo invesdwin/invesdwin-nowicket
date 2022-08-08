@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,6 +18,7 @@ import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.util.Components;
 import de.invesdwin.nowicket.util.RequestCycles;
+import de.invesdwin.util.collections.Collections;
 
 @NotThreadSafe
 public class GuiTasks implements IGuiTasksService, IGuiTask {

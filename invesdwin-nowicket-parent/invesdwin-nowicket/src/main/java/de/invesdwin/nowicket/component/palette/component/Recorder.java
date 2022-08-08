@@ -15,7 +15,6 @@ package de.invesdwin.nowicket.component.palette.component;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +28,7 @@ import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.component.palette.Palette;
+import de.invesdwin.util.collections.Collections;
 import de.invesdwin.util.lang.Strings;
 
 /**

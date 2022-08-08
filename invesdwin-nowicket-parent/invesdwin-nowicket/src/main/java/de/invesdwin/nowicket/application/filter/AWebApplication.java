@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.application.filter;
 
 import java.io.File;
-import java.util.Collections;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.concurrent.ThreadSafe;
@@ -24,6 +23,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
+import de.invesdwin.util.collections.Collections;
 
 @ThreadSafe
 public abstract class AWebApplication extends ABaseWebApplication {

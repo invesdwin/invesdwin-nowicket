@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -11,13 +10,14 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.application.PanelFactory;
-import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.component.modal.ModalConfig;
+import de.invesdwin.nowicket.component.modal.ModalContainer;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.element.ModalHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.RootHtmlElement;
 import de.invesdwin.nowicket.util.Components;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.Arrays;
 import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe

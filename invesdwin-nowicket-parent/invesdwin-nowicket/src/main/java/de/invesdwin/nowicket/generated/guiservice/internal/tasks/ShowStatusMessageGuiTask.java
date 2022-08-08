@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -12,6 +11,7 @@ import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
 import de.invesdwin.nowicket.component.pnotify.PNotifyType;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.util.Components;
+import de.invesdwin.util.collections.Arrays;
 
 @NotThreadSafe
 public class ShowStatusMessageGuiTask implements IGuiTask {

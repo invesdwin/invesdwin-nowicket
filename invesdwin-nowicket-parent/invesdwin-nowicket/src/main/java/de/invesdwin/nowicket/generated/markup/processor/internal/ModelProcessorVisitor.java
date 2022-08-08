@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.markup.processor.internal;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -36,6 +35,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TableModelElemen
 import de.invesdwin.nowicket.generated.markup.processor.element.TextInputModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.UploadButtonModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.visitor.IModelVisitor;
+import de.invesdwin.util.collections.Arrays;
 
 @NotThreadSafe
 public class ModelProcessorVisitor implements IBeanPathVisitor {

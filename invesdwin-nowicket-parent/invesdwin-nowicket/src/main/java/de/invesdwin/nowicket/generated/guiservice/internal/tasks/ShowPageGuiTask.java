@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -10,6 +9,7 @@ import org.apache.wicket.Page;
 
 import de.invesdwin.nowicket.application.PageFactory;
 import de.invesdwin.nowicket.generated.guiservice.internal.SessionGuiService;
+import de.invesdwin.util.collections.Collections;
 
 @NotThreadSafe
 public class ShowPageGuiTask implements IGuiTask {

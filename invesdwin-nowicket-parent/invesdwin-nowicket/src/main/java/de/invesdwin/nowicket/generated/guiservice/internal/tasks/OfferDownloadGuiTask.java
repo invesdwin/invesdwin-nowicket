@@ -1,8 +1,6 @@
 package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -19,6 +17,8 @@ import org.apache.wicket.util.resource.IResourceStream;
 import de.invesdwin.nowicket.component.AAjaxDownload;
 import de.invesdwin.nowicket.generated.guiservice.OfferDownloadConfig;
 import de.invesdwin.nowicket.util.Components;
+import de.invesdwin.util.collections.Arrays;
+import de.invesdwin.util.collections.Collections;
 
 /**
  * http://stackoverflow.com/questions/25997713/apache-wicket-respond-with-generated-file-without-downloadlink
