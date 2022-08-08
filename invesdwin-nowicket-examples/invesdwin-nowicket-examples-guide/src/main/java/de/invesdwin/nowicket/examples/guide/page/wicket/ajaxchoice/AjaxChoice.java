@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.ajaxchoice;
 
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -12,6 +11,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.Arrays;
 
 @NotThreadSafe
 @GeneratedMarkup
@@ -66,8 +66,9 @@ public class AjaxChoice extends AValueObject {
     public void submit() throws Exception {
         if (manufacturer == null) {
             //we can use different colors in the status messages by defining different types (though normally we prefer validators for things like this
-            GuiService.get().showStatusMessage(new StatusMessageConfig().setMessage("Please select a manufacturer!")
-                    .setType(StatusMessageType.error));
+            GuiService.get()
+                    .showStatusMessage(new StatusMessageConfig().setMessage("Please select a manufacturer!")
+                            .setType(StatusMessageType.error));
             return;
         }
         if (model == null) {
@@ -75,9 +76,10 @@ public class AjaxChoice extends AValueObject {
             throw new Exception("Please select a model for manufacturer '<b>" + manufacturer + "</b>'!");
         }
 
-        GuiService.get().showStatusMessage(
-                new StatusMessageConfig().setMessage("You have selected: " + manufacturer + " " + model)
-                        .setType(StatusMessageType.success));
+        GuiService.get()
+                .showStatusMessage(
+                        new StatusMessageConfig().setMessage("You have selected: " + manufacturer + " " + model)
+                                .setType(StatusMessageType.success));
     }
 
 }

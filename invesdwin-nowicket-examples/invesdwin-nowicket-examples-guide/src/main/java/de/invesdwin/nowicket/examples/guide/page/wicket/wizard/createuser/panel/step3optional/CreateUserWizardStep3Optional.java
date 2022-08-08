@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step3optional;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -16,6 +15,7 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step4.CreateUserWizardStep4;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.Arrays;
 import de.invesdwin.util.lang.Strings;
 
 @GeneratedMarkup

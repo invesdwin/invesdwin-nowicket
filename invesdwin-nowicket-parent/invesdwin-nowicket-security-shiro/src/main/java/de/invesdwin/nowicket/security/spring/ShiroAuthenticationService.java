@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.security.spring;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +23,7 @@ import org.apache.wicket.MetaDataKey;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.auth.ISavedRequest;
+import de.invesdwin.util.collections.Collections;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.reflection.Reflections;
 
@@ -167,6 +167,7 @@ public class ShiroAuthenticationService implements IAuthenticationService {
     }
 
     @Override
-    public void afterReplaceSession(final Object beforeReplaceSession) {}
+    public void afterReplaceSession(final Object beforeReplaceSession) {
+    }
 
 }

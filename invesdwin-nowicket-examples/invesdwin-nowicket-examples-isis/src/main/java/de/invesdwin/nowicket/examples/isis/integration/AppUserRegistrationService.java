@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.examples.isis.integration;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -14,6 +13,8 @@ import org.isisaddons.module.security.dom.role.ApplicationRoleRepository;
 import org.isisaddons.module.security.dom.user.ApplicationUser;
 import org.isisaddons.module.security.dom.user.ApplicationUserRepository;
 import org.isisaddons.module.security.userreg.SecurityModuleAppUserRegistrationServiceAbstract;
+
+import de.invesdwin.util.collections.Collections;
 
 @NotThreadSafe
 @DomainService

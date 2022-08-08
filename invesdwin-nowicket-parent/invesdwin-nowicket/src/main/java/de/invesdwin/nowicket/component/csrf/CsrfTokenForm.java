@@ -32,7 +32,7 @@ public class CsrfTokenForm<T> extends Form<T> {
     protected void onBeforeRender() {
         super.onBeforeRender();
         if (isRootForm()) {
-            this.token = UUIDs.newPseudorandomUUID();
+            this.token = UUIDs.newPseudoRandomUUID();
         }
     }
 

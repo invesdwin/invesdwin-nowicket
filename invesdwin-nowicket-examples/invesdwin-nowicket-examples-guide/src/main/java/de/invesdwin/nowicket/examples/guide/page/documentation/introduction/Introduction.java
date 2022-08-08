@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.examples.guide.page.documentation.introduction;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -16,6 +15,7 @@ import de.invesdwin.nowicket.examples.guide.page.documentation.concept.Concept;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.Collections;
 
 @NotThreadSafe
 @GeneratedMarkup

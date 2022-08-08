@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.forminput;
 
 import java.text.ParseException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -22,6 +21,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.Arrays;
 
 @GeneratedMarkup
 @NotThreadSafe

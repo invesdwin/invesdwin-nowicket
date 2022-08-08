@@ -1,7 +1,5 @@
 package com.eva.internal;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +9,8 @@ import com.eva.web.EvaWebApplicationConfig;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
+import de.invesdwin.util.collections.Arrays;
+import de.invesdwin.util.collections.Collections;
 
 @ThreadSafe
 public class ExampleWebApplication extends AWebApplication {

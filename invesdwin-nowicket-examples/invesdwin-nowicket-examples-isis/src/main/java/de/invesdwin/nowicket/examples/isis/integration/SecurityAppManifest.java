@@ -12,7 +12,6 @@
  */
 package de.invesdwin.nowicket.examples.isis.integration;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +21,7 @@ import org.apache.isis.applib.AppManifest;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.isisaddons.module.security.SecurityModule;
 
+import de.invesdwin.util.collections.Arrays;
 import de.invesdwin.util.collections.list.Lists;
 
 @Immutable

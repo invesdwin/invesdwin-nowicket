@@ -1,13 +1,10 @@
 package com.eva.web.dashboard;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.validation.constraints.NotNull;
-
-import org.apache.commons.math3.random.RandomDataGenerator;
 
 import com.eva.web.dashboard.row.DashboardRow;
 import com.eva.web.dashboard.row.Pupil;
@@ -15,6 +12,9 @@ import com.eva.web.dashboard.row.Pupil;
 import de.invesdwin.norva.beanpath.annotation.Eager;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.Arrays;
+import de.invesdwin.util.math.random.IRandomGenerator;
+import de.invesdwin.util.math.random.PseudoRandomGenerators;
 
 @GeneratedMarkup
 @NotThreadSafe
@@ -31,7 +31,7 @@ public class Dashboard extends AValueObject {
 
     private void initRows() {
         rows.clear();
-        final RandomDataGenerator rng = new RandomDataGenerator();
+        final IRandomGenerator rng = PseudoRandomGenerators.getThreadLocalPseudoRandom();
         final List<Pupil> pupils = new ArrayList<Pupil>(Arrays.asList(Pupil.values()));
         while (!pupils.isEmpty()) {
             final int index;
