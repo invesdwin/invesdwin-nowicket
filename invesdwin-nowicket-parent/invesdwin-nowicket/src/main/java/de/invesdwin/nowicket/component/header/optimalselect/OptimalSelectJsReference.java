@@ -18,12 +18,12 @@ import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
  *
  */
 @Immutable
-public final class OptimalSelectReference extends JavaScriptResourceReference implements IHeaderContributor {
+public final class OptimalSelectJsReference extends JavaScriptResourceReference implements IHeaderContributor {
 
-    public static final OptimalSelectReference INSTANCE = new OptimalSelectReference();
+    public static final OptimalSelectJsReference INSTANCE = new OptimalSelectJsReference();
 
-    private OptimalSelectReference() {
-        super(OptimalSelectReference.class, "optimal-select.js");
+    private OptimalSelectJsReference() {
+        super(OptimalSelectJsReference.class, "optimal-select.js");
     }
 
     @Override

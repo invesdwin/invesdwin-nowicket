@@ -23,6 +23,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     private boolean disableComponentsOnAjaxCall = true;
     private boolean allowCopyPasteOnDisabledInputs = true;
     private boolean updateFooterMarginOnResize = true;
+    private boolean enableTableFixedHead = true;
     private EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips = new EnableBootstrapTooltipsHeaderContributor();
 
     public BootstrapExtensionsHeaderContributor(final BootstrapSettings bootstrapSettings) {
@@ -86,6 +87,15 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return updateFooterMarginOnResize;
     }
 
+    public BootstrapExtensionsHeaderContributor setEnableTableFixedHead(final boolean enableTableFixedHead) {
+        this.enableTableFixedHead = enableTableFixedHead;
+        return this;
+    }
+
+    public boolean isEnableTableFixedHead() {
+        return enableTableFixedHead;
+    }
+
     public BootstrapExtensionsHeaderContributor setEnableBootstrapTooltips(
             final EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips) {
         this.enableBootstrapTooltips = enableBootstrapTooltips;
@@ -124,6 +134,9 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         if (updateFooterMarginOnResize) {
             UpdateFooterMarginOnResizeJsReference.INSTANCE.renderHead(response);
         }
+        if (enableTableFixedHead) {
+            EnableTableFixedHeadJsReference.INSTANCE.renderHead(response);
+        }
         if (enableBootstrapTooltips != null) {
             enableBootstrapTooltips.renderHead(response);
         }
@@ -141,6 +154,5 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     /**
      * You can put Themes here that will be rendered before bootstrap modal, but after bootstrap itself.
      */
-    protected void renderHeadAfterBootstrap(final IHeaderResponse response) {
-    }
+    protected void renderHeadAfterBootstrap(final IHeaderResponse response) {}
 }
