@@ -7,6 +7,7 @@ function enableTableFixedHead() {
 			if(!window.enableTableFixedHeadDisabled){
 				$(() => $('.table-fixed-head').floatThead({
 					autoReflow: true,
+					zIndex: 999,
 					responsiveContainer: function($table){
 			            return $table.closest(".table-responsive");
 			        }
