@@ -15,8 +15,6 @@ package de.invesdwin.nowicket.component.websocket;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
@@ -43,16 +41,16 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
     private static final String ATTR_CLIENT_RESPONSE_PREFIX = ATTR_CLIENT_RESPONSE + ": ";
     private static final Duration MIN_WEBSOCKET_TIMEOUT = new Duration(10, FTimeUnit.SECONDS);
 
-    public class FallbackAjaxTimerBehavior extends AbstractAjaxTimerBehavior {
+    public class FallbackAjaxTimerBehavior extends APreactAjaxTimerBehavior {
 
         private FDate firstAjaxEvent = null;
 
-        public FallbackAjaxTimerBehavior(final java.time.Duration updateInterval) {
+        public FallbackAjaxTimerBehavior(final Duration updateInterval) {
             super(updateInterval);
         }
 
         @Override
-        protected void onTimer(final AjaxRequestTarget target) {
+        protected void onTimer(final IPartialPageRequestHandler target) {
             if (websocket != null && !websocket.isStopped() && ajax != null && !ajax.isStopped()) {
                 if (firstAjaxEvent == null) {
                     firstAjaxEvent = new FDate();
@@ -90,9 +88,9 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
 
     }
 
-    public class FallbackWebSocketTimerBehavior extends AWebSocketTimerBehavior {
+    public class FallbackWebSocketTimerBehavior extends APreactWebSocketTimerBehavior {
 
-        public FallbackWebSocketTimerBehavior(final java.time.Duration updateInterval) {
+        public FallbackWebSocketTimerBehavior(final Duration updateInterval) {
             super(updateInterval);
         }
 
@@ -107,7 +105,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         }
 
         @Override
-        protected void onTimer(final WebSocketRequestHandler handler) {
+        protected void onTimer(final IPartialPageRequestHandler handler) {
             if (ajax != null && !ajax.isStopped()) {
                 ajax.stop(handler);
             }
@@ -128,11 +126,10 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
     /** the component that this handler is bound to. */
     private Component component;
 
-    public AWebSocketFallbackTimerBehavior(final java.time.Duration updateInterval) {
+    public AWebSocketFallbackTimerBehavior(final Duration updateInterval) {
         this.websocket = newWebSocketTimerBehavior(updateInterval);
         this.ajax = newAjaxTimerBehavior(updateInterval);
-        this.websocketTimeout = new Duration(updateInterval.toMillis(), FTimeUnit.MILLISECONDS).multiply(10)
-                .orHigher(MIN_WEBSOCKET_TIMEOUT);
+        this.websocketTimeout = updateInterval.multiply(10).orHigher(MIN_WEBSOCKET_TIMEOUT);
     }
 
     public FallbackWebSocketTimerBehavior getWebsocket() {
@@ -143,11 +140,11 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         return ajax;
     }
 
-    protected FallbackAjaxTimerBehavior newAjaxTimerBehavior(final java.time.Duration updateInterval) {
+    protected FallbackAjaxTimerBehavior newAjaxTimerBehavior(final Duration updateInterval) {
         return new FallbackAjaxTimerBehavior(updateInterval);
     }
 
-    protected FallbackWebSocketTimerBehavior newWebSocketTimerBehavior(final java.time.Duration updateInterval) {
+    protected FallbackWebSocketTimerBehavior newWebSocketTimerBehavior(final Duration updateInterval) {
         return new FallbackWebSocketTimerBehavior(updateInterval);
     }
 
@@ -191,8 +188,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         onBind();
     }
 
-    private void onBind() {
-    }
+    private void onBind() {}
 
     /**
      * Returns the update interval
@@ -274,8 +270,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
     }
 
     @Override
-    public void onRemove(final Component component) {
-    }
+    public void onRemove(final Component component) {}
 
     @Override
     public void unbind(final Component component) {
@@ -289,8 +284,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         super.unbind(component);
     }
 
-    protected void onUnbind() {
-    }
+    protected void onUnbind() {}
 
     /**
      * Creates an {@link AWebSocketFallbackTimerBehavior} based on lambda expressions
@@ -301,7 +295,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
      *            the consumer which accepts the {@link WebSocketRequestHandler}
      * @return the {@link AWebSocketFallbackTimerBehavior}
      */
-    public static AWebSocketFallbackTimerBehavior onTimer(final java.time.Duration interval,
+    public static AWebSocketFallbackTimerBehavior onTimer(final Duration interval,
             final SerializableConsumer<IPartialPageRequestHandler> onTimer) {
         Args.notNull(onTimer, "onTimer");
 

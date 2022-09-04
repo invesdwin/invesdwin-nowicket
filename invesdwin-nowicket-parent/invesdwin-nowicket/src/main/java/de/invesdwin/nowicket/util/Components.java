@@ -50,8 +50,7 @@ public final class Components {
     private static final String FROZEN_COMPONENTS_LOG_MESSAGE = "Ignoring exception cause for frozen components (maybe the update was requested too late in the request lifecycle): {}";
     //CHECKSTYLE:ON
 
-    private Components() {
-    }
+    private Components() {}
 
     public static Component findRoot(final Component component) {
         Component parent = component;
@@ -266,30 +265,33 @@ public final class Components {
     }
 
     public static void updateAllComponents(final IPartialPageRequestHandler handler, final Component component) {
+        if (handler == null) {
+            return;
+        }
         final Form<?> form = Components.findForm(component);
-        if (handler != null && form != null) {
-            final MarkupContainer root = (MarkupContainer) Components.findRoot(form);
-            try {
-                root.visitChildren(new IVisitor<Component, Void>() {
-                    @Override
-                    public void component(final Component object, final IVisit<Void> visit) {
-                        if (object instanceof Form || object instanceof TabbedPanel
-                                || object instanceof ModalContainer) {
-                            handler.add(object);
-                        }
-                        if (!object.isVisible()) {
-                            final List<ModelComponentBehavior> modelComponentBehaviors = object
-                                    .getBehaviors(ModelComponentBehavior.class);
-                            for (final ModelComponentBehavior behavior : modelComponentBehaviors) {
-                                //update visibility manually since onConfigure() will be skipped
-                                behavior.onConfigure(object);
-                            }
+        if (form == null) {
+            return;
+        }
+        final MarkupContainer root = (MarkupContainer) Components.findRoot(form);
+        try {
+            root.visitChildren(new IVisitor<Component, Void>() {
+                @Override
+                public void component(final Component object, final IVisit<Void> visit) {
+                    if (object instanceof Form || object instanceof TabbedPanel || object instanceof ModalContainer) {
+                        handler.add(object);
+                    }
+                    if (!object.isVisible()) {
+                        final List<ModelComponentBehavior> modelComponentBehaviors = object
+                                .getBehaviors(ModelComponentBehavior.class);
+                        for (final ModelComponentBehavior behavior : modelComponentBehaviors) {
+                            //update visibility manually since onConfigure() will be skipped
+                            behavior.onConfigure(object);
                         }
                     }
-                });
-            } catch (final Throwable t) {
-                handleFrozenComponentsException(t);
-            }
+                }
+            });
+        } catch (final Throwable t) {
+            handleFrozenComponentsException(t);
         }
     }
 

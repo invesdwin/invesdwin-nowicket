@@ -29,6 +29,7 @@ import de.invesdwin.util.math.decimal.scaled.Percent;
 import de.invesdwin.util.math.decimal.scaled.PercentScale;
 import de.invesdwin.util.time.date.FDate;
 import de.invesdwin.util.time.date.FDates;
+import de.invesdwin.util.time.duration.Duration;
 
 /**
  * http://apache-wicket.1842946.n4.nabble.com/How-to-build-a-hudson-jenkins-like-live-log-viewer-td4090224.html#a4659629
@@ -44,8 +45,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
     private final Set<String> lastLogToMessages = new HashSet<>();
     private boolean shouldReset;
 
-    public LogViewerPanel(final String id, final IModel<ILogViewerSource> model,
-            final java.time.Duration refreshInterval) {
+    public LogViewerPanel(final String id, final IModel<ILogViewerSource> model, final Duration refreshInterval) {
         super(id, model);
         final AWebSocketFallbackTimerBehavior timer = newWebsocketTimerBehavior(refreshInterval);
         if (timer != null) {
@@ -53,7 +53,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
         }
     }
 
-    protected AWebSocketFallbackTimerBehavior newWebsocketTimerBehavior(final java.time.Duration refreshInterval) {
+    protected AWebSocketFallbackTimerBehavior newWebsocketTimerBehavior(final Duration refreshInterval) {
         return new AWebSocketFallbackTimerBehavior(refreshInterval) {
 
             @Override

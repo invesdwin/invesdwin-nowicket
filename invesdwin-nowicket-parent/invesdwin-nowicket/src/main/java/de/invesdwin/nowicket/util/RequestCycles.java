@@ -19,6 +19,7 @@ import org.apache.wicket.request.Response;
 import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.cycle.RequestCycle;
 
+import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
 import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 
 @NotThreadSafe
@@ -29,8 +30,7 @@ public final class RequestCycles {
     private static final MetaDataKey<IPartialPageRequestHandler> PARTIAL_PAGE_REQUEST_HANDLER_KEY = new MetaDataKey<IPartialPageRequestHandler>() {
     };
 
-    private RequestCycles() {
-    }
+    private RequestCycles() {}
 
     public static HttpServletRequest getContainerRequest() {
         final RequestCycle requestCycle = RequestCycle.get();
@@ -132,13 +132,14 @@ public final class RequestCycles {
         }
     }
 
-    public static IPartialPageRequestHandler getPartialPageRequestHandler(final Component component) {
+    public static PreactPartialPageRequestHandler getPartialPageRequestHandler(final Component component) {
         final RequestCycle requestCycle = getRequestCycle(component);
         final Optional<IPartialPageRequestHandler> handler = requestCycle.find(IPartialPageRequestHandler.class);
         if (handler.isPresent()) {
-            return handler.get();
+            return PreactPartialPageRequestHandler.of(requestCycle, handler.get());
         } else {
-            return requestCycle.getMetaData(PARTIAL_PAGE_REQUEST_HANDLER_KEY);
+            return PreactPartialPageRequestHandler.of(requestCycle,
+                    requestCycle.getMetaData(PARTIAL_PAGE_REQUEST_HANDLER_KEY));
         }
     }
 

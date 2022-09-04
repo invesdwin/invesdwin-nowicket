@@ -10,6 +10,8 @@ import org.apache.wicket.markup.html.IHeaderContributor;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.OpenWebIconsCssReference;
 import de.invesdwin.nowicket.component.header.offline.OfflineHeaderContributor;
+import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmFunctionJsReference;
+import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmlFunctionJsReference;
 import de.invesdwin.nowicket.component.modal.header.BootstrapModalHeaderContributor;
 import de.invesdwin.nowicket.component.pnotify.header.PNotifyHeaderContributor;
 
@@ -24,6 +26,8 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     private boolean allowCopyPasteOnDisabledInputs = true;
     private boolean updateFooterMarginOnResize = true;
     private boolean enableTableFixedHead = true;
+    private boolean createPreactRenderHtmlFunction = true;
+    private boolean createPreactRenderHtmFunction = false;
     private EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips = new EnableBootstrapTooltipsHeaderContributor();
 
     public BootstrapExtensionsHeaderContributor(final BootstrapSettings bootstrapSettings) {
@@ -106,8 +110,30 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return enableBootstrapTooltips;
     }
 
+    public boolean isCreatePreactRenderHtmFunction() {
+        return createPreactRenderHtmFunction;
+    }
+
+    public BootstrapExtensionsHeaderContributor setCreatePreactRenderHtmFunction(
+            final boolean createPreactRenderHtmFunction) {
+        this.createPreactRenderHtmFunction = createPreactRenderHtmFunction;
+        return this;
+    }
+
+    public boolean isCreatePreactRenderHtmlFunction() {
+        return createPreactRenderHtmlFunction;
+    }
+
+    public BootstrapExtensionsHeaderContributor setCreatePreactRenderHtmlFunction(
+            final boolean createPreactRenderHtmlFunction) {
+        this.createPreactRenderHtmlFunction = createPreactRenderHtmlFunction;
+        return this;
+    }
+
+    //CHECKSTYLE:OFF
     @Override
     public void renderHead(final IHeaderResponse response) {
+        //CHECKSTYLE:ON
         //bootstrap needs to be before bootstrap-modal
         response.render(CssHeaderItem.forReference(bootstrapSettings.getCssResourceReference()));
         response.render(JavaScriptHeaderItem.forReference(bootstrapSettings.getJsResourceReference()));
@@ -137,6 +163,12 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         if (enableTableFixedHead) {
             EnableTableFixedHeadJsReference.INSTANCE.renderHead(response);
         }
+        if (createPreactRenderHtmlFunction) {
+            CreatePreactRenderHtmlFunctionJsReference.INSTANCE.renderHead(response);
+        }
+        if (createPreactRenderHtmFunction) {
+            CreatePreactRenderHtmFunctionJsReference.INSTANCE.renderHead(response);
+        }
         if (enableBootstrapTooltips != null) {
             enableBootstrapTooltips.renderHead(response);
         }
@@ -149,6 +181,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         AdditionalBootstrapClassesCssReference.INSTANCE.renderHead(response);
         response.render(JavaScriptHeaderItem.forReference(ModernizrMinJavaScriptReference.instance()));
         response.render(CssHeaderItem.forReference(BootstrapFixesCssReference.INSTANCE));
+
     }
 
     /**

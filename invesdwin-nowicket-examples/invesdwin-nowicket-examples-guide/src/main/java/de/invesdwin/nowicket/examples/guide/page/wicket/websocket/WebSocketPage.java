@@ -14,6 +14,7 @@ import org.apache.wicket.protocol.ws.api.IWebSocketConnection;
 import org.apache.wicket.protocol.ws.api.IWebSocketRequestHandler;
 import org.wicketstuff.annotation.mount.MountPath;
 
+import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
 import de.invesdwin.nowicket.component.websocket.AWebSocketFallbackTimerBehavior;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
@@ -49,7 +50,7 @@ public class WebSocketPage extends AExampleWebPage {
                 return super.create(e);
             }
         }).bind();
-        add(new AWebSocketFallbackTimerBehavior(Duration.ONE_SECOND.javaTimeValue()) {
+        add(new AWebSocketFallbackTimerBehavior(Duration.ONE_SECOND) {
 
             private FDate prevLastRefresh = FDate.MIN_DATE;
             private boolean roundtripComplete = false;
@@ -96,8 +97,12 @@ public class WebSocketPage extends AExampleWebPage {
             @Override
             protected String createClientResponseScript() {
                 if (!roundtripComplete) {
-                    final IPartialPageRequestHandler handler = RequestCycles
+                    final PreactPartialPageRequestHandler preactHandler = RequestCycles
                             .getPartialPageRequestHandler(getComponent());
+                    if (preactHandler == null) {
+                        return null;
+                    }
+                    final IPartialPageRequestHandler handler = preactHandler.getDelegate();
                     if (handler instanceof AjaxRequestTarget) {
                         return "'Ajax'";
                     } else if (handler instanceof IWebSocketRequestHandler) {
@@ -122,10 +127,13 @@ public class WebSocketPage extends AExampleWebPage {
      */
     private void pushMessage() {
         //handler method
-        final IPartialPageRequestHandler handler = RequestCycles.getPartialPageRequestHandler(this);
-        if (handler instanceof IWebSocketRequestHandler) {
-            final IWebSocketRequestHandler webSocketHandler = (IWebSocketRequestHandler) handler;
-            webSocketHandler.push("message");
+        final PreactPartialPageRequestHandler preactHandler = RequestCycles.getPartialPageRequestHandler(this);
+        if (preactHandler != null) {
+            final IPartialPageRequestHandler handler = preactHandler.getDelegate();
+            if (handler instanceof IWebSocketRequestHandler) {
+                final IWebSocketRequestHandler webSocketHandler = (IWebSocketRequestHandler) handler;
+                webSocketHandler.push("message");
+            }
         }
         //registry method
         final IWebSocketConnection webSocketConnection = WebSockets.getConnection(this);

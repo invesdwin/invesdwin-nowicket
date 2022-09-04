@@ -12,13 +12,13 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.request.RequestHandlerExecutor.ReplaceHandlerException;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.session.ISessionStore.UnboundListener;
 
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
 import de.invesdwin.nowicket.component.modal.ModalConfig;
 import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.generated.guiservice.IGuiService;
@@ -98,11 +98,14 @@ public class SessionGuiService implements IGuiService, Serializable {
     public void processRequestFinally(final Component component) {
         try {
             final Collection<? extends Component> updatedComponents = getGuiTasks().process(component);
-            final IPartialPageRequestHandler handler = RequestCycles.getPartialPageRequestHandler(component);
+            final PreactPartialPageRequestHandler handler = RequestCycles.getPartialPageRequestHandler(component);
             if (isDisableUpdateAllComponentsForCurrentRequest()) {
                 Components.updateComponents(handler, updatedComponents);
             } else {
                 Components.updateAllComponents(handler, component);
+            }
+            if (handler != null) {
+                handler.render();
             }
         } catch (final ReplaceHandlerException e) {
             resetGuiTasks(e);
