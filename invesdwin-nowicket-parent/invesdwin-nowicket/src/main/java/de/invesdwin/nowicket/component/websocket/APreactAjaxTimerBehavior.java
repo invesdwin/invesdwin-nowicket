@@ -4,7 +4,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.util.lang.Args;
 import org.danekja.java.util.function.serializable.SerializableConsumer;
 
@@ -27,7 +26,7 @@ public abstract class APreactAjaxTimerBehavior extends AbstractAjaxTimerBehavior
         handler.render();
     }
 
-    protected abstract void onTimer(IPartialPageRequestHandler target);
+    protected abstract void onTimer(PreactPartialPageRequestHandler target);
 
     /**
      * Creates an {@link AbstractAjaxTimerBehavior} based on lambda expressions
@@ -39,14 +38,14 @@ public abstract class APreactAjaxTimerBehavior extends AbstractAjaxTimerBehavior
      * @return the {@link AbstractAjaxTimerBehavior}
      */
     public static APreactAjaxTimerBehavior onTimer(final Duration interval,
-            final SerializableConsumer<IPartialPageRequestHandler> onTimer) {
+            final SerializableConsumer<PreactPartialPageRequestHandler> onTimer) {
         Args.notNull(onTimer, "onTimer");
 
         return new APreactAjaxTimerBehavior(interval) {
             private static final long serialVersionUID = 1L;
 
             @Override
-            protected void onTimer(final IPartialPageRequestHandler target) {
+            protected void onTimer(final PreactPartialPageRequestHandler target) {
                 onTimer.accept(target);
             }
         };

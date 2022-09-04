@@ -24,6 +24,7 @@ import org.apache.wicket.util.lang.Args;
 import org.apache.wicket.util.string.StringValue;
 import org.danekja.java.util.function.serializable.SerializableConsumer;
 
+import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
 import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.time.date.FDate;
 import de.invesdwin.util.time.date.FTimeUnit;
@@ -50,7 +51,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         }
 
         @Override
-        protected void onTimer(final IPartialPageRequestHandler target) {
+        protected void onTimer(final PreactPartialPageRequestHandler target) {
             if (websocket != null && !websocket.isStopped() && ajax != null && !ajax.isStopped()) {
                 if (firstAjaxEvent == null) {
                     firstAjaxEvent = new FDate();
@@ -105,7 +106,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         }
 
         @Override
-        protected void onTimer(final IPartialPageRequestHandler handler) {
+        protected void onTimer(final PreactPartialPageRequestHandler handler) {
             if (ajax != null && !ajax.isStopped()) {
                 ajax.stop(handler);
             }
@@ -211,7 +212,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
      * @param handler
      *            The request handler
      */
-    protected abstract void onTimer(IPartialPageRequestHandler handler);
+    protected abstract void onTimer(PreactPartialPageRequestHandler handler);
 
     protected String createClientResponseScript() {
         return null;
@@ -296,14 +297,14 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
      * @return the {@link AWebSocketFallbackTimerBehavior}
      */
     public static AWebSocketFallbackTimerBehavior onTimer(final Duration interval,
-            final SerializableConsumer<IPartialPageRequestHandler> onTimer) {
+            final SerializableConsumer<PreactPartialPageRequestHandler> onTimer) {
         Args.notNull(onTimer, "onTimer");
 
         return new AWebSocketFallbackTimerBehavior(interval) {
             private static final long serialVersionUID = 1L;
 
             @Override
-            protected void onTimer(final IPartialPageRequestHandler handler) {
+            protected void onTimer(final PreactPartialPageRequestHandler handler) {
                 onTimer.accept(handler);
             }
 

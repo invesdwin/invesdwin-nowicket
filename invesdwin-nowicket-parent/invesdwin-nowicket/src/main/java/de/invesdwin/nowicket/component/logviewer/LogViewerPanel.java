@@ -18,6 +18,7 @@ import org.apache.wicket.model.IModel;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
 import de.invesdwin.nowicket.component.logviewer.js.LogViewerJsReference;
 import de.invesdwin.nowicket.component.websocket.AWebSocketFallbackTimerBehavior;
 import de.invesdwin.util.collections.iterable.ICloseableIterable;
@@ -57,7 +58,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
         return new AWebSocketFallbackTimerBehavior(refreshInterval) {
 
             @Override
-            protected void onTimer(final IPartialPageRequestHandler handler) {
+            protected void onTimer(final PreactPartialPageRequestHandler handler) {
                 LogViewerPanel.this.onTimer(handler);
             }
 

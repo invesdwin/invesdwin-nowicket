@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.component.websocket;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
 import org.apache.wicket.util.lang.Args;
 import org.danekja.java.util.function.serializable.SerializableConsumer;
@@ -26,7 +25,7 @@ public abstract class APreactWebSocketTimerBehavior extends AWebSocketTimerBehav
         handler.render();
     }
 
-    protected abstract void onTimer(IPartialPageRequestHandler target);
+    protected abstract void onTimer(PreactPartialPageRequestHandler target);
 
     /**
      * Creates an {@link AWebSocketTimerBehavior} based on lambda expressions
@@ -38,14 +37,14 @@ public abstract class APreactWebSocketTimerBehavior extends AWebSocketTimerBehav
      * @return the {@link AWebSocketTimerBehavior}
      */
     public static APreactWebSocketTimerBehavior onTimer(final Duration interval,
-            final SerializableConsumer<IPartialPageRequestHandler> onTimer) {
+            final SerializableConsumer<PreactPartialPageRequestHandler> onTimer) {
         Args.notNull(onTimer, "onTimer");
 
         return new APreactWebSocketTimerBehavior(interval) {
             private static final long serialVersionUID = 1L;
 
             @Override
-            protected void onTimer(final IPartialPageRequestHandler handler) {
+            protected void onTimer(final PreactPartialPageRequestHandler handler) {
                 onTimer.accept(handler);
             }
 

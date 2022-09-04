@@ -56,7 +56,7 @@ public class WebSocketPage extends AExampleWebPage {
             private boolean roundtripComplete = false;
 
             @Override
-            protected void onTimer(final IPartialPageRequestHandler handler) {
+            protected void onTimer(final PreactPartialPageRequestHandler handler) {
                 final HtmlContext context = HtmlContext.get(WebSocketPage.this);
                 final WebSocket model = (WebSocket) context.getMarkupContainer().getDefaultModel().getObject();
                 //listen to the users preference
