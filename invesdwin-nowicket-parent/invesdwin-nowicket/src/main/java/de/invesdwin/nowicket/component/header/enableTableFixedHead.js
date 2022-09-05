@@ -4,19 +4,31 @@ function enableTableFixedHead() {
 		window.enableTableFixedHeadDisabled = false;
 
 		function triggerEnableTableFixedHead() {
-			if(!window.enableTableFixedHeadDisabled){
-				$(() => $('.table-fixed-head').floatThead({
-					autoReflow: true,
-					zIndex: 999,
-					responsiveContainer: function($table){
-			            return $table.closest(".table-responsive");
-			        }
-				}));
+			if (!window.enableTableFixedHeadDisabled) {
+				$('.table-fixed-head:not(.floatThead-table):not(.table-fixed-head-enabled)').each(function() {
+					const thisElement = $(this)
+					thisElement.addClass('table-fixed-head-enabled');
+					thisElement.siblings('.floatThead-container').remove();
+					if (thisElement.closest(".table-responsive").length == 0) {
+						thisElement.floatThead({
+							autoReflow: true,
+							zIndex: 999,
+						});
+					} else {
+						thisElement.floatThead({
+							autoReflow: true,
+							zIndex: 999,
+							responsiveContainer: function($table) {
+								return $table.closest(".table-responsive");
+							}
+						});
+					}
+				});
 			}
 		}
-		
+
 		function triggerDisableTableFixedHead() {
-			$(() => $('.table-fixed-head').floatThead('destroy'));
+			$('.table-fixed-head-enabled').removeClass('table-fixed-head-enabled').floatThead('destroy');
 		}
 
 		triggerEnableTableFixedHead();
@@ -40,7 +52,7 @@ function enableTableFixedHead() {
 			triggerEnableTableFixedHead();
 		});
 		Wicket.Event.subscribe('/ajax/call/success', function(attributes,
-				jqXHR, settings) {
+			jqXHR, settings) {
 			triggerEnableTableFixedHead();
 		});
 	}

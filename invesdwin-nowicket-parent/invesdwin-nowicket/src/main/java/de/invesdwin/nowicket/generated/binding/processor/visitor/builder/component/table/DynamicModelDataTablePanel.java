@@ -42,6 +42,10 @@ public class DynamicModelDataTablePanel extends FormComponentPanel<Object> imple
         add(createDataTable(ModelDataTable.newSortableDataProvider(element)));
     }
 
+    public DataTable<?, ?> getTable() {
+        return (DataTable<?, ?>) get(DATA_TABLE_ID);
+    }
+
     private DataTable<?, ?> createDataTable(final ISortableDataProvider<Object, String> sortableDataProvider) {
         final DataTable<?, ?> dataTable = newDataTable(DATA_TABLE_ID, element, sortableDataProvider, rowsPerPage);
         appendAttributes(element, dataTable);
@@ -64,7 +68,7 @@ public class DynamicModelDataTablePanel extends FormComponentPanel<Object> imple
         super.onConfigure();
         final List<String> newColumnOrder = element.getColumnOrder();
         if (!newColumnOrder.equals(columnOrder)) {
-            final DataTable<?, ?> existingDataTable = (DataTable<?, ?>) get(DATA_TABLE_ID);
+            final DataTable<?, ?> existingDataTable = getTable();
             final ISortableDataProvider<Object, String> sortableDataProvider = (ISortableDataProvider<Object, String>) existingDataTable
                     .getDataProvider();
             existingDataTable.replaceWith(createDataTable(sortableDataProvider));
