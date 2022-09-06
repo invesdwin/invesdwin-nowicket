@@ -55,7 +55,7 @@ public final class UpdatingReuseIfModelsEqualStrategy implements IItemReuseStrat
                     item = factory.newItem(index, model);
                 } else {
                     oldItem.setIndex(index);
-                    oldItem.setModel(model);
+                    oldItem.getModel().setObject(model.getObject());
                     item = oldItem;
                 }
                 index++;
