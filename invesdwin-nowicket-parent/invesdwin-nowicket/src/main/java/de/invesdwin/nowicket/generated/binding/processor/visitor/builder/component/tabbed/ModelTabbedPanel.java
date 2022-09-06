@@ -24,7 +24,6 @@ import org.apache.wicket.markup.html.list.LoopItem;
 import org.apache.wicket.markup.repeater.IItemFactory;
 import org.apache.wicket.markup.repeater.IItemReuseStrategy;
 import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -36,6 +35,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.AModelTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelDelegateTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelTab;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UpdatingReuseIfModelsEqualStrategy;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.util.collections.delegate.DelegateList;
 import de.invesdwin.util.collections.iterable.ATransformingIterator;
@@ -290,7 +290,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         };
         private final List<ITab> delegate;
         private List<ITab> delegateCopy;
-        private final IItemReuseStrategy reuseStrategy = ReuseIfModelsEqualStrategy.getInstance();
+        private final IItemReuseStrategy reuseStrategy = UpdatingReuseIfModelsEqualStrategy.getInstance();
 
         RefreshingDelegateList(final List<ITab> delegate) {
             super(null);

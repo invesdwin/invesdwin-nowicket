@@ -8,12 +8,12 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;
-import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.application.PanelFactory;
 import de.invesdwin.nowicket.generated.binding.processor.element.AChoiceHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UpdatingReuseIfModelsEqualStrategy;
 
 @NotThreadSafe
 public class ModelRefreshingView extends Panel {
@@ -24,7 +24,7 @@ public class ModelRefreshingView extends Panel {
         add(new RefreshingView<Object>("panels") {
 
             {
-                setItemReuseStrategy(ReuseIfModelsEqualStrategy.getInstance());
+                setItemReuseStrategy(UpdatingReuseIfModelsEqualStrategy.getInstance());
             }
 
             @Override

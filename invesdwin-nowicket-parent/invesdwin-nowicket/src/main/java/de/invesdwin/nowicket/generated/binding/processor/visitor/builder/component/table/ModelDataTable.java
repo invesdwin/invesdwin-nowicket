@@ -20,12 +20,12 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.OddEvenItem;
-import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.ajax.BootstrapAjaxPagingNavigator;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UpdatingReuseIfModelsEqualStrategy;
 
 /**
  * Please use DynamicModelDataTablePanel as a wrapper around this component for full support of validation and
@@ -41,7 +41,7 @@ public class ModelDataTable extends DataTable<Object, String> {
         super(wicketId, element.createWicketColumns(), sortableDataProvider, rowsPerPage);
         this.element = element;
         setOutputMarkupId(true);
-        setItemReuseStrategy(ReuseIfModelsEqualStrategy.getInstance());
+        setItemReuseStrategy(UpdatingReuseIfModelsEqualStrategy.getInstance());
         final AbstractToolbar headersToolbar = newHeadersToolbar();
         if (headersToolbar != null) {
             addTopToolbar(headersToolbar);
