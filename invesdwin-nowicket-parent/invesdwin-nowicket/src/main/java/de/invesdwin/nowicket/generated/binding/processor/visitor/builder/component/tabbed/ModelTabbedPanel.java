@@ -22,6 +22,7 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.LoopItem;
 import org.apache.wicket.markup.repeater.IItemFactory;
+import org.apache.wicket.markup.repeater.IItemReuseStrategy;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
 import org.apache.wicket.model.IModel;
@@ -289,7 +290,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         };
         private final List<ITab> delegate;
         private List<ITab> delegateCopy;
-        private final ReuseIfModelsEqualStrategy reuseStrategy = new ReuseIfModelsEqualStrategy();
+        private final IItemReuseStrategy reuseStrategy = ReuseIfModelsEqualStrategy.getInstance();
 
         RefreshingDelegateList(final List<ITab> delegate) {
             super(null);
@@ -321,8 +322,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
             if (tabs == null || tabs.isEmpty()) {
                 return EmptyCloseableIterator.getInstance();
             }
-            return new ATransformingIterator<ITab, Item<ITab>>(
-                    WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
+            return new ATransformingIterator<ITab, Item<ITab>>(WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
                 private int index = 0;
 
                 @Override
@@ -333,8 +333,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         }
 
         private Iterator<IModel<ITab>> newModels(final List<ITab> tabs) {
-            return new ATransformingIterator<ITab, IModel<ITab>>(
-                    WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
+            return new ATransformingIterator<ITab, IModel<ITab>>(WrapperCloseableIterable.maybeWrap(tabs).iterator()) {
                 @Override
                 protected IModel<ITab> transform(final ITab value) {
                     return newModel(value);

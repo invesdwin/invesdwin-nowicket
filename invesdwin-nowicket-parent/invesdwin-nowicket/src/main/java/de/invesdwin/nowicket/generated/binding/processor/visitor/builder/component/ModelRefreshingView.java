@@ -24,7 +24,7 @@ public class ModelRefreshingView extends Panel {
         add(new RefreshingView<Object>("panels") {
 
             {
-                setItemReuseStrategy(new ReuseIfModelsEqualStrategy());
+                setItemReuseStrategy(ReuseIfModelsEqualStrategy.getInstance());
             }
 
             @Override
