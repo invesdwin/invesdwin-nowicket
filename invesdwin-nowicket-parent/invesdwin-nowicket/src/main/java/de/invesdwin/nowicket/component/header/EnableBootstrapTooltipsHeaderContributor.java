@@ -39,7 +39,7 @@ public class EnableBootstrapTooltipsHeaderContributor implements IHeaderContribu
     private final TooltipConfig config;
 
     public EnableBootstrapTooltipsHeaderContributor() {
-        this(new TooltipConfig());
+        this(new TooltipConfig().withAnimation(false));
     }
 
     public EnableBootstrapTooltipsHeaderContributor(final TooltipConfig config) {
