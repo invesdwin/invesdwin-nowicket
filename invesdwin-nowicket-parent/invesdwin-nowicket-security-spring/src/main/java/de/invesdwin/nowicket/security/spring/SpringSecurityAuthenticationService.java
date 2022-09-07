@@ -202,7 +202,11 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
 
     @Override
     public String getUsername() {
-        return getAuthentication().getName();
+        final Authentication authentication = getAuthentication();
+        if (authentication == null) {
+            return null;
+        }
+        return authentication.getName();
     }
 
     @Override
