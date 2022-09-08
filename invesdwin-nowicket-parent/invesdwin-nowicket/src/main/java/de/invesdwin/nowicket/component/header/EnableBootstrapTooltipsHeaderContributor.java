@@ -1,7 +1,5 @@
 package de.invesdwin.nowicket.component.header;
 
-import static de.agilecoders.wicket.jquery.JQuery.$;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -17,8 +15,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.components.TooltipConfig;
-import de.agilecoders.wicket.jquery.Config;
-import de.agilecoders.wicket.jquery.function.Function;
 
 /**
  * Add this behavior to a page to enable fancy bootstrap javascript tooltips via the following html markup:
@@ -58,19 +54,11 @@ public class EnableBootstrapTooltipsHeaderContributor implements IHeaderContribu
             final InputStream in = JS_RESOURCE.getInputStream();
             String js = IOUtils.toString(in, Charset.defaultCharset());
             in.close();
-            js = js.replace("${FUNCTION}", createInitializerScript(config));
+            js = js.replace("${CONFIG}", config.toJsonString());
             return js;
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    protected CharSequence createInitializerScript(final Config config) {
-        return $(createJQuerySelector()).chain(new Function("removeData", "bs.tooltip")).chain("tooltip", config).get();
-    }
-
-    protected String createJQuerySelector() {
-        return "[data-toggle=\"tooltip\"]:not([data-original-title])";
     }
 
 }
