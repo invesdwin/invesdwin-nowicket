@@ -22,8 +22,9 @@ import org.apache.wicket.util.visit.IVisitor;
  * Adapted from org.apache.wicket.ajax.AjaxRequestHandler and org.apache.wicket.page.PartialPageUpdate
  * 
  * Use addPreact methods to update components with the preact diffing algorithm, which might improve client side
- * performance on large table updates using ajax or websocket. Though some components might not work well with this mode
- * of updating. That is why we don't make this update mode the default for the application.
+ * rendering performance on large table updates using ajax or websocket (due to less dom updates). Though some
+ * components might not work well with this mode of updating. That is why we don't make this update mode the default for
+ * the application.
  */
 @NotThreadSafe
 public final class PreactPartialPageRequestHandler implements IPartialPageRequestHandler {
