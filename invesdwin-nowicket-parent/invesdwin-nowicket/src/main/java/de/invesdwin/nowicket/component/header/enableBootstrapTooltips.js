@@ -5,16 +5,20 @@ function enableBootstrapTooltips() {
 		function triggerEnableBootstrapTooltips() {
 			$('[data-toggle="tooltip"]').each(function(){
 				var tag = $(this);
-				if(!tag.data('bs.tooltip')){
+				if(tag.attr('data-original-title') === undefined){
 					tag.tooltip(${CONFIG});
 				}
-				if(tag.is('[title]')){
-					tag.attr('data-original-title', tag.attr('title'))
-					tag.removeAttr('title');
-				}
-				if(tag.attr('aria-describedby')){
-					tag.tooltip('hide');
-					tag.tooltip('show');
+				const title = tag.attr('title');
+				if(title !== undefined && title.length > 0){
+					const prevTitle = tag.attr('data-original-title');
+					if(prevTitle !== title) {
+						tag.attr('data-original-title', title)
+						if(tag.attr('aria-describedby')){
+							tag.tooltip('hide');
+							tag.tooltip('show');
+						}
+						tag.removeAttr('title');
+					}
 				}
 			});
 			$('[data-original-title]').each(function(){
