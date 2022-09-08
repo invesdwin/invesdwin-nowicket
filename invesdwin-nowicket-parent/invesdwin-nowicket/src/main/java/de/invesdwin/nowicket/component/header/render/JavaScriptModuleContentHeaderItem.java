@@ -8,9 +8,9 @@ import org.apache.wicket.request.Response;
 import org.apache.wicket.util.value.AttributeMap;
 
 @NotThreadSafe
-public class JavaScriptModuleHeaderItem extends JavaScriptContentHeaderItem {
+public class JavaScriptModuleContentHeaderItem extends JavaScriptContentHeaderItem {
 
-    public JavaScriptModuleHeaderItem(final CharSequence javaScript, final String id) {
+    public JavaScriptModuleContentHeaderItem(final CharSequence javaScript, final String id) {
         super(javaScript, id);
     }
 

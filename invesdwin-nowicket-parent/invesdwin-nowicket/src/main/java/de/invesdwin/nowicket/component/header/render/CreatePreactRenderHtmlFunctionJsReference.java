@@ -28,7 +28,7 @@ public final class CreatePreactRenderHtmlFunctionJsReference implements IHeaderC
 
     @Override
     public void renderHead(final IHeaderResponse response) {
-        response.render(new JavaScriptModuleHeaderItem(createJavascript(), FUNCTION_NAME));
+        response.render(new JavaScriptModuleContentHeaderItem(createJavascript(), FUNCTION_NAME));
     }
 
     private String createJavascript() {
