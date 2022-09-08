@@ -21,9 +21,6 @@ function enableBootstrapTooltips() {
 					tag.removeAttr('title');
 				}
 			});
-			$('[data-original-title]').each(function(){
-				var tag = $(this);
-			});
 		}
 
 		triggerEnableBootstrapTooltips();
