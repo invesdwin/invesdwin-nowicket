@@ -36,6 +36,8 @@ public final class PrettifyJsReference extends WebjarsJavaScriptResourceReferenc
         response.render(OnDomReadyHeaderItem.forScript(FUNCTION_NAME + "();"));
         response.render(OnDomReadyHeaderItem
                 .forScript("Wicket.Event.subscribe('/ajax/call/success', function(attributes, jqXHR, settings) { "
+                        + FUNCTION_NAME + "(); });\n"
+                        + "Wicket.Event.subscribe('/ajax/call/failure', function(jqEvent, attributes, jqXHR, errorThrown, textStatus) { "
                         + FUNCTION_NAME + "(); });"));
     }
 

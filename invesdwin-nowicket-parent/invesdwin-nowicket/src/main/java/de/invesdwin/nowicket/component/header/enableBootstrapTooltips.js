@@ -10,8 +10,10 @@ function enableBootstrapTooltips() {
 		Wicket.Event.add(window, 'shown.bs.modal', function(e) {
 			triggerEnableBootstrapTooltips();
 		});
-		Wicket.Event.subscribe('/ajax/call/success', function(attributes,
-				jqXHR, settings) {
+		Wicket.Event.subscribe('/ajax/call/success', function(attributes, jqXHR, settings) {
+			triggerEnableBootstrapTooltips();
+		});
+		Wicket.Event.subscribe('/ajax/call/failure', function(jqEvent, attributes, jqXHR, errorThrown, textStatus) {
 			triggerEnableBootstrapTooltips();
 		});
 	}

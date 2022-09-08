@@ -55,9 +55,11 @@ function enableTableFixedHead() {
 			enableTableFixedHeadDisabled = false;
 			triggerEnableTableFixedHead();
 		});
-		Wicket.Event.subscribe('/ajax/call/success', function(attributes,
-			jqXHR, settings) {
+		Wicket.Event.subscribe('/ajax/call/success', function(attributes, jqXHR, settings) {
 			triggerEnableTableFixedHead();
+		});
+		Wicket.Event.subscribe('/ajax/call/failure', function(jqEvent, attributes, jqXHR, errorThrown, textStatus) {
+				triggerEnableTableFixedHead();
 		});
 	}
 }
