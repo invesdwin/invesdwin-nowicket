@@ -185,7 +185,7 @@ public class HtmlComponentBuilder {
         final Div divFormGroup = new Div();
         divFormGroup.setClass("form-group row");
         final Div divCol = new Div();
-        divCol.setClass("col-sm-offset-2 col-sm-4");
+        divCol.setClass("offset-sm-2 col-sm-4");
         setGridColumnId(e, divCol);
         final Div divCheckbox = new Div();
         divCheckbox.setClass("checkbox");
