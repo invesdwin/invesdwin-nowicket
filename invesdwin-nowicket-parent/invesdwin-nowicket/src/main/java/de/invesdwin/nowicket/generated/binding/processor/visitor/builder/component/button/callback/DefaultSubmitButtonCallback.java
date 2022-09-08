@@ -12,9 +12,9 @@ import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 
 import de.invesdwin.norva.beanpath.spi.element.simple.invoker.IBeanPathActionInvoker;
-import de.invesdwin.nowicket.component.toastr.ToastrBehavior;
-import de.invesdwin.nowicket.component.toastr.ToastrPosition;
-import de.invesdwin.nowicket.component.toastr.ToastrType;
+import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
+import de.invesdwin.nowicket.component.pnotify.PNotifyPosition;
+import de.invesdwin.nowicket.component.pnotify.PNotifyType;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.Components;
@@ -28,11 +28,11 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
     private final IModel<Object> targetObjectModel;
     private final IModel<Object[]> parametersModel;
     private final IBeanPathActionInvoker invoker;
-    private final ToastrBehavior validationErrorNotificationBehavior;
+    private final PNotifyBehavior validationErrorNotificationBehavior;
 
     public DefaultSubmitButtonCallback(final IHtmlElement<?, ?> element, final IModel<Object> targetObjectModel,
             final IModel<Object[]> parametersModel, final IBeanPathActionInvoker invoker,
-            final ToastrBehavior validationErrorNotificationBehavior) {
+            final PNotifyBehavior validationErrorNotificationBehavior) {
         this.element = element;
         this.targetObjectModel = targetObjectModel;
         this.parametersModel = parametersModel;
@@ -141,11 +141,11 @@ public class DefaultSubmitButtonCallback implements ISubmitButtonCallback {
         invokeButtonMethod(component);
     }
 
-    public static ToastrBehavior newValidationErrorNotificationBehavior() {
-        return new ToastrBehavior().setIconOnly()
+    public static PNotifyBehavior newValidationErrorNotificationBehavior() {
+        return new PNotifyBehavior().setIconOnly()
                 .setButtons(false)
-                .setPosition(ToastrPosition.top_right)
-                .setType(ToastrType.error)
+                .setPosition(PNotifyPosition.top_right)
+                .setType(PNotifyType.error)
                 .setDuration(new Duration(1, FTimeUnit.SECONDS))
                 .setStack(false);
     }

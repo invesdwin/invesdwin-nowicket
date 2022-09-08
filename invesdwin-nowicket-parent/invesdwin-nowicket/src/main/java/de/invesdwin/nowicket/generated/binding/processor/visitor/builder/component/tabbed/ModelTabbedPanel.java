@@ -28,7 +28,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.tabs.AjaxBootstrapTabbedPanel;
-import de.invesdwin.nowicket.component.toastr.ToastrBehavior;
+import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
 import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.DefaultSubmitButtonCallback;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.AModelAjaxFallbackLink;
@@ -58,7 +58,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         }
     }
 
-    private final ToastrBehavior validationErrorNotificationBehavior;
+    private final PNotifyBehavior validationErrorNotificationBehavior;
     private final RefreshingDelegateList refreshingTabs;
 
     public ModelTabbedPanel(final ITabbedHtmlElement<?, ?> element) {
@@ -95,7 +95,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         super.onConfigure();
     }
 
-    protected ToastrBehavior createValidationErrorNotificationBehavior() {
+    protected PNotifyBehavior createValidationErrorNotificationBehavior() {
         return DefaultSubmitButtonCallback.newValidationErrorNotificationBehavior();
     }
 

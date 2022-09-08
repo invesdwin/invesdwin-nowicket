@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.component.toastr;
+package de.invesdwin.nowicket.component.pnotify;
 
 import java.util.MissingResourceException;
 
@@ -16,17 +16,15 @@ import de.invesdwin.util.time.date.FTimeUnit;
 import de.invesdwin.util.time.duration.Duration;
 
 @NotThreadSafe
-public class ToastrBehavior extends Behavior {
+public class PNotifyBehavior extends Behavior {
 
-    public static final ToastrType DEFAULT_TYPE = ToastrType.info;
-    private static final String TOAST_CONTAINER = "toast-container";
-    private static final String TOAST_CONTAINER_NOICON = "toast-container-noicon";
+    public static final String DEFAULT_ICON_CSS_CLASS = "<default>";
+    public static final PNotifyType DEFAULT_TYPE = PNotifyType.info;
 
     private Duration duration;
-    private ToastrType type = DEFAULT_TYPE;
-    private boolean iconEnabled = true;
-    private boolean progressEnabled = true;
-    private ToastrPosition position = ToastrPosition.bottom_right;
+    private PNotifyType type = DEFAULT_TYPE;
+    private String iconCssClass = DEFAULT_ICON_CSS_CLASS;
+    private PNotifyPosition position = PNotifyPosition.bottom_right;
     private boolean buttons = true;
     private Integer widthPixels;
     private String title;
@@ -35,62 +33,57 @@ public class ToastrBehavior extends Behavior {
     private boolean stack = true;
     private boolean iconOnly;
 
-    public ToastrBehavior setType(final ToastrType type) {
+    public PNotifyBehavior setType(final PNotifyType type) {
         this.type = type;
         return this;
     }
 
-    public ToastrBehavior setIconEnabled(final boolean iconEnabled) {
-        this.iconEnabled = iconEnabled;
+    public PNotifyBehavior setIconCssClass(final String iconCssClass) {
+        this.iconCssClass = iconCssClass;
         return this;
     }
 
-    public ToastrBehavior setPosition(final ToastrPosition position) {
+    public PNotifyBehavior setPosition(final PNotifyPosition position) {
         this.position = position;
         return this;
     }
 
-    public ToastrBehavior setDuration(final Duration duration) {
+    public PNotifyBehavior setDuration(final Duration duration) {
         this.duration = duration;
         return this;
     }
 
-    public ToastrBehavior setProgressEnabled(final boolean progressEnabled) {
-        this.progressEnabled = progressEnabled;
-        return this;
-    }
-
-    public ToastrBehavior setButtons(final boolean buttons) {
+    public PNotifyBehavior setButtons(final boolean buttons) {
         this.buttons = buttons;
         return this;
     }
 
-    public ToastrBehavior setWidthPixels(final Integer widthPixels) {
+    public PNotifyBehavior setWidthPixels(final Integer widthPixels) {
         this.widthPixels = widthPixels;
         return this;
     }
 
-    public ToastrBehavior setIconOnly() {
+    public PNotifyBehavior setIconOnly() {
         this.iconOnly = true;
         return setWidthPixels(40);
     }
 
-    public ToastrBehavior setAddclass(final String addclass) {
+    public PNotifyBehavior setAddclass(final String addclass) {
         this.addclass = addclass;
         return this;
     }
 
-    public ToastrBehavior setTitle(final String title) {
+    public PNotifyBehavior setTitle(final String title) {
         this.title = title;
         return this;
     }
 
-    public ToastrBehavior setText(final String text) {
+    public PNotifyBehavior setText(final String text) {
         this.text = text;
         return this;
     }
 
-    public ToastrBehavior setStack(final boolean stack) {
+    public PNotifyBehavior setStack(final boolean stack) {
         this.stack = stack;
         return this;
     }
@@ -103,6 +96,10 @@ public class ToastrBehavior extends Behavior {
 
     private CharSequence createJavaScript(final Component component) {
         final StringBuilder sb = new StringBuilder();
+        sb.append("new PNotify({\n");
+        sb.append("    history: false");
+        sb.append(",\n");
+        sb.append("    mouse_reset: false");
         configureTextAndTitle(component, sb);
         if (type != null) {
             sb.append(",\n");
@@ -110,29 +107,27 @@ public class ToastrBehavior extends Behavior {
             sb.append(type.toString());
             sb.append("'");
         }
-        if (!iconEnabled) {
-            sb.append("\n");
-            sb.append("toastr.options.containerClass = '");
-            sb.append(TOAST_CONTAINER_NOICON);
-            sb.append("';");
-        } else {
-            sb.append("\n");
-            sb.append("toastr.options.containerClass = '");
-            sb.append(TOAST_CONTAINER);
-            sb.append("';");
+        if (!DEFAULT_ICON_CSS_CLASS.equals(iconCssClass)) {
+            sb.append(",\n");
+            sb.append("    icon: ");
+            if (iconCssClass == null) {
+                sb.append("false");
+            } else {
+                sb.append(iconCssClass);
+            }
         }
         if (duration != null) {
             sb.append(",\n");
-            sb.append("    timeOut: ");
-            sb.append(duration.longValue(FTimeUnit.MILLISECONDS));
-            sb.append(",\n");
-            sb.append("    extendedTimeOut: ");
+            sb.append("    delay: ");
             sb.append(duration.longValue(FTimeUnit.MILLISECONDS));
         }
         configurePosition(sb);
         if (!buttons) {
             sb.append(",\n");
-            sb.append("    closeButton: false");
+            sb.append("    buttons: {\n");
+            sb.append("        closer: false,\n");
+            sb.append("        sticker: false\n");
+            sb.append("    }");
         }
         if (widthPixels != null) {
             sb.append(",\n");
@@ -151,7 +146,7 @@ public class ToastrBehavior extends Behavior {
     }
 
     private void configurePosition(final StringBuilder sb) {
-        if (position == ToastrPosition.bottom_right) {
+        if (position == PNotifyPosition.bottom_right) {
             addclass += " stack-bottomright";
             if (stack) {
                 sb.append(",\n");
@@ -191,8 +186,7 @@ public class ToastrBehavior extends Behavior {
         }
         try {
             localizedMessage = new StringResourceModel(message, component, HtmlContext.getModel(component))
-                    .setDefaultValue(message)
-                    .getObject();
+                    .setDefaultValue(message).getObject();
         } catch (final MissingResourceException e) {
             localizedMessage = message;
         }
