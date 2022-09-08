@@ -58,7 +58,6 @@ public class HtmlComponentBuilder {
     public Form createForm(final String wicketId) {
         final Form form = new Form();
         form.addAttribute(IHtmlElement.ATTR_WICKET_ID, wicketId);
-        form.setClass("form-horizontal");
         form.removeAttribute("enctype");
         form.removeAttribute("accept-charset");
         return form;
