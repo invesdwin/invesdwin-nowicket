@@ -73,5 +73,5 @@ const convertHtml = function(html) {
 
 window.preactRenderHtml = function preactRenderHtml(html, markupId) {
 	const element = document.getElementById(markupId);
-	render(convertHtml(html), element.parentElement, element);
+	render(convertHtml(html), element.parentElement);
 }
