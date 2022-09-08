@@ -14,7 +14,8 @@ import de.invesdwin.nowicket.component.header.offline.OfflineHeaderContributor;
 import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmlFunctionJsReference;
 import de.invesdwin.nowicket.component.header.render.PreventDuplicateAjaxCallbacksJsReference;
 import de.invesdwin.nowicket.component.modal.header.BootstrapModalHeaderContributor;
-import de.invesdwin.nowicket.component.pnotify.header.PNotifyHeaderContributor;
+import de.invesdwin.nowicket.component.toastr.header.ToastrCssReference;
+import de.invesdwin.nowicket.component.toastr.header.ToastrJsReference;
 
 @Immutable
 public class BootstrapExtensionsHeaderContributor implements IHeaderContributor {
@@ -165,7 +166,8 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         }
 
         //misc
-        PNotifyHeaderContributor.INSTANCE.renderHead(response);
+        ToastrJsReference.INSTANCE.renderHead(response);
+        ToastrCssReference.INSTANCE.renderHead(response);
         response.render(CssHeaderItem.forReference(FontAwesome6CssReference.instance()));
         response.render(CssHeaderItem.forReference(OpenWebIconsCssReference.instance()));
         AjaxIndicatorAppenderCssReference.INSTANCE.renderHead(response);

@@ -19,7 +19,7 @@ import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.util.Attributes;
 import de.agilecoders.wicket.jquery.util.Strings2;
-import de.invesdwin.nowicket.component.pnotify.PNotifyBehavior;
+import de.invesdwin.nowicket.component.toastr.ToastrBehavior;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.DefaultSubmitButtonCallback;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.link.AModelAjaxFallbackLink;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
@@ -33,7 +33,7 @@ public class ModelCollapsible extends Panel {
     protected ITab tab;
     protected IModel<Object> panelModel;
 
-    private final PNotifyBehavior validationErrorNotificationBehavior;
+    private final ToastrBehavior validationErrorNotificationBehavior;
     private final Component collapsible;
     private boolean active;
     private boolean renderedActive;
@@ -67,7 +67,7 @@ public class ModelCollapsible extends Panel {
         return tab.isVisible();
     }
 
-    protected PNotifyBehavior createValidationErrorNotificationBehavior() {
+    protected ToastrBehavior createValidationErrorNotificationBehavior() {
         return DefaultSubmitButtonCallback.newValidationErrorNotificationBehavior();
     }
 
