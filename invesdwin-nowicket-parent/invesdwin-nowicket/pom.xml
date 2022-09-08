@@ -11,7 +11,6 @@
 	<properties>
 		<version.yuicompressor>2.4.8</version.yuicompressor>
 		<version.closure-compiler-unshaded>v20210808</version.closure-compiler-unshaded>
-		<version.pnotify>3.2.1</version.pnotify>
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
 		<version.ecs>1.4.2</version.ecs>
@@ -89,11 +88,6 @@
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
 			<artifactId>wicketstuff-html5</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>pnotify</artifactId>
-			<version>${version.pnotify}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>

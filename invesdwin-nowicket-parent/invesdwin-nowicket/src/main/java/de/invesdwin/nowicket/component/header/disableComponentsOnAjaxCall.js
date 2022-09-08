@@ -44,10 +44,8 @@ function disableComponentsOnAjaxCall() {
 			}
 		});
 		Wicket.Event.subscribe('/ajax/call/failure', function(jqEvent, attributes, jqXHR, errorThrown, textStatus) {
-			// only undisable components when we had an ajax indicator activated for this event
-			if (jqXHR.i) {
-				undisableComponentsAfterAjaxCall();
-			}
+			// jqXHR might be null, so don't check it'
+			undisableComponentsAfterAjaxCall();
 		});
 		
 		//see https://github.com/hubspot/offline

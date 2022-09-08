@@ -30,9 +30,10 @@ public final class ModelDelegateTab extends AModelTab {
         return delegate.isVisible();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    protected IModel<?> getPanelModel() {
-        return getPanel(DUMMY_CONTAINER_ID).getDefaultModel();
+    public IModel<Object> getPanelModel() {
+        return (IModel) getPanel(DUMMY_CONTAINER_ID).getDefaultModel();
     }
 
     public static AModelTab valueOf(final ITab tab) {

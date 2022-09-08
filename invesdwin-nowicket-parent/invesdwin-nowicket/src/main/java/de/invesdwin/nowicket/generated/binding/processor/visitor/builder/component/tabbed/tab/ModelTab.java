@@ -69,7 +69,7 @@ public class ModelTab extends AModelTab {
     }
 
     @Override
-    protected IModel<?> getPanelModel() {
+    public IModel<Object> getPanelModel() {
         return panelModel;
     }
 

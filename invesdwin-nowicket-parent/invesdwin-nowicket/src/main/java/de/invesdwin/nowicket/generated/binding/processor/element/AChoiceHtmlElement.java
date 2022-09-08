@@ -1,5 +1,6 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.EnumChoiceRenderer;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 import org.jsoup.nodes.Element;
 
@@ -189,6 +191,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
         return new SelectionModifierModel(this);
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public List<ITab> createWicketTabs() {
         return new DelegateList<ITab>(null) {
@@ -196,12 +199,7 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
             public List<ITab> getDelegate() {
                 final List<ITab> tabs = new ArrayList<ITab>();
                 for (final Object row : getChoiceModel().getObject()) {
-                    final IModel<Object> rowObjectModel = new IModel<Object>() {
-                        @Override
-                        public Object getObject() {
-                            return row;
-                        }
-                    };
+                    final IModel<Object> rowObjectModel = (IModel) Model.of((Serializable) row);
                     final IModel<String> tabTitleModel = new ChoiceTabTitleModel(AChoiceHtmlElement.this,
                             rowObjectModel);
                     //cannot be delegated to BindingBuilder since it might be required in a model that gets refreshed each request cycle

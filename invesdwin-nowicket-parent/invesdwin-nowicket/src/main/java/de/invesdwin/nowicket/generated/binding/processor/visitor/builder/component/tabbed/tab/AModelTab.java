@@ -18,16 +18,15 @@ public abstract class AModelTab implements ITab {
 
     private WebMarkupContainer panel;
 
-    protected abstract IModel<? extends Object> getPanelModel();
+    public abstract IModel<Object> getPanelModel();
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public IModel<Object> getPanelModelNonNull() {
-        final IModel<?> panelModel = getPanelModel();
+        final IModel<Object> panelModel = getPanelModel();
         if (panelModel == null) {
-            final Serializable noObj = null;
-            return (IModel) Model.of(noObj);
+            return (IModel) Model.of((Serializable) null);
         } else {
-            return (IModel) panelModel;
+            return panelModel;
         }
     }
 

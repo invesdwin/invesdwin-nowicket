@@ -28,8 +28,12 @@ public final class ModelTabUpdatingReuseIfModelsEqualStrategy extends UpdatingRe
     @Override
     protected <T> void updateModel(final IModel<T> model, final Item<T> oldItem) {
         final AModelTab oldTab = (AModelTab) oldItem.getModel().getObject();
-        final AModelTab tab = (AModelTab) model.getObject();
-        oldTab.getPanelModelNonNull().setObject(tab.getPanelModelNonNull().getObject());
+        final AModelTab newTab = (AModelTab) model.getObject();
+        final IModel<Object> oldTabModel = oldTab.getPanelModel();
+        final IModel<Object> newTabModel = newTab.getPanelModel();
+        if (oldTabModel != null && newTabModel != null) {
+            oldTabModel.setObject(newTabModel.getObject());
+        }
     }
 
 }
