@@ -73,8 +73,5 @@ const convertHtml = function(html) {
 
 window.preactRenderHtml = function preactRenderHtml(html, markupId) {
 	const element = document.getElementById(markupId);
-	// reset handlers or else they will be duplicated by wicket: https://stackoverflow.com/a/39026635
-	element.outerHTML = element.outerHTML;
-	const updatedElement = document.getElementById(markupId);
-	render(convertHtml(html), updatedElement.parentElement, updatedElement);
+	render(convertHtml(html), element.parentElement, element);
 }

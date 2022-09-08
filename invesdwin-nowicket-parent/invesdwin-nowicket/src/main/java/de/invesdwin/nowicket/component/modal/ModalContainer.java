@@ -147,11 +147,11 @@ public class ModalContainer extends Panel {
         final ModalContainer rootModalContainer = Components.findComponent(ModalContainer.class, this.getPage());
         //render directly if this is not a child of the root and thus the root was already rendered
         if (rootModalContainer == this || rootModalContainer.alreadyRendered) {
-            if (headerItem != null) {
-                response.render(headerItem);
-            }
             while (!rootRenderHeadQueue.isEmpty()) {
                 response.render(rootRenderHeadQueue.pop());
+            }
+            if (headerItem != null) {
+                response.render(headerItem);
             }
         } else if (headerItem != null) {
             //otherwise put the children into the queue to handle page refreshes in the correct order

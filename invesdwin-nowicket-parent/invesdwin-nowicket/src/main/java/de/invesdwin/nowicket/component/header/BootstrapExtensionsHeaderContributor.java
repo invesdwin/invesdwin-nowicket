@@ -12,6 +12,7 @@ import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.OpenWebIconsC
 import de.invesdwin.nowicket.component.header.offline.OfflineHeaderContributor;
 import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmFunctionJsReference;
 import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmlFunctionJsReference;
+import de.invesdwin.nowicket.component.header.render.PreventDuplicateAjaxCallbacksJsReference;
 import de.invesdwin.nowicket.component.modal.header.BootstrapModalHeaderContributor;
 import de.invesdwin.nowicket.component.pnotify.header.PNotifyHeaderContributor;
 
@@ -134,6 +135,8 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     @Override
     public void renderHead(final IHeaderResponse response) {
         //CHECKSTYLE:ON
+        //need to add this first of all
+        PreventDuplicateAjaxCallbacksJsReference.INSTANCE.renderHead(response);
         //bootstrap needs to be before bootstrap-modal
         response.render(CssHeaderItem.forReference(bootstrapSettings.getCssResourceReference()));
         response.render(JavaScriptHeaderItem.forReference(bootstrapSettings.getJsResourceReference()));
