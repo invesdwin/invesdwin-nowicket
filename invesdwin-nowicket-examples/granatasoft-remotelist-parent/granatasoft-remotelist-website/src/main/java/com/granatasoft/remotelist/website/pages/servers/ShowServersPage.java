@@ -135,7 +135,7 @@ public class ShowServersPage extends ARemotelistPage {
                                                 @Override
                                                 protected Component newToolbar(final String id) {
                                                     return super.newToolbar(id)
-                                                            .add(AttributeModifier.append("class", "pull-right"));
+                                                            .add(AttributeModifier.append("class", "float-right"));
                                                 }
 
                                                 @Override
