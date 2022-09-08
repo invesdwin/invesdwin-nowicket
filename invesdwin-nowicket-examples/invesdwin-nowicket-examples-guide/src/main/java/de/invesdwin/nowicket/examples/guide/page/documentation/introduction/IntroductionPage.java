@@ -12,6 +12,7 @@ import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
+import de.invesdwin.util.time.duration.Duration;
 
 @NotThreadSafe
 @MountPath("introduction")
@@ -28,7 +29,7 @@ public class IntroductionPage extends AExampleWebPage {
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (IntroductionConstants.frameworkSloganImgs.equals(e.getWicketId())) {
                     return new Carousel(e.getWicketId(), (IModel) e.getModel())
-                            .setInterval(org.apache.wicket.util.time.Duration.valueOf(5000));
+                            .setInterval(Duration.FIVE_SECONDS.javaTimeValue());
                 }
                 return super.create(e);
             }

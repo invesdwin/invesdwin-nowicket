@@ -7,7 +7,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
-import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -22,21 +21,20 @@ import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapExternalLink.Target;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.DropDownButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.MenuBookmarkablePageLink;
-import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.ImmutableNavbarComponent;
-import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.ComponentPosition;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarExternalLink;
 import de.agilecoders.wicket.core.settings.IBootstrapSettings;
 import de.agilecoders.wicket.core.settings.ITheme;
-import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.consent.CookieConsent;
 import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
+import de.invesdwin.nowicket.component.navbar.Navbar;
 import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.page.documentation.closingwords.ClosingWordsPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.concept.ConceptPage;
@@ -146,7 +144,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
                 return subMenu;
             }
-        }.setIconType(GlyphIconType.book);
+        }.setIconType(FontAwesome6IconType.book_s);
         navbar.addComponents(new ImmutableNavbarComponent(dropdown, position));
     }
 
@@ -174,55 +172,55 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(HelloWorldPage.class,
                                 new ResourceModel("menu.helloworld").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.comment));
+                                        .setIconType(FontAwesome6IconType.message_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(FormInputPage.class,
                                 new ResourceModel("menu.forminput").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.listalt));
+                                        .setIconType(FontAwesome6IconType.rectangle_list_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxChoicePage.class,
                                 new ResourceModel("menu.ajaxchoice").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.alignjustify));
+                                        .setIconType(FontAwesome6IconType.align_justify_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxDataTablePage.class,
                                 new ResourceModel("menu.ajaxdatatable").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.th));
+                                        .setIconType(FontAwesome6IconType.table_cells_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(ModalWindowStartPage.class,
                                 new ResourceModel("menu.modal").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.newwindow));
+                                        .setIconType(FontAwesome6IconType.arrow_up_right_from_square_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WizardStartPage.class,
                                 new ResourceModel("menu.wizard").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.magic));
+                                        .setIconType(FontAwesome6IconType.wand_magic_sparkles_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(TabbedPanelPage.class,
                                 new ResourceModel("menu.tabbedpanel").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.creditcard));
+                                        .setIconType(FontAwesome6IconType.credit_card_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(FileUploadPage.class,
                                 new ResourceModel("menu.fileupload").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.upload));
+                                        .setIconType(FontAwesome6IconType.upload_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(DynamicEditorFieldsPage.class,
                                 new ResourceModel("menu.dynamiceditorfields").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.edit));
+                                        .setIconType(FontAwesome6IconType.pen_to_square_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(AjaxTimerPage.class,
                                 new ResourceModel("menu.ajaxtimer").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.refresh));
+                                        .setIconType(FontAwesome6IconType.arrows_rotate_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WebSocketPage.class,
                                 new ResourceModel("menu.websocket").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.plug));
+                                        .setIconType(FontAwesome6IconType.plug_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(GuestbookExamplePage.class,
                                 new ResourceModel("menu.guestbook").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.book));
+                                        .setIconType(FontAwesome6IconType.book_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(WicketSecurePage.class,
                                 new ResourceModel("menu.wicketsecure").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.lock));
+                                        .setIconType(FontAwesome6IconType.lock_s));
                         subMenu.add(new MenuBookmarkablePageLink<Void>(SpringSecurePage.class,
                                 new ResourceModel("menu.springsecure").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.lock));
+                                        .setIconType(FontAwesome6IconType.lock_s));
 
                         if (Roles.isAuthenticated()) {
                             subMenu.add(new MenuBookmarkablePageLink<Void>(ABaseWebApplication.get().getSignOutPage(),
                                     new ResourceModel("menu.sign.out").wrapOnAssignment(navbar))
-                                            .setIconType(GlyphIconType.logout));
+                                            .setIconType(FontAwesome6IconType.right_from_bracket_s));
                         } else {
                             subMenu.add(new MenuBookmarkablePageLink<Void>(ABaseWebApplication.get().getSignInPage(),
                                     new ResourceModel("menu.sign.in").wrapOnAssignment(navbar))
-                                            .setIconType(GlyphIconType.login));
+                                            .setIconType(FontAwesome6IconType.right_to_bracket_s));
                         }
 
                         return subMenu;
@@ -248,7 +246,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(IntroductionPage.class,
                                 new ResourceModel("menu.introduction").wrapOnAssignment(navbar))
-                                        .setIconType(GlyphIconType.home));
+                                        .setIconType(FontAwesome6IconType.house_s));
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(ConceptPage.class,
                                 new ResourceModel("menu.concept").wrapOnAssignment(navbar)));
@@ -282,7 +280,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
                         subMenu.add(new MenuBookmarkablePageLink<Void>(ClosingWordsPage.class,
                                 new ResourceModel("menu.closingwords").wrapOnAssignment(navbar))
-                                        .setIconType(FontAwesomeIconType.microphone));
+                                        .setIconType(FontAwesome6IconType.microphone_s));
 
                         return subMenu;
                     }
@@ -337,8 +335,6 @@ public abstract class AExampleWebPage extends AWebPage {
     public void renderHead(final IHeaderResponse response) {
         super.renderHead(response);
         PrettifyHeaderContributor.INSTANCE.renderHead(response);
-        response.render(
-                CssHeaderItem.forCSS(".jumbotron .has-error .help-block { font-size: 14px }", "fixJumbotronHasError"));
         //CHECKSTYLE:OFF
         //        if (AWebApplication.get().usesDeploymentConfig()) {
         //            response.render(JavaScriptHeaderItem

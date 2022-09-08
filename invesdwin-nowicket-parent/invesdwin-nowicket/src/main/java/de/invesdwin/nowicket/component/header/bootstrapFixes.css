@@ -15,8 +15,10 @@
 /* make 32px brand logo vertically center aligned to 24px brand name */
 .navbar-brand img {
 	margin-top:-6px;
-	margin-right: 10px;
-	float: left;
+}
+
+.navbar {
+	margin-bottom: 20px;
 }
 
 /* add some space between tab header and tab panel */
@@ -32,4 +34,17 @@
 /* allow wider tooltips https://stackoverflow.com/questions/24241678/bootstrap-3-tooltip-gets-wrapped-on-every-white-space */
 .tooltip-inner  {
   max-width: 500px !important;
+}
+
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: (1.5rem);
+  line-height: inherit;
+  color: #333333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
 }

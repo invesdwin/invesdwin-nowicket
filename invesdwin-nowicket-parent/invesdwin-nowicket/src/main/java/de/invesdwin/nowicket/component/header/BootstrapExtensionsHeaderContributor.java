@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.IHeaderContributor;
 
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.OpenWebIconsCssReference;
+import de.invesdwin.nowicket.component.header.font.FontAwesome6CssReference;
 import de.invesdwin.nowicket.component.header.offline.OfflineHeaderContributor;
 import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmlFunctionJsReference;
 import de.invesdwin.nowicket.component.header.render.PreventDuplicateAjaxCallbacksJsReference;
@@ -165,7 +166,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
 
         //misc
         PNotifyHeaderContributor.INSTANCE.renderHead(response);
-        response.render(CssHeaderItem.forReference(FontAwesome4CssReference.instance()));
+        response.render(CssHeaderItem.forReference(FontAwesome6CssReference.instance()));
         response.render(CssHeaderItem.forReference(OpenWebIconsCssReference.instance()));
         AjaxIndicatorAppenderCssReference.INSTANCE.renderHead(response);
         AdditionalBootstrapClassesCssReference.INSTANCE.renderHead(response);

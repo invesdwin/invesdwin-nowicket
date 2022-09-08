@@ -11,7 +11,7 @@ import org.apache.wicket.markup.html.border.Border;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.Icon;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
-import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
+import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
 import de.invesdwin.util.error.UnknownArgumentException;
 
 @NotThreadSafe
@@ -45,13 +45,13 @@ public class IconOrderByBorder<S> extends Border {
         final IconType iconType;
         switch (sortOrder) {
         case NONE:
-            iconType = FontAwesomeIconType.sort;
+            iconType = FontAwesome6IconType.sort_s;
             break;
         case ASCENDING:
-            iconType = FontAwesomeIconType.sort_asc;
+            iconType = FontAwesome6IconType.sort_up_s;
             break;
         case DESCENDING:
-            iconType = FontAwesomeIconType.sort_desc;
+            iconType = FontAwesome6IconType.sort_down_s;
             break;
         default:
             throw UnknownArgumentException.newInstance(SortOrder.class, sortOrder);

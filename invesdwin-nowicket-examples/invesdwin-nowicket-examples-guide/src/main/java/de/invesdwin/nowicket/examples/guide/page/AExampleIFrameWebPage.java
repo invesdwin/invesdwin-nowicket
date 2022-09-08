@@ -5,9 +5,9 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.html.HtmlTag;
-import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.component.navbar.Navbar;
 
 @NotThreadSafe
 public abstract class AExampleIFrameWebPage extends AWebPage {

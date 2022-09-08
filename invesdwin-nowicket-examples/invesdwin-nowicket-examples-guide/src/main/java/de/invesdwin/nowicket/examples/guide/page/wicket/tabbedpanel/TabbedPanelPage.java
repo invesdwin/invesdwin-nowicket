@@ -9,7 +9,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
+import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
@@ -64,7 +64,7 @@ public class TabbedPanelPage extends AExampleWebPage {
         String link = "<a style=\"white-space: nowrap";
         link += "\" href=\"" + href + "\">" + text;
         if (withIcon) {
-            link += " <i class=\"" + GlyphIconType.sharealt.cssClassName() + "\"></i>";
+            link += " <i class=\"" + FontAwesome6IconType.share_s.cssClassName() + "\"></i>";
         }
         link += "</a>";
         return link;

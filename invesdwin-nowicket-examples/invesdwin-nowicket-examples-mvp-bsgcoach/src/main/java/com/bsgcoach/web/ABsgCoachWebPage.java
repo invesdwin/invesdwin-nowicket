@@ -14,14 +14,15 @@ import org.apache.wicket.request.resource.ResourceReference;
 import com.bsgcoach.web.footer.FooterPanel;
 import com.bsgcoach.web.guide.RedirectToGuidePage;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
-import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.ComponentPosition;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarExternalLink;
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.component.footer.AFooter;
+import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
+import de.invesdwin.nowicket.component.navbar.Navbar;
 
 @NotThreadSafe
 public abstract class ABsgCoachWebPage extends AWebPage {
@@ -41,15 +42,16 @@ public abstract class ABsgCoachWebPage extends AWebPage {
         navbar.setBrandName(null);
         navbar.setBrandImage(LOGO, Model.of("bsg-coach"));
 
-        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
-                new NavbarButton<Void>(RedirectToGuidePage.class, Model.of("Home")).setIconType(GlyphIconType.home)));
-        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
+        navbar.addComponents(NavbarComponents.transform(ComponentPosition.LEFT,
+                new NavbarButton<Void>(RedirectToGuidePage.class, Model.of("Home"))
+                        .setIconType(FontAwesome6IconType.house_s)));
+        navbar.addComponents(NavbarComponents.transform(ComponentPosition.LEFT,
                 new NavbarButton<Void>(ABaseWebApplication.get().getHomePage(), Model.of("Get Feedback"))
-                        .setIconType(GlyphIconType.upload)));
-        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
+                        .setIconType(FontAwesome6IconType.upload_s)));
+        navbar.addComponents(NavbarComponents.transform(ComponentPosition.RIGHT,
                 new NavbarExternalLink(Model.of("mailto:gsubes@gmail.com"))
                         .setLabel(Model.of("Tell us what you think!"))
-                        .setIconType(GlyphIconType.envelope)));
+                        .setIconType(FontAwesome6IconType.envelope_s)));
 
         navbar.setInverted(INVERTED_HEADER_AND_FOOTER);
 
@@ -78,7 +80,7 @@ public abstract class ABsgCoachWebPage extends AWebPage {
         bgCss.append("nav {\n");
         bgCss.append("    opacity: 0.75;\n");
         bgCss.append("}\n");
-        bgCss.append(".footer .panel-footer {\n");
+        bgCss.append(".footer .card-footer {\n");
         bgCss.append("    background-color: #222;\n");
         bgCss.append("    border-color: #080808;\n");
         bgCss.append("    opacity: 0.75;\n");

@@ -17,7 +17,7 @@ import de.agilecoders.wicket.core.settings.ThemeProvider;
 import de.agilecoders.wicket.themes.markup.html.bootstrap.BootstrapThemeTheme;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchTheme;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvider;
-import de.agilecoders.wicket.themes.markup.html.google.GoogleTheme;
+import de.agilecoders.wicket.themes.markup.html.material_design.MaterialDesignTheme;
 import de.invesdwin.util.collections.Collections;
 
 @NotThreadSafe
@@ -27,9 +27,7 @@ public class ExampleThemeProvider extends DefaultThemeProvider {
         {
             add(new BootstrapTheme());
             add(new BootstrapThemeTheme());
-            add(new GoogleTheme());
-            //wicket-bootstrap has broken css files for material design: https://github.com/l0rdn1kk0n/wicket-bootstrap/issues/593
-            //add(new MaterialDesignTheme());
+            add(new MaterialDesignTheme());
         }
     };
     private static final Set<ThemeProvider> THEME_PROVIDERS = new HashSet<ThemeProvider>() {

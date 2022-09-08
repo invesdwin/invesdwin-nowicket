@@ -9,11 +9,12 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import com.granatasoft.remotelist.website.pages.remotelist.ShowCategoriesPage;
 import com.granatasoft.remotelist.website.pages.servers.ShowServersPage;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.ComponentPosition;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.Roles;
+import de.invesdwin.nowicket.component.navbar.Navbar;
 
 @NotThreadSafe
 public abstract class ARemotelistPage extends AWebPage {
@@ -29,9 +30,9 @@ public abstract class ARemotelistPage extends AWebPage {
         navbar.setBrandImage(new PackageResourceReference(ARemotelistPage.class, "logo.png"), null);
 
         if (Roles.get().hasRole(Roles.USER)) {
-            navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
+            navbar.addComponents(NavbarComponents.transform(ComponentPosition.LEFT,
                     new NavbarButton<Void>(ShowCategoriesPage.class, Model.of("Categories "))));
-            navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
+            navbar.addComponents(NavbarComponents.transform(ComponentPosition.LEFT,
                     new NavbarButton<Void>(ShowServersPage.class, Model.of("Servers"))));
         }
         return navbar;

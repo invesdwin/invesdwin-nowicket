@@ -2,8 +2,8 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;
 import de.invesdwin.norva.beanpath.spi.element.table.column.TableRemoveFromButtonColumnBeanPathElement;
+import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 
 @NotThreadSafe
@@ -21,7 +21,7 @@ public class TableRemoveFromButtonColumnModelElement extends TableSubmitButtonCo
 
     @Override
     public String getDefaultIconCssClass() {
-        return GlyphIconType.remove.cssClassName();
+        return FontAwesome6IconType.xmark_s.cssClassName();
     }
 
 }

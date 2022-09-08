@@ -24,15 +24,16 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.html.HtmlTag;
-import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.ComponentPosition;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
-import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeIconType;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.component.header.ModernizrMinJavaScriptReference;
+import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
+import de.invesdwin.nowicket.component.navbar.Navbar;
 import de.invesdwin.nowicket.page.auth.SignIn;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.lang.Objects;
@@ -199,15 +200,15 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
     }
 
     protected void addSignInNavbarComponent(final Navbar navbar, final Class<? extends WebPage> signInPage) {
-        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
+        navbar.addComponents(NavbarComponents.transform(ComponentPosition.RIGHT,
                 new NavbarButton<Void>(signInPage, new ResourceModel("menu.sign.in"))
-                        .setIconType(FontAwesomeIconType.sign_in)));
+                        .setIconType(FontAwesome6IconType.right_to_bracket_s)));
     }
 
     protected void addSignOutNavbarComponent(final Navbar navbar, final Class<? extends WebPage> signOutPage) {
-        navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
+        navbar.addComponents(NavbarComponents.transform(ComponentPosition.RIGHT,
                 new NavbarButton<Void>(signOutPage, new ResourceModel("menu.sign.out"))
-                        .setIconType(FontAwesomeIconType.sign_out)));
+                        .setIconType(FontAwesome6IconType.right_from_bracket_s)));
     }
 
     protected Class<? extends Page> getNavbarHomePage() {
@@ -255,6 +256,5 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
     }
 
     @Override
-    public void onPageModelRefresh(final Object newModelObject) {
-    }
+    public void onPageModelRefresh(final Object newModelObject) {}
 }

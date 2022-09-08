@@ -15,7 +15,7 @@
 		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
 		<version.bootstrap>3.3.6</version.bootstrap>
 		<version.ecs>1.4.2</version.ecs>
-		<version.fontawesome>4.7.0</version.fontawesome>
+		<version.font-awesome>6.1.2</version.font-awesome>
 		<version.preact>10.6.4</version.preact>
 	</properties>
 
@@ -120,9 +120,9 @@
 			<artifactId>jquery</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>fontawesome</artifactId>
-			<version>${version.fontawesome}</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>${version.font-awesome}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
