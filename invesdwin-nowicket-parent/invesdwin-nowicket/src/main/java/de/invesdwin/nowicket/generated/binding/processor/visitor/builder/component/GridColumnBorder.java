@@ -30,29 +30,9 @@ public class GridColumnBorder extends Border {
                 return true;
             }
         }.setSeparator(" ");
-        add(isInvalidBehavior);
         this.help = new Label("help", Model.of()); //needs to escape markup or modals do not close
         help.setEscapeModelStrings(false);
         addToBorder(help);
-    }
-
-    @Override
-    public Border addToBorder(final Component... children) {
-        for (int i = 0; i < children.length; i++) {
-            children[i].add(isInvalidBehavior);
-        }
-        return super.addToBorder(children);
-    }
-
-    @Override
-    public Border removeFromBorder(final Component child) {
-        child.remove(isInvalidBehavior);
-        return super.removeFromBorder(child);
-    }
-
-    @Override
-    public Border replaceInBorder(final Component component) {
-        return super.replaceInBorder(component);
     }
 
     @Override
@@ -75,6 +55,7 @@ public class GridColumnBorder extends Border {
                         sb.append(message.getMessage());
                     }
                     component.add(isInvalidBehavior);
+                    add(isInvalidBehavior);
                 }
                 help.setDefaultModelObject(sb);
             }
