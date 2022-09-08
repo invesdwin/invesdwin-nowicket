@@ -10,7 +10,6 @@ import org.apache.wicket.markup.html.IHeaderContributor;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.OpenWebIconsCssReference;
 import de.invesdwin.nowicket.component.header.offline.OfflineHeaderContributor;
-import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmFunctionJsReference;
 import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmlFunctionJsReference;
 import de.invesdwin.nowicket.component.header.render.PreventDuplicateAjaxCallbacksJsReference;
 import de.invesdwin.nowicket.component.modal.header.BootstrapModalHeaderContributor;
@@ -28,7 +27,6 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     private boolean updateFooterMarginOnResize = true;
     private boolean enableTableFixedHead = true;
     private boolean createPreactRenderHtmlFunction = true;
-    private boolean createPreactRenderHtmFunction = false;
     private EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips = new EnableBootstrapTooltipsHeaderContributor();
 
     public BootstrapExtensionsHeaderContributor(final BootstrapSettings bootstrapSettings) {
@@ -111,16 +109,6 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return enableBootstrapTooltips;
     }
 
-    public boolean isCreatePreactRenderHtmFunction() {
-        return createPreactRenderHtmFunction;
-    }
-
-    public BootstrapExtensionsHeaderContributor setCreatePreactRenderHtmFunction(
-            final boolean createPreactRenderHtmFunction) {
-        this.createPreactRenderHtmFunction = createPreactRenderHtmFunction;
-        return this;
-    }
-
     public boolean isCreatePreactRenderHtmlFunction() {
         return createPreactRenderHtmlFunction;
     }
@@ -136,7 +124,9 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     public void renderHead(final IHeaderResponse response) {
         //CHECKSTYLE:ON
         //need to add this first of all
-        PreventDuplicateAjaxCallbacksJsReference.INSTANCE.renderHead(response);
+        if (createPreactRenderHtmlFunction) {
+            PreventDuplicateAjaxCallbacksJsReference.INSTANCE.renderHead(response);
+        }
         //bootstrap needs to be before bootstrap-modal
         response.render(CssHeaderItem.forReference(bootstrapSettings.getCssResourceReference()));
         response.render(JavaScriptHeaderItem.forReference(bootstrapSettings.getJsResourceReference()));
@@ -168,9 +158,6 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         }
         if (createPreactRenderHtmlFunction) {
             CreatePreactRenderHtmlFunctionJsReference.INSTANCE.renderHead(response);
-        }
-        if (createPreactRenderHtmFunction) {
-            CreatePreactRenderHtmFunctionJsReference.INSTANCE.renderHead(response);
         }
         if (enableBootstrapTooltips != null) {
             enableBootstrapTooltips.renderHead(response);

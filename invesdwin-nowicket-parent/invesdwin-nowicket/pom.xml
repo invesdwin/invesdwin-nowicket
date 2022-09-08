@@ -17,7 +17,6 @@
 		<version.ecs>1.4.2</version.ecs>
 		<version.fontawesome>4.7.0</version.fontawesome>
 		<version.preact>10.6.4</version.preact>
-		<version.htm>3.1.1</version.htm>
 	</properties>
 
 
@@ -161,11 +160,6 @@
 			<groupId>org.webjars.npm</groupId>
 			<artifactId>preact</artifactId>
 			<version>${version.preact}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>htm</artifactId>
-			<version>${version.htm}</version>
 		</dependency>
 	</dependencies>
 
