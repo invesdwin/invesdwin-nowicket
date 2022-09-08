@@ -17,8 +17,8 @@ function enableBootstrapTooltips() {
 							tag.tooltip('hide');
 							tag.tooltip('show');
 						}
-						tag.removeAttr('title');
 					}
+					tag.removeAttr('title');
 				}
 			});
 			$('[data-original-title]').each(function(){
