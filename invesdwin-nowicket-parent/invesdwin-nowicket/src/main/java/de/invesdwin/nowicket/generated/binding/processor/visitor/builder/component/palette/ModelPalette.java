@@ -131,7 +131,7 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
     }
 
     protected Component addButtonCss(final Component button) {
-        return button.add(AttributeModifier.append("class", "btn btn-secondary btn-sm"));
+        return button.add(AttributeModifier.append("class", "btn btn-outline-secondary btn-sm"));
     }
 
     @Override

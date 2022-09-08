@@ -26,7 +26,7 @@ a {
   background-color: #54b4eb;
 }
 
-.btn-secondary, .btn-secondary:focus {
+.btn-outline-secondary, .btn-outline-secondary:focus {
   background-image: none;
   background-color: #FFFFFF;
   color: #36a9e0;
@@ -34,7 +34,7 @@ a {
   font-weight: bold;
 }
 
-.btn-secondary:hover {
+.btn-outline-secondary:hover {
   background-image: none;
   background-color: #36a9e0;
   color: #FFFFFF;

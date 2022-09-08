@@ -29,6 +29,6 @@ public class LoginButtonsChildPanel extends Panel {
     }
 
     public String getBtnClass() {
-        return "btn btn-secondary";
+        return "btn btn-outline-secondary";
     }
 }
