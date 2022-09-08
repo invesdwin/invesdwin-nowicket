@@ -5,16 +5,14 @@
 <body>
 	<wicket:extend>
 		<div class="form-horizontal">
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<wicket:message key="page.not.found.title" />
-							</h4>
+					<div class="card">
+						<div class="card-header">
+							<wicket:message key="page.not.found.title" />
 						</div>
-						<div class="panel-body">
+						<div class="card-body row">
 							<br />
 							<div class="col-sm-1"></div>
 							<div class="col-sm-10"
@@ -23,21 +21,21 @@
 							</div>
 							<div class="col-sm-1"></div>
 						</div>
-						<div class="col-sm-3"></div>
 					</div>
 				</div>
+				<div class="col-sm-3"></div>
 			</div>
 		</div>
 
 		<p wicket:id="developmentWarning">
 			<b>Development Warning:</b> This page is for testing and example
-			purposes only. Please implement your own PageNotFoundPage similar
-			to this one that extends your own custom base page and provide it in
-			IWebApplication.getPageNotFoundPage(). This ensures best
-			integration with the rest of your application. You could add custom
-			functionality here. Or just change the design of this page. If you
-			decide to keep this page as it is, this warning won't be shown in
-			wicket deployment configuration.
+			purposes only. Please implement your own PageNotFoundPage similar to
+			this one that extends your own custom base page and provide it in
+			IWebApplication.getPageNotFoundPage(). This ensures best integration
+			with the rest of your application. You could add custom functionality
+			here. Or just change the design of this page. If you decide to keep
+			this page as it is, this warning won't be shown in wicket deployment
+			configuration.
 		</p>
 	</wicket:extend>
 </body>

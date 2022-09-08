@@ -33,8 +33,7 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
         private Boolean allowOrder;
         private Boolean allowMoveAll;
 
-        public ModelPaletteOptions() {
-        }
+        public ModelPaletteOptions() {}
 
         public ModelPaletteOptions setMaxRows(final Integer maxRows) {
             this.maxRows = maxRows;
@@ -132,7 +131,7 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
     }
 
     protected Component addButtonCss(final Component button) {
-        return button.add(AttributeModifier.append("class", "btn btn-default btn-xs"));
+        return button.add(AttributeModifier.append("class", "btn btn-secondary btn-sm"));
     }
 
     @Override

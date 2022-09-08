@@ -10,7 +10,7 @@
 			<pre class="prettyprint lang-java linenums">// can also return an Iterable, Collection, etc
 public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
 			<br />
-			<div class="form-group">
+			<div class="form-group row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="defaultTable_legend">Default Table</legend>
 					<div wicket:id="defaultTable_gridColumn" class="table-responsive">
@@ -26,7 +26,7 @@ public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
 			<pre class="prettyprint lang-java linenums">// no static typing required in model, thus we can even have different panels in it as demonstrated below
 // though you can also stick to the code above and use only one panel
 public List&lt;?&gt; get&lt;PropertyName&gt;() { ... }</pre>
-			<div class="form-group">
+			<div class="form-group row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asUnorderedList_legend">As Unordered
 						List</legend>
@@ -38,7 +38,7 @@ public List&lt;?&gt; get&lt;PropertyName&gt;() { ... }</pre>
 &lt;ul&gt;</pre>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asCollapsible_legend">As Collapsible</legend>
 					<table class="table table-condensed table-hover table-striped"
@@ -58,7 +58,7 @@ new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
 }).bind();</pre>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asAccordion_legend">As Accordion</legend>
 					<table class="table table-condensed table-hover table-striped"
@@ -78,7 +78,7 @@ new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
 }).bind();</pre>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asTabbed_legend">As Tabbed</legend>
 					<table class="table table-condensed table-hover table-striped"

@@ -47,7 +47,7 @@ import de.invesdwin.util.lang.Strings;
 @NotThreadSafe
 public class HtmlComponentBuilder {
 
-    private static final String BUTTON_CLASSES = "btn btn-default";
+    private static final String BUTTON_CLASSES = "btn btn-secondary";
 
     public Html createHtml() {
         final Html html = new Html();
@@ -168,7 +168,7 @@ public class HtmlComponentBuilder {
 
     private Element wrapButtonInFormGroup(final Element button) {
         final Div divFormGroup = new Div();
-        divFormGroup.setClass("form-group");
+        divFormGroup.setClass("form-group row");
         final Div divCol = new Div();
         divCol.setClass("col-sm-6");
         final Div divBtnToolbar = new Div();
@@ -184,7 +184,7 @@ public class HtmlComponentBuilder {
 
     private Element wrapCheckBoxInFormGroup(final CheckBoxInputModelElement e, final Input input) {
         final Div divFormGroup = new Div();
-        divFormGroup.setClass("form-group");
+        divFormGroup.setClass("form-group row");
         final Div divCol = new Div();
         divCol.setClass("col-sm-offset-2 col-sm-4");
         setGridColumnId(e, divCol);
@@ -208,7 +208,7 @@ public class HtmlComponentBuilder {
     private Element wrapInputInFormGroup(final IModelElement<?> e, final ConcreteElement element,
             final String additionalClass) {
         final Div divFormGroup = new Div();
-        divFormGroup.setClass("form-group");
+        divFormGroup.setClass("form-group row");
         final Label label = createLabel(e, null);
         divFormGroup.addElement(label);
         final Div divCol = new Div();
@@ -234,7 +234,7 @@ public class HtmlComponentBuilder {
         final Label label = new Label();
         label.addAttribute("wicket:for", e.getWicketId());
         if (input == null) {
-            label.setClass("control-label col-sm-2");
+            label.setClass("col-form-label col-sm-2");
         } else {
             label.addElement(input);
         }

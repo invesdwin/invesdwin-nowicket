@@ -26,7 +26,7 @@ a {
   background-color: #54b4eb;
 }
 
-.btn-default, .btn-default:focus {
+.btn-secondary, .btn-secondary:focus {
   background-image: none;
   background-color: #FFFFFF;
   color: #36a9e0;
@@ -34,7 +34,7 @@ a {
   font-weight: bold;
 }
 
-.btn-default:hover {
+.btn-secondary:hover {
   background-image: none;
   background-color: #36a9e0;
   color: #FFFFFF;

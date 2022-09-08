@@ -17,16 +17,16 @@
 				<legend>
 					<label wicket:id="header"></label>
 				</legend>
-				<div class="form-group">
-					<label class="control-label col-sm-2" wicket:for="email"> <wicket:label>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2" wicket:for="email"> <wicket:label>
                             Email
                         </wicket:label></label>
 					<div wicket:id="email_gridColumn" class="col-sm-4">
 						<input type="text" class="form-control" wicket:id="email"></input>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" wicket:for="message">
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2" wicket:for="message">
 						<wicket:label>
                                  Message 
                             </wicket:label>
@@ -35,11 +35,11 @@
 						<textarea class="form-control" wicket:id="message"></textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-offset-5 col-sm-6">
 						<div class="btn-toolbar">
 							<div class="btn-group">
-								<button type="submit" class="btn btn-default btn-primary"
+								<button type="submit" class="btn btn-primary"
 									wicket:id="submit">Submit</button>
 							</div>
 						</div>

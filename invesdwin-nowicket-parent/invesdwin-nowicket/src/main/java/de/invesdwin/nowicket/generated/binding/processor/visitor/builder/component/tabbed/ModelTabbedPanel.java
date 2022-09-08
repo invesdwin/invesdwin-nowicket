@@ -35,7 +35,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.AModelTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelDelegateTab;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelTab;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UpdatingReuseIfModelsEqualStrategy;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.tab.ModelTabUpdatingReuseIfModelsEqualStrategy;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.util.collections.delegate.DelegateList;
 import de.invesdwin.util.collections.iterable.ATransformingIterator;
@@ -143,13 +143,19 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
      */
     @Override
     protected WebMarkupContainer newLink(final String linkId, final int index) {
-        return new SubmitAjaxFallbackLink(linkId, index);
+        final SubmitAjaxFallbackLink link = new SubmitAjaxFallbackLink(linkId, index);
+        addDisabledTabBehavior(link, index);
+        return addSelectedTabBehavior(link, index);
     }
 
     @Override
     protected LoopItem newTabContainer(final int tabIndex) {
         final LoopItem item = super.newTabContainer(tabIndex);
-        item.add(new Behavior() {
+        return addDisabledTabBehavior(item, tabIndex);
+    }
+
+    private <T extends WebMarkupContainer> T addDisabledTabBehavior(final T link, final int tabIndex) {
+        link.add(new Behavior() {
             @Override
             public void onComponentTag(final Component component, final ComponentTag tag) {
                 super.onComponentTag(component, tag);
@@ -158,7 +164,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
                 }
             }
         });
-        return item;
+        return link;
     }
 
     private boolean isTabEnabled(final int index) {
@@ -290,7 +296,7 @@ public class ModelTabbedPanel extends AjaxBootstrapTabbedPanel<ITab> {
         };
         private final List<ITab> delegate;
         private List<ITab> delegateCopy;
-        private final IItemReuseStrategy reuseStrategy = UpdatingReuseIfModelsEqualStrategy.getInstance();
+        private final IItemReuseStrategy reuseStrategy = ModelTabUpdatingReuseIfModelsEqualStrategy.getInstance();
 
         RefreshingDelegateList(final List<ITab> delegate) {
             super(null);

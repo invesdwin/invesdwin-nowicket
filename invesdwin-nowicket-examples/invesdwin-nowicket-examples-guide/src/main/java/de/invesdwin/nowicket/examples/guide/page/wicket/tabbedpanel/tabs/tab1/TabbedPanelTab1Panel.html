@@ -17,8 +17,8 @@
 				violation exception. To prevent this, validation is done between tab
 				switches. The stock TabbedPanel from Wicket does not do this, which
 				is sad.</p>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="requiredInput">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="requiredInput">
 					<wicket:label>
                              Required Input 
                         </wicket:label>
@@ -26,8 +26,9 @@
 				<div wicket:id="requiredInput_gridColumn" class="col-sm-4">
 					<input type="text" class="form-control" wicket:id="requiredInput"></input>
 				</div>
-				<button type="submit" class="btn btn-default btn-primary"
-					wicket:id="save">Save</button>
+				<div>
+					<button type="submit" class="btn btn-primary" wicket:id="save">Save</button>
+				</div>
 			</div>
 		</form>
 	</wicket:panel>

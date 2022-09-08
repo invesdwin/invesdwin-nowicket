@@ -6,16 +6,16 @@
 		<form class="form-horizontal" wicket:id="form">
 			<!-- <div wicket:id='feedback'></div>  -->
 			<div wicket:id="modal"></div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="brand"> <wicket:label>
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="brand"> <wicket:label>
                             Brand
                         </wicket:label></label>
 				<div wicket:id="brand_gridColumn" class="col-sm-4">
 					<select class="form-control" wicket:id="brand"></select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="kmMileage">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="kmMileage">
 					<wicket:label>
                             Km Mileage
                         </wicket:label>
@@ -24,8 +24,8 @@
 					<input type="number" class="form-control" wicket:id="kmMileage"></input>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="licenseNumber">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="licenseNumber">
 					<wicket:label>
                             License Number
                         </wicket:label>
@@ -34,8 +34,8 @@
 					<input type="text" class="form-control" wicket:id="licenseNumber"></input>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="numberOfGears">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="numberOfGears">
 					<wicket:label>
                             Number Of Gears
                         </wicket:label>
@@ -44,8 +44,8 @@
 					<input type="text" class="form-control" wicket:id="numberOfGears"></input>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="purchasePrice">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="purchasePrice">
 					<wicket:label>
                             Purchase Price
                         </wicket:label>
@@ -54,8 +54,8 @@
 					<input type="number" class="form-control" wicket:id="purchasePrice"></input>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="registrationDate">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="registrationDate">
 					<wicket:label>
                             Registration Date
                         </wicket:label>
@@ -65,7 +65,7 @@
 						wicket:id="registrationDate"></input>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div wicket:id="technicalControl_gridColumn"
 					class="col-sm-offset-2 col-sm-4">
 					<div class="checkbox">
@@ -78,8 +78,8 @@
 			</div>
 			<fieldset>
 				<legend wicket:id="motor_legend">Motor</legend>
-				<div class="form-group">
-					<label class="control-label col-sm-2" wicket:for="motor.powerInHP">
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2" wicket:for="motor.powerInHP">
 						<wicket:label>
                                 Power In HP
                             </wicket:label>
@@ -89,8 +89,8 @@
 							wicket:id="motor.powerInHP"></input>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" wicket:for="motor.state">
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2" wicket:for="motor.state">
 						<wicket:label>
                                 State
                             </wicket:label>
@@ -99,15 +99,15 @@
 						<select class="form-control" wicket:id="motor.state"></select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-6">
 						<div class="btn-toolbar pull-right">
 							<div class="btn-group">
-								<button type="submit" class="btn btn-default"
+								<button type="submit" class="btn btn-secondary"
 									wicket:id="motor.turnOff">Turn Off</button>
 							</div>
 							<div class="btn-group">
-								<button type="submit" class="btn btn-default btn-danger"
+								<button type="submit" class="btn btn-secondary btn-danger"
 									wicket:id="motor.turnOn">Turn On</button>
 							</div>
 						</div>

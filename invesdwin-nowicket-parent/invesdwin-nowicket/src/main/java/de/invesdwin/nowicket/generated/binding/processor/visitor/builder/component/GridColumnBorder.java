@@ -2,13 +2,12 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.border.Border;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.GridColumnHtmlElement;
@@ -19,30 +18,41 @@ public class GridColumnBorder extends Border {
 
     private final GridColumnHtmlElement element;
     private final Label help;
+    private final AttributeAppender isInvalidBehavior;
 
     public GridColumnBorder(final GridColumnHtmlElement element) {
         super(element.getWicketId());
         this.element = element;
 
-        final AttributeModifier hasError = AttributeModifier.append("class", new IModel<String>() {
+        this.isInvalidBehavior = new AttributeAppender("class", Model.of("is-invalid")) {
             @Override
-            public String getObject() {
-                final Component component = element.getContext()
-                        .getComponentRegistry()
-                        .getComponent(element.getModelWicketId());
-                final FormComponent<?> formComponent = Components.asFormComponent(component);
-                if (formComponent != null) {
-                    if (!formComponent.isValid()) {
-                        return "has-error";
-                    }
-                }
-                return null;
+            public boolean isTemporary(final Component component) {
+                return true;
             }
-        });
-        add(hasError);
+        }.setSeparator(" ");
+        add(isInvalidBehavior);
         this.help = new Label("help", Model.of()); //needs to escape markup or modals do not close
         help.setEscapeModelStrings(false);
         addToBorder(help);
+    }
+
+    @Override
+    public Border addToBorder(final Component... children) {
+        for (int i = 0; i < children.length; i++) {
+            children[i].add(isInvalidBehavior);
+        }
+        return super.addToBorder(children);
+    }
+
+    @Override
+    public Border removeFromBorder(final Component child) {
+        child.remove(isInvalidBehavior);
+        return super.removeFromBorder(child);
+    }
+
+    @Override
+    public Border replaceInBorder(final Component component) {
+        return super.replaceInBorder(component);
     }
 
     @Override
@@ -64,6 +74,7 @@ public class GridColumnBorder extends Border {
                         firstMessage = false;
                         sb.append(message.getMessage());
                     }
+                    component.add(isInvalidBehavior);
                 }
                 help.setDefaultModelObject(sb);
             }

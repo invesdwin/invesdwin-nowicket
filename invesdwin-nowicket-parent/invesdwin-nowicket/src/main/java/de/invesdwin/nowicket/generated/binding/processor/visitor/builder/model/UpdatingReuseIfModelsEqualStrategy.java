@@ -17,12 +17,12 @@ import org.apache.wicket.util.lang.Generics;
  * Though it replaces the old model with the new model instance in the item.
  */
 @Immutable
-public final class UpdatingReuseIfModelsEqualStrategy implements IItemReuseStrategy {
+public class UpdatingReuseIfModelsEqualStrategy implements IItemReuseStrategy {
     private static final long serialVersionUID = 1L;
 
     private static IItemReuseStrategy instance = new UpdatingReuseIfModelsEqualStrategy();
 
-    private UpdatingReuseIfModelsEqualStrategy() {}
+    protected UpdatingReuseIfModelsEqualStrategy() {}
 
     public static IItemReuseStrategy getInstance() {
         return instance;
@@ -47,15 +47,15 @@ public final class UpdatingReuseIfModelsEqualStrategy implements IItemReuseStrat
 
             @Override
             public Item<T> next() {
-                final IModel<T> model = newModels.next();
-                final Item<T> oldItem = modelToItem.get(model);
+                final IModel<T> newModel = newModels.next();
+                final Item<T> oldItem = modelToItem.get(newModel);
 
                 final Item<T> item;
                 if (oldItem == null) {
-                    item = factory.newItem(index, model);
+                    item = factory.newItem(index, newModel);
                 } else {
                     oldItem.setIndex(index);
-                    oldItem.getModel().setObject(model.getObject());
+                    updateModel(newModel, oldItem);
                     item = oldItem;
                 }
                 index++;
@@ -69,6 +69,10 @@ public final class UpdatingReuseIfModelsEqualStrategy implements IItemReuseStrat
             }
 
         };
+    }
+
+    protected <T> void updateModel(final IModel<T> newModel, final Item<T> oldItem) {
+        oldItem.getModel().setObject(newModel.getObject());
     }
 
 }

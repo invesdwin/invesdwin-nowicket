@@ -6,15 +6,15 @@
             <form class="form-horizontal" wicket:id="form"> 
                 <!-- <div wicket:id='feedback'></div>  --> 
                 <div wicket:id="modal"></div> 
-                <div class="form-group"> 
-                    <label class="control-label col-sm-2" wicket:for="date"> 
+                <div class="form-group row"> 
+                    <label class="col-form-label col-sm-2" wicket:for="date"> 
                         <wicket:label>
                              Date 
                         </wicket:label></label> 
                     <div wicket:id="date_gridColumn" class="col-sm-4"> 
                         <input type="date" class="form-control" wicket:id="date"></input> 
                     </div> 
-                    <label class="control-label col-sm-2" wicket:for="email"> 
+                    <label class="col-form-label col-sm-2" wicket:for="email"> 
                         <wicket:label>
                              Email 
                         </wicket:label></label> 
@@ -22,7 +22,7 @@
                         <input type="text" class="form-control" wicket:id="email"></input> 
                     </div> 
                 </div> 
-                <div class="form-group"> 
+                <div class="form-group row"> 
                     <div wicket:id="message_gridColumn" class="col-sm-offset-2 col-sm-10"> 
                         <textarea class="form-control" wicket:id="message"></textarea> 
                     </div> 

@@ -5,25 +5,23 @@
 <body>
 	<wicket:extend>
 		<div class="form-horizontal">
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<wicket:message key="sign.in.title" />
-							</h4>
+					<div class="card">
+						<div class="card-header">
+							<wicket:message key="sign.in.title" />
 						</div>
-						<div class="panel-body">
+						<div class="card-body row">
 							<div class="col-sm-1"></div>
 							<div class="col-sm-10">
 								<span wicket:id="panel" />
 							</div>
 							<div class="col-sm-1"></div>
 						</div>
-						<div class="col-sm-3"></div>
 					</div>
 				</div>
+				<div class="col-sm-3"></div>
 			</div>
 		</div>
 
@@ -31,11 +29,11 @@
 			<b>Development Warning:</b> This page is for testing and example
 			purposes only. Please implement your own SignInPage similar to this
 			one that extends your own custom base page and provide it in
-			IWebApplication.getSignInPage(). This ensures best integration
-			with the rest of your application. You could add custom functionality
-			for forgot password, registration or social login here. Or just
-			change the design of this page. If you decide to keep this page as it
-			is, this warning won't be shown in wicket deployment configuration.
+			IWebApplication.getSignInPage(). This ensures best integration with
+			the rest of your application. You could add custom functionality for
+			forgot password, registration or social login here. Or just change
+			the design of this page. If you decide to keep this page as it is,
+			this warning won't be shown in wicket deployment configuration.
 		</p>
 	</wicket:extend>
 </body>

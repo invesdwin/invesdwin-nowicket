@@ -10,8 +10,8 @@
 			<p style="border: 2px dotted #fc0; width: 500px; padding: 5px;">
 				This tab gets hidden randomly, demonstrating that utility mehods
 				also work for tabs.</p>
-			<div class="form-group">
-				<label class="control-label col-sm-2"
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2"
 					wicket:for="maybeFromOutsideHiddenInput"> <wicket:label>
                              Maybe From Outside Hidden Input 
                         </wicket:label></label>
@@ -20,8 +20,9 @@
 					<input type="text" class="form-control"
 						wicket:id="maybeFromOutsideHiddenInput"></input>
 				</div>
-				<button type="submit" class="btn btn-default btn-primary"
-					wicket:id="save">Save</button>
+				<div>
+					<button type="submit" class="btn btn-primary" wicket:id="save">Save</button>
+				</div>
 			</div>
 		</form>
 	</wicket:panel>

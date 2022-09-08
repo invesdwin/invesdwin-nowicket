@@ -10,7 +10,7 @@
 			<div wicket:id="modal"></div>
 			<h2>Step 1: Please upload your BSG-Online CSV reports:</h2>
 			<hr />
-			<div class="form-group">
+			<div class="form-group row">
 			<div class="col-sm-1"></div>
 				<div class="col-sm-4">
 					<img wicket:id="exportHowtoImg" width="350px" height="auto"
@@ -33,8 +33,8 @@
 				</div>
 			</div>
 			<hr />
-			<div class="form-group">
-				<label class="control-label col-sm-2"
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2"
 					wicket:for="uploadFirReportCsv"> <wicket:label>
                              FIR Report Csv 
                         </wicket:label></label>
@@ -43,12 +43,12 @@
 						rows="1" style="resize: none"></textarea>
 				</div>
 				<div class="col-sm-3">
-					<input type="file" class="btn btn-default"
+					<input type="file" class="btn btn-secondary"
 						wicket:id="uploadFirReportCsv"></input>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2"
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2"
 					wicket:for="uploadCirReportCsv"> <wicket:label>
                              CIR Report Csv 
                         </wicket:label></label>
@@ -57,12 +57,12 @@
 						rows="1" style="resize: none"></textarea>
 				</div>
 				<div class="col-sm-3">
-					<input type="file" class="btn btn-default"
+					<input type="file" class="btn btn-secondary"
 						wicket:id="uploadCirReportCsv"></input>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2"
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2"
 					wicket:for="uploadCorReportCsv"> <wicket:label>
                              COR Report Csv 
                         </wicket:label></label>
@@ -71,21 +71,21 @@
 						rows="1" style="resize: none"></textarea>
 				</div>
 				<div class="col-sm-3">
-					<input type="file" class="btn btn-default"
+					<input type="file" class="btn btn-secondary"
 						wicket:id="uploadCorReportCsv"></input>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-10">
-					<button type="submit" class="btn btn-default btn-lg btn-block"
+					<button type="submit" class="btn btn-secondary btn-lg btn-block"
 						wicket:id="upload">Upload</button>
 				</div>
 			</div>
 			<hr />
 			<h2>Step 2: Please provide us with the following information:</h2>
 			<hr />
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="companyLetter">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="companyLetter">
 					<wicket:label>
                              Company Letter 
                         </wicket:label>
@@ -94,8 +94,8 @@
 					<select class="form-control" wicket:id="companyLetter"></select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="gameEndsInYear">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="gameEndsInYear">
 					<wicket:label>
                              Game Ends In Year 
                         </wicket:label>
@@ -104,8 +104,8 @@
 					<select class="form-control" wicket:id="gameEndsInYear"></select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" wicket:for="creditRating">
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2" wicket:for="creditRating">
 					<wicket:label>
                              Credit Rating 
                         </wicket:label>
@@ -115,18 +115,18 @@
 				</div>
 			</div>
 			<hr />
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-10">
 					<button type="submit"
-						class="btn btn-default btn-primary btn-lg btn-block"
+						class="btn btn-primary btn-lg btn-block"
 						wicket:id="generateFeedback">Generate Feedback</button>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-6">
 					<div class="btn-toolbar">
 						<div class="btn-group">
-							<button type="submit" class="btn btn-default btn-info"
+							<button type="submit" class="btn btn-secondary btn-info"
 								wicket:id="generateSampleFeedback">Generate Sample
 								Feedback</button>
 						</div>
