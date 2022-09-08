@@ -28,7 +28,8 @@ public class ConfiguredWicketSerializer implements ISerializer {
                 return coder.toByteArray(object);
             } catch (final Throwable t) {
                 //retry on concurrent modification exception
-                if (!Throwables.isCausedByType(t, ConcurrentModificationException.class)) {
+                if (!Throwables.isCausedByType(t, ConcurrentModificationException.class)
+                        && !Throwables.isCausedByType(t, IndexOutOfBoundsException.class)) {
                     throw Throwables.propagate(t);
                 } else {
                     continue;
