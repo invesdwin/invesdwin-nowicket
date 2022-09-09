@@ -48,7 +48,7 @@ legend {
 
 /* table had no top border in bootstrap 3 */
 .table th {
-	border-top: none;
+	border-top: none !important;
 }
 
 /* control-label had right-alignment in bootstrap 3 */
