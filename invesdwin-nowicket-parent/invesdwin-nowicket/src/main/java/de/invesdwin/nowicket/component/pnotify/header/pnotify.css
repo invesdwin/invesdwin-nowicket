@@ -96,6 +96,21 @@ body > .ui-pnotify-modal-overlay {
   float: left;
   margin-right: .2em;
 }
+
+.ui-pnotify-icon-with-title, .ui-pnotify-icon-with-title span {
+  display: block;
+  float: left;
+  margin-right: .2em;
+  margin-top: .2em;
+}
+
+.ui-pnotify-icon-with-text, .ui-pnotify-icon-with-text span {
+  display: block;
+  float: left;
+  margin-right: .2em;
+  margin-top: .1em;
+}
+
 /* Alternate stack initial positioning. */
 .ui-pnotify.stack-topleft, .ui-pnotify.stack-bottomleft {
   left: 25px;

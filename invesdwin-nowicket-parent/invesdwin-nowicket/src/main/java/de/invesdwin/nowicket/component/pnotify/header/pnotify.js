@@ -224,8 +224,15 @@ var init = function(root){
 
       // Add the appropriate icon.
       if (this.options.icon !== false) {
-        $("<div />", {"class": "ui-pnotify-icon"})
-        .append($("<span />", {"class": this.options.icon === true ? (this.options.type === "error" ? this.styles.error_icon : (this.options.type === "info" ? this.styles.info_icon : (this.options.type === "success" ? this.styles.success_icon : this.styles.notice_icon))) : this.options.icon}))
+		const div =  $("<div />");
+		if(this.options.title !== false) {
+			div.attr('class', 'ui-pnotify-icon-with-title');
+		} else if(this.options.text !== false) {
+			div.attr('class', 'ui-pnotify-icon-with-text');
+		} else {
+			div.attr('class', 'ui-pnotify-icon');
+		}
+        div.append($("<span />", {"class": this.options.icon === true ? (this.options.type === "error" ? this.styles.error_icon : (this.options.type === "info" ? this.styles.info_icon : (this.options.type === "success" ? this.styles.success_icon : this.styles.notice_icon))) : this.options.icon}))
         .prependTo(this.container);
       }
 
