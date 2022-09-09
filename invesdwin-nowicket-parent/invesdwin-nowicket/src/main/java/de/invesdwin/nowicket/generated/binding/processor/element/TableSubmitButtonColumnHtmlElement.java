@@ -13,6 +13,7 @@ import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.button.callback.ISubmitButtonCallback;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableSubmitButtonColumnModelElement;
+import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe
 public class TableSubmitButtonColumnHtmlElement
@@ -38,8 +39,7 @@ public class TableSubmitButtonColumnHtmlElement
     @Override
     public ISubmitButtonCallback getButtonCallback(final IModel<Object> targetObjectModel) {
         return getContext().getSubmitButtonCallbackFactory()
-                .createSubmitButtonCallback(this, getTableObjectModel(),
-                        () -> new Object[] { targetObjectModel.getObject() },
+                .createSubmitButtonCallback(this, targetObjectModel, () -> Objects.EMPTY_ARRAY,
                         getModelElement().getBeanPathElement().getInvoker());
     }
 
