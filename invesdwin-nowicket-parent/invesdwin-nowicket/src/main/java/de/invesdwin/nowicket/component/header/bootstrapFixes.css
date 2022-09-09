@@ -1,11 +1,14 @@
 /* fix table-responsive in firefox https://github.com/twbs/bootstrap/issues/12359 http://getbootstrap.com/css/#tables-responsive */
-@-moz-document url-prefix() {
-  fieldset { display: table-cell; }
+@
+-moz-document url-prefix() {fieldset { display:table-cell;
+	
+}
+
 }
 
 /* fix image alignment in wicket debugbar when bootstrap css is loaded */
 .wicketDebugBar img {
-    vertical-align: inherit;
+	vertical-align: inherit;
 }
 /* put debug bar on top of menu and everything else */
 .wicketDebugBar {
@@ -14,7 +17,7 @@
 
 /* make 32px brand logo vertically center aligned to 24px brand name */
 .navbar-brand img {
-	margin-top:-6px;
+	margin-top: -6px;
 }
 
 .navbar {
@@ -32,33 +35,37 @@
 }
 
 /* allow wider tooltips https://stackoverflow.com/questions/24241678/bootstrap-3-tooltip-gets-wrapped-on-every-white-space */
-.tooltip-inner  {
-  max-width: 500px !important;
+.tooltip-inner {
+	max-width: 500px !important;
 }
 
 /* restore legend from bootstrap 3 */
 legend {
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  line-height: inherit;
-  color: #333333;
-  border: 0;
-  border-bottom: 1px solid #e5e5e5;
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+	line-height: inherit;
+	color: #333333;
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.table th {
+	border-top: none;
 }
 
 /* control-label had right-alignment in bootstrap 3 */
 .col-form-label {
-  text-align: right;
+	text-align: right;
 }
 
 /* restore smaller font size from bootstrap 3: https://stackoverflow.com/questions/28678542/how-to-change-bootstraps-global-default-font-size */
 html {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 .card-header {
-  font-size: 15px;
+	font-size: 15px;
 }
