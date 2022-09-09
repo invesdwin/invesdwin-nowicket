@@ -29,7 +29,7 @@ public abstract class AErrorPanel extends Panel {
         final String requestUri = RequestCycles.getFullURL(request);
         final Class<?> exceptionType = (Class<?>) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION_TYPE);
         final String message = (String) request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
-        if (RequestCycles.shouldSwallowException(statusCode, message)) {
+        if (RequestCycles.shouldSwallowServletException(statusCode, message)) {
             //ignore this exception
             return;
         }
