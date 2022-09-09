@@ -18,28 +18,28 @@ import de.invesdwin.util.bean.AValueObject;
 public class SimpleDataTypes extends AValueObject {
 
     //CHECKSTYLE:OFF
-    public final byte primitiveByte = 1;
-    public final Byte objectByte = 2;
-    public final short primitiveShort = 3;
-    public final Short objectShort = 4;
-    public final int primitiveInt = 5;
-    public final Integer objectInteger = 6;
-    public final long primitiveLong = 7;
-    public final Long objectLong = 8L;
-    public final float primitiveFloat = 9.9F;
-    public final Float objectFloat = 10.10F;
-    public final double primitiveDouble = 11.11D;
-    public final Double objectDouble = 12.12D;
-    public final BigInteger bigInteger = new BigInteger("13");
-    public final BigDecimal bigDecimal = new BigDecimal("14.14");
+    public byte primitiveByte = 1;
+    public Byte objectByte = 2;
+    public short primitiveShort = 3;
+    public Short objectShort = 4;
+    public int primitiveInt = 5;
+    public Integer objectInteger = 6;
+    public long primitiveLong = 7;
+    public Long objectLong = 8L;
+    public float primitiveFloat = 9.9F;
+    public Float objectFloat = 10.10F;
+    public double primitiveDouble = 11.11D;
+    public Double objectDouble = 12.12D;
+    public BigInteger bigInteger = new BigInteger("13");
+    public BigDecimal bigDecimal = new BigDecimal("14.14");
     public boolean primitiveBoolean;
     public Boolean objectBoolean;
-    public final char primitiveChar = 'a';
-    public final Character objectCharacter = 'b';
-    public final String string = "cdefg";
-    public final Date date = new Date();
-    public final Calendar calendar = Calendar.getInstance();
-    public final TimeUnit enumType = TimeUnit.DAYS;
+    public char primitiveChar = 'a';
+    public Character objectCharacter = 'b';
+    public String string = "cdefg";
+    public Date date = new Date();
+    public Calendar calendar = Calendar.getInstance();
+    public TimeUnit enumType = TimeUnit.DAYS;
     //CHECKSTYLE:ON
 
 }
