@@ -7,7 +7,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.wicketstuff.annotation.mount.MountPath;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.carousel.Carousel;
+import de.invesdwin.nowicket.component.carousel.ResponsiveCarousel;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
@@ -28,7 +28,7 @@ public class IntroductionPage extends AExampleWebPage {
             @Override
             protected Component create(final IHtmlElement<?, ?> e) {
                 if (IntroductionConstants.frameworkSloganImgs.equals(e.getWicketId())) {
-                    return new Carousel(e.getWicketId(), (IModel) e.getModel())
+                    return new ResponsiveCarousel(e.getWicketId(), (IModel) e.getModel())
                             .setInterval(Duration.FIVE_SECONDS.javaTimeValue());
                 }
                 return super.create(e);
