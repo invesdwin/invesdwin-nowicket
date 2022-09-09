@@ -59,7 +59,7 @@ public class ModelSubmitButtonColumn extends PropertyColumn<Object, String> {
     }
 
     protected BootstrapAjaxFallbackButton newButton(final String componentId, final IModel<Object> rowModel) {
-        return new BootstrapAjaxFallbackButton(componentId, null, Type.Outline_Secondary) {
+        return new BootstrapAjaxFallbackButton(componentId, null, Type.Secondary) {
 
             @Override
             protected void onComponentTag(final ComponentTag tag) {

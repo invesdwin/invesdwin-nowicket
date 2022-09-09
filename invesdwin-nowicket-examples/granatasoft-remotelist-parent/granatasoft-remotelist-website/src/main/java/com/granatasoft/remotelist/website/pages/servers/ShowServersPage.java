@@ -145,7 +145,7 @@ public class ShowServersPage extends ARemotelistPage {
                                                     return new LoginButtonsChildPanel(id, model, addBtnClasses) {
                                                         @Override
                                                         public String getBtnClass() {
-                                                            return "btn btn-outline-secondary btn-sm";
+                                                            return "btn btn-secondary btn-sm";
                                                         }
                                                     };
 

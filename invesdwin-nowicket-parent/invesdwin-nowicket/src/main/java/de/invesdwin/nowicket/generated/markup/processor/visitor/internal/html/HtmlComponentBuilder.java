@@ -47,7 +47,7 @@ import de.invesdwin.util.lang.Strings;
 @NotThreadSafe
 public class HtmlComponentBuilder {
 
-    private static final String BUTTON_CLASSES = "btn btn-outline-secondary";
+    private static final String BUTTON_CLASSES = "btn btn-secondary";
 
     public Html createHtml() {
         final Html html = new Html();
