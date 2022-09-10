@@ -51,7 +51,6 @@ public class ModalContainer extends Panel {
         modalContent.add(titleLabel);
         setOutputMarkupId(true);
         add(new CssClassNameAppender("modal"));
-        add(new CssClassNameAppender("fade"));
         add(new AttributeModifier("data-keyboard", "false"));
         add(new AttributeModifier("data-backdrop", "static"));
     }
@@ -122,15 +121,13 @@ public class ModalContainer extends Panel {
              * workaround for modal tags being copied by bootstrap-modal right into body and wicket updating the wrong
              * tags in their previous position
              */
-            headerItem = OnDomReadyHeaderItem.forScript(createRefreshScript(false));
+            headerItem = OnDomReadyHeaderItem.forScript(createRefreshScript());
         } else if (!renderedShowing && showing) {
             headerItem = OnDomReadyHeaderItem.forScript(createShowScript());
             renderedShowing = true;
         } else if (renderedShowing && !showing) {
             final StringBuilder script = new StringBuilder();
-            //scroll gets enabled again by registered hidden.bs.modal event from bootstrapModalConfig.js
-            script.append("$(window).disablescroll();");
-            script.append(createRefreshScript(true));
+            script.append(createRefreshScript());
             script.append(createHideScript());
             headerItem = OnDomReadyHeaderItem.forScript(script);
             renderedShowing = false;
@@ -159,31 +156,13 @@ public class ModalContainer extends Panel {
         }
     }
 
-    private CharSequence createRefreshScript(final boolean animation) {
+    private CharSequence createRefreshScript() {
         final StringBuilder sb = new StringBuilder();
-
-        sb.append("$('[id=");
-        sb.append(Strings2.getMarkupId(this));
-        sb.append("]').removeClass('fade');\n");
         //need to reinitialize the modal on page refresh, which throws away modal state in browser :/
         sb.append(createHideScript());
         sb.append("\n");
         sb.append(createShowScript());
         sb.append("\n");
-        sb.append("$('[id=");
-        sb.append(Strings2.getMarkupId(this));
-        sb.append("]').addClass('fade')");
-        if (!animation) {
-            //https://stackoverflow.com/questions/10143444/twitter-bootstrap-modal-how-to-remove-slide-down-effect
-            sb.append(".css('-webkit-transition', 'none')");
-            sb.append(".css('-moz-transition', 'none')");
-            sb.append(".css('-ms-transition', 'none')");
-            sb.append(".css('-o-transition', 'none')");
-            sb.append(".css('transition', 'none')");
-        }
-        sb.append(";\n");
-        sb.append("$('.modal-backdrop:visible').addClass('fade');\n");
-
         return sb;
     }
 
@@ -198,7 +177,11 @@ public class ModalContainer extends Panel {
     private CharSequence createHideScript() {
         //see http://stackoverflow.com/questions/4223141/using-jquery-to-delete-all-elements-with-a-given-id
         //https://stackoverflow.com/questions/4036857/how-can-i-remove-a-style-added-with-css-function
-        return "$('[id=" + Strings2.getMarkupId(this) + "]').modal('hide');";
+        final StringBuilder sb = new StringBuilder();
+        sb.append("$('[id=");
+        sb.append(Strings2.getMarkupId(this));
+        sb.append("]').modal('hide');");
+        return sb;
     }
 
 }

@@ -11,8 +11,7 @@
 	<properties>
 		<version.yuicompressor>2.4.8</version.yuicompressor>
 		<version.closure-compiler-unshaded>v20210808</version.closure-compiler-unshaded>
-		<version.bootstrap-modal>2.2.6</version.bootstrap-modal>
-		<version.bootstrap>3.3.6</version.bootstrap>
+		<version.bootstrap>4.6.2</version.bootstrap>
 		<version.ecs>1.4.2</version.ecs>
 		<version.font-awesome>6.1.2</version.font-awesome>
 		<version.preact>10.6.4</version.preact>
@@ -52,6 +51,11 @@
 		<dependency>
 			<groupId>de.agilecoders.wicket</groupId>
 			<artifactId>wicket-bootstrap-extensions</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${version.bootstrap}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
@@ -97,17 +101,6 @@
 			<groupId>ecs</groupId>
 			<artifactId>ecs</artifactId>
 			<version>${version.ecs}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>bootstrap-modal</artifactId>
-			<version>${version.bootstrap-modal}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>bootstrap</artifactId>
-					<groupId>org.webjars.bower</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>

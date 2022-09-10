@@ -8,19 +8,18 @@ import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.IHeaderContributor;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
 import de.agilecoders.wicket.core.util.Dependencies;
-import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceReference;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 @Immutable
-public final class BootstrapModalmanagerJsReference extends WebjarsJavaScriptResourceReference
-        implements IHeaderContributor {
+public final class BootstrapMultiModalJsReference extends JavaScriptResourceReference implements IHeaderContributor {
 
-    public static final BootstrapModalmanagerJsReference INSTANCE = new BootstrapModalmanagerJsReference();
+    public static final BootstrapMultiModalJsReference INSTANCE = new BootstrapMultiModalJsReference();
 
-    private BootstrapModalmanagerJsReference() {
-        super("/bootstrap-modal/current/js/bootstrap-modal.js");
+    private BootstrapMultiModalJsReference() {
+        super(BootstrapMultiModalJsReference.class, "bootstrapMultiModal.js");
     }
 
     @Override

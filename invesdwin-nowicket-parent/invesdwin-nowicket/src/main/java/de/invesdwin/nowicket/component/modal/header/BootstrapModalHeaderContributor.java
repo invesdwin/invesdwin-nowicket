@@ -14,12 +14,13 @@ public final class BootstrapModalHeaderContributor implements IHeaderContributor
 
     @Override
     public void renderHead(final IHeaderResponse response) {
-        BootstrapModalBs3PatchCssReference.INSTANCE.renderHead(response);
-        BootstrapModalCssReference.INSTANCE.renderHead(response);
-        BootstrapModalmanagerJsReference.INSTANCE.renderHead(response);
-        BootstrapModalJsReference.INSTANCE.renderHead(response);
-        JQueryDisablescrollJsReference.INSTANCE.renderHead(response);
-        BootstrapModalConfigJsReference.INSTANCE.renderHead(response);
+        //        BootstrapModalBs3PatchCssReference.INSTANCE.renderHead(response);
+        //        BootstrapModalCssReference.INSTANCE.renderHead(response);
+        //        BootstrapModalmanagerJsReference.INSTANCE.renderHead(response);
+        //        BootstrapModalJsReference.INSTANCE.renderHead(response);
+        BootstrapMultiModalJsReference.INSTANCE.renderHead(response);
+        //        JQueryDisablescrollJsReference.INSTANCE.renderHead(response);
+        //        BootstrapModalConfigJsReference.INSTANCE.renderHead(response);
     }
 
 }

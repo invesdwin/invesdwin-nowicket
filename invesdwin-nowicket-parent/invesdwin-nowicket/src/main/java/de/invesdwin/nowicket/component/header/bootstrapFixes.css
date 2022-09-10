@@ -66,3 +66,8 @@ html {
 .card-header {
 	font-size: 1.1rem;
 }
+
+
+.modal-backdrop {
+  background-color: #fff;
+}
