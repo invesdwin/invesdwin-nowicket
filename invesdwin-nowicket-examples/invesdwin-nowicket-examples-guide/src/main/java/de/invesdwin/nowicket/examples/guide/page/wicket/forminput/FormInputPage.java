@@ -42,20 +42,10 @@ public class FormInputPage extends AExampleWebPage {
                 if (Strings.equalsAny(e.getWicketId(), FormInputConstants.selectANumberRadioChoicee,
                         FormInputConstants.selectANumberRadioGroup)) {
                     //no need to differentiate between radioGroup and radioChoice in this sample...
-                    return new ModelRadioChoice((AChoiceHtmlElement<?>) e) {
-                        @Override
-                        protected String getRadioClass() {
-                            return "radio-inline";
-                        }
-                    };
+                    return new ModelRadioChoice((AChoiceHtmlElement<?>) e).setInline(true);
                 }
                 if (FormInputConstants.selectOneOrMoreNumbersCheckGroup.equals(e.getWicketId())) {
-                    return new ModelCheckBoxMultipleChoice((AChoiceHtmlElement<?>) e) {
-                        @Override
-                        protected String getCheckboxClass() {
-                            return "checkbox-inline";
-                        }
-                    };
+                    return new ModelCheckBoxMultipleChoice((AChoiceHtmlElement<?>) e).setInline(true);
                 }
                 return super.create(e);
             }

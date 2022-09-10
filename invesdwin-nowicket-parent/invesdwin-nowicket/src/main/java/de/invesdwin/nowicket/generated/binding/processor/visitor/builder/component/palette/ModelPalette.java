@@ -7,17 +7,12 @@ import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.Component;
-import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.ILabelProvider;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.request.resource.CssResourceReference;
-import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.validation.IValidatable;
 
-import de.invesdwin.nowicket.component.palette.Palette;
+import de.invesdwin.nowicket.component.palette.BootstrapPalette;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.IFormComponentAware;
 import de.invesdwin.util.assertions.Assertions;
@@ -25,7 +20,7 @@ import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
-public class ModelPalette extends Palette<Object> implements IFormComponentAware, ILabelProvider<String> {
+public class ModelPalette extends BootstrapPalette<Object> implements IFormComponentAware, ILabelProvider<String> {
 
     public static class ModelPaletteOptions {
 
@@ -50,7 +45,7 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
             return this;
         }
 
-        private int getMaxRows(final SelectHtmlElement e) {
+        public int getMaxRows(final SelectHtmlElement e) {
             if (maxRows == null) {
                 return e.getMaxRows();
             } else {
@@ -58,7 +53,7 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
             }
         }
 
-        private boolean getAllowOrder(final SelectHtmlElement e) {
+        public boolean getAllowOrder(final SelectHtmlElement e) {
             if (allowOrder == null) {
                 return false;
             } else {
@@ -66,7 +61,7 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
             }
         }
 
-        private boolean getAllowMoveAll(final SelectHtmlElement e) {
+        public boolean getAllowMoveAll(final SelectHtmlElement e) {
             if (allowMoveAll == null) {
                 return getMaxRows(e) >= 5;
             } else {
@@ -91,52 +86,6 @@ public class ModelPalette extends Palette<Object> implements IFormComponentAware
         Assertions.assertThat(getFormComponent()).isNull();
         Reflections.method("initFactories").in(this).invoke();
         Assertions.assertThat(getFormComponent()).isNotNull();
-    }
-
-    @Override
-    protected void onComponentTag(final ComponentTag tag) {
-        tag.setName("div");
-        tag.getAttributes().clear(); //remove styling from it
-        super.onComponentTag(tag);
-    }
-
-    @Override
-    protected Component newAddAllComponent() {
-        return addButtonCss(super.newAddAllComponent());
-    }
-
-    @Override
-    protected Component newRemoveAllComponent() {
-        return addButtonCss(super.newRemoveAllComponent());
-    }
-
-    @Override
-    protected Component newAddComponent() {
-        return addButtonCss(super.newAddComponent());
-    }
-
-    @Override
-    protected Component newRemoveComponent() {
-        return addButtonCss(super.newRemoveComponent());
-    }
-
-    @Override
-    protected Component newUpComponent() {
-        return addButtonCss(super.newUpComponent());
-    }
-
-    @Override
-    protected Component newDownComponent() {
-        return addButtonCss(super.newDownComponent());
-    }
-
-    protected Component addButtonCss(final Component button) {
-        return button.add(AttributeModifier.append("class", "btn btn-secondary btn-sm"));
-    }
-
-    @Override
-    protected ResourceReference getCSS() {
-        return new CssResourceReference(getClass(), getClass().getSimpleName() + ".css");
     }
 
     /**
