@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import de.invesdwin.nowicket.examples.guide.page.wicket.guestbook.persistence.GuestbookEntryEntity;

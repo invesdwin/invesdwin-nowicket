@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
+import javax.validation.constraints.NotBlank;
 
 import org.apache.isis.applib.value.Password;
-import org.hibernate.validator.constraints.NotBlank;
 import org.isisaddons.module.security.dom.user.ApplicationUser;
 
 import de.invesdwin.norva.beanpath.annotation.Forced;

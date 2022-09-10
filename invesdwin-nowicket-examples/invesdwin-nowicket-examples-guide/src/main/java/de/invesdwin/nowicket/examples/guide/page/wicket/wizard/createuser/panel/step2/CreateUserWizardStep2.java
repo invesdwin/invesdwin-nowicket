@@ -1,8 +1,7 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step2;
 
 import javax.annotation.concurrent.NotThreadSafe;
-
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 import de.invesdwin.norva.beanpath.annotation.BeanPathEndPoint;
 import de.invesdwin.norva.beanpath.annotation.Eager;

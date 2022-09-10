@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.inject.Inject;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import com.granatasoft.remotelist.persistence.Application;

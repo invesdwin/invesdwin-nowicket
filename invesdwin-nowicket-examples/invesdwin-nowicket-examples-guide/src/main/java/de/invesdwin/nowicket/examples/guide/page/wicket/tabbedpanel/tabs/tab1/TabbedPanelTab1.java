@@ -1,9 +1,8 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.tabs.tab1;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;

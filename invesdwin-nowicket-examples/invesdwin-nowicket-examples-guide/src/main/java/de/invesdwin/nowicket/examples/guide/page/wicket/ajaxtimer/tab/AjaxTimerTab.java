@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer.tab.table.AjaxTimerTable;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
