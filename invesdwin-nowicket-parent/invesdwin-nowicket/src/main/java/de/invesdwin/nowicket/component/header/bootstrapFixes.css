@@ -51,9 +51,10 @@ legend {
 	border-top: none !important;
 }
 
-/* control-label had right-alignment in bootstrap 3 */
+/* control-label had right-alignment and overflow-wrap normal in bootstrap 3 */
 .col-form-label {
 	text-align: right;
+	overflow-wrap: normal;
 }
 
 /* restore smaller font size from bootstrap 3: https://stackoverflow.com/questions/28678542/how-to-change-bootstraps-global-default-font-size */
