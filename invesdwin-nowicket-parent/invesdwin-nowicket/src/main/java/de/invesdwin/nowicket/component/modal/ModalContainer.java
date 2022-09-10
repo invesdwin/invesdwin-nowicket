@@ -6,7 +6,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
@@ -105,12 +104,6 @@ public class ModalContainer extends Panel {
                 });
             }
         }
-        add(new AttributeAppender("style", "max-height: 98%") {
-            @Override
-            public boolean isTemporary(final Component component) {
-                return true;
-            }
-        });
     }
 
     @Override
@@ -160,9 +153,7 @@ public class ModalContainer extends Panel {
         final StringBuilder sb = new StringBuilder();
         //need to reinitialize the modal on page refresh, which throws away modal state in browser :/
         sb.append(createHideScript());
-        sb.append("\n");
         sb.append(createShowScript());
-        sb.append("\n");
         return sb;
     }
 
@@ -170,7 +161,7 @@ public class ModalContainer extends Panel {
         final StringBuilder sb = new StringBuilder();
         sb.append("$('#");
         sb.append(Strings2.getMarkupId(this));
-        sb.append("').modal('show');");
+        sb.append("').modal('show').addClass('fade');");
         return sb;
     }
 
@@ -178,8 +169,9 @@ public class ModalContainer extends Panel {
         final StringBuilder sb = new StringBuilder();
         sb.append("$('[id=");
         sb.append(Strings2.getMarkupId(this));
-        sb.append("]').modal('hide');");
-        sb.append("if($('.modal:visible').length == 0){$('.modal-backdrop').remove();}");
+        sb.append("]').removeClass('fade').modal('hide');");
+        sb.append(
+                "if($('.modal:visible').length == 0){$('.modal-backdrop').remove();$('body').removeClass('modal-open page-overflow')}");
         return sb;
     }
 

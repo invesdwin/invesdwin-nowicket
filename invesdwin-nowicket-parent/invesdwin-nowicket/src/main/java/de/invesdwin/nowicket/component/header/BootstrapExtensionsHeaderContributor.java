@@ -13,7 +13,6 @@ import de.invesdwin.nowicket.component.header.font.FontAwesome6CssReference;
 import de.invesdwin.nowicket.component.header.offline.OfflineHeaderContributor;
 import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmlFunctionJsReference;
 import de.invesdwin.nowicket.component.header.render.PreventDuplicateAjaxCallbacksJsReference;
-import de.invesdwin.nowicket.component.modal.header.BootstrapModalHeaderContributor;
 import de.invesdwin.nowicket.component.pnotify.header.PNotifyHeaderContributor;
 
 @Immutable
@@ -132,7 +131,6 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         response.render(CssHeaderItem.forReference(bootstrapSettings.getCssResourceReference()));
         response.render(JavaScriptHeaderItem.forReference(bootstrapSettings.getJsResourceReference()));
         renderHeadAfterBootstrap(response);
-        BootstrapModalHeaderContributor.INSTANCE.renderHead(response);
         EnableTooltipsOnDisabledButtonsCssReference.INSTANCE.renderHead(response);
 
         //order is relevant here since scripts might depend on changes they do individually to the components

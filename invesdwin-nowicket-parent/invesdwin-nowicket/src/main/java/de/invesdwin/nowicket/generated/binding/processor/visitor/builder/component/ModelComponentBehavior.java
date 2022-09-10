@@ -40,7 +40,7 @@ public class ModelComponentBehavior extends Behavior {
             component.add(new Behavior() {
                 private final AbstractSingleSelectChoice<?> choiceComponent = (AbstractSingleSelectChoice<?>) component;
                 private final SelectHtmlElement selectElement = (SelectHtmlElement) element;
-                private final IModel<Object> targetObjectModel = selectElement.getTargetObjectModel();
+                private final IModel<Object> rootObjectModel = selectElement.getRootObjectModel();
 
                 @Override
                 public void onConfigure(final Component component) {
@@ -50,7 +50,7 @@ public class ModelComponentBehavior extends Behavior {
                     final List<?> choices = selectElement.getModelElement()
                             .getBeanPathElement()
                             .getChoiceModifier()
-                            .getValueFromTarget(targetObjectModel.getObject());
+                            .getValueFromRoot(rootObjectModel.getObject());
                     for (final Object choice : choices) {
                         if (choice == null) {
                             nullValidChoice = true;
