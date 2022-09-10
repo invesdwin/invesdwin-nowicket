@@ -127,7 +127,7 @@ public class ModalContainer extends Panel {
             renderedShowing = true;
         } else if (renderedShowing && !showing) {
             final StringBuilder script = new StringBuilder();
-            script.append(createRefreshScript());
+            //            script.append(createRefreshScript());
             script.append(createHideScript());
             headerItem = OnDomReadyHeaderItem.forScript(script);
             renderedShowing = false;
@@ -175,12 +175,11 @@ public class ModalContainer extends Panel {
     }
 
     private CharSequence createHideScript() {
-        //see http://stackoverflow.com/questions/4223141/using-jquery-to-delete-all-elements-with-a-given-id
-        //https://stackoverflow.com/questions/4036857/how-can-i-remove-a-style-added-with-css-function
         final StringBuilder sb = new StringBuilder();
         sb.append("$('[id=");
         sb.append(Strings2.getMarkupId(this));
         sb.append("]').modal('hide');");
+        sb.append("if($('.modal:visible').length == 0){$('.modal-backdrop').remove();}");
         return sb;
     }
 

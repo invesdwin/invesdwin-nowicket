@@ -18,7 +18,7 @@ public final class BootstrapModalHeaderContributor implements IHeaderContributor
         //        BootstrapModalCssReference.INSTANCE.renderHead(response);
         //        BootstrapModalmanagerJsReference.INSTANCE.renderHead(response);
         //        BootstrapModalJsReference.INSTANCE.renderHead(response);
-        BootstrapMultiModalJsReference.INSTANCE.renderHead(response);
+        //        BootstrapMultiModalJsReference.INSTANCE.renderHead(response);
         //        JQueryDisablescrollJsReference.INSTANCE.renderHead(response);
         //        BootstrapModalConfigJsReference.INSTANCE.renderHead(response);
     }
