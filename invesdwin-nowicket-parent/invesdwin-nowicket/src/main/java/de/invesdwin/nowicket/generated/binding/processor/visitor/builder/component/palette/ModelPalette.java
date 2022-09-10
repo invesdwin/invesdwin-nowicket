@@ -1,10 +1,5 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.palette;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -16,7 +11,6 @@ import de.invesdwin.nowicket.component.palette.BootstrapPalette;
 import de.invesdwin.nowicket.generated.binding.processor.element.SelectHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.IFormComponentAware;
 import de.invesdwin.util.assertions.Assertions;
-import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
@@ -96,30 +90,9 @@ public class ModelPalette extends BootstrapPalette<Object> implements IFormCompo
         return getRecorderComponent();
     }
 
-    /**
-     * This allows to validate the value in validator utility method.
-     */
     @Override
     public Object getFormComponentValidatableValue(final IValidatable<?> validatable) {
-        final String newIds = (String) validatable.getValue();
-        final List<Object> selected = new ArrayList<Object>();
-
-        if (Strings.isNotBlank(newIds)) {
-            final Map<String, Object> id_choice = new HashMap<String, Object>();
-            for (final Object choice : getChoices()) {
-                id_choice.put(getChoiceRenderer().getIdValue(choice, 0), choice);
-            }
-            for (final String newId : Strings.splitPreserveAllTokens(newIds, ",")) {
-                final Object choice = id_choice.get(newId);
-                if (choice != null) {
-                    selected.add(choice);
-                } else {
-                    throw new IllegalArgumentException("No choice found for id [" + newId + "]");
-                }
-            }
-        }
-
-        return selected;
+        return validatable.getValue();
     }
 
     @Override
