@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.model.IModel;
 
@@ -33,11 +34,18 @@ public class ModelExternalLink extends ExternalLink {
     }
 
     @Override
+    public void renderHead(final IHeaderResponse response) {
+        if (useJSEventBindingWhenNeeded()) {
+            super.renderHead(response);
+        }
+    }
+
+    @Override
     protected void disableLink(final ComponentTag tag) {
         if (isBootstrapButtonStyle(tag)) {
             tag.setName("button");
             tag.put("type", "button");
-            tag.append("class", "btn-disabled", " ");
+            tag.append("class", "disabled", " ");
         }
         super.disableLink(tag);
         tag.setName("a"); //for bootstrap it should be a and not span
@@ -45,6 +53,11 @@ public class ModelExternalLink extends ExternalLink {
 
     protected boolean isBootstrapButtonStyle(final ComponentTag tag) {
         return Strings.contains(tag.getAttribute("class"), "btn");
+    }
+
+    protected boolean useJSEventBindingWhenNeeded() {
+        final ComponentTag tag = getMarkupTag();
+        return !"iframe".equals(tag.getName());
     }
 
 }

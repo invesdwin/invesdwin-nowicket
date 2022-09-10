@@ -41,7 +41,7 @@ public class ModelDownloadLink extends DownloadLink {
         if (isBootstrapButtonStyle(tag)) {
             tag.setName("button");
             tag.put("type", "button");
-            tag.append("class", "btn-disabled", " ");
+            tag.append("class", "disabled", " ");
         }
         super.disableLink(tag);
         tag.setName("a"); //for bootstrap it should be a and not span
@@ -49,6 +49,12 @@ public class ModelDownloadLink extends DownloadLink {
 
     protected boolean isBootstrapButtonStyle(final ComponentTag tag) {
         return Strings.contains(tag.getAttribute("class"), "btn");
+    }
+
+    @Override
+    protected boolean useJSEventBindingWhenNeeded() {
+        final ComponentTag tag = getMarkupTag();
+        return !"iframe".equals(tag.getName());
     }
 
 }

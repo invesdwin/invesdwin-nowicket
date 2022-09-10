@@ -22,7 +22,7 @@ public abstract class AModelAjaxFallbackLink extends AjaxFallbackLink<Void> {
         if (isBootstrapButtonStyle(tag)) {
             tag.setName("button");
             tag.put("type", "button");
-            tag.append("class", "btn-disabled", " ");
+            tag.append("class", "disabled", " ");
         }
         super.disableLink(tag);
         tag.setName("a"); //for bootstrap it should be a and not span

@@ -73,8 +73,8 @@ public class Links extends AValueObject {
     }
 
     public URL url() {
-        //always use relative urls: http://stackoverflow.com/questions/3665484/how-to-get-url-using-relative-path
-        return URIs.asUrl("http:" + wicketUrl().toString());
+        final String fullUrl = RequestCycle.get().getUrlRenderer().renderFullUrl(wicketUrl());
+        return URIs.asUrl(fullUrl);
     }
 
     public URL urlAsImg() {
@@ -86,7 +86,7 @@ public class Links extends AValueObject {
     }
 
     public URI uri() {
-        return URIs.asUri(url());
+        return URIs.asUri(wicketUrl().toString());
     }
 
     public URI uriAsImg() {

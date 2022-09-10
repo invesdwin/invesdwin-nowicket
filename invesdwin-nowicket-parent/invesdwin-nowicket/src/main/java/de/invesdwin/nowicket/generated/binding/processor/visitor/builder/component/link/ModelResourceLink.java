@@ -54,7 +54,7 @@ public class ModelResourceLink extends ResourceLink<Object> {
         if (isBootstrapButtonStyle(tag)) {
             tag.setName("button");
             tag.put("type", "button");
-            tag.append("class", "btn-disabled", " ");
+            tag.append("class", "disabled", " ");
         }
         super.disableLink(tag);
         tag.setName("a"); //for bootstrap it should be a and not span
@@ -64,6 +64,12 @@ public class ModelResourceLink extends ResourceLink<Object> {
         if ("a".equals(tag.getName()) && Strings.isBlank(tag.getAttribute("target"))) {
             tag.put("target", AnchorHtmlElement.TARGET_BLANK);
         }
+    }
+
+    @Override
+    protected boolean useJSEventBindingWhenNeeded() {
+        final ComponentTag tag = getMarkupTag();
+        return !"iframe".equals(tag.getName());
     }
 
 }
