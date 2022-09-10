@@ -77,7 +77,7 @@ public class ModelCollapsible extends Panel {
             protected void onComponentTag(final ComponentTag tag) {
                 super.onComponentTag(tag);
                 if (renderedActive) {
-                    Attributes.addClass(tag, "in");
+                    Attributes.addClass(tag, "show");
                 }
                 renderedActive = active;
             }
