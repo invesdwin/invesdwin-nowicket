@@ -44,7 +44,6 @@ public class DynamicEditorFields extends AValueObject {
         return editorFields;
     }
 
-    @Forced
     public void addField() {
         final IDynamicEditorField field;
         switch (chooseImplementation) {
