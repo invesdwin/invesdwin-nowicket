@@ -170,7 +170,6 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         AdditionalBootstrapClassesCssReference.INSTANCE.renderHead(response);
         response.render(JavaScriptHeaderItem.forReference(ModernizrMinJavaScriptReference.instance()));
         BootstrapFixesCssReference.INSTANCE.renderHead(response);
-        BootstrapFixesJsReference.INSTANCE.renderHead(response);
 
     }
 

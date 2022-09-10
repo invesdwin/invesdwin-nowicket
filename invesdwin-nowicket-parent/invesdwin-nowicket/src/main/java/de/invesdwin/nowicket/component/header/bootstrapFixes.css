@@ -67,7 +67,12 @@ html {
 	font-size: 1.1rem;
 }
 
-
+/* a white backdrop is less intrusive than a black one */
 .modal-backdrop {
   background-color: #fff;
+}
+
+/* collapsing animations can be slow: https://stackoverflow.com/a/13119950 */
+.collapsing {
+  transition: none !important;
 }
