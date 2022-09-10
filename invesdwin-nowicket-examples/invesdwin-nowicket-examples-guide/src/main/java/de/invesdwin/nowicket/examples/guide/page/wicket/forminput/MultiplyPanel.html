@@ -3,22 +3,22 @@
 <head></head>
 <body>
 	<wicket:panel>
-		<form wicket:id="form" class="form-group row form-inline">
-			<div class="form-group row" style="margin-left: 0; margin-right: 0;">
+		<form wicket:id="form" class="form-group form-inline">
+			<div class="form-group" style="margin-left: 0; margin-right: 0;">
 				<div wicket:id="left_gridColumn">
 					<!-- input-xs does not exist, so using explicit style, see http://stackoverflow.com/questions/22920589/bootstrap-3-input-xs-smaller-than-sm -->
 					<input type="text" wicket:id="left" size="5" class="form-control"
 						style="height: 22px; padding: 2px 5px; font-size: 12px; line-height: 1.5; border-radius: 3px;"></input>
 				</div>
 			</div>
-			<div class="form-group row" style="margin-left: 0; margin-right: 0;">&nbsp;*&nbsp;</div>
-			<div class="form-group row" style="margin-left: 0; margin-right: 0;">
+			<div class="form-group" style="margin-left: 0; margin-right: 0;">&nbsp;*&nbsp;</div>
+			<div class="form-group" style="margin-left: 0; margin-right: 0;">
 				<div wicket:id="right_gridColumn">
 					<input type="text" wicket:id="right" size="5" class="form-control"
 						style="height: 22px; padding: 2px 5px; font-size: 12px; line-height: 1.5; border-radius: 3px;"></input>
 				</div>
 			</div>
-			<div class="form-group row" style="margin-left: 0; margin-right: 0;">
+			<div class="form-group" style="margin-left: 0; margin-right: 0;">
 				&nbsp;=&nbsp;[&nbsp;<label wicket:id="result"></label>&nbsp;]
 			</div>
 		</form>
