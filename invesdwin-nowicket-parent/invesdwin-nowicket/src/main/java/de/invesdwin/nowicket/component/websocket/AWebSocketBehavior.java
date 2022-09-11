@@ -31,6 +31,8 @@ public abstract class AWebSocketBehavior extends WebSocketBehavior {
     private static final MetaDataKey<Integer> KEY_REQUEST_CYCLE_HASH = new MetaDataKey<Integer>() {
     };
 
+    private boolean configured = false;
+
     @Override
     public void onEvent(final Component component, final IEvent<?> event) {
         final Object payload = event.getPayload();
@@ -44,10 +46,13 @@ public abstract class AWebSocketBehavior extends WebSocketBehavior {
     }
 
     @Override
-    public void bind(final Component component) {
-        super.bind(component);
-        final Page page = component.getPage();
-        setWebsocket(page);
+    public void onConfigure(final Component component) {
+        super.onConfigure(component);
+        if (!configured) {
+            final Page page = component.getPage();
+            setWebsocket(page);
+            configured = true;
+        }
     }
 
     private void setWebsocket(final Page page) {

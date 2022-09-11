@@ -45,11 +45,14 @@
 					<input type="date" class="form-control" wicket:id="lastRefresh">
 				</div>
 				<div wicket:id="refreshAutomatically_gridColumn" class="col-sm-4">
-					<div class="checkbox">
-						<label wicket:for="refreshAutomatically"><input
-							type="checkbox" wicket:id="refreshAutomatically"> <wicket:label>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox"
+							wicket:id="refreshAutomatically"></input> <label
+							class="form-check-label" wicket:for="refreshAutomatically">
+							<wicket:label>
                                      Refresh Automatically 
-                                </wicket:label></label>
+                                </wicket:label>
+						</label>
 					</div>
 				</div>
 			</div>

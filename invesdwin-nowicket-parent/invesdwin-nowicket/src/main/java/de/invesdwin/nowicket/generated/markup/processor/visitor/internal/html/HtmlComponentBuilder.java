@@ -120,6 +120,7 @@ public class HtmlComponentBuilder {
         final Input input = new Input();
         input.addAttribute(IHtmlElement.ATTR_WICKET_ID, e.getWicketId());
         input.setType(CheckBoxInputHtmlElement.INPUT_TYPE_CHECKBOX);
+        input.setClass("form-check-input");
         return wrapCheckBoxInFormGroup(e, input);
     }
 
@@ -188,8 +189,9 @@ public class HtmlComponentBuilder {
         divCol.setClass("offset-sm-2 col-sm-4");
         setGridColumnId(e, divCol);
         final Div divCheckbox = new Div();
-        divCheckbox.setClass("checkbox");
-        final Label label = createLabel(e, input);
+        divCheckbox.setClass("form-check");
+        divCheckbox.addElement(input);
+        final Label label = createLabel(e, "form-check-label");
         divCheckbox.addElement(label);
         divCol.addElement(divCheckbox);
         divFormGroup.addElement(divCol);
@@ -208,7 +210,7 @@ public class HtmlComponentBuilder {
             final String additionalClass) {
         final Div divFormGroup = new Div();
         divFormGroup.setClass("form-group row");
-        final Label label = createLabel(e, null);
+        final Label label = createLabel(e, "col-form-label col-sm-2");
         divFormGroup.addElement(label);
         final Div divCol = new Div();
         divCol.setClass("col-sm-4");
@@ -229,14 +231,10 @@ public class HtmlComponentBuilder {
     /**
      * About how to create labels in wicket: https://cwiki.apache.org/confluence/display/WICKET/Wicket%27s+XHTML+tags
      */
-    private Label createLabel(final IModelElement<?> e, final Input input) {
+    private Label createLabel(final IModelElement<?> e, final String clazz) {
         final Label label = new Label();
         label.addAttribute("wicket:for", e.getWicketId());
-        if (input == null) {
-            label.setClass("col-form-label col-sm-2");
-        } else {
-            label.addElement(input);
-        }
+        label.setClass(clazz);
         final XML wicketLabel = new XML("wicket:label");
         wicketLabel.setTagText(e.getStaticTitle());
         label.addElement(wicketLabel);
