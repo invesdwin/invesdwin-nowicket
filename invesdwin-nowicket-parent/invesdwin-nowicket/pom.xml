@@ -11,7 +11,6 @@
 	<properties>
 		<version.yuicompressor>2.4.8</version.yuicompressor>
 		<version.closure-compiler-unshaded>v20210808</version.closure-compiler-unshaded>
-		<version.bootstrap>4.6.2</version.bootstrap>
 		<version.popperjs>1.16.1-lts</version.popperjs>
 		<version.ecs>1.4.2</version.ecs>
 		<version.font-awesome>6.1.2</version.font-awesome>
@@ -52,11 +51,6 @@
 		<dependency>
 			<groupId>de.agilecoders.wicket</groupId>
 			<artifactId>wicket-bootstrap-extensions</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>${version.bootstrap}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
