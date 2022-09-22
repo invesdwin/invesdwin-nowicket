@@ -6,17 +6,19 @@ function enableBootstrapTooltips() {
 			$('[data-bs-toggle="tooltip"]').each(function(){
 				var tag = $(this);
 				if(tag.attr('data-original-title') === undefined){
-					tag.tooltip(${CONFIG});
+					var tooltip = bootstrap.Tooltip.getInstance(this);
+					if(!tooltip) {
+						tooltip = new bootstrap.Tooltip(this, ${CONFIG});
+					}
 				}
 				const title = tag.attr('title');
 				if(title !== undefined && title.length > 0){
 					const prevTitle = tag.attr('data-original-title');
 					if(prevTitle !== title) {
 						tag.attr('data-original-title', title)
-						if(tag.attr('aria-describedby')){
-							tag.tooltip('hide');
-							tag.tooltip('show');
-						}
+						const tooltip = bootstrap.Tooltip.getInstance(this);
+						tooltip.setContent({ '.tooltip-inner': title });
+						tooltip.update();
 					}
 					tag.removeAttr('title');
 				}
