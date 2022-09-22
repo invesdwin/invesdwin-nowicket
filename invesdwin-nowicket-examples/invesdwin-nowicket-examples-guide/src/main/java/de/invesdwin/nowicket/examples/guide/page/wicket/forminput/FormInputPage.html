@@ -29,7 +29,7 @@
 			<div wicket:id="modal"></div>
 			<div class="card">
 				<div class="card-body">
-					<div class="form-group row">
+					<div class="mb-3 row">
 						<label class="col-form-label col-sm-2" wicket:for="useLocale">
 							<wicket:label>
                             Use Locale
@@ -43,9 +43,10 @@
 						<!-- this is how we internationalize constant strings the html -->
 						<wicket:message key="input">Input</wicket:message>
 					</legend>
+					<hr />
 					<div class="row">
 						<div class="col-sm-5">
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="string"> <wicket:label>
                                          String 
                                     </wicket:label>
@@ -54,7 +55,7 @@
 									<input type="text" class="form-control" wicket:id="string"></input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="integer"> <wicket:label>
                                          Integer 
                                     </wicket:label>
@@ -63,7 +64,7 @@
 									<input type="number" class="form-control" wicket:id="integer"></input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="doublee"> <wicket:label>
                                          Doublee 
                                     </wicket:label>
@@ -74,11 +75,12 @@
 							</div>
 							<fieldset>
 								<legend wicket:id="listView_legend">List View</legend>
+								<hr />
 								<ul>
 									<ul wicket:id="listView"></ul>
 								</ul>
 							</fieldset>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="booleann"> <wicket:label>
                                          Booleann 
                                     </wicket:label></label>
@@ -90,7 +92,7 @@
 						</div>
 						<div class="col-sm-1"></div>
 						<div class="col-sm-5">
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="valueBetween0and100">
 									<wicket:label>
                                          Value Between0and100 
@@ -101,7 +103,7 @@
 										wicket:id="valueBetween0and100"></input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="url"> <wicket:label>
                                          Url 
                                     </wicket:label></label>
@@ -109,7 +111,7 @@
 									<input type="text" class="form-control" wicket:id="url"></input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="usPhoneNumber">
 									<wicket:label>
                                          Us Phone Number 
@@ -120,7 +122,7 @@
 										wicket:id="usPhoneNumber"></input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label"
 									wicket:for="selectANumberRadioChoicee"> <wicket:label>
                                          Select ANumber Radio Choicee 
@@ -129,7 +131,7 @@
 									<input type="radio" wicket:id="selectANumberRadioChoicee"></input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label"
 									wicket:for="selectANumberRadioGroup"> <wicket:label>
                                          Select ANumber Radio Group 
@@ -139,7 +141,7 @@
 									<input type="radio" wicket:id="selectANumberRadioGroup"></input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label"
 									wicket:for="selectOneOrMoreNumbersCheckGroup"> <wicket:label>
                                          Select One Or More Numbers Check Group 
@@ -149,7 +151,7 @@
 										wicket:id="selectOneOrMoreNumbersCheckGroup"> </input>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label class="col-form-label" wicket:for="yourFavoriteSites">
 									<wicket:label>
                                          Your Favorite Sites 
@@ -162,7 +164,7 @@
 							</div>
 						</div>
 						<div class="col-sm-1"></div>
-						<div class="form-group col">
+						<div class="mb-3 col">
 							<div class="btn-toolbar">
 								<div class="btn-group me-2">
 									<!-- btn-primary also has a key binding for "enter" button -->

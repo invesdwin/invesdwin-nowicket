@@ -3,10 +3,10 @@
 <head></head>
 <body>
 	<wicket:panel>
-		<form wicket:id="form" style="font-size: 14px">
+		<form wicket:id="form" style="font-size: 14px" class="container">
 			<!-- <div wicket:id='feedback'></div>  -->
 			<div wicket:id="modal"></div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<label class="col-form-label col-sm-2" wicket:for="brand"> <wicket:label>
                             Brand
                         </wicket:label></label>
@@ -14,7 +14,7 @@
 					<select class="form-control" wicket:id="brand"></select>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<label class="col-form-label col-sm-2" wicket:for="kmMileage">
 					<wicket:label>
                             Km Mileage
@@ -24,7 +24,7 @@
 					<input type="number" class="form-control" wicket:id="kmMileage"></input>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<label class="col-form-label col-sm-2" wicket:for="licenseNumber">
 					<wicket:label>
                             License Number
@@ -34,7 +34,7 @@
 					<input type="text" class="form-control" wicket:id="licenseNumber"></input>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<label class="col-form-label col-sm-2" wicket:for="purchasePrice">
 					<wicket:label>
                             Purchase Price
@@ -44,7 +44,7 @@
 					<input type="number" class="form-control" wicket:id="purchasePrice"></input>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<label class="col-form-label col-sm-2" wicket:for="registrationDate">
 					<wicket:label>
                             Registration Date
@@ -55,7 +55,7 @@
 						wicket:id="registrationDate"></input>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<div wicket:id="technicalControl_gridColumn"
 					class="offset-sm-2 col-sm-4">
 					<div class="form-check">
@@ -69,7 +69,8 @@
 			</div>
 			<fieldset>
 				<legend wicket:id="motor_legend">Motor</legend>
-				<div class="form-group row">
+				<hr />
+				<div class="mb-3 row">
 					<label class="col-form-label col-sm-2" wicket:for="motor.powerInHP">
 						<wicket:label>
                                 Power In HP
@@ -80,7 +81,7 @@
 							wicket:id="motor.powerInHP"></input>
 					</div>
 				</div>
-				<div class="form-group row">
+				<div class="mb-3 row">
 					<label class="col-form-label col-sm-2" wicket:for="motor.state">
 						<wicket:label>
                                 State
@@ -90,7 +91,7 @@
 						<select class="form-control" wicket:id="motor.state"></select>
 					</div>
 				</div>
-				<div class="form-group row">
+				<div class="mb-3 row">
 					<div class="col-sm-6">
 						<div class="btn-toolbar float-end">
 							<div class="btn-group me-2">
@@ -107,6 +108,7 @@
 			</fieldset>
 			<fieldset>
 				<legend wicket:id="tripBook_legend">Trip Book</legend>
+				<hr />
 				<div wicket:id="tripBook_gridColumn" class="table-responsive">
 					<table class="table table-sm table-hover table-striped"
 						wicket:id="tripBook"></table>

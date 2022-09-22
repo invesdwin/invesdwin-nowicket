@@ -168,7 +168,7 @@ public class HtmlComponentBuilder {
 
     private Element wrapButtonInFormGroup(final Element button) {
         final Div divFormGroup = new Div();
-        divFormGroup.setClass("form-group row");
+        divFormGroup.setClass("mb-3 row");
         final Div divCol = new Div();
         divCol.setClass("col-sm-6");
         final Div divBtnToolbar = new Div();
@@ -184,7 +184,7 @@ public class HtmlComponentBuilder {
 
     private Element wrapCheckBoxInFormGroup(final CheckBoxInputModelElement e, final Input input) {
         final Div divFormGroup = new Div();
-        divFormGroup.setClass("form-group row");
+        divFormGroup.setClass("mb-3 row");
         final Div divCol = new Div();
         divCol.setClass("offset-sm-2 col-sm-4");
         setGridColumnId(e, divCol);
@@ -209,7 +209,7 @@ public class HtmlComponentBuilder {
     private Element wrapInputInFormGroup(final IModelElement<?> e, final ConcreteElement element,
             final String additionalClass) {
         final Div divFormGroup = new Div();
-        divFormGroup.setClass("form-group row");
+        divFormGroup.setClass("mb-3 row");
         final Label label = createLabel(e, "col-form-label col-sm-2");
         divFormGroup.addElement(label);
         final Div divCol = new Div();

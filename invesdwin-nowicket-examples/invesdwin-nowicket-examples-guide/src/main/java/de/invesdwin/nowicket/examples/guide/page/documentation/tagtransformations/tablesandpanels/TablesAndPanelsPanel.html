@@ -10,9 +10,10 @@
 			<pre class="prettyprint lang-java linenums">// can also return an Iterable, Collection, etc
 public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
 			<br />
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="defaultTable_legend">Default Table</legend>
+					<hr />
 					<div wicket:id="defaultTable_gridColumn" class="table-responsive">
 						<table class="table table-sm table-hover table-striped"
 							wicket:id="defaultTable"></table>
@@ -26,10 +27,11 @@ public &lt;TypeOfProperty&gt;[] get&lt;PropertyName&gt;() { ... }</pre>
 			<pre class="prettyprint lang-java linenums">// no static typing required in model, thus we can even have different panels in it as demonstrated below
 // though you can also stick to the code above and use only one panel
 public List&lt;?&gt; get&lt;PropertyName&gt;() { ... }</pre>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asUnorderedList_legend">As Unordered
 						List</legend>
+					<hr />
 					<ul wicket:id="asUnorderedList"></ul>
 				</fieldset>
 				<div class="col-sm-6">
@@ -38,9 +40,10 @@ public List&lt;?&gt; get&lt;PropertyName&gt;() { ... }</pre>
 &lt;ul&gt;</pre>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asCollapsible_legend">As Collapsible</legend>
+					<hr />
 					<table class="table table-sm table-hover table-striped"
 						wicket:id="asCollapsible"></table>
 				</fieldset>
@@ -58,9 +61,10 @@ new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
 }).bind();</pre>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asAccordion_legend">As Accordion</legend>
+					<hr />
 					<table class="table table-sm table-hover table-striped"
 						wicket:id="asAccordion"></table>
 				</fieldset>
@@ -78,9 +82,10 @@ new GeneratedBinding(this).addBindingInterceptor(new BindingInterceptor() {
 }).bind();</pre>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
 				<fieldset class="col-sm-6">
 					<legend wicket:id="asTabbed_legend">As Tabbed</legend>
+					<hr />
 					<table class="table table-sm table-hover table-striped"
 						wicket:id="asTabbed"></table>
 				</fieldset>

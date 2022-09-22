@@ -2,6 +2,7 @@ package com.granatasoft.remotelist.website.pages.remotelist;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -73,16 +74,18 @@ public class ShowCategoriesPage extends ARemotelistPage {
                         @Override
                         protected void onBeforeRender() {
                             super.onBeforeRender();
-                            if (isFirstRender && this.getCollapsibles().size() > 0) {
-                                isFirstRender = false;
-                                this.getCollapsibles().get(0).setActive(true);
+                            if (isFirstRender) {
+                                final Iterator<Collapsible> collapsibles = getCollapsibles().iterator();
+                                if (collapsibles.hasNext()) {
+                                    isFirstRender = false;
+                                    collapsibles.next().setActive(true);
+                                }
                             }
                         }
 
                         @Override
-                        protected AccordionCollapsible newAccordionCollapsible(final String componentId,
-                                final ITab tab) {
-                            return new AccordionCollapsible(componentId, tab) {
+                        protected Collapsible newAccordionCollapsible(final String componentId, final ITab tab) {
+                            return new Collapsible(componentId, tab) {
                                 @Override
                                 protected Component newTitle(final String markupId, final ITab tab) {
                                     final IModel<String> badgeModel = new IModel<String>() {

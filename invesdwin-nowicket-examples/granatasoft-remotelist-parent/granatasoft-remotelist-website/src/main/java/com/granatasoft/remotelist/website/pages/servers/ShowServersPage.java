@@ -2,6 +2,7 @@ package com.granatasoft.remotelist.website.pages.servers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -82,22 +83,25 @@ public class ShowServersPage extends ARemotelistPage {
                         @Override
                         protected void onBeforeRender() {
                             super.onBeforeRender();
-                            if (isFirstRender && this.getCollapsibles().size() > 0) {
-                                isFirstRender = false;
-                                for (final AccordionCollapsible collapsible : this.getCollapsibles()) {
-                                    if (((ServerRow) collapsible.getPanelModel().getObject()).getApplications()
-                                            .size() > 0) {
-                                        collapsible.setActive(true);
-                                        return;
+                            if (isFirstRender) {
+                                final Iterator<Collapsible> collapsibles = getCollapsibles().iterator();
+                                if (collapsibles.hasNext()) {
+                                    isFirstRender = false;
+                                    while (collapsibles.hasNext()) {
+                                        final Collapsible collapsible = collapsibles.next();
+                                        if (((ServerRow) collapsible.getPanelModel().getObject()).getApplications()
+                                                .size() > 0) {
+                                            collapsible.setActive(true);
+                                            return;
+                                        }
                                     }
                                 }
                             }
                         }
 
                         @Override
-                        protected AccordionCollapsible newAccordionCollapsible(final String componentId,
-                                final ITab tab) {
-                            return new AccordionCollapsible(componentId, tab) {
+                        protected Collapsible newAccordionCollapsible(final String componentId, final ITab tab) {
+                            return new Collapsible(componentId, tab) {
                                 @Override
                                 protected Component newTitle(final String markupId, final ITab tab) {
                                     final IModel<String> badgeModel = new IModel<String>() {

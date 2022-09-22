@@ -50,8 +50,8 @@ public class ModalContainer extends Panel {
         modalContent.add(titleLabel);
         setOutputMarkupId(true);
         add(new CssClassNameAppender("modal"));
-        add(new AttributeModifier("data-keyboard", "false"));
-        add(new AttributeModifier("data-backdrop", "static"));
+        add(new AttributeModifier("data-bs-keyboard", "false"));
+        add(new AttributeModifier("data-bs-backdrop", "static"));
     }
 
     public void show(final IModel<String> title, final Panel panel, final ModalConfig config) {
@@ -171,7 +171,7 @@ public class ModalContainer extends Panel {
         sb.append(Strings2.getMarkupId(this));
         sb.append("]').removeClass('fade').modal('hide');");
         sb.append(
-                "if($('.modal:visible').length == 0){$('.modal-backdrop').remove();$('body').removeClass('modal-open page-overflow')}");
+                "if($('.modal:visible').length == 0){$('.modal-backdrop').remove();$('body').removeClass('modal-open').css('overflow','').css('padding-right','')}");
         return sb;
     }
 

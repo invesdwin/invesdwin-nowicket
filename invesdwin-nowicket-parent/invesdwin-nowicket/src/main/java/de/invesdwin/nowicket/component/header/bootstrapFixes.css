@@ -44,6 +44,14 @@ html {
   background-color: #fff;
 }
 
+/* remove underline without hover from links per default as in bootstrap 3 and 4: https://stackoverflow.com/questions/11828829/twitter-bootstrap-how-to-get-rid-of-underlined-button-text-when-hovering-over-a*/
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
 /* collapsing animations can be slow: https://stackoverflow.com/a/13119950 */
 .collapsing {
   transition: none !important;

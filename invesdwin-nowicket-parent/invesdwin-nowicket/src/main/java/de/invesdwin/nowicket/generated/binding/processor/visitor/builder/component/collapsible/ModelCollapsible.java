@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -79,7 +80,7 @@ public class ModelCollapsible extends Panel {
                 if (renderedActive) {
                     Attributes.addClass(tag, "show");
                 }
-                renderedActive = active;
+                renderedActive = isActive();
             }
 
         };
@@ -101,13 +102,13 @@ public class ModelCollapsible extends Panel {
 
     @Override
     public void renderHead(final IHeaderResponse response) {
-        if (!active && hasInvalidChildren()) {
+        if (!isActive() && hasInvalidChildren()) {
             //always show if this is the cause of the validation error
             setActive(true);
         }
-        if (!renderedActive && active) {
+        if (!renderedActive && isActive()) {
             response.render(OnDomReadyHeaderItem.forScript(createShowScript()));
-        } else if (renderedActive && !active) {
+        } else if (renderedActive && !isActive()) {
             response.render(OnDomReadyHeaderItem.forScript(createHideScript()));
         }
     }
@@ -119,6 +120,7 @@ public class ModelCollapsible extends Panel {
     @Override
     protected void onComponentTag(final ComponentTag tag) {
         tag.setName("div");
+        tag.getAttributes().remove("class");
         super.onComponentTag(tag);
     }
 
@@ -128,6 +130,16 @@ public class ModelCollapsible extends Panel {
             super(id);
             setBody(tab.getTitle());
             setEscapeModelStrings(false);
+            add(AttributeModifier.append("class", new IModel<String>() {
+                @Override
+                public String getObject() {
+                    if (!isActive()) {
+                        return "collapsed";
+                    } else {
+                        return null;
+                    }
+                }
+            }));
         }
 
         @Override

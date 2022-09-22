@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.collapsible;
+package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.collapsible.accordion;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,22 +23,23 @@ import de.invesdwin.util.collections.iterable.ICloseableIterator;
 import de.invesdwin.util.collections.iterable.WrapperCloseableIterator;
 
 /**
- * A panel group of collapsible where all are allowed to be open at the same time.
+ * Accordion is a panel group of collapsibles where only one is allowed to be open.
  *
  */
 @NotThreadSafe
-public class ModelCollapsibleList extends Panel {
+public class ModelAccordion extends Panel {
 
     private static final String COLLAPSIBLE_ID = "tab";
+    private Integer activeIndex;
     private final RefreshingView<ITab> refreshingView;
     private transient ICloseableIterable<Collapsible> collapsibles;
 
-    public ModelCollapsibleList(final ITabbedHtmlElement<?, ?> element) {
+    public ModelAccordion(final ITabbedHtmlElement<?, ?> element) {
         this(element.getWicketId(), element.getTabModel());
     }
 
-    public ModelCollapsibleList(final String id, final IModel<? extends Collection<? extends ITab>> tabs) {
-        super(id, tabs);
+    public ModelAccordion(final String id, final IModel<? extends Collection<? extends ITab>> tabs) {
+        super(id);
 
         this.refreshingView = new RefreshingView<ITab>("tabs") {
 
@@ -61,7 +62,8 @@ public class ModelCollapsibleList extends Panel {
             @Override
             protected void populateItem(final Item<ITab> item) {
                 final ITab tab = item.getModelObject();
-                final Collapsible collapsible = newAccordionCollapsible(COLLAPSIBLE_ID, tab);
+                final int index = item.getIndex();
+                final Collapsible collapsible = newAccordionCollapsible(COLLAPSIBLE_ID, tab, index);
                 item.add(collapsible);
                 item.setRenderBodyOnly(true);
             }
@@ -90,8 +92,8 @@ public class ModelCollapsibleList extends Panel {
         };
     }
 
-    protected Collapsible newAccordionCollapsible(final String componentId, final ITab tab) {
-        return new Collapsible(componentId, tab);
+    protected Collapsible newAccordionCollapsible(final String componentId, final ITab tab, final int index) {
+        return new Collapsible(componentId, tab, index);
     }
 
     @Override
@@ -107,6 +109,15 @@ public class ModelCollapsibleList extends Panel {
         super.onComponentTag(tag);
     }
 
+    public Integer getActiveIndex() {
+        return activeIndex;
+    }
+
+    public void setActiveIndex(final Integer activeIndex) {
+        final Integer prevActiveIndex = this.activeIndex;
+        this.activeIndex = activeIndex;
+    }
+
     public Iterable<Collapsible> getCollapsibles() {
         if (collapsibles == null) {
             collapsibles = newCollapsibles();
@@ -114,11 +125,20 @@ public class ModelCollapsibleList extends Panel {
         return collapsibles;
     }
 
-    public static class Collapsible extends ModelCollapsible {
+    public class Collapsible extends ModelAccordionItem {
 
-        public Collapsible(final String id, final ITab tab) {
+        private final int index;
+
+        public Collapsible(final String id, final ITab tab, final int index) {
             super(id, tab);
+            this.index = index;
             setRenderBodyOnly(true);
+        }
+
+        @Override
+        public boolean isActive() {
+            final Integer activeIndex = getActiveIndex();
+            return activeIndex != null && activeIndex == index;
         }
 
         @Override
@@ -130,6 +150,16 @@ public class ModelCollapsibleList extends Panel {
             return true;
         }
 
+        @Override
+        public void setActive(final boolean active) {
+            final boolean prevActive = isActive();
+            super.setActive(active);
+            if (!prevActive && active) {
+                setActiveIndex(index);
+            } else if (prevActive && !active) {
+                setActiveIndex(null);
+            }
+        }
     }
 
 }
