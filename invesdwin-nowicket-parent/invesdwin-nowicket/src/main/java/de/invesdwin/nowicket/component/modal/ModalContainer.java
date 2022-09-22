@@ -1,11 +1,13 @@
 package de.invesdwin.nowicket.component.modal;
 
+import java.util.Map;
 import java.util.Stack;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.StyleAttributeModifier;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
@@ -27,6 +29,7 @@ public class ModalContainer extends Panel {
 
     private boolean showing;
     private boolean renderedShowing;
+    private final WebMarkupContainer modalDialog;
     private final WebMarkupContainer modalContent;
 
     private final Label titleLabel;
@@ -37,9 +40,14 @@ public class ModalContainer extends Panel {
 
     public ModalContainer(final String id) {
         super(id);
+        modalDialog = new WebMarkupContainer("modalDialog");
+        modalDialog.setOutputMarkupId(true);
+        add(modalDialog);
+
         modalContent = new WebMarkupContainer("modalContent");
         modalContent.setOutputMarkupId(true);
-        add(modalContent);
+        modalDialog.add(modalContent);
+
         /*
          * initialially put empty panel, later keep the ones as invisible that have been replaced to be able to show
          * replaced stacked modals properly
@@ -88,18 +96,31 @@ public class ModalContainer extends Panel {
         alreadyRendered = false;
         if (config != null) {
             if (Strings.isNotBlank(config.getWidth())) {
-                add(new AttributeModifier("data-width", config.getWidth()) {
+                modalDialog.add(new StyleAttributeModifier() {
                     @Override
                     public boolean isTemporary(final Component component) {
                         return true;
                     }
+
+                    @Override
+                    protected Map<String, String> update(final Map<String, String> oldStyles) {
+                        oldStyles.put("max-width", "100%");
+                        oldStyles.put("width", config.getWidth());
+                        return oldStyles;
+                    }
                 });
             }
             if (Strings.isNotBlank(config.getHeight())) {
-                add(new AttributeModifier("data-max-height", config.getHeight()) {
+                modalDialog.add(new StyleAttributeModifier() {
                     @Override
                     public boolean isTemporary(final Component component) {
                         return true;
+                    }
+
+                    @Override
+                    protected Map<String, String> update(final Map<String, String> oldStyles) {
+                        oldStyles.put("max-height", config.getHeight());
+                        return oldStyles;
                     }
                 });
             }

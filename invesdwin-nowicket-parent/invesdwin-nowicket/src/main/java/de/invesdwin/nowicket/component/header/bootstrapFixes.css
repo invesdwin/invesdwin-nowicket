@@ -46,13 +46,37 @@ html {
 
 /* remove underline without hover from links per default as in bootstrap 3 and 4: https://stackoverflow.com/questions/11828829/twitter-bootstrap-how-to-get-rid-of-underlined-button-text-when-hovering-over-a*/
 a {
-	text-decoration: none;
+	text-decoration: none !important;
 }
 a:hover {
-	text-decoration: underline;
+	text-decoration: underline !important;
 }
 
 /* collapsing animations can be slow: https://stackoverflow.com/a/13119950 */
 .collapsing {
   transition: none !important;
+}
+
+/* table had no top border in bootstrap 3, some bootstrap 5 themes (e.g. slate) add funny borders */
+.table th {
+	border-top: none !important;
+}
+.table thead {
+	border-top: none !important;
+}
+.table .headers {
+	border-top: none !important;
+}
+.table .size-row {
+	border-top: none !important;
+}
+.table > :not(:first-child) {
+    border-top: none !important;
+}
+
+/* prevent transparent background in floating header:  https://mkoryak.github.io/floatThead/examples/bootstrap3/ */
+table.floatThead-table {
+    border-top: none;
+    border-bottom: none;
+    background-color: rgba(150, 150, 150, 0.75);
 }
