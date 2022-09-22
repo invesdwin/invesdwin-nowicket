@@ -21,7 +21,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.components.TooltipConfig
  * 
  * <br>
  * <br>
- * &lt;tag data-toggle="tooltip" title="tooltip message" /&gt;
+ * &lt;tag data-bs-toggle="tooltip" title="tooltip message" /&gt;
  *
  */
 @NotThreadSafe

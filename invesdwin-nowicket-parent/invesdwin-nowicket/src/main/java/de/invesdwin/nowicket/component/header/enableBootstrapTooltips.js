@@ -3,7 +3,7 @@ function enableBootstrapTooltips() {
 		window.enableBootstrapTooltipsRegistered = true;
 
 		function triggerEnableBootstrapTooltips() {
-			$('[data-toggle="tooltip"]').each(function(){
+			$('[data-bs-toggle="tooltip"]').each(function(){
 				var tag = $(this);
 				if(tag.attr('data-original-title') === undefined){
 					tag.tooltip(${CONFIG});
