@@ -155,7 +155,7 @@ public class HtmlComponentBuilder {
         setGridColumnId(e, divTableResponsive);
         final Table table = new Table();
         table.addAttribute(IHtmlElement.ATTR_WICKET_ID, e.getWicketId());
-        table.setClass("table table-condensed table-hover table-striped");
+        table.setClass("table table-sm table-hover table-striped");
         divTableResponsive.addElement(table);
         return divTableResponsive;
     }

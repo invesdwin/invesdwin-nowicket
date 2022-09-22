@@ -7,6 +7,7 @@ import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.TransparentWebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.utilities.BackgroundColorBehavior;
 import de.invesdwin.nowicket.component.navbar.Navbar;
 
 @NotThreadSafe
@@ -35,6 +36,16 @@ public abstract class AWebPageNavbar extends Navbar {
         final Label brandLabel = super.newBrandLabel(markupId);
         brandLabel.setEscapeModelStrings(false);
         return brandLabel;
+    }
+
+    @Override
+    public Navbar setInverted(final boolean invert) {
+        if (invert) {
+            setBackgroundColor(BackgroundColorBehavior.Color.Dark);
+        } else {
+            setBackgroundColor(BackgroundColorBehavior.Color.Light);
+        }
+        return super.setInverted(invert);
     }
 
 }
