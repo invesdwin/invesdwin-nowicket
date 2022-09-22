@@ -113,7 +113,7 @@ public class HtmlComponentBuilder {
     public Element createSelect(final SelectModelElement e) {
         final Select select = new Select();
         select.addAttribute(IHtmlElement.ATTR_WICKET_ID, e.getWicketId());
-        return wrapFormControlInputInFormGroup(e, select);
+        return wrapFormSelectInputInFormGroup(e, select);
     }
 
     public Element createCheckBoxInput(final CheckBoxInputModelElement e) {
@@ -204,6 +204,10 @@ public class HtmlComponentBuilder {
 
     private Element wrapFormControlInputInFormGroup(final IModelElement<?> e, final ConcreteElement element) {
         return wrapInputInFormGroup(e, element, "form-control");
+    }
+
+    private Element wrapFormSelectInputInFormGroup(final IModelElement<?> e, final ConcreteElement element) {
+        return wrapInputInFormGroup(e, element, "form-select");
     }
 
     private Element wrapInputInFormGroup(final IModelElement<?> e, final ConcreteElement element,

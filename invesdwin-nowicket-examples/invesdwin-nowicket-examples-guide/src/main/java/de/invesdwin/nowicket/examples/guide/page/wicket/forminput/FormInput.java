@@ -213,7 +213,6 @@ public class FormInput extends AValueObject {
                 message.append("</li>");
             }
             message.append("</ul>");
-            message.append("<br>");
             message.append(i18n("press.cancel.to.keep.your.inputs"));
             message.append(".");
             GuiService.get().showModalPanel(new ModalMessage("warning", message.toString()) {

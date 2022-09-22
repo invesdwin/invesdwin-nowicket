@@ -30,6 +30,7 @@ function allowCopyPasteOnDisabledInputs() {
 					input.attr("data-allowCopyPasteOnDisabledInputs", tag
 							.attr("id"));
 					input.attr("readonly", "readonly");
+					input.attr("disabled", "disabled");
 
 					// copy important attributes
 					input.attr("type", tag.attr("type"));
