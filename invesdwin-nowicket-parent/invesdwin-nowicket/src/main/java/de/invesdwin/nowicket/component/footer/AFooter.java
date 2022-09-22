@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.utilities.BackgroundColorBehavior;
 import de.agilecoders.wicket.core.util.Attributes;
 import de.agilecoders.wicket.core.util.Components;
 import de.invesdwin.nowicket.application.AWebPage;
@@ -20,6 +21,7 @@ import de.invesdwin.nowicket.application.AWebPage;
 public abstract class AFooter extends Panel {
 
     private final IModel<String> containerClassModel = Model.of(AWebPage.DEFAULT_CONTAINER_CLASS);
+    private final IModel<BackgroundColorBehavior.Color> backgroundColor = Model.of(BackgroundColorBehavior.Color.Light);
 
     public AFooter(final String id) {
         this(id, null);
@@ -48,7 +50,16 @@ public abstract class AFooter extends Panel {
     protected void onComponentTag(final ComponentTag tag) {
         super.onComponentTag(tag);
         Components.assertTag(this, tag, "footer");
-        Attributes.addClass(tag, "footer");
+        Attributes.addClass(tag, "footer " + backgroundColor.getObject().cssClassName());
+    }
+
+    public AFooter setInverted(final boolean invert) {
+        return setBackgroundColor(invert ? BackgroundColorBehavior.Color.Dark : BackgroundColorBehavior.Color.Light);
+    }
+
+    public AFooter setBackgroundColor(final BackgroundColorBehavior.Color color) {
+        this.backgroundColor.setObject(color);
+        return this;
     }
 
 }
