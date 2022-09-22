@@ -14,7 +14,7 @@ function allowCopyPasteOnDisabledInputs() {
 					// update existing fix
 					fixedTag.attr("type", tag.attr("type"));
 					fixedTag.attr("class", tag.attr("class"));
-					fixedTag.attr("value", value);
+					fixedTag.val(value);
 					fixedTag.attr("title", tag.attr("title"));
 					fixedTag.attr("rows", tag.attr("rows"));
 					fixedTag.attr("id", tag.attr("id")
@@ -35,7 +35,7 @@ function allowCopyPasteOnDisabledInputs() {
 					// copy important attributes
 					input.attr("type", tag.attr("type"));
 					input.attr("class", tag.attr("class"));
-					input.attr("value", value);
+					input.val(value);
 					input.attr("title", tag.attr("title"));
 					input.attr("rows", tag.attr("rows"));
 					input.attr("id", tag.attr("id")
