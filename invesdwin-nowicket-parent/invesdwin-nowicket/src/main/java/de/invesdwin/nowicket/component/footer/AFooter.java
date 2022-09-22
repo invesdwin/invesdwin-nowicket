@@ -21,7 +21,7 @@ import de.invesdwin.nowicket.application.AWebPage;
 public abstract class AFooter extends Panel {
 
     private final IModel<String> containerClassModel = Model.of(AWebPage.DEFAULT_CONTAINER_CLASS);
-    private final IModel<BackgroundColorBehavior.Color> backgroundColor = Model.of(BackgroundColorBehavior.Color.Light);
+    private final IModel<String> backgroundColor = Model.of(BackgroundColorBehavior.Color.Light.cssClassName());
 
     public AFooter(final String id) {
         this(id, null);
@@ -29,7 +29,15 @@ public abstract class AFooter extends Panel {
 
     public AFooter(final String id, final IModel<?> model) {
         super(id, model);
-        add(newContainer("footerContainer"));
+        final TransparentWebMarkupContainer footer = newFooter("footer");
+        add(footer);
+        footer.add(newContainer("footerContainer"));
+    }
+
+    private TransparentWebMarkupContainer newFooter(final String id) {
+        final TransparentWebMarkupContainer footer = new TransparentWebMarkupContainer(id);
+        footer.add(AttributeModifier.append("class", backgroundColor));
+        return footer;
     }
 
     private TransparentWebMarkupContainer newContainer(final String id) {
@@ -50,7 +58,7 @@ public abstract class AFooter extends Panel {
     protected void onComponentTag(final ComponentTag tag) {
         super.onComponentTag(tag);
         Components.assertTag(this, tag, "footer");
-        Attributes.addClass(tag, "footer " + backgroundColor.getObject().cssClassName());
+        Attributes.addClass(tag, "footer");
     }
 
     public AFooter setInverted(final boolean invert) {
@@ -58,7 +66,7 @@ public abstract class AFooter extends Panel {
     }
 
     public AFooter setBackgroundColor(final BackgroundColorBehavior.Color color) {
-        this.backgroundColor.setObject(color);
+        this.backgroundColor.setObject(color.cssClassName());
         return this;
     }
 
