@@ -24,7 +24,6 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.MenuBook
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.ImmutableNavbarComponent;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.ComponentPosition;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
-import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarExternalLink;
 import de.agilecoders.wicket.core.settings.IBootstrapSettings;
 import de.agilecoders.wicket.core.settings.ITheme;
@@ -34,6 +33,7 @@ import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.consent.CookieConsent;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
+import de.invesdwin.nowicket.component.navbar.ANavbarDropDownButton;
 import de.invesdwin.nowicket.component.navbar.Navbar;
 import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.page.documentation.closingwords.ClosingWordsPage;
@@ -97,7 +97,7 @@ public abstract class AExampleWebPage extends AWebPage {
     }
 
     private void addThemesNav(final Navbar navbar, final ComponentPosition position) {
-        final DropDownButton dropdown = new NavbarDropDownButton(Model.of(" Themes")) {
+        final DropDownButton dropdown = new ANavbarDropDownButton(Model.of(" Themes")) {
 
             @Override
             public boolean isActive(final Component item) {
@@ -164,7 +164,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
     private void addWicketExamplesNav(final Navbar navbar, final ComponentPosition position) {
         navbar.addComponents(NavbarComponents.transform(position,
-                new NavbarDropDownButton(new ResourceModel("menu.wicket.examples")) {
+                new ANavbarDropDownButton(new ResourceModel("menu.wicket.examples")) {
 
                     @Override
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
@@ -237,8 +237,8 @@ public abstract class AExampleWebPage extends AWebPage {
     }
 
     private void addDocumentationNav(final Navbar navbar, final ComponentPosition position) {
-        navbar.addComponents(
-                NavbarComponents.transform(position, new NavbarDropDownButton(new ResourceModel("menu.documentation")) {
+        navbar.addComponents(NavbarComponents.transform(position,
+                new ANavbarDropDownButton(new ResourceModel("menu.documentation")) {
 
                     @Override
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
