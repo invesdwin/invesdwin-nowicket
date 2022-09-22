@@ -15,9 +15,12 @@
  * limitations under the License.
  */
  
+.palette-theme-bootstrap {
+}
+ 
 .palette-theme-bootstrap .palette-choices {
  	float: left;
- 	width: 40%;
+ 	width: 45.425%;
 }
 .palette-theme-bootstrap .palette-choices select {
  	width: 100%;
@@ -25,7 +28,7 @@
 
 .palette-theme-bootstrap .palette-selected {
  	float: left;
- 	width: 40%;
+ 	width: 45.425%;
 }
 .palette-theme-bootstrap .palette-selected select {
  	width: 100%;

@@ -72,6 +72,8 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
 
         final HtmlTag htmlTag = newHtmlTag("html");
         add(htmlTag);
+        final TransparentWebMarkupContainer bodyTag = newBodyTag("body");
+        add(bodyTag);
         //default title is the classname, though this can be changed by calling the setter afterwards
         titleModel = Model.of(
                 Objects.toVisibleName(Strings.removeTrailing(getClass().getSimpleName(), Page.class.getSimpleName())));
@@ -149,6 +151,10 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
                 return JavaScriptHeaderItem.forReference(ModernizrMinJavaScriptReference.instance());
             }
         };
+    }
+
+    protected TransparentWebMarkupContainer newBodyTag(final String id) {
+        return new TransparentWebMarkupContainer(id);
     }
 
     /**
