@@ -152,7 +152,7 @@ public class WebApplicationInitializer {
     }
 
     protected boolean shouldPerformOptimizations() {
-        return webApplication.usesDeploymentConfig() || true;
+        return webApplication.usesDeploymentConfig();
     }
 
     /**
@@ -186,10 +186,9 @@ public class WebApplicationInitializer {
         bootstrapSettings.setAutoAppendResources(false);
         customizeBootstrapSettings(bootstrapSettings);
         Bootstrap.install(webApplication, bootstrapSettings);
-        final BootstrapExtensionsHeaderContributor headerContributor = newBootstrapExtensionsHeaderContributor(
-                bootstrapSettings);
+        final IHeaderContributor headerContributor = newBootstrapExtensionsHeaderContributor(bootstrapSettings);
         if (shouldPerformOptimizations()) {
-            final BundleCollectingHeaderResponse bundleCollector = new BundleCollectingHeaderResponse(webApplication);
+            final BundleCollectingHeaderResponse bundleCollector = new BundleCollectingHeaderResponse();
             headerContributor.renderHead(bundleCollector);
 
             final JavaScriptReferenceHeaderItem jsBundleItem = webApplication.getResourceBundles()
@@ -214,8 +213,7 @@ public class WebApplicationInitializer {
 
     protected void customizeBootstrapSettings(final BootstrapSettings bootstrapSettings) {}
 
-    protected BootstrapExtensionsHeaderContributor newBootstrapExtensionsHeaderContributor(
-            final BootstrapSettings bootstrapSettings) {
+    protected IHeaderContributor newBootstrapExtensionsHeaderContributor(final BootstrapSettings bootstrapSettings) {
         return new BootstrapExtensionsHeaderContributor(bootstrapSettings);
     }
 

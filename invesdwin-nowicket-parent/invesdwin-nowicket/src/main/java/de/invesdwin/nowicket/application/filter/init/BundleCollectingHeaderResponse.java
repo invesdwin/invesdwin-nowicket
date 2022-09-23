@@ -14,9 +14,6 @@ import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
-import org.apache.wicket.settings.JavaScriptLibrarySettings;
-
-import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 @NotThreadSafe
 public class BundleCollectingHeaderResponse implements IHeaderResponse {
@@ -24,20 +21,11 @@ public class BundleCollectingHeaderResponse implements IHeaderResponse {
     private static final JavaScriptResourceReference[] EMPTY_JS_ARRAY = new JavaScriptResourceReference[0];
     private static final CssResourceReference[] EMPTY_CSS_ARRAY = new CssResourceReference[0];
     private static final HeaderItem[] EMPTY_OTHER_ARRAY = new HeaderItem[0];
-    private final JavaScriptResourceReference wicketAjaxReference;
-    private final JavaScriptResourceReference jQueryReference;
     private final List<JavaScriptResourceReference> javascriptResources = new ArrayList<>();
     private final List<CssResourceReference> cssResources = new ArrayList<>();
     private final List<HeaderItem> otherHeaderItems = new ArrayList<>();
 
     private final Set<HeaderItem> renderedItems = new HashSet<>();
-
-    public BundleCollectingHeaderResponse(final ABaseWebApplication webApplication) {
-        final JavaScriptLibrarySettings ajaxSettings = webApplication.getJavaScriptLibrarySettings();
-        //adding these two to the bundle will somehow not include them in the bundle
-        this.jQueryReference = (JavaScriptResourceReference) ajaxSettings.getJQueryReference();
-        this.wicketAjaxReference = (JavaScriptResourceReference) ajaxSettings.getWicketAjaxReference();
-    }
 
     @Override
     public void render(final HeaderItem item) {
@@ -52,9 +40,7 @@ public class BundleCollectingHeaderResponse implements IHeaderResponse {
         if (item instanceof JavaScriptReferenceHeaderItem) {
             final JavaScriptReferenceHeaderItem cItem = (JavaScriptReferenceHeaderItem) item;
             final JavaScriptResourceReference reference = (JavaScriptResourceReference) cItem.getReference();
-            if (reference != jQueryReference && reference != wicketAjaxReference) {
-                javascriptResources.add(reference);
-            }
+            javascriptResources.add(reference);
         } else if (item instanceof CssReferenceHeaderItem) {
             final CssReferenceHeaderItem cItem = (CssReferenceHeaderItem) item;
             final CssResourceReference reference = (CssResourceReference) cItem.getReference();

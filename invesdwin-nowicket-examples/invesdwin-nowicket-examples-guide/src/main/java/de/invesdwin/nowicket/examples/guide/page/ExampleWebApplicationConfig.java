@@ -4,6 +4,8 @@ import java.util.Locale;
 
 import javax.annotation.concurrent.Immutable;
 
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -18,6 +20,7 @@ import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContribut
 import de.invesdwin.nowicket.examples.guide.Main;
 import de.invesdwin.nowicket.examples.guide.component.ExampleThemeProvider;
 import de.invesdwin.nowicket.examples.guide.component.nyancat.NyancatHtmlResourceReference;
+import de.invesdwin.nowicket.examples.guide.component.prettify.PrettifyHeaderContributor;
 import de.invesdwin.nowicket.examples.guide.page.documentation.introduction.IntroductionPage;
 import de.invesdwin.nowicket.examples.guide.page.error.AccessDeniedPage;
 import de.invesdwin.nowicket.examples.guide.page.error.InternalErrorPage;
@@ -91,11 +94,19 @@ public class ExampleWebApplicationConfig extends WebApplicationConfigSupport {
             }
 
             @Override
-            protected BootstrapExtensionsHeaderContributor newBootstrapExtensionsHeaderContributor(
+            protected IHeaderContributor newBootstrapExtensionsHeaderContributor(
                     final BootstrapSettings bootstrapSettings) {
-                return super.newBootstrapExtensionsHeaderContributor(bootstrapSettings)
-                        //prevent "Read Next Chapter" button from intercepting the sample form submit
-                        .setBtnPrimaryEnterBinding(false);
+                final BootstrapExtensionsHeaderContributor bootstrap = (BootstrapExtensionsHeaderContributor) super.newBootstrapExtensionsHeaderContributor(
+                        bootstrapSettings);
+                //prevent "Read Next Chapter" button from intercepting the sample form submit
+                bootstrap.setBtnPrimaryEnterBinding(false);
+                return new IHeaderContributor() {
+                    @Override
+                    public void renderHead(final IHeaderResponse response) {
+                        bootstrap.renderHead(response);
+                        PrettifyHeaderContributor.INSTANCE.renderHead(response);
+                    }
+                };
             }
 
             @Override
