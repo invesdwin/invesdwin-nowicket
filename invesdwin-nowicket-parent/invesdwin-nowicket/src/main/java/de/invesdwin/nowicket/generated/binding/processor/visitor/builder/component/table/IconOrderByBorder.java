@@ -11,7 +11,7 @@ import org.apache.wicket.markup.html.border.Border;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.Icon;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
-import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6IconType;
 import de.invesdwin.util.error.UnknownArgumentException;
 
 @NotThreadSafe

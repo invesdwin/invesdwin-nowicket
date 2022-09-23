@@ -2,8 +2,8 @@ package de.invesdwin.nowicket.generated.markup.processor.element;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6IconType;
 import de.invesdwin.norva.beanpath.spi.element.table.column.TableButtonColumnBeanPathElement;
-import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
 import de.invesdwin.nowicket.generated.markup.processor.context.AModelContext;
 
 @NotThreadSafe

@@ -8,8 +8,8 @@ import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.IHeaderContributor;
 
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6CssReference;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.OpenWebIconsCssReference;
-import de.invesdwin.nowicket.component.header.font.FontAwesome6CssReference;
 import de.invesdwin.nowicket.component.header.offline.OfflineHeaderContributor;
 import de.invesdwin.nowicket.component.header.render.CreatePreactRenderHtmlFunctionJsReference;
 import de.invesdwin.nowicket.component.header.render.PreventDuplicateAjaxCallbacksJsReference;

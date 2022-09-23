@@ -9,7 +9,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
-import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6IconType;
 import de.invesdwin.nowicket.examples.guide.page.AExampleWebPage;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
