@@ -9,8 +9,6 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<version.yuicompressor>2.4.8</version.yuicompressor>
-		<version.closure-compiler-unshaded>v20210808</version.closure-compiler-unshaded>
 		<version.ecs>1.4.2</version.ecs>
 		<version.font-awesome>6.1.2</version.font-awesome>
 		<version.preact>10.6.4</version.preact>
@@ -115,16 +113,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.yahoo.platform.yui</groupId>
-			<artifactId>yuicompressor</artifactId>
-			<version>${version.yuicompressor}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.javascript</groupId>
-			<artifactId>closure-compiler-unshaded</artifactId>
-			<version>${version.closure-compiler-unshaded}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.errorprone</groupId>

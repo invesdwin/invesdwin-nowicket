@@ -7,6 +7,8 @@ import javax.servlet.SessionCookieConfig;
 import org.apache.wicket.IPageRendererProvider;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
+import org.apache.wicket.core.util.crypt.KeyInSessionSunJceCryptFactory;
+import org.apache.wicket.javascript.DefaultJavaScriptCompressor;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.markup.html.form.AutoLabelResolver;
@@ -14,14 +16,13 @@ import org.apache.wicket.markup.resolver.IComponentResolver;
 import org.apache.wicket.request.cycle.PageRequestHandlerTracker;
 import org.apache.wicket.request.handler.render.PageRenderer;
 import org.apache.wicket.request.resource.ResourceReference;
+import org.apache.wicket.resource.CssUrlReplacer;
 import org.apache.wicket.settings.PageSettings;
-import org.apache.wicket.util.crypt.CachingSunJceCryptFactory;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
 
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
-import de.agilecoders.wicket.extensions.javascript.YuiCssCompressor;
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.filter.StalePageRequestCycleListener;
@@ -48,6 +49,7 @@ import de.invesdwin.util.time.date.FDate;
 @NotThreadSafe
 public class WebApplicationInitializer {
 
+    public static final String JS_FOOTER_BUCKET = "jsFooterBucket";
     protected final ABaseWebApplication webApplication;
 
     public WebApplicationInitializer() {
@@ -58,6 +60,7 @@ public class WebApplicationInitializer {
         registerFavicon();
         registerBeanValidation();
         registerHtmlCompressor();
+        registerJavascriptBucket();
         registerHeaderContributors();
         registerPackageResourceGuardPatterns();
         registerMountedPages();
@@ -74,7 +77,7 @@ public class WebApplicationInitializer {
         runHooks();
     }
 
-    private void registerSessionCookieConfig() {
+    protected void registerSessionCookieConfig() {
         final String sessionCookieName = webApplication.getSessionCookieName();
         if (Strings.isNotBlank(sessionCookieName)) {
             final ServletContext servletContext = webApplication.getServletContext();
@@ -114,10 +117,8 @@ public class WebApplicationInitializer {
     }
 
     protected void registerCryptFactory() {
-        //use static key to enable remember-me feature between server restarts
-        if (webApplication.getSessionEncryptionKey() != null) {
-            webApplication.getSecuritySettings()
-                    .setCryptFactory(new CachingSunJceCryptFactory(webApplication.getSessionEncryptionKey()));
+        if (shouldPerformOptimizations()) {
+            webApplication.getSecuritySettings().setCryptFactory(new KeyInSessionSunJceCryptFactory());
         }
     }
 
@@ -134,10 +135,13 @@ public class WebApplicationInitializer {
     protected void registerHtmlCompressor() {
         if (shouldPerformOptimizations()) {
             webApplication.getMarkupSettings().setMarkupFactory(new HtmlCompressingMarkupFactory());
-            webApplication.getResourceSettings()
-                    .setJavaScriptCompressor(new ConfiguredGoogleClosureJavaScriptCompressor());
-            webApplication.getResourceSettings().setCssCompressor(new YuiCssCompressor());
+            webApplication.getResourceSettings().setJavaScriptCompressor(new DefaultJavaScriptCompressor());
+            webApplication.getResourceSettings().setCssCompressor(new CssUrlReplacer());
         }
+    }
+
+    protected void registerJavascriptBucket() {
+        webApplication.getHeaderResponseDecorators().add(new JavaScriptToBucketResponseDecorator(JS_FOOTER_BUCKET));
     }
 
     protected boolean shouldPerformOptimizations() {

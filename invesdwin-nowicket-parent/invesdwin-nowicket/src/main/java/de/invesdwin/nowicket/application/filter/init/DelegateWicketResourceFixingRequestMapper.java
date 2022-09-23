@@ -37,7 +37,7 @@ public class DelegateWicketResourceFixingRequestMapper implements ICompoundReque
         if (urlStr.contains("wicket/resource/")) {
             //some urls get generated wrong, they get their path added twice...
             final String fixedUrl = "./wicket/resource/" + Strings.substringAfterLast(urlStr, "wicket/resource/");
-            return url.parse(fixedUrl);
+            return Url.parse(fixedUrl);
         } else {
             return url;
         }

@@ -50,12 +50,6 @@ public abstract class ABaseWebApplication
     }
 
     /**
-     * Provide a string here to enable cookies to last over server restarts. This is required to have the remember-me
-     * feature work properly.
-     */
-    public abstract String getSessionEncryptionKey();
-
-    /**
      * These packages are scanned for model classes to generate markup for.
      */
     public abstract Set<String> getClasspathBasePackages();

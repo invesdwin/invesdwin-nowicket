@@ -159,11 +159,6 @@ public abstract class AWebApplication extends ABaseWebApplication {
     }
 
     @Override
-    public String getSessionEncryptionKey() {
-        return null;
-    }
-
-    @Override
     public File getSessionsDirectory() {
         return new File(".sessions");
     }

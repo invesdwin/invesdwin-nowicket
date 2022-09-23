@@ -11,6 +11,7 @@ import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxIndicatorAppender;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
+import org.apache.wicket.markup.head.filter.HeaderResponseContainer;
 import org.apache.wicket.markup.html.TransparentWebMarkupContainer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
@@ -29,6 +30,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.component.header.ModernizrMinJavaScriptReference;
@@ -123,6 +125,8 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
         if (newWindowBehavior != null) {
             add(newWindowBehavior);
         }
+
+        add(new HeaderResponseContainer("footerContainer", WebApplicationInitializer.JS_FOOTER_BUCKET));
     }
 
     /**
