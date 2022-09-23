@@ -1,5 +1,7 @@
 function createPreactRenderHtmlFunction() {
 	if (typeof preactRenderHtml === 'undefined') {
+		const { h, render } = preact;
+		
 		//https://dirask.com/posts/Preact-convert-HTML-to-Preact-nodes-VNode-s-pJ3Boj
 		const parseHtml = function (html) {
 		    const hRoot = document.createElement('div');

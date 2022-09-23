@@ -1,12 +1,18 @@
 package de.invesdwin.nowicket.component.header.render;
 
+import java.util.List;
+
 import javax.annotation.concurrent.Immutable;
 
+import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.head.OnLoadHeaderItem;
 import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
+
+import de.agilecoders.wicket.core.util.Dependencies;
+import de.invesdwin.nowicket.component.header.render.preact.PreactJsReference;
 
 @Immutable
 public final class CreatePreactRenderHtmlFunctionJsReference extends JavaScriptResourceReference
@@ -17,6 +23,12 @@ public final class CreatePreactRenderHtmlFunctionJsReference extends JavaScriptR
 
     private CreatePreactRenderHtmlFunctionJsReference() {
         super(CreatePreactRenderHtmlFunctionJsReference.class, FUNCTION_NAME + ".js");
+    }
+
+    @Override
+    public List<HeaderItem> getDependencies() {
+        return Dependencies.combine(super.getDependencies(),
+                JavaScriptHeaderItem.forReference(PreactJsReference.INSTANCE));
     }
 
     @Override
