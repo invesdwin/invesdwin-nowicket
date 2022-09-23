@@ -12,12 +12,12 @@ import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceR
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 @Immutable
-public final class PreactModuleJsReference extends WebjarsJavaScriptResourceReference {
+public final class PreactJsReference extends WebjarsJavaScriptResourceReference {
 
-    public static final PreactModuleJsReference INSTANCE = new PreactModuleJsReference();
+    public static final PreactJsReference INSTANCE = new PreactJsReference();
 
-    private PreactModuleJsReference() {
-        super("/preact/current/dist/preact.module.js");
+    private PreactJsReference() {
+        super("/preact/current/dist/preact.min.js");
     }
 
     @Override

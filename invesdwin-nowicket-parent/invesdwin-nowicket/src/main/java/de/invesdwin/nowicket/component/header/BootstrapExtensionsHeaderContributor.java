@@ -27,7 +27,7 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
     private boolean updateFooterMarginOnResize = true;
     private boolean enableTableFixedHead = true;
     private boolean createPreactRenderHtmlFunction = true;
-    private EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips = new EnableBootstrapTooltipsHeaderContributor();
+    private boolean enableBootstrapTooltips = true;
 
     public BootstrapExtensionsHeaderContributor(final BootstrapSettings bootstrapSettings) {
         this.bootstrapSettings = bootstrapSettings;
@@ -99,13 +99,12 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return enableTableFixedHead;
     }
 
-    public BootstrapExtensionsHeaderContributor setEnableBootstrapTooltips(
-            final EnableBootstrapTooltipsHeaderContributor enableBootstrapTooltips) {
+    public BootstrapExtensionsHeaderContributor setEnableBootstrapTooltips(final boolean enableBootstrapTooltips) {
         this.enableBootstrapTooltips = enableBootstrapTooltips;
         return this;
     }
 
-    public EnableBootstrapTooltipsHeaderContributor getEnableBootstrapTooltips() {
+    public boolean isEnableBootstrapTooltips() {
         return enableBootstrapTooltips;
     }
 
@@ -158,8 +157,8 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         if (createPreactRenderHtmlFunction) {
             CreatePreactRenderHtmlFunctionJsReference.INSTANCE.renderHead(response);
         }
-        if (enableBootstrapTooltips != null) {
-            enableBootstrapTooltips.renderHead(response);
+        if (enableBootstrapTooltips) {
+            EnableBootstrapTooltipsHeaderContributor.INSTANCE.renderHead(response);
         }
 
         //misc

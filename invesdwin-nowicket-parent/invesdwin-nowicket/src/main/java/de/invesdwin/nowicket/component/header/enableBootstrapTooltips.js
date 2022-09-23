@@ -8,7 +8,7 @@ function enableBootstrapTooltips() {
 				if(tag.attr('data-original-title') === undefined){
 					var tooltip = bootstrap.Tooltip.getInstance(this);
 					if(!tooltip) {
-						tooltip = new bootstrap.Tooltip(this, ${CONFIG});
+						tooltip = new bootstrap.Tooltip(this, {"animation":false});
 					}
 				}
 				const title = tag.attr('title');

@@ -9,6 +9,11 @@ import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.core.util.crypt.KeyInSessionSunJceCryptFactory;
 import org.apache.wicket.javascript.DefaultJavaScriptCompressor;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.HeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
+import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.markup.html.form.AutoLabelResolver;
@@ -49,6 +54,8 @@ import de.invesdwin.util.time.date.FDate;
 @NotThreadSafe
 public class WebApplicationInitializer {
 
+    public static final String BOOTSTRAP_JS_BUNDLE = "bootstrapJsBundle";
+    public static final String BOOTSTRAP_CSS_BUNDLE = "bootstrapCssBundle";
     public static final String JS_FOOTER_BUCKET = "jsFooterBucket";
     protected final ABaseWebApplication webApplication;
 
@@ -145,7 +152,7 @@ public class WebApplicationInitializer {
     }
 
     protected boolean shouldPerformOptimizations() {
-        return webApplication.usesDeploymentConfig();
+        return webApplication.usesDeploymentConfig() || true;
     }
 
     /**
@@ -181,7 +188,28 @@ public class WebApplicationInitializer {
         Bootstrap.install(webApplication, bootstrapSettings);
         final BootstrapExtensionsHeaderContributor headerContributor = newBootstrapExtensionsHeaderContributor(
                 bootstrapSettings);
-        webApplication.getHeaderContributorListeners().add(headerContributor);
+        if (shouldPerformOptimizations()) {
+            final BundleCollectingHeaderResponse bundleCollector = new BundleCollectingHeaderResponse();
+            headerContributor.renderHead(bundleCollector);
+
+            final JavaScriptReferenceHeaderItem jsBundleItem = webApplication.getResourceBundles()
+                    .addJavaScriptBundle(getClass(), BOOTSTRAP_JS_BUNDLE, bundleCollector.getJavascriptResources());
+            final CssReferenceHeaderItem cssBundleItem = webApplication.getResourceBundles()
+                    .addCssBundle(getClass(), BOOTSTRAP_CSS_BUNDLE, bundleCollector.getCssResources());
+            final HeaderItem[] otherItems = bundleCollector.getOtherHeaderItems();
+            webApplication.getHeaderContributorListeners().add(new IHeaderContributor() {
+                @Override
+                public void renderHead(final IHeaderResponse response) {
+                    response.render(cssBundleItem);
+                    response.render(jsBundleItem);
+                    for (int i = 0; i < otherItems.length; i++) {
+                        response.render(otherItems[i]);
+                    }
+                }
+            });
+        } else {
+            webApplication.getHeaderContributorListeners().add(headerContributor);
+        }
     }
 
     protected void customizeBootstrapSettings(final BootstrapSettings bootstrapSettings) {}

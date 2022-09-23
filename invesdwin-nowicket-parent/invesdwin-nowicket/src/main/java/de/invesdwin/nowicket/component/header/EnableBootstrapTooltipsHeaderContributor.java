@@ -1,20 +1,18 @@
 package de.invesdwin.nowicket.component.header;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
+import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
+import org.apache.wicket.markup.head.OnLoadHeaderItem;
 import org.apache.wicket.markup.html.IHeaderContributor;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.components.TooltipConfig;
+import de.agilecoders.wicket.core.util.Dependencies;
+import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 
 /**
  * Add this behavior to a page to enable fancy bootstrap javascript tooltips via the following html markup:
@@ -25,40 +23,25 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.components.TooltipConfig
  *
  */
 @NotThreadSafe
-public class EnableBootstrapTooltipsHeaderContributor implements IHeaderContributor {
+public final class EnableBootstrapTooltipsHeaderContributor extends JavaScriptResourceReference
+        implements IHeaderContributor {
 
-    public static final String FUNCTION_NAME = "enableBootstrapTooltips";
-    public static final String FUNCTION_CALL = FUNCTION_NAME + "();";
+    public static final EnableBootstrapTooltipsHeaderContributor INSTANCE = new EnableBootstrapTooltipsHeaderContributor();
+    private static final String FUNCTION_NAME = "enableBootstrapTooltips";
 
-    private static final Resource JS_RESOURCE = new ClassPathResource(FUNCTION_NAME + ".js",
-            EnableBootstrapTooltipsHeaderContributor.class);
-
-    private final TooltipConfig config;
-
-    public EnableBootstrapTooltipsHeaderContributor() {
-        this(new TooltipConfig().withAnimation(false));
+    private EnableBootstrapTooltipsHeaderContributor() {
+        super(EnableBootstrapTooltipsHeaderContributor.class, FUNCTION_NAME + ".js");
     }
 
-    public EnableBootstrapTooltipsHeaderContributor(final TooltipConfig config) {
-        this.config = config;
+    @Override
+    public List<HeaderItem> getDependencies() {
+        return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem
+                .forReference(ABaseWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()));
     }
 
     @Override
     public void renderHead(final IHeaderResponse response) {
-        response.render(JavaScriptHeaderItem.forScript(createJavascript(), FUNCTION_NAME));
-        response.render(OnDomReadyHeaderItem.forScript(FUNCTION_CALL));
+        response.render(JavaScriptHeaderItem.forReference(this));
+        response.render(OnLoadHeaderItem.forScript(FUNCTION_NAME + "();"));
     }
-
-    private String createJavascript() {
-        try {
-            final InputStream in = JS_RESOURCE.getInputStream();
-            String js = IOUtils.toString(in, Charset.defaultCharset());
-            in.close();
-            js = js.replace("${CONFIG}", config.toJsonString());
-            return js;
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

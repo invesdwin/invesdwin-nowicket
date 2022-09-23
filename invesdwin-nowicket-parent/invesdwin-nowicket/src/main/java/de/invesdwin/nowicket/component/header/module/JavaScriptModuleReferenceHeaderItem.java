@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.component.header.render;
+package de.invesdwin.nowicket.component.header.module;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
