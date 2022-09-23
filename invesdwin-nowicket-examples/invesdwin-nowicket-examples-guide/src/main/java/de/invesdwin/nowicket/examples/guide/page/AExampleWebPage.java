@@ -32,7 +32,7 @@ import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.consent.CookieConsent;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.component.header.font.FontAwesome6IconType;
-import de.invesdwin.nowicket.component.navbar.ANavbarDropDownButton;
+import de.invesdwin.nowicket.component.navbar.NavbarDropDownButton;
 import de.invesdwin.nowicket.component.navbar.Navbar;
 import de.invesdwin.nowicket.examples.guide.page.documentation.closingwords.ClosingWordsPage;
 import de.invesdwin.nowicket.examples.guide.page.documentation.concept.ConceptPage;
@@ -95,7 +95,7 @@ public abstract class AExampleWebPage extends AWebPage {
     }
 
     private void addThemesNav(final Navbar navbar, final ComponentPosition position) {
-        final DropDownButton dropdown = new ANavbarDropDownButton(Model.of(" Themes")) {
+        final DropDownButton dropdown = new NavbarDropDownButton(Model.of(" Themes")) {
 
             @Override
             public boolean isActive(final Component item) {
@@ -162,7 +162,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
     private void addWicketExamplesNav(final Navbar navbar, final ComponentPosition position) {
         navbar.addComponents(NavbarComponents.transform(position,
-                new ANavbarDropDownButton(new ResourceModel("menu.wicket.examples")) {
+                new NavbarDropDownButton(new ResourceModel("menu.wicket.examples")) {
 
                     @Override
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {
@@ -236,7 +236,7 @@ public abstract class AExampleWebPage extends AWebPage {
 
     private void addDocumentationNav(final Navbar navbar, final ComponentPosition position) {
         navbar.addComponents(NavbarComponents.transform(position,
-                new ANavbarDropDownButton(new ResourceModel("menu.documentation")) {
+                new NavbarDropDownButton(new ResourceModel("menu.documentation")) {
 
                     @Override
                     protected List<AbstractLink> newSubMenuButtons(final String buttonMarkupId) {

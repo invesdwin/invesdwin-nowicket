@@ -10,15 +10,17 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.button.ButtonList;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.MenuDivider;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 
+// CHECKSTYLE:OFF
 @NotThreadSafe
-public abstract class ANavbarDropDownButton
+public abstract class NavbarDropDownButton
         extends de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton {
+    //CHECKSTYLE:ON
 
-    public ANavbarDropDownButton(final IModel<String> model) {
+    public NavbarDropDownButton(final IModel<String> model) {
         super(model);
     }
 
-    public ANavbarDropDownButton(final IModel<String> model, final IModel<IconType> iconTypeModel) {
+    public NavbarDropDownButton(final IModel<String> model, final IModel<IconType> iconTypeModel) {
         super(model, iconTypeModel);
     }
 
