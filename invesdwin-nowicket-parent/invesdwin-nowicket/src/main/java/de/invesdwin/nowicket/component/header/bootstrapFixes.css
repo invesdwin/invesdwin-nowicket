@@ -83,8 +83,8 @@ table.floatThead-table {
 
 /* add back a line that separates header and footer form content */
 .card-footer {
-	border-top: 1px solid rgba(127, 127, 127, 0.25);
+	border-top: 1px solid rgba(127, 127, 127, 0.25) !important;
 }
 .navbar {
-	border-bottom: 1px solid rgba(127, 127, 127, 0.25);
+	border-bottom: 1px solid rgba(127, 127, 127, 0.25) !important;
 }
