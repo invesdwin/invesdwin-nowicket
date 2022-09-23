@@ -24,6 +24,7 @@ import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.resource.CssUrlReplacer;
 import org.apache.wicket.settings.PageSettings;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
+import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
 
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
@@ -140,7 +141,7 @@ public class WebApplicationInitializer {
 
     protected void registerHtmlCompressor() {
         if (shouldPerformOptimizations()) {
-            //            webApplication.getMarkupSettings().setMarkupFactory(new HtmlCompressingMarkupFactory());
+            webApplication.getMarkupSettings().setMarkupFactory(new HtmlCompressingMarkupFactory());
             webApplication.getResourceSettings().setJavaScriptCompressor(new DefaultJavaScriptCompressor());
             webApplication.getResourceSettings().setCssCompressor(new CssUrlReplacer());
         }
