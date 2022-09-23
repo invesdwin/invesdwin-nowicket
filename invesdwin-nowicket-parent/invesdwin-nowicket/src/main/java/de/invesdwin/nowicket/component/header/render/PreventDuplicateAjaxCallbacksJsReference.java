@@ -13,7 +13,6 @@ import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.settings.JavaScriptLibrarySettings;
 
 import de.agilecoders.wicket.core.util.Dependencies;
-import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
 
 @Immutable
@@ -31,9 +30,8 @@ public final class PreventDuplicateAjaxCallbacksJsReference extends JavaScriptRe
     public List<HeaderItem> getDependencies() {
         final JavaScriptLibrarySettings ajaxSettings = AWebApplication.get().getJavaScriptLibrarySettings();
         final ResourceReference wicketAjaxReference = ajaxSettings.getWicketAjaxReference();
-        return Dependencies.combine(super.getDependencies(),
-                JavaScriptHeaderItem
-                        .forReference(ABaseWebApplication.get().getJavaScriptLibrarySettings().getJQueryReference()),
+        final ResourceReference jQueryReference = ajaxSettings.getJQueryReference();
+        return Dependencies.combine(super.getDependencies(), JavaScriptHeaderItem.forReference(jQueryReference),
                 JavaScriptHeaderItem.forReference(wicketAjaxReference));
     }
 

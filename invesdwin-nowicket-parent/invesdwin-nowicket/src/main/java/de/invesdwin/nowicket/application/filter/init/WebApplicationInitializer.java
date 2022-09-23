@@ -24,7 +24,6 @@ import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.resource.CssUrlReplacer;
 import org.apache.wicket.settings.PageSettings;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
-import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
 
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
@@ -54,9 +53,9 @@ import de.invesdwin.util.time.date.FDate;
 @NotThreadSafe
 public class WebApplicationInitializer {
 
+    public static final String JS_FOOTER_BUCKET = "jsFooterBucket";
     public static final String BOOTSTRAP_JS_BUNDLE = "bootstrapJsBundle";
     public static final String BOOTSTRAP_CSS_BUNDLE = "bootstrapCssBundle";
-    public static final String JS_FOOTER_BUCKET = "jsFooterBucket";
     protected final ABaseWebApplication webApplication;
 
     public WebApplicationInitializer() {
@@ -67,7 +66,7 @@ public class WebApplicationInitializer {
         registerFavicon();
         registerBeanValidation();
         registerHtmlCompressor();
-        registerJavascriptBucket();
+        registerJavascriptFooterBucket();
         registerHeaderContributors();
         registerPackageResourceGuardPatterns();
         registerMountedPages();
@@ -141,13 +140,13 @@ public class WebApplicationInitializer {
 
     protected void registerHtmlCompressor() {
         if (shouldPerformOptimizations()) {
-            webApplication.getMarkupSettings().setMarkupFactory(new HtmlCompressingMarkupFactory());
+            //            webApplication.getMarkupSettings().setMarkupFactory(new HtmlCompressingMarkupFactory());
             webApplication.getResourceSettings().setJavaScriptCompressor(new DefaultJavaScriptCompressor());
             webApplication.getResourceSettings().setCssCompressor(new CssUrlReplacer());
         }
     }
 
-    protected void registerJavascriptBucket() {
+    protected void registerJavascriptFooterBucket() {
         webApplication.getHeaderResponseDecorators().add(new JavaScriptToBucketResponseDecorator(JS_FOOTER_BUCKET));
     }
 
@@ -189,7 +188,7 @@ public class WebApplicationInitializer {
         final BootstrapExtensionsHeaderContributor headerContributor = newBootstrapExtensionsHeaderContributor(
                 bootstrapSettings);
         if (shouldPerformOptimizations()) {
-            final BundleCollectingHeaderResponse bundleCollector = new BundleCollectingHeaderResponse();
+            final BundleCollectingHeaderResponse bundleCollector = new BundleCollectingHeaderResponse(webApplication);
             headerContributor.renderHead(bundleCollector);
 
             final JavaScriptReferenceHeaderItem jsBundleItem = webApplication.getResourceBundles()
