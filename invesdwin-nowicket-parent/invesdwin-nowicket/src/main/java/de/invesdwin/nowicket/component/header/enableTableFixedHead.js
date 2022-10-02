@@ -7,9 +7,11 @@ function enableTableFixedHead() {
 			if (!window.enableTableFixedHeadDisabled) {
 				$('.table-fixed-head:not(.floatThead-table):not(.table-fixed-head-enabled)').each(function() {
 					const thisElement = $(this)
-					if(thisElement.data('floatThead-attached')){
-						thisElement.floatThead('reflow');
-					}else{
+					if (thisElement.data('floatThead-attached')) {
+						setTimeout(function() {
+							thisElement.floatThead('reflow');
+						}, 1); //process after other tasks might have finished
+					} else {
 						thisElement.addClass('table-fixed-head-enabled');
 						thisElement.siblings('.floatThead-container').remove();
 						if (thisElement.closest(".table-responsive").length == 0) {
@@ -30,10 +32,12 @@ function enableTableFixedHead() {
 				});
 			}
 		}
+		window.triggerEnableTableFixedHead = triggerEnableTableFixedHead;
 
 		function triggerDisableTableFixedHead() {
 			$('.table-fixed-head-enabled').removeClass('table-fixed-head-enabled').floatThead('destroy');
 		}
+		window.triggerDisableTableFixedHead = triggerDisableTableFixedHead;
 
 		triggerEnableTableFixedHead();
 		Wicket.Event.add(window, 'shown.bs.modal', function(e) {
@@ -59,7 +63,7 @@ function enableTableFixedHead() {
 			triggerEnableTableFixedHead();
 		});
 		Wicket.Event.subscribe('/ajax/call/failure', function(jqEvent, attributes, jqXHR, errorThrown, textStatus) {
-				triggerEnableTableFixedHead();
+			triggerEnableTableFixedHead();
 		});
 	}
 }
