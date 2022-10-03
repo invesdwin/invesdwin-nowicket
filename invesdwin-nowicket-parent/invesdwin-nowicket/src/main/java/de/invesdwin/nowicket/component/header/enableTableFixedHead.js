@@ -7,23 +7,24 @@ function enableTableFixedHead() {
 			if (!window.enableTableFixedHeadDisabled) {
 				$('.table-fixed-head:not(.floatThead-table):not(.table-fixed-head-enabled)').each(function() {
 					const thisElement = $(this)
-					if (!thisElement.data('floatThead-attached')) {
-						thisElement.addClass('table-fixed-head-enabled');
-						thisElement.siblings('.floatThead-container').remove();
-						if (thisElement.closest(".table-responsive").length == 0) {
-							thisElement.floatThead({
-								autoReflow: true,
-								zIndex: 999,
-							});
-						} else {
-							thisElement.floatThead({
-								autoReflow: true,
-								zIndex: 999,
-								responsiveContainer: function($table) {
-									return $table.closest(".table-responsive");
-								}
-							});
-						}
+					if (thisElement.data('floatThead-attached')) {
+						thisElement.floatThead('destroy')
+					}
+					thisElement.addClass('table-fixed-head-enabled');
+					thisElement.siblings('.floatThead-container').remove();
+					if (thisElement.closest(".table-responsive").length == 0) {
+						thisElement.floatThead({
+							autoReflow: true,
+							zIndex: 999,
+						});
+					} else {
+						thisElement.floatThead({
+							autoReflow: true,
+							zIndex: 999,
+							responsiveContainer: function($table) {
+								return $table.closest(".table-responsive");
+							}
+						});
 					}
 				});
 			}
