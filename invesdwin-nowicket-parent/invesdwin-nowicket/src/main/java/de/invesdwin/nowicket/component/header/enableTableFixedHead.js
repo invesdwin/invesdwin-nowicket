@@ -7,11 +7,7 @@ function enableTableFixedHead() {
 			if (!window.enableTableFixedHeadDisabled) {
 				$('.table-fixed-head:not(.floatThead-table):not(.table-fixed-head-enabled)').each(function() {
 					const thisElement = $(this)
-					if (thisElement.data('floatThead-attached')) {
-						setTimeout(function() {
-							thisElement.floatThead('reflow');
-						}, 1); //process after other tasks might have finished
-					} else {
+					if (!thisElement.data('floatThead-attached')) {
 						thisElement.addClass('table-fixed-head-enabled');
 						thisElement.siblings('.floatThead-container').remove();
 						if (thisElement.closest(".table-responsive").length == 0) {
