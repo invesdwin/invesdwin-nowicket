@@ -8,14 +8,17 @@ function enableBootstrapTooltips() {
 				if(tag.attr('data-original-title') === undefined){
 					var tooltip = bootstrap.Tooltip.getInstance(this);
 					if(!tooltip) {
+						const initialTitle = tag.attr('title');
 						tooltip = new bootstrap.Tooltip(this, {"animation":false});
+						tag.attr('data-original-title', initialTitle);
+						return;
 					}
 				}
 				const title = tag.attr('title');
 				if(title !== undefined && title.length > 0){
 					const prevTitle = tag.attr('data-original-title');
 					if(prevTitle !== title) {
-						tag.attr('data-original-title', title)
+						tag.attr('data-original-title', title);
 						const tooltip = bootstrap.Tooltip.getInstance(this);
 						tooltip.setContent({ '.tooltip-inner': title });
 						tooltip.update();

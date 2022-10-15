@@ -88,3 +88,9 @@ table.floatThead-table {
 .navbar {
 	border-bottom: 1px solid rgba(127, 127, 127, 0.25) !important;
 }
+
+/* enable tooltips on disabled buttons https://stackoverflow.com/questions/13311574/how-to-enable-bootstrap-tooltip-on-disabled-button */
+.btn:disabled {
+    pointer-events: auto !important;
+    cursor: default;
+}
