@@ -6,7 +6,7 @@ import org.jsoup.nodes.Element;
 
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class GridColumnHtmlElement extends AModelSuffixHtmlElement {

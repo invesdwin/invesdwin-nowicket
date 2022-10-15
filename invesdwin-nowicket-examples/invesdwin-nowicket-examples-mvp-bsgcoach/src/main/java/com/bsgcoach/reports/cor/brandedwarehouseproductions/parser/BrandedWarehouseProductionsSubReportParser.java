@@ -10,7 +10,7 @@ import com.bsgcoach.reports.cor.parser.CompanyOperatingReportParserMapper;
 import com.bsgcoach.reports.cor.parser.subreport.ISubReportParser;
 import com.bsgcoach.web.request.CompanyRegion;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @NotThreadSafe

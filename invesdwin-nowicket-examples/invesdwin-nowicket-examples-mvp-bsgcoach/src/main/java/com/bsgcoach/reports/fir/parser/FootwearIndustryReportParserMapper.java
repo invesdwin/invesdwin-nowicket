@@ -16,7 +16,7 @@ import com.bsgcoach.reports.fir.FootwearIndustryReport;
 import com.bsgcoach.reports.fir.FootwearIndustryReports;
 import com.bsgcoach.web.request.CompanyLetter;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @NotThreadSafe

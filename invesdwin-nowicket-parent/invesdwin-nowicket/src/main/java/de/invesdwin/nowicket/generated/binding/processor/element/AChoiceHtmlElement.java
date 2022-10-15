@@ -27,7 +27,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.B
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
 import de.invesdwin.util.collections.delegate.DelegateList;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> extends AModelHtmlElement<E, Object>

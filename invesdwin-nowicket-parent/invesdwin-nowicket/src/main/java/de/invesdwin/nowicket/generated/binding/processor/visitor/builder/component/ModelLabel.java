@@ -7,7 +7,7 @@ import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class ModelLabel extends Label {

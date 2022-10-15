@@ -9,7 +9,7 @@ import com.bsgcoach.reports.cor.incomestatement.IncomeStatement;
 import com.bsgcoach.reports.cor.parser.CompanyOperatingReportParserMapper;
 import com.bsgcoach.reports.cor.parser.subreport.ISubReportParser;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @NotThreadSafe

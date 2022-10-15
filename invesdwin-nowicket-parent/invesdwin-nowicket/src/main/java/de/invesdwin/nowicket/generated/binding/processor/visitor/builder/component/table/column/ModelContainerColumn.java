@@ -5,7 +5,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.TableContainerColumnHtmlElement;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class ModelContainerColumn extends ModelTextColumn {

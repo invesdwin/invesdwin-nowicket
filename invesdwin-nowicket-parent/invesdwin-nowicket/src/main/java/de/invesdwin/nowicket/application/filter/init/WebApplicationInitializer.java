@@ -42,7 +42,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 import de.invesdwin.util.error.Throwables;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.time.date.FDate;
 
 /**

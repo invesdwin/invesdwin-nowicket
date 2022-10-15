@@ -10,7 +10,7 @@ import org.apache.wicket.model.StringResourceModel;
 import de.invesdwin.nowicket.generated.binding.processor.element.AModelHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.util.lang.Objects;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class TitleModel implements IModel<String> {

@@ -11,7 +11,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @ThreadSafe
 public final class PanelFactory {

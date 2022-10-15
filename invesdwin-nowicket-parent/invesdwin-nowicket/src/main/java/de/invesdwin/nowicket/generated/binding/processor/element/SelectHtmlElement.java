@@ -14,7 +14,7 @@ import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.NoChoiceModelElement;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class SelectHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<? extends AChoiceBeanPathElement>> {

@@ -12,7 +12,7 @@ import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class DefaultSubmitButtonExceptionHandler implements ISubmitButtonExceptionHandler {

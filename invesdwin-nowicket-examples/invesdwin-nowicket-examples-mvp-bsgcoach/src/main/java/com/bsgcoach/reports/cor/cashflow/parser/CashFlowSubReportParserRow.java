@@ -6,7 +6,7 @@ import com.bsgcoach.reports.cor.cashflow.CashFlow;
 import com.bsgcoach.util.Err;
 
 import de.invesdwin.util.error.UnknownArgumentException;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @Immutable

@@ -15,7 +15,7 @@ import de.invesdwin.nowicket.examples.isis.integration.AppUserRegistrationServic
 import de.invesdwin.nowicket.examples.isis.integration.IsisInjector;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @GeneratedMarkup
 @NotThreadSafe

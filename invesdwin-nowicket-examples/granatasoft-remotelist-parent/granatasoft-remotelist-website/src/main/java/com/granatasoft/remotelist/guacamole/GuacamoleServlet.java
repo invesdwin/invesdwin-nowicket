@@ -18,7 +18,7 @@ import org.glyptodon.guacamole.servlet.GuacamoleSession;
 
 import com.granatasoft.remotelist.website.components.login.button.child.dialog.resource.LoginDialog;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class GuacamoleServlet extends GuacamoleHTTPTunnelServlet {

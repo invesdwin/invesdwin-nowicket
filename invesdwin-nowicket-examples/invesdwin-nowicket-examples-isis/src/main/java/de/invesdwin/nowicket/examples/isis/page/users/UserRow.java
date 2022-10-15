@@ -9,7 +9,7 @@ import de.invesdwin.norva.beanpath.annotation.ColumnOrder;
 import de.invesdwin.norva.beanpath.annotation.ModalOpener;
 import de.invesdwin.nowicket.examples.isis.page.users.changepassword.ChangePassword;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @ColumnOrder({ UserRowConstants.username, UserRowConstants.email, UserRowConstants.roles,
         UserRowConstants.changePassword })

@@ -10,7 +10,7 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.mapper.ICompoundRequestMapper;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @Immutable
 public class DelegateWicketResourceFixingRequestMapper implements ICompoundRequestMapper {

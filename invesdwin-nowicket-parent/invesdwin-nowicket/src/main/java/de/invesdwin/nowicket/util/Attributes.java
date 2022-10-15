@@ -5,7 +5,7 @@ import javax.annotation.concurrent.Immutable;
 import org.apache.ecs.ConcreteElement;
 import org.apache.wicket.markup.ComponentTag;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @Immutable
 public final class Attributes {

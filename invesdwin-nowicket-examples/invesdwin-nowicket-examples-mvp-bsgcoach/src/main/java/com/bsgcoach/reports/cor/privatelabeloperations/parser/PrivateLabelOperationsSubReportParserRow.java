@@ -7,7 +7,7 @@ import com.bsgcoach.reports.cor.privatelabeloperations.PrivateLabelOperations;
 import com.bsgcoach.web.request.CompanyRegion;
 
 import de.invesdwin.util.assertions.Assertions;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @Immutable

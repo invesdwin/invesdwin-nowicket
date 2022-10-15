@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.wicket.request.cycle.RequestCycle;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @Immutable
 public final class UserAgents {

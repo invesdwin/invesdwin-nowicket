@@ -5,7 +5,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.ComponentTag;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 /**
  * better styled link on disabled

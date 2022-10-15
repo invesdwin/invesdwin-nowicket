@@ -16,8 +16,8 @@ import org.apache.wicket.markup.resolver.IComponentResolver;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.util.collections.loadingcache.ALoadingCache;
-import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.reflection.Reflections;
+import de.invesdwin.util.lang.string.Strings;
 
 @ThreadSafe
 public class HidingAutoLabelResolver implements IComponentResolver {

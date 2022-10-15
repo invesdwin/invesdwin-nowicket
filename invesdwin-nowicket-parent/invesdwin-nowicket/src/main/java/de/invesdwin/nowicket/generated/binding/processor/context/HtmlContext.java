@@ -26,7 +26,7 @@ import de.invesdwin.nowicket.generated.markup.processor.ModelObjectProcessor;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelObjectContext;
 import de.invesdwin.util.assertions.Assertions;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class HtmlContext implements Serializable {

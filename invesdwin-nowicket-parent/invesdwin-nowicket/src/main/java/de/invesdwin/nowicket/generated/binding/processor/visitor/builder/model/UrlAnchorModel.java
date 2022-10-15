@@ -14,7 +14,7 @@ import org.apache.wicket.request.resource.ResourceReference;
 
 import de.invesdwin.nowicket.component.FileResourceReference;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class UrlAnchorModel implements IModel<String> {

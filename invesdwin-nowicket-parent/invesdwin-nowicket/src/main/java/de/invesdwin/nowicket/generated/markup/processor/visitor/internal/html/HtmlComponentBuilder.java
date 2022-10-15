@@ -42,7 +42,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TableModelElemen
 import de.invesdwin.nowicket.generated.markup.processor.element.TextInputModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.UploadButtonModelElement;
 import de.invesdwin.nowicket.util.Attributes;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class HtmlComponentBuilder {

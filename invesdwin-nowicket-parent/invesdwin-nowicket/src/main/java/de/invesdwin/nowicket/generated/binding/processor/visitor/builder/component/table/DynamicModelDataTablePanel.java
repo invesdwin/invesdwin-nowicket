@@ -17,7 +17,7 @@ import de.invesdwin.nowicket.NoWicketProperties;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.IEagerFilter;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 /**
  * This table wrapper supports validation of selection and a dynamic change of columnOrder.

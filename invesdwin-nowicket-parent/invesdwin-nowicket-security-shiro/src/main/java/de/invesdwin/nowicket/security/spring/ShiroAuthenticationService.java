@@ -24,8 +24,8 @@ import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.auth.ISavedRequest;
 import de.invesdwin.util.collections.Collections;
-import de.invesdwin.util.lang.Strings;
 import de.invesdwin.util.lang.reflection.Reflections;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class ShiroAuthenticationService implements IAuthenticationService {

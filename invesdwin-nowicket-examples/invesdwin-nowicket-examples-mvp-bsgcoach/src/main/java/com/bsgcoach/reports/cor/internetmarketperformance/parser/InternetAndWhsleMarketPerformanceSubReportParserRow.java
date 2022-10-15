@@ -6,7 +6,7 @@ import com.bsgcoach.reports.cor.internetmarketperformance.InternetMarketPerforma
 import com.bsgcoach.reports.cor.whslemarketperformance.WhsleMarketPerformance;
 
 import de.invesdwin.util.error.UnknownArgumentException;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 import de.invesdwin.util.math.decimal.scaled.Percent;
 import de.invesdwin.util.math.decimal.scaled.PercentScale;

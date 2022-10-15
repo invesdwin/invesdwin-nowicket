@@ -39,7 +39,7 @@ import de.invesdwin.nowicket.component.navbar.Navbar;
 import de.invesdwin.nowicket.page.auth.SignIn;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.lang.Objects;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage

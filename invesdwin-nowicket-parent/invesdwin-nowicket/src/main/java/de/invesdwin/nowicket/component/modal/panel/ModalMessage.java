@@ -5,7 +5,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @GeneratedMarkup
 @NotThreadSafe

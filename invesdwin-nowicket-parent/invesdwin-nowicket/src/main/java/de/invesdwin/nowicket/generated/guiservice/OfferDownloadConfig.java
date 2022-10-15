@@ -18,8 +18,8 @@ import org.apache.wicket.util.resource.IResourceStream;
 
 import de.invesdwin.util.lang.Files;
 import de.invesdwin.util.lang.Objects;
-import de.invesdwin.util.lang.Strings;
-import de.invesdwin.util.lang.UniqueNameGenerator;
+import de.invesdwin.util.lang.string.Strings;
+import de.invesdwin.util.lang.string.UniqueNameGenerator;
 
 @NotThreadSafe
 public class OfferDownloadConfig implements Serializable {

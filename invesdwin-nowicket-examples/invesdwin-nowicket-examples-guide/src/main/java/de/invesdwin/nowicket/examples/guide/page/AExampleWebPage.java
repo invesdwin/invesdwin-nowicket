@@ -61,7 +61,7 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.modalwindow.ModalWindowS
 import de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.TabbedPanelPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.websocket.WebSocketPage;
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.WizardStartPage;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.lang.uri.URIs;
 
 @NotThreadSafe

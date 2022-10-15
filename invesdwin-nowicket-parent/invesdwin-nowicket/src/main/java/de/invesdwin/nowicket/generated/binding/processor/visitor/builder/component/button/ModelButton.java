@@ -15,7 +15,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapAjaxFall
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons.Type;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.invesdwin.nowicket.generated.binding.processor.element.SubmitButtonHtmlElement;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class ModelButton extends BootstrapAjaxFallbackButton {

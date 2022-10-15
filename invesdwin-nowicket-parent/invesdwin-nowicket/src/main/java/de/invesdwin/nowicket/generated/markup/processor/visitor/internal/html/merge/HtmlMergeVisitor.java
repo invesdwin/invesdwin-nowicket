@@ -39,7 +39,7 @@ import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.me
 import de.invesdwin.nowicket.generated.markup.processor.visitor.internal.html.merge.layer.JSoupMergeLayer;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.lang.Files;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class HtmlMergeVisitor extends AModelVisitor {

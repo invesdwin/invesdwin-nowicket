@@ -11,7 +11,7 @@ import com.bsgcoach.reports.cor.plantoperations.PlantOperations;
 import com.bsgcoach.reports.cor.plantoperations.Production;
 import com.bsgcoach.web.request.CompanyRegion;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @NotThreadSafe

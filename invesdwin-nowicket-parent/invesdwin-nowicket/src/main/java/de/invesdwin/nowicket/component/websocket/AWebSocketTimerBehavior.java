@@ -24,7 +24,7 @@ import org.apache.wicket.protocol.ws.api.message.TextMessage;
 import org.apache.wicket.util.lang.Args;
 import org.danekja.java.util.function.serializable.SerializableConsumer;
 
-import de.invesdwin.util.lang.description.TextDescription;
+import de.invesdwin.util.lang.string.description.TextDescription;
 
 /**
  * A behavior that generates an WebSocket update callback at a regular interval.

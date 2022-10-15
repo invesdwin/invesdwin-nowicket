@@ -9,7 +9,7 @@ import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.ResourceReference;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class ModelResourceLink extends ResourceLink<Object> {

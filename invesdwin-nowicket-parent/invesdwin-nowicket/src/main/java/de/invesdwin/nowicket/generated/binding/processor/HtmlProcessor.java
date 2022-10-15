@@ -38,7 +38,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.IModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.SubmitButtonModelElement;
 import de.invesdwin.nowicket.generated.markup.processor.element.TabbedModelElement;
 import de.invesdwin.util.assertions.Assertions;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 // CS:OFF ClassDataAbstraction
 @NotThreadSafe

@@ -10,7 +10,7 @@ import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.generated.binding.processor.element.AnchorHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UrlAnchorModel;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class ModelDownloadLink extends DownloadLink {

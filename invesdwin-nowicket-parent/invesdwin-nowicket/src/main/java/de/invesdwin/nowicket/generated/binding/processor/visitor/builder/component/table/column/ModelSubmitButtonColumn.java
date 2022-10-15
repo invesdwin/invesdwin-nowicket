@@ -17,7 +17,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.invesdwin.nowicket.generated.binding.processor.element.ITableButtonColumn;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableSubmitButtonColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.ModelComponentBehavior;
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class ModelSubmitButtonColumn extends PropertyColumn<Object, String> {

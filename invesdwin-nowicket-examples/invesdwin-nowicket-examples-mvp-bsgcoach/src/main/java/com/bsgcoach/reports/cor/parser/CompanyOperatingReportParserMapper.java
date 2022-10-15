@@ -14,7 +14,7 @@ import com.bsgcoach.reports.cor.CompanyOperatingReports;
 import com.bsgcoach.reports.cor.parser.subreport.CompanyOperatingReportParserSubReport;
 import com.bsgcoach.reports.cor.parser.subreport.ISubReportParser;
 
-import de.invesdwin.util.lang.Strings;
+import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
 public class CompanyOperatingReportParserMapper implements FieldSetMapper<CompanyOperatingReports> {
