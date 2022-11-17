@@ -20,7 +20,7 @@
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
 
 		<version.isis>1.12.0</version.isis>
-		<version.hsqldb>2.3.1</version.hsqldb>
+		<version.hsqldb>2.7.1</version.hsqldb>
 		<version.jbcrypt>0.4</version.jbcrypt>
 		<project.version.invesdwin-bom>1.0.18-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
