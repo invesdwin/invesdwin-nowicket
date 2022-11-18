@@ -15,6 +15,7 @@ import de.invesdwin.nowicket.examples.guide.internal.ExampleWebApplication;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.test.GuiServiceTester;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.lang.reflection.Reflections;
 import de.invesdwin.util.streams.SocketUtils;
 
 @NotThreadSafe
@@ -24,6 +25,11 @@ public abstract class AExampleTest {
     private static int testServerPort = SocketUtils.findAvailableTcpPort();
 
     static {
+        //https://github.com/spring-projects/spring-boot/issues/12649#issuecomment-1269568055
+        //CHECKSTYLE:OFF
+        System.setProperty("org.springframework.boot.logging.LoggingSystem", "none");
+        //CHECKSTYLE:ON
+        Reflections.disableJavaModuleSystemRestrictions();
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
     }

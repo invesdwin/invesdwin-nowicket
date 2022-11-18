@@ -26,6 +26,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultAccessDeniedPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
+import de.invesdwin.util.lang.reflection.Reflections;
 import jakarta.servlet.DispatcherType;
 
 @SpringBootApplication
@@ -35,6 +36,11 @@ import jakarta.servlet.DispatcherType;
 public class Main {
 
     public static void main(final String[] args) {
+        //https://github.com/spring-projects/spring-boot/issues/12649#issuecomment-1269568055
+        //CHECKSTYLE:OFF
+        System.setProperty("org.springframework.boot.logging.LoggingSystem", "none");
+        //CHECKSTYLE:ON
+        Reflections.disableJavaModuleSystemRestrictions();
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
         SpringApplication.run(Main.class, args);

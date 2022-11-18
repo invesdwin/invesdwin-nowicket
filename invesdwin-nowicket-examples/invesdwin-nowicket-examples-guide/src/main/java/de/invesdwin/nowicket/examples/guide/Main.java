@@ -40,6 +40,10 @@ import jakarta.servlet.DispatcherType;
 public class Main {
 
     static {
+        //https://github.com/spring-projects/spring-boot/issues/12649#issuecomment-1269568055
+        //CHECKSTYLE:OFF
+        System.setProperty("org.springframework.boot.logging.LoggingSystem", "none");
+        //CHECKSTYLE:ON
         Reflections.disableJavaModuleSystemRestrictions();
         DynamicInstrumentationLoader.waitForInitialized();
         DynamicInstrumentationLoader.initLoadTimeWeavingContext();
