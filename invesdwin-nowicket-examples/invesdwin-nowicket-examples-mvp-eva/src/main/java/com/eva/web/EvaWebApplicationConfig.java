@@ -3,7 +3,6 @@ package com.eva.web;
 import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Named;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
@@ -24,6 +23,7 @@ import de.invesdwin.nowicket.application.WebApplicationConfigSupport;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 import de.invesdwin.nowicket.component.header.BootstrapExtensionsHeaderContributor;
+import jakarta.inject.Named;
 
 @Named
 @NotThreadSafe

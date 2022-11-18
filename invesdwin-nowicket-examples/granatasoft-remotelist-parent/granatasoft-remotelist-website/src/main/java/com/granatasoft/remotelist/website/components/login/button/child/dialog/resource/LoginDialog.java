@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.UUID;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.http.HttpSession;
 
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.IResource;
@@ -20,6 +19,7 @@ import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.uri.URIs;
+import jakarta.servlet.http.HttpSession;
 
 @NotThreadSafe
 @GeneratedMarkup

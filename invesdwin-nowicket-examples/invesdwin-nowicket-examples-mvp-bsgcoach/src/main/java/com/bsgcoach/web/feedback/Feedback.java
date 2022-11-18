@@ -3,9 +3,7 @@ package com.bsgcoach.web.feedback;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -15,6 +13,8 @@ import com.bsgcoach.rules.IRule;
 
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Inject;
 
 @GeneratedMarkup
 @NotThreadSafe

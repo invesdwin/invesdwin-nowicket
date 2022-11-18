@@ -1,11 +1,11 @@
 package de.invesdwin.nowicket.util;
 
 import javax.annotation.concurrent.Immutable;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.wicket.request.cycle.RequestCycle;
 
 import de.invesdwin.util.lang.string.Strings;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Immutable
 public final class UserAgents {

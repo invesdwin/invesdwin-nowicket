@@ -1,12 +1,12 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.implementation.inheritance;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.NotNull;
 
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.norva.beanpath.annotation.Title;
 import de.invesdwin.nowicket.examples.guide.page.wicket.dynamiceditorfields.DynamicEditorFieldType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
+import jakarta.validation.constraints.NotNull;
 
 @NotThreadSafe
 @GeneratedMarkup

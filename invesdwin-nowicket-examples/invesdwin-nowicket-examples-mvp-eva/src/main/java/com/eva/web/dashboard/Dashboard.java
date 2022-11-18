@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.NotNull;
 
 import com.eva.web.dashboard.row.DashboardRow;
 import com.eva.web.dashboard.row.Pupil;
@@ -15,6 +14,7 @@ import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.collections.Arrays;
 import de.invesdwin.util.math.random.IRandomGenerator;
 import de.invesdwin.util.math.random.PseudoRandomGenerators;
+import jakarta.validation.constraints.NotNull;
 
 @GeneratedMarkup
 @NotThreadSafe

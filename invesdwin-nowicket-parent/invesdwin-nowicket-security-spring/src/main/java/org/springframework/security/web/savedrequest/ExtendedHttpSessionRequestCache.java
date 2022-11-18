@@ -1,7 +1,8 @@
 package org.springframework.security.web.savedrequest;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.http.HttpServletRequest;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Hacked implementation to be able to copy the saved request to a new instance.

@@ -1,13 +1,13 @@
 package de.invesdwin.nowicket.examples.guide.page.documentation.userinterfaceflow.fifthcar.details.tabs.trip.create;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import de.invesdwin.norva.beanpath.annotation.Forced;
 import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @NotThreadSafe
 @GeneratedMarkup

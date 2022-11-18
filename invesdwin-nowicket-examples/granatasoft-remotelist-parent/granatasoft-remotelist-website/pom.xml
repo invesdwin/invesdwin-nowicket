@@ -37,12 +37,12 @@
         <dependency>
             <groupId>org.glyptodon.guacamole</groupId>
             <artifactId>guacamole-common</artifactId>
-            <version>0.9.7</version>
+            <version>0.9.9</version>
         </dependency>
         <dependency>
             <groupId>org.glyptodon.guacamole</groupId>
             <artifactId>guacamole-common-js</artifactId>
-            <version>0.9.8</version>
+            <version>0.9.9</version>
             <type>zip</type>
         </dependency>
 	</dependencies>

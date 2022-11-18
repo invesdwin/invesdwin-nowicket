@@ -1,12 +1,12 @@
 package com.eva.web.decision;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.NotNull;
 
 import de.invesdwin.nowicket.component.modal.panel.ModalMessage;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.validation.constraints.NotNull;
 
 @NotThreadSafe
 @GeneratedMarkup

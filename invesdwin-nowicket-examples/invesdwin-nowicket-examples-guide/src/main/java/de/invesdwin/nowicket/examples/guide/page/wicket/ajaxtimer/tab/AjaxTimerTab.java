@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer.tab.table.AjaxTimerTable;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @GeneratedMarkup
 @NotThreadSafe

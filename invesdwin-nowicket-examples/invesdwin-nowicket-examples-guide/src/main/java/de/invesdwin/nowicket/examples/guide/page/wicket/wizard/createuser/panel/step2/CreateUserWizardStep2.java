@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step2;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.NotBlank;
 
 import de.invesdwin.norva.beanpath.annotation.BeanPathEndPoint;
 import de.invesdwin.norva.beanpath.annotation.Eager;
@@ -14,6 +13,7 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.
 import de.invesdwin.nowicket.examples.guide.page.wicket.wizard.createuser.panel.step4.CreateUserWizardStep4;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.validation.constraints.NotBlank;
 
 @NotThreadSafe
 @GeneratedMarkup

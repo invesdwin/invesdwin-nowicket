@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.application.filter;
 
 import java.io.File;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.wicket.IPageFactory;
@@ -24,6 +23,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 import de.invesdwin.util.collections.Collections;
+import jakarta.activation.MimetypesFileTypeMap;
 
 @ThreadSafe
 public abstract class AWebApplication extends ABaseWebApplication {

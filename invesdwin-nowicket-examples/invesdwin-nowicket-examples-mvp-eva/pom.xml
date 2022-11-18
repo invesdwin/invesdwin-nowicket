@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.invesdwin</groupId>
@@ -12,27 +10,31 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.5</version>
+		<version>3.0.0-M4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
-		<spring.version>5.3.24</spring.version>
+		<java.version>17</java.version>
+		<hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
+		<spring.version>6.0.0</spring.version>
 		<okhttp3.version>4.9.3</okhttp3.version>
 		<slf4j.version>2.0.3</slf4j.version>
 		<logback.version>1.4.4</logback.version>
-		<spring-security.version>5.7.5</spring-security.version>
-		<caffeine.version>2.9.3</caffeine.version>
+		<spring-security.version>6.0.0-M6</spring-security.version>
+		<caffeine.version>3.1.1</caffeine.version>
+		<micrometer.version>1.10.1</micrometer.version>
+		<jakarta-persistence.version>3.1.0</jakarta-persistence.version>
+		<jakarta-servlet.version>6.0.0</jakarta-servlet.version>
+		<glassfish-jaxb.version>4.0.1</glassfish-jaxb.version>
+		<jakarta-xml-bind.version>4.0.0</jakarta-xml-bind.version>
 
 		<project.version.invesdwin-bom>1.0.18-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
-		<version.javax.inject>1</version.javax.inject>
 		<version.maven-processor-plugin>4.5-jdk8</version.maven-processor-plugin>
-		<version.spring-boot-maven-plugin>2.5.1</version.spring-boot-maven-plugin>
+		<version.spring-boot-maven-plugin>3.0.0-M1</version.spring-boot-maven-plugin>
 		<version.jacoco-maven-plugin>0.8.6</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
 		<aspectj.version>1.9.9.1</aspectj.version>
@@ -98,9 +100,8 @@
 			<artifactId>invesdwin-instrument</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>${version.javax.inject}</version>
+			<groupId>jakarta.inject</groupId>
+			<artifactId>jakarta.inject-api</artifactId>
 		</dependency>
 
 		<!-- contains @Configurable aspect -->
@@ -241,9 +242,12 @@
 								<exclude>commons-logging:commons-logging</exclude>
 								<exclude>org.aspectj:aspectjrt</exclude>
 								<exclude>javax.servlet:servlet-api</exclude>
+								<exclude>javax.servlet:javax.servlet-api</exclude>
+								<exclude>javax.xml.soap:javax.xml.soap-api</exclude>
 								<exclude>org.apache.geronimo.specs:geronimo-jaxb_2.1_spec</exclude>
 								<exclude>commons-logging:commons-logging-api</exclude>
 								<exclude>javax.persistence:persistence-api</exclude>
+								<exclude>javax.persistence:javax.persistence-api</exclude>
 								<exclude>log4j:log4j</exclude>
 								<exclude>org.slf4j:slf4j-log4j12</exclude>
 								<exclude>javax.servlet.jsp:jsp-api</exclude>
@@ -345,48 +349,36 @@
 									<shadedArtifactAttached>true</shadedArtifactAttached>
 									<shadedClassifierName>standalone</shadedClassifierName>
 									<transformers combine.self="override">
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/spring.handlers</resource>
 										</transformer>
-										<transformer
-											implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+										<transformer implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
 											<resource>META-INF/spring.factories</resource>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/spring.schemas</resource>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+										<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 											<mainClass>${start-class}</mainClass>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/spring.tooling</resource>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/cxf/bus-extensions.txt</resource>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/mime.types</resource>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
 											<resource>META-INF/aop.xml</resource>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+										<transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
 											<resource>META-INF/wsdl.plugin.xml</resource>
 										</transformer>
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer" />
-										<transformer
-											implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
+										<transformer implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer" />
+										<transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
 									</transformers>
 								</configuration>
 							</execution>

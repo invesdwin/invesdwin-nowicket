@@ -1,8 +1,6 @@
 package de.invesdwin.nowicket.security.spring.internal;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
@@ -15,6 +13,8 @@ import org.springframework.security.web.savedrequest.ExtendedHttpSessionRequestC
 import org.springframework.security.web.savedrequest.SavedRequest;
 
 import de.invesdwin.nowicket.util.RequestCycles;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @NotThreadSafe
 public final class SpringSecuritySessionAttributes {
@@ -27,9 +27,10 @@ public final class SpringSecuritySessionAttributes {
         }
 
         @Override
-        public Authentication createAuthentication(final HttpServletRequest request) {
+        protected Authentication createAuthentication(final HttpServletRequest request) {
             return super.createAuthentication(request);
         }
+
     }
 
     private static final ExtendedHttpSessionRequestCache HTTP_SESSION_REQUEST_CACHE = new ExtendedHttpSessionRequestCache();

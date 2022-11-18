@@ -1,14 +1,15 @@
 package com.bsgcoach.rules.mismatchofmarketingandproduction.sqrating;
 
 import javax.annotation.concurrent.Immutable;
-import javax.inject.Named;
 
 import com.bsgcoach.web.request.CompanyRegion;
 
+import jakarta.inject.Named;
+
 @Named
 @Immutable
-public class MismatchOfMarketingAndProductionSQRatingExistsNotLA extends
-        AMismatchOfMarketingAndProductionSQRatingExistsNot {
+public class MismatchOfMarketingAndProductionSQRatingExistsNotLA
+        extends AMismatchOfMarketingAndProductionSQRatingExistsNot {
 
     @Override
     protected CompanyRegion getCompanyRegion() {

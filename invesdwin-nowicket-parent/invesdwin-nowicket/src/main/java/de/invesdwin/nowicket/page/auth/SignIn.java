@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.page.auth;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.NotNull;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
@@ -15,6 +14,7 @@ import de.invesdwin.nowicket.application.auth.ISavedRequest;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.validation.constraints.NotNull;
 
 @GeneratedMarkup
 @NotThreadSafe

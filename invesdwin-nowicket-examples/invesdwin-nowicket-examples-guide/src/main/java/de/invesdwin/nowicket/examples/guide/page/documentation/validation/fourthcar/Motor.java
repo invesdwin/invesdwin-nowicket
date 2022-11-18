@@ -1,9 +1,9 @@
 package de.invesdwin.nowicket.examples.guide.page.documentation.validation.fourthcar;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.Min;
 
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.validation.constraints.Min;
 
 @NotThreadSafe
 public class Motor extends AValueObject {

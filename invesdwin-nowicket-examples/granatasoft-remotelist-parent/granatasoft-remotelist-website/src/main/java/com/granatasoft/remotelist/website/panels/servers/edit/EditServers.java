@@ -3,7 +3,7 @@ package com.granatasoft.remotelist.website.panels.servers.edit;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Configurable;
 

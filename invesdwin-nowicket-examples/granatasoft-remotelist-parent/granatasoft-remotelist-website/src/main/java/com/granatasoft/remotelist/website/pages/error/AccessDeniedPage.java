@@ -1,7 +1,6 @@
 package com.granatasoft.remotelist.website.pages.error;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.wicket.request.http.WebResponse;
 
@@ -9,6 +8,7 @@ import com.granatasoft.remotelist.website.pages.ARemotelistPage;
 
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.page.error.AccessDeniedPanel;
+import jakarta.servlet.http.HttpServletResponse;
 
 @NotThreadSafe
 public class AccessDeniedPage extends ARemotelistPage {

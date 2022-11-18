@@ -3,8 +3,6 @@ package de.invesdwin.nowicket.examples.isis.page.users.changepassword;
 import java.io.IOException;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
-import javax.validation.constraints.NotBlank;
 
 import org.apache.isis.applib.value.Password;
 import org.isisaddons.module.security.dom.user.ApplicationUser;
@@ -16,12 +14,13 @@ import de.invesdwin.nowicket.examples.isis.integration.IsisInjector;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.string.Strings;
+import jakarta.validation.constraints.NotBlank;
 
 @GeneratedMarkup
 @NotThreadSafe
 public class ChangePassword extends AValueObject {
 
-    @Inject
+    @javax.inject.Inject
     private transient AppUserRegistrationService appUserRegistrationService;
     private final String username;
     @NotBlank

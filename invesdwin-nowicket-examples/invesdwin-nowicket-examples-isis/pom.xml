@@ -11,11 +11,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<version.compiler>1.8</version.compiler>
+		<version.compiler>17</version.compiler>
 
-		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+		<version.maven-source-plugin>3.2.1</version.maven-source-plugin>
 		<version.maven-processor-plugin>4.5-jdk8</version.maven-processor-plugin>
-		<version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
+		<version.maven-compiler-plugin>3.10.1</version.maven-compiler-plugin>
 
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
 
@@ -25,7 +25,7 @@
 		<project.version.invesdwin-bom>1.0.18-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
 
-		<version.maven-war-plugin>3.2.2</version.maven-war-plugin>
+		<version.maven-war-plugin>3.3.2</version.maven-war-plugin>
 
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
@@ -191,15 +191,15 @@
 			<artifactId>invesdwin-nowicket-security-shiro</artifactId>
 			<exclusions>
 				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>javax.servlet-api</artifactId>
+					<groupId>jakarta.servlet</groupId>
+					<artifactId>jakarta.servlet-api</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 

@@ -1,7 +1,6 @@
 package com.bsgcoach.rules.debtequityratio;
 
 import javax.annotation.concurrent.Immutable;
-import javax.inject.Named;
 
 import com.bsgcoach.reports.Reports;
 import com.bsgcoach.resources.correspondingtheories.CorrespondingTheories;
@@ -9,6 +8,8 @@ import com.bsgcoach.resources.creditrating.CreditRating;
 import com.bsgcoach.resources.significance.Significance;
 import com.bsgcoach.rules.FeedbackFormatter;
 import com.bsgcoach.rules.IRule;
+
+import jakarta.inject.Named;
 
 @Named
 @Immutable

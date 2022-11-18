@@ -1,10 +1,11 @@
 package de.invesdwin.nowicket.component.header.render.preact;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.http.Cookie;
 
 import org.apache.wicket.request.http.WebResponse;
 import org.apache.wicket.util.string.AppendingStringBuffer;
+
+import jakarta.servlet.http.Cookie;
 
 /**
  * Extracted from: org.apache.wicket.page.PartialPageUpdate.ResponseBuffer

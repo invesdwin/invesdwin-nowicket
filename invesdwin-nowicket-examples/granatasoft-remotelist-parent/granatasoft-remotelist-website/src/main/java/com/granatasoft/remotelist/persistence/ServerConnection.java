@@ -1,12 +1,12 @@
 package com.granatasoft.remotelist.persistence;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 import de.invesdwin.context.persistence.jpa.api.dao.entity.AEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Entity
 @NotThreadSafe

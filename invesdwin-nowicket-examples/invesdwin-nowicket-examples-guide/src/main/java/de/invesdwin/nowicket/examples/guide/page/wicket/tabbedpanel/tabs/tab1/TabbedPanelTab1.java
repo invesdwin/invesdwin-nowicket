@@ -1,11 +1,11 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.tabbedpanel.tabs.tab1;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @GeneratedMarkup
 @NotThreadSafe

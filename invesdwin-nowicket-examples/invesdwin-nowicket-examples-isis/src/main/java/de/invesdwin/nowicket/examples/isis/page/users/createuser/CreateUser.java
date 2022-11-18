@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
 
 import org.apache.isis.applib.services.userreg.UserDetails;
 
@@ -22,7 +21,7 @@ import de.invesdwin.util.lang.string.Strings;
 @NotThreadSafe
 public class CreateUser extends AValueObject {
 
-    @Inject
+    @javax.inject.Inject
     private transient AppUserRegistrationService appUserRegistrationService;
 
     private final UserDetails userDetails = new UserDetails();

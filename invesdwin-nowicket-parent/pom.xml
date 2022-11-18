@@ -32,9 +32,9 @@
 		<project.version.invesdwin-nowicket>${project.version}</project.version.invesdwin-nowicket>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<version.compiler>1.8</version.compiler>
+		<version.compiler>17</version.compiler>
 
-		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+		<version.maven-source-plugin>3.2.1</version.maven-source-plugin>
 		<version.maven-processor-plugin>4.5-jdk8</version.maven-processor-plugin>
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
 		<project.version.invesdwin-instrument>1.0.15-SNAPSHOT</project.version.invesdwin-instrument>

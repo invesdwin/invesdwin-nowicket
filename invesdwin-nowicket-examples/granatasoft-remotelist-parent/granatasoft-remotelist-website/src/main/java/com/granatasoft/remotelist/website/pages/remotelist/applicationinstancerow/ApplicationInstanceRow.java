@@ -1,7 +1,7 @@
 package com.granatasoft.remotelist.website.pages.remotelist.applicationinstancerow;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.apache.wicket.request.resource.ByteArrayResource;
 import org.apache.wicket.request.resource.IResource;

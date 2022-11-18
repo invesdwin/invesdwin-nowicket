@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.examples.guide;
 import java.io.File;
 
 import javax.annotation.concurrent.Immutable;
-import javax.servlet.DispatcherType;
 
 import org.apache.wicket.protocol.ws.javax.WicketServerEndpointConfig;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +29,7 @@ import de.invesdwin.nowicket.page.error.defaultpage.DefaultInternalErrorPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageExpiredPage;
 import de.invesdwin.nowicket.page.error.defaultpage.DefaultPageNotFoundPage;
 import de.invesdwin.util.lang.reflection.Reflections;
+import jakarta.servlet.DispatcherType;
 
 @SpringBootApplication
 @ImportResource(locations = { "classpath:/META-INF/ctx.spring.weaving.xml",

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
 
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.services.repository.RepositoryService;
@@ -22,11 +21,11 @@ public class AppUserRegistrationService extends SecurityModuleAppUserRegistratio
 
     private static final String ROLE_NAME = "isis-module-security-admin";
 
-    @Inject
+    @javax.inject.Inject
     private RepositoryService repositoryService;
-    @Inject
+    @javax.inject.Inject
     private ApplicationRoleRepository applicationRoleRepository;
-    @Inject
+    @javax.inject.Inject
     private ApplicationUserRepository applicationUserRepository;
 
     @Override

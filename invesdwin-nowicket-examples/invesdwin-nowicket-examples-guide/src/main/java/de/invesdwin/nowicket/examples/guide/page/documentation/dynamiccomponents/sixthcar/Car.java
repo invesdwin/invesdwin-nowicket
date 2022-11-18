@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.examples.guide.page.documentation.dynamiccomponent
 import java.util.Date;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.validation.constraints.Pattern;
 
 import de.invesdwin.norva.beanpath.annotation.Format;
 import de.invesdwin.norva.beanpath.annotation.Tooltip;
@@ -13,6 +12,7 @@ import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.time.date.FDate;
+import jakarta.validation.constraints.Pattern;
 
 @NotThreadSafe
 @GeneratedMarkup

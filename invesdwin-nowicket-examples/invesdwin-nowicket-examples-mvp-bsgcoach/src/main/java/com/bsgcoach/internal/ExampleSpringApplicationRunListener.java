@@ -11,12 +11,10 @@ public class ExampleSpringApplicationRunListener implements SpringApplicationRun
 
     private static ConfigurableApplicationContext applicationContext;
 
-    public ExampleSpringApplicationRunListener(final SpringApplication application, final String[] args) {
-    }
+    public ExampleSpringApplicationRunListener(final SpringApplication application, final String[] args) {}
 
     @Override
-    public void contextPrepared(final ConfigurableApplicationContext context) {
-    }
+    public void contextPrepared(final ConfigurableApplicationContext context) {}
 
     @Override
     public void contextLoaded(final ConfigurableApplicationContext context) {
@@ -29,18 +27,6 @@ public class ExampleSpringApplicationRunListener implements SpringApplicationRun
 
     public static ConfigurableApplicationContext getApplicationContext() {
         return applicationContext;
-    }
-
-    @Override
-    public void started(final ConfigurableApplicationContext context) {
-    }
-
-    @Override
-    public void running(final ConfigurableApplicationContext context) {
-    }
-
-    @Override
-    public void failed(final ConfigurableApplicationContext context, final Throwable exception) {
     }
 
 }

@@ -3,13 +3,13 @@ package com.granatasoft.remotelist.persistence;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 import de.invesdwin.context.persistence.jpa.api.dao.entity.AEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @NotThreadSafe
 @Entity

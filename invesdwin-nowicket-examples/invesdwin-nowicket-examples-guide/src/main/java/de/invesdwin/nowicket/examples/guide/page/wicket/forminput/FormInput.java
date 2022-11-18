@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.swing.text.MaskFormatter;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
@@ -22,6 +21,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.collections.Arrays;
+import jakarta.validation.constraints.NotNull;
 
 @GeneratedMarkup
 @NotThreadSafe

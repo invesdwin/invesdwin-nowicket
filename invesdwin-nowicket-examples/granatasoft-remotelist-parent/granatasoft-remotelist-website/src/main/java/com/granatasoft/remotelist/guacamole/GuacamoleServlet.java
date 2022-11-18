@@ -3,8 +3,6 @@ package com.granatasoft.remotelist.guacamole;
 import java.io.BufferedReader;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.glyptodon.guacamole.GuacamoleException;
 import org.glyptodon.guacamole.net.GuacamoleSocket;
@@ -13,15 +11,17 @@ import org.glyptodon.guacamole.net.InetGuacamoleSocket;
 import org.glyptodon.guacamole.net.SimpleGuacamoleTunnel;
 import org.glyptodon.guacamole.protocol.ConfiguredGuacamoleSocket;
 import org.glyptodon.guacamole.protocol.GuacamoleConfiguration;
-import org.glyptodon.guacamole.servlet.GuacamoleHTTPTunnelServlet;
-import org.glyptodon.guacamole.servlet.GuacamoleSession;
+import org.glyptodon.guacamole.servlet.JakartaGuacamoleSession;
+import org.glyptodon.guacamole.servlet.JakartaGuacamoleHTTPTunnelServlet;
 
 import com.granatasoft.remotelist.website.components.login.button.child.dialog.resource.LoginDialog;
 
 import de.invesdwin.util.lang.string.Strings;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @NotThreadSafe
-public class GuacamoleServlet extends GuacamoleHTTPTunnelServlet {
+public class GuacamoleServlet extends JakartaGuacamoleHTTPTunnelServlet {
     @Override
     protected GuacamoleTunnel doConnect(final HttpServletRequest request) throws GuacamoleException {
         final HttpSession httpSession = request.getSession(true);
@@ -59,7 +59,7 @@ public class GuacamoleServlet extends GuacamoleHTTPTunnelServlet {
         final GuacamoleTunnel tunnel = new SimpleGuacamoleTunnel(socket);
 
         // Attach tunnel
-        final GuacamoleSession session = new GuacamoleSession(httpSession);
+        final JakartaGuacamoleSession session = new JakartaGuacamoleSession(httpSession);
         session.attachTunnel(tunnel);
 
         return tunnel;

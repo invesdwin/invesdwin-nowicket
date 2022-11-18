@@ -4,8 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
-import javax.validation.constraints.NotNull;
+import jakarta.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -20,6 +19,7 @@ import de.invesdwin.norva.beanpath.annotation.ModalCloser;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.lang.Files;
+import jakarta.validation.constraints.NotNull;
 
 @NotThreadSafe
 @GeneratedMarkup

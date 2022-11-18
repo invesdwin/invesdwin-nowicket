@@ -1,7 +1,6 @@
 package com.eva.web.error;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.wicket.request.http.WebResponse;
 
@@ -9,6 +8,7 @@ import com.eva.web.AEvaWebPage;
 
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.page.error.PageNotFoundPanel;
+import jakarta.servlet.http.HttpServletResponse;
 
 @NotThreadSafe
 public class PageNotFoundPage extends AEvaWebPage {

@@ -9,13 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.SocketUtils;
 
 import de.invesdwin.instrument.DynamicInstrumentationLoader;
 import de.invesdwin.nowicket.examples.guide.internal.ExampleWebApplication;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.generated.guiservice.test.GuiServiceTester;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.streams.SocketUtils;
 
 @NotThreadSafe
 public abstract class AExampleTest {

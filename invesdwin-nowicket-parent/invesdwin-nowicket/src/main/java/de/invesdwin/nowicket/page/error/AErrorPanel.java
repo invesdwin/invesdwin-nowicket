@@ -1,15 +1,15 @@
 package de.invesdwin.nowicket.page.error;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.util.RequestCycles;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 
 @NotThreadSafe
 public abstract class AErrorPanel extends Panel {

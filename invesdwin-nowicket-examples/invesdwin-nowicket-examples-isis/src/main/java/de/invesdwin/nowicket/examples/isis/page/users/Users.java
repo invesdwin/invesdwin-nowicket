@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
 
 import org.isisaddons.module.security.dom.user.ApplicationUser;
 
@@ -20,7 +19,7 @@ import de.invesdwin.util.bean.AValueObject;
 @NotThreadSafe
 public class Users extends AValueObject {
 
-    @Inject
+    @javax.inject.Inject
     private transient AppUserRegistrationService appUserRegistrationService;
 
     public Users() {

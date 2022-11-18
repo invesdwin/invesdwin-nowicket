@@ -3,10 +3,6 @@ package de.invesdwin.nowicket.examples.guide.page.wicket.guestbook;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -14,6 +10,10 @@ import de.invesdwin.nowicket.examples.guide.page.wicket.guestbook.persistence.Gu
 import de.invesdwin.nowicket.examples.guide.page.wicket.guestbook.persistence.IGuestbookEntryRepository;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import jakarta.inject.Inject;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @NotThreadSafe
 @GeneratedMarkup

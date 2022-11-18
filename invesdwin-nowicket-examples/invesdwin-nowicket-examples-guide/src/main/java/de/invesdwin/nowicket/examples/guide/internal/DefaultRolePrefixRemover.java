@@ -1,13 +1,13 @@
 package de.invesdwin.nowicket.examples.guide.internal;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.expression.SecurityExpressionHandler;
 
 import de.invesdwin.util.lang.reflection.Reflections;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @NotThreadSafe
 @Named

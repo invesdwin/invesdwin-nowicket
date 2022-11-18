@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackHeadersToolbar;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxNavigationToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.DataGridView;
@@ -15,7 +16,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDat
 import org.apache.wicket.extensions.markup.html.repeater.data.table.NavigationToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.NoRecordsToolbar;
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.html.WebComponent;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
@@ -102,9 +102,9 @@ public class ModelDataTable extends DataTable<Object, String> {
             }
 
             @Override
-            protected WebComponent newNavigatorLabel(final String navigatorId, final DataTable<?, ?> table) {
+            protected Component newNavigatorLabel(final String navigatorId, final DataTable<?, ?> table) {
                 //hide label
-                final WebComponent component = super.newNavigatorLabel(navigatorId, table);
+                final Component component = super.newNavigatorLabel(navigatorId, table);
                 component.setVisible(showNavigatorLabel());
                 return component;
             }
