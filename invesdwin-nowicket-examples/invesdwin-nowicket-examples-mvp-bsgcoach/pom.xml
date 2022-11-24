@@ -29,6 +29,7 @@
 		<jakarta-servlet.version>6.0.0</jakarta-servlet.version>
 		<glassfish-jaxb.version>4.0.1</glassfish-jaxb.version>
 		<jakarta-xml-bind.version>4.0.0</jakarta-xml-bind.version>
+		<jakarta-activation.version>2.1.0</jakarta-activation.version>
 
 		<project.version.invesdwin-bom>1.0.18-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
