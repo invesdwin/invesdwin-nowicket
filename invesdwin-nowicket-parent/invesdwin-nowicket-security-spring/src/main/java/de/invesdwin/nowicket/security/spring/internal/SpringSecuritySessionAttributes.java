@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
@@ -57,7 +58,10 @@ public final class SpringSecuritySessionAttributes {
     }
 
     public static void setAuthentication(final Authentication authentication) {
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final SecurityContext context = SecurityContextHolder.getContext();
+        context.setAuthentication(authentication);
+        //replace a deferred context
+        SecurityContextHolder.setContext(context);
     }
 
     public static Authentication getAuthentication() {
@@ -69,7 +73,7 @@ public final class SpringSecuritySessionAttributes {
             authentication = anonFilter.createAuthentication(request);
             authentication = new AnonymousAuthenticationToken(ExtendedAnonymousAuthenticationFilter.KEY,
                     anonFilter.getPrincipal(), anonFilter.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            setAuthentication(authentication);
         }
         return authentication;
     }
