@@ -21,6 +21,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.Binding
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.util.time.date.FDate;
+import de.invesdwin.util.time.date.FDates;
 import de.invesdwin.util.time.duration.Duration;
 
 @MountPath("ajaxtimer")
@@ -44,7 +45,7 @@ public class AjaxTimerPage extends AExampleWebPage {
         }).bind();
         add(new APreactAjaxTimerBehavior(Duration.ONE_SECOND) {
 
-            private FDate prevLastRefresh = FDate.MIN_DATE;
+            private FDate prevLastRefresh = FDates.MIN_DATE;
 
             @Override
             protected void onTimer(final PreactPartialPageRequestHandler target) {
