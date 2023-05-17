@@ -25,6 +25,14 @@ function enableBootstrapTooltips() {
 					}
 					tag.removeAttr('title');
 				}
+			}).on('shown.bs.tooltip',function(e){
+				//allow only one tooltip to be shown at a time: https://stackoverflow.com/a/29950663
+			    $('[data-bs-toggle="tooltip"]').not(this).each(function(){
+					const tooltip = bootstrap.Tooltip.getInstance(this);
+					if(tooltip) {
+						tooltip.hide();
+					}
+				});
 			});
 		}
 
