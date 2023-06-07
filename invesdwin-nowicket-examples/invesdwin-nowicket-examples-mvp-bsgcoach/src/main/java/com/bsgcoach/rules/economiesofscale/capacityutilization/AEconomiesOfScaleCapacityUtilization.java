@@ -35,12 +35,10 @@ public abstract class AEconomiesOfScaleCapacityUtilization implements IRule {
 
     protected abstract CompanyRegion getCompanyRegion();
 
-    //CHECKSTYLE:OFF
     @Override
     public Significance getSignificance(final Reports reports) {
         final Decimal capacity = getCapacity(reports);
         if (capacity != null && capacity.isPositiveNonZero()) {
-            //CHECKSTYLE:ON
             final Decimal utilisationPercent = new Decimal(getUtilisation(reports).getValue(PercentScale.PERCENT));
             //        < 60
             if (utilisationPercent.isLessThan(new Decimal("60"))) {

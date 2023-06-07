@@ -16,8 +16,7 @@ public abstract class AEconomiesOfScalePlantCapacity implements IRule {
 
     @Override
     public String getFeedbackText(final Reports reports) {
-        return "Your plant in "
-                + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle())
+        return "Your plant in " + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle())
                 + " has a regular production capacity of "
                 + FeedbackFormatter.highlightVariable(getCapacityInMillions(reports).toFormattedString())
                 + "M pairs. The theory of scale economies says that the higher the capacity of a production plant and its capacity utilization the lower the variable production costs become. As a results, companies making use of scale effects operate at lower production costs per output unit and achieve a cost advantage on the market.";
@@ -30,10 +29,8 @@ public abstract class AEconomiesOfScalePlantCapacity implements IRule {
 
     protected abstract CompanyRegion getCompanyRegion();
 
-    //CHECKSTYLE:OFF
     @Override
     public Significance getSignificance(final Reports reports) {
-        //CHECKSTYLE:ON
         final Decimal capacity = getCapacityInMillions(reports);
         if (capacity != null && capacity.isPositiveNonZero()) {
             //        <1.5M

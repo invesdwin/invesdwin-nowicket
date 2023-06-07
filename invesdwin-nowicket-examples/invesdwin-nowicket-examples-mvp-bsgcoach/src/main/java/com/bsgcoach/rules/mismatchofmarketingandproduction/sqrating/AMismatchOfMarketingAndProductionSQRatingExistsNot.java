@@ -17,8 +17,7 @@ public abstract class AMismatchOfMarketingAndProductionSQRatingExistsNot extends
     @Override
     public String getFeedbackText(final Reports reports) {
         return "Companies can install plant upgrades in order to specialize their production towards a desired type of product. Specialized production plants produce specific types of products more effecient in comparison to non-specialized production plants. Your production plant in "
-                + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle())
-                + " currently operates at "
+                + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle()) + " currently operates at "
                 + FeedbackFormatter.highlightVariable(getQuality(reports).toFormattedString())
                 + " S/Q rating although this plant is not specialised for this type of production set-up. You should try to match your market position with your plant specialization.";
     }
@@ -46,10 +45,8 @@ public abstract class AMismatchOfMarketingAndProductionSQRatingExistsNot extends
         return false;
     }
 
-    //CHECKSTYLE:OFF
     @Override
     protected Significance internalGetSignificance(final Reports reports) {
-        //CHECKSTYLE:ON
         final Decimal quality = getQuality(reports);
         //        1
         if (quality.isLessThanOrEqualTo(new Decimal("1"))) {

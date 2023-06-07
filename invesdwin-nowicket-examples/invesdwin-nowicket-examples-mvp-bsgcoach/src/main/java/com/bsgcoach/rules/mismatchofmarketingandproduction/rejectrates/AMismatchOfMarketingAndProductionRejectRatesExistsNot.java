@@ -47,10 +47,8 @@ public abstract class AMismatchOfMarketingAndProductionRejectRatesExistsNot exte
         return false;
     }
 
-    //CHECKSTYLE:OFF
     @Override
     protected Significance internalGetSignificance(final Reports reports) {
-        //CHECKSTYLE:ON
         final Decimal rejectCostsPerPair = getRejectCostsPerPair(reports);
         //        >2.5
         if (rejectCostsPerPair.isGreaterThan(new Decimal("2.5"))) {

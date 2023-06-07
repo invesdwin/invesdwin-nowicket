@@ -12,14 +12,13 @@ import com.bsgcoach.rules.mismatchofmarketingandproduction.AMismatchOfMarketingA
 import de.invesdwin.util.math.decimal.Decimal;
 
 @Immutable
-public abstract class AMismatchOfMarketingAndProductionNumberOfModelsExistsNot extends
-AMismatchOfMarketingAndProduction {
+public abstract class AMismatchOfMarketingAndProductionNumberOfModelsExistsNot
+        extends AMismatchOfMarketingAndProduction {
 
     @Override
     public String getFeedbackText(final Reports reports) {
         return "Companies can install plant upgrades in order to specialize their production towards a desired type of product. Specialized production plants produce corresponding types of products more effecient in comparison to non-specialized production plants. Your production plant in "
-                + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle())
-                + " currently operates at "
+                + FeedbackFormatter.highlightVariable(getCompanyRegion().getShortTitle()) + " currently operates at "
                 + FeedbackFormatter.highlightVariable(getNumberOfModels(reports).toFormattedString())
                 + " models although this plant is not specialised for this type of production set-up. You should try to match your market position with your plant specialization. ";
     }
@@ -39,10 +38,8 @@ AMismatchOfMarketingAndProduction {
         return CorrespondingTheories.NumberOfModels;
     }
 
-    //CHECKSTYLE:OFF
     @Override
     protected Significance internalGetSignificance(final Reports reports) {
-        //CHECKSTYLE:ON
         final Decimal numberOfModels = getNumberOfModels(reports);
         //        500
         if (numberOfModels.isGreaterThanOrEqualTo(new Decimal("500"))) {

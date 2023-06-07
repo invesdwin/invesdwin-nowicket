@@ -46,10 +46,8 @@ public abstract class AMismatchOfMarketingAndProductionSQRatingExists extends AM
         return true;
     }
 
-    //CHECKSTYLE:OFF
     @Override
     protected Significance internalGetSignificance(final Reports reports) {
-        //CHECKSTYLE:ON
         final Decimal quality = getQuality(reports);
         //        10
         if (quality.isGreaterThanOrEqualTo(new Decimal("10"))) {

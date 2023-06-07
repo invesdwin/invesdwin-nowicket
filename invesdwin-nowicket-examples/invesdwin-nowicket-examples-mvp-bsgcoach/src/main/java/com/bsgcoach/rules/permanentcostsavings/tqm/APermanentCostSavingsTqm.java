@@ -65,11 +65,9 @@ public abstract class APermanentCostSavingsTqm implements IRule {
         return s;
     }
 
-    //CHECKSTYLE:OFF
     private Significance internalGetSignificance(final Reports reports) {
         final Decimal capacity = getCapacity(reports);
         if (capacity != null && capacity.isPositiveNonZero()) {
-            //CHECKSTYLE:ON
             final Decimal tqmPairInUnits = getTqmPair(reports);
             //            <1.0
             if (tqmPairInUnits.isLessThan(new Decimal("1"))) {

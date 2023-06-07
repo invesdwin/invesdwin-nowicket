@@ -32,12 +32,10 @@ public abstract class ASpecializationUpgrades implements IRule {
 
     protected abstract CompanyRegion getCompanyRegion();
 
-    //CHECKSTYLE:OFF
     @Override
     public Significance getSignificance(final Reports reports) {
         final Decimal capacity = getCapacity(reports);
         if (capacity != null && capacity.isPositiveNonZero()) {
-            //CHECKSTYLE:ON
             final Decimal numberOfUpgrades = getNumberOfUpgrades(reports);
             //          0
             if (numberOfUpgrades.isLessThan(new Decimal("1"))) {

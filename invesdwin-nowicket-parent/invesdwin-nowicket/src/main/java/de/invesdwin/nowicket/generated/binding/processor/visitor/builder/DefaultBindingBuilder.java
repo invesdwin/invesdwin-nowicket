@@ -81,11 +81,8 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column.selection.ModelSelectionButtonColumn;
 import de.invesdwin.nowicket.util.Components;
 
-// CHECKSTYLE:OFF fan out
 @NotThreadSafe
 public class DefaultBindingBuilder implements IBindingBuilder {
-
-    //CHECKSTYLE:ON
 
     @Override
     public Component createForm(final FormHtmlElement e) {

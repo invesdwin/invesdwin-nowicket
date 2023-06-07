@@ -51,8 +51,7 @@ public final class PageFactory implements Serializable {
     @GuardedBy("modelClass_modelObjectHashCode_pageReferences" /* self on each level */)
     private final Map<Class<?>, Map<Integer, List<PageReferenceAndModel>>> modelClass_modelObjectHashCode_pageReferences = new LinkedHashMap<Class<?>, Map<Integer, List<PageReferenceAndModel>>>();
 
-    private PageFactory() {
-    }
+    private PageFactory() {}
 
     public static PageFactory get() {
         PageFactory pageFactory = AWebSession.get().getMetaData(KEY_PAGE_FACTORY);
@@ -152,9 +151,7 @@ public final class PageFactory implements Serializable {
                 } finally {
                     pageAccessSynchronizer.unlockPage(existingPageReference.getPageId());
                 }
-                //CHECKSTYLE:OFF
             } catch (final CouldNotLockPageException e) {
-                //CHECKSTYLE:ON
                 //ignore, check the other pages or create a new instance in the worst case
             }
         }
@@ -215,9 +212,7 @@ public final class PageFactory implements Serializable {
                 } finally {
                     pageAccessSynchronizer.unlockPage(existingPageReference.getPageId());
                 }
-                //CHECKSTYLE:OFF
             } catch (final CouldNotLockPageException e) {
-                //CHECKSTYLE:ON
                 //ignore, next call might clean up the existing references
             }
         }

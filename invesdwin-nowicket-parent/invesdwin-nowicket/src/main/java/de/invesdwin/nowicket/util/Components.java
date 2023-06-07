@@ -219,9 +219,7 @@ public final class Components {
      */
     public static void rememberAllFeedbackMessages(final Component component) {
         Assertions.assertThat(RequestCycle.get().getMetaData(KEY_PREVIOUS_MESSAGES)).isNull();
-        //CHECKSTYLE:OFF
         final Map<String, List<FeedbackMessage>> markupId_previousMessages = new HashMap<String, List<FeedbackMessage>>();
-        //CHECKSTYLE:ON
         component.getPage().visitChildren(new IVisitor<Component, Void>() {
             @Override
             public void component(final Component object, final IVisit<Void> visit) {

@@ -49,9 +49,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
     private List<ATableColumnHtmlElement<?, ?>> rawColumns;
     private Map<String, ATableColumnHtmlElement<?, ?>> property_column;
 
-    //CHECKSTYLE:OFF
     public TableHtmlElement(final HtmlContext context, final Element element) {
-        //CHECKSTYLE:ON
         super(context, element);
         textColumns = new ArrayList<TableTextColumnHtmlElement>();
         for (final TableTextColumnModelElement textColumn : getModelElement().getTextColumns()) {

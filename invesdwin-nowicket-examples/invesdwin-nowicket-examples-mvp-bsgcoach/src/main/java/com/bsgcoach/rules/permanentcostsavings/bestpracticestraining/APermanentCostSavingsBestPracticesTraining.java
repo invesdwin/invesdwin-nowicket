@@ -68,11 +68,9 @@ public abstract class APermanentCostSavingsBestPracticesTraining implements IRul
 
     protected abstract CompanyRegion getCompanyRegion();
 
-    //CHECKSTYLE:OFF
     private Significance internalGetSignificance(final Reports reports) {
         final Decimal capacity = getCapacity(reports);
         if (capacity != null && capacity.isPositiveNonZero()) {
-            //CHECKSTYLE:ON
             final Decimal bptPerPair = getBestPracticesTrainingPerPair(reports);
             //            <500
             if (bptPerPair.isLessThan(new Decimal("500"))) {

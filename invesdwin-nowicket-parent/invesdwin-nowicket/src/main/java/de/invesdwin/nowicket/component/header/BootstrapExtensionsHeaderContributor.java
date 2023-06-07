@@ -118,10 +118,8 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         return this;
     }
 
-    //CHECKSTYLE:OFF
     @Override
     public void renderHead(final IHeaderResponse response) {
-        //CHECKSTYLE:ON
         //need to add this first of all
         if (createPreactRenderHtmlFunction) {
             PreventDuplicateAjaxCallbacksJsReference.INSTANCE.renderHead(response);

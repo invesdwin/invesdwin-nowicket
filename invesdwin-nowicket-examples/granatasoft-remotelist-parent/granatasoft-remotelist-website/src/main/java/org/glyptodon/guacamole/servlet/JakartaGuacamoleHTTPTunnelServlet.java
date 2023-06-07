@@ -1,4 +1,4 @@
-// CHECKSTYLE:OFF
+// CHECKSTYLE:OFF copied from guacamole
 // @ThreadSafe
 package org.glyptodon.guacamole.servlet;
 
