@@ -10,6 +10,7 @@ import org.apache.wicket.request.flow.RedirectToUrlException;
 import de.invesdwin.norva.beanpath.annotation.Hidden;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.application.auth.AWebSession;
+import de.invesdwin.nowicket.application.auth.IAuthenticationService;
 import de.invesdwin.nowicket.application.auth.ISavedRequest;
 import de.invesdwin.nowicket.application.auth.Roles;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
@@ -87,12 +88,15 @@ public class SignIn extends AValueObject {
 
     @Hidden
     public void onSignInSucceeded() {
-        // If login has been called because the user was not yet logged in, then continue to the
-        // original destination, otherwise to the Home page
-        final ISavedRequest savedRequest = Roles.getAuthenticationService().getSavedRequest();
-        //saved request might be null from spring-security, since redirect to login might have been handled by wicket instead
-        if (savedRequest != null && savedRequest.getRedirectUrl() != null) {
-            throw new RedirectToUrlException(savedRequest.getRedirectUrl());
+        final IAuthenticationService authenticationService = Roles.getAuthenticationService();
+        if (authenticationService != null) {
+            // If login has been called because the user was not yet logged in, then continue to the
+            // original destination, otherwise to the Home page
+            final ISavedRequest savedRequest = authenticationService.getSavedRequest();
+            //saved request might be null from spring-security, since redirect to login might have been handled by wicket instead
+            if (savedRequest != null && savedRequest.getRedirectUrl() != null) {
+                throw new RedirectToUrlException(savedRequest.getRedirectUrl());
+            }
         }
         component.continueToOriginalDestination();
         throw new RestartResponseException(ABaseWebApplication.get().getHomePage());
@@ -113,7 +117,10 @@ public class SignIn extends AValueObject {
                 final String username = data[0];
                 final String password = data[1];
                 if (session.signIn(username, password)) {
-                    Roles.getAuthenticationService().convertUsernamePasswordToRememberMeAuthentication();
+                    final IAuthenticationService authenticationService = Roles.getAuthenticationService();
+                    if (authenticationService != null) {
+                        authenticationService.convertUsernamePasswordToRememberMeAuthentication();
+                    }
                     onSignInSucceeded();
                 } else {
                     // the loaded credentials are wrong. erase them.

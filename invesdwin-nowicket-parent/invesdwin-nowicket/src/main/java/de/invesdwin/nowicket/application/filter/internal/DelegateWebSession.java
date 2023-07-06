@@ -14,8 +14,6 @@ import de.invesdwin.util.assertions.Assertions;
 @NotThreadSafe
 public class DelegateWebSession extends AWebSession {
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(DelegateWebSession.class);
-
     public DelegateWebSession(final Request request) {
         super(request);
     }

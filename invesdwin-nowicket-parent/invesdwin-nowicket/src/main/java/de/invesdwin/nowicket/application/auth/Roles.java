@@ -15,7 +15,11 @@ public class Roles extends org.apache.wicket.authroles.authorization.strategies.
      * Evaluates spring security expressions like "hasRole('ADMIN')"
      */
     public static boolean evaluateExpression(final String spel) {
-        return getAuthenticationService().evaluateExpression(spel);
+        final IAuthenticationService authenticationService = getAuthenticationService();
+        if (authenticationService == null) {
+            return false;
+        }
+        return authenticationService.evaluateExpression(spel);
     }
 
     public static IAuthenticationService getAuthenticationService() {
@@ -29,28 +33,56 @@ public class Roles extends org.apache.wicket.authroles.authorization.strategies.
      * programmitcally-in
      */
     public static boolean isFullyAuthenticated() {
-        return AWebApplication.exists() && getAuthenticationService().isFullyAuthenticated();
+        if (!AWebApplication.exists()) {
+            return false;
+        }
+        final IAuthenticationService authenticationService = getAuthenticationService();
+        if (authenticationService == null) {
+            return false;
+        }
+        return authenticationService.isFullyAuthenticated();
     }
 
     /**
      * Returns true if the current principal is a remember-me user
      */
     public static boolean isRememberMe() {
-        return AWebApplication.exists() && getAuthenticationService().isRememberMe();
+        if (!AWebApplication.exists()) {
+            return false;
+        }
+        final IAuthenticationService authenticationService = getAuthenticationService();
+        if (authenticationService == null) {
+            return false;
+        }
+        return authenticationService.isRememberMe();
     }
 
     /**
      * Returns true if the current principal is an anonymous user
      */
     public static boolean isAnonymous() {
-        return !AWebApplication.exists() || getAuthenticationService().isAnonymous();
+        if (AWebApplication.exists()) {
+            return true;
+        }
+        final IAuthenticationService authenticationService = getAuthenticationService();
+        if (authenticationService == null) {
+            return true;
+        }
+        return authenticationService.isAnonymous();
     }
 
     /**
      * Returns true if the user is not anonymous
      */
     public static boolean isAuthenticated() {
-        return AWebApplication.exists() && getAuthenticationService().isAuthenticated();
+        if (!AWebApplication.exists()) {
+            return false;
+        }
+        final IAuthenticationService authenticationService = getAuthenticationService();
+        if (authenticationService == null) {
+            return false;
+        }
+        return authenticationService.isAuthenticated();
     }
 
 }
