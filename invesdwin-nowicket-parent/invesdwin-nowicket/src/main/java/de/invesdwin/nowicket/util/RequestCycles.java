@@ -119,7 +119,8 @@ public final class RequestCycles {
     }
 
     public static boolean shouldSwallowServletException(final Integer statusCode, final String message) {
-        if (statusCode.intValue() == KOPERNIO_EXCEPTION_STATUS_CODE && KOPERNIO_EXCEPTION_MESSAGE.equals(message)) {
+        if (statusCode != null && statusCode.intValue() == KOPERNIO_EXCEPTION_STATUS_CODE
+                && KOPERNIO_EXCEPTION_MESSAGE.equals(message)) {
             return true;
         }
         return false;
