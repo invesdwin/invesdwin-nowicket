@@ -1,23 +1,24 @@
 function enableBootstrapTooltips() {
 	if (typeof enableBootstrapTooltipsRegistered === 'undefined') {
 		window.enableBootstrapTooltipsRegistered = true;
+		window.enableBootstrapTooltipsShown = null;
 
 		function triggerEnableBootstrapTooltips() {
-			$('[data-bs-toggle="tooltip"]').each(function(){
+			$('[data-bs-toggle="tooltip"]').each(function() {
 				var tag = $(this);
-				if(tag.attr('data-original-title') === undefined){
+				if (tag.attr('data-original-title') === undefined) {
 					var tooltip = bootstrap.Tooltip.getInstance(this);
-					if(!tooltip) {
+					if (!tooltip) {
 						const initialTitle = tag.attr('title');
-						tooltip = new bootstrap.Tooltip(this, {"animation":false});
+						tooltip = new bootstrap.Tooltip(this, { "animation": false });
 						tag.attr('data-original-title', initialTitle);
 						return;
 					}
 				}
 				const title = tag.attr('title');
-				if(title !== undefined && title.length > 0){
+				if (title !== undefined && title.length > 0) {
 					const prevTitle = tag.attr('data-original-title');
-					if(prevTitle !== title) {
+					if (prevTitle !== title) {
 						tag.attr('data-original-title', title);
 						const tooltip = bootstrap.Tooltip.getInstance(this);
 						tooltip.setContent({ '.tooltip-inner': title });
@@ -25,14 +26,6 @@ function enableBootstrapTooltips() {
 					}
 					tag.removeAttr('title');
 				}
-			}).on('shown.bs.tooltip',function(e){
-				//allow only one tooltip to be shown at a time: https://stackoverflow.com/a/29950663
-			    $('[data-bs-toggle="tooltip"]').not(this).each(function(){
-					const tooltip = bootstrap.Tooltip.getInstance(this);
-					if(tooltip) {
-						tooltip.hide();
-					}
-				});
 			});
 		}
 
@@ -45,6 +38,17 @@ function enableBootstrapTooltips() {
 		});
 		Wicket.Event.subscribe('/ajax/call/failure', function(jqEvent, attributes, jqXHR, errorThrown, textStatus) {
 			triggerEnableBootstrapTooltips();
+		});
+		Wicket.Event.add(window, 'shown.bs.tooltip', function(e) {
+			//allow only one tooltip to be shown at a time: https://stackoverflow.com/a/29950663
+			const thisTooltip = bootstrap.Tooltip.getInstance(e);
+			const existingTooltip = window.enableBootstrapTooltipsShown;
+			if (thisTooltip != existingTooltip) {
+				if (existingTooltip) {
+					existingTooltip.hide();
+				}
+				window.enableBootstrapTooltipsShown = thisTooltip;
+			}
 		});
 	}
 }
