@@ -1,6 +1,7 @@
 function enableBootstrapTooltips() {
 	if (typeof enableBootstrapTooltipsRegistered === 'undefined') {
 		window.enableBootstrapTooltipsRegistered = true;
+		window.enableBootstrapTooltipsShown = null;
 
 		function triggerEnableBootstrapTooltips() {
 			$('[data-bs-toggle="tooltip"]').each(function() {
@@ -40,13 +41,15 @@ function enableBootstrapTooltips() {
 		});
 		Wicket.Event.add(window, 'shown.bs.tooltip', function(e) {
 			//allow only one tooltip to be shown at a time: https://stackoverflow.com/a/29950663
-			const thisTooltip = bootstrap.Tooltip.getInstance(e);
-			$('[data-bs-toggle="tooltip"]').each(function() {
-				const tooltip = bootstrap.Tooltip.getInstance(this);
-				if (tooltip && tooltip != thisTooltip) {
-					tooltip.hide();
+			const thisElement = e.target;
+			const thisTooltip = bootstrap.Tooltip.getInstance(thisElement);
+			const existingTooltip = window.enableBootstrapTooltipsShown;
+			if (thisTooltip != existingTooltip) {
+				if (existingTooltip) {
+					existingTooltip.hide();
 				}
-			});
+				window.enableBootstrapTooltipsShown = thisTooltip;
+			}
 		});
 	}
 }
