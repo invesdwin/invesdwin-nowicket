@@ -79,7 +79,10 @@ public class WebApplicationInitializer {
         registerHidingAutoLabelResolver();
         registerStalePageRequestCycleListener();
         registerSessionCookieConfig();
-        registerFastSerializer();
+        //FST can cause error like:
+        //        Caused by: java.lang.IncompatibleClassChangeError: Class java.lang.String does not implement the requested interface org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn
+        //        at de.invesdwin.nowicket.component.ReusingDelegateColumn.detach(ReusingDelegateColumn.java:65)
+        //        registerFastSerializer();
         registerAjaxDebugMode();
         runHooks();
     }
