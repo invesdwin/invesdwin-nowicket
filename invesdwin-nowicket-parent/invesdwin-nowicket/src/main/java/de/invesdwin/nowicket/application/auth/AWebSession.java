@@ -15,6 +15,7 @@ package de.invesdwin.nowicket.application.auth;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.request.Request;
+import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * Basic authenticated web session. Subclasses must provide a method that authenticates the session based on a username
@@ -39,6 +40,9 @@ public abstract class AWebSession extends org.apache.wicket.authroles.authentica
      * @return Current authenticated web session
      */
     public static AWebSession get() {
+        if (RequestCycle.get() == null) {
+            return null;
+        }
         return (AWebSession) org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession.get();
     }
 
