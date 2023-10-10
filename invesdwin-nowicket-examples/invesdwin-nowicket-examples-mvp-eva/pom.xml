@@ -34,7 +34,7 @@
 		<project.version.invesdwin-bom>1.0.18-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
-		<version.maven-processor-plugin>4.5</version.maven-processor-plugin>
+		<version.maven-processor-plugin>5.0</version.maven-processor-plugin>
 		<version.spring-boot-maven-plugin>3.0.0-M1</version.spring-boot-maven-plugin>
 		<version.jacoco-maven-plugin>0.8.6</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
