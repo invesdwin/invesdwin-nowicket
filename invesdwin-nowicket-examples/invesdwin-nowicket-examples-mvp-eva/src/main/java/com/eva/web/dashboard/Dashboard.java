@@ -36,7 +36,7 @@ public class Dashboard extends AValueObject {
         while (!pupils.isEmpty()) {
             final int index;
             if (pupils.size() > 1) {
-                index = rng.nextInt(0, pupils.size() - 1);
+                index = rng.nextInt(0, pupils.size());
             } else {
                 index = 0;
             }
