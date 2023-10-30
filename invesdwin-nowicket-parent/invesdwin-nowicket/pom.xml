@@ -10,8 +10,8 @@
 
 	<properties>
 		<version.ecs>1.4.2</version.ecs>
-		<version.font-awesome>6.1.2</version.font-awesome>
-		<version.preact>10.6.4</version.preact>
+		<version.font-awesome>6.4.2</version.font-awesome>
+		<version.preact>10.12.1</version.preact>
 	</properties>
 
 	<dependencies>
@@ -136,6 +136,10 @@
 			<groupId>org.webjars.npm</groupId>
 			<artifactId>preact</artifactId>
 			<version>${version.preact}</version>
+		</dependency>
+		<dependency>
+			<groupId>args4j</groupId>
+			<artifactId>args4j</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0-M4</version>
+		<version>3.1.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -18,28 +18,29 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
-		<spring.version>6.0.0</spring.version>
-		<okhttp3.version>4.9.3</okhttp3.version>
-		<slf4j.version>2.0.3</slf4j.version>
-		<logback.version>1.4.4</logback.version>
-		<spring-security.version>6.0.0-M6</spring-security.version>
-		<caffeine.version>3.1.1</caffeine.version>
-		<micrometer.version>1.10.1</micrometer.version>
+		<spring.version>6.0.13</spring.version>
+		<okhttp3.version>4.12.0</okhttp3.version>
+		<slf4j.version>2.0.9</slf4j.version>
+		<logback.version>1.4.11</logback.version>
+		<spring-security.version>6.1.5</spring-security.version>
+		<caffeine.version>3.1.8</caffeine.version>
+		<micrometer.version>1.11.5</micrometer.version>
 		<jakarta-persistence.version>3.1.0</jakarta-persistence.version>
 		<jakarta-servlet.version>6.0.0</jakarta-servlet.version>
-		<glassfish-jaxb.version>4.0.1</glassfish-jaxb.version>
-		<jakarta-xml-bind.version>4.0.0</jakarta-xml-bind.version>
-		<jakarta-activation.version>2.1.0</jakarta-activation.version>
+		<glassfish-jaxb.version>4.0.4</glassfish-jaxb.version>
+		<jakarta-xml-bind.version>4.0.1</jakarta-xml-bind.version>
+		<jakarta-activation.version>2.1.2</jakarta-activation.version>
 
 		<project.version.invesdwin-bom>1.0.18-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
 		<version.maven-processor-plugin>5.0</version.maven-processor-plugin>
-		<version.spring-boot-maven-plugin>3.0.0-M1</version.spring-boot-maven-plugin>
+		<version.spring-boot-maven-plugin>3.1.5</version.spring-boot-maven-plugin>
 		<version.jacoco-maven-plugin>0.8.6</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
-		<aspectj.version>1.9.9.1</aspectj.version>
-		<commons-codec.version>1.15</commons-codec.version>
+		<aspectj.version>1.9.20.1</aspectj.version>
+		<commons-codec.version>1.16.0</commons-codec.version>
+		<commons-lang3.version>3.13.0</commons-lang3.version>
 
 		<start-class>com.bsgcoach.Main</start-class>
 	</properties>
@@ -162,6 +163,7 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<complianceLevel>${java.version}</complianceLevel>
+					<release>8</release>
 					<compilerArgument>-proc:none</compilerArgument>
 					<Xlint>ignore</Xlint>
 					<verbose>false</verbose>
