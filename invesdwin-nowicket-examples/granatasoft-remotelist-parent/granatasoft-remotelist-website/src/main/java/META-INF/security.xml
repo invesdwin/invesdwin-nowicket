@@ -17,6 +17,8 @@
 		<!-- alternatively with use-expressions="false": access="ADMIN" -->
 		<security:intercept-url pattern="/secure/**"
 			access="hasRole('ADMIN')" />
+			
+		<security:intercept-url pattern="/**" access="permitAll" />
 	</security:http>
 
 	<security:authentication-manager

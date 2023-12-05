@@ -33,6 +33,9 @@
 		<security:intercept-url pattern="/springsecure"
 			access="hasRole('ADMIN')" />
 		<!-- alternatively with use-expressions="false": access="ADMIN" -->
+		
+		<!-- default changed to denyAll in spring-security 6: https://stackoverflow.com/a/76339455/67492 -->
+		<security:intercept-url pattern="/**" access="permitAll" />
 	</security:http>
 
 	<bean name="noopPasswordEncoder"
