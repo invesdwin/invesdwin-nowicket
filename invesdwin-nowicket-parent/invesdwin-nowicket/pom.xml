@@ -11,7 +11,7 @@
 	<properties>
 		<version.ecs>1.4.2</version.ecs>
 		<version.font-awesome>6.4.2</version.font-awesome>
-		<version.preact>10.12.1</version.preact>
+		<version.preact>10.6.4</version.preact>
 	</properties>
 
 	<dependencies>
