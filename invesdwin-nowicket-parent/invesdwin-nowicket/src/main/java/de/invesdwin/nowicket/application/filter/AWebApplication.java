@@ -132,6 +132,14 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public String getMimeType(final String fileName) {
+        if (fileName.endsWith(".js.map")) {
+            return internalGetMimeType(fileName + ".json");
+        } else {
+            return internalGetMimeType(fileName);
+        }
+    }
+
+    protected String internalGetMimeType(final String fileName) {
         String mimeType = super.getMimeType(fileName);
         if (mimeType == null) {
             //fallback to mime.types file
