@@ -10,6 +10,7 @@
 		<security:csrf disabled="true" />
 		<security:headers>
 			<security:frame-options policy="SAMEORIGIN" />
+			<security:content-type-options disabled="true" />
 		</security:headers>
 
 		<!-- register wicket sigin in page -->
