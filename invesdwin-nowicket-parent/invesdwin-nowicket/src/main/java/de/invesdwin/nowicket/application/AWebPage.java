@@ -25,6 +25,7 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.html.HtmlTag;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.ComponentPosition;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
@@ -35,7 +36,6 @@ import de.invesdwin.nowicket.application.filter.init.WebApplicationInitializer;
 import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFactory;
 import de.invesdwin.nowicket.component.footer.AFooter;
 import de.invesdwin.nowicket.component.header.ModernizrMinJavaScriptReference;
-import de.invesdwin.nowicket.component.navbar.Navbar;
 import de.invesdwin.nowicket.page.auth.SignIn;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.lang.Objects;

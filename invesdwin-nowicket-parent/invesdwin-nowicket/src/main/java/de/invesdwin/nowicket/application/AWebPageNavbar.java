@@ -7,8 +7,8 @@ import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.TransparentWebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.utilities.BackgroundColorBehavior;
-import de.invesdwin.nowicket.component.navbar.Navbar;
 
 @NotThreadSafe
 public abstract class AWebPageNavbar extends Navbar {

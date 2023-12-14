@@ -16,6 +16,7 @@ import com.eva.web.footer.FooterPanel;
 import com.eva.web.guide.RedirectToGuidePage;
 import com.eva.web.pleasewait.PleaseWaitPage;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.ComponentPosition;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
@@ -24,7 +25,6 @@ import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6I
 import de.invesdwin.nowicket.application.AWebPage;
 import de.invesdwin.nowicket.application.auth.ABaseWebApplication;
 import de.invesdwin.nowicket.component.footer.AFooter;
-import de.invesdwin.nowicket.component.navbar.Navbar;
 
 @NotThreadSafe
 public abstract class AEvaWebPage extends AWebPage {

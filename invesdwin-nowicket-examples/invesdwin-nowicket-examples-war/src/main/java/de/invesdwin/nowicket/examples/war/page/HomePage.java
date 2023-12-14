@@ -5,8 +5,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.invesdwin.nowicket.application.AWebPage;
-import de.invesdwin.nowicket.component.navbar.Navbar;
 import de.invesdwin.nowicket.generated.binding.GeneratedBinding;
 
 @NotThreadSafe
