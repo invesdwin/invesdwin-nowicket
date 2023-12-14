@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table;
+package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.orderby;
 
 import javax.annotation.concurrent.NotThreadSafe;
 

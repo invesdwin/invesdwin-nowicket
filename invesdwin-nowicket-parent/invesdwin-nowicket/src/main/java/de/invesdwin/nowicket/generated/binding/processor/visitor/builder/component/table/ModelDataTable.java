@@ -27,6 +27,7 @@ import org.apache.wicket.model.IModel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navigation.ajax.BootstrapAjaxPagingNavigator;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.orderby.IconOrderByBorder;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.UpdatingReuseIfModelsEqualStrategy;
 
 /**

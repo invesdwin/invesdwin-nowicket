@@ -1,16 +1,15 @@
-package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table;
+package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.orderby;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.extensions.ajax.markup.html.repeater.data.sort.AjaxFallbackOrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortStateLocator;
 
 import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
 import de.invesdwin.nowicket.util.RequestCycles;
 
 @NotThreadSafe
-public abstract class APreactAjaxFallbackOrderByBorder<S> extends AjaxFallbackOrderByBorder<S> {
+public abstract class APreactAjaxFallbackOrderByBorder<S> extends ACyclingAjaxFallbackOrderByBorder<S> {
 
     public APreactAjaxFallbackOrderByBorder(final String id, final S sortProperty,
             final ISortStateLocator<S> stateLocator) {
