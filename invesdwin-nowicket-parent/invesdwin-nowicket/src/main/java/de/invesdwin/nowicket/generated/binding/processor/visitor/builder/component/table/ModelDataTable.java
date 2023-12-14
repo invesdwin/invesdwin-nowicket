@@ -89,14 +89,14 @@ public class ModelDataTable extends DataTable<Object, String> {
             @Override
             protected WebMarkupContainer newSortableHeader(final String headerId, final String property,
                     final ISortStateLocator<String> locator) {
-                return ModelDataTable.this.newSortableHeader(getTable(), headerId, property, locator);
+                return ModelDataTable.this.newSortableHeader(headerId, property, locator, getTable());
             }
         };
     }
 
-    protected WebMarkupContainer newSortableHeader(final DataTable<?, ?> table, final String headerId,
-            final String property, final ISortStateLocator<String> locator) {
-        return new IconOrderByBorder<String>(table, headerId, property, locator);
+    protected WebMarkupContainer newSortableHeader(final String headerId, final String property,
+            final ISortStateLocator<String> locator, final DataTable<?, ?> table) {
+        return new IconOrderByBorder<String>(headerId, property, locator, table);
     }
 
     protected NoRecordsToolbar newNoRecordsToolbar() {

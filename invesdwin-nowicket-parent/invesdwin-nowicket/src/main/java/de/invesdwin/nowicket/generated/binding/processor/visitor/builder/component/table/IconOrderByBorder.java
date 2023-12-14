@@ -22,20 +22,20 @@ public class IconOrderByBorder<S> extends Border {
     private final S property;
     private final ISortStateLocator<S> stateLocator;
 
-    public IconOrderByBorder(final DataTable<?, ?> dataTable, final String id, final S property,
-            final ISortStateLocator<S> stateLocator) {
+    public IconOrderByBorder(final String id, final S property, final ISortStateLocator<S> stateLocator,
+            final DataTable<?, ?> dataTable) {
         super(id);
         this.property = property;
         this.stateLocator = stateLocator;
-        final OrderByBorder<S> orderByBorder = newOrderByBorder(dataTable, property, stateLocator);
+        final OrderByBorder<S> orderByBorder = newOrderByBorder("orderByBorder", property, stateLocator, dataTable);
         addToBorder(orderByBorder);
         this.icon = new Icon("icon", (IconType) null);
         orderByBorder.add(icon);
     }
 
-    protected OrderByBorder<S> newOrderByBorder(final DataTable<?, ?> dataTable, final S property,
-            final ISortStateLocator<S> stateLocator) {
-        return new APreactAjaxFallbackOrderByBorder<S>("orderByBorder", property, stateLocator) {
+    protected OrderByBorder<S> newOrderByBorder(final String id, final S property,
+            final ISortStateLocator<S> stateLocator, final DataTable<?, ?> dataTable) {
+        return new APreactAjaxFallbackOrderByBorder<S>(id, property, stateLocator) {
             @Override
             protected void onAjaxClick(final PreactPartialPageRequestHandler target) {
                 target.add(dataTable);
