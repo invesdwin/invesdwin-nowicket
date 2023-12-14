@@ -53,4 +53,14 @@ public class DelegateColumn<T, S> implements IStyledColumn<T, S> {
         }
     }
 
+    @Override
+    public boolean isSortable() {
+        if (delegate instanceof IStyledColumn) {
+            final IStyledColumn<?, ?> cDelegate = (IStyledColumn<?, ?>) delegate;
+            return cDelegate.isSortable();
+        } else {
+            return IStyledColumn.super.isSortable();
+        }
+    }
+
 }
