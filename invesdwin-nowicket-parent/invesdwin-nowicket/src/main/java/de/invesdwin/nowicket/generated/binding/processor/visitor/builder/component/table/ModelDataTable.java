@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackHeadersToolbar;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxNavigationToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.DataGridView;
@@ -20,6 +21,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.OddEvenItem;
+import org.apache.wicket.markup.repeater.RefreshingView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
@@ -71,6 +73,19 @@ public class ModelDataTable extends DataTable<Object, String> {
 
     protected AbstractToolbar newHeadersToolbar() {
         return new AjaxFallbackHeadersToolbar<String>(this, (ISortableDataProvider<Object, String>) getDataProvider()) {
+
+            @Override
+            public MarkupContainer add(final Component... children) {
+                for (int i = 0; i < children.length; i++) {
+                    final Component child = children[i];
+                    if (child instanceof RefreshingView<?> && "headers".equals(child.getId())) {
+                        final RefreshingView<?> cChild = (RefreshingView<?>) child;
+                        cChild.setItemReuseStrategy(UpdatingReuseIfModelsEqualStrategy.getInstance());
+                    }
+                }
+                return super.add(children);
+            }
+
             @Override
             protected WebMarkupContainer newSortableHeader(final String headerId, final String property,
                     final ISortStateLocator<String> locator) {

@@ -2,9 +2,8 @@ package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compon
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.extensions.ajax.markup.html.repeater.data.sort.AjaxFallbackOrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortStateLocator;
+import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.markup.html.border.Border;
@@ -12,6 +11,8 @@ import org.apache.wicket.markup.html.border.Border;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.Icon;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6IconType;
+import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
+import de.invesdwin.nowicket.component.websocket.APreactAjaxFallbackOrderByBorder;
 import de.invesdwin.util.error.UnknownArgumentException;
 
 @NotThreadSafe
@@ -26,16 +27,20 @@ public class IconOrderByBorder<S> extends Border {
         super(id);
         this.property = property;
         this.stateLocator = stateLocator;
-        final AjaxFallbackOrderByBorder<S> orderByBorder = new AjaxFallbackOrderByBorder<S>("orderByBorder", property,
-                stateLocator) {
-            @Override
-            protected void onAjaxClick(final AjaxRequestTarget target) {
-                target.add(dataTable);
-            }
-        };
+        final OrderByBorder<S> orderByBorder = newOrderByBorder(dataTable, property, stateLocator);
         addToBorder(orderByBorder);
         this.icon = new Icon("icon", (IconType) null);
         orderByBorder.add(icon);
+    }
+
+    protected OrderByBorder<S> newOrderByBorder(final DataTable<?, ?> dataTable, final S property,
+            final ISortStateLocator<S> stateLocator) {
+        return new APreactAjaxFallbackOrderByBorder<S>("orderByBorder", property, stateLocator) {
+            @Override
+            protected void onAjaxClick(final PreactPartialPageRequestHandler target) {
+                target.add(dataTable);
+            }
+        };
     }
 
     @Override
