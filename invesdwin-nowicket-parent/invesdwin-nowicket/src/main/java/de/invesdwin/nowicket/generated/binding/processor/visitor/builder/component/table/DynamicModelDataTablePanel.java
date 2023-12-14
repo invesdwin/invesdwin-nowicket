@@ -7,6 +7,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
@@ -47,9 +48,16 @@ public class DynamicModelDataTablePanel extends FormComponentPanel<Object> imple
     }
 
     private DataTable<?, ?> createDataTable(final ISortableDataProvider<Object, String> sortableDataProvider) {
-        final DataTable<?, ?> dataTable = newDataTable(DATA_TABLE_ID, element, sortableDataProvider, rowsPerPage);
+        final List<IColumn<Object, String>> columns = newColumns(element);
+        final DataTable<?, ?> dataTable = newDataTable(DATA_TABLE_ID, element, columns, sortableDataProvider,
+                rowsPerPage);
         appendAttributes(element, dataTable);
         return dataTable;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected List<IColumn<Object, String>> newColumns(final TableHtmlElement element) {
+        return (List<IColumn<Object, String>>) element.createWicketColumns();
     }
 
     private void appendAttributes(final TableHtmlElement element, final DataTable<?, ?> dataTable) {
@@ -77,8 +85,9 @@ public class DynamicModelDataTablePanel extends FormComponentPanel<Object> imple
     }
 
     protected DataTable<?, ?> newDataTable(final String wicketId, final TableHtmlElement element,
+            final List<IColumn<Object, String>> columns,
             final ISortableDataProvider<Object, String> sortableDataProvider, final long rowsPerPage) {
-        return new ModelDataTable(wicketId, element, element.createWicketColumns(), sortableDataProvider, rowsPerPage);
+        return new ModelDataTable(wicketId, element, columns, sortableDataProvider, rowsPerPage);
     }
 
     @Override

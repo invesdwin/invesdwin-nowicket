@@ -1,9 +1,12 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.ajaxdatatable;
 
+import java.util.List;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -35,10 +38,10 @@ public class AjaxDataTablePage extends AExampleWebPage {
                     return new DynamicModelDataTablePanel(e, MAX_ROWS_PER_PAGE) {
                         @Override
                         protected DataTable<?, ?> newDataTable(final String wicketId, final TableHtmlElement element,
+                                final List<IColumn<Object, String>> columns,
                                 final ISortableDataProvider<Object, String> sortableDataProvider,
                                 final long rowsPerPage) {
-                            return new ModelDataTable(wicketId, e, e.createWicketColumns(), sortableDataProvider,
-                                    rowsPerPage) {
+                            return new ModelDataTable(wicketId, e, columns, sortableDataProvider, rowsPerPage) {
                                 @Override
                                 protected boolean showNavigatorLabel() {
                                     return true;

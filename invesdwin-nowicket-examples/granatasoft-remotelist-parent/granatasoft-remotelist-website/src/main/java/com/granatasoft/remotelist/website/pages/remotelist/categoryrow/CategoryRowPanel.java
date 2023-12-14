@@ -1,5 +1,7 @@
 package com.granatasoft.remotelist.website.pages.remotelist.categoryrow;
 
+import java.util.List;
+
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.AttributeModifier;
@@ -114,10 +116,10 @@ public class CategoryRowPanel extends Panel {
                     return new DynamicModelDataTablePanel(e) {
                         @Override
                         protected DataTable<?, ?> newDataTable(final String wicketId, final TableHtmlElement element,
+                                final List<IColumn<Object, String>> columns,
                                 final ISortableDataProvider<Object, String> sortableDataProvider,
                                 final long rowsPerPage) {
-                            return new ModelDataTable(wicketId, element, element.createWicketColumns(),
-                                    sortableDataProvider, rowsPerPage) {
+                            return new ModelDataTable(wicketId, element, columns, sortableDataProvider, rowsPerPage) {
                                 @Override
                                 protected AbstractToolbar newHeadersToolbar() {
                                     return null;
