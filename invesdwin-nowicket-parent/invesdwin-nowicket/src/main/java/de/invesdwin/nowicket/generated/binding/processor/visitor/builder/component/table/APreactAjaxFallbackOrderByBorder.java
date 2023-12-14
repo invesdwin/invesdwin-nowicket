@@ -1,4 +1,4 @@
-package de.invesdwin.nowicket.component.websocket;
+package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table;
 
 import javax.annotation.concurrent.NotThreadSafe;
 

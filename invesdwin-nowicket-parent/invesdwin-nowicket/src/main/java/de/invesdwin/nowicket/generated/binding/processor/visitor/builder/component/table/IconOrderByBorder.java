@@ -12,7 +12,6 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.image.Icon;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6IconType;
 import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
-import de.invesdwin.nowicket.component.websocket.APreactAjaxFallbackOrderByBorder;
 import de.invesdwin.util.error.UnknownArgumentException;
 
 @NotThreadSafe
