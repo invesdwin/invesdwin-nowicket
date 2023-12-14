@@ -37,8 +37,9 @@ public class ModelDataTable extends DataTable<Object, String> {
     private final TableHtmlElement element;
 
     public ModelDataTable(final String wicketId, final TableHtmlElement element,
+            final List<? extends IColumn<Object, String>> columns,
             final ISortableDataProvider<Object, String> sortableDataProvider, final long rowsPerPage) {
-        super(wicketId, element.createWicketColumns(), sortableDataProvider, rowsPerPage);
+        super(wicketId, columns, sortableDataProvider, rowsPerPage);
         this.element = element;
         setOutputMarkupId(true);
         setItemReuseStrategy(UpdatingReuseIfModelsEqualStrategy.getInstance());

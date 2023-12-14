@@ -21,8 +21,21 @@ function enableBootstrapTooltips() {
 					if (prevTitle !== title) {
 						tag.attr('data-original-title', title);
 						const tooltip = bootstrap.Tooltip.getInstance(this);
-						tooltip.setContent({ '.tooltip-inner': title });
-						tooltip.update();
+						const tooltipShowing = window.enableBootstrapTooltipsShown == tooltip;
+
+						//simply updating tooltips does not work in bootstrap 5.2.1 and upwads, instead we have to recreate them
+						//tooltip.setContent({ '.tooltip-inner': title });
+						//tooltip.update();
+						
+						if (tooltip) {
+							tooltip.hide();
+							tooltip.dispose();
+							tag.attr('title', title);
+						}
+						const newTooltip = new bootstrap.Tooltip(this, { "animation": false });
+						if (tooltipShowing) {
+							newTooltip.show();
+						}
 					}
 					tag.removeAttr('title');
 				}
@@ -49,6 +62,15 @@ function enableBootstrapTooltips() {
 					existingTooltip.hide();
 				}
 				window.enableBootstrapTooltipsShown = thisTooltip;
+			}
+		});
+		Wicket.Event.add(window, 'hidden.bs.tooltip', function(e) {
+			//allow only one tooltip to be shown at a time: https://stackoverflow.com/a/29950663
+			const thisElement = e.target;
+			const thisTooltip = bootstrap.Tooltip.getInstance(thisElement);
+			const existingTooltip = window.enableBootstrapTooltipsShown;
+			if (thisTooltip == existingTooltip) {
+				window.enableBootstrapTooltipsShown = undefined;
 			}
 		});
 	}

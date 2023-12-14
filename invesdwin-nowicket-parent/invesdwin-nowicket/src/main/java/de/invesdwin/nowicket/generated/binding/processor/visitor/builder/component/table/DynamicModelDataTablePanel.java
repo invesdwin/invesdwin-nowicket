@@ -78,7 +78,7 @@ public class DynamicModelDataTablePanel extends FormComponentPanel<Object> imple
 
     protected DataTable<?, ?> newDataTable(final String wicketId, final TableHtmlElement element,
             final ISortableDataProvider<Object, String> sortableDataProvider, final long rowsPerPage) {
-        return new ModelDataTable(wicketId, element, sortableDataProvider, rowsPerPage);
+        return new ModelDataTable(wicketId, element, element.createWicketColumns(), sortableDataProvider, rowsPerPage);
     }
 
     @Override

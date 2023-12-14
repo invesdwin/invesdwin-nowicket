@@ -78,7 +78,7 @@ a:hover {
 table.floatThead-table {
     border-top: none;
     border-bottom: none;
-    background-color: rgba(150, 150, 150, 0.75);
+    opacity: 0.85;
 }
 
 /* add back a line that separates header and footer form content */

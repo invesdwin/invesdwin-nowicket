@@ -37,7 +37,8 @@ public class AjaxDataTablePage extends AExampleWebPage {
                         protected DataTable<?, ?> newDataTable(final String wicketId, final TableHtmlElement element,
                                 final ISortableDataProvider<Object, String> sortableDataProvider,
                                 final long rowsPerPage) {
-                            return new ModelDataTable(wicketId, e, sortableDataProvider, rowsPerPage) {
+                            return new ModelDataTable(wicketId, e, e.createWicketColumns(), sortableDataProvider,
+                                    rowsPerPage) {
                                 @Override
                                 protected boolean showNavigatorLabel() {
                                     return true;

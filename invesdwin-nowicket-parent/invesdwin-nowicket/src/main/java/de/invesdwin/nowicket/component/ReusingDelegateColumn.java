@@ -57,8 +57,12 @@ public class ReusingDelegateColumn<T, S> implements IStyledColumn<T, S> {
         final DelegateModel<T> delegateRowModel = new DelegateModel<>(rowModel);
         delegate.populateItem(cellItem, componentId, delegateRowModel);
         final Component component = cellItem.get(componentId);
+        onComponentCreated(cellItem, componentId, rowModel, component);
         populatedItems.add(new PopulatedItem<T>(component, delegateRowModel));
     }
+
+    protected void onComponentCreated(final Item<ICellPopulator<T>> cellItem, final String componentId,
+            final IModel<T> rowModel, final Component component) {}
 
     @Override
     public void detach() {
