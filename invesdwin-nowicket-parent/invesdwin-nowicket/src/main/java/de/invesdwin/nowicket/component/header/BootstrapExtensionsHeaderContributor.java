@@ -149,11 +149,11 @@ public class BootstrapExtensionsHeaderContributor implements IHeaderContributor 
         if (updateFooterMarginOnResize) {
             UpdateFooterMarginOnResizeJsReference.INSTANCE.renderHead(response);
         }
-        if (enableTableFixedHead) {
-            EnableTableFixedHeadJsReference.INSTANCE.renderHead(response);
-        }
         if (createPreactRenderHtmlFunction) {
             CreatePreactRenderHtmlFunctionJsReference.INSTANCE.renderHead(response);
+        }
+        if (enableTableFixedHead) {
+            EnableTableFixedHeadJsReference.INSTANCE.renderHead(response);
         }
         if (enableBootstrapTooltips) {
             EnableBootstrapTooltipsHeaderContributor.INSTANCE.renderHead(response);

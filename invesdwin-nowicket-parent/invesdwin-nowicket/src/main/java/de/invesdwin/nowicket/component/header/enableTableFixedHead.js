@@ -5,27 +5,40 @@ function enableTableFixedHead() {
 
 		function triggerEnableTableFixedHead() {
 			if (!window.enableTableFixedHeadDisabled) {
-				$('.table-fixed-head:not(.floatThead-table):not(.table-fixed-head-enabled)').each(function() {
+				$('.table-fixed-head:not(.floatThead-table)').each(function() {
 					const thisElement = $(this)
-					if (thisElement.data('floatThead-attached')) {
-						thisElement.removeClass('table-fixed-head-enabled').floatThead('destroy');
+					const updatedThead = thisElement.find('thead');
+					if (!thisElement.hasClass('table-fixed-head-enabled')) {
+						if (thisElement.data('floatThead-attached')) {
+							thisElement.removeClass('table-fixed-head-enabled').floatThead('destroy');
+							thisElement.find('thead').not(':first').remove();
+						}
+						thisElement.addClass('table-fixed-head-enabled');
+						thisElement.siblings('.floatThead-container').remove();
+						if (thisElement.closest(".table-responsive").length == 0) {
+							thisElement.floatThead({
+								zIndex: 999,
+							});
+						} else {
+							thisElement.floatThead({
+								zIndex: 999,
+								responsiveContainer: function($table) {
+									return $table.closest(".table-responsive");
+								}
+							});
+						}
 					}
-					thisElement.addClass('table-fixed-head-enabled');
-					thisElement.siblings('.floatThead-container').remove();
-					if (thisElement.closest(".table-responsive").length == 0) {
-						thisElement.floatThead({
-							zIndex: 999,
-						});
-					} else {
-						thisElement.floatThead({
-							zIndex: 999,
-							responsiveContainer: function($table) {
-								return $table.closest(".table-responsive");
+					if (updatedThead) {
+						const cols = updatedThead.find('.floatThead-col');
+						if (cols.length == 0) {
+							const fixedThead = thisElement.siblings('.floatThead-container').find('thead');
+							if (fixedThead.length == 1) {
+								fixedThead.replaceWith(updatedThead.clone());
 							}
-						});
+						}
 					}
+					updatedThead.not(':first').remove();
 				});
-				$('.table-fixed-head-enabled:not(.floatThead-table)').find('thead').not(':first').remove();
 			}
 		}
 		window.triggerEnableTableFixedHead = triggerEnableTableFixedHead;

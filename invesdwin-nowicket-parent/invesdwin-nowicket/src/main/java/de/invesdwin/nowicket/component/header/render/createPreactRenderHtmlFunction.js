@@ -73,6 +73,12 @@ function createPreactRenderHtmlFunction() {
 			return null;
 		};
 
+		window.preactRenderHtmlElement = function preactRenderHtmlElement(html, container) {
+			render(convertHtml(html), container);
+		}
+		window.preactRenderHtmlElement = function preactRenderHtmlElement(html, container, existingNode) {
+			render(convertHtml(html), container, existingNode);
+		}
 		window.preactRenderHtml = function preactRenderHtml(html, markupId) {
 			const element = document.getElementById(markupId);
 			render(convertHtml(html), element.parentElement);
