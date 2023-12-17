@@ -8,10 +8,10 @@ function enableTableFixedHead() {
 				$('.table-fixed-head:not(.floatThead-table)').each(function() {
 					const thisElement = $(this)
 					const updatedThead = thisElement.find('thead');
-					if (!thisElement.hasClass('table-fixed-head-enabled')) {
+					if (!thisElement.hasClass('table-fixed-head-enabled') || updatedThead.length == 0) {
 						if (thisElement.data('floatThead-attached')) {
 							thisElement.removeClass('table-fixed-head-enabled').floatThead('destroy');
-							thisElement.find('thead').not(':first').remove();
+							//thisElement.find('thead').not(':first').remove();
 						}
 						thisElement.addClass('table-fixed-head-enabled');
 						thisElement.siblings('.floatThead-container').remove();
@@ -28,17 +28,22 @@ function enableTableFixedHead() {
 							});
 						}
 					}
-					if (updatedThead) {
+					const container = thisElement.siblings('.floatThead-container');
+					if (updatedThead.length > 0) {
 						const cols = updatedThead.find('.floatThead-col');
 						if (cols.length == 0) {
-							const fixedThead = thisElement.siblings('.floatThead-container').find('thead');
+							const fixedThead = container.find('thead');
 							if (fixedThead.length == 1) {
 								fixedThead.replaceWith(updatedThead.clone());
 							}
 						}
 					}
-					updatedThead.not(':first').remove();
+					thisElement.find('thead').not(':first').remove();
+					container.find('thead').not(':first').remove();
 				});
+				//$('.table-fixed-head').each(function() {
+				//	$(this).find('thead').not(':first').remove();
+				//});
 			}
 		}
 		window.triggerEnableTableFixedHead = triggerEnableTableFixedHead;
@@ -74,5 +79,16 @@ function enableTableFixedHead() {
 		Wicket.Event.subscribe('/ajax/call/failure', function(jqEvent, attributes, jqXHR, errorThrown, textStatus) {
 			triggerEnableTableFixedHead();
 		});
+
+		var didResize = false;
+		$(window).resize(function() {
+			didResize = true;
+		});
+		setInterval(function() {
+			if (didResize) {
+				didResize = false;
+				$('.table-fixed-head').find('thead').not(':first').remove();
+			}
+		}, 250);
 	}
 }
