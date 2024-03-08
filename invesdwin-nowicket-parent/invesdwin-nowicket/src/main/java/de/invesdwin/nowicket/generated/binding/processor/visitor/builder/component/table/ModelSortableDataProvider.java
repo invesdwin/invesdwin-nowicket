@@ -65,7 +65,7 @@ public class ModelSortableDataProvider extends SortableDataProvider<Object, Stri
             @Override
             public ISortAlgorithm getSortAlgorithm() {
                 //a race condition could make the comparison unstable
-                return SortAlgorithm.TIMSORT_FALLBACK_BUBBLESORT;
+                return SortAlgorithm.DEFAULT_FALLBACK;
             }
         };
         comparator.asAscending(sort.isAscending()).sort(rows);
