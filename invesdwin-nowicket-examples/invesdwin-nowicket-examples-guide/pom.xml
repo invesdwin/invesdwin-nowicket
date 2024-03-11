@@ -26,7 +26,7 @@
 		<logback.version>1.4.11</logback.version>
 		<spring-security.version>6.2.0</spring-security.version>
 		<caffeine.version>3.1.8</caffeine.version>
-		<micrometer.version>1.12.0</micrometer.version>
+		<micrometer.version>1.12.3</micrometer.version>
 		<jakarta-persistence.version>3.1.0</jakarta-persistence.version>
 		<jakarta-servlet.version>6.0.0</jakarta-servlet.version>
 		<glassfish-jaxb.version>4.0.4</glassfish-jaxb.version>
