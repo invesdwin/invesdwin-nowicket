@@ -40,7 +40,7 @@
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
 		<aspectj.version>1.9.21.1</aspectj.version>
 		<commons-codec.version>1.16.0</commons-codec.version>
-		<commons-lang3.version>3.13.0</commons-lang3.version>
+		<commons-lang3.version>3.14.0</commons-lang3.version>
 
 		<start-class>com.bsgcoach.Main</start-class>
 	</properties>
