@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0</version>
+		<version>3.2.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -22,9 +22,9 @@
 		<hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
 		<spring.version>6.1.1</spring.version>
 		<okhttp3.version>4.12.0</okhttp3.version>
-		<slf4j.version>2.0.9</slf4j.version>
-		<logback.version>1.4.11</logback.version>
-		<spring-security.version>6.2.0</spring-security.version>
+		<slf4j.version>2.0.12</slf4j.version>
+		<logback.version>1.5.3</logback.version>
+		<spring-security.version>6.2.2</spring-security.version>
 		<caffeine.version>3.1.8</caffeine.version>
 		<micrometer.version>1.12.3</micrometer.version>
 		<jakarta-persistence.version>3.1.0</jakarta-persistence.version>
@@ -37,7 +37,7 @@
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
 		<version.maven-processor-plugin>5.0</version.maven-processor-plugin>
-		<version.spring-boot-maven-plugin>3.2.0</version.spring-boot-maven-plugin>
+		<version.spring-boot-maven-plugin>3.2.3</version.spring-boot-maven-plugin>
 		<version.jacoco-maven-plugin>0.8.6</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
 		<aspectj.version>1.9.21.1</aspectj.version>
