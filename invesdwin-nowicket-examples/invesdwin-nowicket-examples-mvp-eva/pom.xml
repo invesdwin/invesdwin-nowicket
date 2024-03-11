@@ -38,7 +38,7 @@
 		<version.spring-boot-maven-plugin>3.2.0</version.spring-boot-maven-plugin>
 		<version.jacoco-maven-plugin>0.8.6</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
-		<aspectj.version>1.9.20.1</aspectj.version>
+		<aspectj.version>1.9.21.1</aspectj.version>
 		<commons-codec.version>1.16.0</commons-codec.version>
 		<commons-lang3.version>3.13.0</commons-lang3.version>
 
