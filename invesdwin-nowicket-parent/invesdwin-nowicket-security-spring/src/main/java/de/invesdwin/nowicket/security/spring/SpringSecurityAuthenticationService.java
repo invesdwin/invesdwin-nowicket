@@ -112,17 +112,25 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
 
     @Override
     public boolean isAnonymous() {
-        return getAuthentication() instanceof AnonymousAuthenticationToken;
+        final Authentication authentication = getAuthentication();
+        return authentication instanceof AnonymousAuthenticationToken;
     }
 
     @Override
     public boolean isAuthenticated() {
-        return !isAnonymous();
+        final Authentication authentication = getAuthentication();
+        if (authentication == null) {
+            return false;
+        }
+        if (isAnonymous()) {
+            return false;
+        }
+        return authentication.isAuthenticated();
     }
 
     @Override
     public boolean isFullyAuthenticated() {
-        return !isAnonymous() && !isRememberMe();
+        return isAuthenticated() && !isRememberMe();
     }
 
     @Override

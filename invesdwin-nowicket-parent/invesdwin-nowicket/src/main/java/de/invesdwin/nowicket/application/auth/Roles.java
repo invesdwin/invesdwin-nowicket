@@ -61,7 +61,7 @@ public class Roles extends org.apache.wicket.authroles.authorization.strategies.
      * Returns true if the current principal is an anonymous user
      */
     public static boolean isAnonymous() {
-        if (AWebApplication.exists()) {
+        if (!AWebApplication.exists()) {
             return true;
         }
         final IAuthenticationService authenticationService = getAuthenticationService();
