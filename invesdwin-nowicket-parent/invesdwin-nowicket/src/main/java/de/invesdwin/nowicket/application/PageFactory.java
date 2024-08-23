@@ -26,6 +26,7 @@ import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.collections.fast.concurrent.ASynchronizedFastIterableDelegateList;
+import de.invesdwin.util.collections.list.Lists;
 import de.invesdwin.util.lang.string.Strings;
 import de.invesdwin.util.time.duration.Duration;
 
@@ -185,9 +186,7 @@ public final class PageFactory implements Serializable {
             }
         }
         //remove LRU
-        while (list.size() > MAX_PAGE_REFERENCES_PER_MODEL) {
-            list.remove(0);
-        }
+        Lists.maybeTrimSizeStart(list, MAX_PAGE_REFERENCES_PER_MODEL);
         return list;
     }
 

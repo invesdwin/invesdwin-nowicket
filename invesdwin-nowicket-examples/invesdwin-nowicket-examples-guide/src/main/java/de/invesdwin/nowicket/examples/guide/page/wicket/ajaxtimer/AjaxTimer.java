@@ -11,6 +11,7 @@ import de.invesdwin.norva.beanpath.annotation.Format;
 import de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer.tab.AjaxTimerTab;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.list.Lists;
 import de.invesdwin.util.time.date.FDate;
 
 @GeneratedMarkup
@@ -36,9 +37,7 @@ public class AjaxTimer extends AValueObject {
 
     public void refresh() {
         lastRefresh = new FDate();
-        while (getTabs().size() >= MAX_TABS_COUNT) {
-            getTabs().remove(0);
-        }
+        Lists.maybeTrimSizeStart(getTabs(), MAX_TABS_COUNT);
         final AjaxTimerTab tab = new AjaxTimerTab(String.valueOf(tabIndex.incrementAndGet()));
         getTabs().add(tab);
     }
