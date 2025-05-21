@@ -311,6 +311,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 				<pre class="prettyprint lang-bsh linenums">location /app/ {
     proxy_pass http://example.com:8080/app/;
     proxy_redirect http://example.com:8080/app/ https://example.com/app/;
+    proxy_redirect http:// https://;
     sub_filter "http://example.com:8080/app/" "https://example.com/app/";
     sub_filter_once off;
     sub_filter_types text/html;
