@@ -11,13 +11,14 @@ import org.springframework.beans.factory.FactoryBean;
 import de.invesdwin.nowicket.component.modal.ModalConfig;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.I18nModel;
 import de.invesdwin.nowicket.generated.guiservice.internal.SessionGuiService;
+import io.netty.util.concurrent.FastThreadLocal;
 
 // @Named
 @ThreadSafe
 public class GuiService implements FactoryBean<GuiService>, IGuiService {
 
     private static final GuiService INSTANCE = new GuiService();
-    private static volatile IGuiService guiServiceOverride;
+    private static final FastThreadLocal<IGuiService> GUI_SERVICE_OVERRIDE_HOLDER = new FastThreadLocal<>();
 
     public static GuiService get() {
         return INSTANCE;
@@ -27,7 +28,7 @@ public class GuiService implements FactoryBean<GuiService>, IGuiService {
      * For internal use only during tests e.g.
      */
     public static void setGuiServiceOverride(final IGuiService guiServiceOverride) {
-        GuiService.guiServiceOverride = guiServiceOverride;
+        GUI_SERVICE_OVERRIDE_HOLDER.set(guiServiceOverride);
     }
 
     @Override
@@ -36,8 +37,9 @@ public class GuiService implements FactoryBean<GuiService>, IGuiService {
     }
 
     private IGuiService getGuiServiceImpl() {
-        if (GuiService.guiServiceOverride != null) {
-            return GuiService.guiServiceOverride;
+        final IGuiService guiServiceOverride = GUI_SERVICE_OVERRIDE_HOLDER.get();
+        if (guiServiceOverride != null) {
+            return guiServiceOverride;
         } else {
             return SessionGuiService.get();
         }
