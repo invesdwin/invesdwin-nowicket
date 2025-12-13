@@ -10,7 +10,7 @@
 
 	<properties>
 		<version.ecs>1.4.2</version.ecs>
-		<version.font-awesome>6.5.2</version.font-awesome>
+		<version.font-awesome>7.1.0</version.font-awesome>
 	</properties>
 
 	<dependencies>
