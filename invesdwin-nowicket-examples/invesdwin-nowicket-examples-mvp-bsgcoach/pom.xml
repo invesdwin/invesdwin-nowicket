@@ -44,6 +44,7 @@
 		<commons-codec.version>1.19.0</commons-codec.version>
 		<commons-lang3.version>3.19.0</commons-lang3.version>
 		<byte-buddy.version>1.18.2</byte-buddy.version>
+		<commons-pool2.version>2.13.0</commons-pool2.version>
 
 		<start-class>com.bsgcoach.Main</start-class>
 	</properties>
