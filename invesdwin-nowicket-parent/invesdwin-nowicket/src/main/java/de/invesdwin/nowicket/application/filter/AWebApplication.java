@@ -48,12 +48,12 @@ public abstract class AWebApplication extends ABaseWebApplication {
     @Override
     public final IWebApplicationConfig getDelegate() {
         if (delegate == null) {
-            delegate = newConfig();
+            delegate = newDelegate();
         }
         return delegate;
     }
 
-    protected abstract IWebApplicationConfig newConfig();
+    protected abstract IWebApplicationConfig newDelegate();
 
     @Override
     protected Class<? extends AWebSession> getWebSessionClass() {
