@@ -18,7 +18,7 @@ public class ExampleWebApplication extends AWebApplication {
             .unmodifiableSet(new HashSet<String>(Arrays.asList("de.invesdwin.nowicket.examples")));
 
     @Override
-    protected IWebApplicationConfig newDelegate() {
+    protected IWebApplicationConfig newConfig() {
         return new ExampleWebApplicationConfig();
     }
 

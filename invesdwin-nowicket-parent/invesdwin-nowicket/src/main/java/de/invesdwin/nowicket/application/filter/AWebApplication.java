@@ -28,13 +28,13 @@ import jakarta.activation.MimetypesFileTypeMap;
 @ThreadSafe
 public abstract class AWebApplication extends ABaseWebApplication {
 
-    private IWebApplicationConfig delegate;
+    private IWebApplicationConfig config;
 
     @Override
     protected void init() {
         super.init();
         getCspSettings().blocking().disabled();
-        WebApplicationInitializer initializer = getDelegate().getInitializerOverride();
+        WebApplicationInitializer initializer = getConfig().getInitializerOverride();
         if (initializer == null) {
             initializer = new WebApplicationInitializer();
         }
@@ -46,14 +46,14 @@ public abstract class AWebApplication extends ABaseWebApplication {
     }
 
     @Override
-    public final IWebApplicationConfig getDelegate() {
-        if (delegate == null) {
-            delegate = newDelegate();
+    public final IWebApplicationConfig getConfig() {
+        if (config == null) {
+            config = newConfig();
         }
-        return delegate;
+        return config;
     }
 
-    protected abstract IWebApplicationConfig newDelegate();
+    protected abstract IWebApplicationConfig newConfig();
 
     @Override
     protected Class<? extends AWebSession> getWebSessionClass() {
@@ -62,7 +62,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public Class<? extends WebPage> getSignInPage() {
-        final Class<? extends WebPage> signInPage = getDelegate().getSignInPage();
+        final Class<? extends WebPage> signInPage = getConfig().getSignInPage();
         if (signInPage != null) {
             return signInPage;
         } else {
@@ -72,7 +72,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public Class<? extends WebPage> getSignOutPage() {
-        final Class<? extends WebPage> signOutPage = getDelegate().getSignOutPage();
+        final Class<? extends WebPage> signOutPage = getConfig().getSignOutPage();
         if (signOutPage != null) {
             return signOutPage;
         } else {
@@ -82,7 +82,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public Class<? extends WebPage> getPageExpiredPage() {
-        final Class<? extends WebPage> pageExpiredErrorPage = getDelegate().getPageExpiredPage();
+        final Class<? extends WebPage> pageExpiredErrorPage = getConfig().getPageExpiredPage();
         if (pageExpiredErrorPage != null) {
             return pageExpiredErrorPage;
         } else {
@@ -92,7 +92,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public Class<? extends WebPage> getInternalErrorPage() {
-        final Class<? extends WebPage> internalErrorPage = getDelegate().getInternalErrorPage();
+        final Class<? extends WebPage> internalErrorPage = getConfig().getInternalErrorPage();
         if (internalErrorPage != null) {
             return internalErrorPage;
         } else {
@@ -102,7 +102,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public Class<? extends WebPage> getAccessDeniedPage() {
-        final Class<? extends WebPage> accessDeniedPage = getDelegate().getAccessDeniedPage();
+        final Class<? extends WebPage> accessDeniedPage = getConfig().getAccessDeniedPage();
         if (accessDeniedPage != null) {
             return accessDeniedPage;
         } else {
@@ -112,7 +112,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public Class<? extends WebPage> getPageNotFoundPage() {
-        final Class<? extends WebPage> pageNotFoundPage = getDelegate().getPageNotFoundPage();
+        final Class<? extends WebPage> pageNotFoundPage = getConfig().getPageNotFoundPage();
         if (pageNotFoundPage != null) {
             return pageNotFoundPage;
         } else {
@@ -122,7 +122,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
 
     @Override
     public Class<? extends WebPage> getHomePage() {
-        return getDelegate().getHomePage();
+        return getConfig().getHomePage();
     }
 
     @Override
@@ -151,7 +151,7 @@ public abstract class AWebApplication extends ABaseWebApplication {
     @Override
     public AWebSession newSession(final Request request, final Response response) {
         final AWebSession session = super.newSession(request, response);
-        getDelegate().postProcessNewSession(session);
+        getConfig().postProcessNewSession(session);
         return session;
     }
 

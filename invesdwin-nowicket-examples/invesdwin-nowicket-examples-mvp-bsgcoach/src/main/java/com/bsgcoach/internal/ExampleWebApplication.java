@@ -19,7 +19,7 @@ public class ExampleWebApplication extends AWebApplication {
             .unmodifiableSet(new HashSet<String>(Arrays.asList("com.bsgcoach")));
 
     @Override
-    protected IWebApplicationConfig newDelegate() {
+    protected IWebApplicationConfig newConfig() {
         return new BsgCoachWebApplicationConfig();
     }
 

@@ -23,7 +23,7 @@ public class Roles extends org.apache.wicket.authroles.authorization.strategies.
     }
 
     public static IAuthenticationService getAuthenticationService() {
-        return AWebApplication.get().getDelegate().getAuthenticationService();
+        return AWebApplication.get().getConfig().getAuthenticationService();
     }
 
     /**

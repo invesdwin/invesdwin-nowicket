@@ -65,7 +65,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
          * prevent endless loop when a gui task is added in the page constructor regarding gui tasks holder access
          */
         RequestCycles.setPage(this);
-        if (ABaseWebApplication.get().getDelegate().getAuthenticationService() != null) {
+        if (ABaseWebApplication.get().getConfig().getAuthenticationService() != null) {
             //check remember me before anything else
             final SignIn signIn = new SignIn();
             signIn.setComponent(this);
@@ -200,7 +200,7 @@ public abstract class AWebPage extends org.apache.wicket.markup.html.WebPage
 
     protected void addSignInOrSignOutPageToNavbar(final Navbar navbar) {
         final ABaseWebApplication webApplication = ABaseWebApplication.get();
-        if (webApplication.getDelegate().getAuthenticationService() != null) {
+        if (webApplication.getConfig().getAuthenticationService() != null) {
             if (AWebSession.get().isSignedIn()) {
                 addSignOutNavbarComponent(navbar, webApplication.getSignOutPage());
             } else {

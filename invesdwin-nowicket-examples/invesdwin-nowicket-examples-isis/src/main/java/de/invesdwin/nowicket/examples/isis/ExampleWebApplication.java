@@ -24,7 +24,7 @@ public class ExampleWebApplication extends AWebApplication {
     }
 
     @Override
-    protected IWebApplicationConfig newDelegate() {
+    protected IWebApplicationConfig newConfig() {
         return new ExampleWebApplicationConfig();
     }
 

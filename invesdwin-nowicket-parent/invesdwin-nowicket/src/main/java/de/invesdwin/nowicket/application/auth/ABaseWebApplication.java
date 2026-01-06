@@ -23,7 +23,7 @@ public abstract class ABaseWebApplication
     @Override
     protected abstract Class<? extends AWebSession> getWebSessionClass();
 
-    public abstract IWebApplicationConfig getDelegate();
+    public abstract IWebApplicationConfig getConfig();
 
     public abstract Iterable<IWebApplicationInitializerHook> getWebApplicationInitializerHooks();
 

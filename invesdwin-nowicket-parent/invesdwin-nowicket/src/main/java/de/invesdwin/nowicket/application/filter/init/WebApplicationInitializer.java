@@ -166,7 +166,7 @@ public class WebApplicationInitializer {
             new AnnotatedMountScanner().scanPackage(basePackage).mount(webApplication);
         }
 
-        if (webApplication.getDelegate().getAuthenticationService() != null) {
+        if (webApplication.getConfig().getAuthenticationService() != null) {
             webApplication.mountPage(DefaultSignInPage.MOUNT_PATH, webApplication.getSignInPage());
             webApplication.mountPage(DefaultSignOutPage.MOUNT_PATH, webApplication.getSignOutPage());
         }
@@ -249,7 +249,7 @@ public class WebApplicationInitializer {
     }
 
     protected void registerFavicon() {
-        ResourceReference favicon = webApplication.getDelegate().getFavicon();
+        ResourceReference favicon = webApplication.getConfig().getFavicon();
         if (favicon == null) {
             favicon = IWebApplicationConfig.DEFAULT_FAVICON;
         }
