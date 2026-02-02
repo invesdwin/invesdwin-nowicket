@@ -13,15 +13,15 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<version.compiler>1.8</version.compiler>
 
-		<version.maven-source-plugin>3.2.1</version.maven-source-plugin>
-		<version.maven-processor-plugin>5.0</version.maven-processor-plugin>
-		<version.maven-compiler-plugin>3.11.0</version.maven-compiler-plugin>
+		<version.maven-source-plugin>3.4.0</version.maven-source-plugin>
+		<version.maven-processor-plugin>5.1</version.maven-processor-plugin>
+		<version.maven-compiler-plugin>3.14.1</version.maven-compiler-plugin>
 
 		<project.version.invesdwin-maven-plugin>1.0.14-SNAPSHOT</project.version.invesdwin-maven-plugin>
 		<project.version.invesdwin-bom>1.0.18-SNAPSHOT</project.version.invesdwin-bom>
 		<project.version.invesdwin-nowicket>1.0.4-SNAPSHOT</project.version.invesdwin-nowicket>
 
-		<version.maven-war-plugin>3.3.2</version.maven-war-plugin>
+		<version.maven-war-plugin>3.5.1</version.maven-war-plugin>
 
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
