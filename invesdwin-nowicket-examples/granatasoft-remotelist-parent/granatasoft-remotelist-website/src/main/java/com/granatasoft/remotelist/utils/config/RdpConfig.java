@@ -1,6 +1,7 @@
 package com.granatasoft.remotelist.utils.config;
 
 import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -184,7 +185,7 @@ public class RdpConfig implements IRemoteConfig {
         try (PooledFastByteArrayOutputStream stream = PooledFastByteArrayOutputStream.newInstance()) {
             String json = null;
             try {
-                mapper.writeValue(stream, this);
+                mapper.writeValue((OutputStream) stream, this);
                 json = stream.toString();
             } catch (final IOException e) {
                 Err.process(e);
