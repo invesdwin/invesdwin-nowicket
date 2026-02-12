@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.ajaxchoice;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -12,6 +11,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
 import de.invesdwin.util.collections.Arrays;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 
 @NotThreadSafe
 @GeneratedMarkup
@@ -56,7 +56,7 @@ public class AjaxChoice extends AValueObject {
         if (manufacturer == null) {
             return null; //no choice
         } else {
-            final Set<String> models = new LinkedHashSet<String>();
+            final Set<String> models = ILockCollectionFactory.getInstance(false).newLinkedSet();
             models.add(null); //no selection is also a valid selection
             models.addAll(Arrays.asList(manufacturer.getModels()));
             return models;

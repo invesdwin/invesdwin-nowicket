@@ -2,8 +2,6 @@ package de.invesdwin.nowicket.examples.guide.component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,26 +17,23 @@ import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchTheme;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvider;
 import de.agilecoders.wicket.themes.markup.html.material_design.MaterialDesignTheme;
 import de.invesdwin.util.collections.Collections;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 
 @NotThreadSafe
 public class ExampleThemeProvider extends DefaultThemeProvider {
 
-    private static final Set<ITheme> THEMES = new HashSet<ITheme>() {
-        {
-            add(new BootstrapTheme());
-            add(new BootstrapThemeTheme());
-            add(new MaterialDesignTheme());
-        }
-    };
-    private static final Set<ThemeProvider> THEME_PROVIDERS = new HashSet<ThemeProvider>() {
-        {
-            add(new BootswatchThemeProvider(BootswatchTheme.Cerulean));
-        }
-    };
+    private static final Set<ITheme> THEMES = ILockCollectionFactory.getInstance(false).newSet();
+    private static final Set<ThemeProvider> THEME_PROVIDERS = ILockCollectionFactory.getInstance(false).newSet();
+    static {
+        THEMES.add(new BootstrapTheme());
+        THEMES.add(new BootstrapThemeTheme());
+        THEMES.add(new MaterialDesignTheme());
+        THEME_PROVIDERS.add(new BootswatchThemeProvider(BootswatchTheme.Cerulean));
+    }
 
     public ExampleThemeProvider() {
         defaultTheme(new DefaultThemeProvider().defaultTheme());
-        final Map<String, ITheme> themes = new HashMap<String, ITheme>();
+        final Map<String, ITheme> themes = ILockCollectionFactory.getInstance(false).newMap();
         themes.put(defaultTheme().name(), defaultTheme());
         addThemes(themes);
         addThemeProviders(themes);

@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.application.filter.init;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +14,8 @@ import org.apache.wicket.request.Response;
 import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
+
 @NotThreadSafe
 public class BundleCollectingHeaderResponse implements IHeaderResponse {
 
@@ -25,7 +26,7 @@ public class BundleCollectingHeaderResponse implements IHeaderResponse {
     private final List<CssResourceReference> cssResources = new ArrayList<>();
     private final List<HeaderItem> otherHeaderItems = new ArrayList<>();
 
-    private final Set<HeaderItem> renderedItems = new HashSet<>();
+    private final Set<HeaderItem> renderedItems = ILockCollectionFactory.getInstance(false).newSet();
 
     @Override
     public void render(final HeaderItem item) {

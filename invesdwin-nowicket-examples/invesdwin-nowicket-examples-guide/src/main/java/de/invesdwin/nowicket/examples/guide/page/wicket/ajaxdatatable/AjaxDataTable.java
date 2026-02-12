@@ -1,7 +1,6 @@
 package de.invesdwin.nowicket.examples.guide.page.wicket.ajaxdatatable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +12,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.generated.guiservice.StatusMessageType;
 import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.lang.Objects;
 
 @NotThreadSafe
@@ -20,7 +20,7 @@ import de.invesdwin.util.lang.Objects;
 public class AjaxDataTable extends AValueObject {
 
     private final List<AjaxDataTableRow> rowsSelectionChoice = new ArrayList<AjaxDataTableRow>();
-    private Set<AjaxDataTableRow> rowsSelection = new HashSet<AjaxDataTableRow>();
+    private Set<AjaxDataTableRow> rowsSelection = ILockCollectionFactory.getInstance(false).newSet();
 
     public AjaxDataTable() {
         regenerateRows();
@@ -50,9 +50,10 @@ public class AjaxDataTable extends AValueObject {
     public void removeFromRows(final AjaxDataTableRow row) {
         rowsSelection.remove(row);
         rowsSelectionChoice.remove(row);
-        GuiService.get().showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.info)
-                .setTitle("Removed")
-                .setMessage(row.toString()));
+        GuiService.get()
+                .showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.info)
+                        .setTitle("Removed")
+                        .setMessage(row.toString()));
     }
 
     public String getSelected() {
@@ -83,9 +84,10 @@ public class AjaxDataTable extends AValueObject {
             rowsSelectionChoice.remove(row);
         }
         rowsSelection.clear();
-        GuiService.get().showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.info)
-                .setTitle("Removed")
-                .setMessage(sb.toString()));
+        GuiService.get()
+                .showStatusMessage(new StatusMessageConfig().setType(StatusMessageType.info)
+                        .setTitle("Removed")
+                        .setMessage(sb.toString()));
     }
 
     public String disableRemoveSelected() {

@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.text.Format;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -33,6 +32,7 @@ import de.invesdwin.nowicket.generated.markup.processor.element.TableTextColumnM
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.collections.Collections;
 import de.invesdwin.util.collections.delegate.DelegateList;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 
 @NotThreadSafe
 public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>> {
@@ -230,7 +230,7 @@ public class TableHtmlElement extends AChoiceHtmlElement<AChoiceModelElement<?>>
 
     public ATableColumnHtmlElement<?, ?> getColumn(final String property) {
         if (property_column == null) {
-            property_column = new HashMap<>();
+            property_column = ILockCollectionFactory.getInstance(false).newMap();
             for (final ATableColumnHtmlElement<?, ?> column : getRawColumns()) {
                 property_column.put(column.getColumnId(), column);
             }

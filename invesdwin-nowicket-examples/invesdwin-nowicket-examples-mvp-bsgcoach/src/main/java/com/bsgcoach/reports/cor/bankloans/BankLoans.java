@@ -1,12 +1,12 @@
 package com.bsgcoach.reports.cor.bankloans;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @NotThreadSafe
@@ -73,7 +73,7 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> yearInitiated = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> yearInitiated = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Original Principal-------------------------------           1
     //    2
@@ -97,7 +97,7 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> originalPrincipal = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> originalPrincipal = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Interest Rate-------------------------------            1
     //    2
@@ -121,7 +121,7 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> interestRate = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> interestRate = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Term-----------------------------------------           1
     //    2
@@ -145,7 +145,7 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> term = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> term = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Outstanding Principal-------------------------------            1
     //    2
@@ -169,7 +169,7 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> outstandingPrincipal = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> outstandingPrincipal = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Principal Payment Nxt Yr-------------------------------         1
     //    2
@@ -193,7 +193,7 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> principalPaymentNxtYr = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> principalPaymentNxtYr = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Interest Payment Next Year-------------------------------           1
     //    2
@@ -217,7 +217,7 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> interestPaymentNextYear = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> interestPaymentNextYear = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Nxt Yr Principal Repayment-------------------           1
     //on 5-Year Loans           2
@@ -241,7 +241,8 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> nxtYrPrincipalRepaymentOn5YearLoans = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> nxtYrPrincipalRepaymentOn5YearLoans = ILockCollectionFactory.getInstance(false)
+            .newMap();
     //
     //Early Repayment of---------------------         1
     //5-Year Loans          2
@@ -265,12 +266,13 @@ public class BankLoans extends AValueObject {
     //    20
     //    21
     //    22
-    private final Map<Integer, Decimal> earlyRepaymentOf5YearLoans = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> earlyRepaymentOf5YearLoans = ILockCollectionFactory.getInstance(false).newMap();
     //
     //Early Repayment of---------------------         1
     //10-Year Loans         2
     //    3
-    private final Map<Integer, Decimal> earlyRepaymentOf10YearLoans = new HashMap<Integer, Decimal>();
+    private final Map<Integer, Decimal> earlyRepaymentOf10YearLoans = ILockCollectionFactory.getInstance(false)
+            .newMap();
 
     public Decimal getPlaceHolder() {
         return placeHolder;

@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -14,13 +13,14 @@ import de.invesdwin.norva.beanpath.spi.element.IPropertyBeanPathElement;
 import de.invesdwin.norva.beanpath.spi.element.table.column.ITableColumnBeanPathElement;
 import de.invesdwin.nowicket.generated.binding.processor.element.IHtmlElement;
 import de.invesdwin.nowicket.util.Components;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 
 @NotThreadSafe
 public class EagerBehavior extends ModelAjaxFormSubmitBehavior {
 
     public static final String DEFAULT_EAGER_EVENT = "change";
 
-    private static final Set<IEagerFilter> EAGER_FILTERS = new HashSet<IEagerFilter>();
+    private static final Set<IEagerFilter> EAGER_FILTERS = ILockCollectionFactory.getInstance(false).newSet();
 
     static {
         EAGER_FILTERS.add(new IEagerFilter() {

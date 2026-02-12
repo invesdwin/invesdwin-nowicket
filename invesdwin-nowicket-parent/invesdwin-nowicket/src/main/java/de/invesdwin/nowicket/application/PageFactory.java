@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +24,7 @@ import de.invesdwin.nowicket.application.filter.internal.ModelCacheUsingPageFact
 import de.invesdwin.nowicket.generated.guiservice.GuiTasksHolder;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.collections.fast.concurrent.ASynchronizedFastIterableDelegateList;
 import de.invesdwin.util.collections.list.Lists;
 import de.invesdwin.util.lang.string.Strings;
@@ -49,8 +49,10 @@ public final class PageFactory implements Serializable {
      * 
      * need to use map here instead of LoadingCacheMap since we need a serializable instance
      */
-    @GuardedBy("modelClass_modelObjectHashCode_pageReferences" /* self on each level */)
-    private final Map<Class<?>, Map<Integer, List<PageReferenceAndModel>>> modelClass_modelObjectHashCode_pageReferences = new LinkedHashMap<Class<?>, Map<Integer, List<PageReferenceAndModel>>>();
+    @GuardedBy("self on each level")
+    private final Map<Class<?>, Map<Integer, List<PageReferenceAndModel>>> modelClass_modelObjectHashCode_pageReferences = ILockCollectionFactory
+            .getInstance(false)
+            .newLinkedMap();
 
     private PageFactory() {}
 

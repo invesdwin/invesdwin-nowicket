@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.component.logviewer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -21,6 +20,7 @@ import org.springframework.core.io.Resource;
 import de.invesdwin.nowicket.component.header.render.preact.PreactPartialPageRequestHandler;
 import de.invesdwin.nowicket.component.logviewer.js.LogViewerJsReference;
 import de.invesdwin.nowicket.component.websocket.AWebSocketFallbackTimerBehavior;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.collections.iterable.ICloseableIterable;
 import de.invesdwin.util.collections.iterable.ICloseableIterator;
 import de.invesdwin.util.lang.Objects;
@@ -43,7 +43,7 @@ public class LogViewerPanel extends GenericPanel<ILogViewerSource> {
 
     private FDate logTo;
     private int expectedRowCount;
-    private final Set<String> lastLogToMessages = new HashSet<>();
+    private final Set<String> lastLogToMessages = ILockCollectionFactory.getInstance(false).newSet();
     private boolean shouldReset;
 
     public LogViewerPanel(final String id, final IModel<ILogViewerSource> model, final Duration refreshInterval) {

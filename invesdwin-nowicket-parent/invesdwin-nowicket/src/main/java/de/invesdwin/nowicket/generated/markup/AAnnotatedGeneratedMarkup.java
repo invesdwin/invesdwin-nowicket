@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.generated.markup;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -15,6 +14,7 @@ import de.invesdwin.nowicket.generated.markup.annotation.GeneratedMarkup;
 import de.invesdwin.nowicket.generated.markup.processor.context.ModelClassContext;
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.classpath.ClassPathScanner;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.collections.loadingcache.ALoadingCache;
 import de.invesdwin.util.lang.reflection.Reflections;
 
@@ -54,7 +54,7 @@ public abstract class AAnnotatedGeneratedMarkup {
         final ALoadingCache<File, Set<Class<?>>> directory_modelClasses = new ALoadingCache<File, Set<Class<?>>>() {
             @Override
             protected Set<Class<?>> loadValue(final File key) {
-                return new HashSet<Class<?>>();
+                return ILockCollectionFactory.getInstance(false).newSet();
             }
         };
         for (final String basePackage : getClasspathBasePackages()) {

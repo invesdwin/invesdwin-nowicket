@@ -2,10 +2,8 @@ package de.invesdwin.nowicket.generated.binding.processor.element;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.MissingResourceException;
-import java.util.Set;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -27,6 +25,8 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.B
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.SelectionModifierModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.AChoiceModelElement;
 import de.invesdwin.util.collections.delegate.DelegateList;
+import de.invesdwin.util.collections.factory.pool.set.ICloseableSet;
+import de.invesdwin.util.collections.factory.pool.set.PooledSet;
 import de.invesdwin.util.lang.string.Strings;
 
 @NotThreadSafe
@@ -69,26 +69,27 @@ public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> exten
     private void maybeCheckDuplicateRenderedStringsInDevMode(final List<Object> choiceModel) {
         if (ABaseWebApplication.get().usesDevelopmentConfig()) {
             final IChoiceRenderer<Object> renderer = getChoiceRenderer();
-            final Set<String> duplicateFilter = new HashSet<String>();
-            for (final Object o : choiceModel) {
-                final Object displayValue = renderer.getDisplayValue(o);
-                final String displayValueStr;
-                if (displayValue == null) {
-                    //wicket renders null as empty string
-                    displayValueStr = Strings.EMPTY;
-                } else {
-                    displayValueStr = String.valueOf(displayValue);
-                }
-                if (!duplicateFilter.add(displayValueStr)) {
-                    //CHECKSTYLE:OFF
-                    LOG.warn("Duplicate displayValue \"{}\" in choice model for element {}." //
-                            + "\nPossible causes are: " //
-                            + "\n - duplicate objects returned by choice method (current selected value gets added to choice aswell)" //
-                            + "\n - default hashCode/equals implementation in objects causing multiple instances of the same displayValue to be treated unequal" //
-                            + "\n - wrong toString implementation in the objects" //
-                            + "\n - localization properties contain duplicates", //
-                            displayValueStr, toString());
-                    //CHECKSTYLE:ON
+            try (ICloseableSet<String> duplicateFilter = PooledSet.getInstance()) {
+                for (final Object o : choiceModel) {
+                    final Object displayValue = renderer.getDisplayValue(o);
+                    final String displayValueStr;
+                    if (displayValue == null) {
+                        //wicket renders null as empty string
+                        displayValueStr = Strings.EMPTY;
+                    } else {
+                        displayValueStr = String.valueOf(displayValue);
+                    }
+                    if (!duplicateFilter.add(displayValueStr)) {
+                        //CHECKSTYLE:OFF
+                        LOG.warn("Duplicate displayValue \"{}\" in choice model for element {}." //
+                                + "\nPossible causes are: " //
+                                + "\n - duplicate objects returned by choice method (current selected value gets added to choice aswell)" //
+                                + "\n - default hashCode/equals implementation in objects causing multiple instances of the same displayValue to be treated unequal" //
+                                + "\n - wrong toString implementation in the objects" //
+                                + "\n - localization properties contain duplicates", //
+                                displayValueStr, toString());
+                        //CHECKSTYLE:ON
+                    }
                 }
             }
         }

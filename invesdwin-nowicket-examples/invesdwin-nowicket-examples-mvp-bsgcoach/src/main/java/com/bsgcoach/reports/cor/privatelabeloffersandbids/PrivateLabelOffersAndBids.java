@@ -1,6 +1,5 @@
 package com.bsgcoach.reports.cor.privatelabeloffersandbids;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -9,6 +8,7 @@ import com.bsgcoach.web.request.CompanyRegion;
 
 import de.invesdwin.util.assertions.Assertions;
 import de.invesdwin.util.bean.AValueObject;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.math.decimal.Decimal;
 
 @NotThreadSafe
@@ -45,7 +45,9 @@ public class PrivateLabelOffersAndBids extends AValueObject {
     //(pairs)       E-A
     //    A-P
     //    L.A.
-    private final Map<CompanyRegion, Decimal> privateLabelProductionPairsFrom = new HashMap<CompanyRegion, Decimal>();
+    private final Map<CompanyRegion, Decimal> privateLabelProductionPairsFrom = ILockCollectionFactory
+            .getInstance(false)
+            .newMap();
 
     //Private-Label Bid Prices ----------------------------               N.A.
     //    E-A

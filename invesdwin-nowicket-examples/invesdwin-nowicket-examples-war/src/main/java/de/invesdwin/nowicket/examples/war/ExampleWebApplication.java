@@ -1,20 +1,18 @@
 package de.invesdwin.nowicket.examples.war;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.concurrent.ThreadSafe;
 
 import de.invesdwin.nowicket.application.IWebApplicationConfig;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
-import de.invesdwin.util.collections.Arrays;
-import de.invesdwin.util.collections.Collections;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 
 @ThreadSafe
 public class ExampleWebApplication extends AWebApplication {
 
-    public static final Set<String> BASE_PACKAGE = Collections
-            .unmodifiableSet(new HashSet<String>(Arrays.asList("de.invesdwin.nowicket.examples.war")));
+    public static final Set<String> BASE_PACKAGE = ILockCollectionFactory.getInstance(false)
+            .newImmutableSet("de.invesdwin.nowicket.examples.war");
 
     @Override
     protected IWebApplicationConfig newConfig() {

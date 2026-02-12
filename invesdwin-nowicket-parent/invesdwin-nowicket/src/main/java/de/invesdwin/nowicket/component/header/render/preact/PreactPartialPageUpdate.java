@@ -5,7 +5,6 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +30,7 @@ import org.apache.wicket.util.lang.Classes;
 import de.invesdwin.nowicket.application.filter.AWebApplication;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.collections.Collections;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
@@ -49,7 +49,7 @@ public class PreactPartialPageUpdate {
     private final Page page;
     private final WebResponse response;
     private final PartialPageUpdate delegateUpdate;
-    private final Map<String, Component> markupIdToComponent = new LinkedHashMap<>();
+    private final Map<String, Component> markupIdToComponent = ILockCollectionFactory.getInstance(false).newLinkedMap();
     private final ResponseBuffer bodyBuffer;
     private boolean componentsFrozen;
 

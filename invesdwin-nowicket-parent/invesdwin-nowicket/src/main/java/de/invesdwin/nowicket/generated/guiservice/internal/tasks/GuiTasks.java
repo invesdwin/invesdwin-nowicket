@@ -3,7 +3,6 @@ package de.invesdwin.nowicket.generated.guiservice.internal.tasks;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -19,6 +18,7 @@ import de.invesdwin.nowicket.generated.guiservice.StatusMessageConfig;
 import de.invesdwin.nowicket.util.Components;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.util.collections.Collections;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 
 @NotThreadSafe
 public class GuiTasks implements IGuiTasksService, IGuiTask {
@@ -118,7 +118,8 @@ public class GuiTasks implements IGuiTasksService, IGuiTask {
                 waitForHideModalPanelGuiTask = null;
             }
         }
-        final Map<Integer, Component> updatedComponentsIdentity = new LinkedHashMap<Integer, Component>();
+        final Map<Integer, Component> updatedComponentsIdentity = ILockCollectionFactory.getInstance(false)
+                .newLinkedMap();
         while (firstNotShowing != null) {
             firstNotShowing.process(component);
             firstNotShowing = getFirstNotShowingModelPanel();

@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -36,6 +35,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.IFormComponentAware;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.form.ModelUtilityValidator;
 import de.invesdwin.util.assertions.Assertions;
+import de.invesdwin.util.collections.factory.ILockCollectionFactory;
 import de.invesdwin.util.error.Throwables;
 
 @Immutable
@@ -219,7 +219,8 @@ public final class Components {
      */
     public static void rememberAllFeedbackMessages(final Component component) {
         Assertions.assertThat(RequestCycle.get().getMetaData(KEY_PREVIOUS_MESSAGES)).isNull();
-        final Map<String, List<FeedbackMessage>> markupId_previousMessages = new HashMap<String, List<FeedbackMessage>>();
+        final Map<String, List<FeedbackMessage>> markupId_previousMessages = ILockCollectionFactory.getInstance(false)
+                .newMap();
         component.getPage().visitChildren(new IVisitor<Component, Void>() {
             @Override
             public void component(final Component object, final IVisit<Void> visit) {
