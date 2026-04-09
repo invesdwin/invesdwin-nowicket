@@ -5,6 +5,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
+import de.invesdwin.util.math.Integers;
+
 @NotThreadSafe
 public enum Significance {
     _1("1"),
@@ -18,7 +20,7 @@ public enum Significance {
     _9("9"),
     _10("10");
 
-    private String title;
+    private final String title;
 
     Significance(final String title) {
         this.title = title;
@@ -34,7 +36,7 @@ public enum Significance {
     }
 
     public Significance minus(final int minus) {
-        final int newOrdinal = Math.max(0, this.ordinal() - minus);
+        final int newOrdinal = Integers.max(0, this.ordinal() - minus);
         final Significance newS = Significance.values()[newOrdinal];
         return newS;
     }

@@ -2,7 +2,6 @@ package de.invesdwin.nowicket.examples.guide.page.wicket.ajaxtimer;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -20,6 +19,8 @@ import de.invesdwin.nowicket.generated.binding.processor.element.ITabbedHtmlElem
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.BindingInterceptor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.tabbed.ModelTabbedPanel;
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
+import de.invesdwin.util.math.random.IRandomGenerator;
+import de.invesdwin.util.math.random.PseudoRandomGenerators;
 import de.invesdwin.util.time.date.FDate;
 import de.invesdwin.util.time.date.FDates;
 import de.invesdwin.util.time.duration.Duration;
@@ -56,7 +57,8 @@ public class AjaxTimerPage extends AExampleWebPage {
                     return;
                 }
                 //fake an update from an asynchronous process here
-                if (RandomUtils.nextBoolean()) {
+                final IRandomGenerator random = PseudoRandomGenerators.getThreadLocalPseudoRandom();
+                if (random.nextBoolean()) {
                     model.refresh();
                 }
                 //prevent processRequestFinally to update all forms

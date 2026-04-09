@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
@@ -28,6 +27,8 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.compone
 import de.invesdwin.nowicket.generated.guiservice.GuiService;
 import de.invesdwin.nowicket.util.RequestCycles;
 import de.invesdwin.nowicket.util.WebSockets;
+import de.invesdwin.util.math.random.IRandomGenerator;
+import de.invesdwin.util.math.random.PseudoRandomGenerators;
 import de.invesdwin.util.time.date.FDate;
 import de.invesdwin.util.time.date.FDates;
 import de.invesdwin.util.time.duration.Duration;
@@ -65,7 +66,8 @@ public class WebSocketPage extends AExampleWebPage {
                     return;
                 }
                 //fake an update from an asynchronous process here
-                if (RandomUtils.nextBoolean()) {
+                final IRandomGenerator random = PseudoRandomGenerators.getThreadLocalPseudoRandom();
+                if (random.nextBoolean()) {
                     model.refresh();
                 }
                 //prevent processRequestFinally to update all forms

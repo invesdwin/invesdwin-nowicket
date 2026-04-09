@@ -8,6 +8,9 @@ import java.util.GregorianCalendar;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import de.invesdwin.util.math.random.IRandomGenerator;
+import de.invesdwin.util.math.random.PseudoRandomGenerator;
+
 @NotThreadSafe
 public final class AjaxDataTableRowGenerator implements Serializable {
     private static long nextId = 1;
@@ -19,6 +22,7 @@ public final class AjaxDataTableRowGenerator implements Serializable {
     private final String[] lastNames = { "Smiith", "Johnson", "Williams", "Jones", "Brown", "Donahue", "Bailey", "Rose",
             "Allen", "Black", "Davis", "Clark", "Hall", "Lee", "Baker", "Gonzalez", "Nelson", "Moore", "Wilson",
             "Graham", "Fisher", "Cruz", "Ortiz", "Gomez", "Murray" };
+    private final IRandomGenerator random = new PseudoRandomGenerator();
 
     private synchronized long generateId() {
         return nextId++;
@@ -38,23 +42,19 @@ public final class AjaxDataTableRowGenerator implements Serializable {
     }
 
     private String generatePhoneNumber() {
-        return new StringBuilder().append(rint(2, 9))
-                .append(rint(0, 9))
-                .append(rint(0, 9))
+        return new StringBuilder().append(random.nextInt(2, 9))
+                .append(random.nextInt(0, 9))
+                .append(random.nextInt(0, 9))
                 .append("-555-")
-                .append(rint(1, 9))
-                .append(rint(0, 9))
-                .append(rint(0, 9))
-                .append(rint(0, 9))
+                .append(random.nextInt(1, 9))
+                .append(random.nextInt(0, 9))
+                .append(random.nextInt(0, 9))
+                .append(random.nextInt(0, 9))
                 .toString();
     }
 
-    private int rint(final int min, final int max) {
-        return (int) (Math.random() * (max - min) + min);
-    }
-
     private String randomString(final String[] choices) {
-        return choices[rint(0, choices.length)];
+        return choices[random.nextInt(0, choices.length)];
     }
 
     private Date generateDate() {
@@ -62,11 +62,11 @@ public final class AjaxDataTableRowGenerator implements Serializable {
         final GregorianCalendar gc = new GregorianCalendar();
         //CHECKSTYLE:ON
 
-        final int year = rint(1950, 1985);
+        final int year = random.nextInt(1950, 1985);
 
         gc.set(Calendar.YEAR, year);
 
-        final int dayOfYear = rint(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
+        final int dayOfYear = random.nextInt(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
 
         gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
 
