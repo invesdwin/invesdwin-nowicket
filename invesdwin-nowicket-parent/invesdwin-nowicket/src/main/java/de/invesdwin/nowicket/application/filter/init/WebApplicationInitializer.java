@@ -257,7 +257,7 @@ public class WebApplicationInitializer {
          * force clients to update favicon by including timestamp in url (on application restart the icon might have
          * been changed)
          */
-        final String faviconUrl = "/favicon-" + new FDate().millisValue() + ".ico";
+        final String faviconUrl = "/favicon-" + FDate.now().millisValue() + ".ico";
         webApplication.mountResource(faviconUrl, favicon);
         webApplication.getHeaderContributorListeners().add(new FaviconHeaderContributor(faviconUrl));
         final String fallbackFaviconUrl = "/favicon.ico";

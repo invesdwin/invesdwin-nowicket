@@ -54,7 +54,7 @@ public abstract class AWebSocketFallbackTimerBehavior extends Behavior {
         protected void onTimer(final PreactPartialPageRequestHandler target) {
             if (websocket != null && !websocket.isStopped() && ajax != null && !ajax.isStopped()) {
                 if (firstAjaxEvent == null) {
-                    firstAjaxEvent = new FDate();
+                    firstAjaxEvent = FDate.now();
                 } else if (new Duration(firstAjaxEvent).isGreaterThan(websocketTimeout)) {
                     websocket.stop(target);
                 }

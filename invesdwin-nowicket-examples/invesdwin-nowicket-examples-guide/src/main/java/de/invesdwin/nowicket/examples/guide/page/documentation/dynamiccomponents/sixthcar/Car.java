@@ -21,7 +21,7 @@ public class Car extends AValueObject {
     private MotorState state = MotorState.off;
     private String licenseNumber = "MO-ON 1111";
     private String brand = "LunarIndustries";
-    private Date registrationDate = new FDate().dateValue();
+    private Date registrationDate = FDate.now().dateValue();
 
     @Pattern(regexp = "[A-Z]{1,3}-[A-Z]{1,2} [1-9][0-9]{0,3}")
     @Tooltip("Pattern Example: MO-ON 1234")
