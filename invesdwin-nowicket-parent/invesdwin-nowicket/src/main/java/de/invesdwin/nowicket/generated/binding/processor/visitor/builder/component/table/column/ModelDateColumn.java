@@ -36,7 +36,7 @@ public class ModelDateColumn extends ModelTextColumn {
             public Object getObject() {
                 final Date date = propertyModel.getObject();
                 if (date != null) {
-                    return element.getFormat(AWebSession.get().getLocale()).format(date);
+                    return element.getFormat(AWebSession.get().getLocale()).print(date);
                 } else {
                     return null;
                 }

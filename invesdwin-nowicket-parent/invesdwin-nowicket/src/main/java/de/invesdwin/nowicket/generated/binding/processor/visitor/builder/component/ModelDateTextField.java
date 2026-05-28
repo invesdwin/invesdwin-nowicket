@@ -45,7 +45,7 @@ public class ModelDateTextField extends DateTextField {
     }
 
     private static String getFormat(final DateInputHtmlElement element) {
-        return element.getFormat(AWebSession.get().getLocale()).toPattern();
+        return element.getFormat(AWebSession.get().getLocale()).getPattern();
     }
 
     @Override

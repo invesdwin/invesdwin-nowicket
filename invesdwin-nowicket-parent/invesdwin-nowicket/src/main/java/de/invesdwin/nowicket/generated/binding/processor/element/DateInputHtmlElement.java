@@ -14,6 +14,7 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.B
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.DateInputModelElement;
 import de.invesdwin.util.time.date.FDate;
+import de.invesdwin.util.time.date.format.FDateTimeFormatter;
 
 @NotThreadSafe
 public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElement, Date> {
@@ -25,7 +26,7 @@ public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElemen
      */
     public static final String DEFAULT_DATE_FORMAT = FDate.FORMAT_ISO_DATE;
 
-    private java.text.SimpleDateFormat propertyFormat;
+    private FDateTimeFormatter propertyFormat;
 
     public DateInputHtmlElement(final HtmlContext context, final Element element) {
         super(context, element);
@@ -42,13 +43,13 @@ public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElemen
     }
 
     @Override
-    public java.text.SimpleDateFormat getFormat(final Locale locale) {
+    public FDateTimeFormatter getFormat(final Locale locale) {
         if (propertyFormat == null) {
             String format = getFormatString();
             if (format == null) {
                 format = DEFAULT_DATE_FORMAT;
             }
-            propertyFormat = new java.text.SimpleDateFormat(format, locale);
+            propertyFormat = FDateTimeFormatter.forPattern(format).withLocale(locale);
         }
         return propertyFormat;
     }
