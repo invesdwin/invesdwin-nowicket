@@ -9,8 +9,14 @@ import com.bsgcoach.reports.cir.parser.CompetitiveIntelligenceReportParser;
 import com.bsgcoach.reports.cor.parser.CompanyOperatingReportParser;
 import com.bsgcoach.reports.fir.parser.FootwearIndustryReportParser;
 
+import de.invesdwin.util.lang.reflection.Reflections;
+
 @NotThreadSafe
 public class ParserTest {
+
+    static {
+        Reflections.disableJavaModuleSystemRestrictions();
+    }
 
     @Test
     public void testParse() throws Exception {
