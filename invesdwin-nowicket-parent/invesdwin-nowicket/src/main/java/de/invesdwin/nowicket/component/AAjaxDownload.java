@@ -9,6 +9,7 @@ import org.apache.wicket.request.resource.ContentDisposition;
 import org.apache.wicket.util.resource.IResourceStream;
 
 import de.invesdwin.nowicket.component.header.DisableComponentsOnAjaxCallJsReference;
+import de.invesdwin.util.time.date.millis.FDateMillis;
 
 /**
  * https://cwiki.apache.org/confluence/display/WICKET/AJAX+update+and+file+download+in+one+blow
@@ -35,7 +36,7 @@ public abstract class AAjaxDownload extends AbstractAjaxBehavior {
 
         if (addAntiCache) {
             url = url + (url.contains("?") ? "&" : "?");
-            url = url + "antiCache=" + System.currentTimeMillis();
+            url = url + "antiCache=" + FDateMillis.nowMillis();
         }
 
         // the timeout is needed to let Wicket release the channel

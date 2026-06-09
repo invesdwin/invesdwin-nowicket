@@ -34,17 +34,17 @@ public class Reports extends AValueObject {
         try {
             this.fir = new FootwearIndustryReportParser(firReportCsv).call();
         } catch (final Throwable t) {
-            throw new RuntimeException("Error with <b>FIR</b> report on " + new FDate() + ".", t);
+            throw new RuntimeException("Error with <b>FIR</b> report on " + FDate.now() + ".", t);
         }
         try {
             this.cor = new CompanyOperatingReportParser(corReportCsv).call();
         } catch (final Throwable t) {
-            throw new RuntimeException("Error with <b>COR</b> report on " + new FDate() + ".", t);
+            throw new RuntimeException("Error with <b>COR</b> report on " + FDate.now() + ".", t);
         }
         try {
             this.cir = new CompetitiveIntelligenceReportParser(cirReportCsv).call();
         } catch (final Throwable t) {
-            throw new RuntimeException("Error with <b>CIR</b> report on " + new FDate() + ".", t);
+            throw new RuntimeException("Error with <b>CIR</b> report on " + FDate.now() + ".", t);
         }
     }
 

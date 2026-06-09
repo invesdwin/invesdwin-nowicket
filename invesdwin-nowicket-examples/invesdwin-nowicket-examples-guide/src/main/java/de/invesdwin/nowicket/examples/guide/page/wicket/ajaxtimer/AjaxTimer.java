@@ -29,14 +29,14 @@ public class AjaxTimer extends AValueObject {
 
     private boolean refreshAutomatically = true;
 
-    private FDate lastRefresh = new FDate();
+    private FDate lastRefresh = FDate.now();
 
     public List<AjaxTimerTab> getTabs() {
         return tabs;
     }
 
     public void refresh() {
-        lastRefresh = new FDate();
+        lastRefresh = FDate.now();
         Lists.maybeTrimSizeStart(getTabs(), MAX_TABS_COUNT);
         final AjaxTimerTab tab = new AjaxTimerTab(String.valueOf(tabIndex.incrementAndGet()));
         getTabs().add(tab);
@@ -58,7 +58,7 @@ public class AjaxTimer extends AValueObject {
 
     @Format(FDate.FORMAT_ISO_DATE_TIME_MS)
     public FDate getLastRefreshCheck() {
-        return new FDate();
+        return FDate.now();
     }
 
 }

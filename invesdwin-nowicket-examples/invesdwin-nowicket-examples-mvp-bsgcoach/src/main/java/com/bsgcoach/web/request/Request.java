@@ -161,7 +161,7 @@ public class Request extends AValueObject {
             @Override
             public void run() {
                 super.run();
-                String body = "date=" + new FDate() + "\n";
+                String body = "date=" + FDate.now() + "\n";
                 body += "productionEnvironment=" + application.usesDeploymentConfig() + "\n";
                 if (clientInfo instanceof WebClientInfo) {
                     final WebClientInfo webClientInfo = (WebClientInfo) clientInfo;

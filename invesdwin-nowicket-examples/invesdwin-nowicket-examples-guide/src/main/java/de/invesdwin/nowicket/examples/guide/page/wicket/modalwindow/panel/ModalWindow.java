@@ -17,7 +17,7 @@ public class ModalWindow extends AValueObject {
 
     private final int index;
     private String lastModalWindowResult;
-    private FDate anExampleOfAComponentThatUsesHeaderContributors = new FDate();
+    private FDate anExampleOfAComponentThatUsesHeaderContributors = FDate.now();
     private final AtomicLong modalsOpened;
     private String result;
 

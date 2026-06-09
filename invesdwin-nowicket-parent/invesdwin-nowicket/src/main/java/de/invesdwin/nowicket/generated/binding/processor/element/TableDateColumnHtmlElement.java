@@ -13,13 +13,14 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindin
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableDateColumnModelElement;
+import de.invesdwin.util.time.date.format.FDateTimeFormatter;
 
 @NotThreadSafe
 public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDateColumnModelElement, Date> {
 
     public static final String DEFAULT_DATE_FORMAT = DateInputHtmlElement.DEFAULT_DATE_FORMAT;
 
-    private java.text.SimpleDateFormat propertyFormat;
+    private FDateTimeFormatter propertyFormat;
 
     public TableDateColumnHtmlElement(final HtmlContext context, final TableDateColumnModelElement modelElement) {
         super(context, modelElement);
@@ -31,13 +32,13 @@ public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDat
     }
 
     @Override
-    public java.text.SimpleDateFormat getFormat(final Locale locale) {
+    public FDateTimeFormatter getFormat(final Locale locale) {
         if (propertyFormat == null) {
             String format = getFormatString();
             if (format == null) {
                 format = DEFAULT_DATE_FORMAT;
             }
-            propertyFormat = new java.text.SimpleDateFormat(format, locale);
+            propertyFormat = FDateTimeFormatter.forPattern(format).withLocale(locale);
         }
         return propertyFormat;
     }
