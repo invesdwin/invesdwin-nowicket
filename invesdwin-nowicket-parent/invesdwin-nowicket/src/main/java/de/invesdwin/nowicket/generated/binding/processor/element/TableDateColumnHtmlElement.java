@@ -14,13 +14,14 @@ import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.B
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableDateColumnModelElement;
 import de.invesdwin.util.time.date.format.FDateTimeFormatter;
+import de.invesdwin.util.time.date.format.SerializableFDateTimeFormatterProvider;
 
 @NotThreadSafe
 public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDateColumnModelElement, Date> {
 
     public static final String DEFAULT_DATE_FORMAT = DateInputHtmlElement.DEFAULT_DATE_FORMAT;
 
-    private FDateTimeFormatter propertyFormat;
+    private SerializableFDateTimeFormatterProvider propertyFormat;
 
     public TableDateColumnHtmlElement(final HtmlContext context, final TableDateColumnModelElement modelElement) {
         super(context, modelElement);
@@ -38,9 +39,10 @@ public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDat
             if (format == null) {
                 format = DEFAULT_DATE_FORMAT;
             }
-            propertyFormat = FDateTimeFormatter.forPattern(format).withLocale(locale);
+            propertyFormat = new SerializableFDateTimeFormatterProvider(
+                    FDateTimeFormatter.forPattern(format).withLocale(locale));
         }
-        return propertyFormat;
+        return propertyFormat.asFDateTimeFormatter();
     }
 
     @Override
