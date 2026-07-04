@@ -290,13 +290,11 @@
 						<requireUpperBoundDeps />
 						<bannedDependencies>
 							<excludes>
-								<exclude>commons-logging:commons-logging</exclude>
 								<exclude>org.aspectj:aspectjrt</exclude>
 								<exclude>javax.servlet:servlet-api</exclude>
 								<exclude>javax.xml.soap:javax.xml.soap-api</exclude>
 								<exclude>
 									org.apache.geronimo.specs:geronimo-jaxb_2.1_spec</exclude>
-								<exclude>commons-logging:commons-logging-api</exclude>
 								<exclude>javax.persistence:persistence-api</exclude>
 								<exclude>javax.persistence:javax.persistence-api</exclude>
 								<exclude>log4j:log4j</exclude>
