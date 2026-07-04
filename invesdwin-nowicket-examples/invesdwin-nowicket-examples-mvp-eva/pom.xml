@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.invesdwin</groupId>
@@ -191,7 +193,8 @@
 						</goals>
 						<phase>generate-sources</phase>
 						<configuration>
-							<outputDirectory>${project.build.directory}/generated-sources/apt</outputDirectory>
+							<outputDirectory>
+								${project.build.directory}/generated-sources/apt</outputDirectory>
 							<failOnError>false</failOnError>
 						</configuration>
 					</execution>
@@ -202,7 +205,8 @@
 						</goals>
 						<phase>generate-test-sources</phase>
 						<configuration>
-							<outputDirectory>${project.build.directory}/generated-test-sources/apt</outputDirectory>
+							<outputDirectory>
+								${project.build.directory}/generated-test-sources/apt</outputDirectory>
 							<failOnError>false</failOnError>
 						</configuration>
 					</execution>
@@ -220,8 +224,10 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>${project.build.directory}/generated-sources/apt</source>
-								<source>${project.build.directory}/generated-sources/invesdwin</source>
+								<source>
+									${project.build.directory}/generated-sources/apt</source>
+								<source>
+									${project.build.directory}/generated-sources/invesdwin</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -248,7 +254,8 @@
 								<exclude>org.aspectj:aspectjrt</exclude>
 								<exclude>javax.servlet:servlet-api</exclude>
 								<exclude>javax.xml.soap:javax.xml.soap-api</exclude>
-								<exclude>org.apache.geronimo.specs:geronimo-jaxb_2.1_spec</exclude>
+								<exclude>
+									org.apache.geronimo.specs:geronimo-jaxb_2.1_spec</exclude>
 								<exclude>javax.persistence:persistence-api</exclude>
 								<exclude>javax.persistence:javax.persistence-api</exclude>
 								<exclude>log4j:log4j</exclude>
@@ -260,9 +267,12 @@
 								<exclude>net.jcip:jcip-annotations</exclude>
 								<exclude>org.glassfish:javax.servlet</exclude>
 								<exclude>org.hibernate:hibernate-c3p0</exclude>
-								<exclude>org.hibernate.javax.persistence:hibernate-jpa-2.0-api</exclude>
-								<exclude>org.hibernate.javax.persistence:hibernate-jpa-2.1-api</exclude>
-								<exclude>org.hibernate.javax.persistence:hibernate-jpa-2.2-api</exclude>
+								<exclude>
+									org.hibernate.javax.persistence:hibernate-jpa-2.0-api</exclude>
+								<exclude>
+									org.hibernate.javax.persistence:hibernate-jpa-2.1-api</exclude>
+								<exclude>
+									org.hibernate.javax.persistence:hibernate-jpa-2.2-api</exclude>
 							</excludes>
 						</bannedDependencies>
 					</rules>
@@ -352,36 +362,76 @@
 									<shadedArtifactAttached>true</shadedArtifactAttached>
 									<shadedClassifierName>standalone</shadedClassifierName>
 									<transformers combine.self="override">
-										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer" />
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/spring.handlers</resource>
 										</transformer>
-										<transformer implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
-											<resource>META-INF/spring.factories</resource>
-										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/spring.schemas</resource>
 										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-										<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-											<mainClass>${start-class}</mainClass>
-										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/spring.tooling</resource>
 										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-											<resource>META-INF/cxf/bus-extensions.txt</resource>
+										<transformer
+											implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+											<resource>META-INF/spring.factories</resource>
 										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>
+												META-INF/cxf/bus-extensions.txt</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 											<resource>META-INF/mime.types</resource>
 										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>META-INF/mailcap</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+											<resource>
+												jasperreports_extension.properties</resource>
+										</transformer>
+										<transformer
+											implementation="de.invesdwin.maven.plugin.shade.RegexAppendingTransformer">
+											<resource>
+												ValidationMessages.*\\.properties</resource>
+										</transformer>
+										<transformer
+											implementation="de.invesdwin.maven.plugin.shade.WebFragmentTransformer">
+											<resource>META-INF/web-fragment.xml</resource>
+										</transformer>
+										<transformer
+											implementation="de.invesdwin.maven.plugin.shade.WebFragmentTransformer">
+											<resource>
+												META-INF/web/web-fragment.xml</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
 											<resource>META-INF/aop.xml</resource>
 										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
 											<resource>META-INF/wsdl.plugin.xml</resource>
 										</transformer>
-										<transformer implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer" />
-										<transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
+										<transformer
+											implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer" />
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+											<manifestEntries>
+												<Multi-Release>true</Multi-Release>
+											</manifestEntries>
+										</transformer>
 									</transformers>
 								</configuration>
 							</execution>
@@ -391,7 +441,12 @@
 								<groupId>org.springframework.boot</groupId>
 								<artifactId>spring-boot-maven-plugin</artifactId>
 								<version>${version.spring-boot-maven-plugin}</version>
-								<scope>compile</scope>
+							</dependency>
+							<dependency>
+								<groupId>de.invesdwin</groupId>
+								<artifactId>invesdwin-maven-plugin</artifactId>
+								<version>
+									${project.version.invesdwin-maven-plugin}</version>
 							</dependency>
 						</dependencies>
 					</plugin>
@@ -401,17 +456,20 @@
 		<profile>
 			<id>jacoco</id>
 			<activation>
-				<!-- use "mvn clean install -Pjacoco" to enable target/jacoco.exec file 
+				<!-- use "mvn clean install -Pjacoco" to enable
+				target/jacoco.exec file 
 					generation -->
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<dependencies>
 				<dependency>
-					<!-- https://stackoverflow.com/questions/40067455/jacoco-caused-by-java-lang-classnotfoundexception-org-jacoco-agent-rt-inter -->
+					<!--
+					https://stackoverflow.com/questions/40067455/jacoco-caused-by-java-lang-classnotfoundexception-org-jacoco-agent-rt-inter -->
 					<groupId>org.jacoco</groupId>
 					<artifactId>org.jacoco.agent</artifactId>
 					<classifier>runtime</classifier>
-					<!-- not using test scope so that annotation processors work properly, 
+					<!-- not using test scope so that annotation processors work
+					properly, 
 						requires less overrides in pom.xmls -->
 					<version>${version.jacoco-maven-plugin}</version>
 				</dependency>
@@ -456,7 +514,8 @@
 						<version>${version.maven-surefire-plugin}</version>
 						<configuration>
 							<systemPropertyVariables>
-								<jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
+								<jacoco-agent.destfile>
+									${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
