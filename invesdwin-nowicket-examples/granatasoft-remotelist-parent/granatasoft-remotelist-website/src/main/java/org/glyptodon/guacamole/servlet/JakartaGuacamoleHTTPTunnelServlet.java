@@ -9,6 +9,8 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.glyptodon.guacamole.GuacamoleClientException;
 import org.glyptodon.guacamole.GuacamoleConnectionClosedException;
 import org.glyptodon.guacamole.GuacamoleException;
@@ -18,8 +20,6 @@ import org.glyptodon.guacamole.io.GuacamoleReader;
 import org.glyptodon.guacamole.io.GuacamoleWriter;
 import org.glyptodon.guacamole.net.GuacamoleTunnel;
 import org.glyptodon.guacamole.protocol.GuacamoleStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -37,7 +37,7 @@ public abstract class JakartaGuacamoleHTTPTunnelServlet extends HttpServlet {
     /**
      * Logger for this class.
      */
-    private final Logger logger = LoggerFactory.getLogger(JakartaGuacamoleHTTPTunnelServlet.class);
+    private final Logger logger = LogManager.getLogger(JakartaGuacamoleHTTPTunnelServlet.class);
 
     /**
      * Map of absolutely all active tunnels using HTTP, indexed by tunnel UUID.

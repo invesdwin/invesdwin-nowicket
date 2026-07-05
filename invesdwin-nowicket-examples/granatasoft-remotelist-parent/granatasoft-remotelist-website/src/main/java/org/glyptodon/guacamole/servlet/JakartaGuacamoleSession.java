@@ -2,9 +2,9 @@
 // @NotThreadSafe
 package org.glyptodon.guacamole.servlet;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.glyptodon.guacamole.net.GuacamoleTunnel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -19,7 +19,7 @@ public class JakartaGuacamoleSession {
     /**
      * Logger for this class.
      */
-    private final Logger logger = LoggerFactory.getLogger(JakartaGuacamoleSession.class);
+    private final Logger logger = LogManager.getLogger(JakartaGuacamoleSession.class);
 
     /**
      * Creates a new GuacamoleSession. In prior versions of Guacamole, the GuacamoleSession object stored the tunnels
@@ -31,6 +31,7 @@ public class JakartaGuacamoleSession {
      *            The HttpSession that older versions of Guacamole would use as tunnel storage. This parameter is now
      *            ignored, and the GuacamoleSession class overall is deprecated.
      */
+    @Deprecated
     public JakartaGuacamoleSession(final HttpSession session) {
         logger.warn("GuacamoleSession is deprecated. It is no longer " + "necessary and its use will have no effect.");
     }
@@ -42,6 +43,7 @@ public class JakartaGuacamoleSession {
      * @param tunnel
      *            The tunnel to attach to this GucacamoleSession.
      */
+    @Deprecated
     public void attachTunnel(final GuacamoleTunnel tunnel) {
         // Deprecated - no effect
     }
@@ -53,6 +55,7 @@ public class JakartaGuacamoleSession {
      * @param tunnel
      *            The tunnel to detach to this GucacamoleSession.
      */
+    @Deprecated
     public void detachTunnel(final GuacamoleTunnel tunnel) {
         // Deprecated - no effect
     }
@@ -66,6 +69,7 @@ public class JakartaGuacamoleSession {
      *
      * @return The tunnel corresponding to the given UUID, if attached, or null if if no such tunnel is attached.
      */
+    @Deprecated
     public GuacamoleTunnel getTunnel(final String tunnelUUID) {
 
         // Deprecated - no effect
