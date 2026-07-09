@@ -32,8 +32,8 @@ public class ShiroAuthenticationService implements IAuthenticationService {
 
     private static final MetaDataKey<ArrayList<String>> KEY_ROLES = new MetaDataKey<ArrayList<String>>() {
     };
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
-            .getXLogger(ShiroAuthenticationService.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(ShiroAuthenticationService.class);
 
     @Override
     public boolean evaluateExpression(final String spel) {
@@ -167,7 +167,6 @@ public class ShiroAuthenticationService implements IAuthenticationService {
     }
 
     @Override
-    public void afterReplaceSession(final Object beforeReplaceSession) {
-    }
+    public void afterReplaceSession(final Object beforeReplaceSession) {}
 
 }

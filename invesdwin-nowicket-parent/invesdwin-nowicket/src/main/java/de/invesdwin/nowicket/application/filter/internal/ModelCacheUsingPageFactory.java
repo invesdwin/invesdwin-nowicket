@@ -3,6 +3,7 @@ package de.invesdwin.nowicket.application.filter.internal;
 import javax.annotation.concurrent.ThreadSafe;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.logging.log4j.Level;
 import org.apache.wicket.Component;
 import org.apache.wicket.IPageFactory;
 import org.apache.wicket.MetaDataKey;
@@ -12,7 +13,6 @@ import org.apache.wicket.core.request.handler.PageProvider;
 import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
 import org.apache.wicket.request.component.IRequestablePage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.slf4j.ext.XLogger.Level;
 
 import de.invesdwin.nowicket.application.IPageFactoryHook;
 import de.invesdwin.nowicket.application.PageFactory;
@@ -27,8 +27,8 @@ public class ModelCacheUsingPageFactory implements IPageFactory {
     };
     public static final String NO_CACHE_PARAM = "noCache";
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
-            .getXLogger(ModelCacheUsingPageFactory.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(ModelCacheUsingPageFactory.class);
     private final IPageFactory delegate;
 
     public ModelCacheUsingPageFactory(final IPageFactory delegate) {

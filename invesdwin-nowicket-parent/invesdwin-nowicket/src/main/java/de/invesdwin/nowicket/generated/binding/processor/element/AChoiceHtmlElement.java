@@ -33,7 +33,8 @@ import de.invesdwin.util.lang.string.Strings;
 public abstract class AChoiceHtmlElement<E extends AChoiceModelElement<?>> extends AModelHtmlElement<E, Object>
         implements ITabbedHtmlElement<E, Object> {
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(AChoiceHtmlElement.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(AChoiceHtmlElement.class);
 
     public AChoiceHtmlElement(final HtmlContext context, final Element element) {
         super(context, element);

@@ -67,8 +67,8 @@ public class SpringSecurityAuthenticationService implements IAuthenticationServi
             setDefaultRolePrefix(DISABLED_ROLE_PREFIX);
         }
     };
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
-            .getXLogger(SpringSecurityAuthenticationService.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(SpringSecurityAuthenticationService.class);
 
     private final AuthenticationManager authenticationManager;
 

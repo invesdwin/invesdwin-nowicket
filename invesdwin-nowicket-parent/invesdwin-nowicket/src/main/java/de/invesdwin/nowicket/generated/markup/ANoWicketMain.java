@@ -11,7 +11,7 @@ import org.kohsuke.args4j.Option;
 @Immutable
 public abstract class ANoWicketMain {
 
-    protected final org.slf4j.ext.XLogger log = org.slf4j.ext.XLoggerFactory.getXLogger(getClass());
+    protected final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(getClass());
 
     @Option(help = true, name = "-h", aliases = "--help", usage = "Shows this help text")
     protected boolean help;

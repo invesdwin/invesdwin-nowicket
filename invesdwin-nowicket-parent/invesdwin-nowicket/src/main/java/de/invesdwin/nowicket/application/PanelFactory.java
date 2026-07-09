@@ -19,10 +19,10 @@ public final class PanelFactory {
     private static final String PANEL_CLASS_MODEL_SUFFIX = Panel.class.getSimpleName();
     private static final PanelFactory INSTANCE = new PanelFactory();
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(PanelFactory.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(PanelFactory.class);
 
-    private PanelFactory() {
-    }
+    private PanelFactory() {}
 
     public static PanelFactory get() {
         return INSTANCE;

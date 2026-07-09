@@ -41,7 +41,8 @@ import de.invesdwin.util.error.Throwables;
 @Immutable
 public final class Components {
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(Components.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(Components.class);
 
     private static final MetaDataKey<Map<String, List<FeedbackMessage>>> KEY_PREVIOUS_MESSAGES = new MetaDataKey<Map<String, List<FeedbackMessage>>>() {
     };

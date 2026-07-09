@@ -14,7 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @NotThreadSafe
 public abstract class AErrorPanel extends Panel {
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(AErrorPanel.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(AErrorPanel.class);
 
     public AErrorPanel(final String id, final IModel<?> model) {
         super(id, model);

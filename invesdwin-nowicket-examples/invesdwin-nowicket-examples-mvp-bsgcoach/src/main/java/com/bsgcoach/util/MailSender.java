@@ -8,7 +8,8 @@ import javax.annotation.concurrent.Immutable;
 @Immutable
 public final class MailSender {
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(MailSender.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(MailSender.class);
 
     private MailSender() {}
 

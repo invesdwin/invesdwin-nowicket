@@ -37,7 +37,8 @@ public final class PageFactory implements Serializable {
     private static final int MAX_PAGE_REFERENCES_PER_MODEL = 10;
     private static final int MAX_MODELS_PER_CLASS = 100;
     private static final String PAGE_CLASS_MODEL_SUFFIX = Page.class.getSimpleName();
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(PageFactory.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(PageFactory.class);
     private static final MetaDataKey<PageFactory> KEY_PAGE_FACTORY = new MetaDataKey<PageFactory>() {
     };
     /*

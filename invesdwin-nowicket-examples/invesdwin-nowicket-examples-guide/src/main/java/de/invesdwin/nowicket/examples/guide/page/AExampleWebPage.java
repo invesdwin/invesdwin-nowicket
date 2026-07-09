@@ -71,7 +71,8 @@ public abstract class AExampleWebPage extends AWebPage {
     private static final String TITLE = "invesdwin-NoWicket";
     private static final ResourceReference LOGO = new PackageResourceReference(AExampleWebPage.class, "logo.png");
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(AExampleWebPage.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(AExampleWebPage.class);
 
     public AExampleWebPage(final IModel<?> model) {
         super(model);

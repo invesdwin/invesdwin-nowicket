@@ -4,6 +4,7 @@ import java.util.MissingResourceException;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.apache.logging.log4j.Level;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.StringResourceModel;
 
@@ -17,19 +18,20 @@ import de.invesdwin.util.lang.string.Strings;
 @NotThreadSafe
 public class DefaultSubmitButtonExceptionHandler implements ISubmitButtonExceptionHandler {
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory
-            .getXLogger(DefaultSubmitButtonExceptionHandler.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(DefaultSubmitButtonExceptionHandler.class);
 
     @Override
     public void handleSubmitButtonException(final IHtmlElement<?, ?> element, final Component component,
             final Throwable t) {
         if (shouldSwallowException(t)) {
-            LOG.catching(org.slf4j.ext.XLogger.Level.WARN, new RuntimeException("Button exception swallowed...", t));
+            LOG.catching(Level.WARN, new RuntimeException("Button exception swallowed...", t));
         } else {
             if (shouldShowExceptionMessage(t)) {
                 logShowExceptionMessage(t);
-                final String title = component.getLocalizer().getString(
-                        DefaultSubmitButtonExceptionHandler.class.getSimpleName() + ".exception.title", component);
+                final String title = component.getLocalizer()
+                        .getString(DefaultSubmitButtonExceptionHandler.class.getSimpleName() + ".exception.title",
+                                component);
                 String message;
                 try {
                     message = new StringResourceModel(t.getMessage(), component,
@@ -50,8 +52,9 @@ public class DefaultSubmitButtonExceptionHandler implements ISubmitButtonExcepti
     protected void showAccessDeniedExceptionMessage(final IHtmlElement<?, ?> element, final Component component,
             final Throwable t) {
         final String elementTitle = element.getTitleModel().getObject();
-        final String title = component.getLocalizer().getString(
-                DefaultSubmitButtonExceptionHandler.class.getSimpleName() + ".access.denied.title", component);
+        final String title = component.getLocalizer()
+                .getString(DefaultSubmitButtonExceptionHandler.class.getSimpleName() + ".access.denied.title",
+                        component);
         final String message = new StringResourceModel(
                 DefaultSubmitButtonExceptionHandler.class.getSimpleName() + ".access.denied.message", component,
                 element.getContext().getMarkupContainer().getDefaultModel()).setParameters(elementTitle).getString();
@@ -84,7 +87,7 @@ public class DefaultSubmitButtonExceptionHandler implements ISubmitButtonExcepti
     }
 
     public void logShowExceptionMessage(final Throwable t) {
-        LOG.catching(org.slf4j.ext.XLogger.Level.WARN,
+        LOG.catching(Level.WARN,
                 new RuntimeException("Showing " + ModalMessage.class.getSimpleName() + " for button exception...", t));
     }
 

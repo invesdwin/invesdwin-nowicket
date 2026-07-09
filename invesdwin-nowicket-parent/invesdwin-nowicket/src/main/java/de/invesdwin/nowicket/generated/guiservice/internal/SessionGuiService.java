@@ -41,7 +41,8 @@ public class SessionGuiService implements IGuiService, Serializable {
     private static final MetaDataKey<Boolean> KEY_DISABLE_UPDATE_ALL_COMPONENTS_FOR_CURRENT_REQUEST = new MetaDataKey<Boolean>() {
     };
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(SessionGuiService.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(SessionGuiService.class);
 
     private File sessionFolder;
 

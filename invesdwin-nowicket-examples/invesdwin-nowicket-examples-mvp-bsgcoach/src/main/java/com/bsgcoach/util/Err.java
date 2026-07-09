@@ -5,7 +5,7 @@ import javax.annotation.concurrent.Immutable;
 @Immutable
 public final class Err {
 
-    private static final org.slf4j.ext.XLogger LOG = org.slf4j.ext.XLoggerFactory.getXLogger(Err.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager.getLogger(Err.class);
 
     private Err() {}
 
