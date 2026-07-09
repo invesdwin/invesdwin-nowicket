@@ -36,7 +36,8 @@ import de.invesdwin.util.lang.reflection.Reflections;
 @NotThreadSafe
 public class PreactPartialPageUpdate {
 
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(PartialPageUpdate.class);
+    private static final org.apache.logging.log4j.Logger LOG = org.apache.logging.log4j.LogManager
+            .getLogger(PartialPageUpdate.class);
     private static final MethodHandle GET_UPDATE_METHOD_HANDLE;
     private static final MethodHandle WRITE_HEADER_CONTRIBUTION_METHOD_HANDLE;
 
