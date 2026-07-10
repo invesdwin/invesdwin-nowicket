@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
-import java.util.Date;
 import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -11,13 +10,14 @@ import org.apache.wicket.model.IModel;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.IBindingBuilder;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.FDatePropertyModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.TableDateColumnModelElement;
+import de.invesdwin.util.time.date.FDate;
 import de.invesdwin.util.time.date.format.FDateTimeFormatter;
 import de.invesdwin.util.time.date.format.SerializableFDateTimeFormatterProvider;
 
 @NotThreadSafe
-public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDateColumnModelElement, Date> {
+public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDateColumnModelElement, FDate> {
 
     public static final String DEFAULT_DATE_FORMAT = DateInputHtmlElement.DEFAULT_DATE_FORMAT;
 
@@ -46,8 +46,8 @@ public class TableDateColumnHtmlElement extends ATableColumnHtmlElement<TableDat
     }
 
     @Override
-    public IModel<Date> getModel() {
-        return new DatePropertyModel(new BeanPathModel<Object>(this));
+    public IModel<FDate> getModel() {
+        return new FDatePropertyModel(new BeanPathModel<Object>(this));
     }
 
     @Override

@@ -7,14 +7,14 @@ import org.apache.wicket.markup.ComponentTag;
 
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.AbstractDateTextFieldConfig.Day;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.AbstractDateTextFieldConfig.TodayButton;
-import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextField;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.element.DateInputHtmlElement;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.date.WicketBootstrapFDateTextField;
 import de.invesdwin.util.lang.reflection.Reflections;
 
 @NotThreadSafe
-public class ModelDateTextField extends DateTextField {
+public class ModelDateTextField extends WicketBootstrapFDateTextField {
 
     private final AttributeModifier typeAttributeModifier = new AttributeModifier("type", "text");
 

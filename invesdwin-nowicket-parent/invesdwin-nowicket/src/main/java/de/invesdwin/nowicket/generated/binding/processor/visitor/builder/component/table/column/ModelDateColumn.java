@@ -1,7 +1,5 @@
 package de.invesdwin.nowicket.generated.binding.processor.visitor.builder.component.table.column;
 
-import java.util.Date;
-
 import javax.annotation.concurrent.NotThreadSafe;
 
 import org.apache.wicket.model.IModel;
@@ -9,7 +7,8 @@ import org.apache.wicket.model.IModel;
 import de.invesdwin.nowicket.application.auth.AWebSession;
 import de.invesdwin.nowicket.generated.binding.processor.element.TableDateColumnHtmlElement;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.FDatePropertyModel;
+import de.invesdwin.util.time.date.FDate;
 
 @NotThreadSafe
 public class ModelDateColumn extends ModelTextColumn {
@@ -23,7 +22,7 @@ public class ModelDateColumn extends ModelTextColumn {
 
     @Override
     public IModel<Object> getDataModel(final IModel<Object> rowModel) {
-        final DatePropertyModel propertyModel = new DatePropertyModel(
+        final FDatePropertyModel propertyModel = new FDatePropertyModel(
                 new BeanPathModel<Object>(rowModel, getPropertyExpression()));
         return new IModel<Object>() {
 
@@ -34,7 +33,7 @@ public class ModelDateColumn extends ModelTextColumn {
 
             @Override
             public Object getObject() {
-                final Date date = propertyModel.getObject();
+                final FDate date = propertyModel.getObject();
                 if (date != null) {
                     return element.getFormat(AWebSession.get().getLocale()).print(date);
                 } else {

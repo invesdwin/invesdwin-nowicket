@@ -1,6 +1,5 @@
 package de.invesdwin.nowicket.generated.binding.processor.element;
 
-import java.util.Date;
 import java.util.Locale;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -11,14 +10,14 @@ import org.jsoup.nodes.Element;
 import de.invesdwin.nowicket.generated.binding.processor.context.HtmlContext;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.IHtmlVisitor;
 import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.BeanPathModel;
-import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.DatePropertyModel;
+import de.invesdwin.nowicket.generated.binding.processor.visitor.builder.model.FDatePropertyModel;
 import de.invesdwin.nowicket.generated.markup.processor.element.DateInputModelElement;
 import de.invesdwin.util.time.date.FDate;
 import de.invesdwin.util.time.date.format.FDateTimeFormatter;
 import de.invesdwin.util.time.date.format.SerializableFDateTimeFormatterProvider;
 
 @NotThreadSafe
-public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElement, Date> {
+public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElement, FDate> {
 
     public static final String INPUT_TYPE_DATE = "date";
 
@@ -34,8 +33,8 @@ public class DateInputHtmlElement extends AModelHtmlElement<DateInputModelElemen
     }
 
     @Override
-    public IModel<Date> getModel() {
-        return new DatePropertyModel(new BeanPathModel<Object>(this));
+    public IModel<FDate> getModel() {
+        return new FDatePropertyModel(new BeanPathModel<Object>(this));
     }
 
     @Override
