@@ -42,7 +42,7 @@
 		<version.jacoco-maven-plugin>0.8.14</version.jacoco-maven-plugin>
 		<version.maven-surefire-plugin>3.5.4</version.maven-surefire-plugin>
 		<aspectj.version>1.9.25.1</aspectj.version>
-		<commons-codec.version>1.21.0</commons-codec.version>
+		<commons-codec.version>1.22.0</commons-codec.version>
 		<commons-lang3.version>3.20.0</commons-lang3.version>
 		<byte-buddy.version>1.18.2</byte-buddy.version>
 		<commons-pool2.version>2.13.0</commons-pool2.version>
