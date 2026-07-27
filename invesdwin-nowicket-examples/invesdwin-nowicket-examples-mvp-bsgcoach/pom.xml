@@ -29,7 +29,7 @@
 		<caffeine.version>3.2.3</caffeine.version>
 		<micrometer.version>1.16.1</micrometer.version>
 		<jakarta-persistence.version>3.2.0</jakarta-persistence.version>
-		<jakarta-servlet.version>6.0.0</jakarta-servlet.version>
+		<jakarta-servlet.version>6.1.0</jakarta-servlet.version>
 		<glassfish-jaxb.version>4.0.6</glassfish-jaxb.version>
 		<jakarta-xml-bind.version>4.0.4</jakarta-xml-bind.version>
 		<jakarta-activation.version>2.1.4</jakarta-activation.version>
