@@ -3,14 +3,15 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<security:http
+	<security:http request-matcher="ant"
 		authentication-manager-ref="remotelistAuthenticationManager"
 		use-expressions="true">
 
 		<security:csrf disabled="true" />
 		<security:headers>
 			<security:frame-options policy="SAMEORIGIN" />
-			<security:content-type-options disabled="true" />
+			<security:content-type-options
+				disabled="true" />
 		</security:headers>
 
 		<!-- register wicket sigin in page -->
@@ -18,8 +19,9 @@
 		<!-- alternatively with use-expressions="false": access="ADMIN" -->
 		<security:intercept-url pattern="/secure/**"
 			access="hasRole('ADMIN')" />
-			
-		<security:intercept-url pattern="/**" access="permitAll" />
+
+		<security:intercept-url pattern="/**"
+			access="permitAll" />
 	</security:http>
 
 	<security:authentication-manager

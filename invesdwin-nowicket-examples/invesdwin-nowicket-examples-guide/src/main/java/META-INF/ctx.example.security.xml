@@ -18,7 +18,7 @@
 		secured-annotations="disabled" jsr250-annotations="disabled"
 		pre-post-annotations="enabled" />
 
-	<security:http
+	<security:http request-matcher="ant"
 		authentication-manager-ref="exampleAuthenticationManager"
 		use-expressions="true">
 
